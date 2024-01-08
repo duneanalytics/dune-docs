@@ -12,12 +12,22 @@
     ],
     "paths": {
         "/v1/query/{queryId}/execute": {
-            "TODO": "TODO POST"
+            "post": {
+                "summary": "TODO",
+                "description": "TODO",
+                "operationId": "ExecuteQueryViaQueryId",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "TODO": "TODO"
+                    }
+                }
+            }
         },
         "/v1/query/{queryId}/results": {
             "get": {
-                "summary": "Returns the result of a Query execution on Dune",
-                "description": "This API allows for anyone to read  the results of a query execution on Dune data platform",
+                "summary": "Returns the latest executed result of a query on Dune",
+                "description": "This API allows for anyone to read the latest results of a query, regardless of the execution id or if it run on the app or via the api.",
                 "operationId": "GetQueryResults",
                 "parameters": [
                     {
@@ -54,19 +64,79 @@
             }
         },
         "/v1/query/{queryId}/results/csv": {
-            "TODO": "TODO"
+            "get": {
+                "summary": "TODO",
+                "description": "TODO",
+                "operationId": "GetQueryResultsCSV",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "TODO": "TODO"
+                    }
+                }
+            }
         },
         "/v1/execution/{executionId}/results/csv": {
-            "TODO": "TODO GET"
+            "get": {
+                "summary": "TODO",
+                "description": "TODO",
+                "operationId": "GetExecutionResultsCSV",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "TODO": "TODO"
+                    }
+                }
+            }
         },
         "/v1/execution/{executionId}/results": {
-            "TODO": "TODO GET"
+            "get": {
+                "summary": "TODO",
+                "description": "TODO",
+                "operationId": "GetExecutionResults",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "TODO": "TODO"
+                    }
+                }
+            }
         },
         "/v1/execution/{executionId}/status": {
-            "TODO": "TODO GET"
+            "get": {
+                "summary": "TODO",
+                "description": "TODO",
+                "operationId": "GetExecutionStatus",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "TODO": "TODO"
+                    }
+                }
+            }
         },
         "/v1/execution/{executionId}/cancel": {
-            "TODO": "TODO POST"
+            "post": {
+                "summary": "TODO",
+                "description": "TODO",
+                "operationId": "CancelExecution",
+                "requestBody": {
+                    "description": "TODO",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TODO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "TODO": "TODO"
+                    }
+                }
+            }
         },
         "/v1/execution/{executionId}": {
             "TODO": "TODO DELETE (check if this is public?)"
