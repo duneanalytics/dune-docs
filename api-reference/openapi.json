@@ -10,11 +10,12 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://api.dune.com/api"
     }
   ],
   "security": [
     {
+      "TODO": "TODO",
       "bearerAuth": []
     }
   ],
