@@ -10,6 +10,11 @@
             "url": "https://api.dune.com/api"
         }
     ],
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ],
     "paths": {
         "/v1/query/{queryId}/execute": {
             "post": {
@@ -31,6 +36,15 @@
                 "operationId": "GetQueryResults",
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "X-DUNE-API-KEY",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API Key for accessing this service",
+                        "required": true
+                    },
+                    {
                         "in": "path",
                         "name": "queryId",
                         "required": true,
@@ -40,13 +54,17 @@
                         "description": "unique identifier of the query"
                     },
                     {
-                        "in": "header",
-                        "name": "X-DUNE-API-KEY",
+                        "in": "query",
+                        "name": "parameters",
+                        "required": false,
+                        "explode": true,
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ParameterObject"
+                            }
                         },
-                        "description": "API Key for accessing this service",
-                        "required": true
+                        "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
                     }
                 ],
                 "responses": {
@@ -56,6 +74,46 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/QueryResult"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Core request validation failed"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
                                 }
                             }
                         }
@@ -144,39 +202,123 @@
     },
     "components": {
         "schemas": {
-            "TODO": "need to go thru everything here",
             "QueryResult": {
+                "type": "object",
                 "required": [
-                    "metadata"
+                    "executionId",
+                    "queryId",
+                    "state",
+                    "submitted_at"
                 ],
+                "properties": {
+                    "executionId": {
+                        "type": "string",
+                        "description": "Unique identifier for the execution of the query.",
+                        "example": "01GXDTYMM2CKFRBEW44X5S0WZE"
+                    },
+                    "queryId": {
+                        "type": "integer",
+                        "description": "Unique identifier of the query.",
+                        "example": 1252207
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the query execution.",
+                        "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp of when the query was submitted.",
+                        "example": "2023-04-07T12:27:09.314513Z"
+                    },
+                    "expires_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp of when the query result expires.",
+                        "example": "2025-04-06T12:27:15.749155Z"
+                    },
+                    "execution_started_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp of when the query execution started.",
+                        "example": "2023-04-07T12:27:09.387366Z"
+                    },
+                    "execution_ended_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp of when the query execution ended.",
+                        "example": "2023-04-07T12:27:15.749154Z"
+                    },
+                    "cancelled_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp of when the query execution was cancelled, if applicable.",
+                        "example": "2023-04-08T12:27:15.749154Z"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/QueryResultData",
+                        "description": "The actual result data of the query.",
+                        "example": {
+                            "rows": [
+                                {
+                                    "TableName": "eth_blocks",
+                                    "ct": 6296
+                                },
+                                {
+                                    "TableName": "eth_traces",
+                                    "ct": 4474223
+                                }
+                            ],
+                            "metadata": {
+                                "column_names": [
+                                    "ct",
+                                    "TableName"
+                                ],
+                                "result_set_bytes": 194,
+                                "total_row_count": 8,
+                                "datapoint_count": 16,
+                                "pending_time_millis": 8,
+                                "execution_time_millis": 24
+                            }
+                        }
+                    },
+                    "error": {
+                        "$ref": "#/components/schemas/QueryResultError",
+                        "description": "Details of any error that occurred during query execution."
+                    }
+                }
+            },
+            "QueryResultData": {
                 "type": "object",
                 "properties": {
-                    "metadata": {
-                        "$ref": "#/components/schemas/QueryResultMetadata",
-                        "description": "Additional metadata about this query result and respective query"
-                    },
-                    "columnNames": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "The names of the columns present in the response. Can be empty if query failed."
-                    },
                     "rows": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/QueryResultRow"
                         },
-                        "description": "The returned rows for this Query. Can be empty if query failed."
+                        "description": "The rows of data returned by the query."
                     },
-                    "queryFailed": {
-                        "type": "boolean",
-                        "default": false,
-                        "description": "Flag indicating if query execution failed. See errorMessage if true"
-                    },
-                    "errorMessage": {
+                    "metadata": {
+                        "$ref": "#/components/schemas/ExecutionResultMetadata",
+                        "description": "Metadata about the execution of the query."
+                    }
+                }
+            },
+            "QueryResultError": {
+                "type": "object",
+                "properties": {
+                    "type": {
                         "type": "string",
-                        "description": "Error message in case the execution failed, this field is present if query failed"
+                        "description": "The type of error that occurred."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A descriptive message about the error."
+                    },
+                    "metadata": {
+                        "$ref": "#/components/schemas/SyntaxErrorMetadata",
+                        "description": "Additional metadata about the syntax error, if applicable."
                     }
                 }
             },
@@ -184,60 +326,166 @@
                 "type": "object",
                 "description": "A row is dictionary of key-value pairs, each pair corresponding to a column"
             },
-            "QueryResultMetadata": {
-                "required": [
-                    "executedAt",
-                    "jobId",
-                    "queryDurationMillis",
-                    "queryId",
-                    "queryVersion"
-                ],
+            "SyntaxErrorMetadata": {
                 "type": "object",
                 "properties": {
-                    "queryId": {
-                        "type": "string",
-                        "description": "QueryID uniquely identifies the query"
-                    },
-                    "queryVersion": {
-                        "type": "string",
-                        "description": "QueryVersion identifies the specific version of the query that was executed"
-                    },
-                    "jobId": {
+                    "line": {
                         "type": "integer",
-                        "description": "The Job ID for this result (and the corresponding execution) of the Query."
+                        "description": "The line number at which the syntax error occurred."
                     },
-                    "queryParameters": {
+                    "column": {
+                        "type": "integer",
+                        "description": "The column number at which the syntax error occurred."
+                    }
+                }
+            },
+            "ExecutionResultMetadata": {
+                "type": "object",
+                "properties": {
+                    "column_names": {
                         "type": "array",
                         "items": {
-                            "type": "object"
+                            "type": "string"
                         },
-                        "description": "the Query Parameters used for this query execution."
+                        "description": "Names of the columns in the result set."
                     },
-                    "executedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp of when the query started execution"
-                    },
-                    "queryDurationMillis": {
+                    "result_set_bytes": {
                         "type": "integer",
-                        "description": "Time it took for the Query to complete, in milliseconds"
+                        "format": "int64",
+                        "description": "Total number of bytes in the result set."
                     },
-                    "resultBytes": {
+                    "total_row_count": {
                         "type": "integer",
-                        "description": "Total number of bytes returned by the Query"
+                        "description": "Total number of rows in the result set."
                     },
-                    "resultRows": {
+                    "datapoint_count": {
                         "type": "integer",
-                        "description": "Total number of rows returned by the Query"
+                        "format": "int64",
+                        "description": "The count of datapoints used for billing/pricing, based on the result set."
+                    },
+                    "pending_time_millis": {
+                        "type": "integer",
+                        "description": "Time in milliseconds that the query was pending before execution."
+                    },
+                    "execution_time_millis": {
+                        "type": "integer",
+                        "description": "Time in milliseconds that the query took to execute."
                     }
+                },
+                "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times."
+            },
+            "ParameterObject": {
+                "type": "object",
+                "required": [
+                    "key"
+                ],
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "description": "The key name of the parameter."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A brief description of the parameter."
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The default value used by this parameter during execution, format depends on the type."
+                    },
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An array of string values, used when multiple selections are allowed."
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "number",
+                            "text",
+                            "datetime",
+                            "enum"
+                        ],
+                        "description": "The type of the parameter, determines the format of 'value(s)'. 'number': Numeric parameters, the value must be a number (e.g., '20'). 'text': String parameters, value can be any text including hex 0x-prefixed values (e.g., '0xae2fc...'), an empty value defaults to an empty string. 'datetime': Date and time parameters, value must be in 'YYYY-MM-DD hh:mm:ss' format (e.g., '2021-12-31 23:59:59'). 'enum': Parameters with a specific list of values, 'EnumValues' field is mandatory, providing a JSON list of strings representing valid options, the 'value' must be one of these options (e.g., 'Option1')."
+                    }
+                },
+                "EnumValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of valid options for 'enum' type parameters."
+                },
+                "isMultiselect": {
+                    "type": "boolean",
+                    "description": "Indicates if multiple selections are allowed for this parameter."
+                },
+                "isFreeformAllowed": {
+                    "type": "boolean",
+                    "description": "Indicates if freeform input is allowed for this parameter."
+                },
+                "enumFromResults": {
+                    "description": "Defines the parameter values based on results from another query.",
+                    "$ref": "#/components/schemas/EnumFromResults"
                 }
             }
         },
-        "securitySchemes": {
-            "bearerAuth": {
-                "type": "http",
-                "scheme": "bearer"
+        "EnumFromResults": {
+            "type": "object",
+            "properties": {
+                "queryId": {
+                    "type": "integer",
+                    "description": "The ID of the query to fetch results from."
+                },
+                "columnName": {
+                    "type": "string",
+                    "description": "The column name to use from the query results."
+                }
             }
+        },
+        "NotFoundError": {
+            "type": "object",
+            "required": [
+                "error",
+                "message"
+            ],
+            "properties": {
+                "error": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Error code for resource not found",
+                    "example": 404
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Error message for resource not found",
+                    "example": "The requested resource was not found."
+                }
+            }
+        },
+        "InternalServerError": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 500
+                },
+                "message": {
+                    "type": "string",
+                    "example": "internal error"
+                }
+            },
+            "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+        }
+    },
+    "securitySchemes": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "description": "API key for authenticating requests"
         }
     }
 }
