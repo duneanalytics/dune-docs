@@ -10,11 +10,6 @@
             "url": "https://api.dune.com/api"
         }
     ],
-    "security": [
-        {
-            "ApiKeyAuth": []
-        }
-    ],
     "paths": {
         "/v1/query/{queryId}/results": {
             "get": {
@@ -46,7 +41,6 @@
                         "required": false,
                         "explode": true,
                         "schema": {
-                            "type": "array",
                             "items": {
                                 "$ref": "#/components/schemas/ParameterObject"
                             }
@@ -166,35 +160,10 @@
                         "example": "2023-04-08T12:27:15.749154Z"
                     },
                     "result": {
-                        "$ref": "#/components/schemas/QueryResultData",
-                        "description": "The actual result data of the query.",
-                        "example": {
-                            "rows": [
-                                {
-                                    "TableName": "eth_blocks",
-                                    "ct": 6296
-                                },
-                                {
-                                    "TableName": "eth_traces",
-                                    "ct": 4474223
-                                }
-                            ],
-                            "metadata": {
-                                "column_names": [
-                                    "ct",
-                                    "TableName"
-                                ],
-                                "result_set_bytes": 194,
-                                "total_row_count": 8,
-                                "datapoint_count": 16,
-                                "pending_time_millis": 8,
-                                "execution_time_millis": 24
-                            }
-                        }
+                        "$ref": "#/components/schemas/QueryResultData"
                     },
                     "error": {
-                        "$ref": "#/components/schemas/QueryResultError",
-                        "description": "Details of any error that occurred during query execution."
+                        "$ref": "#/components/schemas/QueryResultError"
                     }
                 }
             },
@@ -209,8 +178,7 @@
                         "description": "The rows of data returned by the query."
                     },
                     "metadata": {
-                        "$ref": "#/components/schemas/ExecutionResultMetadata",
-                        "description": "Metadata about the execution of the query."
+                        "$ref": "#/components/schemas/ExecutionResultMetadata"
                     }
                 }
             },
@@ -226,14 +194,23 @@
                         "description": "A descriptive message about the error."
                     },
                     "metadata": {
-                        "$ref": "#/components/schemas/SyntaxErrorMetadata",
-                        "description": "Additional metadata about the syntax error, if applicable."
+                        "$ref": "#/components/schemas/SyntaxErrorMetadata"
                     }
                 }
             },
             "QueryResultRow": {
                 "type": "object",
-                "description": "A row is dictionary of key-value pairs, each pair corresponding to a column"
+                "description": "A row is dictionary of key-value pairs, each pair corresponding to a column",
+                "example": [
+                    {
+                        "TableName": "eth_blocks",
+                        "ct": 6296
+                    },
+                    {
+                        "TableName": "eth_traces",
+                        "ct": 4474223
+                    }
+                ]
             },
             "SyntaxErrorMetadata": {
                 "type": "object",
@@ -317,26 +294,25 @@
                             "enum"
                         ],
                         "description": "The type of the parameter, determines the format of 'value(s)'. 'number': Numeric parameters, the value must be a number (e.g., '20'). 'text': String parameters, value can be any text including hex 0x-prefixed values (e.g., '0xae2fc...'), an empty value defaults to an empty string. 'datetime': Date and time parameters, value must be in 'YYYY-MM-DD hh:mm:ss' format (e.g., '2021-12-31 23:59:59'). 'enum': Parameters with a specific list of values, 'EnumValues' field is mandatory, providing a JSON list of strings representing valid options, the 'value' must be one of these options (e.g., 'Option1')."
-                    }
-                },
-                "EnumValues": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
                     },
-                    "description": "List of valid options for 'enum' type parameters."
-                },
-                "isMultiselect": {
-                    "type": "boolean",
-                    "description": "Indicates if multiple selections are allowed for this parameter."
-                },
-                "isFreeformAllowed": {
-                    "type": "boolean",
-                    "description": "Indicates if freeform input is allowed for this parameter."
-                },
-                "enumFromResults": {
-                    "description": "Defines the parameter values based on results from another query.",
-                    "$ref": "#/components/schemas/EnumFromResults"
+                    "EnumValues": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of valid options for 'enum' type parameters."
+                    },
+                    "isMultiselect": {
+                        "type": "boolean",
+                        "description": "Indicates if multiple selections are allowed for this parameter."
+                    },
+                    "isFreeformAllowed": {
+                        "type": "boolean",
+                        "description": "Indicates if freeform input is allowed for this parameter."
+                    },
+                    "enumFromResults": {
+                        "$ref": "#/components/schemas/EnumFromResults"
+                    }
                 }
             },
             "EnumFromResults": {
@@ -387,14 +363,6 @@
                 },
                 "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
             }
-        }
-    },
-    "securitySchemes": {
-        "ApiKeyAuth": {
-            "type": "apiKey",
-            "in": "header",
-            "name": "X-DUNE-API-KEY",
-            "description": "API key for authenticating requests"
         }
     }
 }
