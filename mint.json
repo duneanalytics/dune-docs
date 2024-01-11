@@ -76,7 +76,8 @@
     {
       "group": "Query and Execution Endpoints",
       "pages": [
-        "api-reference/query-api/endpoint/get-latest-query-result"
+        "api-reference/query-api/endpoint/get-query-result",
+        "api-reference/query-api/endpoint/get-query-result-csv"
       ]
     },
     {

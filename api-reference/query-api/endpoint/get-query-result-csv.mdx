@@ -1,0 +1,32 @@
+---
+title: 'Get Query Result in CSV'
+openapi: 'GET /v1/query/{queryId}/results/csv'
+---
+
+<RequestExample>
+
+```bash cURL
+  curl --request GET \
+    --url https://api.dune.com/api/v1/query/{queryId}/results/csv
+```
+```python Python
+  import os
+  import requests
+
+  # set API for authentication
+  api_key = os.environ["DUNE_API_KEY"] 
+  headers = {"x-dune-api-key": api_key}
+
+  query_id = 1252207 # define the queryId
+  base_url = f"https://api.dune.com/api/v1/query/{query_id}/results/csv"
+  params = {
+      "params.LooksRare Wash Trading Filter": "ON", # add more params as needed
+  }
+  result_response = requests.request("GET", base_url, headers=headers, params=params)
+```
+
+```python Python SDK
+  # TODO
+```
+
+</RequestExample>
