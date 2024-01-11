@@ -183,7 +183,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/TODO"
+                                "TODO": "TODO"
                             }
                         }
                     },
@@ -429,55 +429,55 @@
                     "description": "Defines the parameter values based on results from another query.",
                     "$ref": "#/components/schemas/EnumFromResults"
                 }
-            }
-        },
-        "EnumFromResults": {
-            "type": "object",
-            "properties": {
-                "queryId": {
-                    "type": "integer",
-                    "description": "The ID of the query to fetch results from."
-                },
-                "columnName": {
-                    "type": "string",
-                    "description": "The column name to use from the query results."
-                }
-            }
-        },
-        "NotFoundError": {
-            "type": "object",
-            "required": [
-                "error",
-                "message"
-            ],
-            "properties": {
-                "error": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "Error code for resource not found",
-                    "example": 404
-                },
-                "message": {
-                    "type": "string",
-                    "description": "Error message for resource not found",
-                    "example": "The requested resource was not found."
-                }
-            }
-        },
-        "InternalServerError": {
-            "type": "object",
-            "properties": {
-                "error": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 500
-                },
-                "message": {
-                    "type": "string",
-                    "example": "internal error"
+            },
+            "EnumFromResults": {
+                "type": "object",
+                "properties": {
+                    "queryId": {
+                        "type": "integer",
+                        "description": "The ID of the query to fetch results from."
+                    },
+                    "columnName": {
+                        "type": "string",
+                        "description": "The column name to use from the query results."
+                    }
                 }
             },
-            "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+            "NotFoundError": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "message"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Error code for resource not found",
+                        "example": 404
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Error message for resource not found",
+                        "example": "The requested resource was not found."
+                    }
+                }
+            },
+            "InternalServerError": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 500
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "internal error"
+                    }
+                },
+                "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+            }
         }
     },
     "securitySchemes": {
