@@ -16,19 +16,6 @@
         }
     ],
     "paths": {
-        "/v1/query/{queryId}/execute": {
-            "post": {
-                "summary": "TODO",
-                "description": "TODO",
-                "operationId": "ExecuteQueryViaQueryId",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "TODO": "TODO"
-                    }
-                }
-            }
-        },
         "/v1/query/{queryId}/results": {
             "get": {
                 "summary": "Returns the latest executed result of a query on Dune",
@@ -120,84 +107,6 @@
                     }
                 }
             }
-        },
-        "/v1/query/{queryId}/results/csv": {
-            "get": {
-                "summary": "TODO",
-                "description": "TODO",
-                "operationId": "GetQueryResultsCSV",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "TODO": "TODO"
-                    }
-                }
-            }
-        },
-        "/v1/execution/{executionId}/results/csv": {
-            "get": {
-                "summary": "TODO",
-                "description": "TODO",
-                "operationId": "GetExecutionResultsCSV",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "TODO": "TODO"
-                    }
-                }
-            }
-        },
-        "/v1/execution/{executionId}/results": {
-            "get": {
-                "summary": "TODO",
-                "description": "TODO",
-                "operationId": "GetExecutionResults",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "TODO": "TODO"
-                    }
-                }
-            }
-        },
-        "/v1/execution/{executionId}/status": {
-            "get": {
-                "summary": "TODO",
-                "description": "TODO",
-                "operationId": "GetExecutionStatus",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "TODO": "TODO"
-                    }
-                }
-            }
-        },
-        "/v1/execution/{executionId}/cancel": {
-            "post": {
-                "summary": "TODO",
-                "description": "TODO",
-                "operationId": "CancelExecution",
-                "requestBody": {
-                    "description": "TODO",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "TODO": "TODO"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "TODO": "TODO"
-                    }
-                }
-            }
-        },
-        "/v1/execution/{executionId}": {
-            "TODO": "TODO DELETE (check if this is public?)"
         }
     },
     "components": {
