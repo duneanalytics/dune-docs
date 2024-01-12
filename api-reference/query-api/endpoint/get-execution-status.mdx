@@ -6,23 +6,28 @@ openapi: 'GET /v1/execution/{execution_id}/status'
 <RequestExample>
 
 ```bash cURL
-    curl -X GET "https://api.dune.com/api/v1/execution/{{execution_id}}/status" -H x-dune-api-key:{{api_key}}
+
+curl -X GET "https://api.dune.com/api/v1/execution/{{execution_id}}/status" -H x-dune-api-key:{{api_key}}
+
 ```
+
 ```python Python
-  import dotenv
-  import os
-  import requests
 
-  # load .env file
-  dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
-  # get API key
-  api_key = os.environ["DUNE_API_KEY"]
-  # authentiction with api key
-  headers = {"X-Dune-API-Key": api_key}
+import dotenv
+import os
+import requests
 
-  execution_id = '01GBM4W2N0NMCGPZYW8AYK4YF1'
-  base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/status"
-  result_response = requests.request("GET", base_url, headers=headers, params=params)
+# load .env file
+dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+# get API key
+api_key = os.environ["DUNE_API_KEY"]
+# authentiction with api key
+headers = {"X-Dune-API-Key": api_key}
+
+execution_id = '01GBM4W2N0NMCGPZYW8AYK4YF1'
+base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/status"
+result_response = requests.request("GET", base_url, headers=headers, params=params)
+
 ```
 
 ```python Python SDK

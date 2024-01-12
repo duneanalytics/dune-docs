@@ -9,24 +9,25 @@ openapi: 'GET /v1/query/{query_id}/results/csv'
   curl --request GET \
     --url https://api.dune.com/api/v1/query/{query_id}/results/csv
 ```
+
 ```python Python
-  import dotenv
-  import os
-  import requests
+import dotenv
+import os
+import requests
 
-  # load .env file
-  dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
-  # get API key
-  api_key = os.environ["DUNE_API_KEY"]
-  # authentiction with api key
-  headers = {"X-Dune-API-Key": api_key}
+# load .env file
+dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+# get API key
+api_key = os.environ["DUNE_API_KEY"]
+# authentiction with api key
+headers = {"X-Dune-API-Key": api_key}
 
-  query_id = 1252207 # define the query_id
-  base_url = f"https://api.dune.com/api/v1/query/{query_id}/results/csv"
-  params = {
-      "params.LooksRare Wash Trading Filter": "ON", # add more params as needed
-  }
-  result_response = requests.request("GET", base_url, headers=headers, params=params)
+query_id = 1252207 # define the query_id
+base_url = f"https://api.dune.com/api/v1/query/{query_id}/results/csv"
+params = {
+    "params.LooksRare Wash Trading Filter": "ON", # add more params as needed
+}
+result_response = requests.request("GET", base_url, headers=headers, params=params)
 ```
 
 ```python Python SDK

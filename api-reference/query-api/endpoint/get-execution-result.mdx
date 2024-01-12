@@ -1,0 +1,37 @@
+---
+title: 'Get Execution Result'
+openapi: 'GET /v1/execution/{executionId}/results'
+---
+
+<RequestExample>
+
+```bash cURL
+
+curl -X GET "https://api.dune.com/api/v1/execution/{{execution_id}}/results" -H x-dune-api-key:{{api_key}}
+
+```
+
+```python Python
+
+import dotenv
+import os
+import requests
+
+# load .env file
+dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+# get API key
+api_key = os.environ["DUNE_API_KEY"]
+# authentiction with api key
+headers = {"X-Dune-API-Key": api_key}
+
+execution_id = 2636251
+base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/results"
+result_response = requests.request("GET", base_url, headers=headers)
+
+```
+
+```python Python SDK
+  # TODO
+```
+
+</RequestExample>

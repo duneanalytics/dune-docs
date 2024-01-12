@@ -6,29 +6,31 @@ openapi: 'POST /v1/query/{query_id}/execute'
 <RequestExample>
 
 ```bash cURL
-  curl -X POST "https://api.dune.com/api/v1/query/{{query_id}}/execute"   \
-    -H "X-Dune-API-Key: {{api_key}}                                       \
-    -H "Content-Type: application/json"                                   \
-    -d '{"query_parameters": {"param1":24}, "performance": "large"}'
+curl -X POST "https://api.dune.com/api/v1/query/{{query_id}}/execute"   \
+  -H "X-Dune-API-Key: {{api_key}}                                       \
+  -H "Content-Type: application/json"                                   \
+  -d '{"query_parameters": {"param1":24}, "performance": "large"}'
 ```
+
 ```python Python
-  import dotenv
-  import os
-  import requests
 
-  # load .env file
-  dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
-  # get API key
-  api_key = os.environ["DUNE_API_KEY"]
-  # authentiction with api key
-  headers = {"X-Dune-API-Key": api_key}
+import dotenv
+import os
+import requests
 
-  query_id = 1252207
-  base_url = f"https://api.dune.com/api/v1/query/{query_id}/execute"
-  params = {
-      "performance": "large",
-  }
-  result_response = requests.request("POST", base_url, headers=headers, params=params)
+# load .env file
+dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+# get API key
+api_key = os.environ["DUNE_API_KEY"]
+# authentiction with api key
+headers = {"X-Dune-API-Key": api_key}
+
+query_id = 1252207
+base_url = f"https://api.dune.com/api/v1/query/{query_id}/execute"
+params = {
+    "performance": "large",
+}
+result_response = requests.request("POST", base_url, headers=headers, params=params)
 
 ```
 

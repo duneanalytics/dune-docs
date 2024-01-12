@@ -449,6 +449,79 @@
                     }
                 }
             }
+        },
+        "/v1/execution/{executionId}/results": {
+            "get": {
+                "description": "Given an execution ID, returns result of a an execution request",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-DUNE-API-KEY",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API Key for accessing this service",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "execution_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "unique identifier of the execution"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/QueryResult"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "The requested execution ID (ID: 01HKZW3PD00VEX36QYZ1FNRA3) is invalid."
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "StatusPaymentRequired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
