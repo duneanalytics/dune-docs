@@ -1,0 +1,1140 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+      "title": "OpenAPI for CRUD API",
+      "description": "API for create, read, update, and delete operations on Dune queries.",
+      "version": "1.0.0"
+  },
+  "servers": [
+      {
+          "url": "https://api.dune.com/api"
+      }
+  ],
+  "paths": {
+      "/v1/query/{queryId}": {
+          "get": {
+              "summary": "Returns the details of a query on Dune",
+              "description": "This API allows for anyone to read the sql text, parameters, name, tags, and state of a query. For private queries, only the API key generated under the context of the owner of that query will work.",
+              "operationId": "GetQuery",
+              "parameters": [
+                  {
+                      "in": "header",
+                      "name": "X-DUNE-API-KEY",
+                      "schema": {
+                          "type": "string"
+                      },
+                      "description": "API Key for accessing this service",
+                      "required": true
+                  },
+                  {
+                      "in": "path",
+                      "name": "queryId",
+                      "required": true,
+                      "schema": {
+                          "type": "integer"
+                      },
+                      "description": "unique identifier of the query"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/GetQueryResponse"
+                              }
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "error": {
+                                          "type": "integer",
+                                          "format": "int32"
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "example": "Core request validation failed"
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                      "description": "Resource not found",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/NotFoundError"
+                              }
+                          }
+                      }
+                  },
+                  "500": {
+                      "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/InternalServerError"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+
+      , "patch": {
+          "summary": "Update the details of a query on Dune",
+          "description": "This API allows for anyone to update the sql text, parameters, name, tags, and state of a query. Only the API key generated under the context of the owner of that query will work.",
+          "operationId": "UpdateQuery",
+          "parameters": [
+              {
+                  "in": "header",
+                  "name": "X-DUNE-API-KEY",
+                  "schema": {
+                      "type": "string"
+                  },
+                  "description": "API Key for accessing this service",
+                  "required": true
+              },
+              {
+                  "in": "path",
+                  "name": "queryId",
+                  "required": true,
+                  "schema": {
+                      "type": "integer"
+                  },
+                  "description": "unique identifier of the query"
+              }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateQueryRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                                "query_id": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1616880
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "400": {
+                  "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "error": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                  },
+                                  "message": {
+                                      "type": "string",
+                                      "example": "Core request validation failed"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "404": {
+                  "description": "Resource not found",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/NotFoundError"
+                          }
+                      }
+                  }
+              },
+              "500": {
+                  "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/InternalServerError"
+                          }
+                      }
+                  }
+              }
+            }
+        }
+      }
+      , "/v1/query/": { 
+        "post": {
+          "summary": "Create and save a query on Dune",
+          "description": "This API allows for anyone to create a query. The owner of the query will be under the context of the API key.",
+          "operationId": "CreateQuery",
+          "parameters": [
+              {
+                  "in": "header",
+                  "name": "X-DUNE-API-KEY",
+                  "schema": {
+                      "type": "string"
+                  },
+                  "description": "API Key for accessing this service",
+                  "required": true
+              }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateQueryRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                                "query_id": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1616880
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "400": {
+                  "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "error": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                  },
+                                  "message": {
+                                      "type": "string",
+                                      "example": "Core request validation failed"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "404": {
+                  "description": "Resource not found",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/NotFoundError"
+                          }
+                      }
+                  }
+              },
+              "500": {
+                  "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/InternalServerError"
+                          }
+                      }
+                  }
+              }
+            }
+        }
+      }
+
+      , "/v1/query/{queryId}/archive": { 
+        "post": {
+          "summary": "Archive a query on Dune",
+          "description": "This API allows for anyone to archive a query. Only the API key generated under the context of the owner of that query will work. This does not delete the query, but will make it uneditable/unexecutable",
+          "operationId": "archive",
+          "parameters": [
+              {
+                  "in": "header",
+                  "name": "X-DUNE-API-KEY",
+                  "schema": {
+                      "type": "string"
+                  },
+                  "description": "API Key for accessing this service",
+                  "required": true
+              },
+              {
+                  "in": "path",
+                  "name": "queryId",
+                  "required": true,
+                  "schema": {
+                      "type": "integer"
+                  },
+                  "description": "unique identifier of the query"
+              }
+          ],
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                                "query_id": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1616880
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "400": {
+                  "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "error": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                  },
+                                  "message": {
+                                      "type": "string",
+                                      "example": "Core request validation failed"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "404": {
+                  "description": "Resource not found",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/NotFoundError"
+                          }
+                      }
+                  }
+              },
+              "500": {
+                  "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/InternalServerError"
+                          }
+                      }
+                  }
+              }
+            }
+        }
+      }
+
+      , "/v1/query/{queryId}/unarchive": { 
+        "post": {
+          "summary": "Unarchive a query on Dune",
+          "description": "This API allows for anyone to unarchive a query. Only the API key generated under the context of the owner of that query will work.",
+          "operationId": "unarchive",
+          "parameters": [
+              {
+                  "in": "header",
+                  "name": "X-DUNE-API-KEY",
+                  "schema": {
+                      "type": "string"
+                  },
+                  "description": "API Key for accessing this service",
+                  "required": true
+              },
+              {
+                  "in": "path",
+                  "name": "queryId",
+                  "required": true,
+                  "schema": {
+                      "type": "integer"
+                  },
+                  "description": "unique identifier of the query"
+              }
+          ],
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                                "query_id": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1616880
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "400": {
+                  "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "error": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                  },
+                                  "message": {
+                                      "type": "string",
+                                      "example": "Core request validation failed"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "404": {
+                  "description": "Resource not found",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/NotFoundError"
+                          }
+                      }
+                  }
+              },
+              "500": {
+                  "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/InternalServerError"
+                          }
+                      }
+                  }
+              }
+            }
+        }
+      }
+
+      , "/v1/query/{queryId}/private": { 
+        "post": {
+          "summary": "Private a query on Dune",
+          "description": "This API allows for anyone to private a query. Only the API key generated under the context of the owner of that query will work.",
+          "operationId": "private",
+          "parameters": [
+              {
+                  "in": "header",
+                  "name": "X-DUNE-API-KEY",
+                  "schema": {
+                      "type": "string"
+                  },
+                  "description": "API Key for accessing this service",
+                  "required": true
+              },
+              {
+                  "in": "path",
+                  "name": "queryId",
+                  "required": true,
+                  "schema": {
+                      "type": "integer"
+                  },
+                  "description": "unique identifier of the query"
+              }
+          ],
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                                "query_id": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1616880
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "400": {
+                  "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "error": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                  },
+                                  "message": {
+                                      "type": "string",
+                                      "example": "Core request validation failed"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "404": {
+                  "description": "Resource not found",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/NotFoundError"
+                          }
+                      }
+                  }
+              },
+              "500": {
+                  "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/InternalServerError"
+                          }
+                      }
+                  }
+              }
+            }
+        }
+      }
+
+      , "/v1/query/{queryId}/unprivate": { 
+        "post": {
+          "summary": "Private a query on Dune",
+          "description": "This API allows for anyone to unprivate a query. Only the API key generated under the context of the owner of that query will work.",
+          "operationId": "unprivate",
+          "parameters": [
+              {
+                  "in": "header",
+                  "name": "X-DUNE-API-KEY",
+                  "schema": {
+                      "type": "string"
+                  },
+                  "description": "API Key for accessing this service",
+                  "required": true
+              },
+              {
+                  "in": "path",
+                  "name": "queryId",
+                  "required": true,
+                  "schema": {
+                      "type": "integer"
+                  },
+                  "description": "unique identifier of the query"
+              }
+          ],
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                                "query_id": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1616880
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "400": {
+                  "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "error": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                  },
+                                  "message": {
+                                      "type": "string",
+                                      "example": "Core request validation failed"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "404": {
+                  "description": "Resource not found",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/NotFoundError"
+                          }
+                      }
+                  }
+              },
+              "500": {
+                  "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/InternalServerError"
+                          }
+                      }
+                  }
+              }
+            }
+        }
+      }
+  },
+  "components": {
+      "schemas": {
+          "GetQueryResponse": {
+            "type": "object",
+            "properties": {
+              "query_id": {
+                "type": "integer"
+                ,"description": "Unique identifier of the query."
+                ,"example": 1252207
+              },
+              "name": {
+                "type": "string"
+                ,"description": "Name of the query."
+                ,"example": "erc20 balances (user address) API"
+              },
+              "description": {
+                "type": "string"
+                ,"description": "Description of the query."
+                ,"example": "Get the ERC20 token balances for a given user address."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+                ,"description": "Tags associated with the query."
+                ,"example": ["erc20", "balances", "user address"]
+              },
+              "version": {
+                "type": "integer"
+                ,"description": "Version of the query."
+                ,"example": 17
+              },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ParameterObject"
+                }
+                ,"example": [
+                  {
+                      "key": "address",
+                      "value": "0x2ae8c972fb2e6c00dded8986e2dc672ed190da06",
+                      "type": "text"
+                  },
+                  {
+                      "key": "blocknumber",
+                      "value": "0",
+                      "type": "number"
+                  },
+                  {
+                      "key": "chain",
+                      "value": "ethereum",
+                      "type": "enum",
+                      "enumOptions": [
+                          "ethereum",
+                          "polygon",
+                          "optimism",
+                          "arbitrum",
+                          "avalanche_c",
+                          "gnosis",
+                          "bnb"
+                      ]
+                  },
+                  {
+                      "key": "dust",
+                      "value": "keep",
+                      "type": "enum",
+                      "enumOptions": [
+                          "keep",
+                          "remove"
+                      ]
+                  }
+                ]
+              },
+              "query_engine": {
+                "type": "string"
+                ,"description": "The query engine used to execute the query."
+                ,"example": "v2 Dune SQL"
+              },
+              "query_sql": {
+                "type": "string"
+                ,"description": "The SQL query text."
+                ,"example": "with\n    erc20_balances as (\n        WITH erc20_in as ( \n            SELECT \n                contract_address\n                , SUM(tr.value) as token_funded\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.to = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        ),\n        \n        erc20_out as (\n            SELECT  \n                contract_address\n                , SUM(tr.value) as token_spent\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.\"from\" = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        )\n        \n        SELECT\n            tk.symbol as symbol\n            , erc20_in.contract_address\n            , (cast(token_funded as double) - COALESCE(cast(token_spent as double), 0))/pow(10,COALESCE(tk.decimals,18)) as balance\n        FROM erc20_in\n        LEFT JOIN erc20_out ON erc20_in.contract_address = erc20_out.contract_address\n        LEFT JOIN tokens.erc20 tk ON tk.contract_address = erc20_in.contract_address\n        WHERE cast(token_funded as double) - COALESCE(cast(token_spent as double), 0) > 0\n        -- WHERE tk.symbol is not null\n    )\n\nSELECT\n    bal.symbol\n    , round(bal.balance,5) as notional_value\n    , round(bal.balance*p.price,3) as total_value\n    , p.price as token_price\nFROM erc20_balances bal\nLEFT JOIN prices.usd_latest p \n    ON p.contract_address = bal.contract_address\n    AND p.blockchain = '{{chain}}' --AND p.rn = 1 \nWHERE bal.balance > 0\nAND ('{{dust}}' = 'keep' OR bal.balance*p.price > 0.01)\nORDER BY total_value DESC\nNULLS LAST"
+              },
+              "is_private": {
+                "type": "boolean"
+                ,"description": "Indicates if the query is private."
+                ,"example": false
+              },
+              "is_archived": {
+                "type": "boolean"
+                ,"description": "Indicates if the query is archived."
+                ,"example": false
+              },
+              "is_unsaved": {
+                "type": "boolean"
+                ,"description": "Indicates if the query is unsaved."
+                ,"example": false
+              },
+              "owner": {
+                "type": "string"
+                ,"description": "The owner of the query."
+                ,"example": "Dune"
+              }
+            }
+          }
+        , "UpdateQueryRequest": {
+            "type": "object",
+            "properties": {
+              "query_id": {
+                "type": "integer"
+                ,"description": "Unique identifier of the query."
+                ,"example": 1252207
+              },
+              "name": {
+                "type": "string"
+                ,"description": "Name of the query."
+                ,"example": "erc20 balances (user address) API"
+              },
+              "description": {
+                "type": "string"
+                ,"description": "Description of the query."
+                ,"example": "Get the ERC20 token balances for a given user address."
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+                ,"description": "Tags associated with the query."
+                ,"example": ["erc20", "balances", "user address"]
+              },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ParameterObject"
+                }
+                ,"example": [
+                  {
+                      "key": "address",
+                      "value": "0x2ae8c972fb2e6c00dded8986e2dc672ed190da06",
+                      "type": "text"
+                  },
+                  {
+                      "key": "blocknumber",
+                      "value": "0",
+                      "type": "number"
+                  },
+                  {
+                      "key": "chain",
+                      "value": "ethereum",
+                      "type": "enum",
+                      "enumOptions": [
+                          "ethereum",
+                          "polygon",
+                          "optimism",
+                          "arbitrum",
+                          "avalanche_c",
+                          "gnosis",
+                          "bnb"
+                      ]
+                  },
+                  {
+                      "key": "dust",
+                      "value": "keep",
+                      "type": "enum",
+                      "enumOptions": [
+                          "keep",
+                          "remove"
+                      ]
+                  }
+                ]
+              },
+              "query_sql": {
+                "type": "string"
+                ,"description": "The SQL query text."
+                ,"example": "with\n    erc20_balances as (\n        WITH erc20_in as ( \n            SELECT \n                contract_address\n                , SUM(tr.value) as token_funded\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.to = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        ),\n        \n        erc20_out as (\n            SELECT  \n                contract_address\n                , SUM(tr.value) as token_spent\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.\"from\" = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        )\n        \n        SELECT\n            tk.symbol as symbol\n            , erc20_in.contract_address\n            , (cast(token_funded as double) - COALESCE(cast(token_spent as double), 0))/pow(10,COALESCE(tk.decimals,18)) as balance\n        FROM erc20_in\n        LEFT JOIN erc20_out ON erc20_in.contract_address = erc20_out.contract_address\n        LEFT JOIN tokens.erc20 tk ON tk.contract_address = erc20_in.contract_address\n        WHERE cast(token_funded as double) - COALESCE(cast(token_spent as double), 0) > 0\n        -- WHERE tk.symbol is not null\n    )\n\nSELECT\n    bal.symbol\n    , round(bal.balance,5) as notional_value\n    , round(bal.balance*p.price,3) as total_value\n    , p.price as token_price\nFROM erc20_balances bal\nLEFT JOIN prices.usd_latest p \n    ON p.contract_address = bal.contract_address\n    AND p.blockchain = '{{chain}}' --AND p.rn = 1 \nWHERE bal.balance > 0\nAND ('{{dust}}' = 'keep' OR bal.balance*p.price > 0.01)\nORDER BY total_value DESC\nNULLS LAST"
+              },
+              "is_private": {
+                "type": "boolean"
+                ,"description": "Indicates if the query is private."
+                ,"example": false
+              },
+              "is_archived": {
+                "type": "boolean"
+                ,"description": "Indicates if the query is archived."
+                ,"example": false
+              }
+            }
+          }
+          , "CreateQueryRequest": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+                ,"description": "Name of the query."
+                ,"example": "erc20 balances (user address) API"
+              },
+              "description": {
+                "type": "string"
+                ,"description": "Description of the query."
+                ,"example": "Get the ERC20 token balances for a given user address."
+              },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ParameterObject"
+                }
+                ,"example": [
+                  {
+                      "key": "address",
+                      "value": "0x2ae8c972fb2e6c00dded8986e2dc672ed190da06",
+                      "type": "text"
+                  },
+                  {
+                      "key": "blocknumber",
+                      "value": "0",
+                      "type": "number"
+                  },
+                  {
+                      "key": "chain",
+                      "value": "ethereum",
+                      "type": "enum",
+                      "enumOptions": [
+                          "ethereum",
+                          "polygon",
+                          "optimism",
+                          "arbitrum",
+                          "avalanche_c",
+                          "gnosis",
+                          "bnb"
+                      ]
+                  },
+                  {
+                      "key": "dust",
+                      "value": "keep",
+                      "type": "enum",
+                      "enumOptions": [
+                          "keep",
+                          "remove"
+                      ]
+                  }
+                ]
+              },
+              "query_sql": {
+                "type": "string"
+                ,"description": "The SQL query text."
+                ,"example": "with\n    erc20_balances as (\n        WITH erc20_in as ( \n            SELECT \n                contract_address\n                , SUM(tr.value) as token_funded\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.to = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        ),\n        \n        erc20_out as (\n            SELECT  \n                contract_address\n                , SUM(tr.value) as token_spent\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.\"from\" = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        )\n        \n        SELECT\n            tk.symbol as symbol\n            , erc20_in.contract_address\n            , (cast(token_funded as double) - COALESCE(cast(token_spent as double), 0))/pow(10,COALESCE(tk.decimals,18)) as balance\n        FROM erc20_in\n        LEFT JOIN erc20_out ON erc20_in.contract_address = erc20_out.contract_address\n        LEFT JOIN tokens.erc20 tk ON tk.contract_address = erc20_in.contract_address\n        WHERE cast(token_funded as double) - COALESCE(cast(token_spent as double), 0) > 0\n        -- WHERE tk.symbol is not null\n    )\n\nSELECT\n    bal.symbol\n    , round(bal.balance,5) as notional_value\n    , round(bal.balance*p.price,3) as total_value\n    , p.price as token_price\nFROM erc20_balances bal\nLEFT JOIN prices.usd_latest p \n    ON p.contract_address = bal.contract_address\n    AND p.blockchain = '{{chain}}' --AND p.rn = 1 \nWHERE bal.balance > 0\nAND ('{{dust}}' = 'keep' OR bal.balance*p.price > 0.01)\nORDER BY total_value DESC\nNULLS LAST"
+              },
+              "is_private": {
+                "type": "boolean"
+                ,"description": "Indicates if the query is private."
+                ,"example": false
+              }
+            }
+          }
+          ,"QueryResult": {
+              "type": "object",
+              "required": [
+                  "executionId",
+                  "queryId",
+                  "state",
+                  "submitted_at"
+              ],
+              "properties": {
+                  "executionId": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution of the query.",
+                      "example": "01GXDTYMM2CKFRBEW44X5S0WZE"
+                  },
+                  "queryId": {
+                      "type": "integer",
+                      "description": "Unique identifier of the query.",
+                      "example": 1252207
+                  },
+                  "state": {
+                      "type": "string",
+                      "description": "The state of the query execution.",
+                      "example": "QUERY_STATE_COMPLETED"
+                  },
+                  "submitted_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of when the query was submitted.",
+                      "example": "2023-04-07T12:27:09.314513Z"
+                  },
+                  "expires_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of when the query result expires.",
+                      "example": "2025-04-06T12:27:15.749155Z"
+                  },
+                  "execution_started_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of when the query execution started.",
+                      "example": "2023-04-07T12:27:09.387366Z"
+                  },
+                  "execution_ended_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of when the query execution ended.",
+                      "example": "2023-04-07T12:27:15.749154Z"
+                  },
+                  "cancelled_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of when the query execution was cancelled, if applicable.",
+                      "example": "2023-04-08T12:27:15.749154Z"
+                  },
+                  "result": {
+                      "$ref": "#/components/schemas/QueryResultData"
+                  },
+                  "error": {
+                      "$ref": "#/components/schemas/QueryResultError"
+                  }
+              }
+          },
+          "QueryResultData": {
+              "type": "object",
+              "properties": {
+                  "rows": {
+                      "type": "array",
+                      "items": {
+                          "$ref": "#/components/schemas/QueryResultRow"
+                      },
+                      "description": "The rows of data returned by the query."
+                  },
+                  "metadata": {
+                      "$ref": "#/components/schemas/ExecutionResultMetadata"
+                  }
+              }
+          },
+          "QueryResultError": {
+              "type": "object",
+              "properties": {
+                  "type": {
+                      "type": "string",
+                      "description": "The type of error that occurred."
+                  },
+                  "message": {
+                      "type": "string",
+                      "description": "A descriptive message about the error."
+                  },
+                  "metadata": {
+                      "$ref": "#/components/schemas/SyntaxErrorMetadata"
+                  }
+              }
+          },
+          "QueryResultRow": {
+              "type": "object",
+              "description": "A row is dictionary of key-value pairs, each pair corresponding to a column",
+              "example": [
+                  {
+                      "TableName": "eth_blocks",
+                      "ct": 6296
+                  },
+                  {
+                      "TableName": "eth_traces",
+                      "ct": 4474223
+                  }
+              ]
+          },
+          "SyntaxErrorMetadata": {
+              "type": "object",
+              "properties": {
+                  "line": {
+                      "type": "integer",
+                      "description": "The line number at which the syntax error occurred."
+                  },
+                  "column": {
+                      "type": "integer",
+                      "description": "The column number at which the syntax error occurred."
+                  }
+              }
+          },
+          "ExecutionResultMetadata": {
+              "type": "object",
+              "properties": {
+                  "column_names": {
+                      "type": "array",
+                      "items": {
+                          "type": "string"
+                      },
+                      "description": "Names of the columns in the result set."
+                  },
+                  "result_set_bytes": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Total number of bytes in the result set."
+                  },
+                  "total_row_count": {
+                      "type": "integer",
+                      "description": "Total number of rows in the result set."
+                  },
+                  "datapoint_count": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The count of datapoints used for billing/pricing, based on the result set."
+                  },
+                  "pending_time_millis": {
+                      "type": "integer",
+                      "description": "Time in milliseconds that the query was pending before execution."
+                  },
+                  "execution_time_millis": {
+                      "type": "integer",
+                      "description": "Time in milliseconds that the query took to execute."
+                  }
+              },
+              "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times."
+          },
+          "ParameterObject": {
+              "type": "object",
+              "required": [
+                  "key"
+              ],
+              "properties": {
+                  "key": {
+                      "type": "string",
+                      "description": "The key name of the parameter."
+                  },
+                  "description": {
+                      "type": "string",
+                      "description": "A brief description of the parameter."
+                  },
+                  "value": {
+                      "type": "string",
+                      "description": "The default value used by this parameter during execution, format depends on the type."
+                  },
+                  "values": {
+                      "type": "array",
+                      "items": {
+                          "type": "string"
+                      },
+                      "description": "An array of string values, used when multiple selections are allowed."
+                  },
+                  "type": {
+                      "type": "string",
+                      "enum": [
+                          "number",
+                          "text",
+                          "datetime",
+                          "enum"
+                      ],
+                      "description": "The type of the parameter, determines the format of 'value(s)'. 'number': Numeric parameters, the value must be a number (e.g., '20'). 'text': String parameters, value can be any text including hex 0x-prefixed values (e.g., '0xae2fc...'), an empty value defaults to an empty string. 'datetime': Date and time parameters, value must be in 'YYYY-MM-DD hh:mm:ss' format (e.g., '2021-12-31 23:59:59'). 'enum': Parameters with a specific list of values, 'EnumValues' field is mandatory, providing a JSON list of strings representing valid options, the 'value' must be one of these options (e.g., 'Option1')."
+                  },
+                  "EnumValues": {
+                      "type": "array",
+                      "items": {
+                          "type": "string"
+                      },
+                      "description": "List of valid options for 'enum' type parameters."
+                  },
+                  "isMultiselect": {
+                      "type": "boolean",
+                      "description": "Indicates if multiple selections are allowed for this parameter."
+                  },
+                  "isFreeformAllowed": {
+                      "type": "boolean",
+                      "description": "Indicates if freeform input is allowed for this parameter."
+                  },
+                  "enumFromResults": {
+                      "$ref": "#/components/schemas/EnumFromResults"
+                  }
+              }
+          },
+          "EnumFromResults": {
+              "type": "object",
+              "properties": {
+                  "queryId": {
+                      "type": "integer",
+                      "description": "The ID of the query to fetch results from."
+                  },
+                  "columnName": {
+                      "type": "string",
+                      "description": "The column name to use from the query results."
+                  }
+              }
+          },
+          "NotFoundError": {
+              "type": "object",
+              "required": [
+                  "error",
+                  "message"
+              ],
+              "properties": {
+                  "error": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "Error code for resource not found",
+                      "example": 404
+                  },
+                  "message": {
+                      "type": "string",
+                      "description": "Error message for resource not found",
+                      "example": "The requested resource was not found."
+                  }
+              }
+          },
+          "InternalServerError": {
+              "type": "object",
+              "properties": {
+                  "error": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 500
+                  },
+                  "message": {
+                      "type": "string",
+                      "example": "internal error"
+                  }
+              },
+              "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+          }
+      }
+  }
+}
