@@ -297,6 +297,24 @@
                             }
                         },
                         "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+                    },
+                    {
+                        "in": "query",
+                        "name": "ignore_max_datapoints_per_request",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all your credits in one call. To ignore the max limit, you can add ignore_max_datapoints_per_request=true"
+                    },
+                    {
+                        "in": "query",
+                        "name": "allow_partial_results",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
                     }
                 ],
                 "responses": {
@@ -390,6 +408,24 @@
                             }
                         },
                         "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+                    },
+                    {
+                        "in": "query",
+                        "name": "ignore_max_datapoints_per_request",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all your credits in one call. To ignore the max limit, you can add ignore_max_datapoints_per_request=true"
+                    },
+                    {
+                        "in": "query",
+                        "name": "allow_partial_results",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
                     }
                 ],
                 "responses": {
@@ -450,7 +486,7 @@
                 }
             }
         },
-        "/v1/execution/{executionId}/results": {
+        "/v1/execution/{execution_id}/results": {
             "get": {
                 "description": "Given an execution ID, returns result of a an execution request",
                 "parameters": [
@@ -471,6 +507,24 @@
                             "type": "integer"
                         },
                         "description": "unique identifier of the execution"
+                    },
+                    {
+                        "in": "query",
+                        "name": "ignore_max_datapoints_per_request",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all your credits in one call. To ignore the max limit, you can add ignore_max_datapoints_per_request=true"
+                    },
+                    {
+                        "in": "query",
+                        "name": "allow_partial_results",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
                     }
                 ],
                 "responses": {
@@ -523,7 +577,7 @@
                 }
             }
         },
-        "/v1/execution/{executionId}/results/csv": {
+        "/v1/execution/{execution_id}/results/csv": {
             "get": {
                 "description": "Given an execution ID, returns result of a an execution request in CSV format",
                 "parameters": [
@@ -544,6 +598,24 @@
                             "type": "integer"
                         },
                         "description": "unique identifier of the execution"
+                    },
+                    {
+                        "in": "query",
+                        "name": "ignore_max_datapoints_per_request",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all your credits in one call. To ignore the max limit, you can add ignore_max_datapoints_per_request=true"
+                    },
+                    {
+                        "in": "query",
+                        "name": "allow_partial_results",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
                     }
                 ],
                 "responses": {
