@@ -522,6 +522,80 @@
                     }
                 }
             }
+        },
+        "/v1/execution/{executionId}/results/csv": {
+            "get": {
+                "description": "Given an execution ID, returns result of a an execution request in CSV format",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-DUNE-API-KEY",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API Key for accessing this service",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "execution_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "unique identifier of the execution"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/csv": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "totalNumberOfTransactions,totalNumberOfUsers,totalVolumeUSD,totalFeesETH,averageDailyNumberOfTransactions7dMA,averageDailyNumberOfUsers7dMA,averageDailyVolumeUSD7dMA,averageDailyFeesETH7dMA,averageTradesPerUser,averageVolumePerUserUSD,averageFeesPerUserETH,numberOfUsers24h,numberOfTrades24h,volumeUSD24h,unibotPriceWETH,supplyEligibleForRevshare,unibotMarketcapEligibleForRevshareETH,ethPriceUSD,totalTaxV1ETH,totalTaxETH,totalTaxV1AndV2ETH,totalTax24hETH,teamRevenueETH,revShareRevenueETH,revShareRevenueETHPer100UNIBOT,revShareRevenue24hETH,revShareRevenue7dETH,revShareRevenue30dETH,revShareRevenue30dSimpleMovingAverageETH,taxPoolBalanceUNIBOT,botFees24hETH,botFeesHolderRevenue24hETH,botFeesHolderRevenue7dETH,botFeesHolderRevenue30dETH,botFeesHolderRevenue30dSimpleMovingAverageETH,totalCombinedRevenueETH,combinedRevenue24hETH,combinedHolderRevenue24hETH,combinedHolderRevenue7dETH,combinedRevenue7dSimpleMovingAverageETH,combinedRevenue7dSimpleMovingAverageUSD,combinedHolderRevenue30dSimpleMovingAverageETH,totalBridgeVolumeETH,numberOfBridgeTransactions,numberOfBridgeUsers,friendtechLifetimeVolumeUSD,friendtechLifetimeNumberOfUsers,friendtechLifetimeNumberOfSubjectsTraded,friendtechLifetimeNumberOfTrades,dailyTaxAPR,weeklyTaxAPR,annualizedTaxAPR,annualizedTaxAPY,dailyFeesAPR,weeklyFeesAPR,annualizedFeesAPR,annualizedFeeAPY,dailyCombinedAPR,weeklyCombinedAPR,annualizedCombinedAPR,annualizedCombinedAPY\n977464,27445,5.628197594267187e+08,2483.9491687393247,20644,1871,2.655373706991315e+06,3.7990190106581574,35,20507.187444952404,0.09050643719217798,1965,29588,3.3106567039466314e+06,0.03512178665763559,922448.3481287505,32398.034085666335,2528.5,923.9583646419244,8009.175461562929,8933.133826204854,22.316600820680165,2726.8246784087555,3758.39002161166,0.375839002161166,11.158300410340082,52.80329332517176,185.41288929831435,6.1804296432771455,73.86268392645144,1.3825460776709473,0.5530184310683789,9.687471859444832,55.93654567180427,1.8645515223934757,11417.08299494418,23.699146898351113,11.711318841408461,62.49076518461659,18.546466614136513,46894.740833844175,8.044981165670622,2275.549440528079,2273,859,1.0525734023228614e+06,209,2225,5835,0.01907655762980852,0.13353590340865962,6.962943534880109,7.210370182142256,0.0057551378502265285,0.0402859649515857,2.100625315332683,2.1227820238041817,0.024831695480035047,0.17382186836024532,9.063568850212793,9.485774017018223"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "The requested execution ID (ID: 01HKZW3PD00VEX36QYZ1FNRA3) is invalid."
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "StatusPaymentRequired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
