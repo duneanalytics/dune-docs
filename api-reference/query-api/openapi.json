@@ -11,11 +11,119 @@
         }
     ],
     "paths": {
+        "/v1/query/{queryId}/execute": {
+            "post": {
+                "description": "Execute, or run a query for the specified query ID",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-DUNE-API-KEY",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API Key for accessing this service",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "queryId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "unique identifier of the query"
+                    },
+                    {
+                        "in": "query",
+                        "name": "parameters",
+                        "required": false,
+                        "explode": true,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/components/schemas/ParameterObject"
+                            }
+                        },
+                        "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+                    },
+                    {
+                        "in": "query",
+                        "name": "performance",
+                        "required": false,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/components/schemas/Performance"
+                            }
+                        },
+                        "description": "Defines the engine the execution will be run on. Can be either medium or large tier. Medium consumes 10 credits per run and large consumes 20 credits per run. By default performance is medium."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "execution_id": "01HKZJ2683PHF9Q9PHHQ8FW4Q1",
+                                    "state": "QUERY_STATE_PENDING"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "StatusPaymentRequired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "StatusForbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "Not allowed to execute query. Query is archived or an unsaved query"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/query/{queryId}/results": {
             "get": {
-                "summary": "Returns the latest executed result of a query on Dune",
-                "description": "This API allows for anyone to read the latest results of a query, regardless of the execution id or if it run on the app or via the api.",
-                "operationId": "GetQueryResults",
+                "description": "Given a query ID, returns the latest executed result of a query on Dune",
                 "parameters": [
                     {
                         "in": "header",
@@ -64,17 +172,88 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/BadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/query/{queryId}/results/csv": {
+            "get": {
+                "description": "Given a query ID, returns the latest executed result of a query on Dune in CSV format",
+                "operationId": "GetQueryResultsCSV",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-DUNE-API-KEY",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API Key for accessing this service",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "queryId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "unique identifier of the query"
+                    },
+                    {
+                        "in": "query",
+                        "name": "parameters",
+                        "required": false,
+                        "explode": true,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/components/schemas/ParameterObject"
+                            }
+                        },
+                        "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/csv": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Rank,project,Total Volume,7 Days Volume,24 Hours Volume\n1,opensea,3.8364306116397446e+10,3.237919758883639e+07,3.3571613299256647e+06\n2,blur,8.183380589763865e+09,1.7107657915764195e+08,1.5850010061459592e+07\n3,x2y2,5.460294391448603e+09,4.0788931813965896e+06,223304.96681753657\n4,cryptopunks,2.675936453044167e+09,2.1720323415680006e+06,716042.4500000001\n5,looksrare,1.5984313877385368e+09,501530.0226954725,50185.290415\n6,superrare,3.044450076292612e+08,454080.3801810001,2711.41353\n7,foundation,2.22984396521278e+08,170730.43359724514,18791.057531650004\n8,sudoswap,1.1065119839239097e+08,91405.45237984283,49641.91309616044\n9,mooar,9.370740688511379e+07,3.816546773342194e+07,4.211704339041664e+06\n10,pancakeswap,8.577468809809853e+07,42632.499992789955,5097.792944599999\n11,tofu,6.714663559364942e+07,76521.97898920579,5380.136450808099\n12,element,6.122191042346895e+07,74343.29233116966,21615.498594265555\n13,zora,4.001828856803733e+07,<nil>,<nil>\n14,liquidifty,2.9701757197915018e+07,0.029847000000000005,0.029847000000000005\n15,quix,1.0831134834643008e+07,<nil>,<nil>\n16,magiceden,9.29307966848028e+06,4454.432874887,87.15784495\n17,rarible,5.376697231248505e+06,51386.83617665664,4985.105076420629\n18,archipelago,5.37401337817133e+06,<nil>,<nil>\n19,aavegotchi,3.0300035670567774e+06,20759.276957762435,3149.030878339999\n20,nftrade,1.7161576961230598e+06,26676.274663999986,106.961753999999\n21,dew,1.4541526609272424e+06,<nil>,<nil>\n22,nftb,1.336229907297191e+06,<nil>,<nil>\n23,decentraland,401287.6963697007,1036.6580888416527,60.78021429999997\n24,zonic,300264.3745252976,72.93842523849997,12.032011452799999\n25,nftearth,84818.42127523685,<nil>,<nil>\n26,aurem,464.10303347643816,9.788748,<nil>\n27,fractal,183.85717919121993,<nil>,<nil>\n28,oneplanet,131.71013616000002,<nil>,<nil>"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequest"
                                 }
                             }
                         }
@@ -328,6 +507,14 @@
                     }
                 }
             },
+            "Performance": {
+                "type": "string",
+                "enum": [
+                    "medium",
+                    "large"
+                ],
+                "description": "Defines the engine the execution will be run on. Can be either medium or large tier. Medium consumes 10 credits per run, and large consumes 20 credits per run. By default, performance is medium."
+            },
             "NotFoundError": {
                 "type": "object",
                 "required": [
@@ -338,13 +525,31 @@
                     "error": {
                         "type": "integer",
                         "format": "int32",
-                        "description": "Error code for resource not found",
                         "example": 404
                     },
                     "message": {
                         "type": "string",
                         "description": "Error message for resource not found",
-                        "example": "The requested resource was not found."
+                        "example": "not found"
+                    }
+                }
+            },
+            "BadRequest": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "message"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 400
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "The request could not be understood by the server due to malformed syntax or validation failure.",
+                        "example": "core request validation failed"
                     }
                 }
             },
