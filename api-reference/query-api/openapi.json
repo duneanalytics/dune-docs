@@ -121,6 +121,82 @@
                 }
             }
         },
+        "/v1/execution/{executionId}/cancel": {
+            "post": {
+                "description": "Cancel a triggered execution request given the execution ID",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-DUNE-API-KEY",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API Key for accessing this service",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "executionId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "unique identifier of the execution"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "The requested execution ID (ID: \"01HKZSP2CQHJY17BPVDF91T925\") is invalid."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "StatusNotFound",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "The requested execution ID (ID 01HKZS6KF0TDBPVJHHK9T5FDEN) was not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/query/{queryId}/results": {
             "get": {
                 "description": "Given a query ID, returns the latest executed result of a query on Dune",
@@ -173,6 +249,19 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/BadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "StatusPaymentRequired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
                                 }
                             }
                         }
@@ -254,6 +343,19 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/BadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "StatusPaymentRequired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
                                 }
                             }
                         }
@@ -523,13 +625,12 @@
                 ],
                 "properties": {
                     "error": {
-                        "type": "integer",
-                        "format": "int32",
-                        "example": 404
+                        "type": "string",
+                        "example": "error"
                     },
                     "message": {
                         "type": "string",
-                        "description": "Error message for resource not found",
+                        "description": "404 error message for resource not found",
                         "example": "not found"
                     }
                 }
@@ -542,13 +643,12 @@
                 ],
                 "properties": {
                     "error": {
-                        "type": "integer",
-                        "format": "int32",
+                        "type": "string",
                         "example": 400
                     },
                     "message": {
                         "type": "string",
-                        "description": "The request could not be understood by the server due to malformed syntax or validation failure.",
+                        "description": "400: The request could not be understood by the server due to malformed syntax or validation failure.",
                         "example": "core request validation failed"
                     }
                 }
@@ -557,8 +657,7 @@
                 "type": "object",
                 "properties": {
                     "error": {
-                        "type": "integer",
-                        "format": "int32",
+                        "type": "string",
                         "example": 500
                     },
                     "message": {
@@ -566,7 +665,7 @@
                         "example": "internal error"
                     }
                 },
-                "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+                "description": "500: Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
             }
         }
     }

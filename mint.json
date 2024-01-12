@@ -77,6 +77,7 @@
       "group": "Query and Execution Endpoints",
       "pages": [
         "api-reference/query-api/endpoint/execute-query",
+        "api-reference/query-api/endpoint/cancel-execution",
         "api-reference/query-api/endpoint/get-query-result",
         "api-reference/query-api/endpoint/get-query-result-csv"
       ]

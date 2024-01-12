@@ -1,0 +1,32 @@
+---
+title: 'Cancel Execution'
+openapi: 'POST /v1/execution/{executionId}/cancel'
+---
+
+<RequestExample>
+
+```bash cURL
+    curl -X POST -H x-dune-api-key:{{api_key}} "https://api.dune.com/api/v1/execution/{{execution_id}}/cancel"
+```
+```python Python
+  import dotenv
+  import os
+  import requests
+
+  # load .env file
+  dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+  # get API key
+  api_key = os.environ["DUNE_API_KEY"]
+  # authentiction with api key
+  headers = {"X-Dune-API-Key": api_key}
+
+  execution_id = '01HKZJ2683PHF9Q9PHHQ8FW4Q1'
+  base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/cancel"
+  result_response = requests.request("POST", base_url, headers=headers)
+```
+
+```python Python SDK
+  # TODO
+```
+
+</RequestExample>

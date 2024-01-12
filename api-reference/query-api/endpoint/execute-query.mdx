@@ -6,10 +6,10 @@ openapi: 'POST /v1/query/{queryId}/execute'
 <RequestExample>
 
 ```bash cURL
-curl -X POST "https://api.dune.com/api/v1/query/{{query_id}}/execute"   \
-  -H "X-Dune-API-Key: {{api_key}}                                       \
-  -H "Content-Type: application/json"                                   \
-  -d '{"query_parameters": {"param1":24}, "performance": "large"}'
+  curl -X POST "https://api.dune.com/api/v1/query/{{query_id}}/execute"   \
+    -H "X-Dune-API-Key: {{api_key}}                                       \
+    -H "Content-Type: application/json"                                   \
+    -d '{"query_parameters": {"param1":24}, "performance": "large"}'
 ```
 ```python Python
   import dotenv
