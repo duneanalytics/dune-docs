@@ -277,7 +277,7 @@
         "post": {
           "summary": "Archive a query on Dune",
           "description": "This API allows for anyone to archive a query. Only the API key generated under the context of the owner of that query will work. This does not delete the query, but will make it uneditable/unexecutable",
-          "operationId": "archive",
+          "operationId": "ArchiveQuery",
           "parameters": [
               {
                   "in": "header",
@@ -364,7 +364,7 @@
         "post": {
           "summary": "Unarchive a query on Dune",
           "description": "This API allows for anyone to unarchive a query. Only the API key generated under the context of the owner of that query will work.",
-          "operationId": "unarchive",
+          "operationId": "UnarchiveQuery",
           "parameters": [
               {
                   "in": "header",
@@ -451,7 +451,7 @@
         "post": {
           "summary": "Private a query on Dune",
           "description": "This API allows for anyone to private a query. Only the API key generated under the context of the owner of that query will work.",
-          "operationId": "private",
+          "operationId": "PrivateQuery",
           "parameters": [
               {
                   "in": "header",
@@ -538,7 +538,7 @@
         "post": {
           "summary": "Private a query on Dune",
           "description": "This API allows for anyone to unprivate a query. Only the API key generated under the context of the owner of that query will work.",
-          "operationId": "unprivate",
+          "operationId": "UnprivateQuery",
           "parameters": [
               {
                   "in": "header",
@@ -876,113 +876,6 @@
                 ,"example": false
               }
             }
-          }
-          ,"QueryResult": {
-              "type": "object",
-              "required": [
-                  "executionId",
-                  "queryId",
-                  "state",
-                  "submitted_at"
-              ],
-              "properties": {
-                  "executionId": {
-                      "type": "string",
-                      "description": "Unique identifier for the execution of the query.",
-                      "example": "01GXDTYMM2CKFRBEW44X5S0WZE"
-                  },
-                  "queryId": {
-                      "type": "integer",
-                      "description": "Unique identifier of the query.",
-                      "example": 1252207
-                  },
-                  "state": {
-                      "type": "string",
-                      "description": "The state of the query execution.",
-                      "example": "QUERY_STATE_COMPLETED"
-                  },
-                  "submitted_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp of when the query was submitted.",
-                      "example": "2023-04-07T12:27:09.314513Z"
-                  },
-                  "expires_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp of when the query result expires.",
-                      "example": "2025-04-06T12:27:15.749155Z"
-                  },
-                  "execution_started_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp of when the query execution started.",
-                      "example": "2023-04-07T12:27:09.387366Z"
-                  },
-                  "execution_ended_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp of when the query execution ended.",
-                      "example": "2023-04-07T12:27:15.749154Z"
-                  },
-                  "cancelled_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp of when the query execution was cancelled, if applicable.",
-                      "example": "2023-04-08T12:27:15.749154Z"
-                  },
-                  "result": {
-                      "$ref": "#/components/schemas/QueryResultData"
-                  },
-                  "error": {
-                      "$ref": "#/components/schemas/QueryResultError"
-                  }
-              }
-          },
-          "QueryResultData": {
-              "type": "object",
-              "properties": {
-                  "rows": {
-                      "type": "array",
-                      "items": {
-                          "$ref": "#/components/schemas/QueryResultRow"
-                      },
-                      "description": "The rows of data returned by the query."
-                  },
-                  "metadata": {
-                      "$ref": "#/components/schemas/ExecutionResultMetadata"
-                  }
-              }
-          },
-          "QueryResultError": {
-              "type": "object",
-              "properties": {
-                  "type": {
-                      "type": "string",
-                      "description": "The type of error that occurred."
-                  },
-                  "message": {
-                      "type": "string",
-                      "description": "A descriptive message about the error."
-                  },
-                  "metadata": {
-                      "$ref": "#/components/schemas/SyntaxErrorMetadata"
-                  }
-              }
-          },
-          "QueryResultRow": {
-              "type": "object",
-              "description": "A row is dictionary of key-value pairs, each pair corresponding to a column",
-              "example": [
-                  {
-                      "TableName": "eth_blocks",
-                      "ct": 6296
-                  },
-                  {
-                      "TableName": "eth_traces",
-                      "ct": 4474223
-                  }
-              ]
           },
           "SyntaxErrorMetadata": {
               "type": "object",
