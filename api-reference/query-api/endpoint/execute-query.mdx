@@ -3,6 +3,43 @@ title: 'Execute Query'
 openapi: 'POST /v1/query/{query_id}/execute'
 ---
 
+If the query has parameters and you don't add them in your API call, it will just run the default params. You may add query parameters as part of the POST params data.
+
+You can choose to include a `performance` parameter, by default it will use the "medium" performance tier which consumes 10 credits. "large" will use 20 credits and be faster.
+
+Returns an execution_id associated with the triggered query execution and the state of the execution.
+
+<Accordion title="Execute query and get result in one call">
+  <Tip> If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38), you can directly executes and fetches result in one function call, like below: </Tip>
+
+    ``` python Python SDK 
+
+    import dotenv, os, json
+    from dune_client.types import QueryParameter
+    from dune_client.client import DuneClient
+    from dune_client.query import QueryBase
+
+    # change the current working directory where .env file lives
+    os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+    # load .env file
+    dotenv.load_dotenv(".env")
+    # setup Dune Python client
+    dune = DuneClient.from_env()
+
+    ```
+    Use `run_query` to get result in JSON, 
+        `run_query_csv` to get result in CSV format, 
+        and `run_query_dataframe` to get result in Pandas dataframe
+    ```
+
+    result = dune.run_query(
+        query=query # pass in query to run 
+        , performance = 'large' # optionally define which tier to run the execution on (default is "medium")
+        )
+
+    ```
+</Accordion>
+
 <RequestExample>
 
 ```bash cURL
@@ -10,6 +47,43 @@ curl -X POST "https://api.dune.com/api/v1/query/{{query_id}}/execute"   \
   -H "X-Dune-API-Key: {{api_key}}                                       \
   -H "Content-Type: application/json"                                   \
   -d '{"query_parameters": {"param1":24}, "performance": "large"}'
+```
+
+```python Python SDK
+
+'''
+Download Dune Python SDK by running `pip install dune-client`
+For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
+'''
+
+import dotenv, os, json
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+# define the query to run
+query = QueryBase(
+    name="Sample Query",
+    query_id=1215383,
+    params=[
+        QueryParameter.text_type(name="TextField", value="Word"),
+        QueryParameter.number_type(name="NumberField", value=3.1415926535),
+        QueryParameter.date_type(name="DateField", value="2022-05-04 00:00:00"),
+        QueryParameter.enum_type(name="ListField", value="Option 1"),
+    ],
+)
+
+result = dune.execute_query(query = query # pass in the query we just defined
+          , performance = "large" # define engine query is run on, default is "medium"
+)
+
 ```
 
 ```python Python
@@ -32,10 +106,6 @@ params = {
 }
 result_response = requests.request("POST", base_url, headers=headers, params=params)
 
-```
-
-```python Python SDK
-  # TODO
 ```
 
 </RequestExample>

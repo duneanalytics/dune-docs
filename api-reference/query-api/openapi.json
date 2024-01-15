@@ -504,7 +504,7 @@
                         "name": "execution_id",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "description": "unique identifier of the execution"
                     },
@@ -595,7 +595,7 @@
                         "name": "execution_id",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "description": "unique identifier of the execution"
                     },
@@ -652,6 +652,21 @@
                                 },
                                 "example": {
                                     "error": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict for url",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "error": "Query state is not QUERY_STATE_CANCELLED, cannot provide CSV Result",
+                                    "errorDetails": null,
+                                    "state": "QUERY_STATE_CANCELLED"
                                 }
                             }
                         }

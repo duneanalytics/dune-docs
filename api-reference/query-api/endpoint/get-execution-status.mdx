@@ -3,11 +3,39 @@ title: 'Get Execution Status'
 openapi: 'GET /v1/execution/{execution_id}/status'
 ---
 
+You must pass the `execution_id` obtained from making an [execute query](execute-query) POST request. 
+
+Returns the status of a query execution along with relevant metadata of the results if the execution is completed.
+
 <RequestExample>
 
 ```bash cURL
 
 curl -X GET "https://api.dune.com/api/v1/execution/{{execution_id}}/status" -H x-dune-api-key:{{api_key}}
+
+```
+
+
+```python Python SDK
+
+'''
+Download Dune Python SDK by running `pip install dune-client`
+For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
+'''
+
+import dotenv, os, json
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+result = dune.get_execution_status(job_id = '01HM79YYNXADPK66YWZK5X0NXB') # pass in the execution_id
 
 ```
 
@@ -28,10 +56,6 @@ execution_id = '01GBM4W2N0NMCGPZYW8AYK4YF1'
 base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/status"
 result_response = requests.request("GET", base_url, headers=headers, params=params)
 
-```
-
-```python Python SDK
-  # TODO
 ```
 
 </RequestExample>
