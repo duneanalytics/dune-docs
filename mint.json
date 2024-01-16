@@ -45,7 +45,7 @@
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://community.dune.com/changelog"
+      "url": "https://community.dune.com"
     }
   ],
   "navigation": [
@@ -105,8 +105,8 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/duneanalytics",
+    "github": "https://github.com/duneanalytics",
+    "linkedin": "https://www.linkedin.com/company/duneanalytics"
   }
 }

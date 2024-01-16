@@ -849,22 +849,13 @@
                                     "gnosis",
                                     "bnb"
                                 ]
-                            },
-                            {
-                                "key": "dust",
-                                "value": "keep",
-                                "type": "enum",
-                                "enumOptions": [
-                                    "keep",
-                                    "remove"
-                                ]
                             }
                         ]
                     },
                     "query_sql": {
                         "type": "string",
                         "description": "The SQL query text.",
-                        "example": "with\n    erc20_balances as (\n        WITH erc20_in as ( \n            SELECT \n                contract_address\n                , SUM(tr.value) as token_funded\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.to = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        ),\n        \n        erc20_out as (\n            SELECT  \n                contract_address\n                , SUM(tr.value) as token_spent\n            FROM erc20_{{chain}}.evt_Transfer tr\n            WHERE tr.\"from\" = {{address}}\n            AND ({{blocknumber}} = 0 OR tr.evt_block_number <= {{blocknumber}})\n            GROUP BY 1\n        )\n        \n        SELECT\n            tk.symbol as symbol\n            , erc20_in.contract_address\n            , (cast(token_funded as double) - COALESCE(cast(token_spent as double), 0))/pow(10,COALESCE(tk.decimals,18)) as balance\n        FROM erc20_in\n        LEFT JOIN erc20_out ON erc20_in.contract_address = erc20_out.contract_address\n        LEFT JOIN tokens.erc20 tk ON tk.contract_address = erc20_in.contract_address\n        WHERE cast(token_funded as double) - COALESCE(cast(token_spent as double), 0) > 0\n        -- WHERE tk.symbol is not null\n    )\n\nSELECT\n    bal.symbol\n    , round(bal.balance,5) as notional_value\n    , round(bal.balance*p.price,3) as total_value\n    , p.price as token_price\nFROM erc20_balances bal\nLEFT JOIN prices.usd_latest p \n    ON p.contract_address = bal.contract_address\n    AND p.blockchain = '{{chain}}' --AND p.rn = 1 \nWHERE bal.balance > 0\nAND ('{{dust}}' = 'keep' OR bal.balance*p.price > 0.01)\nORDER BY total_value DESC\nNULLS LAST"
+                        "example": "SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"
                     },
                     "is_private": {
                         "type": "boolean",
