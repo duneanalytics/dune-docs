@@ -100,7 +100,7 @@
     {
       "group": "Upload Endpoints",
       "pages": [
-        "api-reference/crud/endpoint/upload"
+        "api-reference/upload/endpoint/upload"
       ]
     }
   ],

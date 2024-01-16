@@ -1,0 +1,57 @@
+---
+title: 'Upload CSV'
+openapi: 'POST /v1/query/{queryId}'
+---
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://api.dune.com/api/v1/table/upload/csv"   \
+  -H "X-Dune-API-Key: {{api_key}}                                       \
+  -H "Content-Type: application/json"                                   \
+  -d '{"query_parameters": {"param1":24}, "performance": "large"}'
+```
+
+```python Python
+
+import dotenv
+import os
+import requests
+
+# load .env file
+dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+# get API key
+api_key = os.environ["DUNE_API_KEY"]
+
+# read in file path
+file_name = r'c:/desktop/downloads/file.csv'
+
+# Define the HTTP endpoint URL and data to send
+url = 'https://api.dune.com/api/v1/table/upload/csv'
+
+with open(file_name) as open_file:
+    data = open_file.read()
+    # Print the size of the CSV file
+    file_size = os.path.getsize(file_name)
+    print('CSV file size:', file_size/1000, 'kilobytes')
+
+    # Set the headers and metadata for the CSV data
+    headers = {'X-Dune-Api-Key': api_key }
+
+    # construct the payload for the API
+    payload  = {}
+    payload["table_name"] = "test_name" #table name, change this
+    payload["description"] = "test_description" #description, change this (optional)
+    payload["data"] = str(data) #pass the data from the csv as a string
+    payload["is_private"] = false #determines whether table is pritave or public, only available on premium+ subscriptions
+
+    # Send the POST request to the HTTP endpoint
+    response = requests.post(url, data=json.dumps(payload), headers=headers)
+
+    # Print the response status code and content
+    print('Response status code:', response.status_code)
+    print('Response content:', response.content)
+
+```
+
+</RequestExample>
