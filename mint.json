@@ -88,9 +88,13 @@
     {
       "group": "Endpoint Examples",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/crud/endpoint/create",
+        "api-reference/crud/endpoint/read",
+        "api-reference/crud/endpoint/update",
+        "api-reference/crud/endpoint/archive",
+        "api-reference/crud/endpoint/unarchive",
+        "api-reference/crud/endpoint/private",
+        "api-reference/crud/endpoint/unprivate"
       ]
     }
   ],
