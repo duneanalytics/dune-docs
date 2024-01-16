@@ -1,0 +1,60 @@
+---
+title: 'Cancel Execution'
+openapi: 'POST /v1/execution/{execution_id}/cancel'
+---
+
+You must pass the `execution_id` obtained from making an [execute query](execute-query) POST request. 
+
+Result returns a boolean for whether the execution is successfully canceled.
+
+<RequestExample>
+
+```bash cURL
+
+curl -X POST -H x-dune-api-key:{{api_key}} "https://api.dune.com/api/v1/execution/{{execution_id}}/cancel"
+
+```
+
+```python Python SDK
+
+'''
+Download Dune Python SDK by running `pip install dune-client`
+For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
+'''
+
+import dotenv, os, json
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+result = dune.cancel_execution(job_id = '01HM79YYNXADPK66YWZK5X0NXB') # pass in the execution_id
+
+```
+
+```python Python
+
+import dotenv
+import os
+import requests
+
+# load .env file
+dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+# get API key
+api_key = os.environ["DUNE_API_KEY"]
+# authentiction with api key
+headers = {"X-Dune-API-Key": api_key}
+
+execution_id = '01HKZJ2683PHF9Q9PHHQ8FW4Q1'
+base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/cancel"
+result_response = requests.request("POST", base_url, headers=headers)
+
+```
+
+</RequestExample>

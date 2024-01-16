@@ -1,0 +1,96 @@
+---
+title: 'Get Execution Result'
+openapi: 'GET /v1/execution/{execution_id}/results'
+---
+
+You must pass the `execution_id` obtained from making an [execute query](execute-query) POST request. 
+
+Result returns the status, metadata, and query results (in JSON) from a query execution.
+
+
+<Info> Results data from an execution are currently stored for 2 years. We may reduce this to something closer to 90 days in the future. This is visible on the API response on the “expires_at” field in the execution status and results body. </Info>
+
+<Info> There is currently a 1GB limit in how much data a single API result call can return, but there is a chance we reduce this overall or based on varying paid plan types. </Info>
+
+<Accordion title="Execute query and get result in one call">
+  <Tip> If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38), you can directly executes and fetches result in one function call, like below: </Tip>
+
+    ``` python Python SDK 
+
+    import dotenv, os, json
+    from dune_client.types import QueryParameter
+    from dune_client.client import DuneClient
+    from dune_client.query import QueryBase
+
+    # change the current working directory where .env file lives
+    os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+    # load .env file
+    dotenv.load_dotenv(".env")
+    # setup Dune Python client
+    dune = DuneClient.from_env()
+
+    ```
+    Use `run_query` to get result in JSON, 
+        `run_query_csv` to get result in CSV format, 
+        and `run_query_dataframe` to get result in Pandas dataframe
+    ```
+
+    result = dune.run_query(
+        query=query # pass in query to run 
+        , performance = 'large' # optionally define which tier to run the execution on (default is "medium")
+        )
+
+    ```
+</Accordion>
+
+<RequestExample>
+
+```bash cURL
+
+curl -X GET "https://api.dune.com/api/v1/execution/{{execution_id}}/results" -H x-dune-api-key:{{api_key}}
+
+```
+
+```python Python SDK
+
+'''
+Download Dune Python SDK by running `pip install dune-client`
+For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
+'''
+
+import dotenv, os, json
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+result = dune.get_execution_results(job_id = '01HM79YYNXADPK66YWZK5X0NXB') # pass in the execution_id
+
+```
+
+```python Python
+
+import dotenv
+import os
+import requests
+
+# load .env file
+dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
+# get API key
+api_key = os.environ["DUNE_API_KEY"]
+# authentiction with api key
+headers = {"X-Dune-API-Key": api_key}
+
+execution_id = 2636251
+base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/results"
+result_response = requests.request("GET", base_url, headers=headers)
+
+```
+
+</RequestExample>
