@@ -13,7 +13,9 @@
   "paths": {
       "/v1/table/upload/csv": {
           "post": {
+              "summary": "Upload a CSV as a table in Dune.",
               "description": "This API allows for anyone to upload a CSV as a table in Dune. The size limit per upload is currently 200MB. Your storage is limited by plan, 1MB on free, 15GB on plus, and 50GB on premium.",
+              "operationId": "UploadCSV",
               "parameters": [
                   {
                       "in": "header",
