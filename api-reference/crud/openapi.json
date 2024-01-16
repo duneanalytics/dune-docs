@@ -182,7 +182,7 @@
                 }
             }
         },
-        "/v1/query/": {
+        "/v1/query": {
             "post": {
                 "summary": "Create and save a query on Dune",
                 "description": "This API allows for anyone to create a query. The owner of the query will be under the context of the API key.",

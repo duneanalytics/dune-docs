@@ -86,7 +86,7 @@
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "CRUD Endpoints",
       "pages": [
         "api-reference/crud/endpoint/create",
         "api-reference/crud/endpoint/read",
