@@ -96,6 +96,12 @@
         "api-reference/crud/endpoint/private",
         "api-reference/crud/endpoint/unprivate"
       ]
+    },
+    {
+      "group": "Upload Endpoints",
+      "pages": [
+        "api-reference/crud/endpoint/upload"
+      ]
     }
   ],
   "footerSocials": {
