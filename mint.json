@@ -70,7 +70,11 @@
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/overview/introduction",
+        "api-reference/overview/sdks",
+        "api-reference/overview/query-parameters",
+        "api-reference/overview/billing",
+        "api-reference/overview/faq"
       ]
     },
     {
