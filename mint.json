@@ -74,30 +74,6 @@
       ]
     },
     {
-      "group": "Data Upload",
-      "pages": [
-        "api-reference/upload/endpoint/upload"
-      ]
-    },
-    {
-      "group": "Webhooks",
-      "pages": [
-        "api-reference/webhooks/webhook"
-      ]
-    },
-    {
-      "group": "Query Execution and Results",
-      "pages": [
-        "api-reference/query-api/endpoint/execute-query",
-        "api-reference/query-api/endpoint/cancel-execution",
-        "api-reference/query-api/endpoint/get-execution-status",
-        "api-reference/query-api/endpoint/get-execution-result",
-        "api-reference/query-api/endpoint/get-execution-result-csv",
-        "api-reference/query-api/endpoint/get-query-result",
-        "api-reference/query-api/endpoint/get-query-result-csv"
-      ]
-    },
-    {
       "group": "CRUD",
       "pages": [
         "api-reference/crud/endpoint/create",
