@@ -1,0 +1,69 @@
+---
+title: 'Client SDKs'
+---
+
+## Python
+
+We currently support a [Python SDK](https://github.com/duneanalytics/dune-client) for working with our API. You'll find `Python SDK` snippets on all endpoint pages.
+
+To still the SDK, run the following command in your terminal:
+
+```bash
+pip install dune-client
+```
+
+You can find all available API endpoint functions defined in [these files](https://github.com/duneanalytics/dune-client/tree/main/dune_client/api). 
+
+You will commonly work with the `QueryBase` class which can be created like this: 
+
+```python
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+query = QueryBase(
+    name="Sample Query",
+    query_id=1215383,
+    params=[
+        QueryParameter.text_type(name="TextField", value="Word"),
+        QueryParameter.number_type(name="NumberField", value=3.1415926535),
+        QueryParameter.date_type(name="DateField", value="2022-05-04 00:00:00"),
+        QueryParameter.enum_type(name="EnumField", value="Option 1"),
+    ],
+)
+print("Results available at", query.url())
+```
+
+The query object is defined as `QueryBase` and all properties can be found [in this file](https://github.com/duneanalytics/dune-client/blob/main/dune_client/query.py).
+
+Other classes such as execution results can be [found here](https://github.com/duneanalytics/dune-client/blob/main/dune_client/models.py#L244C7-L244C22), detailing operations like `ResultsResponse.get_rows()` for getting the data out of a GET request.
+
+## Typescript
+
+We have a community client from the Cow Protocol team that can be [found here](https://www.npmjs.com/package/@cowprotocol/ts-dune-client).
+
+To install, run this command 
+
+```bash 
+yarn add @cowprotocol/ts-dune-client
+```
+
+Currently this client only supports the execution based endpoints, and not CRUD or uploads. Here is an example query:
+
+```typescript
+import { QueryParameter, DuneClient } from "@cowprotocol/ts-dune-client";
+const { DUNE_API_KEY } = process.env;
+
+const client = new DuneClient(DUNE_API_KEY ?? "");
+const queryID = 1215383;
+const parameters = [
+  QueryParameter.text("TextField", "Plain Text"),
+  QueryParameter.number("NumberField", 3.1415926535),
+  QueryParameter.date("DateField", "2022-05-04 00:00:00"),
+  QueryParameter.enum("ListField", "Option 1"),
+];
+
+client
+  .refresh(queryID, parameters)
+  .then((executionResult) => console.log(executionResult.result?.rows));
+```
