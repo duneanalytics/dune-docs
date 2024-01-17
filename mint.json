@@ -74,7 +74,7 @@
       ]
     },
     {
-      "group": "Upload Endpoints",
+      "group": "Data Upload",
       "pages": [
         "api-reference/upload/endpoint/upload"
       ]
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "group": "Query and Execution Endpoints",
+      "group": "Query Execution and Results",
       "pages": [
         "api-reference/query-api/endpoint/execute-query",
         "api-reference/query-api/endpoint/cancel-execution",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "group": "CRUD Endpoints",
+      "group": "CRUD",
       "pages": [
         "api-reference/crud/endpoint/create",
         "api-reference/crud/endpoint/read",
