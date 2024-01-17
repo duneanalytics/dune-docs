@@ -13,10 +13,6 @@ You can send Dune data to a webhook by going to any query and pressing the "sche
 
 You can quickly test the output with a webhook generator [like this one](https://webhook.site/#!/).
 
-<Note>
-You'll need to then GET query the `data_uri` with your api key in the header to get the results of the query.
-</Note>
-
 Here is an example schema sent to the webhook from this [Jupiter swap fees query](https://dune.com/queries/3106864):
 
 ```
@@ -53,3 +49,6 @@ Here is an example schema sent to the webhook from this [Jupiter swap fees query
   ]
 }
 ```
+<Note>
+You'll need to GET query the `data_uri` with your api key to get the results data.
+</Note>
