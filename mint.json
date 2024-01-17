@@ -110,11 +110,6 @@
       ]
     }
   ],
-  "feedback": {
-    "thumbsRating": true,
-    "suggestEdit": true,
-    "raiseIssue": true 
-  },
   "footerSocials": {
     "twitter": "https://twitter.com/duneanalytics",
     "github": "https://github.com/duneanalytics",
