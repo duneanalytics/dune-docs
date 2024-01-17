@@ -45,10 +45,13 @@
                               "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "query_id": {
-                                        "type": "integer",
-                                        "format": "int32",
-                                        "example": 1616880
+                                    "success": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }, 
+                                    "table_name": {
+                                        "type": "string",
+                                        "example": "ten_year_us_interest_rates"
                                     }
                                 }
                             }
@@ -64,23 +67,14 @@
                                   "properties": {
                                       "error": {
                                           "type": "integer",
-                                          "format": "int32"
+                                          "format": "int32",
+                                          "example": 400
                                       },
                                       "message": {
                                           "type": "string",
-                                          "example": "Core request validation failed"
+                                          "example": "Core request validation failed, make sure you've given required columns and followed formatting rules for the CSV (no special characters or digits in column names)"
                                       }
                                   }
-                              }
-                          }
-                      }
-                  },
-                  "404": {
-                      "description": "Resource not found",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/NotFoundError"
                               }
                           }
                       }

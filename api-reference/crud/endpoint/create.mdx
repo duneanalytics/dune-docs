@@ -3,3 +3,191 @@ title: 'Create Query'
 openapi: 'POST /v1/query'
 ---
 
+<RequestExample>
+
+```bash cURL
+curl --request POST \
+  --url https://api.dune.com/api/v1/query \
+  --header 'Content-Type: application/json' \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
+  --data '{
+  "name": "erc20 balances (user address) API",
+  "description": "Example Blockchain Query",
+  "parameters": [
+    {
+      "key": "address",
+      "value": "0x2ae8c972fb2e6c00dded8986e2dc672ed190da06",
+      "type": "text"
+    },
+    {
+      "key": "blocknumber",
+      "value": "0",
+      "type": "number"
+    },
+    {
+      "key": "chain",
+      "value": "ethereum",
+      "type": "enum",
+      "enumOptions": [
+        "ethereum",
+        "polygon",
+        "optimism",
+        "arbitrum",
+        "avalanche_c",
+        "gnosis",
+        "bnb"
+      ]
+    }
+  ],
+  "query_sql": "SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}",
+  "is_private": true
+}'
+```
+
+```python Python SDK
+import dotenv, os
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+dotenv.load_dotenv(".env")
+dune = DuneClient.from_env()
+
+query = dune.create_query(
+    name="Example Blockchain Query",
+    query_sql="SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}",
+    params=[
+        QueryParameter.number_type(name="blocknumber", value=0)
+        QueryParameter.text_type(name="quest address", value="0x2ae8c972fb2e6c00dded8986e2dc672ed190da06"),
+        QueryParameter.enum_type(name="chain", value="ethereum"),
+    ],
+    is_private=False
+)
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/query"
+
+payload = {
+    "name": "erc20 balances (user address) API",
+    "description": "Example Blockchain Query",
+    "parameters": [
+        {
+            "key": "address",
+            "value": "0x2ae8c972fb2e6c00dded8986e2dc672ed190da06",
+            "type": "text"
+        },
+        {
+            "key": "blocknumber",
+            "value": "0",
+            "type": "number"
+        },
+        {
+            "key": "chain",
+            "value": "ethereum",
+            "type": "enum",
+            "enumOptions": ["ethereum", "polygon", "optimism", "arbitrum", "avalanche_c", "gnosis", "bnb"]
+        }
+    ],
+    "query_sql": "SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}",
+    "is_private": True
+}
+headers = {
+    "X-DUNE-API-KEY": "<x-dune-api-key>",
+    "Content-Type": "application/json"
+}
+
+response = requests.request("POST", url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+```javascript JavaScript
+const options = {
+  method: 'POST',
+  headers: {'X-DUNE-API-KEY': '<x-dune-api-key>', 'Content-Type': 'application/json'},
+  body: '{"name":"erc20 balances (user address) API","description":"Example Blockchain Query","parameters":[{"key":"address","value":"0x2ae8c972fb2e6c00dded8986e2dc672ed190da06","type":"text"},{"key":"blocknumber","value":"0","type":"number"},{"key":"chain","value":"ethereum","type":"enum","enumOptions":["ethereum","polygon","optimism","arbitrum","avalanche_c","gnosis","bnb"]}],"query_sql":"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}","is_private":true}'
+};
+
+fetch('https://api.dune.com/api/v1/query', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+```
+
+```go Go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://api.dune.com/api/v1/query"
+
+	payload := strings.NewReader("{\n  \"name\": \"erc20 balances (user address) API\",\n  \"description\": \"Example Blockchain Query\",\n  \"parameters\": [\n    {\n      \"key\": \"address\",\n      \"value\": \"0x2ae8c972fb2e6c00dded8986e2dc672ed190da06\",\n      \"type\": \"text\"\n    },\n    {\n      \"key\": \"blocknumber\",\n      \"value\": \"0\",\n      \"type\": \"number\"\n    },\n    {\n      \"key\": \"chain\",\n      \"value\": \"ethereum\",\n      \"type\": \"enum\",\n      \"enumOptions\": [\n        \"ethereum\",\n        \"polygon\",\n        \"optimism\",\n        \"arbitrum\",\n        \"avalanche_c\",\n        \"gnosis\",\n        \"bnb\"\n      ]\n    }\n  ],\n  \"query_sql\": \"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\",\n  \"is_private\": true\n}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+	req.Header.Add("Content-Type", "application/json")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```php PHP
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/query",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "{\n  \"name\": \"erc20 balances (user address) API\",\n  \"description\": \"Example Blockchain Query\",\n  \"parameters\": [\n    {\n      \"key\": \"address\",\n      \"value\": \"0x2ae8c972fb2e6c00dded8986e2dc672ed190da06\",\n      \"type\": \"text\"\n    },\n    {\n      \"key\": \"blocknumber\",\n      \"value\": \"0\",\n      \"type\": \"number\"\n    },\n    {\n      \"key\": \"chain\",\n      \"value\": \"ethereum\",\n      \"type\": \"enum\",\n      \"enumOptions\": [\n        \"ethereum\",\n        \"polygon\",\n        \"optimism\",\n        \"arbitrum\",\n        \"avalanche_c\",\n        \"gnosis\",\n        \"bnb\"\n      ]\n    }\n  ],\n  \"query_sql\": \"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\",\n  \"is_private\": true\n}",
+  CURLOPT_HTTPHEADER => [
+    "Content-Type: application/json",
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+```java Java
+HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/query")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .header("Content-Type", "application/json")
+  .body("{\n  \"name\": \"erc20 balances (user address) API\",\n  \"description\": \"Example Blockchain Query\",\n  \"parameters\": [\n    {\n      \"key\": \"address\",\n      \"value\": \"0x2ae8c972fb2e6c00dded8986e2dc672ed190da06\",\n      \"type\": \"text\"\n    },\n    {\n      \"key\": \"blocknumber\",\n      \"value\": \"0\",\n      \"type\": \"number\"\n    },\n    {\n      \"key\": \"chain\",\n      \"value\": \"ethereum\",\n      \"type\": \"enum\",\n      \"enumOptions\": [\n        \"ethereum\",\n        \"polygon\",\n        \"optimism\",\n        \"arbitrum\",\n        \"avalanche_c\",\n        \"gnosis\",\n        \"bnb\"\n      ]\n    }\n  ],\n  \"query_sql\": \"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\",\n  \"is_private\": true\n}")
+  .asString();
+```
+
+</RequestExample>

@@ -33,7 +33,7 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "App Docs",
       "icon": "book-open-cover",
       "url": "https://dune.com/docs"
     },
@@ -104,6 +104,11 @@
       ]
     }
   ],
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true 
+  },
   "footerSocials": {
     "twitter": "https://twitter.com/duneanalytics",
     "github": "https://github.com/duneanalytics",

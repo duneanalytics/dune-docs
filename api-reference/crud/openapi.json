@@ -47,27 +47,24 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAllowedError"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Resource not found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -77,7 +74,6 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -140,27 +136,33 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MaximumPrivateQueriesError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAllowedError"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Resource not found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -170,7 +172,6 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -226,37 +227,33 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/CoreRequestError"
                                 }
                             }
                         }
                     },
-                    "404": {
-                        "description": "Resource not found",
+                    "402": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/NotFoundError"
+                                    "$ref": "#/components/schemas/ReachedMaxPrivateQueriesError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAllowedError"
                                 }
                             }
                         }
                     },
                     "500": {
-                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -311,27 +308,24 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAllowedError"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Resource not found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -341,7 +335,6 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -396,27 +389,24 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAllowedError"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Resource not found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -426,7 +416,6 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -481,27 +470,33 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MaximumPrivateQueriesError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAllowedError"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Resource not found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -511,7 +506,6 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -566,27 +560,24 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Core request validation failed"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAllowedError"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Resource not found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -596,7 +587,6 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -627,7 +617,7 @@
                     "description": {
                         "type": "string",
                         "description": "Description of the query.",
-                        "example": "Get the ERC20 token balances for a given user address."
+                        "example": "Example Blockchain Query"
                     },
                     "tags": {
                         "type": "array",
@@ -735,7 +725,7 @@
                     "description": {
                         "type": "string",
                         "description": "Description of the query.",
-                        "example": "Get the ERC20 token balances for a given user address."
+                        "example": "Example Blockchain Query"
                     },
                     "tags": {
                         "type": "array",
@@ -818,7 +808,7 @@
                     "description": {
                         "type": "string",
                         "description": "Description of the query.",
-                        "example": "Get the ERC20 token balances for a given user address."
+                        "example": "Example Blockchain Query"
                     },
                     "parameters": {
                         "type": "array",
@@ -1089,6 +1079,7 @@
             },
             "NotFoundError": {
                 "type": "object",
+                "description": "Resource not found",
                 "required": [
                     "error",
                     "message"
@@ -1109,6 +1100,7 @@
             },
             "InternalServerError": {
                 "type": "object",
+                "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details.",
                 "properties": {
                     "error": {
                         "type": "integer",
@@ -1119,9 +1111,53 @@
                         "type": "string",
                         "example": "internal error"
                     }
-                },
-                "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+                }
+            },
+            "MaximumPrivateQueriesError": {
+                "type": "object",
+                "description": "Maximum number of private queries reached on current pricing plan. Please upgrade for more",
+                "properties": {
+                    "error": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 402
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Reached maximum number of private queries"
+                    }
+                }
+            },
+            "NotAllowedError": {
+                "type": "object",
+                "description": "Not allowed to alter this query, make sure you're using an API key generated under the context of the owner of this query",
+                "properties": {
+                    "error": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 403
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Not allowed to alter this query"
+                    }
+                }
+            },
+            "CoreRequestError": {
+                "type": "object",
+                "description": "An issue with the validation of the request",
+                "properties": {
+                    "error": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 400
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Core request validation failed"
+                    }
+                }
             }
-        }
+            }
     }
 }
