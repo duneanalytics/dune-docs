@@ -1,23 +1,43 @@
 ---
 title: 'Introduction'
-description: 'Covering Dune's four core API offerings"
 ---
 
 ## Welcome
 
-Our four core API offerings can be found below:
+Dune's four core API offerings can be found below:
 
 <CardGroup cols={2}>
-<Card
-  title="Query Execution Endpoints"
-  icon="cloud-arrow-down"
-  href="/query-api/endpoint/execute-query"
->
-  Execute queries and get results in JSON or CSV form
-</Card>
+  <Card
+    title="Query Execution And Results"
+    icon="cloud-arrow-down"
+    href="/api-reference/query-api/endpoint/execute-query"
+  >
+    Execute queries and get results in JSON or CSV form
+  </Card>
+  <Card
+    title="CRUD (Create, Read, Update, Delete)"
+    icon="floppy-disk"
+    href="/api-reference/crud/endpoint/create"
+  >
+    Manage your queries through the API, good for combining with GitHub.
+  </Card>
+  <Card
+    title="Data Uploads"
+    icon="upload"
+    href="/api-reference/upload/endpoint/upload"
+  >
+    Upload CSVs into Dune to create your own queryable tables
+  </Card>
+  <Card
+    title="Webhooks"
+    icon="webhook"
+    href="/api-reference/webhooks/webhook"
+  >
+    Push Dune data into your own webhooks, on a custom set schedule
+  </Card>
 </CardGroup>
 
-## TODOs
+## Jackie and Andrew's TODOs
 
 - Authentication
   - Generate an API key
