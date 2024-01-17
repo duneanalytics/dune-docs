@@ -1,33 +1,51 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
 ---
-
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
 
 ## Welcome
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+Dune's four core API offerings can be found below:
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+<CardGroup cols={2}>
+  <Card
+    title="Query Execution And Results"
+    icon="cloud-arrow-down"
+    href="/api-reference/query-api/endpoint/execute-query"
+  >
+    Execute queries and get results in JSON or CSV form
+  </Card>
+  <Card
+    title="CRUD (Create, Read, Update, Delete)"
+    icon="floppy-disk"
+    href="/api-reference/crud/endpoint/create"
+  >
+    Manage your queries through the API, good for combining with GitHub.
+  </Card>
+  <Card
+    title="Data Uploads"
+    icon="upload"
+    href="/api-reference/upload/endpoint/upload"
+  >
+    Upload CSVs into Dune to create your own queryable tables
+  </Card>
+  <Card
+    title="Webhooks"
+    icon="webhook"
+    href="/api-reference/webhooks/webhook"
+  >
+    Push Dune data into your own webhooks, on a custom set schedule
+  </Card>
+</CardGroup>
 
-## Authentication
+## Jackie and Andrew's TODOs
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+- Authentication
+  - Generate an API key
+  - Keeping API key safe
+  - Context of key (can only access team resources, and not user resources especially for crud)
+  - Authentication & making API calls
+- Setting up Python client
+- Query parameters explained
+- Execution ID explained
+- Rate limits (and other limits like result size and storage limits)
+- Troubleshooting common errors

@@ -98,6 +98,12 @@
       ]
     },
     {
+      "group": "Webhooks",
+      "pages": [
+        "api-reference/webhooks/webhook"
+      ]
+    },
+    {
       "group": "Upload Endpoints",
       "pages": [
         "api-reference/upload/endpoint/upload"
