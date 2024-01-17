@@ -1,0 +1,44 @@
+---
+title: 'Create Webhook'
+description: 'how to create to recieve data into webhooks from Dune queries"
+icon: "rectangle-code"
+iconType: "solid"
+---
+
+You can send Dune data to a webhook by going to any query, and then pressing the "schedule" button to the left of "Run" in the editor.
+
+You'll see a popup like the one below, where you can paste in any webhook url and recieve data on a scheduled interval.
+
+<Frame>
+  <img src="/webhook.png" />
+</Frame>
+
+The schema of the webhook data should reflect the following format when sent:
+
+```json
+{
+	message: string,
+	query_result: {
+	  execution_id: string;
+	  query_id: number;
+	  state: string;
+	  submitted_at: string;
+	  expires_at: string;
+	  execution_started_at: string;
+	  execution_ended_at: string;
+	  result: {
+	    data_uri: string;
+	    metadata: {
+	      column_names: string[];
+	      result_set_bytes: number;
+	      total_row_count: number;
+	      datapoint_count: number;
+	      pending_time_millis: number;
+	      execution_time_millis: number;
+	    };
+	  };
+	}
+}
+```
+
+You can quickly validate the format with a webhook generator [like this one](https://webhook.site/#!/).
