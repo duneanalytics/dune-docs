@@ -11,7 +11,7 @@ You can send Dune data to a webhook by going to any query and pressing the "sche
   <img src="/api-reference/webhooks/webhook.png" />
 </Frame>
 
-The schema of the webhook data should reflect the following format when sent:
+The schema of the webhook data should reflect the following format when sent. 
 
 ```json
 {
@@ -39,4 +39,45 @@ The schema of the webhook data should reflect the following format when sent:
 }
 ```
 
-You can quickly validate the format with a webhook generator [like this one](https://webhook.site/#!/).
+You can quickly test the output with a webhook generator [like this one](https://webhook.site/#!/).
+
+<Note>
+You'll need to then query the `data_uri` with your api key in the header to get the results of the query.
+</Note>
+
+Here is an example response from this [Jupiter swap fees query](https://dune.com/queries/3106864):
+
+```
+{
+  "message": "Query Jupiter Fees was submitted for execution at Wed, 17 Jan 2024 04:18:49 GMT by your query schedule and it was successfully executed with a non empty result.\nYou can check its latest result here: https://dune.com/queries/3106864?utm_source=webhook&utm_campaign=alerts",
+  "query_result": {
+    "execution_id": "01HMAT9AB8JRV1NQR1W6NMYQK7",
+    "query_id": 3106864,
+    "state": "QUERY_STATE_COMPLETED",
+    "submitted_at": "2024-01-17T04:18:49Z",
+    "expires_at": "2024-04-16T04:20:57Z",
+    "execution_started_at": "2024-01-17T04:18:49Z",
+    "execution_ended_at": "2024-01-17T04:20:57Z",
+    "result": {
+      "data_uri": "https://api.dune.com/api/v1/execution/01HMAT9AB8JRV1NQR1W6NMYQK7/results",
+      "metadata": {
+        "column_names": [
+          "week",
+          "fee_usd"
+        ],
+        "result_set_bytes": 1164,
+        "total_row_count": 25,
+        "datapoint_count": 50,
+        "pending_time_millis": 40,
+        "execution_time_millis": 127845
+      }
+    }
+  },
+  "visualizations": [
+    {
+      "title": "Chart",
+      "image_url": "https://prod-dune-media.s3.eu-west-1.amazonaws.com/screenshots/3106864/01HMAT9AB8JRV1NQR1W6NMYQK7/5222108.png"
+    }
+  ]
+}
+```
