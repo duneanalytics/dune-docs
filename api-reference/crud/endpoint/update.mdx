@@ -2,3 +2,129 @@
 title: 'Update Query'
 openapi: 'PATCH /v1/query/{queryId}'
 ---
+
+<RequestExample>
+
+```bash cURL
+curl --request PATCH \
+  --url https://api.dune.com/api/v1/query/{queryId} \
+  --header 'Content-Type: application/json' \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
+  --data '{
+  "query_id": 1252207,
+  "query_sql": "SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}",
+}'
+```
+
+```python Python SDK
+import dotenv, os
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+dotenv.load_dotenv(".env")
+dune = DuneClient.from_env()
+
+query = dune.update_query(
+    query_sql="SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"
+)
+```
+
+```python Python
+curl --request PATCH \
+  --url https://api.dune.com/api/v1/query/{queryId} \
+  --header 'Content-Type: application/json' \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
+  --data '{
+  "query_id": 1252207,
+  "query_sql": "{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"
+}'
+```
+
+```javascript JavaScript
+const options = {
+  method: 'PATCH',
+  headers: {'X-DUNE-API-KEY': '<x-dune-api-key>', 'Content-Type': 'application/json'},
+  body: '{"query_id":1252207,"query_sql":"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"}'
+};
+
+fetch('https://api.dune.com/api/v1/query/{queryId}', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+```
+
+```go Go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://api.dune.com/api/v1/query/{queryId}"
+
+	payload := strings.NewReader("{\n  \"query_id\": 1252207,\n  ,\n  \"query_sql\": \"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}")
+
+	req, _ := http.NewRequest("PATCH", url, payload)
+
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+	req.Header.Add("Content-Type", "application/json")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```php PHP
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/query/{queryId}",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "PATCH",
+  CURLOPT_POSTFIELDS => "{\n  \"query_id\": 1252207,\n  \"query_sql\": \"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}",
+  CURLOPT_HTTPHEADER => [
+    "Content-Type: application/json",
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+```java Java
+HttpResponse<String> response = Unirest.patch("https://api.dune.com/api/v1/query/{queryId}")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .header("Content-Type", "application/json")
+  .body("{\n  \"query_id\": 1252207,\n  \"query_sql\": \"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}")
+  .asString();
+```
+
+</RequestExample>

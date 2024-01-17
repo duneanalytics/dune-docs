@@ -1,4 +1,158 @@
 ---
 title: 'Upload CSV'
-openapi: 'POST /v1/query/{queryId}'
+openapi: 'POST /v1/table/upload/csv'
 ---
+
+<Tip>
+You can also upload CSV through the [Dune UI](https://dune.com/) by pressing the "create" dropdown.
+</Tip>
+
+<Note>
+For working with uploads, keep in mind that:
+- File has to be < 200 MB
+- Column names in the table can't start with a special character or digits.
+- Private uploads require a Premium subscription.
+- If you upload to an existing table name, it will delete the old data and overwite it with your new data. There is no append feature at the moment.
+- To delete an upload table, you must go to  user settings (dune.com) -> data -> delete`.
+
+If you have larger datasets you want to upload, please [contact us here](https://docs.google.com/forms/d/e/1FAIpQLSekx61WzIh-MII18zRj1G98aJeLM7U0VEBqaa6pVk_DQ7lq6Q/viewform)
+</Note>
+
+<RequestExample>
+
+```bash cURL
+curl --request POST \
+  --url https://api.dune.com/api/v1/table/upload/csv \
+  --header 'Content-Type: application/json' \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
+  --data '{
+  "data": "DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
+  "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+  "table_name": "ten_year_us_interest_rates",
+  "is_private": false
+}'
+```
+
+```python Python SDK
+import dotenv, os
+from dune_client.client import DuneClient
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+dotenv.load_dotenv(".env")
+dune = DuneClient.from_env()
+
+table = dune.upload_csv(
+    data="DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
+    description="10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+    table_name="ten_year_us_interest_rates",
+    is_private=False
+)
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/table/upload/csv"
+
+payload = {
+    "data": "DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
+    "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+    "table_name": "ten_year_us_interest_rates",
+    "is_private": False
+}
+headers = {
+    "X-DUNE-API-KEY": "<x-dune-api-key>",
+    "Content-Type": "application/json"
+}
+
+response = requests.request("POST", url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+```javascript Javascript
+const options = {
+  method: 'POST',
+  headers: {'X-DUNE-API-KEY': '<x-dune-api-key>', 'Content-Type': 'application/json'},
+  body: '{"data":"DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23","description":"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10","table_name":"ten_year_us_interest_rates","is_private":false}'
+};
+
+fetch('https://api.dune.com/api/v1/table/upload/csv', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+```
+
+```go Go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://api.dune.com/api/v1/table/upload/csv"
+
+	payload := strings.NewReader("{\n  \"data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"table_name\": \"ten_year_us_interest_rates\",\n  \"is_private\": false\n}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+	req.Header.Add("Content-Type", "application/json")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```php PHP
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/table/upload/csv",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "{\n  \"data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"table_name\": \"ten_year_us_interest_rates\",\n  \"is_private\": false\n}",
+  CURLOPT_HTTPHEADER => [
+    "Content-Type: application/json",
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+```java Java
+HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/table/upload/csv")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .header("Content-Type", "application/json")
+  .body("{\n  \"data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"table_name\": \"ten_year_us_interest_rates\",\n  \"is_private\": false\n}")
+  .asString();
+```
+
+</RequestExample>
