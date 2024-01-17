@@ -26,10 +26,10 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
   --data '{
-  "Data": "DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
-  "Description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
-  "TableName": "ten_year_us_interest_rates",
-  "IsPrivate": false
+  "data": "DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
+  "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+  "table_name": "ten_year_us_interest_rates",
+  "is_private": false
 }'
 ```
 
@@ -55,10 +55,10 @@ import requests
 url = "https://api.dune.com/api/v1/table/upload/csv"
 
 payload = {
-    "Data": "DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
-    "Description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
-    "TableName": "ten_year_us_interest_rates",
-    "IsPrivate": False
+    "data": "DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
+    "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+    "table_name": "ten_year_us_interest_rates",
+    "is_private": False
 }
 headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>",
@@ -74,7 +74,7 @@ print(response.text)
 const options = {
   method: 'POST',
   headers: {'X-DUNE-API-KEY': '<x-dune-api-key>', 'Content-Type': 'application/json'},
-  body: '{"Data":"DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23","Description":"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10","TableName":"ten_year_us_interest_rates","IsPrivate":false}'
+  body: '{"data":"DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23","description":"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10","table_name":"ten_year_us_interest_rates","is_private":false}'
 };
 
 fetch('https://api.dune.com/api/v1/table/upload/csv', options)
@@ -97,7 +97,7 @@ func main() {
 
 	url := "https://api.dune.com/api/v1/table/upload/csv"
 
-	payload := strings.NewReader("{\n  \"Data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"Description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"TableName\": \"ten_year_us_interest_rates\",\n  \"IsPrivate\": false\n}")
+	payload := strings.NewReader("{\n  \"data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"table_name\": \"ten_year_us_interest_rates\",\n  \"is_private\": false\n}")
 
 	req, _ := http.NewRequest("POST", url, payload)
 
@@ -128,7 +128,7 @@ curl_setopt_array($curl, [
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n  \"Data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"Description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"TableName\": \"ten_year_us_interest_rates\",\n  \"IsPrivate\": false\n}",
+  CURLOPT_POSTFIELDS => "{\n  \"data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"table_name\": \"ten_year_us_interest_rates\",\n  \"is_private\": false\n}",
   CURLOPT_HTTPHEADER => [
     "Content-Type: application/json",
     "X-DUNE-API-KEY: <x-dune-api-key>"
@@ -151,7 +151,7 @@ if ($err) {
 HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/table/upload/csv")
   .header("X-DUNE-API-KEY", "<x-dune-api-key>")
   .header("Content-Type", "application/json")
-  .body("{\n  \"Data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"Description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"TableName\": \"ten_year_us_interest_rates\",\n  \"IsPrivate\": false\n}")
+  .body("{\n  \"data\": \"DATE,DGS10,\\n2023-12-04,4.28,\\n2023-12-05,4.18,\\n2023-12-06,4.12,\\n2023-12-07,4.14,\\n2023-12-08,4.23,\\n2023-12-11,4.23\",\n  \"description\": \"10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10\",\n  \"table_name\": \"ten_year_us_interest_rates\",\n  \"is_private\": false\n}")
   .asString();
 ```
 
