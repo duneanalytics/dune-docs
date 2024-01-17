@@ -1,3 +1,21 @@
 ---
 title: 'Billing'
 ---
+
+Pricing for API is charged along two dimensions. All details can be found at [dune.com/pricing](https://dune.com/pricing)
+
+| Dimension | Charge |
+|---|---|
+| Executions | 10 credits per medium query engine executions <br></br> 20 credits per large query engine executions |
+| Datapoints (Results) | 1 credit per 1,000 datapoints on Free <br></br> 1 credit per 5,000 datapoints on Plus <br></br> 1 credit per 25,000 datapoints on Premium |
+| Uploads | 1MB on Free <br></br> 15GB on Plus <br></br> 50GB on Premium |
+| CRUD | Available on Plus and Premium |
+| Webhooks (Alerts) | 1 on Free <br></br> 5 on Plus <br></br> 50 on Premium |
+
+A datapoint applies to query results after the query is run, and can in most cases be thought of `rows * columns` with an additional limit of 100 avg bytes per cell in a set of results. This can be expressed as: 
+
+```math
+Credits = Datapoints/1000 = max(rows*columns, ceil(totalbytes/100))/1000
+```
+
+Any API usage billing will be based on what account the API key is associated with. If you use your team api key to call a public query belonging to yourself, the billing will be associated to the team (and vice versa).

@@ -1,3 +1,49 @@
 ---
 title: 'Query Parameters'
 ---
+
+There are four kinds of parameters you can use in a Dune query (these are not API parameters). 
+
+- number
+- text
+- date
+- enum (called a list in the UI)
+
+For passing these parameters through the API request body, you can use the following format:
+
+```json
+[
+    {
+        "key": "block_time_start",
+        "type": "datetime",
+        "value": "2017-01-01 00:00:00"
+    },
+    {
+        "key": "from",
+        "type": "text",
+        "value": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13"
+    },
+    {
+        "key": "limit",
+        "type": "number",
+        "value": "20"
+    },
+    {
+        "key": "type",
+        "type": "enum",
+        "value": "DynamicFee",
+        "enumOptions": [
+            "DynamicFee",
+            "Legacy"
+        ]
+    }
+]
+```
+
+Note that the `datetime` parameter type requires you use the syntax `timestamp '{{block_time_start}}'` to cast the parameter to a timestamp. 
+
+If you are using bytearrays/binary (`0x1234...`), then you will still pass it as text through the API but ensure your SQL text puts the parameter without any quotes around it.
+
+<Tip>
+If you're using the Dune Python SDK, check out the [sdk doc page](/api-reference/overview/sdks) for an example.
+</Tip>
