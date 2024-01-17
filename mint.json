@@ -74,6 +74,12 @@
       ]
     },
     {
+      "group": "Upload Endpoints",
+      "pages": [
+        "api-reference/upload/endpoint/upload"
+      ]
+    },
+    {
       "group": "Query and Execution Endpoints",
       "pages": [
         "api-reference/query-api/endpoint/execute-query",
@@ -95,12 +101,6 @@
         "api-reference/crud/endpoint/unarchive",
         "api-reference/crud/endpoint/private",
         "api-reference/crud/endpoint/unprivate"
-      ]
-    },
-    {
-      "group": "Upload Endpoints",
-      "pages": [
-        "api-reference/upload/endpoint/upload"
       ]
     },
     {
