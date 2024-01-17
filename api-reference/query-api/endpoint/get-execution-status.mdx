@@ -39,22 +39,94 @@ result = dune.get_execution_status(job_id = '01HM79YYNXADPK66YWZK5X0NXB') # pass
 
 ```
 
-```python Python
 
-import dotenv
-import os
+```python Python
 import requests
 
-# load .env file
-dotenv.load_dotenv('/Users/abc/Documents/Workspace/misc/.env')
-# get API key
-api_key = os.environ["DUNE_API_KEY"]
-# authentiction with api key
-headers = {"X-Dune-API-Key": api_key}
+url = "https://api.dune.com/api/v1/execution/{execution_id}/status"
 
-execution_id = '01GBM4W2N0NMCGPZYW8AYK4YF1'
-base_url = f"https://api.dune.com/api/v1/execution/{execution_id}/status"
-result_response = requests.request("GET", base_url, headers=headers, params=params)
+headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+
+```
+
+```javascript Javascript
+const options = {method: 'GET', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
+
+fetch('https://api.dune.com/api/v1/execution/{execution_id}/status', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+
+```
+
+```go Go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://api.dune.com/api/v1/execution/{execution_id}/status"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+
+```
+
+```php PHP
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/execution/{execution_id}/status",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => [
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+
+```
+
+```java Java
+HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/execution/{execution_id}/status")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .asString();
 
 ```
 
