@@ -2,9 +2,23 @@
 title: 'FAQ'
 ---
 
+#### What are the differences between the Dune API and the Dune web app?
+
+There are no major performance differences within a specific performance tier when used through the Dune API or Dune web app.
+
+The Dune API gives you programmatic access to the capabilities and data sets that can already be accessed from the Dune web app. The same queries and results exist in the web app, even if created/executed from the API (and vice versa).
+
 #### How many Requests Per Minute can I make?
 
-The API rate limit currently varies by [subscription plan](https://dune.com/pricing). This is an overall rate limit for any type of API call made. 
+The API rate limit currently varies by [subscription plan](https://dune.com/pricing). It's currently 40 per minute on free, 200 per minute on plus, and 1000 per minute on premium.
+
+#### Does Dune support GraphQL on endpoints?
+
+No, we currently don't support GraphQL queries.
+
+#### How do I paginate on my query results?
+
+You currently cannot paginate through the API, we are working on enabling this soon. For now, try and use LIMIT and OFFSET in your query with parameters to paginate manually.
 
 #### Are there specified SLAs?
 
@@ -17,12 +31,6 @@ When navigating to a query, it’s the first number after “/queries/” in the
 #### Does the API support Query Parameters?
 
 Yes, check out [this page](/api-reference/overview/query-parameters).
-
-#### What are the performance and overall differences between the Dune API and the Dune web app? What are the differences in what I can query?
-
-There are no major performance differences within a specific performance tier when used through the Dune API or Dune web app.
-
-The Dune API gives you programmatic access to the capabilities and data sets that can already be accessed from the Dune web app.
 
 #### What is the execution timeout limit and can I request a longer limit?
 

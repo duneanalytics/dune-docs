@@ -3,12 +3,6 @@ title: 'Execute Query'
 openapi: 'POST /v1/query/{query_id}/execute'
 ---
 
-If the query has parameters and you don't add them in your API call, it will just run the default params. You may add query parameters as part of the POST params data.
-
-You can choose to include a `performance` parameter, by default it will use the "medium" performance tier which consumes 10 credits. "large" will use 20 credits and be faster.
-
-Returns an execution_id associated with the triggered query execution and the state of the execution.
-
 <Accordion title="Execute query and get result in one call">
   <Tip> If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38), you can directly executes and fetches result in one function call, like below: </Tip>
 
@@ -39,6 +33,12 @@ Returns an execution_id associated with the triggered query execution and the st
 
     ```
 </Accordion>
+
+If the query has parameters and you don't add them in your API call, it will just run the default params. You may add query parameters as part of the POST params data.
+
+You can choose to include a `performance` parameter, by default it will use the "medium" performance tier which consumes 10 credits. "large" will use 20 credits and be faster.
+
+Returns an execution_id associated with the triggered query execution and the state of the execution.
 
 <RequestExample>
 

@@ -40,6 +40,12 @@ The query object is defined as `QueryBase` and all properties can be found [in t
 
 Other classes such as execution results can be [found here](https://github.com/duneanalytics/dune-client/blob/main/dune_client/models.py#L244C7-L244C22), detailing operations like `ResultsResponse.get_rows()` for getting the data out of a GET request.
 
+If you are trying to load data into a Pandas DataFrame, you can use the following function from the sdk.
+
+```python
+results_df = dune.run_query_dataframe(query)
+```
+
 ## Typescript
 
 We have a community client from the Cow Protocol team that can be [found here](https://www.npmjs.com/package/@cowprotocol/ts-dune-client).
