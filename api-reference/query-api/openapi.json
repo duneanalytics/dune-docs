@@ -82,6 +82,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "402": {
                         "description": "StatusPaymentRequired",
                         "content": {
@@ -158,6 +168,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "400": {
                         "description": "BadRequest",
                         "content": {
@@ -227,6 +247,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ExecutionStatus"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -324,6 +354,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/QueryResult"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -450,6 +490,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "402": {
                         "description": "StatusPaymentRequired",
                         "content": {
@@ -534,6 +584,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/QueryResult"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -639,6 +699,16 @@
                                 },
                                 "example": {
                                     "error": "The requested execution ID (ID: 01HKZW3PD00VEX36QYZ1FNRA3) is invalid."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -812,11 +882,7 @@
                 "type": "object",
                 "properties": {
                     "rows": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/QueryResultRow"
-                        },
-                        "description": "The rows of data returned by the query."
+                        "$ref": "#/components/schemas/QueryResultRow"
                     },
                     "metadata": {
                         "$ref": "#/components/schemas/ExecutionResultMetadata"
@@ -841,7 +907,7 @@
             },
             "QueryResultRow": {
                 "type": "object",
-                "description": "A row is dictionary of key-value pairs, each pair corresponding to a column",
+                "description": "A row is dictionary of key-value pairs returned by the query, each pair corresponding to a column",
                 "example": [
                     {
                         "TableName": "eth_blocks",
@@ -868,12 +934,10 @@
             },
             "ExecutionResultMetadata": {
                 "type": "object",
+                "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times.",
                 "properties": {
                     "column_names": {
                         "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
                         "description": "Names of the columns in the result set.",
                         "example": [
                             "totalNumberOfTransactions",
@@ -941,7 +1005,6 @@
                     },
                     "result_set_bytes": {
                         "type": "integer",
-                        "format": "int64",
                         "description": "Total number of bytes in the result set.",
                         "example": 2271
                     },
@@ -952,7 +1015,6 @@
                     },
                     "datapoint_count": {
                         "type": "integer",
-                        "format": "int64",
                         "description": "The count of datapoints used for billing/pricing, based on the result set.",
                         "example": 61
                     },
@@ -966,8 +1028,7 @@
                         "description": "Time in milliseconds that the query took to execute.",
                         "example": 57501
                     }
-                },
-                "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times."
+                }
             },
             "ParameterObject": {
                 "type": "object",
@@ -1044,6 +1105,24 @@
                     "large"
                 ],
                 "description": "Defines the engine the execution will be run on. Can be either medium or large tier. Medium consumes 10 credits per run, and large consumes 20 credits per run. By default, performance is medium."
+            },
+            "UnauthorizedError": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "message"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "string",
+                        "example": "error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "401 unauthorized error for invalid API key",
+                        "example": "invalid API Key"
+                    }
+                }
             },
             "NotFoundError": {
                 "type": "object",

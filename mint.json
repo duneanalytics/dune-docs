@@ -71,8 +71,12 @@
       "group": "API Documentation",
       "pages": [
         "api-reference/overview/introduction",
+        "api-reference/overview/authentication",
         "api-reference/overview/sdks",
         "api-reference/overview/query-parameters",
+        "api-reference/overview/what-is-execution-id",
+        "api-reference/overview/rate-limits",
+        "api-reference/overview/troubleshooting",
         "api-reference/overview/billing",
         "api-reference/overview/faq"
       ]
@@ -117,7 +121,7 @@
   "feedback": {
     "thumbsRating": true,
     "suggestEdit": true,
-    "raiseIssue": true 
+    "raiseIssue": true
   },
   "footerSocials": {
     "twitter": "https://twitter.com/duneanalytics",

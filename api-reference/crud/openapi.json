@@ -56,6 +56,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "403": {
                         "description": "Forbidden",
                         "content": {
@@ -135,6 +145,16 @@
                                             "example": 1616880
                                         }
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -235,6 +255,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "400": {
                         "description": "Bad Request",
                         "content": {
@@ -320,6 +350,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "400": {
                         "description": "Bad Request",
                         "content": {
@@ -332,8 +372,7 @@
                     },
                     "403": {
                         "description": "Forbidden",
-                        "content":
-                         {
+                        "content": {
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/NotAllowedError"
@@ -412,6 +451,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -497,6 +546,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -592,6 +651,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/CoreRequestError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -998,6 +1067,24 @@
                     "columnName": {
                         "type": "string",
                         "description": "The column name to use from the query results."
+                    }
+                }
+            },
+            "UnauthorizedError": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "message"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "string",
+                        "example": "error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "401 unauthorized error for invalid API key",
+                        "example": "invalid API Key"
                     }
                 }
             },
