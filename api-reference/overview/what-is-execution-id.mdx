@@ -1,0 +1,15 @@
+---
+title: Execution ID
+---
+
+An execution ID is generated when you initiate the execution of a query through the [execute query](../query-api//endpoint/execute-query) endpoint.
+
+Unlike a query ID, which identifies a specific query, an execution ID represents a particular execution of that query.
+
+With an execution ID, you can monitor the execution's status using the [check status](../query-api//endpoint/get-execution-status) endpoint. The status can be one of the following: pending, success, or failure.
+
+If an execution is successful, you can also retrieve its latest result (provided it hasn't expired).
+
+<Tip>
+    Consider saving your execution ID in some cases to retrieve the result later without initiating a new execution.
+</Tip>

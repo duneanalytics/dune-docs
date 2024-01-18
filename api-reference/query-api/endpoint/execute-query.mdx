@@ -89,7 +89,7 @@ result = dune.execute_query(query = query # pass in the query we just defined
 ```python Python
 import requests
 
-url = "https://api.dune.com/api/v1/execution/{execution_id}/cancel"
+url = "https://api.dune.com/api/v1/query/{query_id}/execute"
 
 headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
 
@@ -102,10 +102,10 @@ print(response.text)
 ```javascript Javascript
 const options = {method: 'POST', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
 
-fetch('https://api.dune.com/api/v1/execution/{execution_id}/cancel', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+fetch('https://api.dune.com/api/v1/query/{query_id}/execute', options)
+.then(response => response.json())
+.then(response => console.log(response))
+.catch(err => console.error(err));
 
 ```
 
@@ -113,26 +113,26 @@ fetch('https://api.dune.com/api/v1/execution/{execution_id}/cancel', options)
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"io/ioutil"
+    "fmt"
+    "net/http"
+    "io/ioutil"
 )
 
 func main() {
 
-	url := "https://api.dune.com/api/v1/execution/{execution_id}/cancel"
+    url := "https://api.dune.com/api/v1/query/{query_id}/execute"
 
-	req, _ := http.NewRequest("POST", url, nil)
+    req, _ := http.NewRequest("POST", url, nil)
 
-	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+    req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
 
-	res, _ := http.DefaultClient.Do(req)
+    res, _ := http.DefaultClient.Do(req)
 
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+    defer res.Body.Close()
+    body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println(res)
-	fmt.Println(string(body))
+    fmt.Println(res)
+    fmt.Println(string(body))
 
 }
 
@@ -144,16 +144,16 @@ func main() {
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => "https://api.dune.com/api/v1/execution/{execution_id}/cancel",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_HTTPHEADER => [
+CURLOPT_URL => "https://api.dune.com/api/v1/query/{query_id}/execute",
+CURLOPT_RETURNTRANSFER => true,
+CURLOPT_ENCODING => "",
+CURLOPT_MAXREDIRS => 10,
+CURLOPT_TIMEOUT => 30,
+CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+CURLOPT_CUSTOMREQUEST => "POST",
+CURLOPT_HTTPHEADER => [
     "X-DUNE-API-KEY: <x-dune-api-key>"
-  ],
+],
 ]);
 
 $response = curl_exec($curl);
@@ -162,18 +162,17 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+echo "cURL Error #:" . $err;
 } else {
-  echo $response;
+echo $response;
 }
 
 ```
 
 ```java Java
-HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/execution/{execution_id}/cancel")
-  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
-  .asString();
-
+HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/query/{query_id}/execute")
+.header("X-DUNE-API-KEY", "<x-dune-api-key>")
+.asString();
 ```
 
 </RequestExample>

@@ -1,0 +1,30 @@
+---
+title: Rate Limits
+---
+
+**Data Return Limit**
+
+Currently, each API result call is limited to returning a maximum of 1GB of data. 
+
+_Future improvement incoming_
+
+_Once we implement pagination, we plan to increase this data return limit._
+
+**Rate Limits Implementation**
+
+Our rate limits are implemented in three ways: IP, low vs. high limit endpoints and [subscription plan](https://dune.com/pricing).
+- Low limit endpoints _(write-heavy operations)_
+    - [create query](../crud/endpoint/create), [update query](../crud/endpoint/create), toggle private/archive query, [execute query](../query-api/endpoint/execute-query), [CSV upload](../upload/endpoint/upload). 
+- High limit endpoints _(read-heavy operations)_
+    - [read query](../crud/endpoint/read), read result (in any form), [get execution status](../query-api/endpoint/get-execution-status), [cancel execution](../query-api/endpoint/cancel-execution).
+
+| Dimension         |    | Limit                              |
+|-------------------|----|------------------------------------|
+| Per IP            |    | 1000 requests per second (rps)     |
+| Community  | Low limit | 15 requests per minute (rpm) |
+| Community  | High limit | 40 rpm |
+| Plus       | Low limit | 70 rpm |
+| Plus       | High limit | 200 rpm |
+| Premium    | Low limit | 350 rpm |
+| Premium    | High limit | 1000 rpm |
+| Enterprise |            | Please contact us!
