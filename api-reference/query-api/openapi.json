@@ -82,6 +82,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "402": {
                         "description": "StatusPaymentRequired",
                         "content": {
@@ -158,6 +168,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "400": {
                         "description": "BadRequest",
                         "content": {
@@ -227,6 +247,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ExecutionStatus"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -324,6 +354,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/QueryResult"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -450,6 +490,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
+                                }
+                            }
+                        }
+                    },
                     "402": {
                         "description": "StatusPaymentRequired",
                         "content": {
@@ -534,6 +584,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/QueryResult"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -639,6 +699,16 @@
                                 },
                                 "example": {
                                     "error": "The requested execution ID (ID: 01HKZW3PD00VEX36QYZ1FNRA3) is invalid."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedError"
                                 }
                             }
                         }
@@ -1044,6 +1114,24 @@
                     "large"
                 ],
                 "description": "Defines the engine the execution will be run on. Can be either medium or large tier. Medium consumes 10 credits per run, and large consumes 20 credits per run. By default, performance is medium."
+            },
+            "UnauthorizedError": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "message"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "string",
+                        "example": "error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "401 unauthorized error for invalid API key",
+                        "example": "invalid API Key"
+                    }
+                }
             },
             "NotFoundError": {
                 "type": "object",
