@@ -882,11 +882,7 @@
                 "type": "object",
                 "properties": {
                     "rows": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/QueryResultRow"
-                        },
-                        "description": "The rows of data returned by the query."
+                        "$ref": "#/components/schemas/QueryResultRow"
                     },
                     "metadata": {
                         "$ref": "#/components/schemas/ExecutionResultMetadata"
@@ -911,7 +907,7 @@
             },
             "QueryResultRow": {
                 "type": "object",
-                "description": "A row is dictionary of key-value pairs, each pair corresponding to a column",
+                "description": "A row is dictionary of key-value pairs returned by the query, each pair corresponding to a column",
                 "example": [
                     {
                         "TableName": "eth_blocks",
@@ -938,12 +934,10 @@
             },
             "ExecutionResultMetadata": {
                 "type": "object",
+                "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times.",
                 "properties": {
                     "column_names": {
                         "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
                         "description": "Names of the columns in the result set.",
                         "example": [
                             "totalNumberOfTransactions",
@@ -1011,7 +1005,6 @@
                     },
                     "result_set_bytes": {
                         "type": "integer",
-                        "format": "int64",
                         "description": "Total number of bytes in the result set.",
                         "example": 2271
                     },
@@ -1022,7 +1015,6 @@
                     },
                     "datapoint_count": {
                         "type": "integer",
-                        "format": "int64",
                         "description": "The count of datapoints used for billing/pricing, based on the result set.",
                         "example": 61
                     },
@@ -1036,8 +1028,7 @@
                         "description": "Time in milliseconds that the query took to execute.",
                         "example": 57501
                     }
-                },
-                "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times."
+                }
             },
             "ParameterObject": {
                 "type": "object",

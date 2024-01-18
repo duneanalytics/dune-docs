@@ -130,6 +130,24 @@
                     }
                 }
             },
+            "UnauthorizedError": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "message"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "string",
+                        "example": "error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "401 unauthorized error for invalid API key",
+                        "example": "invalid API Key"
+                    }
+                }
+            },
             "NotFoundError": {
                 "type": "object",
                 "required": [
