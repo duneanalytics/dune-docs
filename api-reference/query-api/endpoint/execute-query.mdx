@@ -6,6 +6,10 @@ openapi: 'POST /v1/query/{query_id}/execute'
 <Accordion title="Execute query and get result in one call">
   <Tip> If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38), you can directly executes and fetches result in one function call, like below: </Tip>
 
+    Use `run_query` to get result in JSON, 
+        `run_query_csv` to get result in CSV format, 
+        and `run_query_dataframe` to get result in Pandas dataframe
+
     ``` python Python SDK 
 
     import dotenv, os, json
@@ -19,12 +23,6 @@ openapi: 'POST /v1/query/{query_id}/execute'
     dotenv.load_dotenv(".env")
     # setup Dune Python client
     dune = DuneClient.from_env()
-
-    ```
-    Use `run_query` to get result in JSON, 
-        `run_query_csv` to get result in CSV format, 
-        and `run_query_dataframe` to get result in Pandas dataframe
-    ```
 
     result = dune.run_query(
         query=query # pass in query to run 
