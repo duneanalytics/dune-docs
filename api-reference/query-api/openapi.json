@@ -686,7 +686,7 @@
                                 "schema": {
                                     "type": "string"
                                 },
-                                "example": "totalNumberOfTransactions,totalNumberOfUsers,totalVolumeUSD,totalFeesETH,averageDailyNumberOfTransactions7dMA,averageDailyNumberOfUsers7dMA,averageDailyVolumeUSD7dMA,averageDailyFeesETH7dMA,averageTradesPerUser,averageVolumePerUserUSD,averageFeesPerUserETH,numberOfUsers24h,numberOfTrades24h,volumeUSD24h,unibotPriceWETH,supplyEligibleForRevshare,unibotMarketcapEligibleForRevshareETH,ethPriceUSD,totalTaxV1ETH,totalTaxETH,totalTaxV1AndV2ETH,totalTax24hETH,teamRevenueETH,revShareRevenueETH,revShareRevenueETHPer100UNIBOT,revShareRevenue24hETH,revShareRevenue7dETH,revShareRevenue30dETH,revShareRevenue30dSimpleMovingAverageETH,taxPoolBalanceUNIBOT,botFees24hETH,botFeesHolderRevenue24hETH,botFeesHolderRevenue7dETH,botFeesHolderRevenue30dETH,botFeesHolderRevenue30dSimpleMovingAverageETH,totalCombinedRevenueETH,combinedRevenue24hETH,combinedHolderRevenue24hETH,combinedHolderRevenue7dETH,combinedRevenue7dSimpleMovingAverageETH,combinedRevenue7dSimpleMovingAverageUSD,combinedHolderRevenue30dSimpleMovingAverageETH,totalBridgeVolumeETH,numberOfBridgeTransactions,numberOfBridgeUsers,friendtechLifetimeVolumeUSD,friendtechLifetimeNumberOfUsers,friendtechLifetimeNumberOfSubjectsTraded,friendtechLifetimeNumberOfTrades,dailyTaxAPR,weeklyTaxAPR,annualizedTaxAPR,annualizedTaxAPY,dailyFeesAPR,weeklyFeesAPR,annualizedFeesAPR,annualizedFeeAPY,dailyCombinedAPR,weeklyCombinedAPR,annualizedCombinedAPR,annualizedCombinedAPY\n977464,27445,5.628197594267187e+08,2483.9491687393247,20644,1871,2.655373706991315e+06,3.7990190106581574,35,20507.187444952404,0.09050643719217798,1965,29588,3.3106567039466314e+06,0.03512178665763559,922448.3481287505,32398.034085666335,2528.5,923.9583646419244,8009.175461562929,8933.133826204854,22.316600820680165,2726.8246784087555,3758.39002161166,0.375839002161166,11.158300410340082,52.80329332517176,185.41288929831435,6.1804296432771455,73.86268392645144,1.3825460776709473,0.5530184310683789,9.687471859444832,55.93654567180427,1.8645515223934757,11417.08299494418,23.699146898351113,11.711318841408461,62.49076518461659,18.546466614136513,46894.740833844175,8.044981165670622,2275.549440528079,2273,859,1.0525734023228614e+06,209,2225,5835,0.01907655762980852,0.13353590340865962,6.962943534880109,7.210370182142256,0.0057551378502265285,0.0402859649515857,2.100625315332683,2.1227820238041817,0.024831695480035047,0.17382186836024532,9.063568850212793,9.485774017018223"
+                                "example": "Rank,project,Total Volume,7 Days Volume,24 Hours Volume\n1,opensea,3.8364306116397446e+10,3.237919758883639e+07,3.3571613299256647e+06\n2,blur,8.183380589763865e+09,1.7107657915764195e+08,1.5850010061459592e+07\n3,x2y2,5.460294391448603e+09,4.0788931813965896e+06,223304.96681753657\n4,cryptopunks,2.675936453044167e+09,2.1720323415680006e+06,716042.4500000001\n5,looksrare,1.5984313877385368e+09,501530.0226954725,50185.290415\n6,superrare,3.044450076292612e+08,454080.3801810001,2711.41353\n7,foundation,2.22984396521278e+08,170730.43359724514,18791.057531650004\n8,sudoswap,1.1065119839239097e+08,91405.45237984283,49641.91309616044\n9,mooar,9.370740688511379e+07,3.816546773342194e+07,4.211704339041664e+06\n10,pancakeswap,8.577468809809853e+07,42632.499992789955,5097.792944599999\n11,tofu,6.714663559364942e+07,76521.97898920579,5380.136450808099\n12,element,6.122191042346895e+07,74343.29233116966,21615.498594265555\n13,zora,4.001828856803733e+07,<nil>,<nil>\n14,liquidifty,2.9701757197915018e+07,0.029847000000000005,0.029847000000000005\n15,quix,1.0831134834643008e+07,<nil>,<nil>\n16,magiceden,9.29307966848028e+06,4454.432874887,87.15784495\n17,rarible,5.376697231248505e+06,51386.83617665664,4985.105076420629\n18,archipelago,5.37401337817133e+06,<nil>,<nil>\n19,aavegotchi,3.0300035670567774e+06,20759.276957762435,3149.030878339999\n20,nftrade,1.7161576961230598e+06,26676.274663999986,106.961753999999\n21,dew,1.4541526609272424e+06,<nil>,<nil>\n22,nftb,1.336229907297191e+06,<nil>,<nil>\n23,decentraland,401287.6963697007,1036.6580888416527,60.78021429999997\n24,zonic,300264.3745252976,72.93842523849997,12.032011452799999\n25,nftearth,84818.42127523685,<nil>,<nil>\n26,aurem,464.10303347643816,9.788748,<nil>\n27,fractal,183.85717919121993,<nil>,<nil>\n28,oneplanet,131.71013616000002,<nil>,<nil>"
                             }
                         }
                     },
@@ -769,7 +769,7 @@
                     "execution_id": {
                         "type": "string",
                         "description": "Unique identifier for the execution of the query.",
-                        "example": "01GXDTYMM2CKFRBEW44X5S0WZE"
+                        "example": "01HKZSJAW6N2MFVCBHA3R8S64X"
                     },
                     "query_id": {
                         "type": "integer",
@@ -785,25 +785,25 @@
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query was submitted.",
-                        "example": "2023-04-07T12:27:09.314513Z"
+                        "example": "2024-01-12T21:34:37.447476Z"
                     },
                     "expires_at": {
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query result expires.",
-                        "example": "2025-04-06T12:27:15.749155Z"
+                        "example": "2024-04-11T21:34:55.737082Z"
                     },
                     "execution_started_at": {
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query execution started.",
-                        "example": "2023-04-07T12:27:09.387366Z"
+                        "example": "2024-01-12T21:34:37.464387Z"
                     },
                     "execution_ended_at": {
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query execution ended.",
-                        "example": "2023-04-07T12:27:15.749154Z"
+                        "example": "2024-01-12T21:34:55.737081Z"
                     },
                     "cancelled_at": {
                         "type": "string",
@@ -831,12 +831,12 @@
                     "execution_id": {
                         "type": "string",
                         "description": "Unique identifier for the execution of the query.",
-                        "example": "01HKZW3PD00VEX36QYZ1FNRA3Z"
+                        "example": "01HKZSJAW6N2MFVCBHA3R8S64X"
                     },
                     "query_id": {
                         "type": "integer",
                         "description": "Unique identifier of the query.",
-                        "example": 2636251
+                        "example": 1252207
                     },
                     "state": {
                         "type": "string",
@@ -847,25 +847,25 @@
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query was submitted.",
-                        "example": "2024-01-12T22:19:03.45706Z"
+                        "example": "2024-01-12T21:34:37.447476Z"
                     },
                     "expires_at": {
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query result expires.",
-                        "example": "2024-04-11T22:20:01.029896Z"
+                        "example": "2024-04-11T21:34:55.737082Z"
                     },
                     "execution_started_at": {
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query execution started.",
-                        "example": "2024-01-12T22:19:03.528268679Z"
+                        "example": "2024-01-12T21:34:37.464387517Z"
                     },
                     "execution_ended_at": {
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp of when the query execution ended.",
-                        "example": "2024-01-12T22:20:01.029893899Z"
+                        "example": "2024-01-12T21:34:55.737081299Z"
                     },
                     "cancelled_at": {
                         "type": "string",
