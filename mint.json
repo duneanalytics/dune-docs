@@ -118,7 +118,12 @@
   "analytics": {
     "amplitude": {
         "apiKey": "f5f9693ef08393e7ab6106db82824661"
+    },
+    "ga4": {
+      "measurementId": "G-H1G057R0KN"
     }
+  
+    
 }
 
 }
