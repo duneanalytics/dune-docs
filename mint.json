@@ -114,5 +114,11 @@
     "twitter": "https://twitter.com/duneanalytics",
     "github": "https://github.com/duneanalytics",
     "linkedin": "https://www.linkedin.com/company/duneanalytics"
-  }
+  },
+  "analytics": {
+    "amplitude": {
+        "apiKey": "f5f9693ef08393e7ab6106db82824661"
+    }
+}
+
 }
