@@ -1,0 +1,17 @@
+---
+title: 'Overview'
+---
+
+
+Dune API offers a range of endpoints under the categories of "Query" and "Execution." These endpoints facilitate the execution of predefined queries, retrieval of results in various formats, and management of query executions. Below is an overview of each endpoint, providing a high-level understanding of their functionalities.
+
+
+| Endpoint Title           | Endpoint                          | Description                                                                                   |
+|--------------------------|-----------------------------------|-----------------------------------------------------------------------------------------------|
+| [Cancel Execution](./cancel-execution)    | `POST /v1/execution/{execution_id}/cancel` | Cancels an ongoing query execution. Requires the `execution_id`. Returns a success boolean.   |
+| [Execute Query](./execute-query)       | `POST /v1/query/{query_id}/execute` | Triggers an execution based on the `query_id`. Returns a `execution_id`. |
+| [Get Execution Status](./get-execution-status) | `GET /v1/execution/{execution_id}/status` | Provides the status of a query execution give an `execution_id`. |
+| [Get Execution Result in CSV](./get-execution-result-csv) | `GET /v1/execution/{execution_id}/results/csv` | Retrieves the status, metadata, and results in CSV format. Includes data retention and limit information. |
+| [Get Execution Result](./get-execution-result) | `GET /v1/execution/{execution_id}/results` | Fetches the execution status, metadata, and results in JSON format. Similar data handling as CSV endpoint. |
+| [Get Latest Query Result in CSV](./get-query-result-csv) | `GET /v1/query/{query_id}/results/csv` | Returns the latest results of a query in CSV format, irrespective of the execution method. Queries must be public or owned. |
+| [Get Latest Query Result](./get-query-result) | `GET /v1/query/{query_id}/results` | Similar to the CSV endpoint but returns results in JSON format. Follows the same access and data limit policies. |
