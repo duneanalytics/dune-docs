@@ -1,0 +1,52 @@
+---
+title: 'Uploading'
+---
+
+In this quickstart, we will walk through how to upload a CSV file to Dune via Python. 
+
+### Prerequisites
+- Python environment set up (check out [Anaconda Navigator](https://docs.continuum.io/free/navigator/) if you want somewhere to start.)
+- Have a Dune API key (to obtain one [follow the steps here](../overview/authentication#generate-an-api-key))
+
+<Tip> 
+Save your Dune API key in a .env file. 
+```
+DUNE_API_KEY=<paste your API key here>
+```
+</Tip>
+
+### Upload the CSV
+Follow below steps to upload your CSV. Please make sure to modify paths to your .env file and to your CSV file. 
+
+```python
+import dotenv, os
+from dune_client.client import DuneClient
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/project")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+# define path to your CSV file 
+csv_file_path = '<CSV_FILE_PATH>'
+
+with open(csv_file_path) as open_file:
+    data = open_file.read()
+
+    table = dune.upload_csv(
+        data=str(data),
+        description="Data about 80 cereals, sourced from https://www.kaggle.com/datasets/crawford/80-cereals",
+        table_name="cereal_table", # define your table name here
+        is_private=False
+    )
+```
+
+Once the upload is successful, you will see the data show up under [Your Data](https://dune.com/queries?category=uploaded_data) in the Data Explorer. 
+
+You can query your uploaded table under the name `dune.<team or user handle>.dataset_<table name defined>`. For example, here I defined the table name to be "cereal_table" and my team name is "dune", so to access the uploaded table we will do `select * from dune.dune.dataset_cereal_table`
+
+
+
+For more information on upload endpoint, please [visit this page](../upload//endpoint/upload).
