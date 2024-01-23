@@ -1,8 +1,8 @@
 ---
-title: 'Querying Dune data'
+title: 'Querying'
 ---
 
-In this quickstart, we will walk through how to query for Dune data. 
+In this quickstart, we will walk through how to query for Dune data in Python. 
 
 Prerequisites
 - Python environment set up (check out [Anaconda Navigator](https://docs.continuum.io/free/navigator/) if you want somewhere to start.)
@@ -91,8 +91,7 @@ You can choose to either get the latest query result without triggering an execu
     from dune_client.query import QueryBase
 
     # change the current working directory where .env file lives
-    # os.chdir("/Users/abc/project")
-    os.chdir("/Users/zokum/local-Workspace/python-notebook-examples")
+    os.chdir("/Users/abc/project")
     # load .env file
     dotenv.load_dotenv(".env")
     # setup Dune Python client
