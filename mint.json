@@ -56,6 +56,12 @@
       ]
     },
     {
+      "group": "API Quickstart",
+      "pages": [
+        "api-reference/quickstart/query-eg"
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": [
         "api-reference/overview/introduction",
