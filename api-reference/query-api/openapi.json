@@ -759,65 +759,7 @@
         "schemas": {
             "QueryResult": {
                 "type": "object",
-                "required": [
-                    "execution_id",
-                    "query_id",
-                    "state",
-                    "submitted_at"
-                ],
-                "properties": {
-                    "execution_id": {
-                        "type": "string",
-                        "description": "Unique identifier for the execution of the query.",
-                        "example": "01HKZSJAW6N2MFVCBHA3R8S64X"
-                    },
-                    "query_id": {
-                        "type": "integer",
-                        "description": "Unique identifier of the query.",
-                        "example": 1252207
-                    },
-                    "state": {
-                        "type": "string",
-                        "description": "The state of the query execution.",
-                        "example": "QUERY_STATE_COMPLETED"
-                    },
-                    "submitted_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp of when the query was submitted.",
-                        "example": "2024-01-12T21:34:37.447476Z"
-                    },
-                    "expires_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp of when the query result expires.",
-                        "example": "2024-04-11T21:34:55.737082Z"
-                    },
-                    "execution_started_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp of when the query execution started.",
-                        "example": "2024-01-12T21:34:37.464387Z"
-                    },
-                    "execution_ended_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp of when the query execution ended.",
-                        "example": "2024-01-12T21:34:55.737081Z"
-                    },
-                    "cancelled_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp of when the query execution was cancelled, if applicable.",
-                        "example": "2023-04-08T12:27:15.749154Z"
-                    },
-                    "result": {
-                        "$ref": "#/components/schemas/QueryResultData"
-                    },
-                    "error": {
-                        "$ref": "#/components/schemas/QueryResultError"
-                    }
-                }
+                "example": {"execution_id":"01HKZSJAW6N2MFVCBHA3R8S64X","query_id":1252207,"state":"QUERY_STATE_COMPLETED","submitted_at":"2024-01-12T21:34:37.447476Z","expires_at":"2024-04-11T21:34:55.737082Z","execution_started_at":"2024-01-12T21:34:37.464387Z","execution_ended_at":"2024-01-12T21:34:55.737081Z","result":{"rows":[{"24 Hours Volume":8466988.095521685,"7 Days Volume":39146349.94906045,"Rank":1,"Total Volume":38382979226.241264,"project":"opensea"},{"24 Hours Volume":21838779.932517685,"7 Days Volume":162466310.33138418,"Rank":2,"Total Volume":8237501261.688846,"project":"blur"},{"24 Hours Volume":671472.4583508199,"7 Days Volume":4017792.3280940033,"Rank":3,"Total Volume":5461953781.154043,"project":"x2y2"},{"24 Hours Volume":1286407.4659000002,"7 Days Volume":5173193.591668,"Rank":4,"Total Volume":2679750259.5093665,"project":"cryptopunks"},{"24 Hours Volume":56173.5344355522,"7 Days Volume":554016.6849051005,"Rank":5,"Total Volume":1598674364.7416763,"project":"looksrare"},{"24 Hours Volume":19296.919182499998,"7 Days Volume":104063.2939935,"Rank":6,"Total Volume":304480783.11624366,"project":"superrare"},{"24 Hours Volume":10126.247481873,"7 Days Volume":161524.37162494668,"Rank":7,"Total Volume":223026861.49473178,"project":"foundation"},{"24 Hours Volume":109144.69140446292,"7 Days Volume":248139.50609401206,"Rank":8,"Total Volume":110818263.99090719,"project":"sudoswap"},{"24 Hours Volume":4995297.4816757925,"7 Days Volume":42014249.75306647,"Rank":9,"Total Volume":106311395.82766373,"project":"mooar"},{"24 Hours Volume":6515.27274664,"7 Days Volume":20864.225104012796,"Rank":10,"Total Volume":85784711.76631072,"project":"pancakeswap"},{"24 Hours Volume":9274.810816319696,"7 Days Volume":71756.1842286983,"Rank":11,"Total Volume":67041106.8938134,"project":"tofu"},{"24 Hours Volume":110511.01433675665,"7 Days Volume":198883.62115439755,"Rank":12,"Total Volume":61366195.7927426,"project":"element"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":13,"Total Volume":40018288.56803735,"project":"zora"},{"24 Hours Volume":null,"7 Days Volume":0.029847000000000005,"Rank":14,"Total Volume":29701757.19791481,"project":"liquidifty"},{"24 Hours Volume":159.393979,"7 Days Volume":3004.7575167460013,"Rank":15,"Total Volume":9293907.099004077,"project":"magiceden"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":16,"Total Volume":8194190.969169896,"project":"quix"},{"24 Hours Volume":20688.073834765193,"7 Days Volume":78839.06328383152,"Rank":17,"Total Volume":5426241.457378125,"project":"rarible"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":18,"Total Volume":5374013.37817133,"project":"archipelago"},{"24 Hours Volume":8478.279995196679,"7 Days Volume":23173.815949116884,"Rank":19,"Total Volume":3041137.213268275,"project":"aavegotchi"},{"24 Hours Volume":1041.181062,"7 Days Volume":12576.916344000001,"Rank":20,"Total Volume":1718471.9567410601,"project":"nftrade"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":21,"Total Volume":1454152.6609272438,"project":"dew"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":22,"Total Volume":1336229.9072971914,"project":"nftb"},{"24 Hours Volume":78.53373896,"7 Days Volume":977.4936904200007,"Rank":23,"Total Volume":401714.5915581914,"project":"decentraland"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":24,"Total Volume":84818.42127523676,"project":"nftearth"},{"24 Hours Volume":null,"7 Days Volume":9.788748,"Rank":25,"Total Volume":464.10303347643804,"project":"aurem"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":26,"Total Volume":183.85717919121998,"project":"fractal"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":27,"Total Volume":131.71013616000002,"project":"oneplanet"},{"24 Hours Volume":null,"7 Days Volume":null,"Rank":28,"Total Volume":null,"project":"alienswap"}],"metadata":{"column_names":["Rank","project","Total Volume","7 Days Volume","24 Hours Volume"],"result_set_bytes":1541,"total_row_count":28,"datapoint_count":140,"pending_time_millis":16,"execution_time_millis":18272}}}
             },
             "ExecutionStatus": {
                 "type": "object",
