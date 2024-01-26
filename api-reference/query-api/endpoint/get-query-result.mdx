@@ -1,0 +1,173 @@
+---
+title: 'Get Latest Query Result'
+openapi: 'GET /v1/query/{query_id}/results'
+---
+
+You must pass parameter query_id. 
+
+Returns the latest execution id and results (in JSON) of that latest run, regardless of the job id/run or if it is run in the app or the api. 
+
+The query specified must either be public or a query you have ownership of (you or a team you belong to have ownership).
+
+<Note> This endpoint does NOT trigger execution but does [consume credits through datapoints](https://dune.com/pricing). </Note>
+
+<Info> There is currently a 1GB limit in how much data a single API result call can return, but there is a chance we reduce this overall or based on varying paid plan types. </Info>
+
+<Accordion title="Execute query and get result in one call">
+  <Tip> If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38), you can directly executes and fetches result in one function call, like below: </Tip>
+
+    ``` python Python SDK 
+
+    import dotenv, os, json
+    from dune_client.types import QueryParameter
+    from dune_client.client import DuneClient
+    from dune_client.query import QueryBase
+
+    # change the current working directory where .env file lives
+    os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+    # load .env file
+    dotenv.load_dotenv(".env")
+    # setup Dune Python client
+    dune = DuneClient.from_env()
+
+    ```
+    Use `run_query` to get result in JSON, 
+        `run_query_csv` to get result in CSV format, 
+        and `run_query_dataframe` to get result in Pandas dataframe
+    ```
+
+    result = dune.run_query(
+        query=query # pass in query to run 
+        , performance = 'large' # optionally define which tier to run the execution on (default is "medium")
+        )
+
+    ```
+</Accordion>
+
+<RequestExample>
+
+```bash cURL
+
+curl --request GET \
+  --url https://api.dune.com/api/v1/query/{query_id}/results
+  
+```
+
+```python Python SDK
+
+'''
+Download Dune Python SDK by running `pip install dune-client`
+For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
+'''
+
+import dotenv, os, json
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+# pass in the query_id
+# optionally specify a `max_age_hours` to re-run the query if the data is too outdated
+result =  dune.get_latest_result('2363421', max_age_hours=8) 
+
+# can also call `get_latest_result_dataframe` method to get latest result in Python Pandas dataframe format
+
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/query/{query_id}/results"
+
+headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+
+```
+
+```javascript Javascript
+const options = {method: 'GET', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
+
+fetch('https://api.dune.com/api/v1/query/{query_id}/results', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+
+```
+
+```go Go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://api.dune.com/api/v1/query/{query_id}/results"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+
+```
+
+```php PHP
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/query/{query_id}/results",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => [
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+
+```
+
+```java Java
+HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .asString();
+
+```
+
+</RequestExample>
