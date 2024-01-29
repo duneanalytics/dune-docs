@@ -59,7 +59,8 @@
       "group": "API Quickstart",
       "pages": [
         "api-reference/quickstart/query-eg",
-        "api-reference/quickstart/upload-eg"
+        "api-reference/quickstart/upload-eg",
+        "api-reference/quickstart/crud-eg"
       ]
     },
     {
