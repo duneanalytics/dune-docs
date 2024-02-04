@@ -41,9 +41,13 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
 dotenv.load_dotenv(".env")
 dune = DuneClient.from_env()
 
+file_path = r'/data/example.csv'
+with open(file_path) as file:
+    data = file.read()
+
 table = dune.upload_csv(
     data="DATE,DGS10,\n2023-12-04,4.28,\n2023-12-05,4.18,\n2023-12-06,4.12,\n2023-12-07,4.14,\n2023-12-08,4.23,\n2023-12-11,4.23",
-    description="10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+    description=str(data),
     table_name="ten_year_us_interest_rates",
     is_private=False
 )

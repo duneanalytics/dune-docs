@@ -56,14 +56,6 @@
       ]
     },
     {
-      "group": "API Quickstart",
-      "pages": [
-        "api-reference/quickstart/query-eg",
-        "api-reference/quickstart/upload-eg",
-        "api-reference/quickstart/crud-eg"
-      ]
-    },
-    {
       "group": "API Documentation",
       "pages": [
         "api-reference/overview/introduction",
@@ -75,6 +67,14 @@
         "api-reference/overview/troubleshooting",
         "api-reference/overview/billing",
         "api-reference/overview/faq"
+      ]
+    },
+    {
+      "group": "API Quickstart",
+      "pages": [
+        "api-reference/quickstart/query-eg",
+        "api-reference/quickstart/upload-eg",
+        "api-reference/quickstart/crud-eg"
       ]
     },
     {
