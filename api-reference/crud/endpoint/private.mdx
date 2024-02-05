@@ -1,10 +1,11 @@
 ---
-title: 'Private Query'
-openapi: 'POST /v1/query/{queryId}/private'
+title: "Private Query"
+openapi: "POST /v1/query/{queryId}/private"
 ---
 
 <Note>
-You need a [Plus plan](https://dune.com/pricing) to use CRUD endpoints.
+  You need a [Plus plan](https://dune.com/pricing) or higher to use CRUD
+  endpoints.
 </Note>
 
 <RequestExample>
@@ -40,12 +41,15 @@ print(response.text)
 ```
 
 ```javascript JavaScript
-const options = {method: 'GET', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
+const options = {
+  method: "GET",
+  headers: { "X-DUNE-API-KEY": "<x-dune-api-key>" },
+};
 
-fetch('https://api.dune.com/api/v1/query/{queryId}/private', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+fetch("https://api.dune.com/api/v1/query/{queryId}/private", options)
+  .then((response) => response.json())
+  .then((response) => console.log(response))
+  .catch((err) => console.error(err));
 ```
 
 ```go Go
