@@ -1,22 +1,24 @@
 ---
-title: 'Client SDKs'
+title: "Client SDKs"
 ---
 
 ## Python
 
 We currently support a [Python SDK](https://github.com/duneanalytics/dune-client) for working with our API. You'll find `Python SDK` snippets on all endpoint pages, if you want to go deeper into the code then check out [these files](https://github.com/duneanalytics/dune-client/tree/main/dune_client/api).
 
-To still the SDK, run the following command in your terminal:
+To install the SDK, run the following command in your terminal:
 
 ```bash
 pip install dune-client
 ```
 
 <Warning>
-Be sure you are using the latest release. You can find all release versions [here](https://github.com/duneanalytics/dune-client/releases) - there may be code added to the repo that has not been put into a release yet.
+  Be sure you are using the latest release. You can find all release versions
+  [here](https://github.com/duneanalytics/dune-client/releases) - there may be
+  code added to the repo that has not been put into a release yet.
 </Warning>
 
-You will commonly work with the `QueryBase` class which can be created like this: 
+You will commonly work with the `QueryBase` class which can be created like this:
 
 ```python
 from dune_client.types import QueryParameter
@@ -50,9 +52,9 @@ results_df = dune.run_query_dataframe(query)
 
 We have a community client from the Cow Protocol team that can be [found here](https://www.npmjs.com/package/@cowprotocol/ts-dune-client).
 
-To install, run this command 
+To install, run this command
 
-```bash 
+```bash
 yarn add @cowprotocol/ts-dune-client
 ```
 
