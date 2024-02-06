@@ -62,9 +62,9 @@ query = dune.create_query(
     name="Example Blockchain Query",
     query_sql="SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}",
     params=[
-        QueryParameter.number_type(name="blocknumber", value=0)
-        QueryParameter.text_type(name="quest address", value="0x2ae8c972fb2e6c00dded8986e2dc672ed190da06"),
-        QueryParameter.enum_type(name="chain", value="ethereum"),
+        QueryParameter.number_type(name="blocknumber", value=0),
+        QueryParameter.text_type(name="address", value="0x2ae8c972fb2e6c00dded8986e2dc672ed190da06"),
+        QueryParameter.text_type(name="blockchain", value="ethereum"),
     ],
     is_private=False
 )
