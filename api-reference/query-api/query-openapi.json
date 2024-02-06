@@ -871,11 +871,11 @@
       "QueryResultData": {
         "type": "object",
         "properties": {
-          "rows": {
-            "$ref": "#/components/schemas/QueryResultRow"
-          },
           "metadata": {
             "$ref": "#/components/schemas/ExecutionResultMetadata"
+          },
+          "rows": {
+            "$ref": "#/components/schemas/QueryResultRow"
           }
         }
       },
@@ -954,146 +954,6 @@
             "Rank": 8,
             "Total Volume": 110818263.99090719,
             "project": "sudoswap"
-          },
-          {
-            "24 Hours Volume": 4995297.4816757925,
-            "7 Days Volume": 42014249.75306647,
-            "Rank": 9,
-            "Total Volume": 106311395.82766373,
-            "project": "mooar"
-          },
-          {
-            "24 Hours Volume": 6515.27274664,
-            "7 Days Volume": 20864.225104012796,
-            "Rank": 10,
-            "Total Volume": 85784711.76631072,
-            "project": "pancakeswap"
-          },
-          {
-            "24 Hours Volume": 9274.810816319696,
-            "7 Days Volume": 71756.1842286983,
-            "Rank": 11,
-            "Total Volume": 67041106.8938134,
-            "project": "tofu"
-          },
-          {
-            "24 Hours Volume": 110511.01433675665,
-            "7 Days Volume": 198883.62115439755,
-            "Rank": 12,
-            "Total Volume": 61366195.7927426,
-            "project": "element"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 13,
-            "Total Volume": 40018288.56803735,
-            "project": "zora"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": 0.029847000000000005,
-            "Rank": 14,
-            "Total Volume": 29701757.19791481,
-            "project": "liquidifty"
-          },
-          {
-            "24 Hours Volume": 159.393979,
-            "7 Days Volume": 3004.7575167460013,
-            "Rank": 15,
-            "Total Volume": 9293907.099004077,
-            "project": "magiceden"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 16,
-            "Total Volume": 8194190.969169896,
-            "project": "quix"
-          },
-          {
-            "24 Hours Volume": 20688.073834765193,
-            "7 Days Volume": 78839.06328383152,
-            "Rank": 17,
-            "Total Volume": 5426241.457378125,
-            "project": "rarible"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 18,
-            "Total Volume": 5374013.37817133,
-            "project": "archipelago"
-          },
-          {
-            "24 Hours Volume": 8478.279995196679,
-            "7 Days Volume": 23173.815949116884,
-            "Rank": 19,
-            "Total Volume": 3041137.213268275,
-            "project": "aavegotchi"
-          },
-          {
-            "24 Hours Volume": 1041.181062,
-            "7 Days Volume": 12576.916344000001,
-            "Rank": 20,
-            "Total Volume": 1718471.9567410601,
-            "project": "nftrade"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 21,
-            "Total Volume": 1454152.6609272438,
-            "project": "dew"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 22,
-            "Total Volume": 1336229.9072971914,
-            "project": "nftb"
-          },
-          {
-            "24 Hours Volume": 78.53373896,
-            "7 Days Volume": 977.4936904200007,
-            "Rank": 23,
-            "Total Volume": 401714.5915581914,
-            "project": "decentraland"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 24,
-            "Total Volume": 84818.42127523676,
-            "project": "nftearth"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": 9.788748,
-            "Rank": 25,
-            "Total Volume": 464.10303347643804,
-            "project": "aurem"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 26,
-            "Total Volume": 183.85717919121998,
-            "project": "fractal"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 27,
-            "Total Volume": 131.71013616000002,
-            "project": "oneplanet"
-          },
-          {
-            "24 Hours Volume": null,
-            "7 Days Volume": null,
-            "Rank": 28,
-            "Total Volume": null,
-            "project": "alienswap"
           }
         ]
       },
@@ -1113,6 +973,20 @@
       "ExecutionResultMetadata": {
         "type": "object",
         "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times.",
+        "example": {
+          "column_names": [
+            "Rank",
+            "project",
+            "Total Volume",
+            "7 Days Volume",
+            "24 Hours Volume"
+          ],
+          "result_set_bytes": 440,
+          "total_row_count": 8,
+          "datapoint_count": 40,
+          "pending_time_millis": 16,
+          "execution_time_millis": 18272
+        },
         "properties": {
           "column_names": {
             "type": "array",
