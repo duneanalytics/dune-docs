@@ -770,24 +770,18 @@
           "execution_ended_at": "2024-01-12T21:34:55.737081Z",
           "result": {
             "metadata": {
-              "columns": [
-                {
-                  "name": "24 Hours Volume",
-                  "type": "number"
-                },
-                {
-                  "name": "7 Days Volume",
-                  "type": "number"
-                },
-                {
-                  "name": "Total Volume",
-                  "type": "number"
-                },
-                {
-                  "name": "project",
-                  "type": "string"
-                }
-              ]
+              "column_names": [
+                "Rank",
+                "project",
+                "Total Volume",
+                "7 Days Volume",
+                "24 Hours Volume"
+              ],
+              "result_set_bytes": 440,
+              "total_row_count": 8,
+              "datapoint_count": 40,
+              "pending_time_millis": 16,
+              "execution_time_millis": 18272
             },
             "rows": [
               {
