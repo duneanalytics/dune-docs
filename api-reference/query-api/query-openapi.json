@@ -800,17 +800,8 @@
             "description": "Timestamp of when the query execution ended.",
             "example": "2024-01-12T21:34:55.737081Z"
           },
-          "cancelled_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Timestamp of when the query execution was cancelled, if applicable.",
-            "example": "2023-04-08T12:27:15.749154Z"
-          },
           "result": {
             "$ref": "#/components/schemas/QueryResultData"
-          },
-          "error": {
-            "$ref": "#/components/schemas/QueryResultError"
           }
         }
       },
