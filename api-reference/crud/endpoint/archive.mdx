@@ -1,16 +1,14 @@
 ---
-title: "Archive Query"
-openapi: "POST /v1/query/{queryId}/archive"
+title: 'Archive Query'
+openapi: 'POST /v1/query/{queryId}/archive'
 ---
 
 <Tip>
-  In Dune context, delete action is replaced by archive as deletion of queries
-  is not possible.
+In Dune context, delete action is replaced by archive as deletion of queries is not possible.
 </Tip>
 
 <Note>
-  You need a [Plus plan](https://dune.com/pricing) or higher to use CRUD
-  endpoints.
+To access CRUD endpoints, a [Plus plan](https://dune.com/pricing) or higher is required.
 </Note>
 
 <RequestExample>
@@ -46,15 +44,12 @@ print(response.text)
 ```
 
 ```javascript JavaScript
-const options = {
-  method: "GET",
-  headers: { "X-DUNE-API-KEY": "<x-dune-api-key>" },
-};
+const options = {method: 'GET', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
 
-fetch("https://api.dune.com/api/v1/query/{queryId}/archive", options)
-  .then((response) => response.json())
-  .then((response) => console.log(response))
-  .catch((err) => console.error(err));
+fetch('https://api.dune.com/api/v1/query/{queryId}/archive', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
 ```
 
 ```go Go

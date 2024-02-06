@@ -1,11 +1,10 @@
 ---
-title: "Create Query"
-openapi: "POST /v1/query"
+title: 'Create Query'
+openapi: 'POST /v1/query'
 ---
 
 <Note>
-  You need a [Plus plan](https://dune.com/pricing) or higher to use CRUD
-  endpoints.
+To access CRUD endpoints, a [Plus plan](https://dune.com/pricing) or higher is required.
 </Note>
 
 <RequestExample>
@@ -112,18 +111,15 @@ print(response.text)
 
 ```javascript JavaScript
 const options = {
-  method: "POST",
-  headers: {
-    "X-DUNE-API-KEY": "<x-dune-api-key>",
-    "Content-Type": "application/json",
-  },
-  body: '{"name":"erc20 balances (user address) API","description":"Example Blockchain Query","parameters":[{"key":"address","value":"0x2ae8c972fb2e6c00dded8986e2dc672ed190da06","type":"text"},{"key":"blocknumber","value":"0","type":"number"},{"key":"chain","value":"ethereum","type":"enum","enumOptions":["ethereum","polygon","optimism","arbitrum","avalanche_c","gnosis","bnb"]}],"query_sql":"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}","is_private":true}',
+  method: 'POST',
+  headers: {'X-DUNE-API-KEY': '<x-dune-api-key>', 'Content-Type': 'application/json'},
+  body: '{"name":"erc20 balances (user address) API","description":"Example Blockchain Query","parameters":[{"key":"address","value":"0x2ae8c972fb2e6c00dded8986e2dc672ed190da06","type":"text"},{"key":"blocknumber","value":"0","type":"number"},{"key":"chain","value":"ethereum","type":"enum","enumOptions":["ethereum","polygon","optimism","arbitrum","avalanche_c","gnosis","bnb"]}],"query_sql":"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}","is_private":true}'
 };
 
-fetch("https://api.dune.com/api/v1/query", options)
-  .then((response) => response.json())
-  .then((response) => console.log(response))
-  .catch((err) => console.error(err));
+fetch('https://api.dune.com/api/v1/query', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
 ```
 
 ```go Go
