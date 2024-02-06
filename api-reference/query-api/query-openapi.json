@@ -760,6 +760,88 @@
       "QueryResult": {
         "type": "object",
         "required": ["execution_id", "query_id", "state", "submitted_at"],
+        "example": {
+          "execution_id": "01HKZSJAW6N2MFVCBHA3R8S64X",
+          "query_id": 1252207,
+          "state": "QUERY_STATE_COMPLETED",
+          "submitted_at": "2024-01-12T21:34:37.447476Z",
+          "expires_at": "2024-04-11T21:34:55.737082Z",
+          "execution_started_at": "2024-01-12T21:34:37.464387Z",
+          "execution_ended_at": "2024-01-12T21:34:55.737081Z",
+          "result": {
+            "metadata": {
+              "columns": [
+                {
+                  "name": "24 Hours Volume",
+                  "type": "number"
+                },
+                {
+                  "name": "7 Days Volume",
+                  "type": "number"
+                },
+                {
+                  "name": "Total Volume",
+                  "type": "number"
+                },
+                {
+                  "name": "project",
+                  "type": "string"
+                }
+              ]
+            },
+            "rows": [
+              {
+                "24 Hours Volume": 3357161.3299256647,
+                "7 Days Volume": 32379197.58883639,
+                "Total Volume": 38364306116.397446,
+                "project": "opensea"
+              },
+              {
+                "24 Hours Volume": 15850010.061459592,
+                "7 Days Volume": 171076579.15764195,
+                "Total Volume": 8183380589.763865,
+                "project": "blur"
+              },
+              {
+                "24 Hours Volume": 223304.96681753657,
+                "7 Days Volume": 4078893.1813965896,
+                "Total Volume": 5460294391.448603,
+                "project": "x2y2"
+              },
+              {
+                "24 Hours Volume": 716042.4500000001,
+                "7 Days Volume": 2172032.3415680006,
+                "Total Volume": 2675936453.044167,
+                "project": "cryptopunks"
+              },
+              {
+                "24 Hours Volume": 50185.290415,
+                "7 Days Volume": 501530.0226954725,
+                "Total Volume": 1598431387.7385368,
+                "project": "looksrare"
+              },
+              {
+                "24 Hours Volume": 2711.41353,
+                "7 Days Volume": 454080.3801810001,
+                "Total Volume": 304445007.6292612,
+                "project": "superrare"
+              },
+              {
+                "24 Hours Volume": 18791.057531650004,
+                "7 Days Volume": 170730.43359724514,
+                "Total Volume": 222984396.521278,
+                "project": "foundation"
+              },
+              {
+                "24 Hours Volume": 109144.69140446292,
+                "7 Days Volume": 248139.50609401206,
+                "Rank": 8,
+                "Total Volume": 110818263.99090719,
+                "project": "sudoswap"
+              }
+            ]
+          }
+        },
         "properties": {
           "execution_id": {
             "type": "string",
@@ -800,8 +882,16 @@
             "description": "Timestamp of when the query execution ended.",
             "example": "2024-01-12T21:34:55.737081Z"
           },
+          "cancelled_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of when the query execution was cancelled, if applicable."
+          },
           "result": {
             "$ref": "#/components/schemas/QueryResultData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/QueryResultError"
           }
         }
       },
