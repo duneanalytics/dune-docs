@@ -60,5 +60,5 @@ There is currently a ~1GB limit. The API does not currently return an explicit e
 
 #### How do I import Dune data into a google sheet? 
 
-Use "Import Data" to import your CSV results into a google sheet using "api_key" as a param. (We advise against doing this any public document where your API key can be viewed and compromised.)<br>
+Use "Import Data" to import your CSV results into a google sheet using "api_key" as a param. (We advise against doing this any public document where your API key can be viewed and compromised.)
 `=importData("https://api.dune.com/api/v1/query/{{query_id}}/results/csv?api_key={{api_key}}")`. Then, [schedule a query execution](https://dune.com/docs/app/query-editor/query-scheduler/?h=scheduling) to have your results regularly updated on a set schedule.
