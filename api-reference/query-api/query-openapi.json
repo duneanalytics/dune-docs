@@ -785,45 +785,52 @@
             },
             "rows": [
               {
-                "24 Hours Volume": 3357161.3299256647,
-                "7 Days Volume": 32379197.58883639,
-                "Total Volume": 38364306116.397446,
+                "24 Hours Volume": 8466988.095521685,
+                "7 Days Volume": 39146349.94906045,
+                "Rank": 1,
+                "Total Volume": 38382979226.241264,
                 "project": "opensea"
               },
               {
-                "24 Hours Volume": 15850010.061459592,
-                "7 Days Volume": 171076579.15764195,
-                "Total Volume": 8183380589.763865,
+                "24 Hours Volume": 21838779.932517685,
+                "7 Days Volume": 162466310.33138418,
+                "Rank": 2,
+                "Total Volume": 8237501261.688846,
                 "project": "blur"
               },
               {
-                "24 Hours Volume": 223304.96681753657,
-                "7 Days Volume": 4078893.1813965896,
-                "Total Volume": 5460294391.448603,
+                "24 Hours Volume": 671472.4583508199,
+                "7 Days Volume": 4017792.3280940033,
+                "Rank": 3,
+                "Total Volume": 5461953781.154043,
                 "project": "x2y2"
               },
               {
-                "24 Hours Volume": 716042.4500000001,
-                "7 Days Volume": 2172032.3415680006,
-                "Total Volume": 2675936453.044167,
+                "24 Hours Volume": 1286407.4659000002,
+                "7 Days Volume": 5173193.591668,
+                "Rank": 4,
+                "Total Volume": 2679750259.5093665,
                 "project": "cryptopunks"
               },
               {
-                "24 Hours Volume": 50185.290415,
-                "7 Days Volume": 501530.0226954725,
-                "Total Volume": 1598431387.7385368,
+                "24 Hours Volume": 56173.5344355522,
+                "7 Days Volume": 554016.6849051005,
+                "Rank": 5,
+                "Total Volume": 1598674364.7416763,
                 "project": "looksrare"
               },
               {
-                "24 Hours Volume": 2711.41353,
-                "7 Days Volume": 454080.3801810001,
-                "Total Volume": 304445007.6292612,
+                "24 Hours Volume": 19296.919182499998,
+                "7 Days Volume": 104063.2939935,
+                "Rank": 6,
+                "Total Volume": 304480783.11624366,
                 "project": "superrare"
               },
               {
-                "24 Hours Volume": 18791.057531650004,
-                "7 Days Volume": 170730.43359724514,
-                "Total Volume": 222984396.521278,
+                "24 Hours Volume": 10126.247481873,
+                "7 Days Volume": 161524.37162494668,
+                "Rank": 7,
+                "Total Volume": 223026861.49473178,
                 "project": "foundation"
               },
               {
