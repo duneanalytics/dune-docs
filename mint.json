@@ -7,12 +7,12 @@
   },
   "favicon": "/dune.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#F4603E",
+    "light": "#F49282",
+    "dark": "#F4603E",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#F4603E",
+      "to": "#F49282"
     }
   },
   "topbarLinks": [
@@ -51,9 +51,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction"
-      ]
+      "pages": ["introduction"]
     },
     {
       "group": "API Documentation",
@@ -79,15 +77,11 @@
     },
     {
       "group": "Data Upload",
-      "pages": [
-        "api-reference/upload/endpoint/upload"
-      ]
+      "pages": ["api-reference/upload/endpoint/upload"]
     },
     {
       "group": "Webhooks",
-      "pages": [
-        "api-reference/webhooks/webhook"
-      ]
+      "pages": ["api-reference/webhooks/webhook"]
     },
     {
       "group": "Query Execution and Results",
@@ -126,13 +120,10 @@
   },
   "analytics": {
     "amplitude": {
-        "apiKey": "f5f9693ef08393e7ab6106db82824661"
+      "apiKey": "f5f9693ef08393e7ab6106db82824661"
     },
     "ga4": {
       "measurementId": "G-H1G057R0KN"
     }
-  
-    
-}
-
+  }
 }
