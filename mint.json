@@ -124,6 +124,9 @@
     },
     "ga4": {
       "measurementId": "G-H1G057R0KN"
+    },
+    "gtm": {
+      "tagId": "GTM-P46XP3Z5"
     }
   }
 }
