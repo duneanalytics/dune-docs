@@ -34,6 +34,9 @@ openapi: 'POST /v1/query/{query_id}/execute'
         performance = 'large' # optionally define which tier to run the execution on (default is "medium")
     )
 
+    # go over the results returned
+    for row in result.result.rows: 
+        print (row) # as an example we print the rows
     ```
 </Accordion>
 
