@@ -25,9 +25,9 @@ openapi: 'POST /v1/query/{query_id}/execute'
     dune = DuneClient.from_env()
 
     result = dune.run_query(
-        query=query # pass in query to run 
-        , performance = 'large' # optionally define which tier to run the execution on (default is "medium")
-        )
+        query = 12345, # pass in query to run 
+        performance = 'large' # optionally define which tier to run the execution on (default is "medium")
+    )
 
     ```
 </Accordion>

@@ -899,6 +899,29 @@
       "ExecutionStatus": {
         "type": "object",
         "required": ["execution_id", "query_id", "state", "submitted_at"],
+        "example": {
+          "execution_id": "01HJ3EBNGZ8WT12KX8ZCARM5ES",
+          "query_id": 3298913,
+          "state": "QUERY_STATE_COMPLETED",
+          "submitted_at": "2024-12-20T11:04:18.71989Z",
+          "expires_at": "2025-03-19T11:04:19.423372Z",
+          "execution_started_at": "2024-12-20T11:04:18.724658237Z",
+          "execution_ended_at": "2024-12-20T11:04:19.423371588Z",
+          "result_metadata": {
+            "column_names": [
+              "Rank",
+              "project",
+              "Total Volume",
+              "7 Days Volume",
+              "24 Hours Volume"
+            ],
+            "datapoint_count": 40,
+            "execution_time_millis": 18272,
+            "pending_time_millis": 16,
+            "result_set_bytes": 440,
+            "total_row_count": 8
+          }
+        },
         "properties": {
           "execution_id": {
             "type": "string",
