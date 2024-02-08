@@ -24,8 +24,13 @@ openapi: 'POST /v1/query/{query_id}/execute'
     # setup Dune Python client
     dune = DuneClient.from_env()
 
+    query = QueryBase(
+        name="Sample Query",
+        query_id=1215383,
+    )
+
     result = dune.run_query(
-        query = 12345, # pass in query to run 
+        query = query,
         performance = 'large' # optionally define which tier to run the execution on (default is "medium")
     )
 
