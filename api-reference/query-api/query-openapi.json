@@ -318,6 +318,24 @@
           },
           {
             "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+          },
+          {
+            "in": "query",
             "name": "parameters",
             "required": false,
             "explode": true,
@@ -436,6 +454,24 @@
               "type": "integer"
             },
             "description": "unique identifier of the query"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -560,6 +596,24 @@
           },
           {
             "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+          },
+          {
+            "in": "query",
             "name": "ignore_max_datapoints_per_request",
             "required": false,
             "schema": {
@@ -658,6 +712,24 @@
               "type": "string"
             },
             "description": "unique identifier of the execution"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
