@@ -1,0 +1,116 @@
+---
+title: Pagination
+---
+All get results endpoints, including [get execution results](../query-api/endpoint/get-execution-result), [get execution results csv](../query-api/endpoint/get-execution-result-csv), [get query results](../query-api/endpoint/get-query-result), [get query results csv](../query-api/endpoint/get-query-result-csv), support pagination for efficient data retrieval. Pagination divides large datasets into smaller, manageable chunks, preventing overload and ensuring smooth performance. This allows users to navigate through the data easily, avoiding limit errors and streamlining their data fetching experience.
+
+To paginate through results:
+1. Specify the `limit` parameter to determine the number of results per page.
+2. Use the `offset` parameter to indicate the starting point for retrieving results.
+3. Check the response headers for `x-dune-next-offset` and `x-dune-next-uri` to fetch the next page, if available.
+
+
+### Pagination Parameters
+
+**`limit`** (Required)
+- Type: Integer
+- Description: Limits the number of rows returned per request.
+
+**`offset`**
+- Type: Integer
+- Description: Specifies the starting point (inclusive) from which to return results.
+- **Default:** 0 (i.e., the first row)
+- **Usage:** Together with `limit`, enables incremental and efficient pagination.
+
+### Pagination in Response
+
+The following fields in the repsonse body are related to pagination and can be utilized when doing paginated get results request.
+
+**`x-dune-next-offset`**
+- Type: Integer
+- Description: Provides the offset to use for retrieving the next page of results, if available.
+
+**`x-dune-next-uri`**
+- Type: String (URL)
+- Description: Specifies the URI to retrieve the next page of results, if available.
+
+<Note>
+If you pass in an invalid `limit` and `offset` parameter values, you will get an empty result set. For example, if there are only 10 rows of result data, and you pass in `offset=11`, you will **not** receive an error, but rather an empty result.
+</Note>
+
+
+<Accordion title="Example paginated response">
+    ```json
+    {
+    "execution_id": "01HKZSJAW6N2MFVCBHA3R8S64X",
+    "query_id": 1252207,
+    "state": "QUERY_STATE_COMPLETED",
+    "is_execution_finished": true,
+    "submitted_at": "2024-01-12T21:34:37.447476Z",
+    "expires_at": "2024-04-11T21:34:55.737082Z",
+    "execution_started_at": "2024-01-12T21:34:37.464387Z",
+    "execution_ended_at": "2024-01-12T21:34:55.737081Z",
+    "next_offset": 5,
+    "next_uri": "https://api.dev.dune.com/api/v1/execution/01HKZSJAW6N2MFVCBHA3R8S64X/results?limit=5&offset=5",
+    "result": {
+        "metadata": {
+        "column_names": [
+            "Rank",
+            "project",
+            "Total Volume",
+            "7 Days Volume",
+            "24 Hours Volume"
+        ],
+        "result_set_bytes": 310,
+        "row_count": 5,
+        "total_result_set_bytes": 4400,
+        "total_row_count": 300,
+        "datapoint_count": 25,
+        "pending_time_millis": 16,
+        "execution_time_millis": 18272
+        },
+        "rows": [
+        {
+            "24 Hours Volume": 8466988.095521685,
+            "7 Days Volume": 39146349.94906045,
+            "Rank": 1,
+            "Total Volume": 38382979226.241264,
+            "project": "opensea"
+        },
+        {
+            "24 Hours Volume": 21838779.932517685,
+            "7 Days Volume": 162466310.33138418,
+            "Rank": 2,
+            "Total Volume": 8237501261.688846,
+            "project": "blur"
+        },
+        {
+            "24 Hours Volume": 671472.4583508199,
+            "7 Days Volume": 4017792.3280940033,
+            "Rank": 3,
+            "Total Volume": 5461953781.154043,
+            "project": "x2y2"
+        },
+        {
+            "24 Hours Volume": 1286407.4659000002,
+            "7 Days Volume": 5173193.591668,
+            "Rank": 4,
+            "Total Volume": 2679750259.5093665,
+            "project": "cryptopunks"
+        },
+        {
+            "24 Hours Volume": 56173.5344355522,
+            "7 Days Volume": 554016.6849051005,
+            "Rank": 5,
+            "Total Volume": 1598674364.7416763,
+            "project": "looksrare"
+        }
+        ]
+    }
+    }
+    ```
+</Accordion>
+
+
+TODO 
+- figure out pagination's relationship with allow_partial_results and write blurb about it
+- once pagination page finalized, refer to this in all the get results endpoint pages
