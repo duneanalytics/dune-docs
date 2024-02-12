@@ -319,7 +319,7 @@
           {
             "in": "query",
             "name": "limit",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "integer"
             },
@@ -362,7 +362,7 @@
             "schema": {
               "type": "boolean"
             },
-            "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
+            "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned."
           }
         ],
         "responses": {
@@ -458,7 +458,7 @@
           {
             "in": "query",
             "name": "limit",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "integer"
             },
@@ -507,6 +507,20 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "x-dune-next-offset": {
+                "description": "Offset to use to retrieve the next page of results if available.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-dune-next-uri": {
+                "description": "URI to retrieve the next page of results if available.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "text/csv": {
                 "schema": {
@@ -597,7 +611,7 @@
           {
             "in": "query",
             "name": "limit",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "integer"
             },
@@ -716,7 +730,7 @@
           {
             "in": "query",
             "name": "limit",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "integer"
             },
@@ -753,6 +767,20 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "x-dune-next-offset": {
+                "description": "Offset to use to retrieve the next page of results if available.",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-dune-next-uri": {
+                "description": "URI to retrieve the next page of results if available.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "text/csv": {
                 "schema": {
@@ -841,6 +869,8 @@
           "expires_at": "2024-04-11T21:34:55.737082Z",
           "execution_started_at": "2024-01-12T21:34:37.464387Z",
           "execution_ended_at": "2024-01-12T21:34:55.737081Z",
+          "next_offset": 5,
+          "next_uri": "https://api.dev.dune.com/api/v1/execution/01HKZSJAW6N2MFVCBHA3R8S64X/results?limit=5&offset=5",
           "result": {
             "metadata": {
               "column_names": [
@@ -850,9 +880,11 @@
                 "7 Days Volume",
                 "24 Hours Volume"
               ],
-              "result_set_bytes": 440,
-              "total_row_count": 8,
-              "datapoint_count": 40,
+              "result_set_bytes": 310,
+              "row_count": 5,
+              "total_result_set_bytes": 4400,
+              "total_row_count": 300,
+              "datapoint_count": 25,
               "pending_time_millis": 16,
               "execution_time_millis": 18272
             },
@@ -891,27 +923,6 @@
                 "Rank": 5,
                 "Total Volume": 1598674364.7416763,
                 "project": "looksrare"
-              },
-              {
-                "24 Hours Volume": 19296.919182499998,
-                "7 Days Volume": 104063.2939935,
-                "Rank": 6,
-                "Total Volume": 304480783.11624366,
-                "project": "superrare"
-              },
-              {
-                "24 Hours Volume": 10126.247481873,
-                "7 Days Volume": 161524.37162494668,
-                "Rank": 7,
-                "Total Volume": 223026861.49473178,
-                "project": "foundation"
-              },
-              {
-                "24 Hours Volume": 109144.69140446292,
-                "7 Days Volume": 248139.50609401206,
-                "Rank": 8,
-                "Total Volume": 110818263.99090719,
-                "project": "sudoswap"
               }
             ]
           }
@@ -930,6 +941,11 @@
           "state": {
             "type": "string",
             "description": "The state of the query execution.",
+            "example": "QUERY_STATE_COMPLETED"
+          },
+          "is_execution_finished": {
+            "type": "boolean",
+            "description": "Whether the state of the query execution is terminal. This can be used for polling purposes.",
             "example": "QUERY_STATE_COMPLETED"
           },
           "submitted_at": {
@@ -961,6 +977,16 @@
             "format": "date-time",
             "description": "Timestamp of when the query execution was cancelled, if applicable."
           },
+          "next_offset": {
+            "type": "integer",
+            "description": "Offset that can be used to retrieve the next page of results.",
+            "example": 32000
+          },
+          "next_uri": {
+            "type": "string",
+            "description": "URI that can be used to fetch the next page of results.",
+            "example": "https://api.dev.dune.com/api/v1/execution/01HKZSJAW6N2MFVCBHA3R8S64X/results?limit=5&offset=5"
+          },
           "result": {
             "$ref": "#/components/schemas/QueryResultData"
           },
@@ -976,6 +1002,7 @@
           "execution_id": "01HJ3EBNGZ8WT12KX8ZCARM5ES",
           "query_id": 3298913,
           "state": "QUERY_STATE_COMPLETED",
+          "is_execution_finished": true,
           "submitted_at": "2024-12-20T11:04:18.71989Z",
           "expires_at": "2025-03-19T11:04:19.423372Z",
           "execution_started_at": "2024-12-20T11:04:18.724658237Z",
@@ -1009,6 +1036,11 @@
           "state": {
             "type": "string",
             "description": "The state of the query execution.",
+            "example": "QUERY_STATE_COMPLETED"
+          },
+          "is_execution_finished": {
+            "type": "boolean",
+            "description": "Whether the state of the query execution is terminal. This can be used for polling purposes.",
             "example": "QUERY_STATE_COMPLETED"
           },
           "submitted_at": {
@@ -1159,9 +1191,11 @@
             "7 Days Volume",
             "24 Hours Volume"
           ],
-          "result_set_bytes": 440,
-          "total_row_count": 8,
-          "datapoint_count": 40,
+          "result_set_bytes": 280,
+          "row_count": 5,
+          "total_result_set_bytes": 4400,
+          "total_row_count": 400,
+          "datapoint_count": 25,
           "pending_time_millis": 16,
           "execution_time_millis": 18272
         },
@@ -1178,6 +1212,16 @@
             ]
           },
           "result_set_bytes": {
+            "type": "integer",
+            "description": "Number of bytes in the result set for the current page of results.",
+            "example": 1541
+          },
+          "row_count": {
+            "type": "integer",
+            "description": "Number of rows in the result set for the current page of results.",
+            "example": 28
+          },
+          "total_result_set_bytes": {
             "type": "integer",
             "description": "Total number of bytes in the result set.",
             "example": 1541
