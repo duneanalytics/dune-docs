@@ -836,6 +836,7 @@
           "execution_id": "01HKZSJAW6N2MFVCBHA3R8S64X",
           "query_id": 1252207,
           "state": "QUERY_STATE_COMPLETED",
+          "is_execution_finished": true,
           "submitted_at": "2024-01-12T21:34:37.447476Z",
           "expires_at": "2024-04-11T21:34:55.737082Z",
           "execution_started_at": "2024-01-12T21:34:37.464387Z",
