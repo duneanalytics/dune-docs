@@ -323,7 +323,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -332,7 +332,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -462,7 +462,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -471,7 +471,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -601,7 +601,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -610,7 +610,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -720,7 +720,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
@@ -729,7 +729,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
           },
           {
             "in": "query",
