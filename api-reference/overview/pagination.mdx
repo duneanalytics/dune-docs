@@ -6,7 +6,7 @@ All get results endpoints, including [get execution results](../query-api/endpoi
 To paginate through results:
 1. Specify the `limit` parameter to determine the number of results per page.
 2. Use the `offset` parameter to indicate the starting point for retrieving results.
-3. If you are fetching JSON response, check the response headers for `next_offset` and `next_uri` to fetch the next page, if available. If you are fetching CSV response, check the response headers for `x-dune-next-offset` and `x-dune-next-uri` to fetch the next page, if available.
+3. If you are fetching JSON response, check for the fields `next_offset` and `next_uri` in the response body to fetch the next page, if available. If you are fetching CSV response, check the response headers for `X-Dune-Next-Offset` and `X-Dune-Next-Uri` to fetch the next page, if available.
 
 
 ### Pagination Parameters
