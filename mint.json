@@ -91,8 +91,60 @@
       ]
     }, 
 
+    {
+      "group": "Query",
+      "pages": [
+        "app/query/query-executions",
+        {
+          "group": "DuneSQL",
+          "pages": [
+            {
+              "group": "Functions and Operators",
+              "pages": [
+                "app/query/DuneSQL-reference/Functions-and-operators/aggregate",
+                "app/query/DuneSQL-reference/Functions-and-operators/array",
+                "app/query/DuneSQL-reference/Functions-and-operators/base58",
+                "app/query/DuneSQL-reference/Functions-and-operators/binary",
+                "app/query/DuneSQL-reference/Functions-and-operators/bitwise",
+                "app/query/DuneSQL-reference/Functions-and-operators/chain-utility-functions",
+                "app/query/DuneSQL-reference/Functions-and-operators/comparison",
+                "app/query/DuneSQL-reference/Functions-and-operators/conditional",
+                "app/query/DuneSQL-reference/Functions-and-operators/conversion",
+                "app/query/DuneSQL-reference/Functions-and-operators/datetime",
+                "app/query/DuneSQL-reference/Functions-and-operators/decimal",
+                "app/query/DuneSQL-reference/Functions-and-operators/hyperloglog",
+                "app/query/DuneSQL-reference/Functions-and-operators/json",
+                "app/query/DuneSQL-reference/Functions-and-operators/lambda",
+                "app/query/DuneSQL-reference/Functions-and-operators/list-by-topic",
+                "app/query/DuneSQL-reference/Functions-and-operators/list",
+                "app/query/DuneSQL-reference/Functions-and-operators/logical",
+                "app/query/DuneSQL-reference/Functions-and-operators/map",
+                "app/query/DuneSQL-reference/Functions-and-operators/math",
+                "app/query/DuneSQL-reference/Functions-and-operators/ml",
+                "app/query/DuneSQL-reference/Functions-and-operators/qdigest",
+                "app/query/DuneSQL-reference/Functions-and-operators/regexp",
+                "app/query/DuneSQL-reference/Functions-and-operators/setdigest",
+                "app/query/DuneSQL-reference/Functions-and-operators/string",
+                "app/query/DuneSQL-reference/Functions-and-operators/system",
+                "app/query/DuneSQL-reference/Functions-and-operators/tdigest",
+                "app/query/DuneSQL-reference/Functions-and-operators/teradata",
+                "app/query/DuneSQL-reference/Functions-and-operators/url",
+                "app/query/DuneSQL-reference/Functions-and-operators/uuid",
+                "app/query/DuneSQL-reference/Functions-and-operators/varbinary",
+                "app/query/DuneSQL-reference/Functions-and-operators/varchar-utility-functions",
+                "app/query/DuneSQL-reference/Functions-and-operators/window"
+              ]
+            },
+            "app/query/DuneSQL-reference/datatypes",
+            "app/query/DuneSQL-reference/reserved-keywords"              
+          ]
+        },
+        "app/query/writing-efficient-queries",
+        "app/query/query-a-query",
+        "app/query/materialized-views"
+      ]
+    },
 
-    
     {
       "group": "Data Tables",
       "pages": [
