@@ -29,6 +29,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Data tables",
+      "url": "data-tables"
     }
   ],
   "anchors": [
@@ -86,6 +90,9 @@
         "app/alerts"         
       ]
     }, 
+
+
+    
     {
       "group": "Data Tables",
       "pages": [
@@ -93,11 +100,11 @@
         {
           "group": "Top Tables",
           "pages": [
-            "app/data-tables/spellbook/top-tables/dex.trades",
-            "app/data-tables/spellbook/top-tables/labels",
-            "app/data-tables/spellbook/top-tables/nft.trades",
-            "app/data-tables/spellbook/top-tables/prices",
-            "app/data-tables/spellbook/top-tables/tokens"                
+            "data-tables/spellbook/top-tables/dex.trades",
+            "data-tables/spellbook/top-tables/labels",
+            "data-tables/spellbook/top-tables/nft.trades",
+            "data-tables/spellbook/top-tables/prices",
+            "data-tables/spellbook/top-tables/tokens"                
           ]
         },
         {
@@ -106,14 +113,14 @@
             {
               "group": "EVM",
               "pages": [
-                "app/data-tables/decoded/evm/call-tables",
-                "app/data-tables/decoded/evm/event-logs"                 
+                "data-tables/decoded/evm/call-tables",
+                "data-tables/decoded/evm/event-logs"                 
               ]
             },
             {
               "group": "Solana",
               "pages": [
-                "app/data-tables/decoded/solana/idl-tables"               
+                "data-tables/decoded/solana/idl-tables"               
               ]
             } 
           ]
@@ -124,31 +131,31 @@
             {
               "group": "EVM",
               "pages": [
-                "app/data-tables/raw/evm/blocks",
-                "app/data-tables/raw/evm/event-logs",
-                "app/data-tables/raw/evm/traces",
-                "app/data-tables/raw/evm/transactions",
-                "app/data-tables/raw/evm/withdrawals"              
+                "data-tables/raw/evm/blocks",
+                "data-tables/raw/evm/event-logs",
+                "data-tables/raw/evm/traces",
+                "data-tables/raw/evm/transactions",
+                "data-tables/raw/evm/withdrawals"              
               ]
             },
             {
               "group": "Solana",
               "pages": [
-                "app/data-tables/raw/solana/account-activity",
-                "app/data-tables/raw/solana/blocks",
-                "app/data-tables/raw/solana/instruction-calls",
-                "app/data-tables/raw/solana/rewards",
-                "app/data-tables/raw/solana/transactions",
-                "app/data-tables/raw/solana/vote-transactions"
+                "data-tables/raw/solana/account-activity",
+                "data-tables/raw/solana/blocks",
+                "data-tables/raw/solana/instruction-calls",
+                "data-tables/raw/solana/rewards",
+                "data-tables/raw/solana/transactions",
+                "data-tables/raw/solana/vote-transactions"
               ]
             },
             {
               "group": "Bitcoin",
               "pages": [
-                "app/data-tables/raw/bitcoin/blocks",
-                "app/data-tables/raw/bitcoin/inputs",
-                "app/data-tables/raw/bitcoin/outputs",
-                "app/data-tables/raw/bitcoin/transactions"
+                "data-tables/raw/bitcoin/blocks",
+                "data-tables/raw/bitcoin/inputs",
+                "data-tables/raw/bitcoin/outputs",
+                "data-tables/raw/bitcoin/transactions"
               ]
             }  
           ]
@@ -159,11 +166,11 @@
             {
               "group": "Flashbots",
               "pages": [
-                "app/data-tables/community/flashbots/arbitrages",
-                "app/data-tables/community/flashbots/liquidations",
-                "app/data-tables/community/flashbots/mev_summary",
-                "app/data-tables/community/flashbots/sandwiched-swaps",
-                "app/data-tables/community/flashbots/sandwiches"           
+                "data-tables/community/flashbots/arbitrages",
+                "data-tables/community/flashbots/liquidations",
+                "data-tables/community/flashbots/mev_summary",
+                "data-tables/community/flashbots/sandwiched-swaps",
+                "data-tables/community/flashbots/sandwiches"           
               ]
             },
             {
@@ -172,16 +179,16 @@
                 {
                   "group": "Farcaster",
                   "pages": [
-                    "app/data-tables/community/neynar/farcaster/casts",
-                    "app/data-tables/community/neynar/farcaster/fids",
-                    "app/data-tables/community/neynar/farcaster/fnames",
-                    "app/data-tables/community/neynar/farcaster/links",
-                    "app/data-tables/community/neynar/farcaster/profile_with_addresses",
-                    "app/data-tables/community/neynar/farcaster/reactions",
-                    "app/data-tables/community/neynar/farcaster/signers",
-                    "app/data-tables/community/neynar/farcaster/storage",
-                    "app/data-tables/community/neynar/farcaster/user_data",
-                    "app/data-tables/community/neynar/farcaster/verifications"            
+                    "data-tables/community/neynar/farcaster/casts",
+                    "data-tables/community/neynar/farcaster/fids",
+                    "data-tables/community/neynar/farcaster/fnames",
+                    "data-tables/community/neynar/farcaster/links",
+                    "data-tables/community/neynar/farcaster/profile_with_addresses",
+                    "data-tables/community/neynar/farcaster/reactions",
+                    "data-tables/community/neynar/farcaster/signers",
+                    "data-tables/community/neynar/farcaster/storage",
+                    "data-tables/community/neynar/farcaster/user_data",
+                    "data-tables/community/neynar/farcaster/verifications"            
                   ]
                 }        
               ]
@@ -189,22 +196,22 @@
             {
               "group": "Reservoir",
               "pages": [
-                "app/data-tables/community/reservoir/ask-events",
-                "app/data-tables/community/reservoir/asks",
-                "app/data-tables/community/reservoir/attribute-keys",
-                "app/data-tables/community/reservoir/attributes",
-                "app/data-tables/community/reservoir/bid-events",
-                "app/data-tables/community/reservoir/bids",
-                "app/data-tables/community/reservoir/collection-floor-ask-events",
-                "app/data-tables/community/reservoir/collection-top-bid-events",
-                "app/data-tables/community/reservoir/collections",
-                "app/data-tables/community/reservoir/sales",
-                "app/data-tables/community/reservoir/token-attributes",
-                "app/data-tables/community/reservoir/token-floor-ask-events",
-                "app/data-tables/community/reservoir/tokens"    
+                "data-tables/community/reservoir/ask-events",
+                "data-tables/community/reservoir/asks",
+                "data-tables/community/reservoir/attribute-keys",
+                "data-tables/community/reservoir/attributes",
+                "data-tables/community/reservoir/bid-events",
+                "data-tables/community/reservoir/bids",
+                "data-tables/community/reservoir/collection-floor-ask-events",
+                "data-tables/community/reservoir/collection-top-bid-events",
+                "data-tables/community/reservoir/collections",
+                "data-tables/community/reservoir/sales",
+                "data-tables/community/reservoir/token-attributes",
+                "data-tables/community/reservoir/token-floor-ask-events",
+                "data-tables/community/reservoir/tokens"    
               ]
             },
-            "app/data-tables/bring-your-own-data"            
+            "data-tables/bring-your-own-data"            
           ]
         }        
       ]
