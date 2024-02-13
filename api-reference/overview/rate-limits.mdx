@@ -29,6 +29,4 @@ For example, on the Free plan, you have a low limit of 15 requests per minute an
 
 **Data Return Limit**
 
-Currently, each API result call is limited to returning a maximum of 1GB of data. 
-
-_Once we implement pagination, we plan to increase this data return limit._
+Dune imposes a 1GB data limit on query results for each query execution. If your query yields more than 1GB of data, the result will be truncated in storage. In such cases, pulling the result data with `allow_partial_results` set to false (the default) will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". To retrieve partial results, you must pass the parameter `allow_partial_results=true`.

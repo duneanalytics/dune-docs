@@ -1041,7 +1041,7 @@
           "is_execution_finished": {
             "type": "boolean",
             "description": "Whether the state of the query execution is terminal. This can be used for polling purposes.",
-            "example": "QUERY_STATE_COMPLETED"
+            "example": true
           },
           "submitted_at": {
             "type": "string",
