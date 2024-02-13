@@ -9,9 +9,12 @@ Returns the latest execution id and results (in JSON) of that latest run, regard
 
 The query specified must either be public or a query you have ownership of (you or a team you belong to have ownership).
 
-<Note> This endpoint does NOT trigger execution but does [consume credits through datapoints](https://dune.com/pricing). </Note>
+<Tip> This endpoint does NOT trigger execution but does [consume credits through datapoints](https://dune.com/pricing). </Tip>
 
-<Info> There is currently a 1GB limit in how much data a single API result call can return, but there is a chance we reduce this overall or based on varying paid plan types. </Info>
+<Info> 
+- There is currently a 1GB limit in how much data a single API result call can return, but there is a chance we reduce this overall or based on varying paid plan types.
+- To paginate query results, please visit the [pagination page](../../overview/pagination) to get more info. 
+</Info>
 
 <Accordion title="Execute query and get result in one call">
   <Tip> If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38), you can directly executes and fetches result in one function call, like below: </Tip>
