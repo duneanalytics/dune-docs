@@ -29,4 +29,4 @@ For example, on the Free plan, you have a low limit of 15 requests per minute an
 
 **Data Return Limit**
 
-Dune imposes a 1GB data limit on query results for each query logic execution. If your query logic yields more than 1GB of data, the result will be truncated in storage. In such cases, pulling the result data with `allow_partial_results` set to false (the default) will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". To retrieve partial results, you must pass the parameter `allow_partial_results=true`.
+Dune imposes a 1GB data limit on query results for each query execution. If your query yields more than 1GB of data, the result will be truncated in storage. In such cases, pulling the result data with `allow_partial_results` set to false (the default) will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". To retrieve partial results, you must pass the parameter `allow_partial_results=true`.

@@ -6,7 +6,7 @@ All get results endpoints, including [get execution results](../query-api/endpoi
 To paginate through results:
 1. Specify the `limit` parameter to determine the number of results per page.
 2. Use the `offset` parameter to indicate the starting point for retrieving results.
-3. Check the response headers for `x-dune-next-offset` and `x-dune-next-uri` to fetch the next page, if available.
+3. If you are fetching JSON response, check the response headers for `next_offset` and `next_uri` to fetch the next page, if available. If you are fetching CSV response, check the response headers for `x-dune-next-offset` and `x-dune-next-uri` to fetch the next page, if available.
 
 
 ### Pagination Parameters
@@ -25,7 +25,7 @@ To paginate through results:
     <Tabs>
         <Tab title="cURL">
         ```bash 
-        curl -X GET 'https://api.dune.com/api/v1/query/3426636/results?limit=5&offset=0' --H 'x-dune-api-key: {{api_key}}' 
+        curl -X GET 'https://api.dune.com/api/v1/query/3426636/results?limit=5&offset=0' -H 'x-dune-api-key: {{api_key}}' 
         ```
         </Tab>
         
@@ -178,42 +178,56 @@ To paginate through results:
 
 The following fields in the repsonse body are related to pagination and can be utilized when doing paginated get results request. If they are available, you can use them to paginate the next page. If they are not avaialble, that means there is no more results to be fetched.
 
-**`x-dune-next-offset`**
-- Type: Integer
-- Description: Provides the offset to use for retrieving the next page of results, if available.
+<Tabs>
+    <Tab title="JSON response endpoints">
+        **`next_offset`**
+        - Type: Integer
+        - Description: Provides the offset to use for retrieving the next page of results, if available.
 
-**`x-dune-next-uri`**
-- Type: String (URL)
-- Description: Specifies the URI to retrieve the next page of results, if available.
+        **`next_uri`**
+        - Type: String (URL)
+        - Description: Specifies the URI to retrieve the next page of results, if available.
+    </Tab>
+    <Tab title="CSV response endpoints">
+        **`x-dune-next-offset`**
+        - Type: Integer
+        - Description: Provides the offset to use for retrieving the next page of results, if available.
+
+        **`x-dune-next-uri`**
+        - Type: String (URL)
+        - Description: Specifies the URI to retrieve the next page of results, if available.
+    </Tab>
+</Tabs>
 
 <Note>
 If you pass in an invalid `limit` and `offset` parameter values, you will get an empty result set. For example, if there are only 10 rows of result data, and you pass in `offset=11`, you will **not** receive an error, but rather an empty result with metadata like this.
 <Accordion title="Example empty response">
     ```json
-    "execution_id": "01HPF1299EV69Z08DBKW1B6MJR",
-    "query_id": 2616430,
-    "is_execution_finished": true,
-    "state": "QUERY_STATE_COMPLETED",
-    "submitted_at": "2024-02-12T16:05:40.270193Z",
-    "expires_at": "2024-05-12T16:05:40.654018Z",
-    "execution_started_at": "2024-02-12T16:05:40.312207906Z",
-    "execution_ended_at": "2024-02-12T16:05:40.654017085Z",
-    "result": {
-        "rows": [],
-        "metadata": {
-        "column_names": [
-            "foo"
-        ],
-        "row_count": 0,
-        "result_set_bytes": 0,
-        "total_row_count": 25,
-        "total_result_set_bytes": 28,
-        "datapoint_count": 0,
-        "pending_time_millis": 42,
-        "execution_time_millis": 341
-        }
-    }
-    }    
+        {
+            "execution_id": "01HPF1299EV69Z08DBKW1B6MJR",
+            "query_id": 2616430,
+            "is_execution_finished": true,
+            "state": "QUERY_STATE_COMPLETED",
+            "submitted_at": "2024-02-12T16:05:40.270193Z",
+            "expires_at": "2024-05-12T16:05:40.654018Z",
+            "execution_started_at": "2024-02-12T16:05:40.312207906Z",
+            "execution_ended_at": "2024-02-12T16:05:40.654017085Z",
+            "result": {
+                "rows": [],
+                "metadata": {
+                "column_names": [
+                    "foo"
+                ],
+                "row_count": 0,
+                "result_set_bytes": 0,
+                "total_row_count": 25,
+                "total_result_set_bytes": 28,
+                "datapoint_count": 0,
+                "pending_time_millis": 42,
+                "execution_time_millis": 341
+                }
+            }
+        }    
     ```
 </Accordion>
 </Note>
@@ -396,7 +410,7 @@ If you pass in an invalid `limit` and `offset` parameter values, you will get an
 <Tip>
 **Data Return Limit**
 
-Dune imposes a 1GB data limit on query results for each query logic execution. If your query logic yields more than 1GB of data, the result will be truncated in storage. In such cases, pulling the result data with `allow_partial_results` set to false (the default) will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". To retrieve partial results, you must pass the parameter `allow_partial_results=true`.
+Dune imposes a 1GB data limit on query results for each query execution. If your query yields more than 1GB of data, the result will be truncated in storage. In such cases, pulling the result data with `allow_partial_results` set to false (the default) will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". If you wish to retrieve partial results, you can pass the parameter `allow_partial_results=true`. But please make sure you indeed want to fetch the truncated result.
 
 So what? Related to pagination, this means that 
 - When query results exceed 1GB, set `allow_partial_results=true` to in addition to `limit` and `offset` parameters in order to pull partial result.
