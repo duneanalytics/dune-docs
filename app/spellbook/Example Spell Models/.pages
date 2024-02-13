@@ -1,0 +1,8 @@
+title: Example Spell Models
+nav:
+- index.md
+- reformatted.md
+- daily-aggregation.md
+- rolling-sum.md
+- final-day-balance.md
+- ...
