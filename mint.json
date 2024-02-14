@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "API Documentation",
+  "name": "Dune Docs",
   "logo": {
     "dark": "/logo/dune-logo-dark.png",
     "light": "/logo/dune-logo-light.png"
@@ -22,34 +22,53 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Query Crypto Data",
+    "name": "Start building",
     "url": "https://dune.com"
   },
   "tabs": [
+
+    {
+      "name": "Dune App",
+      "url": "app"
+    },
+    {
+      "name": "DuneSQL",
+      "url": "query"
+    },
+    {
+      "name": "Our data",
+      "url": "data-tables"
+    },
+    {
+      "name": "Spellbook",
+      "url": "spellbook"
+    },
     {
       "name": "API Reference",
       "url": "api-reference"
-    },
-    {
-      "name": "Data tables",
-      "url": "data-tables"
     }
   ],
   "anchors": [
     {
-      "name": "App Docs",
-      "icon": "book-open-cover",
-      "url": "https://dune.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://discord.gg/bvJbugxq3Q"
-    },
-    {
       "name": "Blog",
       "icon": "newspaper",
       "url": "https://community.dune.com"
+    },
+    {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://discord.gg/bvJbugxq3Q"
+    },
+
+    {
+      "name": "Telegram",
+      "icon": "telegram",
+      "url": "https://t.me/dune_updates"
+    },
+    {
+      "name": "Twitter",
+      "icon": "twitter",
+      "url": "https://twitter.com/duneanalytics"
     }
   ],
   "navigation": [
@@ -146,6 +165,29 @@
         "query/materialized-views"
       ]
     },
+
+    {
+      "group": "Learning Resources",
+      "pages": [
+        
+            "app/learning/how-tos/create-ai-assisted-queries",
+            "app/learning/how-tos/create-and-manage-teams",
+            "app/learning/how-tos/create-new-content",
+            "app/learning/how-tos/create-your-first-query",
+            "app/learning/how-tos/create-your-first-visualization",
+            "app/learning/how-tos/credit-system-on-dune",
+            "app/learning/how-tos/export-data-out",
+            "app/learning/how-tos/find-datasets",
+            "app/learning/how-tos/navigate-query-editor",
+            "app/learning/how-tos/search-for-content",
+            "app/learning/how-tos/share-dune-content",
+            "app/learning/how-tos/share-your-query",
+            "app/learning/how-tos/transfer-ownership"    
+          ]
+        }  
+      
+    ,
+
 
     {
       "group": "Data Tables",
@@ -271,7 +313,27 @@
       ]
     },
       
-    
+    {
+      "group": "Contributing to Spellbook",
+      "pages": [
+        "spellbook/1-do-some-prerequisites and-set-up-Spellbook-dbt",
+        "spellbook/2-set-up-your-file-structure-for-SQL-schema-and-source-files",
+        "spellbook/3-identify-and-define-sources",
+        "spellbook/4-define-expectations-with-schema-and-tests",
+        "spellbook/5-write-your-spell-as-SELECT-statement",
+        "spellbook/6-configure-alias-and-materialization-strategy",
+        "spellbook/7-make-a-pull-request-get-merged-become-an-archwizard",
+        {
+          "group": "Example Spell Models",
+          "pages": [
+            "spellbook/Example Spell Models/reformatted",
+            "spellbook/Example Spell Models/daily-aggregation",
+            "spellbook/Example Spell Models/rolling-sum",
+            "spellbook/Example Spell Models/final-day-balance"
+          ]
+        }          
+      ]
+    },
 
     {
       "group": "API Documentation",
