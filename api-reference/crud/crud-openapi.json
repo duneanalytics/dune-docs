@@ -26,7 +26,7 @@
             "required": true
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "api_key",
             "schema": {
               "type": "string"
@@ -236,7 +236,7 @@
             "required": true
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "api_key",
             "schema": {
               "type": "string"
@@ -341,7 +341,7 @@
             "required": true
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "api_key",
             "schema": {
               "type": "string"
@@ -445,7 +445,7 @@
             "required": true
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "api_key",
             "schema": {
               "type": "string"
@@ -549,7 +549,7 @@
             "required": true
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "api_key",
             "schema": {
               "type": "string"
@@ -663,7 +663,7 @@
             "required": true
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "api_key",
             "schema": {
               "type": "string"
