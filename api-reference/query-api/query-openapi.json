@@ -21,7 +21,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
           },
           {
@@ -30,7 +30,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
           },
           {
@@ -55,7 +55,7 @@
           },
           {
             "in": "query",
-            "name": "parameters",
+            "name": "query_parameters",
             "required": false,
             "explode": true,
             "schema": {
@@ -150,7 +150,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
           },
           {
@@ -159,7 +159,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
           },
           {
@@ -245,7 +245,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
           },
           {
@@ -254,7 +254,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
           },
           {
@@ -331,7 +331,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
           },
           {
@@ -340,7 +340,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
           },
           {
@@ -372,7 +372,7 @@
           },
           {
             "in": "query",
-            "name": "parameters",
+            "name": "query_parameters",
             "required": false,
             "explode": true,
             "schema": {
@@ -479,7 +479,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
           },
           {
@@ -488,7 +488,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
           },
           {
@@ -641,7 +641,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
           },
           {
@@ -650,7 +650,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
           },
           {
@@ -769,7 +769,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
           },
           {
@@ -778,7 +778,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
           },
           {
