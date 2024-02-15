@@ -63,7 +63,7 @@
                 "$ref": "#/components/schemas/ParameterObject"
               }
             },
-            "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+            "description": "SQL Query parameters in key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page."
           }
         ],
         "responses": {
@@ -380,7 +380,7 @@
                 "$ref": "#/components/schemas/ParameterObject"
               }
             },
-            "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+            "description": "SQL Query parameters in key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page."
           },
           {
             "in": "query",
@@ -528,7 +528,7 @@
                 "$ref": "#/components/schemas/ParameterObject"
               }
             },
-            "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+            "description": "SQL Query parameters in key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page."
           },
           {
             "in": "query",
@@ -1313,65 +1313,11 @@
       },
       "ParameterObject": {
         "type": "object",
-        "required": ["key"],
-        "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters.",
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "The key name of the parameter."
-          },
-          "description": {
-            "type": "string",
-            "description": "A brief description of the parameter."
-          },
-          "value": {
-            "type": "string",
-            "description": "The default value used by this parameter during execution, format depends on the type."
-          },
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "An array of string values, used when multiple selections are allowed."
-          },
-          "type": {
-            "type": "string",
-            "enum": ["number", "text", "datetime", "enum"],
-            "description": "The type of the parameter, determines the format of 'value(s)'. 'number': Numeric parameters, the value must be a number (e.g., '20'). 'text': String parameters, value can be any text including hex 0x-prefixed values (e.g., '0xae2fc...'), an empty value defaults to an empty string. 'datetime': Date and time parameters, value must be in 'YYYY-MM-DD hh:mm:ss' format (e.g., '2021-12-31 23:59:59'). 'enum': Parameters with a specific list of values, 'EnumValues' field is mandatory, providing a JSON list of strings representing valid options, the 'value' must be one of these options (e.g., 'Option1')."
-          },
-          "EnumValues": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "List of valid options for 'enum' type parameters."
-          },
-          "isMultiselect": {
-            "type": "boolean",
-            "description": "Indicates if multiple selections are allowed for this parameter."
-          },
-          "isFreeformAllowed": {
-            "type": "boolean",
-            "description": "Indicates if freeform input is allowed for this parameter."
-          },
-          "enumFromResults": {
-            "$ref": "#/components/schemas/EnumFromResults"
-          }
-        }
-      },
-      "EnumFromResults": {
-        "type": "object",
-        "properties": {
-          "query_id": {
-            "type": "integer",
-            "description": "The ID of the query to fetch results from."
-          },
-          "columnName": {
-            "type": "string",
-            "description": "The column name to use from the query results."
-          }
-        }
+        "example": {
+            "parameterNameFoo": "value of parameterNameFoo",
+            "parameterNameBar": 420
+        },
+        "description": "SQL Query parameters in key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page."
       },
       "Performance": {
         "type": "string",
