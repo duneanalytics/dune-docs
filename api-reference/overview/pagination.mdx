@@ -407,17 +407,17 @@ If you pass in an invalid `offset` parameter value, you will get an empty result
 </Accordion>
 
 <Tip>
-**Data Returned Limit **
+**Data Returned Limit**
 When using pagination, our intention is to use sizes that work well on mobile, with lower data and ram consumption. For this, and to avoid more work on the developer, when the client specifies a very large limit value (for example 500000 rows), instead of returning an error, the server will override this limit to a lower, safer value (for example 30000 rows) and *will always provide* the correct next `offset` and `limit` value to use on the next paginated requests. The exact maximum limit value is subject to change.
 
 
-**Data Size Limit **
+**Data Size Limit**
 
 Dune internally has a maximum query result size limit (which currently is 8GB, but subject to increase in the future). If your query yields more than 8GB of data, the result will be truncated in storage. In such cases, pulling the result data (using pagination) but without specifying `allow_partial_results` set to true will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". If you wish to retrieve partial results, you can pass the parameter `allow_partial_results=true`. But please make sure you indeed want to fetch the truncated result.
 
 So what? Related to pagination, this means that 
 - For query results under 8GB, use the API as normal.
 - When your query results exceed 8GB, in addition to `limit` and `offset` parameters in order to read the partial result (the first 8GB of data), set `allow_partial_results=true`
-- You can use the (Get Status API)[https://dune.mintlify.app/api-reference/query-api/endpoint/get-execution-status] to check the size of your result, `result.result_set_size`
+- You can use the [Get Status API](https://dune.mintlify.app/api-reference/query-api/endpoint/get-execution-status) to check the size of your result, `result.result_set_size`
 
 </Tip>
