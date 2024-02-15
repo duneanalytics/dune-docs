@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "OpenAPI for Query and Execution API",
-    "description": "API for Querying and Executing Dune Data",
+    "description": "API for Querying and Reading Dune Data",
     "version": "1.0.0"
   },
   "servers": [
@@ -26,12 +26,32 @@
           },
           {
             "in": "path",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "path",
             "name": "query_id",
             "required": true,
             "schema": {
               "type": "integer"
             },
             "description": "unique identifier of the query"
+          },
+          {
+            "in": "query",
+            "name": "performance",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/components/schemas/Performance"
+              }
+            },
+            "description": "The performance engine tier the execution will be run on. Can be either medium or large. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is medium."
           },
           {
             "in": "query",
@@ -43,18 +63,7 @@
                 "$ref": "#/components/schemas/ParameterObject"
               }
             },
-            "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
-          },
-          {
-            "in": "query",
-            "name": "performance",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/components/schemas/Performance"
-              }
-            },
-            "description": "Defines the engine the execution will be run on. Can be either medium or large tier. Medium consumes 10 credits per run and large consumes 20 credits per run. By default performance is medium."
+            "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
           }
         ],
         "responses": {
@@ -73,7 +82,7 @@
             }
           },
           "400": {
-            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "description": "Bad Request - The request could not be processed by the server due to malformed syntax or validation failure.",
             "content": {
               "application/json": {
                 "schema": {
@@ -113,13 +122,13 @@
                   "type": "object"
                 },
                 "example": {
-                  "error": "Not allowed to execute query. Query is archived or an unsaved query"
+                  "error": "Not allowed to execute query. Query is archived, unsaved or not enough permissions."
                 }
               }
             }
           },
           "500": {
-            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -143,6 +152,15 @@
             },
             "description": "API Key for accessing this service",
             "required": true
+          },
+          {
+            "in": "path",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
           },
           {
             "in": "path",
@@ -205,7 +223,7 @@
             }
           },
           "500": {
-            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -229,6 +247,15 @@
             },
             "description": "API Key for accessing this service",
             "required": true
+          },
+          {
+            "in": "path",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
           },
           {
             "in": "path",
@@ -282,7 +309,7 @@
             }
           },
           "500": {
-            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,6 +333,15 @@
             },
             "description": "API Key for accessing this service",
             "required": true
+          },
+          {
+            "in": "path",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
           },
           {
             "in": "path",
@@ -344,7 +380,7 @@
                 "$ref": "#/components/schemas/ParameterObject"
               }
             },
-            "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+            "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
           },
           {
             "in": "query",
@@ -362,7 +398,7 @@
             "schema": {
               "type": "boolean"
             },
-            "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned."
+            "description": "This enables returning a query result that was too large and only a partial result is available. By default allow_partial_results is set to false and a failed state is returned."
           }
         ],
         "responses": {
@@ -448,6 +484,15 @@
           },
           {
             "in": "path",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "path",
             "name": "query_id",
             "required": true,
             "schema": {
@@ -483,7 +528,7 @@
                 "$ref": "#/components/schemas/ParameterObject"
               }
             },
-            "description": "Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to customize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
+            "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters."
           },
           {
             "in": "query",
@@ -501,7 +546,7 @@
             "schema": {
               "type": "boolean"
             },
-            "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
+            "description": "This enables returning a query result that was too large and only a partial result is available. By default allow_partial_results is set to false and a failed state is returned."
           }
         ],
         "responses": {
@@ -601,6 +646,15 @@
           },
           {
             "in": "path",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "path",
             "name": "execution_id",
             "required": true,
             "schema": {
@@ -642,7 +696,7 @@
             "schema": {
               "type": "boolean"
             },
-            "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
+            "description": "This enables returning a query result that was too large and only a partial result is available. By default allow_partial_results is set to false and a failed state is returned."
           }
         ],
         "responses": {
@@ -720,6 +774,15 @@
           },
           {
             "in": "path",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for accessing this service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "path",
             "name": "execution_id",
             "required": true,
             "schema": {
@@ -761,7 +824,7 @@
             "schema": {
               "type": "boolean"
             },
-            "description": "Sometimes request results can be too large to return. By default allow_partial_results is set to false and a failed state is returned. "
+            "description": "This enables returning a query result that was too large and only a partial result is available. By default allow_partial_results is set to false and a failed state is returned."
           }
         ],
         "responses": {
@@ -834,7 +897,7 @@
                   "type": "object"
                 },
                 "example": {
-                  "error": "Query state is not QUERY_STATE_CANCELLED, cannot provide CSV Result",
+                  "error": "Query state is not QUERY_STATE_COMPLETED, cannot provide CSV Result",
                   "errorDetails": null,
                   "state": "QUERY_STATE_CANCELLED"
                 }
@@ -1025,7 +1088,7 @@
         "properties": {
           "execution_id": {
             "type": "string",
-            "description": "Unique identifier for the execution of the query.",
+            "description": "Unique identifier for the execution of the query and corresponding result.",
             "example": "01HKZSJAW6N2MFVCBHA3R8S64X"
           },
           "query_id": {
@@ -1085,7 +1148,7 @@
             "$ref": "#/components/schemas/ExecutionResultMetadata"
           },
           "rows": {
-            "$ref": "#/components/schemas/QueryResultRow"
+            "$ref": "#/components/schemas/QueryResultRows"
           }
         }
       },
@@ -1105,9 +1168,9 @@
           }
         }
       },
-      "QueryResultRow": {
+      "QueryResultRows": {
         "type": "object",
-        "description": "A row is dictionary of key-value pairs returned by the query, each pair corresponding to a column",
+        "description": "A list of rows. A row is dictionary of key-value pairs returned by the query, each pair corresponding to a column",
         "example": [
           {
             "24 Hours Volume": 8466988.095521685,
@@ -1223,7 +1286,7 @@
           },
           "total_result_set_bytes": {
             "type": "integer",
-            "description": "Total number of bytes in the result set.",
+            "description": "Total number of bytes in the result set. This doesn't include the json representation overhead.",
             "example": 1541
           },
           "total_row_count": {
@@ -1251,6 +1314,7 @@
       "ParameterObject": {
         "type": "object",
         "required": ["key"],
+        "description": "SQL Query parameters in key-value pairs. Each parameter is an object consisting of keys such as 'key', 'type', 'value', and optionally 'enumOptions'. The API allows for partial submission of parameters. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the API. This feature enables you to parameterize the query execution according to your specific needs while providing sensible defaults for unspecified parameters.",
         "properties": {
           "key": {
             "type": "string",
@@ -1312,7 +1376,7 @@
       "Performance": {
         "type": "string",
         "enum": ["medium", "large"],
-        "description": "Defines the engine the execution will be run on. Can be either medium or large tier. Medium consumes 10 credits per run, and large consumes 20 credits per run. By default, performance is medium."
+        "description": "The performance engine tier the execution will be run on. Can be either medium or large. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is medium."
       },
       "UnauthorizedError": {
         "type": "object",
