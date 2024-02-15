@@ -933,7 +933,7 @@
           "execution_started_at": "2024-01-12T21:34:37.464387Z",
           "execution_ended_at": "2024-01-12T21:34:55.737081Z",
           "next_offset": 5,
-          "next_uri": "https://api.dev.dune.com/api/v1/execution/01HKZSJAW6N2MFVCBHA3R8S64X/results?limit=5&offset=5",
+          "next_uri": "https://api.dev.dune.com/api/v1/execution/01HKZSJAW6N2MFVCBHA3R8S64X/results?limit=1000&offset=5",
           "result": {
             "metadata": {
               "column_names": [
@@ -1048,7 +1048,7 @@
           "next_uri": {
             "type": "string",
             "description": "URI that can be used to fetch the next page of results.",
-            "example": "https://api.dev.dune.com/api/v1/execution/01HKZSJAW6N2MFVCBHA3R8S64X/results?limit=5&offset=5"
+            "example": "https://api.dev.dune.com/api/v1/execution/01HKZSJAW6N2MFVCBHA3R8S64X/results?limit=1000&offset=5"
           },
           "result": {
             "$ref": "#/components/schemas/QueryResultData"
