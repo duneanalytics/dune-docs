@@ -9,7 +9,18 @@ There are four kinds of parameters you can use in a Dune query (these are not AP
 - date
 - enum (called a list in the UI)
 
-For passing these parameters through the API request body, you can use the following format:
+For passing these parameters through the API request body, you can use the following format for executions:
+
+```json
+{
+"foo": "value",
+"bar":1000, 
+"baz": "2020-12-01T01:20:30Z"
+}
+```
+Where "foo", "bar", and "baz" are three params in a query. If you leave one out, it goes with the default param valiue.
+
+For CRUD operations, you'll need to define the type and more:
 
 ```json
 [
