@@ -26,173 +26,138 @@
     "url": "https://dune.com"
   },
   "tabs": [
-
     {
-      "name": "Dune App",
-      "url": "app"
+      "name": "Query App",
+      "url": "query-app"
     },
     {
-      "name": "DuneSQL",
-      "url": "query"
-    },
-    {
-      "name": "Our data",
+      "name": "Data Tables",
       "url": "data-tables"
-    },
-    {
-      "name": "Spellbook",
-      "url": "spellbook"
     },
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Spellbook",
+      "url": "spellbook"
     }
   ],
-  "anchors": [
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://community.dune.com"
-    },
-    {
-      "name": "Discord",
-      "icon": "discord",
-      "url": "https://discord.gg/bvJbugxq3Q"
-    },
 
-    {
-      "name": "Telegram",
-      "icon": "telegram",
-      "url": "https://t.me/dune_updates"
-    },
-    {
-      "name": "Twitter",
-      "icon": "twitter",
-      "url": "https://twitter.com/duneanalytics"
-    }
-  ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction",
-                "quickstart"]
+      "pages": ["introduction", "quickstart", "learning-resources"]
     },
     {
-      "group": "App",
+      "group": "Jump right in",
       "pages": [
-        {
-          "group": "Query Editor",
-          "pages": [
-            "app/query-editor/index",
-            "app/query-editor/parameters",
-            "app/query-editor/query-window",
-            "app/query-editor/query-scheduler",
-            "app/query-editor/data-explorer",
-            "app/query-editor/version-history"          
-          ]
-        }  ,
-        {
-          "group": "Visualizations",
-          "pages": [
-            "app/visualizations/charts-graphs",
-            "app/visualizations/counters",
-            "app/visualizations/tables"             
-          ]
-        },
-        "app/dashboards",
-        "app/decoding-contracts",
-        "app/teams",
-        "app/wand-llm",
-        "app/upload-data",
-        "app/embeds",
-        "app/search",
-        "app/alerts"         
+        "learning/how-tos/create-your-first-query",
+        "learning/how-tos/create-ai-assisted-queries",
+        "learning/how-tos/create-new-content",
+        "learning/how-tos/create-your-first-visualization",
+        "learning/how-tos/navigate-query-editor",
+        "learning/how-tos/find-datasets",
+        "learning/how-tos/export-data-out",
+        "learning/how-tos/create-and-manage-teams",
+        "learning/how-tos/credit-system-on-dune",
+        "learning/how-tos/search-for-content",
+        "learning/how-tos/share-dune-content",
+        "learning/how-tos/share-your-query",
+        "learning/how-tos/transfer-ownership"
       ]
-    }, 
-
+    },
     {
-      "group": "Query",
+      "group": "", 
+      "pages": ["query-app/query-app"]
+    },
+    {
+      "group": "Web App",
       "pages": [
-        "query/overview",
-        "query/query-executions",
+        "query-app/web-app/overview",
         {
-          "group": "DuneSQL",
+          "group": "Create Queries",
           "pages": [
-            {
-              "group": "Functions and Operators",
-              "pages": [
-                "query/DuneSQL-reference/Functions-and-operators/index",
-                "query/DuneSQL-reference/Functions-and-operators/aggregate",
-                "query/DuneSQL-reference/Functions-and-operators/array",
-                "query/DuneSQL-reference/Functions-and-operators/base58",
-                "query/DuneSQL-reference/Functions-and-operators/binary",
-                "query/DuneSQL-reference/Functions-and-operators/bitwise",
-                "query/DuneSQL-reference/Functions-and-operators/chain-utility-functions",
-                "query/DuneSQL-reference/Functions-and-operators/comparison",
-                "query/DuneSQL-reference/Functions-and-operators/conditional",
-                "query/DuneSQL-reference/Functions-and-operators/conversion",
-                "query/DuneSQL-reference/Functions-and-operators/datetime",
-                "query/DuneSQL-reference/Functions-and-operators/decimal",
-                "query/DuneSQL-reference/Functions-and-operators/hyperloglog",
-                "query/DuneSQL-reference/Functions-and-operators/json",
-                "query/DuneSQL-reference/Functions-and-operators/lambda",
-                "query/DuneSQL-reference/Functions-and-operators/list-by-topic",
-                "query/DuneSQL-reference/Functions-and-operators/list",
-                "query/DuneSQL-reference/Functions-and-operators/logical",
-                "query/DuneSQL-reference/Functions-and-operators/map",
-                "query/DuneSQL-reference/Functions-and-operators/math",
-                "query/DuneSQL-reference/Functions-and-operators/ml",
-                "query/DuneSQL-reference/Functions-and-operators/qdigest",
-                "query/DuneSQL-reference/Functions-and-operators/regexp",
-                "query/DuneSQL-reference/Functions-and-operators/setdigest",
-                "query/DuneSQL-reference/Functions-and-operators/string",
-                "query/DuneSQL-reference/Functions-and-operators/system",
-                "query/DuneSQL-reference/Functions-and-operators/tdigest",
-                "query/DuneSQL-reference/Functions-and-operators/teradata",
-                "query/DuneSQL-reference/Functions-and-operators/url",
-                "query/DuneSQL-reference/Functions-and-operators/uuid",
-                "query/DuneSQL-reference/Functions-and-operators/varbinary",
-                "query/DuneSQL-reference/Functions-and-operators/varchar-utility-functions",
-                "query/DuneSQL-reference/Functions-and-operators/window"
-              ]
-            },
-            "query/DuneSQL-reference/datatypes",
-            "query/DuneSQL-reference/reserved-keywords"              
+            "query-app/web-app/query-editor/query-window",
+            "query-app/web-app/query-editor/data-explorer",
+            "query-app/web-app/query-editor/parameters",
+            "query-app/web-app/query-editor/query-scheduler",
+            "query-app/web-app/query-editor/version-history"
           ]
         },
-        "query/writing-efficient-queries",
-        "query/query-a-query",
-        "query/materialized-views"
+        {
+          "group": "Create Visualizations",
+          "pages": [
+            "query-app/web-app/visualizations/charts-graphs",
+            "query-app/web-app/visualizations/counters",
+            "query-app/web-app/visualizations/tables"
+          ]
+        },
+        "query-app/web-app/dashboards",
+        "query-app/web-app/decoding-contracts",
+        "query-app/web-app/teams",
+        "query-app/web-app/wand-llm",
+        "query-app/web-app/upload-data",
+        "query-app/web-app/embeds",
+        "query-app/web-app/search",
+        "query-app/web-app/alerts"
       ]
     },
 
     {
-      "group": "Learning Resources",
+      "group": "Query Engine",
       "pages": [
-        
-            "app/learning/how-tos/create-ai-assisted-queries",
-            "app/learning/how-tos/create-and-manage-teams",
-            "app/learning/how-tos/create-new-content",
-            "app/learning/how-tos/create-your-first-query",
-            "app/learning/how-tos/create-your-first-visualization",
-            "app/learning/how-tos/credit-system-on-dune",
-            "app/learning/how-tos/export-data-out",
-            "app/learning/how-tos/find-datasets",
-            "app/learning/how-tos/navigate-query-editor",
-            "app/learning/how-tos/search-for-content",
-            "app/learning/how-tos/share-dune-content",
-            "app/learning/how-tos/share-your-query",
-            "app/learning/how-tos/transfer-ownership"    
+        "query-app/query-engine/overview",
+        "query-app/query-engine/query-executions",
+
+        {
+          "group": "Functions and Operators",
+          "pages": [
+            "query-app/query-engine/Functions-and-operators/index",
+            "query-app/query-engine/Functions-and-operators/aggregate",
+            "query-app/query-engine/Functions-and-operators/array",
+            "query-app/query-engine/Functions-and-operators/base58",
+            "query-app/query-engine/Functions-and-operators/binary",
+            "query-app/query-engine/Functions-and-operators/bitwise",
+            "query-app/query-engine/Functions-and-operators/chain-utility-functions",
+            "query-app/query-engine/Functions-and-operators/comparison",
+            "query-app/query-engine/Functions-and-operators/conditional",
+            "query-app/query-engine/Functions-and-operators/conversion",
+            "query-app/query-engine/Functions-and-operators/datetime",
+            "query-app/query-engine/Functions-and-operators/decimal",
+            "query-app/query-engine/Functions-and-operators/hyperloglog",
+            "query-app/query-engine/Functions-and-operators/json",
+            "query-app/query-engine/Functions-and-operators/lambda",
+            "query-app/query-engine/Functions-and-operators/list-by-topic",
+            "query-app/query-engine/Functions-and-operators/list",
+            "query-app/query-engine/Functions-and-operators/logical",
+            "query-app/query-engine/Functions-and-operators/map",
+            "query-app/query-engine/Functions-and-operators/math",
+            "query-app/query-engine/Functions-and-operators/ml",
+            "query-app/query-engine/Functions-and-operators/qdigest",
+            "query-app/query-engine/Functions-and-operators/regexp",
+            "query-app/query-engine/Functions-and-operators/setdigest",
+            "query-app/query-engine/Functions-and-operators/string",
+            "query-app/query-engine/Functions-and-operators/system",
+            "query-app/query-engine/Functions-and-operators/tdigest",
+            "query-app/query-engine/Functions-and-operators/teradata",
+            "query-app/query-engine/Functions-and-operators/url",
+            "query-app/query-engine/Functions-and-operators/uuid",
+            "query-app/query-engine/Functions-and-operators/varbinary",
+            "query-app/query-engine/Functions-and-operators/varchar-utility-functions",
+            "query-app/query-engine/Functions-and-operators/window"
           ]
-        }  
-      
-    ,
-
-
+        },
+        "query-app/query-engine/datatypes",
+        "query-app/query-engine/reserved-keywords",
+        "query-app/query-engine/writing-efficient-queries",
+        "query-app/query-engine/query-a-query",
+        "query-app/query-engine/materialized-views"
+      ]
+    },
     {
       "group": "Data Tables",
       "pages": [
-
         {
           "group": "Top Tables",
           "pages": [
@@ -200,7 +165,7 @@
             "data-tables/spellbook/top-tables/labels",
             "data-tables/spellbook/top-tables/nft.trades",
             "data-tables/spellbook/top-tables/prices",
-            "data-tables/spellbook/top-tables/tokens"                
+            "data-tables/spellbook/top-tables/tokens"
           ]
         },
         {
@@ -210,15 +175,13 @@
               "group": "EVM",
               "pages": [
                 "data-tables/decoded/evm/call-tables",
-                "data-tables/decoded/evm/event-logs"                 
+                "data-tables/decoded/evm/event-logs"
               ]
             },
             {
               "group": "Solana",
-              "pages": [
-                "data-tables/decoded/solana/idl-tables"               
-              ]
-            } 
+              "pages": ["data-tables/decoded/solana/idl-tables"]
+            }
           ]
         },
         {
@@ -231,7 +194,7 @@
                 "data-tables/raw/evm/event-logs",
                 "data-tables/raw/evm/traces",
                 "data-tables/raw/evm/transactions",
-                "data-tables/raw/evm/withdrawals"              
+                "data-tables/raw/evm/withdrawals"
               ]
             },
             {
@@ -253,7 +216,7 @@
                 "data-tables/raw/bitcoin/outputs",
                 "data-tables/raw/bitcoin/transactions"
               ]
-            }  
+            }
           ]
         },
         {
@@ -266,7 +229,7 @@
                 "data-tables/community/flashbots/liquidations",
                 "data-tables/community/flashbots/mev_summary",
                 "data-tables/community/flashbots/sandwiched-swaps",
-                "data-tables/community/flashbots/sandwiches"           
+                "data-tables/community/flashbots/sandwiches"
               ]
             },
             {
@@ -284,9 +247,9 @@
                     "data-tables/community/neynar/farcaster/signers",
                     "data-tables/community/neynar/farcaster/storage",
                     "data-tables/community/neynar/farcaster/user_data",
-                    "data-tables/community/neynar/farcaster/verifications"            
+                    "data-tables/community/neynar/farcaster/verifications"
                   ]
-                }        
+                }
               ]
             },
             {
@@ -304,15 +267,15 @@
                 "data-tables/community/reservoir/sales",
                 "data-tables/community/reservoir/token-attributes",
                 "data-tables/community/reservoir/token-floor-ask-events",
-                "data-tables/community/reservoir/tokens"    
+                "data-tables/community/reservoir/tokens"
               ]
             },
-            "data-tables/bring-your-own-data"            
+            "data-tables/bring-your-own-data"
           ]
-        }        
+        }
       ]
     },
-      
+
     {
       "group": "Contributing to Spellbook",
       "pages": [
@@ -331,7 +294,7 @@
             "spellbook/Example Spell Models/rolling-sum",
             "spellbook/Example Spell Models/final-day-balance"
           ]
-        }          
+        }
       ]
     },
 

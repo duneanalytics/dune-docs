@@ -1,6 +1,7 @@
 ---
 title; Datatypes
 ---
+
 DuneSQL has a set of built-in data types, described below.
 
 Implicit Conversion and Casting to other datatypes is described in [the conversion function documentation](Functions-and-operators/conversion.md).
@@ -42,9 +43,7 @@ A 256-bit unsigned integer with a minimum value of 0 and a maximum value of 2^25
 
 A 256-bit signed two's complement integer with a minimum value of -2^255 and a maximum value of 2^255 - 1. This data type can represent a wide range of values, including very large negative and positive integers, as well as zero.
 
-This data type is commonly used in EVM smart contracts to represent balances and other quantities, more specifically when the value can be negative. 
-
-
+This data type is commonly used in EVM smart contracts to represent balances and other quantities, more specifically when the value can be negative.
 
 ## Floating-point
 
@@ -71,9 +70,9 @@ but performance is best up to 18 digits.
 
 The decimal type takes two literal parameters:
 
--   **precision** - total number of digits
--   **scale** - number of digits in fractional part. Scale is optional
-    and defaults to 0.
+- **precision** - total number of digits
+- **scale** - number of digits in fractional part. Scale is optional
+  and defaults to 0.
 
 Example type definitions: `DECIMAL(10,3)`, `DECIMAL(20)`
 
@@ -89,11 +88,11 @@ Example type definitions: `varchar`, `varchar(20)`
 
 SQL statements support simple literal, as well as Unicode usage:
 
--   literal string : `'Hello winter !'`
--   Unicode string with default escape character:
-    `U&'Hello winter \2603 !'`
--   Unicode string with custom escape character:
-    `U&'Hello winter #2603 !' UESCAPE '#'`
+- literal string : `'Hello winter !'`
+- Unicode string with default escape character:
+  `U&'Hello winter \2603 !'`
+- Unicode string with custom escape character:
+  `U&'Hello winter #2603 !' UESCAPE '#'`
 
 A Unicode string is prefixed with `U&` and requires an escape character
 before any Unicode character usage with 4 digits. In the examples above
@@ -115,7 +114,6 @@ Example type definitions: `char`, `char(20)`
 ### `VARBINARY`
 
 Variable length binary data. In Dune, we store addresses, hashes, calldata and logs as `varbinary` data types.
-
 
 SQL statements support usage of binary data with the prefix `0x`. The
 binary data has to use hexadecimal format. For example, the binary form
@@ -159,10 +157,12 @@ Example: `TIME '01:02:03.456'`
 Time of day (hour, minute, second, millisecond) with a time zone. Values
 of this type are rendered using the time zone from the value. Time zones
 are expressed as the numeric UTC offset value:
+
 ```sql
     SELECT TIME '01:02:03.456 -08:00';
     -- 1:02:03.456-08:00
 ```
+
 ### `TIMESTAMP`
 
 `TIMESTAMP` is an alias for `TIMESTAMP(3)` (millisecond precision).
@@ -179,7 +179,7 @@ the `DATE` and `TIME(P)` types.
 Timestamp values can be constructed with the `TIMESTAMP` literal
 expression. Alternatively, language constructs such as
 `localtimestamp(p)`, or a number of `date and time functions and
-operators  can
+operators can
 return timestamp values.
 
 Casting to lower precision causes the value to be rounded, and not
@@ -217,13 +217,14 @@ of precision for the fraction of seconds and with a time zone. Values of
 this type are rendered using the time zone from the value. Time zones
 can be expressed in the following ways:
 
--   `UTC`, with `GMT`, `Z`, or `UT` usable as aliases for UTC.
--   `+hh:mm` or `-hh:mm` with `hh:mm` as an hour and minute offset from
-    UTC. Can be written with or without `UTC`, `GMT`, or `UT` as an
-    alias for UTC.
--   An [IANA time zone name](https://www.iana.org/time-zones).
+- `UTC`, with `GMT`, `Z`, or `UT` usable as aliases for UTC.
+- `+hh:mm` or `-hh:mm` with `hh:mm` as an hour and minute offset from
+  UTC. Can be written with or without `UTC`, `GMT`, or `UT` as an
+  alias for UTC.
+- An [IANA time zone name](https://www.iana.org/time-zones).
 
 The following examples demonstrate some of these syntax options:
+
 ```sql
     SELECT TIMESTAMP '2001-08-22 03:04:05.321 UTC';
     -- 2001-08-22 03:04:05.321 UTC
@@ -237,6 +238,7 @@ The following examples demonstrate some of these syntax options:
     SELECT TIMESTAMP '2001-08-22 03:04:05.321 America/New_York';
     -- 2001-08-22 03:04:05.321 America/New_York
 ```
+
 ### `INTERVAL YEAR TO MONTH`
 
 Span of years and months.
@@ -251,19 +253,19 @@ Example: `INTERVAL '2' DAY`
 
 ## Structural
 
-### `ARRAY` 
+### `ARRAY`
 
 An array of the given component type.
 
 Example: `ARRAY[1, 2, 3]`
 
-### `MAP` 
+### `MAP`
 
 A map between the given component types.
 
 Example: `MAP(ARRAY['foo', 'bar'], ARRAY[1, 2])`
 
-### `ROW` 
+### `ROW`
 
 A structure made up of fields that allows mixed types. The fields may be
 of any SQL type.
@@ -283,11 +285,11 @@ Example: `ROW(1, 2.0)[1]`
 
 ## Network address
 
-### `IPADDRESS` 
+### `IPADDRESS`
 
 An IP address that can represent either an IPv4 or IPv6 address.
 Internally, the type is a pure IPv6 address. Support for IPv4 is handled
-using the *IPv4-mapped IPv6 address* range
+using the _IPv4-mapped IPv6 address_ range
 (`4291#section-2.5.5.2`\{.interpreted-text role="rfc"}). When creating an
 `IPADDRESS`, IPv4 addresses will be mapped into that range. When
 formatting an `IPADDRESS`, any address within the mapped range will be
@@ -298,7 +300,7 @@ Examples: `IPADDRESS '10.0.0.1'`, `IPADDRESS '2001:db8::1'`
 
 ## UUID
 
-### `UUID` 
+### `UUID`
 
 This type represents a UUID (Universally Unique IDentifier), also known
 as a GUID (Globally Unique IDentifier), using the format defined in
@@ -313,14 +315,14 @@ than an exact count using the
 [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data sketch.
 See `/functions/hyperloglog`\{.interpreted-text role="doc"}.
 
-### `HyperLogLog` 
+### `HyperLogLog`
 
 A HyperLogLog sketch allows efficient computation of
 `approx_distinct`\{.interpreted-text role="func"}. It starts as a sparse
 representation, switching to a dense representation when it becomes more
 efficient.
 
-### `P4HyperLogLog` 
+### `P4HyperLogLog`
 
 A P4HyperLogLog sketch is similar to
 `hyperloglog_type`\{.interpreted-text role="ref"}, but it starts (and
@@ -328,7 +330,7 @@ remains) in the dense representation.
 
 ## SetDigest
 
-### `SetDigest` 
+### `SetDigest`
 
 A SetDigest (setdigest) is a data sketch structure used in calculating
 [Jaccard similarity
@@ -337,9 +339,9 @@ sets.
 
 SetDigest encapsulates the following components:
 
--   [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog)
--   [MinHash with a single hash
-    function](http://en.wikipedia.org/wiki/MinHash#Variant_with_a_single_hash_function)
+- [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog)
+- [MinHash with a single hash
+  function](http://en.wikipedia.org/wiki/MinHash#Variant_with_a_single_hash_function)
 
 The HyperLogLog structure is used for the approximation of the distinct
 elements in the original set.
@@ -352,7 +354,7 @@ SetDigests are additive, meaning they can be merged together.
 
 ## Quantile digest
 
-### `QDigest` 
+### `QDigest`
 
 A quantile digest (qdigest) is a summary structure which captures the
 approximate distribution of data for a given input set, and can be
@@ -374,7 +376,7 @@ merged to retrieve the 99th percentile value.
 
 ## T-Digest
 
-### `TDigest` 
+### `TDigest`
 
 A T-digest (tdigest) is a summary structure which, similarly to qdigest,
 captures the approximate distribution of data for a given input set. It
@@ -383,8 +385,8 @@ distribution.
 
 TDigest has the following advantages compared to QDigest:
 
--   higher performance
--   lower memory usage
--   higher accuracy at high and low percentiles
+- higher performance
+- lower memory usage
+- higher accuracy at high and low percentiles
 
 T-digests are additive, meaning they can be merged together.
