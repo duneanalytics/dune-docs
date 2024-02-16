@@ -4,7 +4,7 @@ description: Instead of working with the logs and traces in their raw states, on
 ---
 
 ## Decoding Contracts
-**Dune’s extensive catalog of decoded smart contracts are driven by our Wizards. Our decoding process empowers our community to submit the data and build the tables that they’d like to query on Dune!**
+**Dune's extensive catalog of decoded smart contracts are driven by our Wizards. Our decoding process empowers our community to submit the data and build the tables that they’d like to query on Dune!**
 
 But what does decoding mean? Blockchain transaction data starts as bytecode, a low level programming language that can be read by machines. Using the ABI (Application Binary Interface) that is personal to each contract, we translate that bytecode into query-able data tables.
 
@@ -12,9 +12,9 @@ But what does decoding mean? Blockchain transaction data starts as bytecode, a l
 
 ### Step 1: Submission
 
-Our decoding process begins with our [contract submission page](https://dune.com/docs/app/decoding-contracts/).
+Our decoding process begins with our [contract submission page](https://dune.com/docs/query-app/web-app/decoding-contracts/).
 
-![](/app/images/decoding-contracts/1.png)
+![](/query-app/web-app/images/decoding-contracts/1.png)
 
 To successfully submit a contract, you will need four pieces of information:
 
@@ -47,7 +47,7 @@ Diamond proxy contracts: Submit all the facets using just the same name for the 
 <Note>
 **Where can I find this information?**
 
-Contract addresses can usually be found in a project’s docs. Once you have the contract address, you can use a blockchain explorer to get the rest of the information. Most blockchain explorers have everything you need!
+Contract addresses can usually be found in a project's docs. Once you have the contract address, you can use a blockchain explorer to get the rest of the information. Most blockchain explorers have everything you need!
 </Note>
 
 
@@ -56,7 +56,7 @@ Contract addresses can usually be found in a project’s docs. Once you have the
 
 
 Given the popularity of some smart contracts, re-submissions happen. If the contract you are trying to submit already exists, an error like the following will pop up.
-![](/app/images/decoding-contracts/2.png)
+![](/query-app/web-app/images/decoding-contracts/2.png)
     
     There are some circumstances under which a contract can be resubmitted, like if the contract needs to be renamed. In that case, you can click **“Proceed to Resubmit”** and follow the steps to submit the contract as normal with one caveat: at the end of the submission process, you will be asked to explain why you want to resubmit the contract. Give as much detail as possible to avoid the resubmission being rejected! 
 </Note>
@@ -74,14 +74,14 @@ One quick tip to find and begin querying your decoded table is to use Dune's Exp
 2. Pull up the specific function or event you are looking for
 3.  use the **>>** button to immediately populate that table in your Query Editor. 
 
-![The search bar and >> symbol that will help you get started](/app/images/decoding-contracts/3.png)
+![The search bar and >> symbol that will help you get started](/query-app/web-app/images/decoding-contracts/3.png)
 
-Then it’s all ready for you to query. Let the data flow! 
+Then it's all ready for you to query. Let the data flow! 
 
 ## B. Frequently Asked Questions
 
 <Accordion title="On which chains does this work?">
-    Any contracts created on blockchains that Dune has integrated. To check which blockchains we currently have available, see our section on [Tables and Chains](/index.md).
+    Any contracts created on blockchains that Dune has integrated. 
 
 </Accordion>
 <Accordion title="How do I figure out if my contract has been decoded?">
@@ -99,12 +99,12 @@ Then it’s all ready for you to query. Let the data flow!
     *If the contract is rejected, hover your mouse over the status to see the reason for the rejection. 
 
     Second: Our [Contract Decoding Dashboard](https://dune.com/dune/is-my-contract-decoded-yet-v2)
-    ![](/app/images/decoding-contracts/4.png)
+    ![](/query-app/web-app/images/decoding-contracts/4.png)
     
     Built by our decoding team, this dashboard gives you information on the status of any submitted contract. Input the contract address in the box at the top of the dashboard and if the contract has been decoded, the contract information will populate the box along with where it is located in the Dune database. 
 
 </Accordion>
-<Accordion title="I see data on Dune but it doesn’t match or is missing what I expected to see">
+<Accordion title="I see data on Dune but it doesn't match or is missing what I expected to see">
     Unfortunately, Dune only has access to contract data in circumstances that the contract performed an event that left a trace. Our recommendation is to check out the \{blockchain}.traces table to see what information is available for a particular contract.
     
     Alternatively, some contracts are upgradeable (ie., the smart contract code can be modified). In this case we may not have all of the ABIs. ABIs can be checked in the ABI column of the \{blockchain}.contracts tables. A contract can always be resubmitted with missing ABIs so we can update our data. 
@@ -143,7 +143,7 @@ When submitting Proxy-patterned contracts to Dune, you should input the Proxy co
     !!! warning
      When submitting Proxy-patterned contracts to Dune, you should input the Proxy contract's address and, if you have it, the Implementation contract's ABI. If the Proxy has a new implementation upgraded that you wish to decode, use the same project name + contract name and select <b>'NO'</b> for several instances!
 
-    ![new proxy implementation submission](/app/images/decoding-contracts/5.png)
+    ![new proxy implementation submission](/query-app/web-app/images/decoding-contracts/5.png)
 
     When you submit the Proxy contract's address, we'll attempt to fetch the proxy's contract name and the implementation address it's pointing towards to source the Implementation contract's ABI.
 

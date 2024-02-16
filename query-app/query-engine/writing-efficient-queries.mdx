@@ -13,11 +13,11 @@ DuneSQL is a TrinoSQL-based query engine designed for handling data stored in a 
 
 In parquet files, the data is partitioned by rows into multiple parquet files, and within each file, the data is further partitioned into row groups. However, the pages inside row groups store data in columns rather than rows. As a result, the database appears row-oriented at a higher level, but it reads data from column-oriented pages when accessing specific values.
 
-![schematic view of parquet files](images/parquet.png)
+
 
 When querying for specific columns, this structure allows for efficient data access. On the other hand, if a query requires all columns of specific logical rows, multiple pages must be accessed since the data of one logical row is distributed across different pages.
 
-![column oriented database (Spark)](images/column-oriented.png)
+
 
 ### Min/Max Values and Efficient Queries
 
@@ -25,7 +25,7 @@ Each parquet file has a footer containing min/max values for every column stored
 
 However, the min/max values of strings, such as tx_hash strings and address strings in blockchain systems, are often not helpful, as they are randomly generated and not sequentially ordered. As a result, queries that reference these strings will be inefficient since all related pages need to be read into memory.
 
-![min/max values](../query/images/minmax-schema.jpg)
+
 
 ### Writing Efficient Queries
 
