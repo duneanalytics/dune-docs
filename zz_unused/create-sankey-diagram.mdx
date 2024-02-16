@@ -6,14 +6,21 @@ description: How to create Sankey diagram with Dune's data
 While Dune's ability to easily execute queries and make visualizations are pretty neat, as of today (Sep. 29, 2023), you are not able to create Sankey diagrams on Dune yet. So in this guide, we will quickly show you how to use Dune API to fetch data and Python libraries to make Sankey diagrams.
 
 <Note>
-    This example uses the Dune Python client, which can [be found here](https://github.com/duneanalytics/dune-client) and installed by doing `pip install dune-client`
+  This example uses the Dune Python client, which can [be found
+  here](https://github.com/duneanalytics/dune-client) and installed by doing
+  `pip install dune-client`
 </Note>
-## 🎓 What is a Sankey Diagram?
-Sankey diagrams are flow diagrams in which the width of the arrows or lines are proportional to the flow quantity they represent. They're commonly used to depict the flow of energy, material, or costs between stages. So if you've been longing to visualize the movement of tokens between wallets, or how users transition between different app states, a Sankey diagram is your weapon of choice!
+## 🎓 What is a Sankey Diagram? Sankey diagrams are flow diagrams in which the width
+of the arrows or lines are proportional to the flow quantity they represent. They're
+commonly used to depict the flow of energy, material, or costs between stages. So
+if you've been longing to visualize the movement of tokens between wallets, or how
+users transition between different app states, a Sankey diagram is your weapon of
+choice!
 
 For a deeper dive, [check this article](https://medium.com/@twelsh37/understanding-plotly-sankey-charting-3ee263a81549).
 
 ### Expected Data Input:
+
 The key components for a Sankey are:
 
 - Source & Target: Indexes of where the flow starts and where it ends.
@@ -21,36 +28,37 @@ The key components for a Sankey are:
 
 ## ⛲ Let's Generate that Sankey!
 
-Here, we will walk through two examples. Example 1 is to graph a Sankey for a certain subset of RabbitHole Quests with Optimism grant, see how the questors are retained after 1 month period. Example 2 is to graph a Sankey for the token flow when swapping USDC for WETH using Uniswap if the swap is not direct. 
+Here, we will walk through two examples. Example 1 is to graph a Sankey for a certain subset of RabbitHole Quests with Optimism grant, see how the questors are retained after 1 month period. Example 2 is to graph a Sankey for the token flow when swapping USDC for WETH using Uniswap if the swap is not direct.
 
-We will show you different ways to fetch data from Dune API in the process as well. 
+We will show you different ways to fetch data from Dune API in the process as well.
 
 ### 1. Setup
+
 Import all necessary libraries and authenticate to set up DuneClient.
 
-<Note> 
-    1. Make sure you create have a .env file created with your 'DUNE_API_KEY' in it! 
-    2. Replace the path to your own directory in `os.chdir(...)`
+<Note>
+  1. Make sure you create have a .env file created with your 'DUNE_API_KEY' in
+  it! 2. Replace the path to your own directory in `os.chdir(...)`
 </Note>
-``` py
-import pandas as pd
-import plotly.graph_objects as go
-import colorlover as cl
-import pandas as pd
-import dotenv, os, json
-from dune_client.types import QueryParameter
-from dune_client.client import DuneClient
-from dune_client.query import QueryBase
+``` py import pandas as pd import plotly.graph_objects as go import colorlover as
+cl import pandas as pd import dotenv, os, json from dune_client.types import QueryParameter
+from dune_client.client import DuneClient from dune_client.query import QueryBase
 
 # change the current working directory where .env file lives
-os.chdir("...") # please replace with path to your own current directory
-# load .env file
-dotenv.load_dotenv(".env")
-# setup Dune Python client
-dune = DuneClient.from_env()
-```
 
-### 2. Fetch the data for Sankey 
+os.chdir("...") # please replace with path to your own current directory
+
+# load .env file
+
+dotenv.load_dotenv(".env")
+
+# setup Dune Python client
+
+dune = DuneClient.from_env()
+
+````
+
+### 2. Fetch the data for Sankey
 
 === "Example 1:  Get query result by fetching the latest result executed"
 
@@ -79,7 +87,7 @@ dune = DuneClient.from_env()
         query_result = dune.run_query_dataframe(query=query, performance="large") # specify large cluster for faster runtime
     ```
 
-### 3. Customize colors, if needed 
+### 3. Customize colors, if needed
 
 <Tabs>
   <Tab title="Example 1">
@@ -110,7 +118,7 @@ dune = DuneClient.from_env()
   </Tab>
 </Tabs>
 
-### 4. Define the function to make Sankey diagram 
+### 4. Define the function to make Sankey diagram
 
 ```py
 # function to create Sankey diagram
@@ -188,7 +196,7 @@ def create_sankey(
     )
 
     return fig
-```
+````
 
 ### 5. Plot the Sankey!
 
@@ -230,5 +238,3 @@ def create_sankey(
     ```
   </Tab>
 </Tabs>
-
-

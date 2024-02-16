@@ -27,6 +27,10 @@
   },
   "tabs": [
     {
+      "name": "Get Started",
+      "url": "get-started"
+    },
+    {
       "name": "Query App",
       "url": "query-app"
     },
@@ -43,7 +47,11 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "learning-resources"]
+      "pages": [
+        "introduction",
+        "quickstart",
+        "learning-resources"
+      ]
     },
     {
       "group": "Jump right in",
@@ -64,7 +72,7 @@
       ]
     },
     {
-      "group": "", 
+      "group": "",
       "pages": ["query-app/query-app"]
     },
     {
@@ -152,148 +160,8 @@
     },
     {
       "group": "Data Tables",
-      "pages": [
-        "data-tables/bring-your-own-data",
-        {
-          "group": "Top Tables",
-          "pages": [
-            "data-tables/spellbook/top-tables/dex.trades",
-            "data-tables/spellbook/top-tables/labels",
-            "data-tables/spellbook/top-tables/nft.trades",
-            "data-tables/spellbook/top-tables/prices",
-            "data-tables/spellbook/top-tables/tokens"
-          ]
-        },
-        {
-          "group": "Decoded Tables",
-          "pages": [
-            {
-              "group": "EVM",
-              "pages": [
-                "data-tables/decoded/evm/call-tables",
-                "data-tables/decoded/evm/event-logs"
-              ]
-            },
-            {
-              "group": "Solana",
-              "pages": ["data-tables/decoded/solana/idl-tables"]
-            }
-          ]
-        },
-        {
-          "group": "Raw Tables",
-          "pages": [
-            {
-              "group": "EVM",
-              "pages": [
-                "data-tables/raw/evm/blocks",
-                "data-tables/raw/evm/event-logs",
-                "data-tables/raw/evm/traces",
-                "data-tables/raw/evm/transactions",
-                "data-tables/raw/evm/withdrawals"
-              ]
-            },
-            {
-              "group": "Solana",
-              "pages": [
-                "data-tables/raw/solana/account-activity",
-                "data-tables/raw/solana/blocks",
-                "data-tables/raw/solana/instruction-calls",
-                "data-tables/raw/solana/rewards",
-                "data-tables/raw/solana/transactions",
-                "data-tables/raw/solana/vote-transactions"
-              ]
-            },
-            {
-              "group": "Bitcoin",
-              "pages": [
-                "data-tables/raw/bitcoin/blocks",
-                "data-tables/raw/bitcoin/inputs",
-                "data-tables/raw/bitcoin/outputs",
-                "data-tables/raw/bitcoin/transactions"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "Community Tables",
-          "pages": [
-            {
-              "group": "Flashbots",
-              "pages": [
-                "data-tables/community/flashbots/arbitrages",
-                "data-tables/community/flashbots/liquidations",
-                "data-tables/community/flashbots/mev_summary",
-                "data-tables/community/flashbots/sandwiched-swaps",
-                "data-tables/community/flashbots/sandwiches"
-              ]
-            },
-            {
-              "group": "Neynar",
-              "pages": [
-                {
-                  "group": "Farcaster",
-                  "pages": [
-                    "data-tables/community/neynar/farcaster/casts",
-                    "data-tables/community/neynar/farcaster/fids",
-                    "data-tables/community/neynar/farcaster/fnames",
-                    "data-tables/community/neynar/farcaster/links",
-                    "data-tables/community/neynar/farcaster/profile_with_addresses",
-                    "data-tables/community/neynar/farcaster/reactions",
-                    "data-tables/community/neynar/farcaster/signers",
-                    "data-tables/community/neynar/farcaster/storage",
-                    "data-tables/community/neynar/farcaster/user_data",
-                    "data-tables/community/neynar/farcaster/verifications"
-                  ]
-                }
-              ]
-            },
-            {
-              "group": "Reservoir",
-              "pages": [
-                "data-tables/community/reservoir/ask-events",
-                "data-tables/community/reservoir/asks",
-                "data-tables/community/reservoir/attribute-keys",
-                "data-tables/community/reservoir/attributes",
-                "data-tables/community/reservoir/bid-events",
-                "data-tables/community/reservoir/bids",
-                "data-tables/community/reservoir/collection-floor-ask-events",
-                "data-tables/community/reservoir/collection-top-bid-events",
-                "data-tables/community/reservoir/collections",
-                "data-tables/community/reservoir/sales",
-                "data-tables/community/reservoir/token-attributes",
-                "data-tables/community/reservoir/token-floor-ask-events",
-                "data-tables/community/reservoir/tokens"
-              ]
-            },
-            "data-tables/bring-your-own-data"
-          ]
-        }
-      ]
+      "pages": ["data-tables/under-construction"]
     },
-
-    {
-      "group": "Contributing to Spellbook",
-      "pages": [
-        "spellbook/1-do-some-prerequisites and-set-up-Spellbook-dbt",
-        "spellbook/2-set-up-your-file-structure-for-SQL-schema-and-source-files",
-        "spellbook/3-identify-and-define-sources",
-        "spellbook/4-define-expectations-with-schema-and-tests",
-        "spellbook/5-write-your-spell-as-SELECT-statement",
-        "spellbook/6-configure-alias-and-materialization-strategy",
-        "spellbook/7-make-a-pull-request-get-merged-become-an-archwizard",
-        {
-          "group": "Example Spell Models",
-          "pages": [
-            "spellbook/Example Spell Models/reformatted",
-            "spellbook/Example Spell Models/daily-aggregation",
-            "spellbook/Example Spell Models/rolling-sum",
-            "spellbook/Example Spell Models/final-day-balance"
-          ]
-        }
-      ]
-    },
-
     {
       "group": "API Documentation",
       "pages": [
@@ -355,9 +223,11 @@
     "raiseIssue": true
   },
   "footerSocials": {
-    "twitter": "https://twitter.com/duneanalytics",
+    "linkedin": "https://www.linkedin.com/company/duneanalytics",
     "github": "https://github.com/duneanalytics",
-    "linkedin": "https://www.linkedin.com/company/duneanalytics"
+    "twitter": "https://twitter.com/duneanalytics",
+    "discord": "https://discord.gg/ErrzwBz",
+    "telegram": "https://t.me/dune_updates"
   },
   "analytics": {
     "ga4": {
