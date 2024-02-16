@@ -55,7 +55,7 @@ Data available:
 
   Summary of MEV found by mev-inspect-py.
 
-  [→ MEV Summary](mev_summary.md)
+  [→ MEV Summary](/data-tables/community/flashbots/mev_summary)
 
 </div>
 

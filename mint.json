@@ -126,7 +126,6 @@
             "query-app/query-engine/Functions-and-operators/datetime",
             "query-app/query-engine/Functions-and-operators/decimal",
             "query-app/query-engine/Functions-and-operators/hyperloglog",
-            "query-app/query-engine/Functions-and-operators/json",
             "query-app/query-engine/Functions-and-operators/lambda",
             "query-app/query-engine/Functions-and-operators/list-by-topic",
             "query-app/query-engine/Functions-and-operators/list",
@@ -158,6 +157,7 @@
     {
       "group": "Data Tables",
       "pages": [
+        "data-tables/bring-your-own-data",
         {
           "group": "Top Tables",
           "pages": [
