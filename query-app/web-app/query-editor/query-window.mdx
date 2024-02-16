@@ -1,0 +1,127 @@
+---
+title: Writing Queries
+description: The query editor allows you to query blockchain data using DuneSQL.
+---
+
+The Query Editor is where you construct your queries. You'll probably spend most of your time here.
+
+![Query editor](query-app/web-app/query-editor/images/query-window/query-window.png)
+
+This section of the documentation describes the UI features of the query editor.
+
+To learn more about our query engine, check out the [query-engine](query-app/query-engine/index.mdx) section of the documentation.
+
+
+
+## Query editor
+
+The Query editor is pretty straightforward. It's a text editor where you can write SQL code.
+
+The editor has a few features that make your life easier:
+
+- [Autocomplete](#autocomplete)
+- [Run selection](#run-selection)
+- [Explain Query](#explain-query)
+
+
+## Autocomplete
+
+The autocomplete feature will bring up DuneSQL keywords, as well as tables and aliases you've already included in your Query.
+You can always bring up the autocomplete menu by pressing `ctrl/cmd + space`.
+
+Turn it on/off in the settings.
+
+### Run selection
+
+To save yourself time while testing and debugging your Queries, you can run just a part of your Query.
+
+To do this, highlight a part of your Query. You'll then see the Run button turn into a Run selection button.
+
+<div
+  style={{
+    position: "relative",
+    paddingBottom: "calc(67.66666666666666% + 41px)",
+    height: 0
+  }}
+>
+  <iframe
+    src="https://demo.arcade.software/Jb2fyuNXBUSLAcMyAOsH?embed"
+    frameBorder={0}
+    loading="lazy"
+    webkitallowfullscreen=""
+    mozallowfullscreen=""
+    allowFullScreen=""
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      colorScheme: "light"
+    }}
+    title="Dune"
+  />
+</div>
+
+### Explain Query
+
+The explain query feature utilizes ChatGPT4 to explain your query in plain English. It's a great way to get a quick overview of what your query does.
+
+Simply click the explain query button to see a GPT4 generated explanation of the query.
+
+![Explain query](/query-app/web-app/query-editor/images/query-window/explain-query.jpeg)
+
+
+### Shortcuts
+
+Here are a handful of shortcuts to make crafting Queries easier:
+
+| Shortcut      | Action                         |
+| ------------- | ------------------------------ |
+| ctrl + enter  | execute the Query              |
+| ctrl + # or / | comments out the selected code |
+| ctrl + space  | brings up a list of keywords   |
+| crtl + z      | undoes your last changes       |
+| ctrl + y      | redoes your last changes       |
+| ctrl + f      | search for keywords            |
+| ctrl + h      | search and replace keywords    |
+
+_These shortcuts work on US/UK Keyboards and might vary based on the language setting on your device._
+
+## Query results
+
+The Query results are displayed in a table below the Query editor.
+
+You can sort the results by clicking on the column headers. Click once to sort ascending, click again to sort descending.
+Results are paginated, so you can click through the pages to see more results. Each page shows 25 results.
+
+You can full text search the results by using the search bar below the results table.
+
+You can format the results according to the rules laid out in the [tables section](query-app/web-app/visualizations/tables) of the documentation.
+
+<div
+  style={{
+    position: "relative",
+    paddingBottom: "calc(50.67708333333333% + 41px)",
+    height: 0
+  }}
+>
+  <iframe
+    src="https://demo.arcade.software/FrOeNaAh5HBsESAvGUGm?embed"
+    frameBorder={0}
+    loading="lazy"
+    webkitallowfullscreen=""
+    mozallowfullscreen=""
+    allowFullScreen=""
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      colorScheme: "light"
+    }}
+    title="Net flow of stake ETH last 7 days"
+  />
+</div>
+

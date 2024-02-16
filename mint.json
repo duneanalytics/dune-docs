@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "API Documentation",
+  "name": "Dune Docs",
   "logo": {
     "dark": "/logo/dune-logo-dark.png",
     "light": "/logo/dune-logo-light.png"
@@ -22,36 +22,144 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Query Crypto Data",
+    "name": "Start building",
     "url": "https://dune.com"
   },
+  "primaryTab": {
+    "name": "Get Started"
+},
   "tabs": [
+    {
+      "name": "Query App",
+      "url": "query-app"
+    },
+    {
+      "name": "Data Tables",
+      "url": "data-tables"
+    },
     {
       "name": "API Reference",
       "url": "api-reference"
     }
   ],
-  "anchors": [
-    {
-      "name": "App Docs",
-      "icon": "book-open-cover",
-      "url": "https://dune.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://discord.gg/bvJbugxq3Q"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://community.dune.com"
-    }
-  ],
+
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction"]
+      "pages": [
+        "introduction",
+        "quickstart",
+        "learning-resources"
+      ]
+    },
+    {
+      "group": "Jump right in",
+      "pages": [
+        "learning/how-tos/create-your-first-query",
+        "learning/how-tos/create-ai-assisted-queries",
+        "learning/how-tos/create-new-content",
+        "learning/how-tos/create-your-first-visualization",
+        "learning/how-tos/navigate-query-editor",
+        "learning/how-tos/find-datasets",
+        "learning/how-tos/export-data-out",
+        "learning/how-tos/create-and-manage-teams",
+        "learning/how-tos/credit-system-on-dune",
+        "learning/how-tos/search-for-content",
+        "learning/how-tos/share-dune-content",
+        "learning/how-tos/share-your-query",
+        "learning/how-tos/transfer-ownership"
+      ]
+    },
+    {
+      "group": "",
+      "pages": ["query-app/query-app"]
+    },
+    {
+      "group": "Web App",
+      "pages": [
+        "query-app/web-app/overview",
+        {
+          "group": "Create Queries",
+          "pages": [
+            "query-app/web-app/query-editor/query-window",
+            "query-app/web-app/query-editor/data-explorer",
+            "query-app/web-app/query-editor/parameters",
+            "query-app/web-app/query-editor/query-scheduler",
+            "query-app/web-app/query-editor/version-history"
+          ]
+        },
+        {
+          "group": "Create Visualizations",
+          "pages": [
+            "query-app/web-app/visualizations/charts-graphs",
+            "query-app/web-app/visualizations/counters",
+            "query-app/web-app/visualizations/tables"
+          ]
+        },
+        "query-app/web-app/dashboards",
+        "query-app/web-app/decoding-contracts",
+        "query-app/web-app/teams",
+        "query-app/web-app/dune-ai",
+        "query-app/web-app/upload-data",
+        "query-app/web-app/embeds",
+        "query-app/web-app/search",
+        "query-app/web-app/alerts"
+      ]
+    },
+
+    {
+      "group": "Query Engine",
+      "pages": [
+        "query-app/query-engine/overview",
+        "query-app/query-engine/query-executions",
+
+        {
+          "group": "Functions and Operators",
+          "pages": [
+            "query-app/query-engine/Functions-and-operators/index",
+            "query-app/query-engine/Functions-and-operators/aggregate",
+            "query-app/query-engine/Functions-and-operators/array",
+            "query-app/query-engine/Functions-and-operators/base58",
+            "query-app/query-engine/Functions-and-operators/binary",
+            "query-app/query-engine/Functions-and-operators/bitwise",
+            "query-app/query-engine/Functions-and-operators/chain-utility-functions",
+            "query-app/query-engine/Functions-and-operators/comparison",
+            "query-app/query-engine/Functions-and-operators/conditional",
+            "query-app/query-engine/Functions-and-operators/conversion",
+            "query-app/query-engine/Functions-and-operators/datetime",
+            "query-app/query-engine/Functions-and-operators/decimal",
+            "query-app/query-engine/Functions-and-operators/hyperloglog",
+            "query-app/query-engine/Functions-and-operators/lambda",
+            "query-app/query-engine/Functions-and-operators/list-by-topic",
+            "query-app/query-engine/Functions-and-operators/list",
+            "query-app/query-engine/Functions-and-operators/logical",
+            "query-app/query-engine/Functions-and-operators/map",
+            "query-app/query-engine/Functions-and-operators/math",
+            "query-app/query-engine/Functions-and-operators/ml",
+            "query-app/query-engine/Functions-and-operators/qdigest",
+            "query-app/query-engine/Functions-and-operators/regexp",
+            "query-app/query-engine/Functions-and-operators/setdigest",
+            "query-app/query-engine/Functions-and-operators/string",
+            "query-app/query-engine/Functions-and-operators/system",
+            "query-app/query-engine/Functions-and-operators/tdigest",
+            "query-app/query-engine/Functions-and-operators/teradata",
+            "query-app/query-engine/Functions-and-operators/url",
+            "query-app/query-engine/Functions-and-operators/uuid",
+            "query-app/query-engine/Functions-and-operators/varbinary",
+            "query-app/query-engine/Functions-and-operators/varchar-utility-functions",
+            "query-app/query-engine/Functions-and-operators/window"
+          ]
+        },
+        "query-app/query-engine/datatypes",
+        "query-app/query-engine/reserved-keywords",
+        "query-app/query-engine/writing-efficient-queries",
+        "query-app/query-engine/query-a-query",
+        "query-app/query-engine/materialized-views"
+      ]
+    },
+    {
+      "group": "Data Tables",
+      "pages": ["data-tables/under-construction"]
     },
     {
       "group": "API Documentation",
@@ -115,9 +223,12 @@
     "raiseIssue": true
   },
   "footerSocials": {
-    "twitter": "https://twitter.com/duneanalytics",
+    "linkedin": "https://www.linkedin.com/company/duneanalytics",
     "github": "https://github.com/duneanalytics",
-    "linkedin": "https://www.linkedin.com/company/duneanalytics"
+    "twitter": "https://twitter.com/duneanalytics",
+    "discord": "https://discord.gg/ErrzwBz",
+    "telegram": "https://t.me/dune_updates",
+    "youtube": "https://www.youtube.com/@dunecom"
   },
   "analytics": {
     "ga4": {
