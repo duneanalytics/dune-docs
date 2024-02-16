@@ -9,9 +9,12 @@ Returns the latest execution id and results (in JSON) of that latest run, regard
 
 The query specified must either be public or a query you have ownership of (you or a team you belong to have ownership).
 
-<Note> This endpoint does NOT trigger execution but does [consume credits through datapoints](https://dune.com/pricing). </Note>
+<Tip> This endpoint does NOT trigger an execution but does [consume credits through datapoints](https://dune.com/pricing). </Tip>
 
-<Info> There is currently a 1GB limit in how much data a single API result call can return, but there is a chance we reduce this overall or based on varying paid plan types. </Info>
+<Info> 
+- Dune internally has a maximum query result size limit (which currently is 8GB, but subject to increase in the future). If your query yields more than 8GB of data, the result will be truncated in storage. In such cases, pulling the result data (using pagination) but without specifying `allow_partial_results` set to true will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". If you wish to retrieve partial results, you can pass the parameter `allow_partial_results=true`. But please make sure you indeed want to fetch the truncated result.
+- We recommend reading about [Pagination](../../overview/pagination) to get the most out of the API and handle large results.
+</Info>
 
 <Accordion title="Execute query and get result in one call">
   <Tip> If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38), you can directly executes and fetches result in one function call, like below: </Tip>

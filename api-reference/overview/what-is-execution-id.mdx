@@ -8,7 +8,8 @@ Unlike a query ID, which identifies a specific query, an execution ID represents
 
 With an execution ID, you can monitor the execution's status using the [check status](../query-api//endpoint/get-execution-status) endpoint. The status can be one of the following: pending, success, or failure.
 
-If an execution is successful, you can also retrieve its latest result (provided it hasn't expired).
+If an execution is successful, you can get the result using [get result](../query-api/endpoint/get-execution-result). Results are saved and can be retrieved multiple times.
+Results data from an execution are stored with an expiration date of 90 days (subject to change). This is visible on the API response on the “expires_at” field in the execution status and results json body (not on the CSV endpoint).
 
 <Tip>
     Consider saving your execution ID in some cases to retrieve the result later without initiating a new execution.

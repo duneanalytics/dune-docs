@@ -1,0 +1,424 @@
+---
+title: Pagination
+---
+All API endpoints to read query results, including [get execution results](../query-api/endpoint/get-execution-result), [get execution results csv](../query-api/endpoint/get-execution-result-csv), [get query results](../query-api/endpoint/get-query-result), [get query results csv](../query-api/endpoint/get-query-result-csv), support pagination for efficient data retrieval. Pagination divides large datasets into smaller, manageable chunks, preventing overload and ensuring smooth performance. This allows users to navigate through the data easily, avoiding limit errors and streamlining their data fetching experience.
+
+To paginate through results:
+1. Specify the `limit` parameter to determine the number of results you want to retrieve.
+2. Use the `offset` parameter to indicate the starting offset point for retrieving results, default value is 0 for the first row.
+3. If you are fetching JSON response, check for the fields `next_offset` and `next_uri` in the response body to fetch the next page, if available. If you are fetching CSV response, check the response headers for `X-Dune-Next-Offset` and `X-Dune-Next-Uri` to fetch the next page, if available. Always follow the provided offset or uri, the server is allowed to override the provided limit if it is too large (see section on Data Returned Limit)
+
+
+### Pagination Parameters
+
+**`limit`** (Required)
+- Type: Integer
+- Description: Limits the number of rows returned per request.
+
+**`offset`**
+- Type: Integer
+- Description: Specifies the starting point (inclusive) from which to return results.
+- **Default:** 0 (i.e., the first row)
+- **Usage:** Together with `limit`, enables incremental and efficient pagination.
+
+<Accordion title="Example paginated request">
+    <Tabs>
+        <Tab title="cURL">
+        ```bash
+        curl -X GET 'https://api.dune.com/api/v1/query/3426636/results?limit=1000' -H 'x-dune-api-key: {{api_key}}'
+        ```
+        </Tab>
+
+        <Tab title="Python SDK">
+        ```python Python SDK
+
+            # coming soon
+
+        ```
+        </Tab>
+
+        <Tab title="Python">
+        ```python
+        import requests
+
+        url = "https://api.dune.com/api/v1/query/{query_id}/results"
+
+        headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+        params = {"limit": 1000, "offset": 0}  # Define limit and offset parameters
+
+        response = requests.request("GET", url, headers=headers, params=params)
+
+        print(response.text)
+
+        ```
+        </Tab>
+
+        <Tab title="Javascript">
+        ```javascript
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-DUNE-API-KEY': '<x-dune-api-key>'
+            }
+        };
+
+        const queryParams = new URLSearchParams({limit: 1000, offset: 0});  // Define limit and offset parameters
+        const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+
+
+        ```
+
+        ```go Go
+
+        package main
+
+        import (
+            "fmt"
+            "net/http"
+            "io/ioutil"
+            "net/url"
+        )
+
+        func main() {
+            url := "https://api.dune.com/api/v1/query/{query_id}/results"
+
+            // Create query parameters
+            params := url.Values{}
+            params.Set("limit", "1000")
+
+            // Add parameters to URL
+            fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
+
+            req, _ := http.NewRequest("GET", fullURL, nil)
+
+            req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+            res, _ := http.DefaultClient.Do(req)
+
+            defer res.Body.Close()
+            body, _ := ioutil.ReadAll(res.Body)
+
+            fmt.Println(res)
+            fmt.Println(string(body))
+        }
+        ```
+        </Tab>
+
+        <Tab title="PHP">
+        ```php
+        <?php
+
+        $curl = curl_init();
+
+        $url = "https://api.dune.com/api/v1/query/{query_id}/results";
+        $queryParams = http_build_query([
+            'limit' => 1000,
+            'offset' => 0
+        ]);
+        $url .= '?' . $queryParams;
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "X-DUNE-API-KEY: <x-dune-api-key>"
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
+        ?>
+        ```
+        </Tab>
+
+        <Tab title="Java">
+        ```java
+
+        import kong.unirest.HttpResponse;
+        import kong.unirest.Unirest;
+
+        public class Main {
+            public static void main(String[] args) {
+                HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
+                        .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+                        .queryString("limit", 5)
+                        .queryString("offset", 0)
+                        .asString();
+
+                System.out.println(response.getBody());
+            }
+        }
+        ```
+        </Tab>
+    </Tabs>
+</Accordion>
+
+### Pagination in Response
+
+The following fields in the repsonse body are related to pagination and can be utilized when doing paginated get results request. If they are available, you can use them to paginate the next page. If they are not available, that means there are no more results to be fetched.
+
+<Tabs>
+    <Tab title="JSON response endpoints">
+        **`next_offset`**
+        - Type: Integer
+        - Description: Provides the offset to use for retrieving the next page of results, if available.
+
+        **`next_uri`**
+        - Type: String (URL)
+        - Description: Specifies the complete URI to retrieve the next page of results, if available.
+    </Tab>
+    <Tab title="CSV response endpoints">
+        **`x-dune-next-offset`**
+        - Type: Integer
+        - Description: Provides the offset to use for retrieving the next page of results, if available.
+
+        **`x-dune-next-uri`**
+        - Type: String (URL)
+        - Description: Specifies the complete URI to retrieve the next page of results, if available.
+    </Tab>
+</Tabs>
+
+<Note>
+If you pass in an invalid `offset` parameter value, you will get an empty result set. For example, if there are only 25 rows of result data, and you pass in `offset=30`, you will **not** receive an error, but rather an empty result with metadata like this. Note the response field `result.total_row_count`, indicating this result has only 25 rows.
+<Accordion title="Example empty response">
+    ```json
+        {
+            "execution_id": "01HPF1299EV69Z08DBKW1B6MJR",
+            "query_id": 2616430,
+            "is_execution_finished": true,
+            "state": "QUERY_STATE_COMPLETED",
+            "submitted_at": "2024-02-12T16:05:40.270193Z",
+            "expires_at": "2024-05-12T16:05:40.654018Z",
+            "execution_started_at": "2024-02-12T16:05:40.312207906Z",
+            "execution_ended_at": "2024-02-12T16:05:40.654017085Z",
+            "result": {
+                "rows": [],
+                "metadata": {
+                "column_names": [
+                    "foo"
+                ],
+                "row_count": 0,
+                "result_set_bytes": 0,
+                "total_row_count": 25,
+                "total_result_set_bytes": 28,
+                "datapoint_count": 0,
+                "pending_time_millis": 42,
+                "execution_time_millis": 341
+                }
+            }
+        }
+    ```
+</Accordion>
+</Note>
+
+
+<Accordion title="Example paginated response">
+    ```json
+        {
+            "execution_id": "01HPFJ7VSFXPTA8WPMDKBXE167",
+            "query_id": 3426636,
+            "is_execution_finished": true,
+            "state": "QUERY_STATE_COMPLETED",
+            "submitted_at": "2024-02-12T21:05:48.848069Z",
+            "expires_at": "2024-05-12T21:05:50.199443Z",
+            "execution_started_at": "2024-02-12T21:05:48.863094766Z",
+            "execution_ended_at": "2024-02-12T21:05:50.199442351Z",
+            "result": {
+                "rows": [
+                    {
+                        "amount_usd": null,
+                        "block_date": "2021-06-07 00:00:00.000 UTC",
+                        "block_month": "2021-06-01T00:00:00Z",
+                        "block_time": "2021-06-07 13:21:10.000 UTC",
+                        "blockchain": "bnb",
+                        "evt_index": 432,
+                        "maker": null,
+                        "project": "pancakeswap",
+                        "project_contract_address": "0xa41e57459f09a126f358e118b693789d088ea8a0",
+                        "taker": "0x88bf5a2e82510847e5dcbf33f44a9f611f1c1df5",
+                        "token_bought_address": "0x85e76cbf4893c1fbcb34dcf1239a91ce2a4cf5a7",
+                        "token_bought_amount": 2985.646787349244,
+                        "token_bought_amount_raw": "2985646787349243786078",
+                        "token_bought_symbol": "USDG",
+                        "token_pair": "GMT-USDG",
+                        "token_sold_address": "0x99e92123eb77bc8f999316f622e5222498438784",
+                        "token_sold_amount": 192.8996462242313,
+                        "token_sold_amount_raw": "192899646224231304314",
+                        "token_sold_symbol": "GMT",
+                        "tx_from": "0x88bf5a2e82510847e5dcbf33f44a9f611f1c1df5",
+                        "tx_hash": "0xcee1e51083f28655fd9cc434238e2a243aa8f9bad20e717d145f246b5e73e231",
+                        "tx_to": "0x10ed43c718714eb63d5aa57b78b54704e256024e"
+                    },
+                    {
+                        "amount_usd": 0.0038254393551350966,
+                        "block_date": "2021-06-27 00:00:00.000 UTC",
+                        "block_month": "2021-06-01T00:00:00Z",
+                        "block_time": "2021-06-27 19:21:48.000 UTC",
+                        "blockchain": "bnb",
+                        "evt_index": 38,
+                        "maker": null,
+                        "project": "pancakeswap",
+                        "project_contract_address": "0x73c6542f8a529bf7bf0ac27a1d232a8525748738",
+                        "taker": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+                        "token_bought_address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+                        "token_bought_amount": 0.00001404037053195,
+                        "token_bought_amount_raw": "14040370531950",
+                        "token_bought_symbol": "WBNB",
+                        "token_pair": null,
+                        "token_sold_address": "0x3da1fd918a4c56b1cf6280ba37018c211db0d943",
+                        "token_sold_amount": null,
+                        "token_sold_amount_raw": "23274980840704048977780",
+                        "token_sold_symbol": null,
+                        "tx_from": "0xc0ffee00d263df1ecb44ece29f63a1e7479b7420",
+                        "tx_hash": "0xa37ab410b4802e4d4aab950d1c3ce186abf4dbc98f7d7dbc54af17cf23519444",
+                        "tx_to": "0x17f07d78e432b91ccfbed98f0617a83a4bfcc446"
+                    },
+                    {
+                        "amount_usd": 229.4023072060263,
+                        "block_date": "2021-06-29 00:00:00.000 UTC",
+                        "block_month": "2021-06-01T00:00:00Z",
+                        "block_time": "2021-06-29 23:23:56.000 UTC",
+                        "blockchain": "bnb",
+                        "evt_index": 51,
+                        "maker": null,
+                        "project": "pancakeswap",
+                        "project_contract_address": "0x58f876857a02d6762e0101bb5c46a8c1ed44dc16",
+                        "taker": "0xd7d116d7535aa724f8be9c482d2c768bc425a23c",
+                        "token_bought_address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+                        "token_bought_amount": 229.23954712756574,
+                        "token_bought_amount_raw": "229239547127565734569",
+                        "token_bought_symbol": "BUSD",
+                        "token_pair": "BUSD-WBNB",
+                        "token_sold_address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+                        "token_sold_amount": 0.761872346852129,
+                        "token_sold_amount_raw": "761872346852129018",
+                        "token_sold_symbol": "WBNB",
+                        "tx_from": "0xd7d116d7535aa724f8be9c482d2c768bc425a23c",
+                        "tx_hash": "0x21429506dd0323b9ec40f4cf9314e58579aa25620bf95130f3a275a356ecd64c",
+                        "tx_to": "0x10ed43c718714eb63d5aa57b78b54704e256024e"
+                    },
+                    {
+                        "amount_usd": 2.668233112736453,
+                        "block_date": "2021-06-04 00:00:00.000 UTC",
+                        "block_month": "2021-06-01T00:00:00Z",
+                        "block_time": "2021-06-04 00:11:44.000 UTC",
+                        "blockchain": "bnb",
+                        "evt_index": 384,
+                        "maker": null,
+                        "project": "pancakeswap",
+                        "project_contract_address": "0x16b9a82891338f9ba80e2d6970fdda79d1eb0dae",
+                        "taker": "0x452c012e55f7a27d3c25caf15fddfc5d63004cd5",
+                        "token_bought_address": "0x55d398326f99059ff775485246999027b3197955",
+                        "token_bought_amount": 2.662657507914879,
+                        "token_bought_amount_raw": "2662657507914878729",
+                        "token_bought_symbol": "USDT",
+                        "token_pair": "USDT-WBNB",
+                        "token_sold_address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+                        "token_sold_amount": 0.00632140891710662,
+                        "token_sold_amount_raw": "6321408917106620",
+                        "token_sold_symbol": "WBNB",
+                        "tx_from": "0x452c012e55f7a27d3c25caf15fddfc5d63004cd5",
+                        "tx_hash": "0x540ae87272f0fcce54595e7c2b67b9ef32cf2d0b5ccfa23c73a21727ae3350ba",
+                        "tx_to": "0x10ed43c718714eb63d5aa57b78b54704e256024e"
+                    },
+                    {
+                        "amount_usd": 46.95293131078031,
+                        "block_date": "2021-06-25 00:00:00.000 UTC",
+                        "block_month": "2021-06-01T00:00:00Z",
+                        "block_time": "2021-06-25 18:24:20.000 UTC",
+                        "blockchain": "bnb",
+                        "evt_index": 105,
+                        "maker": null,
+                        "project": "pancakeswap",
+                        "project_contract_address": "0x446f87f15d9a9f15b39d1b24d1d6d7e606e9d32d",
+                        "taker": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+                        "token_bought_address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+                        "token_bought_amount": 0.16652337675833562,
+                        "token_bought_amount_raw": "166523376758335622",
+                        "token_bought_symbol": "WBNB",
+                        "token_pair": null,
+                        "token_sold_address": "0x384f5a9b720349015a27251684c7a1510dd151ba",
+                        "token_sold_amount": null,
+                        "token_sold_amount_raw": "299011495590365081887",
+                        "token_sold_symbol": null,
+                        "tx_from": "0x60e028a06d04ecfd041ba415c3b8a63258a6506e",
+                        "tx_hash": "0xf5e24e5024ff047210127c87cd12b475354ff84afc4bebc159066f9522daac73",
+                        "tx_to": "0x10ed43c718714eb63d5aa57b78b54704e256024e"
+                    }
+                ],
+                "metadata": {
+                    "column_names": [
+                        "amount_usd",
+                        "block_date",
+                        "token_bought_symbol",
+                        "token_pair",
+                        "block_time",
+                        "blockchain",
+                        "evt_index",
+                        "block_month",
+                        "maker",
+                        "project",
+                        "project_contract_address",
+                        "taker",
+                        "token_bought_address",
+                        "token_bought_amount",
+                        "token_bought_amount_raw",
+                        "token_sold_address",
+                        "token_sold_amount",
+                        "token_sold_amount_raw",
+                        "token_sold_symbol",
+                        "tx_from",
+                        "tx_hash",
+                        "tx_to"
+                    ],
+                    "row_count": 5,
+                    "result_set_bytes": 0,
+                    "total_row_count": 10,
+                    "total_result_set_bytes": 5639,
+                    "datapoint_count": 110,
+                    "pending_time_millis": 15,
+                    "execution_time_millis": 1336
+                }
+            },
+            "next_uri": "https://api.dune.com/api/v1/execution/01HPFJ7VSFXPTA8WPMDKBXE167/results?limit=1000&offset=5",
+            "next_offset": 5
+        }
+    ```
+</Accordion>
+
+<Tip>
+**Data Returned Limit**
+
+When using pagination, our intention is to use sizes that work well on mobile, with lower data and ram consumption. For this, and to avoid more work on the developer, when the client specifies a very large limit value (for example 500000 rows), instead of returning an error, the server will override this limit to a lower, safer value (for example 30000 rows) and *will always provide* the correct next `offset` and `limit` value to use on the next paginated requests. The exact maximum limit value is subject to change.
+
+
+**Data Size Limit**
+
+Dune internally has a maximum query result size limit (which currently is 8GB, but subject to increase in the future). If your query yields more than 8GB of data, the result will be truncated in storage. In such cases, pulling the result data (using pagination) but without specifying `allow_partial_results` set to true will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". If you wish to retrieve partial results, you can pass the parameter `allow_partial_results=true`. But please make sure you indeed want to fetch the truncated result.
+
+So what? Related to pagination, this means that
+- For query results under 8GB, use the API as normal.
+- When your query results exceed 8GB, in addition to `limit` and `offset` parameters in order to read the partial result (the first 8GB of data), set `allow_partial_results=true`
+- You can use the [Get Status API](https://dune.mintlify.app/api-reference/query-api/endpoint/get-execution-status) to check the size of your result, `result.result_set_size`
+
+</Tip>

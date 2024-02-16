@@ -23,8 +23,17 @@
             "schema": {
               "type": "string"
             },
-            "description": "API Key for accessing this service",
+            "description": "API Key for the service",
             "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
           }
         ],
         "requestBody": {

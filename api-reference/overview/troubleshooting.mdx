@@ -26,24 +26,6 @@ For specific error code information, please refer to each of the endpoint itself
 ```
 You did not input a valid API key. You can go generate a new key and make sure you save it in a safe place and paste the key over.
 
-#### Result too large 
-```json
-{
-  "execution_id": "01HMF87Y5WW6NQ7VQ35Z691JER",
-  "query_id": 3362169,
-  "state": "QUERY_STATE_FAILED",
-  "submitted_at": "2024-01-18T21:39:41.885699Z",
-  "expires_at": "2024-04-17T21:40:15.146884Z",
-  "execution_started_at": "2024-01-18T21:39:41.905154Z",
-  "execution_ended_at": "2024-01-18T21:40:15.146883Z",
-  "error": {
-    "type": "FAILED_TYPE_RESULT_SIZE_EXCEEDED",
-    "message": "Result is too large and was truncated to 1.0GiB. Set allow_partial_results=true query parameter to get the partial result."
-  }
-}
-```
-The result for the query exceeds the 1GB limit. If you'd like to get partial, truncated result, please set `allow_partial_results` to true. 
-
 
 #### Permission error
 ```json
