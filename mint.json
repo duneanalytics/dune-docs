@@ -25,6 +25,9 @@
     "name": "Start building",
     "url": "https://dune.com"
   },
+  "primaryTab": {
+    "name": "Get Started"
+},
   "tabs": [
     {
       "name": "Query App",
