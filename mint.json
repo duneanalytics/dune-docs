@@ -27,10 +27,6 @@
   },
   "tabs": [
     {
-      "name": "Get Started",
-      "url": "get-started"
-    },
-    {
       "name": "Query App",
       "url": "query-app"
     },
@@ -100,7 +96,7 @@
         "query-app/web-app/dashboards",
         "query-app/web-app/decoding-contracts",
         "query-app/web-app/teams",
-        "query-app/web-app/wand-llm",
+        "query-app/web-app/dune-ai",
         "query-app/web-app/upload-data",
         "query-app/web-app/embeds",
         "query-app/web-app/search",
