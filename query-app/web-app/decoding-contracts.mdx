@@ -140,8 +140,7 @@ When submitting Proxy-patterned contracts to Dune, you should input the Proxy co
 
     If we did monitor the implementation contract's address directly, we would miss out on any event logs in its logic since these are actually fired by the caller (the Proxy in this case) when calling a function through `DelegateCall`.
 
-    !!! warning
-     When submitting Proxy-patterned contracts to Dune, you should input the Proxy contract's address and, if you have it, the Implementation contract's ABI. If the Proxy has a new implementation upgraded that you wish to decode, use the same project name + contract name and select <b>'NO'</b> for several instances!
+    <Warning> When submitting Proxy-patterned contracts to Dune, you should input the Proxy contract's address and, if you have it, the Implementation contract's ABI. If the Proxy has a new implementation upgraded that you wish to decode, use the same project name + contract name and select <b>'NO'</b> for several instances! </Warning>
 
     ![new proxy implementation submission](/query-app/web-app/images/decoding-contracts/5.png)
 

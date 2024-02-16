@@ -102,30 +102,25 @@ Select * from dex.trades
 where token in (Select token from unnest(split('{{token_list_parameter}}',',')) as c(token))
 ```
 
-!!!info "multiple values"
+If you want to allow multiple values, you need to adjust your query for this. Use the `unnest` and `split` functions to turn the columns into useable values.
+By default, the values will be inserted into the query as individual columns.
+**Example**:   
+A list of 3 selected values in a parameter called `example_parameter_name` will be inserted into the query like this:
+```sql
+Select {{example_parameter_name}} 
 
-    If you want to allow multiple values, you need to adjust your query for this. Use the `unnest` and `split` functions to turn the columns into useable values.
-    By default, the values will be inserted into the query as individual columns.
-
-    **Example**:   
-    A list of 3 selected values in a parameter called `example_parameter_name` will be inserted into the query like this:
-    ```sql
-    Select {{example_parameter_name}} 
-    /* returns 
-    | column1   | column2   | column3   |
-    | --------- | --------- | --------- |
-    | WETH-USDC | WBTC-USDC | DAI-USDC  |
-    */
-    ``` 
-
-    Most of the time, you'll want to use the values in a `where in` clause. To do this, you need to use the `unnest` and `split` functions to turn the columns into useable values.
-
-    For example:
-
-    ``` sql
-    Select * from dex.trades
-    where token_pair in (Select pair from unnest(split('{{example_parameter_name}}',',')) as c(pair))
-    ```
+/* returns 
+| column1   | column2   | column3   |
+| --------- | --------- | --------- |
+| WETH-USDC | WBTC-USDC | DAI-USDC  |
+*/
+``` 
+Most of the time, you'll want to use the values in a `where in` clause. To do this, you need to use the `unnest` and `split` functions to turn the columns into useable values.
+For example:
+```sql
+Select * from dex.trades
+where token_pair in (Select pair from unnest(split('{{example_parameter_name}}',',')) as c(pair))
+```
 
 #### Manual list
 
