@@ -2,8 +2,6 @@
 title: Withdrawals
 description: The withdrawal table stores information about withdrawals made on the Ethereum beacon chain, including the block time, block number, index, validator index, amount, address, withdrawals root, and block hash.
 ---
-<Warning>This table is only relevant of Ethereum mainnet and does not exist for other EVM chains on Dune.</Warning>
-
 
 <Note>Dune does not have beacon chain data yet. This table introduces the action of withdrawing from the beacon chain only.  </Note>
 
@@ -26,36 +24,20 @@ The Query is manually maintained and therefore may not always be up to date, but
 
 Using this query, we can for example take a look at how the exodus of Kraken's ETH staking pools from the beacon chain is going:
 
-<video
-  controls
-  className="w-full aspect-video"
-  src="https://dune.com/embeds/2370313/3886141"
-></video>
+<div>
+  <iframe 
+  src={`https://dune.com/embeds/2370313/3886141`}
+  style={{ width: '100%', height: '500px', border: 'none', marginTop: '10px' }}
+  ></iframe>
+</div>
 
 
 We hope to integrate beacon chain data in the future, which will streamline the process of connecting deposits and withdrawals, and eliminate the need for the aforementioned workaround.
 
 
-## Column Data
+import {TableEmbeds} from '/snippets/data-table-embeds.mdx';
 
-### Example
-
-<video
-  controls
-  className="w-full aspect-video"
-  src="https://dune.com/embeds/2363408/3873540"
-></video>
-
-
-### Description
-
-| Column Name       | Datatype | Description                                                             |
-|-------------------|----------|-------------------------------------------------------------------------|
-| block_time        | timestamp | The time the block was created                                          |
-| block_number      | bigint    | The number of the block in the blockchain                               |
-| index             | bigint    | a monotonically increasing index, starting from 0, as a value that increments by 1 per withdrawal to uniquely identify each withdrawal|
-| validator_index   | bigint    | the validator_index of the validator, as a uint64 value, on the consensus layer the withdrawal corresponds to|
-| amount            | bigint    | a nonzero amount of ether given in Gwei (1e9 wei)                        |
-| address           | varbinary | a recipient for the withdrawn ether. Note that depositor and recipient address are not necessarily the same|
-| withdrawals_root  | varbinary | the 32 byte root of the trie committing to the list of withdrawals provided in a given execution payload|
-| block_hash        | varbinary | The hash of the block                                                    |
+<TableEmbeds 
+  tableSchema="ethereum" 
+  tableName="transactions" 
+/>
