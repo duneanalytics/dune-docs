@@ -27,7 +27,7 @@
   },
   "primaryTab": {
     "name": "Get Started"
-},
+  },
   "tabs": [
     {
       "name": "Query App",
@@ -45,12 +45,8 @@
 
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "learning-resources"
-      ]
+      "group": "",
+      "pages": ["home", "quickstart", "learning-resources"]
     },
     {
       "group": "Jump right in",
@@ -158,8 +154,32 @@
       ]
     },
     {
-      "group": "Data Tables",
+      "group": "",
       "pages": ["data-tables/under-construction"]
+    },
+    {
+      "group": "EVM",
+      "pages": [
+        {
+          "group": "Ethereum Mainnet",
+          "pages": [
+            "data-tables/evm/ethereum/transactions",
+            "data-tables/evm/ethereum/logs",
+            "data-tables/evm/ethereum/traces",
+            "data-tables/evm/ethereum/blocks",
+            "data-tables/evm/ethereum/withdrawals",
+            "data-tables/evm/ethereum/logs-decoded",
+            "data-tables/evm/ethereum/traces-decoded"
+          ]
+        },
+        {
+          "group": "Celo",
+          "pages": [
+            "data-tables/evm/celo/transactions",
+            "data-tables/evm/celo/logs"
+          ]
+        }
+      ]
     },
     {
       "group": "API Documentation",
