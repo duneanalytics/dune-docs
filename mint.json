@@ -163,13 +163,55 @@
         {
           "group": "Ethereum Mainnet",
           "pages": [
-            "data-tables/evm/ethereum/transactions",
-            "data-tables/evm/ethereum/logs",
-            "data-tables/evm/ethereum/traces",
-            "data-tables/evm/ethereum/blocks",
-            "data-tables/evm/ethereum/withdrawals",
-            "data-tables/evm/ethereum/logs-decoded",
-            "data-tables/evm/ethereum/traces-decoded"
+            {
+              "group": "Raw",
+              "pages": [
+                "data-tables/evm/ethereum/raw/transactions",
+                "data-tables/evm/ethereum/raw/logs",
+                "data-tables/evm/ethereum/raw/traces",
+                "data-tables/evm/ethereum/raw/creation-traces",
+                "data-tables/evm/ethereum/raw/blocks",
+                "data-tables/evm/ethereum/raw/withdrawals"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-tables/evm/ethereum/decoded/call-tables",
+                "data-tables/evm/ethereum/decoded/event-logs",
+                "data-tables/evm/ethereum/decoded/logs-decoded",
+                "data-tables/evm/ethereum/decoded/traces-decoded",
+                "data-tables/evm/ethereum/decoded/contracts"
+              ]
+            },
+            {
+              "group": "Assets",
+              "pages": [
+                "data-tables/evm/ethereum/assets/balances",
+                {
+                  "group": "Transfers",
+                  "pages": [
+                    "data-tables/evm/ethereum/assets/transfers/erc20-transfers",
+                    "data-tables/evm/ethereum/assets/transfers/erc721-transfers",
+                    "data-tables/evm/ethereum/assets/transfers/erc1155-transfers"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "DEX",
+              "pages": [
+                "data-tables/evm/ethereum/DEX/dex-trades",
+                "data-tables/evm/ethereum/DEX/dex-aggregator-trades"
+              ]
+            },
+            {
+              "group": "NFT",
+              "pages": [
+                "data-tables/evm/ethereum/decoded/call-tables",
+                "data-tables/evm/ethereum/decoded/event-logs"
+              ]
+            }
           ]
         },
         {

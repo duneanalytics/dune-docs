@@ -1,6 +1,7 @@
 ---
-title: Withdrawals
-description: The withdrawal table stores information about withdrawals made on the Ethereum beacon chain, including the block time, block number, index, validator index, amount, address, withdrawals root, and block hash.
+title: ethereum.withdrawals
+sidebarTitle: "Withdrawals"
+description: Description of the ethereum.withdrawals table on Dune
 ---
 
 <Note>Dune does not have beacon chain data yet. This table introduces the action of withdrawing from the beacon chain only.  </Note>
@@ -12,7 +13,7 @@ The [Ethereum Improvement Proposal (EIP) 4895](https://eips.ethereum.org/EIPS/ei
 
  Using this table you can observe beacon chain withdrawals.
 
-### How to work with this table
+## How to work with this table
 
 In order to connect deposits and withdrawals, we must identify the ``validator_index`` of unique depositors. Since Dune doesn't have beacon chain data yet, we have to rely on a workaround using a query to obtain a list of valid and active deposits from the Ethereum deposit contract.
 
@@ -22,22 +23,42 @@ The Query is manually maintained and therefore may not always be up to date, but
 
 [LINK TO QUERY](https://dune.com/queries/2364548)  
 
-Using this query, we can for example take a look at how the exodus of Kraken's ETH staking pools from the beacon chain is going:
 
-<div>
-  <iframe 
-  src={`https://dune.com/embeds/2370313/3886141`}
-  style={{ width: '100%', height: '500px', border: 'none', marginTop: '10px' }}
-  ></iframe>
-</div>
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="ethereum" tableName="withdrawals" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="ethereum" tableName="withdrawals" />
 
 
-We hope to integrate beacon chain data in the future, which will streamline the process of connecting deposits and withdrawals, and eliminate the need for the aforementioned workaround.
+## Examples
 
+### Withdrawals per day
 
-import {TableEmbeds} from '/snippets/data-table-embeds.mdx';
+```sql
+select
+date_trunc('day', block_time) as dt,
+sum(AMOUNT)/1e9 as withdraw_amount
+from ethereum.withdrawals
+group by 1
+``` 
 
-<TableEmbeds 
-  tableSchema="ethereum" 
-  tableName="transactions" 
-/>
+### Dashboards
+
+https://dune.com/hildobby/eth2-staking
+
+https://dune.com/hashed_official/staking-as-a-service
+
+- [ETH Staking Dashboard](https://dune.com/hildobby/eth2-staking) - This dashboard provides an overview of the Ethereum 2.0 staking ecosystem. It includes data on the number of validators, the total amount of staked ETH, and the number of deposits and withdrawals.
+- [Staking as a Service](https://dune.com/hashed_official/staking-as-a-service) - This dashboard provides a comprehensive overview of the staking-as-a-service ecosystem. It includes data on the number of validators, the total amount of staked ETH, and the number of deposits and withdrawals.
+
+## References
+
+- [Ethereum Improvement Proposal EIP 4895](https://eips.ethereum.org/EIPS/eip-4895)
+- [Ethereum 2.0 Deposit Contract](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
