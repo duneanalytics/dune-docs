@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Dune Docs",
   "logo": {
-    "dark": "/logo/dune-logo-dark.png",
-    "light": "/logo/dune-logo-light.png"
+    "light": "/logo/dune-logo-light.png",
+    "dark": "/logo/dune-logo-dark.png"
   },
   "favicon": "/dune.png",
   "colors": {
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "group": "EVM",
+      "group": "EVM Chains",
       "pages": [
         "data-tables/evm/overview",
         {
