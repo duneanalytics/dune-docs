@@ -167,10 +167,7 @@
         "api-reference/overview/introduction",
         "api-reference/overview/authentication",
         "api-reference/overview/sdks",
-        "api-reference/overview/query-parameters",
-        "api-reference/overview/what-is-execution-id",
         "api-reference/overview/rate-limits",
-        "api-reference/overview/pagination",
         "api-reference/overview/troubleshooting",
         "api-reference/overview/billing",
         "api-reference/overview/faq"
@@ -179,42 +176,44 @@
     {
       "group": "API Quickstart",
       "pages": [
-        "api-reference/quickstart/query-eg",
-        "api-reference/quickstart/upload-eg",
-        "api-reference/quickstart/crud-eg"
+        "api-reference/quickstart/results-eg",
+        "api-reference/quickstart/tables-eg",
+        "api-reference/quickstart/queries-eg"
       ]
     },
     {
-      "group": "Data Upload",
-      "pages": ["api-reference/upload/endpoint/upload"]
+      "group": "Tables",
+      "pages": ["api-reference/tables/endpoint/upload"]
     },
     {
       "group": "Webhooks",
       "pages": ["api-reference/webhooks/webhook"]
     },
     {
-      "group": "Query Execution and Results",
+      "group": "Executions and Results",
       "pages": [
-        "api-reference/query-api/endpoint/query-overview",
-        "api-reference/query-api/endpoint/execute-query",
-        "api-reference/query-api/endpoint/cancel-execution",
-        "api-reference/query-api/endpoint/get-execution-status",
-        "api-reference/query-api/endpoint/get-execution-result",
-        "api-reference/query-api/endpoint/get-execution-result-csv",
-        "api-reference/query-api/endpoint/get-query-result",
-        "api-reference/query-api/endpoint/get-query-result-csv"
+        "api-reference/executions/endpoint/execution-object",
+        "api-reference/executions/endpoint/pagination",
+        "api-reference/executions/endpoint/execute-query",
+        "api-reference/executions/endpoint/cancel-execution",
+        "api-reference/executions/endpoint/get-execution-status",
+        "api-reference/executions/endpoint/get-execution-result",
+        "api-reference/executions/endpoint/get-execution-result-csv",
+        "api-reference/executions/endpoint/get-query-result",
+        "api-reference/executions/endpoint/get-query-result-csv"
       ]
     },
     {
-      "group": "CRUD",
+      "group": "Queries",
       "pages": [
-        "api-reference/crud/endpoint/create",
-        "api-reference/crud/endpoint/read",
-        "api-reference/crud/endpoint/update",
-        "api-reference/crud/endpoint/archive",
-        "api-reference/crud/endpoint/unarchive",
-        "api-reference/crud/endpoint/private",
-        "api-reference/crud/endpoint/unprivate"
+        "api-reference/queries/endpoint/query-object",
+        "api-reference/queries/endpoint/create",
+        "api-reference/queries/endpoint/read",
+        "api-reference/queries/endpoint/update",
+        "api-reference/queries/endpoint/archive",
+        "api-reference/queries/endpoint/unarchive",
+        "api-reference/queries/endpoint/private",
+        "api-reference/queries/endpoint/unprivate"
       ]
     }
   ],
