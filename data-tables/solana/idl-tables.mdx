@@ -1,11 +1,12 @@
 ---
-title: IDL Decoded Tables
-description: Table Schemas
+title: Solana Decoded Tables
+sidebarTitle: "IDL Decoded Tables"
+description: Decoded tables for Solana programs
 ---
 
 <Note>
 
-**Submissions**
+**IDL Submissions**
 
 You can submit any program for decoding that has a public IDL or github repo (anchor and native are both supported) like [this one](https://solscan.io/account/JUP4Fb2cqiRUcaTHdrPC8h2gNsA2ETXiPDD33WcGuJB#anchorProgramIDL). You can submit to [this form](https://forms.gle/tbHZ6ZeEke5qwVjcA).
 </Note>
@@ -22,11 +23,15 @@ You can see that the instruction data is decoded in "Bumps", "TickSpacing", and 
 
 The main thing to note is that we've exploded outer and inner instructions, where the index will match what you see on explorers. This example call is at the outer instruction level, so the inner instruction index is null. For Whirlpool swaps, often times it will happen in inner_instructions so then the top level outer instruction is inherited into the `call_outer_instruction_index` and the inner index is `call_inner_instruction_index` (same idea with the `call_outer_executing_account` and `call_inner_executing_acount`)
 
-<video
-  controls
-  className="w-full aspect-video"
-  src="https://dune.com/embeds/2352049/3851391"
-></video>
+<div>
+  <iframe
+    src="https://dune.com/embeds/2352049/3851391"
+    width="100%"
+    height="300px"
+    frameBorder="0"
+    scrolling="no"
+  ></iframe>
+</div>
 
 Try it out for yourself in [this query](https://dune.com/embeds/2352049/3851391) below:
 
@@ -35,4 +40,7 @@ SELECT * FROM whirlpool_solana.whirlpool_call_initializePool
 WHERE call_tx_id = 'TGDKvM2E8mWYcsG2JBnb9axFcyEcKqs7yZLyayCmrV8p8SSdA8r9SLEC7EHQ4mcXQXpczEyaCBXvnmEi9yoKVJ9'
 ```
 
-The table name follows the pattern `<namespace>_solana.<programName>_call_<instructionName>`. We already have many of the top projects decoded, so go play around!
+The table name follows the pattern:   
+ `<namespace>_solana.<programName>_call_<instructionName>`
+
+We already have many of the top projects decoded, so go play around!

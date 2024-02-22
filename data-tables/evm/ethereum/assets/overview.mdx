@@ -1,0 +1,37 @@
+---
+title: Assets
+sidebarTitle: Overview
+description: Exploring the landscape of digital assets on the blockchain.
+---
+
+The EVM has become a popular platform for creating and managing digital assets. These assets are often represented as tokens, which can be traded, transferred, or owned by users. There are three popular smart contract standards for creating tokens on Ethereum:
+
+- [ERC20](https://eips.ethereum.org/EIPS/eip-20) 
+- [ERC721](https://eips.ethereum.org/EIPS/eip-721)
+- [ERC1155](https://eips.ethereum.org/EIPS/eip-1155)
+
+ERC20 tokens are fungible, meaning that each token is identical to every other token. ERC721 tokens are non-fungible, meaning that each token is unique. ERC1155 tokens are a hybrid of the two, allowing for both fungible and non-fungible tokens to be created.
+
+Additionally, there is also the native asset of the EVM, Ether, which is used to pay for transaction fees and as a store of value.
+
+## Tracking Assets
+
+In tracking these assets, we are mostly interested in **"where are they now?"** and **"how did they get there?"**. In a more practical sense, that translates to tracking their ownership and their transfer history. On Dune, we track these assets by looking at the events emitted by the smart contracts that manage them. For example, the `Transfer` event is emitted by the ERC20, ERC721, and ERC1155 standards when a token is transferred from one address to another. By tracking these events, we can create a history of the ownership and transfer of these assets.
+To keep track of the balances, we also look at the `balanceOf` function, which returns the balance of a particular address for a given token and store that data in our database.
+
+<CardGroup cols={2}>
+  <Card
+    title="Balances"
+    text="Balances are still under construction. Check back soon!"
+    icon="triangle-person-digging"
+    iconType="duotone"
+    href="/data-tables/evm/ethereum/assets/balances"
+  ></Card>
+  <Card
+    title="Transfers"
+    icon="layer-group"
+    iconType="duotone"
+    href="/data-tables/evm/ethereum/assets/transfers"
+  ></Card>
+</CardGroup>
+

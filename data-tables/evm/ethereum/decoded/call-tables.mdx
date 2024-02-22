@@ -3,32 +3,50 @@ title: Call Tables
 description: On Dune, we parse all message calls and transactions made to smart contracts in their own tables.
 ---
 
-Smart contracts generally have functions that are able to be called by either an externally owned account(EOA) or other smart contracts. Functions can be anything from a simple state read and return to changing multiple states and invoking message calls to other smart contracts.
+## Overview
 
-On Dune, we parse all message calls and transactions made to smart contracts in their own tables. The tables are then accordingly named:
+On Dune, we parse all message calls and transactions made to smart contracts in their own tables. This allows us to isolate the logic of a specific smart contract and analyze how it interacts with other smart contracts.
 
-`[projectname_blockchain].contractName_call_functionName`
-  
-  
+The data is stored in the format:
 
-This is either done on an individual contract level like for the uniswap v3 factory, or a class of contracts like the uniswap v3 pairs.
+`[projectname_blockchain].[contractName]_call_[functionName]`
 
-For example, when a uniswap v3 pool gets created via the [uniswap v3 factory](https://etherscan.io/address/0x1f98431c8ad98523631ae4a59f267346ea31f984#code) (on Ethereum) function `createPool`, Dune will record that transaction in the table:
+This allows us to analyze how a specific function is used in a smart contract, and how often it is called, as well as how it interacts with other smart contracts.
 
-  
-`uniswap_v3_ethereum.Factory_call_createPool`    
+Call tables always originate from the `traces` table, which contains all the transactions and message calls on the Ethereum network. We parse the `data` field of the `traces` table to decode the function call and parameters.
 
 
+## Decoding
 
-This will happen whether this was done by an externally owned account (EOA) through a transaction or a smart contract by the means of a message call.
+When a transaction is sent to a smart contract on the Ethereum network, it contains a `data` field. This `data` field is the encoded function call and parameters. Dune decodes this data and stores it in the corresponding table.
+
+For example, when a transaction is sent to the [Uniswap v3 factory](https://etherscan.io/address/0x1f98431c8ad98523631ae4a59f267346ea31f984#code) contract on the Ethereum network, Dune will decode the `data` field and store it in the table:
+
+`uniswap_v3_ethereum.Factory_call_createPool`
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3456944/5809273/"
+    width="100%"
+    height="300px"
+    frameBorder="0"
+    scrolling="no"
+  ></iframe>
+</div>
 
 ## Multiple Instances
 
-For a contract where multiple instances exist, we will decode all calls to all instances of this smart contract into one table. If there is a transaction calling the `swap` function of any instance of a [Uniswap v3 pair](https://etherscan.io/address/0x8f8ef111b67c04eb1641f5ff19ee54cda062f163#writeContract) contract, we will collect this data in the table:
+For a contract where multiple instances exist, we will decode all calls to all instances of this smart contract into one table. If there are transactions calling the `swap` function of any instance of the [Uniswap v3 pair](https://etherscan.io/address/0x8f8ef111b67c04eb1641f5ff19ee54cda062f163#writeContract) contract, we will decode this data into the table `uniswap_v3_ethereum.Pair_call_swap`. The `pair` contract is a template contract and there are many instances of it, each with its own address. The column `contract_address` will indicate the address of the instance of the pair contract that was called.
 
-
-`uniswap_v3_ethereum.Pair_call_swap`
-
+<div>
+  <iframe
+    src="https://dune.com/embeds/3456960/5809303/"
+    width="100%"
+    height="300px"
+    frameBorder="0"
+    scrolling="no"
+  ></iframe>
+</div>
 
 ## Common misconceptions
 

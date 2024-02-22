@@ -1,30 +1,24 @@
 ---
-title: Transactions
+title: bitcoin.transactions
+sidebarTitle: "Transactions"
+description: Description of the bitcoin.transactions table on Dune
 ---
 
-## `bitcoin.transactions`
+## Table description
 
-|Column name        |Type  |Description                                                                                                                              |
-|-------------------|------|-----------------------------------------------------------------------------------------------------------------------------------------|
-|block_time         |timestamp|The block time                                                                                                                           |
-|block_date         |date  |The block date                                                                                                                           |
-|block_height       |bigint|The block number                                                                                                                         |
-|block_hash         |string|The hash of the block that contains this transaction                                                                                     |
-|index              |int   |The number of the transaction in the block.                                                                                              |
-|id                 |string|The id (hash) of this transaction                                                                                                        |
-|input_value        |double|Total value of inputs in the transaction                                                                                                 |
-|output_value       |double|Total value of outputs in the transaction                                                                                                |
-|fee                |double|The transaction fee paid to the miner. = output_value - input_value                                                                      |
-|input_count        |int   |The number of inputs in the transaction                                                                                                  |
-|output_count       |int   |The number of outputs in the transaction                                                                                                 |
-|size               |bigint|The size of this transaction in bytes                                                                                                    |
-|virtual_size       |bigint|The virtual transaction size (differs from size for witness transactions)                                                                |
-|is_coinbase        |boolean|The transaction is a coinbase transaction, which is the first transaction in a block                                                     |
-|coinbase           |string|If the transaction is a coinbase transaction, contains the coinbase data. Otherwise, null.                                               |
-|input              |struct|Transaction inputs                                                                                                                       |
-|output             |struct|Transaction outputs. See outputs table.                                                                                                  |
-|lock_time          |bigint|Earliest time that miners can include the transaction in their hashing of the Merkle root to attach it in the latest block of the blockchain|
-|hex                |string|The transaction encoded as hexadecimal                                                                                                   |
+This table represents the transactions on the Bitcoin blockchain. A transaction is a transfer of Bitcoin value that is broadcast to the network and collected into blocks. A transaction typically references previous transaction outputs as new transaction inputs and dedicates all input Bitcoin values to new outputs. Transactions are not encrypted, so it is possible to browse and view every transaction ever collected into a block.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="bitcoin" tableName="transactions" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="bitcoin" tableName="transactions" />
 
 ### Struct definitions
 

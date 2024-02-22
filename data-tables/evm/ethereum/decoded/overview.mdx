@@ -19,18 +19,6 @@ Dune's decoded data approach offers several benefits:
 
 <CardGroup cols={2}>
   <Card
-    title="Submit any contract for decoding"
-    icon="file-import"
-    iconType="duotone"
-    href="/query-app/web-app/decoding-contracts"
-  ></Card>
-  <Card
-    title="Explore already decoded contracts"
-    icon="database"
-    iconType="duotone"
-    href="/data-tables/evm/ethereum/decoded/contracts"
-  ></Card>
-  <Card
     title="Explore decoded logs"
     icon="circle-bolt"
     iconType="duotone"
@@ -51,6 +39,21 @@ Contract submission on Dune are driven by the community. Usually the odds are go
 You can check if contracts are already decoded by querying [`[blockchain].contracts`](/data-tables/evm/ethereum/decoded/contracts) tables, the [data explorer](query-app/web-app/query-editor/data-explorer) or use [this dashboard](https://dune.com/dune/is-my-contract-decoded-yet-v2).
 
 If you want to submit several contracts at the same time, there is also the possibility of submitting a batch of contracts. To do so, please use [this CSV](https://gist.github.com/antonio-mendes/c6a43c22862581674c11462cae230e23) as a template and fill it in with the appropriate information for the contracts you want to decode. Afterwards send the CSV to decoding@dune.com.
+
+<CardGroup cols={2}>
+  <Card
+    title="Submit any contract for decoding"
+    icon="file-import"
+    iconType="duotone"
+    href="/query-app/web-app/decoding-contracts"
+  ></Card>
+  <Card
+    title="Explore already decoded contracts"
+    icon="database"
+    iconType="duotone"
+    href="/data-tables/evm/ethereum/decoded/contracts"
+  ></Card>
+</CardGroup>
 
 ## How does decoding work?
 
@@ -77,9 +80,9 @@ On [Etherscan](https://etherscan.io/tx/0x2bb7c8283b782355875fa37d05e4bd962519ea2
 If we query for this transaction in the `ethereum.logs` table in the Dune database, we will receive the same encoded bytecode as our result dataset.
 
 ```sql
-    Select *
-from ethereum.logs
-where tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5
+SELECT *
+FROM ethereum.logs
+WHERE tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5
 ```
 
 <div>
@@ -87,16 +90,15 @@ where tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761b
     src="https://dune.com/embeds/3455255/5806543/"
     width="100%"
     height="200px"
-    frameborder="0"
+    frameBorder="0"
     scrolling="no"
   ></iframe>
 </div>
 
-We could make short work of this encoded bytecode by using DuneSQL Varbinary functions to decode it, but having the contract's ABI at hand makes this process much easier. This contract is decoded in Dune, so we can use the `pickle_finance_ethereum.PickleToken_evt_Transfer` table to access the decoded event log.
+We could make short work of this encoded bytecode by using [DuneSQL Varbinary functions](/query-engine/Functions-and-operators/varbinary) to decode it, but having the contract's ABI at hand makes this process much easier. This contract is decoded in Dune, so we can use the `pickle_finance_ethereum.PickleToken_evt_Transfer` table to access the decoded event log.
 
 ```sql
-SELECT
-    *
+SELECT *
 FROM pickle_finance_ethereum.PickleToken_evt_Transfer
 WHERE evt_tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5
 ```
