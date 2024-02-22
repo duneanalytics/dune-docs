@@ -1,0 +1,55 @@
+---
+title: Query Engine
+sidebarTitle: "Overview"
+description: Dune utilizes a fork of TrinoSQL to power DuneSQL. DuneSQL is a custom built query engine that is optimized for blockchain data.   
+---
+
+## DuneSQL Features
+
+DuneSQL offers several useful features for working with blockchain data:
+
+1. **[Blockchain varbinary data types](/query-engine/datatypes.mdx#varbinary)**: Designed for storing addresses, hashes, and other encoded data.
+2. **[Native support for uint256 and int256 data types](/query-engine/datatypes#UINT256)**: Ideal for handling large numbers commonly found in blockchain data, with built-in functions for ease of use.
+3. **[Columnar storage format](/query-engine/writing-efficient-queries)** Optimized for fast reads, this format organizes data in columns rather than rows, enabling quick access to single columns for aggregation or filtering.
+4. **[Querying a query](/query-engine/query-a-query)**: DuneSQL allows you to query a query, which is great for creating reusable queries, building up complex queries, and reusing queries as views.
+
+
+
+## Using DuneSQL
+
+DuneSQL is our query engine for blockchain data. It is a fork of TrinoSQL, which is an open-source, distributed SQL query engine for running interactive analytic queries against data sources of all sizes ranging from gigabytes to petabytes.
+
+We maintain extensive documentation for DuneSQL Here you will be able to find:
+
+<CardGroup cols={3}>
+  <Card title="Functions and Operators" icon="screwdriver-wrench" iconType="duotone" href="/query-engine/Functions-and-operators/">
+    A reference guide to DuneSQL functions and operators.
+  </Card>
+  <Card title="Data Types" icon="clipboard-list" iconType="duotone" href="/query-engine/datatypes">
+    A reference guide to DuneSQL data types.
+  </Card>
+  <Card title="Reserved Keywords" icon="book-open" iconType="duotone" href="/query-engine/reserved-keywords">
+    A list of reserved keywords in DuneSQL.
+  </Card>
+  <Card title="Writing Efficient Queries" icon="rocket" iconType="duotone" href="/query-engine/writing-efficient-queries">
+    An efficient query-writing process requires knowledge of how DuneSQL and data storage works.
+  </Card>
+  <Card title="Querying a Query" icon="circle-nodes" iconType="duotone" href="/query-engine/query-a-query">
+    DuneSQL allows you to query a query, which is great for creating reusable queries, building up complex queries, and reusing queries as views.
+  </Card>
+  <Card title="Materialized Views" icon="database" iconType="duotone" href="/query-engine/materialized-views">
+    Learn how to create and use materialized views in DuneSQL for improved query performance.
+  </Card>
+</CardGroup>
+
+
+### Resources and Support
+
+For assistance with DuneSQL, consider the following resources:
+
+- Google search for TrinoSQL-related queries
+- Talk to your favorite AI assistant about TrinoSQL-related questions
+- [the official Trino docs - Functions and Operators](https://trino.io/docs/current/functions.html)
+
+
+

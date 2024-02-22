@@ -4,7 +4,7 @@ title; Datatypes
 
 DuneSQL has a set of built-in data types, described below.
 
-Implicit Conversion and Casting to other datatypes is described in [the conversion function documentation](/query-app/query-engine/Functions-and-operators/conversion).
+Implicit Conversion and Casting to other datatypes is described in [the conversion function documentation](/query-engine/Functions-and-operators/conversion).
 
 ## Boolean
 
@@ -119,7 +119,7 @@ SQL statements support usage of binary data with the prefix `0x`. The
 binary data has to use hexadecimal format. For example, the binary form
 of `eh?` is `X'65683F'`.
 
-We have built custom functions to make it easier to work with varbinaries in DuneSQL. Check the [varbinary functions](/query-app/query-engine/Functions-and-operators/varbinary) page for more information.
+We have built custom functions to make it easier to work with varbinaries in DuneSQL. Check the [varbinary functions](/query-engine/Functions-and-operators/varbinary) page for more information.
 
 ```sql
     Select * from ethereum.transactions where "from" = 0xc8ebccc5f5689fa8659d83713341e5ad19349448
@@ -132,7 +132,7 @@ number, a JSON string, `true`, `false` or `null`.
 
 ## Date and time
 
-See also [`date and time functions`](/query-app/query-engine/Functions-and-operators/datetime).
+See also [`date and time functions`](/query-engine/Functions-and-operators/datetime).
 
 ### `DATE`
 
