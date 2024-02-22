@@ -209,8 +209,7 @@
             {
               "group": "NFT",
               "pages": [
-                "data-tables/evm/ethereum/decoded/call-tables",
-                "data-tables/evm/ethereum/decoded/event-logs"
+                "data-tables/evm/ethereum/NFT/nft-trades"
               ]
             }
           ]
