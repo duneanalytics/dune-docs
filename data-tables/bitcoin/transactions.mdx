@@ -1,0 +1,83 @@
+---
+title: bitcoin.transactions
+sidebarTitle: "Transactions"
+description: Description of the bitcoin.transactions table on Dune
+---
+
+## Table description
+
+This table represents the transactions on the Bitcoin blockchain. A transaction is a transfer of Bitcoin value that is broadcast to the network and collected into blocks. A transaction typically references previous transaction outputs as new transaction inputs and dedicates all input Bitcoin values to new outputs. Transactions are not encrypted, so it is possible to browse and view every transaction ever collected into a block.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="bitcoin" tableName="transactions" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="bitcoin" tableName="transactions" />
+
+### Struct definitions
+
+Within several of these columns is a data type of STRUCT which allows for representing nested hierarchical data and has key-value pairs. It's similar to a dictionary in python and can be used to group fields together to make them more accessible.
+
+Note that you can work with these columns with the syntax `input[1].witness_data[2]` or `input[3].script_pub_key.address` depending on lengths of arrays within each value. It is an `array(row(map))` type, and while it looks like just an array in the returned table - it is more than that!
+
+**input**
+
+| Field   | Data type | Description  |
+|-------------------|------|-----------------------------------------------------------------------------------------------------------------------------------------|
+|value        |double|The number of Satoshis attached to this output                                                                                           |
+|height       |bigint|The height of the output                                                                                                                 |
+|tx_id        |string|The transaction id of the output that is here used as input                                                                              |
+|output_number|bigint|The number (index) of the output in transaction `tx_id`'s outputs                                                                        |
+|coinbase     |string|The data specified in this transaction, if it was a coinbase transaction                                                                 |
+|sequence     |bigint|Sequence number                                                                                                                          |
+|witness_data |`array<string>`|Array of hex encoded witness data                                                                                                        |
+|script_signature|struct|The script signature                                                                                                                     |
+|script_pub_key|struct|The script public key                                                                                                                    |
+
+***
+
+**input.script_signature**
+
+| Field   | Data type | Description  |
+|---------|-----------|--------------|
+|hex|string|The transaction's script operations, in hex                                                                                              |
+|asm|string|The transaction's script operations, in symbolic representation                                                                          |
+
+***
+
+**input.script_pub_key**
+
+| Field   | Data type | Description  |
+|---------|-----------|--------------|
+|asm|string|The transaction's script operations, in symbolic representation                                                                          |
+|desc|string|The transaction's script operations, in symbolic representation                                                                          |
+|address|string|The transaction's script operations, in symbolic representation                                                                          |
+|hex|string|The transaction's script operations, in hex                                                                                              |
+|type|string|The address type of the output                                                                                                           |
+
+***
+
+**output**
+
+| Field   | Data type | Description  |
+|-------------------|------|-----------------------------------------------------------------------------------------------------------------------------------------|
+|index       |bigint|0-indexed number of an output within a transaction used by a later transaction to refer to that specific output                          |
+|value       |double|The number of Satoshis attached to this output                                                                                           |
+|script_pub_key|struct|The public key                                                                                                                           |
+
+***
+
+**output.script_pub_key**
+
+| Field   | Data type | Description  |
+| ------- | --------- | -------------|
+|asm|string|The transaction's script operations, in symbolic representation                                                                          |
+|hex|string|The transaction's script operations, in hex                                                                                              |
+|address|string|The address the BTC came from                                                                                                            |
+|type|string|The address type of the output                                                                                                           |

@@ -1,0 +1,42 @@
+---
+title: Bitcoin data
+sidebarTitle: "Overview"
+icon: "star"
+description: Bitcoin is the first and most well known cryptocurrency.
+---
+
+<CardGroup cols={1}>
+  <Card
+    title="a full guide on all Bitcoin concepts"
+    icon= "map"
+    href="https://web3datadegens.substack.com/p/how-to-analyze-bitcoin-data-with"
+  ></Card>
+</CardGroup>
+
+Bitcoin uses a UTXO transaction model, and has a heavy focus on signatures and scripts for "locking" and "unlocking" tokens. They are also most well known for being tied to a 21 million token supply, and halvenings. 
+
+
+## Data Available
+
+<CardGroup cols={2}>
+  <Card
+    title="Blocks"
+    text="Blocks are the base unit that all transactions fit into."
+    href="/data-tables/bitcoin/blocks"
+  ></Card>
+  <Card
+    title="Transactions"
+    text="Transactions contain all spent inputs and created outputs from a UTXO transaction."
+    href="/data-tables/bitcoin/transactions"
+  ></Card>
+  <Card
+    title="Outputs"
+    text="Just the outputs, unnested."
+    href="/data-tables/bitcoin/outputs"
+  ></Card>
+  <Card
+    title="Inputs"
+    text="Just the inputs, unnested."
+    href="/data-tables/bitcoin/inputs"
+  ></Card>
+</CardGroup>

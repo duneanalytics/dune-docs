@@ -6,7 +6,17 @@ description: Instead of working with the logs and traces in their raw states, on
 ## Decoding Contracts
 **Dune's extensive catalog of decoded smart contracts are driven by our Wizards. Our decoding process empowers our community to submit the data and build the tables that they’d like to query on Dune!**
 
-But what does decoding mean? Blockchain transaction data starts as bytecode, a low level programming language that can be read by machines. Using the ABI (Application Binary Interface) that is personal to each contract, we translate that bytecode into query-able data tables.
+But what does decoding mean? Blockchain transaction data starts as bytecode, a low level programming language that can be read by machines. Using the ABI (Application Binary Interface) that is specific to each contract, we translate that bytecode into query-able data tables.
+
+<CardGroup cols={1}>
+  <Card
+    title="Explore decoded data"
+    icon="table"
+    iconType="duotone"
+    href="/data-tables/evm/ethereum/decoded/overview"
+  ></Card>
+  
+</CardGroup>
 
 ## A. The Lifecycle of Decoding
 
@@ -40,9 +50,9 @@ A factory contract is essentially a smart contract that creates other smart cont
 
 Other special smart contracts can be decoded as well, following these conventions: 
 
-Proxy contract: Submit using the proxy address but the ABI of the implementation
+**Proxy contract:** Submit using the proxy address but the ABI of the implementation
 
-Diamond proxy contracts: Submit all the facets using just the same name for the project and contract and upload all the relevant ABIs. This can be done with one ABI representing all facets or separate ABIs for each facet.
+**Diamond proxy contracts:** Submit all the facets using just the same name for the project and contract and upload all the relevant ABIs. This can be done with one ABI representing all facets or separate ABIs for each facet.
 
 <Note>
 **Where can I find this information?**
@@ -121,20 +131,7 @@ Then it's all ready for you to query. Let the data flow!
 
 </Accordion>
 <Accordion title="How do I submit a proxy contract?">
-In order to properly decode transactions for contracts that fit the Proxy pattern, Dune needs to map the Proxy contract's address with the implementation contract's ABI.
-
-We avoid monitoring the implementation contract's address because its logic is accessed in transactions via the DelegateCall function.
-
-If we did monitor the implementation contract's address directly, we would miss out on any event logs in its logic since these are actually fired by the caller (the Proxy in this case) when calling a function through DelegateCall.
-
-<Warning>
-
-When submitting Proxy-patterned contracts to Dune, you should input the Proxy contract's address and, if you have it, the Implementation contract's ABI. If the Proxy has a new implementation upgraded that you wish to decode, use the same project name + contract name and select 'NO' for several instances!
-</Warning>
-
-</Accordion>
-<Accordion title="Accordion">
-    In order to properly decode transactions for contracts that fit the [Proxy pattern](https://blog.openzeppelin.com/proxy-patterns/), Dune needs to map the Proxy contract's address with the implementation contract's ABI.
+In order to properly decode transactions for contracts that fit the [Proxy pattern](https://blog.openzeppelin.com/proxy-patterns/), Dune needs to map the Proxy contract's address with the implementation contract's ABI.
 
     We avoid monitoring the implementation contract's address because its logic is accessed in transactions via the [`DelegateCall` function](https://medium.com/coinmonks/delegatecall-calling-another-contract-function-in-solidity-b579f804178c).
 
@@ -147,6 +144,7 @@ When submitting Proxy-patterned contracts to Dune, you should input the Proxy co
     When you submit the Proxy contract's address, we'll attempt to fetch the proxy's contract name and the implementation address it's pointing towards to source the Implementation contract's ABI.
 
     If we can't find the Implementation contract's ABI, you'll need to find it using the relevant chain's blockchain explorer and input it manually.
+
 </Accordion>
 <Accordion title="How do I submit Diamond Proxy contracts?">
     Similar to vanilla Proxy contracts, [EIP-2535](https://eips.ethereum.org/EIPS/eip-2535) contracts can be supported by passing in the address of the Diamond Proxy as well as **a single ABI representing the totality of all the facets interfaces**.

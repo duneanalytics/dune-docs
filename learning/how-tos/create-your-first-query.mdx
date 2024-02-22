@@ -20,9 +20,9 @@ GROUP BY
 
 ## Choosing the Right Table
 
-1. **Determine Your Data Source**: Instead of delving into the intricate [raw blockchain tables](/data-tables/raw/) to fetch gas expenditures for your wallet, utilize the pre-built, analytics-ready [Spell table](/data-tables/spellbook/) named [`gas.fees`](https://github.com/duneanalytics/spellbook/tree/main/models/gas). This table facilitates an effortless aggregation of gas expenses across eight EVM chains specifically for your wallet.
+1. **Determine Your Data Source**: Instead of delving into the intricate raw blockchain tables to fetch gas expenditures for your wallet, utilize the pre-built, analytics-ready Spell table named [`gas.fees`](https://github.com/duneanalytics/spellbook/tree/main/models/gas). This table facilitates an effortless aggregation of gas expenses across eight EVM chains specifically for your wallet.
 
-2. **What's the Spellbook?** Think of Spellbook as a transformative layer that aggregates and standardizes blockchain data, both raw and decoded. With thousands of models both contributed by our active community and curated by the Dune team, it's an invaluable resource. For a deeper dive into Spellbook, [explore here](/data-tables/spellbook/).
+2. **What's the Spellbook?** Think of Spellbook as a transformative layer that aggregates and standardizes blockchain data, both raw and decoded. With thousands of models both contributed by our active community and curated by the Dune team, it's an invaluable resource. For a deeper dive into Spellbook, explore here.
 
 ```sql
 SELECT 
@@ -37,7 +37,7 @@ GROUP BY
 
 2. **Aggregation & Time Period**: Our goal is to get monthly gas spendings, so we need to truncate the `block_date` to month and applying the `SUM()` function, then group by each month go derive the results.
 
-_Sum of sum was applied to get the cumulatively gas spendings._
+*Sum of sum was applied to get the cumulatively gas spendings.*
 
 ```sql
 SELECT

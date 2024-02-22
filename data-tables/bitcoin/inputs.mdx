@@ -1,0 +1,24 @@
+---
+title: bitcoin.inputs
+sidebarTitle: "Inputs"
+description: Description of the bitcoin.inputs table on Dune
+---
+
+## Table description
+
+This table represents the inputs of a transaction. An input is a reference to an output of a previous transaction. It is the source of the funds for the transaction. The input contains the hash of the transaction that contains the output, the index of the output in the transaction, the script that unlocks the output, and the sequence number.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="bitcoin" tableName="inputs" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="bitcoin" tableName="inputs" />
+
+
+

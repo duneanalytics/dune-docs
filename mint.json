@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Dune Docs",
   "logo": {
-    "dark": "/logo/dune-logo-dark.png",
-    "light": "/logo/dune-logo-light.png"
+    "light": "/logo/dune-logo-light.png",
+    "dark": "/logo/dune-logo-dark.png"
   },
   "favicon": "/dune.png",
   "colors": {
@@ -27,7 +27,7 @@
   },
   "primaryTab": {
     "name": "Get Started"
-},
+  },
   "tabs": [
     {
       "name": "Web App",
@@ -50,11 +50,7 @@
   "navigation": [
     {
       "group": "",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "learning-resources"
-      ]
+      "pages": ["home", "quickstart", "learning-resources"]
     },
     {
       "group": "Jump right in",
@@ -158,8 +154,128 @@
       ]
     },
     {
-      "group": "Data Tables",
-      "pages": ["data-tables/under-construction"]
+      "group": "",
+      "pages": [
+        "data-tables/overview",
+        "data-tables/bring-your-own-data"
+      ]
+    },
+    {
+      "group": "EVM Chains",
+      "pages": [
+        "data-tables/evm/overview",
+        {
+          "group": "Raw",
+          "pages": [
+            "data-tables/evm/ethereum/raw/transactions",
+            "data-tables/evm/ethereum/raw/logs",
+            "data-tables/evm/ethereum/raw/traces",
+            "data-tables/evm/ethereum/raw/creation-traces",
+            "data-tables/evm/ethereum/raw/blocks",
+            "data-tables/evm/ethereum/raw/withdrawals"
+          ]
+        },
+        {
+          "group": "Decoded",
+          "pages": [
+            "data-tables/evm/ethereum/decoded/overview",
+            "data-tables/evm/ethereum/decoded/call-tables",
+            "data-tables/evm/ethereum/decoded/event-logs",
+            "data-tables/evm/ethereum/decoded/contracts",
+            "data-tables/evm/ethereum/decoded/logs-decoded",
+            "data-tables/evm/ethereum/decoded/traces-decoded"
+          ]
+        },
+        {
+          "group": "Assets",
+          "pages": [
+            "data-tables/evm/ethereum/assets/overview",
+            "data-tables/evm/ethereum/assets/balances",
+            {
+              "group": "Transfers",
+              "pages": [
+                "data-tables/evm/ethereum/assets/transfers/erc20-transfers",
+                "data-tables/evm/ethereum/assets/transfers/erc721-transfers",
+                "data-tables/evm/ethereum/assets/transfers/erc1155-transfers"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "DEX",
+          "pages": [
+            "data-tables/evm/ethereum/DEX/dex-trades",
+            "data-tables/evm/ethereum/DEX/dex-aggregator-trades"
+          ]
+        },
+        {
+          "group": "NFT",
+          "pages": ["data-tables/evm/ethereum/NFT/nft-trades"]
+        }
+      ]
+    },
+    {
+      "group": "Solana",
+      "pages": [
+        "data-tables/solana/overview",
+        "data-tables/solana/account-activity",
+        "data-tables/solana/blocks",
+        "data-tables/solana/idl-tables",
+        "data-tables/solana/instruction-calls",
+        "data-tables/solana/rewards",
+        "data-tables/solana/transactions",
+        "data-tables/solana/vote-transactions"
+      ]
+    },
+    {
+      "group": "Bitcoin",
+      "pages": [
+        "data-tables/bitcoin/overview",
+        "data-tables/bitcoin/inputs",
+        "data-tables/bitcoin/outputs",
+        "data-tables/bitcoin/blocks",
+        "data-tables/bitcoin/transactions"
+      ]
+    },
+    {
+      "group": "Community Data",
+      "pages": [
+        {
+          "group": "Farcaster",
+          "pages": [
+            "data-tables/community/farcaster/overview",
+            "data-tables/community/farcaster/casts",
+            "data-tables/community/farcaster/fids",
+            "data-tables/community/farcaster/fnames",
+            "data-tables/community/farcaster/links",
+            "data-tables/community/farcaster/profile_with_addresses",
+            "data-tables/community/farcaster/reactions",
+            "data-tables/community/farcaster/signers",
+            "data-tables/community/farcaster/storage",
+            "data-tables/community/farcaster/user_data",
+            "data-tables/community/farcaster/verifications"
+          ]
+        },
+        {
+          "group": "Reservoir",
+          "pages": [
+            "data-tables/community/reservoir/overview",
+            "data-tables/community/reservoir/ask-events",
+            "data-tables/community/reservoir/asks",
+            "data-tables/community/reservoir/attribute-keys",
+            "data-tables/community/reservoir/attributes",
+            "data-tables/community/reservoir/bid-events",
+            "data-tables/community/reservoir/bids",
+            "data-tables/community/reservoir/collection-floor-ask-events",
+            "data-tables/community/reservoir/collection-top-bid-events",
+            "data-tables/community/reservoir/collections",
+            "data-tables/community/reservoir/sales",
+            "data-tables/community/reservoir/token-attributes",
+            "data-tables/community/reservoir/token-floor-ask-events",
+            "data-tables/community/reservoir/tokens"
+          ]
+        }
+      ]
     },
     {
       "group": "API Documentation",
