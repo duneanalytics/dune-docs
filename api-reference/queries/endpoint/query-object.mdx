@@ -1,6 +1,20 @@
 ---
-title: 'Query Parameters'
+title: 'Queries and parameters'
 ---
+
+### Queries
+
+Queries all have a `query id` which is returned when you read/create a query. You can also find it within a url, i.e. `https://dune.com/queries/<query_id>/<visualization_id>`.
+
+Each query comes with fields you can edit such as:
+- `name`: query name text
+- `description`: query description text
+- `query_sql`: the raw sql text
+- `params`: parameters within the query, using the `{{ foo }}` syntax. See the section below for more details.
+- `is_private`: boolean for if query is private or not. Private queries cannot be found or queried by others.
+- `archived`: boolean for if query is archived or not. Archived queries cannot run or edited by anyone.
+
+### Query Parameters
 
 There are four kinds of parameters you can use in a Dune query (these are not API parameters). 
 
