@@ -30,8 +30,12 @@
 },
   "tabs": [
     {
-      "name": "Query App",
-      "url": "query-app"
+      "name": "Dune.com",
+      "url": "web-app"
+    },
+    {
+      "name": "Query Engine",
+      "url": "query-engine"
     },
     {
       "name": "Data Tables",
@@ -71,90 +75,86 @@
       ]
     },
     {
-      "group": "",
-      "pages": ["query-app/query-app"]
-    },
-    {
       "group": "Web App",
       "pages": [
-        "query-app/web-app/overview",
+        "web-app/overview",
         {
           "group": "Create Queries",
           "pages": [
-            "query-app/web-app/query-editor/query-window",
-            "query-app/web-app/query-editor/data-explorer",
-            "query-app/web-app/query-editor/parameters",
-            "query-app/web-app/query-editor/query-scheduler",
-            "query-app/web-app/query-editor/version-history"
+            "web-app/query-editor/query-window",
+            "web-app/query-editor/data-explorer",
+            "web-app/query-editor/parameters",
+            "web-app/query-editor/query-scheduler",
+            "web-app/query-editor/version-history"
           ]
         },
         {
           "group": "Create Visualizations",
           "pages": [
-            "query-app/web-app/visualizations/charts-graphs",
-            "query-app/web-app/visualizations/counters",
-            "query-app/web-app/visualizations/tables"
+            "web-app/visualizations/charts-graphs",
+            "web-app/visualizations/counters",
+            "web-app/visualizations/tables"
           ]
         },
-        "query-app/web-app/dashboards",
-        "query-app/web-app/decoding-contracts",
-        "query-app/web-app/teams",
-        "query-app/web-app/dune-ai",
-        "query-app/web-app/upload-data",
-        "query-app/web-app/embeds",
-        "query-app/web-app/search",
-        "query-app/web-app/alerts"
+        "web-app/dashboards",
+        "web-app/decoding-contracts",
+        "web-app/teams",
+        "web-app/dune-ai",
+        "web-app/upload-data",
+        "web-app/embeds",
+        "web-app/search",
+        "web-app/alerts"
       ]
     },
 
     {
       "group": "Query Engine",
       "pages": [
-        "query-app/query-engine/overview",
-        "query-app/query-engine/query-executions",
+        "query-engine/overview",
+        "query-engine/query-executions",
 
         {
           "group": "Functions and Operators",
           "pages": [
-            "query-app/query-engine/Functions-and-operators/index",
-            "query-app/query-engine/Functions-and-operators/aggregate",
-            "query-app/query-engine/Functions-and-operators/array",
-            "query-app/query-engine/Functions-and-operators/base58",
-            "query-app/query-engine/Functions-and-operators/binary",
-            "query-app/query-engine/Functions-and-operators/bitwise",
-            "query-app/query-engine/Functions-and-operators/chain-utility-functions",
-            "query-app/query-engine/Functions-and-operators/comparison",
-            "query-app/query-engine/Functions-and-operators/conditional",
-            "query-app/query-engine/Functions-and-operators/conversion",
-            "query-app/query-engine/Functions-and-operators/datetime",
-            "query-app/query-engine/Functions-and-operators/decimal",
-            "query-app/query-engine/Functions-and-operators/hyperloglog",
-            "query-app/query-engine/Functions-and-operators/lambda",
-            "query-app/query-engine/Functions-and-operators/list-by-topic",
-            "query-app/query-engine/Functions-and-operators/list",
-            "query-app/query-engine/Functions-and-operators/logical",
-            "query-app/query-engine/Functions-and-operators/map",
-            "query-app/query-engine/Functions-and-operators/math",
-            "query-app/query-engine/Functions-and-operators/ml",
-            "query-app/query-engine/Functions-and-operators/qdigest",
-            "query-app/query-engine/Functions-and-operators/regexp",
-            "query-app/query-engine/Functions-and-operators/setdigest",
-            "query-app/query-engine/Functions-and-operators/string",
-            "query-app/query-engine/Functions-and-operators/system",
-            "query-app/query-engine/Functions-and-operators/tdigest",
-            "query-app/query-engine/Functions-and-operators/teradata",
-            "query-app/query-engine/Functions-and-operators/url",
-            "query-app/query-engine/Functions-and-operators/uuid",
-            "query-app/query-engine/Functions-and-operators/varbinary",
-            "query-app/query-engine/Functions-and-operators/varchar-utility-functions",
-            "query-app/query-engine/Functions-and-operators/window"
+            "query-engine/Functions-and-operators/index",
+            "query-engine/Functions-and-operators/aggregate",
+            "query-engine/Functions-and-operators/array",
+            "query-engine/Functions-and-operators/base58",
+            "query-engine/Functions-and-operators/binary",
+            "query-engine/Functions-and-operators/bitwise",
+            "query-engine/Functions-and-operators/chain-utility-functions",
+            "query-engine/Functions-and-operators/comparison",
+            "query-engine/Functions-and-operators/conditional",
+            "query-engine/Functions-and-operators/conversion",
+            "query-engine/Functions-and-operators/datetime",
+            "query-engine/Functions-and-operators/decimal",
+            "query-engine/Functions-and-operators/hyperloglog",
+            "query-engine/Functions-and-operators/lambda",
+            "query-engine/Functions-and-operators/list-by-topic",
+            "query-engine/Functions-and-operators/list",
+            "query-engine/Functions-and-operators/logical",
+            "query-engine/Functions-and-operators/map",
+            "query-engine/Functions-and-operators/math",
+            "query-engine/Functions-and-operators/ml",
+            "query-engine/Functions-and-operators/qdigest",
+            "query-engine/Functions-and-operators/regexp",
+            "query-engine/Functions-and-operators/setdigest",
+            "query-engine/Functions-and-operators/string",
+            "query-engine/Functions-and-operators/system",
+            "query-engine/Functions-and-operators/tdigest",
+            "query-engine/Functions-and-operators/teradata",
+            "query-engine/Functions-and-operators/url",
+            "query-engine/Functions-and-operators/uuid",
+            "query-engine/Functions-and-operators/varbinary",
+            "query-engine/Functions-and-operators/varchar-utility-functions",
+            "query-engine/Functions-and-operators/window"
           ]
         },
-        "query-app/query-engine/datatypes",
-        "query-app/query-engine/reserved-keywords",
-        "query-app/query-engine/writing-efficient-queries",
-        "query-app/query-engine/query-a-query",
-        "query-app/query-engine/materialized-views"
+        "query-engine/datatypes",
+        "query-engine/reserved-keywords",
+        "query-engine/writing-efficient-queries",
+        "query-engine/query-a-query",
+        "query-engine/materialized-views"
       ]
     },
     {
