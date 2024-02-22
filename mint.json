@@ -177,7 +177,7 @@
             {
               "group": "Decoded",
               "pages": [
-                "data-tables/evm/ethereum/decoded/alt-index",
+                "data-tables/evm/ethereum/decoded/overview",
                 "data-tables/evm/ethereum/decoded/call-tables",
                 "data-tables/evm/ethereum/decoded/event-logs",
                 "data-tables/evm/ethereum/decoded/logs-decoded",
