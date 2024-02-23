@@ -1,7 +1,10 @@
 ---
 title: Pagination
 ---
-All API endpoints to read query results, including [get execution results](../query-api/endpoint/get-execution-result), [get execution results csv](../query-api/endpoint/get-execution-result-csv), [get query results](../query-api/endpoint/get-query-result), [get query results csv](../query-api/endpoint/get-query-result-csv), support pagination for efficient data retrieval. Pagination divides large datasets into smaller, manageable chunks, preventing overload and ensuring smooth performance. This allows users to navigate through the data easily, avoiding limit errors and streamlining their data fetching experience.
+All API endpoints to read query results, including [get execution results](./get-execution-result), [get execution results csv](./get-execution-result-csv), 
+[get query results](./get-query-result), [get query results csv](./get-query-result-csv), support pagination for efficient data retrieval. Pagination divides 
+large datasets into smaller, manageable chunks, preventing overload and ensuring smooth performance. This allows users to navigate through the data easily, 
+avoiding limit errors and streamlining their data fetching experience.
 
 To paginate through results:
 1. Specify the `limit` parameter to determine the number of results you want to retrieve.
@@ -419,6 +422,6 @@ Dune internally has a maximum query result size limit (which currently is 8GB, b
 So what? Related to pagination, this means that
 - For query results under 8GB, use the API as normal.
 - When your query results exceed 8GB, in addition to `limit` and `offset` parameters in order to read the partial result (the first 8GB of data), set `allow_partial_results=true`
-- You can use the [Get Status API](https://dune.mintlify.app/api-reference/query-api/endpoint/get-execution-status) to check the size of your result, `result.result_set_size`
+- You can use the [Get Status API](./get-execution-status) to check the size of your result, `result.result_set_size`
 
 </Tip>

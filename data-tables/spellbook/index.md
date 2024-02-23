@@ -7,17 +7,17 @@ description: With the help of the community we construct customs tables which co
 
 <div class="cards grid" markdown>
 
--   #### Github Repo
+- #### Github Repo
 
-    The Spellbook GitHub repository can be found here.
-  
-    [→ Spellbook Github Repo](https://github.com/duneanalytics/spellbook)
+  The Spellbook GitHub repository can be found here.
 
--   #### Model Docs
+  [→ Spellbook Github Repo](https://github.com/duneanalytics/spellbook)
 
-    Visit the Spellbook Model Docs to see a complete list of Spellbook Spell tables.
-  
-    [→ Spellbook Model Docs](https://dune.com/spellbook)
+- #### Model Docs
+
+  Visit the Spellbook Model Docs to see a complete list of Spellbook Spell tables.
+
+  [→ Spellbook Model Docs](https://dune.com/spellbook)
 
 </div>
 
@@ -27,7 +27,7 @@ Spellbook is an open-source [dbt repository](https://docs.getdbt.com/docs/introd
 
 **Spells are custom tables that are built and maintained by Dune and our community.**
 
-It enables the community to build toward a standardized way to transform data into meaningful abstraction layers. With web3 data, we have a foundational layer of [Raw Data](../raw/index.md) - blockchain transactions, traces, and logs. Spellbook lets us create abstracted data sets, like [dex.trades](https://dune.com/spellbook#!/model/model.spellbook.dex_trades) and [nft.trades](https://dune.com/spellbook#!/model/model.spellbook.nft_trades), which aggregate and organize raw data from multiple sources to make it much easier to query.
+It enables the community to build toward a standardized way to transform data into meaningful abstraction layers. With web3 data, we have a foundational layer of [Raw Data](/data-tables/evm/ethereum/raw/) - blockchain transactions, traces, and logs. Spellbook lets us create abstracted data sets, like [dex.trades](../data-tables/evm/ethereum/DEX/dex-trades) and [nft.trades](/data-tables/evm/ethereum/NFT/nft-trades), which aggregate and organize raw data from multiple sources to make it much easier to query.
 
 dbt natively understands the dependencies between all models. In our old abstractions logic we were managing dependencies manually, which made deploying and maintaining them a mess. With dependency management, we can guarantee that all models are deployed in the correct order.
 
@@ -63,9 +63,9 @@ If we want to do some on-chain analysis, we could start by going to OpenSea and 
 
 We can also scroll down and click on a transaction to [view it on the blockchain explorer](https://etherscan.io/tx/0x96f158d75379057d95c1c562b9908603e543feee25a71ac420e21ecf0a0c643c) and get more data like:
 
-* The transaction block and hash
-* The To/From addresses for the transfer
-* How much ETH was transferred
+- The transaction block and hash
+- The To/From addresses for the transfer
+- How much ETH was transferred
 
 At a base level, blockchain data is packaged in blocks, which is one form of data we call “Raw” in Dune.
 
@@ -131,11 +131,11 @@ Which would return data like this:
 
 What’s happening here:
 
-* We dug through Dune to find the `seaport_ethereum` contract set and the `Seaport_evt_OrderFulfilled` table which contains the data for our specific transaction. (which takes a lot of time in and of itself).
-* To get closer to something we really want, token contract address and token ID, we had to:
-    * Know to look for the offer column and get the first position in that array
-    * Make it a JSON object, knowing token contracts are 20 bytes which means 40 characters.
-    * And do a similar amount of manual abstraction for the token ID
+- We dug through Dune to find the `seaport_ethereum` contract set and the `Seaport_evt_OrderFulfilled` table which contains the data for our specific transaction. (which takes a lot of time in and of itself).
+- To get closer to something we really want, token contract address and token ID, we had to:
+  - Know to look for the offer column and get the first position in that array
+  - Make it a JSON object, knowing token contracts are 20 bytes which means 40 characters.
+  - And do a similar amount of manual abstraction for the token ID
 
 Yet now we still don’t have something interesting like how much money was this NFT sold for.
 
@@ -171,9 +171,9 @@ Which returns this:
 
 And right away, with a couple of lines of SQL we can see:
 
-* The seller and buyer wallet addresses
-* The amount that was paid in what cryptocurrency
-* Which blockchain it was on
+- The seller and buyer wallet addresses
+- The amount that was paid in what cryptocurrency
+- Which blockchain it was on
 
 And more!
 
@@ -189,12 +189,12 @@ If we wanted to do a cross-chain NFT marketplace analysis, we might aim to build
 
 With the nft.trades spell, we can see industry-wide stats like:
 
-* Total volume by # of txs and $USD
-* 24-hr volume
-* 24-hour and 7-day growth
-* Market share by marketplace
-* Volume by marketplace
-* Transaction count by marketplace
+- Total volume by # of txs and $USD
+- 24-hr volume
+- 24-hour and 7-day growth
+- Market share by marketplace
+- Volume by marketplace
+- Transaction count by marketplace
 
 And we can query, visualize, and make a dashboard out of that data all in a couple of hours instead of dozens.
 
@@ -203,5 +203,3 @@ And once a new NFT marketplace is launched, anyone in the community who knows ho
 For the first time in history, we have access to an open dataset thanks to blockchains.
 
 Thanks to Spellbook, we can all build on top of that open data to make it more transparent, accessible, and meaningful together!
-
-
