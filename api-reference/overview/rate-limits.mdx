@@ -6,9 +6,9 @@ title: Rate Limits
 
 Our rate limits are implemented in three ways: IP, low vs. high limit endpoints and [subscription plan](https://dune.com/pricing).
 - Low limit endpoints _(write-heavy operations)_
-    - [create query](../crud/endpoint/create), [update query](../crud/endpoint/create), toggle private/archive query, [execute query](../query-api/endpoint/execute-query), [CSV upload](../upload/endpoint/upload). 
+    - [create query](../queries/endpoint/create), [update query](../queries/endpoint/update), toggle private/archive query, [execute query](../executions/endpoint/execute-query), [CSV upload](../tables/endpoint/upload). 
 - High limit endpoints _(read-heavy operations)_
-    - [read query](../crud/endpoint/read), read result (in any form), [get execution status](../query-api/endpoint/get-execution-status), [cancel execution](../query-api/endpoint/cancel-execution).
+    - [read query](../queries/endpoint/read), read result (in any form), [get execution status](../executions/endpoint/get-execution-status), [cancel execution](../executions/endpoint/cancel-execution).
 
 | Dimension         |    | Limit                              |
 |-------------------|----|------------------------------------|
