@@ -22,13 +22,13 @@ Dune's decoded data approach offers several benefits:
     title="Explore decoded logs"
     icon="circle-bolt"
     iconType="duotone"
-    href="/data-tables/evm/ethereum/decoded/event-logs"
+    href="/data-catalog/evm/ethereum/decoded/event-logs"
   ></Card>
   <Card
     title="Explore decoded traces"
     icon="layer-group"
     iconType="duotone"
-    href="/data-tables/evm/ethereum/decoded/call-tables"
+    href="/data-catalog/evm/ethereum/decoded/call-tables"
   ></Card>
 </CardGroup>
 
@@ -36,7 +36,7 @@ Dune's decoded data approach offers several benefits:
 
 Contract submission on Dune are driven by the community. Usually the odds are good that the contract you are looking at is already decoded, but esepecially for new projects or new contracts, it might be that the contract is not decoded yet. In those cases you can submit the contract to be decoded. Decoding usually takes about 24 hours, in special cases it might take longer.
 
-You can check if contracts are already decoded by querying [`[blockchain].contracts`](/data-tables/evm/ethereum/decoded/contracts) tables, the [data explorer](/web-app/query-editor/data-explorer) or use [this dashboard](https://dune.com/dune/is-my-contract-decoded-yet-v2).
+You can check if contracts are already decoded by querying [`[blockchain].contracts`](/data-catalog/evm/ethereum/decoded/contracts) tables, the [data explorer](/web-app/query-editor/data-explorer) or use [this dashboard](https://dune.com/dune/is-my-contract-decoded-yet-v2).
 
 If you want to submit several contracts at the same time, there is also the possibility of submitting a batch of contracts. To do so, please use [this CSV](https://gist.github.com/antonio-mendes/c6a43c22862581674c11462cae230e23) as a template and fill it in with the appropriate information for the contracts you want to decode. Afterwards send the CSV to decoding@dune.com.
 
@@ -51,7 +51,7 @@ If you want to submit several contracts at the same time, there is also the poss
     title="Explore already decoded contracts"
     icon="database"
     iconType="duotone"
-    href="/data-tables/evm/ethereum/decoded/contracts"
+    href="/data-catalog/evm/ethereum/decoded/contracts"
   ></Card>
 </CardGroup>
 
@@ -67,7 +67,7 @@ The ABI documents names, types, and arguments precisely which allows us to inter
 
 **The ABI is used to call a smart contract or interpret the data it emits.**
 
-![source: https://hackernoon.com/hn-images/1*Sz1a7G2pQ62UnkHoieve4w.jpeg](/data-tables/images/decoding.png)
+![source: https://hackernoon.com/hn-images/1*Sz1a7G2pQ62UnkHoieve4w.jpeg](/data-catalog/images/decoding.png)
 
 ## Decoding Example
 
@@ -75,7 +75,7 @@ We are going to look at an event log of an ERC20 transfer event from the [smart 
 
 On [Etherscan](https://etherscan.io/tx/0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5#eventlog) the undecoded event looks like this:
 
-![etherscan](/data-tables/images/etherscan.png)
+![etherscan](/data-catalog/images/etherscan.png)
 
 If we query for this transaction in the `ethereum.logs` table in the Dune database, we will receive the same encoded bytecode as our result dataset.
 
@@ -136,7 +136,7 @@ In this case, they map out like this:
 | topic2         | to                                             | 0x00000000000000000000000087d9da48db6e1f925cb67d3b7d2a292846c24cf7 | 0x87d9da48db6e1f925cb67d3b7d2a292846c24cf7                                    |
 | data           | value                                          | 0x00000000000000000000000000000000000000000000001a894d51f85cb08000 | 489509000000000000000                                                         |
 
-Now what works for a single erc20 token, works for all erc20 tokens. We can use defined interfaces to decode the data of any erc20 token transfer event log. You can learn more about that in the [ERC20 transfer section](/data-tables/evm/ethereum/assets/transfers/erc20-transfers).
+Now what works for a single erc20 token, works for all erc20 tokens. We can use defined interfaces to decode the data of any erc20 token transfer event log. You can learn more about that in the [ERC20 transfer section](/data-catalog/evm/ethereum/assets/transfers/erc20-transfers).
 
 ## How do I understand decoded data?
 

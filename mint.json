@@ -38,8 +38,8 @@
       "url": "query-engine"
     },
     {
-      "name": "Data Tables",
-      "url": "data-tables"
+      "name": "Data Catalog",
+      "url": "data-catalog"
     },
     {
       "name": "API Reference",
@@ -156,47 +156,47 @@
     {
       "group": "",
       "pages": [
-        "data-tables/overview",
-        "data-tables/bring-your-own-data"
+        "data-catalog/overview",
+        "data-catalog/bring-your-own-data"
       ]
     },
     {
       "group": "EVM Chains",
       "pages": [
-        "data-tables/evm/overview",
+        "data-catalog/evm/overview",
         {
           "group": "Raw",
           "pages": [
-            "data-tables/evm/ethereum/raw/transactions",
-            "data-tables/evm/ethereum/raw/logs",
-            "data-tables/evm/ethereum/raw/traces",
-            "data-tables/evm/ethereum/raw/creation-traces",
-            "data-tables/evm/ethereum/raw/blocks",
-            "data-tables/evm/ethereum/raw/withdrawals"
+            "data-catalog/evm/ethereum/raw/transactions",
+            "data-catalog/evm/ethereum/raw/logs",
+            "data-catalog/evm/ethereum/raw/traces",
+            "data-catalog/evm/ethereum/raw/creation-traces",
+            "data-catalog/evm/ethereum/raw/blocks",
+            "data-catalog/evm/ethereum/raw/withdrawals"
           ]
         },
         {
           "group": "Decoded",
           "pages": [
-            "data-tables/evm/ethereum/decoded/overview",
-            "data-tables/evm/ethereum/decoded/call-tables",
-            "data-tables/evm/ethereum/decoded/event-logs",
-            "data-tables/evm/ethereum/decoded/contracts",
-            "data-tables/evm/ethereum/decoded/logs-decoded",
-            "data-tables/evm/ethereum/decoded/traces-decoded"
+            "data-catalog/evm/ethereum/decoded/overview",
+            "data-catalog/evm/ethereum/decoded/call-tables",
+            "data-catalog/evm/ethereum/decoded/event-logs",
+            "data-catalog/evm/ethereum/decoded/contracts",
+            "data-catalog/evm/ethereum/decoded/logs-decoded",
+            "data-catalog/evm/ethereum/decoded/traces-decoded"
           ]
         },
         {
           "group": "Assets",
           "pages": [
-            "data-tables/evm/ethereum/assets/overview",
-            "data-tables/evm/ethereum/assets/balances",
+            "data-catalog/evm/ethereum/assets/overview",
+            "data-catalog/evm/ethereum/assets/balances",
             {
               "group": "Transfers",
               "pages": [
-                "data-tables/evm/ethereum/assets/transfers/erc20-transfers",
-                "data-tables/evm/ethereum/assets/transfers/erc721-transfers",
-                "data-tables/evm/ethereum/assets/transfers/erc1155-transfers"
+                "data-catalog/evm/ethereum/assets/transfers/erc20-transfers",
+                "data-catalog/evm/ethereum/assets/transfers/erc721-transfers",
+                "data-catalog/evm/ethereum/assets/transfers/erc1155-transfers"
               ]
             }
           ]
@@ -204,37 +204,37 @@
         {
           "group": "DEX",
           "pages": [
-            "data-tables/evm/ethereum/DEX/dex-trades",
-            "data-tables/evm/ethereum/DEX/dex-aggregator-trades"
+            "data-catalog/evm/ethereum/DEX/dex-trades",
+            "data-catalog/evm/ethereum/DEX/dex-aggregator-trades"
           ]
         },
         {
           "group": "NFT",
-          "pages": ["data-tables/evm/ethereum/NFT/nft-trades"]
+          "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
         }
       ]
     },
     {
       "group": "Solana",
       "pages": [
-        "data-tables/solana/overview",
-        "data-tables/solana/account-activity",
-        "data-tables/solana/blocks",
-        "data-tables/solana/idl-tables",
-        "data-tables/solana/instruction-calls",
-        "data-tables/solana/rewards",
-        "data-tables/solana/transactions",
-        "data-tables/solana/vote-transactions"
+        "data-catalog/solana/overview",
+        "data-catalog/solana/account-activity",
+        "data-catalog/solana/blocks",
+        "data-catalog/solana/idl-tables",
+        "data-catalog/solana/instruction-calls",
+        "data-catalog/solana/rewards",
+        "data-catalog/solana/transactions",
+        "data-catalog/solana/vote-transactions"
       ]
     },
     {
       "group": "Bitcoin",
       "pages": [
-        "data-tables/bitcoin/overview",
-        "data-tables/bitcoin/inputs",
-        "data-tables/bitcoin/outputs",
-        "data-tables/bitcoin/blocks",
-        "data-tables/bitcoin/transactions"
+        "data-catalog/bitcoin/overview",
+        "data-catalog/bitcoin/inputs",
+        "data-catalog/bitcoin/outputs",
+        "data-catalog/bitcoin/blocks",
+        "data-catalog/bitcoin/transactions"
       ]
     },
     {
@@ -243,36 +243,36 @@
         {
           "group": "Farcaster",
           "pages": [
-            "data-tables/community/farcaster/overview",
-            "data-tables/community/farcaster/casts",
-            "data-tables/community/farcaster/fids",
-            "data-tables/community/farcaster/fnames",
-            "data-tables/community/farcaster/links",
-            "data-tables/community/farcaster/profile_with_addresses",
-            "data-tables/community/farcaster/reactions",
-            "data-tables/community/farcaster/signers",
-            "data-tables/community/farcaster/storage",
-            "data-tables/community/farcaster/user_data",
-            "data-tables/community/farcaster/verifications"
+            "data-catalog/community/farcaster/overview",
+            "data-catalog/community/farcaster/casts",
+            "data-catalog/community/farcaster/fids",
+            "data-catalog/community/farcaster/fnames",
+            "data-catalog/community/farcaster/links",
+            "data-catalog/community/farcaster/profile_with_addresses",
+            "data-catalog/community/farcaster/reactions",
+            "data-catalog/community/farcaster/signers",
+            "data-catalog/community/farcaster/storage",
+            "data-catalog/community/farcaster/user_data",
+            "data-catalog/community/farcaster/verifications"
           ]
         },
         {
           "group": "Reservoir",
           "pages": [
-            "data-tables/community/reservoir/overview",
-            "data-tables/community/reservoir/ask-events",
-            "data-tables/community/reservoir/asks",
-            "data-tables/community/reservoir/attribute-keys",
-            "data-tables/community/reservoir/attributes",
-            "data-tables/community/reservoir/bid-events",
-            "data-tables/community/reservoir/bids",
-            "data-tables/community/reservoir/collection-floor-ask-events",
-            "data-tables/community/reservoir/collection-top-bid-events",
-            "data-tables/community/reservoir/collections",
-            "data-tables/community/reservoir/sales",
-            "data-tables/community/reservoir/token-attributes",
-            "data-tables/community/reservoir/token-floor-ask-events",
-            "data-tables/community/reservoir/tokens"
+            "data-catalog/community/reservoir/overview",
+            "data-catalog/community/reservoir/ask-events",
+            "data-catalog/community/reservoir/asks",
+            "data-catalog/community/reservoir/attribute-keys",
+            "data-catalog/community/reservoir/attributes",
+            "data-catalog/community/reservoir/bid-events",
+            "data-catalog/community/reservoir/bids",
+            "data-catalog/community/reservoir/collection-floor-ask-events",
+            "data-catalog/community/reservoir/collection-top-bid-events",
+            "data-catalog/community/reservoir/collections",
+            "data-catalog/community/reservoir/sales",
+            "data-catalog/community/reservoir/token-attributes",
+            "data-catalog/community/reservoir/token-floor-ask-events",
+            "data-catalog/community/reservoir/tokens"
           ]
         }
       ]
