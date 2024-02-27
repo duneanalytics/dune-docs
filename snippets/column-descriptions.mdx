@@ -9,6 +9,6 @@ export const ColumnDescriptions = ({ tableName, tableSchema }) => (
         marginTop: "10px",
       }}
     />
-    <Info>For columns which have the datatype <code>varbinary</code> data in Dune, there are two columns in <b>Snowflake</b> named "column_name" and "column_name_hex" (e.g., hash and hash_hex). "Column_name" is of type <code>binary</code>, "column_name_hex" is of type <code>string</code> and contains the 0x-prefixed lower cased hex representation of the binary data for convenience. For complex queries, it is recommended to use the "column_name" column, as it is more efficient.  </Info>
+    <Info> Datatypes on Snowflake datashare are different in some cases, read more <a href="/datashare/datashare#datatypes">here</a>.  </Info>
   </div>
 );
