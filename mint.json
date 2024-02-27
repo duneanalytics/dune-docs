@@ -44,6 +44,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Datashare",
+      "url": "datashare"
     }
   ],
 
@@ -331,6 +335,9 @@
         "api-reference/queries/endpoint/private",
         "api-reference/queries/endpoint/unprivate"
       ]
+    },
+    {"group": "",
+    "pages": ["datashare/datashare"]
     }
   ],
   "feedback": {
