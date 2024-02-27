@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI for Query CRUD API",
+    "title": "OpenAPI for Query Endpoints",
     "description": "API for Create, Read, Update, and Delete operations on Dune queries.",
     "version": "1.0.0"
   },
