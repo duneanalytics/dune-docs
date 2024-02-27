@@ -61,6 +61,7 @@
       "pages": [
         "learning/how-tos/create-your-first-query",
         "learning/how-tos/create-ai-assisted-queries",
+        "learning/how-tos/dune-ai-prompt-engineering",
         "learning/how-tos/create-new-content",
         "learning/how-tos/create-your-first-visualization",
         "learning/how-tos/navigate-query-editor",
