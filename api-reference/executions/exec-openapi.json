@@ -359,7 +359,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
           },
           {
             "in": "query",
@@ -368,7 +368,16 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "sample_count",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
           },
           {
             "in": "query",
@@ -507,7 +516,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
           },
           {
             "in": "query",
@@ -516,7 +525,16 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "sample_count",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
           },
           {
             "in": "query",
@@ -669,7 +687,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
           },
           {
             "in": "query",
@@ -678,7 +696,16 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "sample_count",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
           },
           {
             "in": "query",
@@ -797,7 +824,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way."
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
           },
           {
             "in": "query",
@@ -806,7 +833,16 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way."
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "sample_count",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
           },
           {
             "in": "query",
@@ -922,7 +958,12 @@
     "schemas": {
       "QueryResult": {
         "type": "object",
-        "required": ["execution_id", "query_id", "state", "submitted_at"],
+        "required": [
+          "execution_id",
+          "query_id",
+          "state",
+          "submitted_at"
+        ],
         "example": {
           "execution_id": "01HKZSJAW6N2MFVCBHA3R8S64X",
           "query_id": 1252207,
@@ -1060,7 +1101,12 @@
       },
       "ExecutionStatus": {
         "type": "object",
-        "required": ["execution_id", "query_id", "state", "submitted_at"],
+        "required": [
+          "execution_id",
+          "query_id",
+          "state",
+          "submitted_at"
+        ],
         "example": {
           "execution_id": "01HJ3EBNGZ8WT12KX8ZCARM5ES",
           "query_id": 3298913,
@@ -1314,14 +1360,17 @@
       "ParameterObject": {
         "type": "object",
         "example": {
-            "parameterNameFoo": "value of parameterNameFoo",
-            "parameterNameBar": 420
+          "parameterNameFoo": "value of parameterNameFoo",
+          "parameterNameBar": 420
         },
         "description": "SQL Query parameters in key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page."
       },
       "Performance": {
         "type": "string",
-        "enum": ["medium", "large"],
+        "enum": [
+          "medium",
+          "large"
+        ],
         "description": "The performance engine tier the execution will be run on. Can be either medium or large. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is medium."
       },
       "UnauthorizedError": {
