@@ -44,6 +44,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Datashare",
+      "url": "datashare"
     }
   ],
 
@@ -57,6 +61,7 @@
       "pages": [
         "learning/how-tos/create-your-first-query",
         "learning/how-tos/create-ai-assisted-queries",
+        "learning/how-tos/dune-ai-prompt-engineering",
         "learning/how-tos/create-new-content",
         "learning/how-tos/create-your-first-visualization",
         "learning/how-tos/navigate-query-editor",
@@ -155,7 +160,10 @@
     },
     {
       "group": "",
-      "pages": ["data-catalog/overview", "data-catalog/bring-your-own-data"]
+      "pages": [
+        "data-catalog/overview",
+        "data-catalog/bring-your-own-data"
+      ]
     },
     {
       "group": "EVM Chains",
@@ -328,6 +336,9 @@
         "api-reference/queries/endpoint/private",
         "api-reference/queries/endpoint/unprivate"
       ]
+    },
+    {"group": "",
+    "pages": ["datashare/datashare"]
     }
   ],
   "feedback": {
