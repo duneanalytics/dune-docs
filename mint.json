@@ -160,10 +160,7 @@
     },
     {
       "group": "",
-      "pages": [
-        "data-catalog/overview",
-        "data-catalog/bring-your-own-data"
-      ]
+      "pages": ["data-catalog/overview", "data-catalog/bring-your-own-data"]
     },
     {
       "group": "EVM Chains",
@@ -304,7 +301,10 @@
     },
     {
       "group": "Tables",
-      "pages": ["api-reference/tables/endpoint/upload"]
+      "pages": [
+        "api-reference/tables/endpoint/upload",
+        "api-reference/tables/endpoint/create"
+      ]
     },
     {
       "group": "Webhooks",
@@ -337,9 +337,7 @@
         "api-reference/queries/endpoint/unprivate"
       ]
     },
-    {"group": "",
-    "pages": ["datashare/datashare"]
-    }
+    { "group": "", "pages": ["datashare/datashare"] }
   ],
   "feedback": {
     "thumbsRating": true,
