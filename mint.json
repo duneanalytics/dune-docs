@@ -360,5 +360,11 @@
     "gtm": {
       "tagId": "GTM-P46XP3Z5"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/data-tables/:slug*",
+      "destination": "/data-catalog/:slug*"
+    }
+  ]
 }
