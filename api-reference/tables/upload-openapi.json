@@ -11,11 +11,105 @@
     }
   ],
   "paths": {
+    "/v1/table/create": {
+      "post": {
+        "summary": "Create a Dune table",
+        "description": "...",
+        "operationId": "CreateTable",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CSVUploadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "table_name": {
+                      "type": "string",
+                      "example": "ten_year_us_interest_rates"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Core request validation failed, make sure you've given required columns and followed formatting rules for the CSV (no special characters or digits in column names)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/table/upload/csv": {
       "post": {
         "summary": "Upload a CSV as a table in Dune.",
         "description": "This API allows for anyone to upload a CSV as a table in Dune. The size limit per upload is currently 200MB. Your storage is limited by plan, 1MB on free, 15GB on plus, and 50GB on premium.",
-        "operationId": "UploadCSV",
         "parameters": [
           {
             "in": "header",
