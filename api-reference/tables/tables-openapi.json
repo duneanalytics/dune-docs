@@ -258,7 +258,7 @@
                         "type": "array",
                         "items": {
                             "type": "object",
-                            "description": "A column",
+                            "description": "A column of the table.",
                             "required": [
                                 "name",
                                 "type"
@@ -266,7 +266,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "The column name"
+                                    "description": "The column name."
                                 },
                                 "type": {
                                     "type": "string",
@@ -275,8 +275,7 @@
                                         "integer",
                                         "double",
                                         "boolean",
-                                        "timestamp",
-                                        "uint256"
+                                        "timestamp"
                                     ],
                                     "description": "The column type."
                                 }
@@ -286,11 +285,11 @@
                     "is_private": {
                         "type": "boolean",
                         "default": false,
-                        "description": "If true, the table will be private and only visible to the team or user that your API key is associated with"
+                        "description": "If true, the table will be private and only visible to the team or user that your API key is associated with."
                     },
                     "description": {
                         "type": "string",
-                        "description": "A description of the table"
+                        "description": "A description of the table."
                     }
                 }
             },
@@ -299,7 +298,7 @@
                 "properties": {
                     "error": {
                         "type": "string",
-                        "description": "A descriptive error message explaining what went wrong with the request"
+                        "description": "A descriptive error message explaining what went wrong with the request."
                     }
                 }
             }
