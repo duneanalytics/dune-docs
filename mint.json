@@ -50,11 +50,14 @@
       "url": "datashare"
     }
   ],
-
   "navigation": [
     {
       "group": "",
-      "pages": ["home", "quickstart", "learning-resources"]
+      "pages": [
+        "home",
+        "quickstart",
+        "learning-resources"
+      ]
     },
     {
       "group": "Jump right in",
@@ -107,13 +110,11 @@
         "web-app/alerts"
       ]
     },
-
     {
       "group": "Query Engine",
       "pages": [
         "query-engine/overview",
         "query-engine/query-executions",
-
         {
           "group": "Functions and Operators",
           "pages": [
@@ -160,7 +161,10 @@
     },
     {
       "group": "",
-      "pages": ["data-catalog/overview", "data-catalog/bring-your-own-data"]
+      "pages": [
+        "data-catalog/overview",
+        "data-catalog/bring-your-own-data"
+      ]
     },
     {
       "group": "EVM Chains",
@@ -212,7 +216,9 @@
         },
         {
           "group": "NFT",
-          "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
+          "pages": [
+            "data-catalog/evm/ethereum/NFT/nft-trades"
+          ]
         }
       ]
     },
@@ -302,13 +308,16 @@
     {
       "group": "Tables",
       "pages": [
-        "api-reference/tables/endpoint/upload",
-        "api-reference/tables/endpoint/create"
+        "api-reference/tables/endpoint/create",
+        "api-reference/tables/endpoint/insert",
+        "api-reference/tables/endpoint/upload"
       ]
     },
     {
       "group": "Webhooks",
-      "pages": ["api-reference/webhooks/webhook"]
+      "pages": [
+        "api-reference/webhooks/webhook"
+      ]
     },
     {
       "group": "Executions and Results",
@@ -337,7 +346,12 @@
         "api-reference/queries/endpoint/unprivate"
       ]
     },
-    { "group": "", "pages": ["datashare/datashare"] }
+    {
+      "group": "",
+      "pages": [
+        "datashare/datashare"
+      ]
+    }
   ],
   "feedback": {
     "thumbsRating": true,

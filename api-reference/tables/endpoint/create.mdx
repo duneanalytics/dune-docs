@@ -1,6 +1,20 @@
 ---
-title: 'Create Table'
-openapi: 'POST /v1/table/create'
+title: 'Create'
+openapi: 'POST /v1/table/{namespace}/{table_name}/create'
 ---
 
-...
+<RequestExample>
+
+```bash curl
+curl --request POST \
+  --url https://api.dune.com/api/v1/table/my_user/dataset_interest_rates/create \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+  "is_private": false,
+  "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double"}]
+}'
+```
+
+</RequestExample>
