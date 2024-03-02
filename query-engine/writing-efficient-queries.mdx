@@ -9,7 +9,7 @@ In order to write efficient queries on DuneSQL, it's important to understand the
 
 ## Understanding DuneSQL
 
-DuneSQL is a TrinoSQL-based query engine designed for handling data stored in a columnar format. More spcifically, we use Parquet files as the underlying storage format. This allows for efficient data access and query processing, as well as fast data loading and data compression.
+DuneSQL is a Trino-based query engine designed for handling data stored in a columnar format. More spcifically, we use Parquet files as the underlying storage format. This allows for efficient data access and query processing, as well as fast data loading and data compression.
 
 ### Short Introduction to Databases
 
@@ -40,19 +40,14 @@ Every time you query a table, the database needs to read the data from disk into
 
 Now that we understand how databases work, let's take a look at how DuneSQL works under the hood. Specifically, let's look at how data is stored and accessed in DuneSQL.
 
-Dune stores data in parquet files, which are first and foremost columnar storage files, but also ultilize some of the advantages of row-oriented storage. Data in parquet systems is partitioned by rows into multiple parquet files, and within each file, the data is further partitioned into row groups. However, the pages inside of row groups store data in columns rather than rows. As a result, the database appears row-oriented at a higher level, but it reads data from column-oriented pages when accessing specific values. Additionally, each parquet file contains metadata about the data it stores, mainly **min/max** column statistics for each column. This allows the database to efficiently skip entire parquet files or row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered.
+Dune stores data in parquet files, which are first and foremost columnar storage files, but also ultilize some of the advantages of row-oriented storage. Data in parquet systems is partitioned by rows into multiple parquet files, and within each file, the data is further partitioned into row groups. However, the pages inside of row groups store data in columns rather than rows. As a result, the database appears row-oriented at a higher level, but it reads data from column-oriented pages when accessing specific values. Additionally, each parquet file contains metadata about the data it stores, mainly **min/max** column statistics for each column. This allows the database to efficiently skip entire parquet files or row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered. **Writing queries that take advantage of this is essential for writing efficient queries on DuneSQL.** 
 
 In a very simplified schematic view, our `ethereum.transactions` table is stored in a parquet file that looks like this:
 
 <Frame caption="very simplified contents of a parquet file">
   <img src="/query-engine/images/minmax-schema2.jpeg" />
 </Frame>
-
-Please note that this is a simplified view, usually there are hundreds or thousands of rows in a row group and hundreds of row groups in a parquet file.
-
-The Parquet File consists of multiple row groups, each row group contains multiple column chunks, and each column chunk contains multiple pages. The pages are the smallest unit of data that can be read from disk into memory. The column chunks contain the actual data that is needed for the query. Each file has a footer that contains metadata about the data it stores, mainly **min/max** column statistics for each column. This allows the database to efficiently skip entire parquet files or row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered. **Writing queries that take advantage of this is essential for writing efficient queries on DuneSQL.**  
  
-
 <Frame caption="Schematic view of a parquet file">
   <img src="/query-engine/images/parquet.png" />
 </Frame>
