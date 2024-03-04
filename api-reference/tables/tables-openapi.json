@@ -26,7 +26,7 @@
                     {
                         "name": "table_name",
                         "in": "path",
-                        "description": "The name of the table to create. Must start with `dataset_`.",
+                        "description": "The name of the table to create. Must begin with `dataset_` and contain only lowercase letters, digits, and underscores.",
                         "required": true,
                         "schema": {
                             "type": "string",
