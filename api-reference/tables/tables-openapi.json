@@ -183,7 +183,7 @@
                                         "error": {
                                             "type": "string",
                                             "description": "foo",
-                                            "example": "Invalid content type 'text/plain'. We support CSV (Content-Type: text/csv) and newline delimited JSON (Content-Type: application/x-ndjson."
+                                            "example": "Invalid content type 'text/plain'. We support CSV (Content-Type: text/csv) and newline delimited JSON (Content-Type: application/x-ndjson)."
                                         }
                                     }
                                 }
