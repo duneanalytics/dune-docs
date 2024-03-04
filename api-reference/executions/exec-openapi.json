@@ -372,15 +372,6 @@
           },
           {
             "in": "query",
-            "name": "columns",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
-          },
-          {
-            "in": "query",
             "name": "sample_count",
             "required": false,
             "schema": {
@@ -553,15 +544,6 @@
               "type": "integer"
             },
             "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
-          },
-          {
-            "in": "query",
-            "name": "columns",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
           },
           {
             "in": "query",
@@ -754,15 +736,6 @@
           },
           {
             "in": "query",
-            "name": "columns",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
-          },
-          {
-            "in": "query",
             "name": "sample_count",
             "required": false,
             "schema": {
@@ -915,15 +888,6 @@
               "type": "integer"
             },
             "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
-          },
-          {
-            "in": "query",
-            "name": "columns",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
           },
           {
             "in": "query",
