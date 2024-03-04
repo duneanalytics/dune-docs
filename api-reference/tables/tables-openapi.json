@@ -11,7 +11,7 @@
                     "table"
                 ],
                 "summary": "Create a new Dune table",
-                "description": "Create a new Dune table with the specified name and namespace. The resulting table will be empty, and can be inserted into with the /insert endpoint.\nThe request will fail if a table with this name already exists. It will also fail if you are not permitted to create a table with this name.\nCreating a table does not incur credits.\n",
+                "description": "Create a new Dune table with the specified name and namespace. The resulting table will be empty, and can be inserted into with the [/insert endpoint](./insert).\nThe request will fail if a table with this name already exists. It will also fail if you are not permitted to create a table with this name.\nCreating a table does not incur credits.\n",
                 "parameters": [
                     {
                         "name": "namespace",
@@ -19,7 +19,8 @@
                         "description": "The namespace of the table to create. Must be the name of your associated API key, i.e. either `my_user` or `my_team`.",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "my_user"
                         }
                     },
                     {
@@ -28,7 +29,8 @@
                         "description": "The name of the table to create. Must start with `dataset_`.",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "dataset_my_data"
                         }
                     }
                 ],
