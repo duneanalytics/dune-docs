@@ -372,12 +372,39 @@
           },
           {
             "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
+          },
+          {
+            "in": "query",
             "name": "sample_count",
             "required": false,
             "schema": {
               "type": "integer"
             },
-            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the filters section below. This parameter is incompatible with sampling."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expressiong to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sort by section below."
           },
           {
             "in": "query",
@@ -529,12 +556,39 @@
           },
           {
             "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
+          },
+          {
+            "in": "query",
             "name": "sample_count",
             "required": false,
             "schema": {
               "type": "integer"
             },
-            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the filters section below. This parameter is incompatible with sampling."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expressiong to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sort by section below."
           },
           {
             "in": "query",
@@ -700,12 +754,39 @@
           },
           {
             "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
+          },
+          {
+            "in": "query",
             "name": "sample_count",
             "required": false,
             "schema": {
               "type": "integer"
             },
-            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the filters section below. This parameter is incompatible with sampling."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expressiong to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sort by section below."
           },
           {
             "in": "query",
@@ -837,12 +918,39 @@
           },
           {
             "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to select the columns to return from the results. This expression is a comma-separated list."
+          },
+          {
+            "in": "query",
             "name": "sample_count",
             "required": false,
             "schema": {
               "type": "integer"
             },
-            "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the filters section below. This parameter is incompatible with sampling."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expressiong to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sort by section below."
           },
           {
             "in": "query",
