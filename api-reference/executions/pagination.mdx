@@ -1,42 +1,40 @@
 ---
 title: Pagination
 ---
-All API endpoints to read query results, including [get execution results](./get-execution-result), [get execution results csv](./get-execution-result-csv), 
-[get query results](./get-query-result), [get query results csv](./get-query-result-csv), support pagination for efficient data retrieval. Pagination divides 
-large datasets into smaller, manageable chunks, preventing overload and ensuring smooth performance. This allows users to navigate through the data easily, 
-avoiding limit errors and streamlining their data fetching experience.
+
+Our API supports pagination on all `/results` endpoints  to facilitate efficient data retrieval by dividing large datasets into smaller, manageable chunks. This feature helps prevent overload, ensures smoother performance, and enhances the user experience by making it easier to navigate through data, thus avoiding limit errors. Pagination is available for the following endpoints:
+
+- [Get Execution Results](./endpoint/get-execution-result)
+- [Get Execution Results CSV](./endpoint/get-execution-result-csv)
+- [Get Query Results](./endpoint/get-query-result)
+- [Get Query Results CSV](./endpoint/get-query-result-csv)
+
+Pagination can be effectively combined with [filtering](./filtering) and [sorting](./sorting) to optimize data fetching.
+
 
 To paginate through results:
-1. Specify the `limit` parameter to determine the number of results you want to retrieve.
-2. Use the `offset` parameter to indicate the starting offset point for retrieving results, default value is 0 for the first row.
-3. If you are fetching JSON response, check for the fields `next_offset` and `next_uri` in the response body to fetch the next page, if available. If you are fetching CSV response, check the response headers for `X-Dune-Next-Offset` and `X-Dune-Next-Uri` to fetch the next page, if available. Always follow the provided offset or uri, the server is allowed to override the provided limit if it is too large (see section on Data Returned Limit)
-
+1. Use the `limit` parameter to set the maximum number of results per request.
+2. The `offset` parameter defines the starting point for the data retrieval, with a default value of 0 (the first row).
+3. For JSON responses, the `next_offset` and `next_uri` fields in the response body indicate how to fetch the next page. For CSV responses, look for the `X-Dune-Next-Offset` and `X-Dune-Next-Uri` headers. The server may adjust the provided limit if deemed too large, ensuring efficient data handling. Follow these indicators to navigate through the dataset seamlessly.
 
 ### Pagination Parameters
 
-**`limit`** (Required)
-- Type: Integer
-- Description: Limits the number of rows returned per request.
+#### `limit` (required)
+- **Type:** `integer`
+- **Description:** Specifies the maximum number of rows to return in a single request, controlling the page size for pagination.
 
-**`offset`**
-- Type: Integer
-- Description: Specifies the starting point (inclusive) from which to return results.
-- **Default:** 0 (i.e., the first row)
-- **Usage:** Together with `limit`, enables incremental and efficient pagination.
+#### `offset`
+- **Type:** `integer`
+- **Description:** Determines the starting point for data retrieval, allowing for sequential access through the dataset.
+- **Default:** 0 (the first row)
+- **Usage:** Use in conjunction with `limit` to navigate through results in an efficient, incremental manner.
+
 
 <Accordion title="Example paginated request">
     <Tabs>
         <Tab title="cURL">
         ```bash
-        curl -X GET 'https://api.dune.com/api/v1/query/3426636/results?limit=1000' -H 'x-dune-api-key: {{api_key}}'
-        ```
-        </Tab>
-
-        <Tab title="Python SDK">
-        ```python Python SDK
-
-            # coming soon
-
+        curl -X GET 'https://api.dune.com/api/v1/query/{{query_id}}/results?limit=1000' -H 'x-dune-api-key: {{api_key}}'
         ```
         </Tab>
 
@@ -94,7 +92,7 @@ To paginate through results:
 
             // Create query parameters
             params := url.Values{}
-            params.Set("limit", "1000")
+            params.Set("limit", 1000)
 
             // Add parameters to URL
             fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
@@ -164,7 +162,7 @@ To paginate through results:
             public static void main(String[] args) {
                 HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
                         .header("X-DUNE-API-KEY", "<x-dune-api-key>")
-                        .queryString("limit", 5)
+                        .queryString("limit", 1000)
                         .queryString("offset", 0)
                         .asString();
 
@@ -422,6 +420,6 @@ Dune internally has a maximum query result size limit (which currently is 8GB, b
 So what? Related to pagination, this means that
 - For query results under 8GB, use the API as normal.
 - When your query results exceed 8GB, in addition to `limit` and `offset` parameters in order to read the partial result (the first 8GB of data), set `allow_partial_results=true`
-- You can use the [Get Status API](./get-execution-status) to check the size of your result, `result.result_set_size`
+- You can use the [Get Status API](./endpoint/get-execution-status) to check the size of your result, `result.result_set_size` 
 
 </Tip>

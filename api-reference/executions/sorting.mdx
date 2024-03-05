@@ -1,0 +1,295 @@
+---
+title: Sorting
+---
+
+Our API allows for sorting on all `/results` endpoints to organize query results in a specified order. This sorting functionality enables users to retrieve data in a manner that best suits their needs, whether ascending or descending. The feature is designed to work in a similar fashion to a SQL `ORDER BY` clause and is available for the following endpoints:
+
+- [Get Execution Results](./endpoint/get-execution-result)
+- [Get Execution Results CSV](./endpoint/get-execution-result-csv)
+- [Get Query Results](./endpoint/get-query-result)
+- [Get Query Results CSV](./endpoint/get-query-result-csv)
+
+Sorting can be effectively combined with [pagination](./pagination) and [filtering](./filtering) to optimize data retrieval.
+
+### Sorting Parameters
+
+#### `sort_by`
+- **Type:** `string`
+- **Description:** Specifies the order in which query results are returned. It directly mirrors the functionality of an SQL `ORDER BY` clause.
+
+<Note>
+- Specify the sorting criteria using the format `<column_name> asc|desc`. For example, `block_time desc`.
+- If a column name contains special characters, enclose it in double quotes, e.g., `"special,column" asc`.
+- You can sort by multiple columns by separating them with a comma, exactly like in SQL. For instance, `amount_usd desc, block_time`.
+- By default, sorting is in ascending order if not explicitly specified. Explicitly include `asc` or `desc` to define the sorting order.
+</Note>
+
+<Accordion title="Example sorting request">
+    <Tabs>
+        <Tab title="cURL">
+        ```bash
+        curl -X GET "https://api.dune.com/api/v1/query/{{query_id}}/results?limit=100&filters=block_time%20%3E%20'2024-03-05'&columns=tx_from,tx_to,tx_hash,amount_usd&sort_by=amount_usd%20desc,%20block_time" -H "x-dune-api-key: {{api_key}}"
+        ```
+        </Tab>
+
+        <Tab title="Python">
+        ```python
+        import requests
+
+        url = "https://api.dune.com/api/v1/query/{query_id}/results"
+
+        headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+        params = {"limit": 10, 
+          "filters": "block_time > '2024-03-01'",
+          "columns": "tx_from,tx_to,tx_hash,amount_usd",
+          "sort_by": "amount_usd desc, block_time"
+         }
+
+        response = requests.request("GET", url, headers=headers, params=params)
+
+        print(response.text)
+
+        ```
+        </Tab>
+
+        <Tab title="Javascript">
+        ```javascript
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-DUNE-API-KEY': '<x-dune-api-key>'
+            }
+        };
+
+        const queryParams = new URLSearchParams({
+            limit: 10, 
+            filters: "block_time > '2024-03-01'",
+            columns: "tx_from,tx_to,tx_hash,amount_usd",
+            sort_by: "amount_usd desc, block_time"
+        });
+        const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+
+
+        ```
+
+        ```go Go
+
+        package main
+
+        import (
+            "fmt"
+            "net/http"
+            "io/ioutil"
+            "net/url"
+        )
+
+        func main() {
+            url := "https://api.dune.com/api/v1/query/{query_id}/results"
+
+            // Create query parameters
+            params := url.Values{}
+            params.Set("limit", 10)
+            params.Set("filters", "block_time > '2024-03-01'")
+            params.Set("columns", "tx_from,tx_to,tx_hash,amount_usd")
+            params.Set("sort_by", "amount_usd desc, block_time")
+
+            // Add parameters to URL
+            fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
+
+            req, _ := http.NewRequest("GET", fullURL, nil)
+
+            req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+            res, _ := http.DefaultClient.Do(req)
+
+            defer res.Body.Close()
+            body, _ := ioutil.ReadAll(res.Body)
+
+            fmt.Println(res)
+            fmt.Println(string(body))
+        }
+        ```
+        </Tab>
+
+        <Tab title="PHP">
+        ```php
+        <?php
+
+        $curl = curl_init();
+
+        $url = "https://api.dune.com/api/v1/query/{query_id}/results";
+        $queryParams = http_build_query([
+            'limit' => 10,
+            'filters' => "block_time > '2024-03-01'",
+            'columns' => "tx_from,tx_to,tx_hash,amount_usd",
+            'sort_by' => "amount_usd desc, block_time",
+        ]);
+        $url .= '?' . $queryParams;
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "X-DUNE-API-KEY: <x-dune-api-key>"
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
+        ?>
+        ```
+        </Tab>
+
+        <Tab title="Java">
+        ```java
+
+        import kong.unirest.HttpResponse;
+        import kong.unirest.Unirest;
+
+        public class Main {
+            public static void main(String[] args) {
+                HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
+                        .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+                        .queryString("limit", 10)
+                        .queryString("filters", "block_time > '2024-03-01'")
+                        .queryString("columns", "tx_from,tx_to,tx_hash,amount_usd")
+                        .queryString("sort_by", "amount_usd desc, block_time")
+                        .asString();
+
+                System.out.println(response.getBody());
+            }
+        }
+        ```
+        </Tab>
+    </Tabs>
+</Accordion>
+
+### Sorted Response
+
+
+<Accordion title="Example sorted response">
+    ```json
+        {
+            "execution_id": "01HR8AGD6CWGHGP1BN3Z1SJ4MD",
+            "query_id": 3493826,
+            "is_execution_finished": true,
+            "state": "QUERY_STATE_COMPLETED",
+            "submitted_at": "2024-03-05T22:07:22.828653Z",
+            "expires_at": "2024-06-03T22:07:53.36647Z",
+            "execution_started_at": "2024-03-05T22:07:24.013663281Z",
+            "execution_ended_at": "2024-03-05T22:07:53.366469062Z",
+            "result": {
+                "rows": [
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-05 20:50:59.000 UTC",
+                        "tx_from": "0x38032f326436fdb9c7a9b359e90010f86b8ab482",
+                        "tx_hash": "0xce6f59cf2f0b395d8fc33e49d1f5db5686be95555135fd8126bc7c59327cd9be",
+                        "tx_to": "0x061b87122ed14b9526a813209c8a59a633257bab"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-05 20:49:33.000 UTC",
+                        "tx_from": "0xb46b909be665d75f833be22c6e6285ba5ad74dfa",
+                        "tx_hash": "0x1f1725ebe374b1ffb50047055b793b2be6a8cb07ab75fd685b95e842953da4ca",
+                        "tx_to": "0x1111111254eeb25477b68fb85ed929f73a960582"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-05 20:48:53.000 UTC",
+                        "tx_from": "0x40014275b332f38423fa0de39939d26c7294ffc0",
+                        "tx_hash": "0xb4364656c20007fb1d7bfa93d87fc6fe345a91b10661835d1a54d1ac7761a244",
+                        "tx_to": "0x1111111254eeb25477b68fb85ed929f73a960582"
+                    },
+                    {
+                        "amount_usd": 1397.903560808159,
+                        "block_time": "2024-03-05 20:48:03.000 UTC",
+                        "tx_from": "0xb46b909be665d75f833be22c6e6285ba5ad74dfa",
+                        "tx_hash": "0x818f701a6c7dcf78a090cfd8324da5896005c2a6d8e3ec5ac2c29cfa5e67f5d9",
+                        "tx_to": "0x1111111254eeb25477b68fb85ed929f73a960582"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-05 20:47:55.000 UTC",
+                        "tx_from": "0x50758bdc1735e94401ed73eb7e8bde482766819c",
+                        "tx_hash": "0x1dc342dc397ffa7b433fa64280fe9f4a7e0b51409e9abc9fde61bc9b85c938be",
+                        "tx_to": "0x4c4af8dbc524681930a27b2f1af5bcc8062e6fb7"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-05 20:47:55.000 UTC",
+                        "tx_from": "0x50758bdc1735e94401ed73eb7e8bde482766819c",
+                        "tx_hash": "0x1dc342dc397ffa7b433fa64280fe9f4a7e0b51409e9abc9fde61bc9b85c938be",
+                        "tx_to": "0x4c4af8dbc524681930a27b2f1af5bcc8062e6fb7"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-05 20:47:53.000 UTC",
+                        "tx_from": "0xfa3dc8db10e7c2f7dfa87e86bba6257066731bc1",
+                        "tx_hash": "0x0d34634a9438ce241e2870b23e70a008c8db839ba38daadc1074c9b1a52be7c7",
+                        "tx_to": "0xba12222222228d8ba445958a75a0704d566bf2c8"
+                    },
+                    {
+                        "amount_usd": 2.753641952846242,
+                        "block_time": "2024-03-05 20:47:53.000 UTC",
+                        "tx_from": "0xfa3dc8db10e7c2f7dfa87e86bba6257066731bc1",
+                        "tx_hash": "0x0d34634a9438ce241e2870b23e70a008c8db839ba38daadc1074c9b1a52be7c7",
+                        "tx_to": "0xba12222222228d8ba445958a75a0704d566bf2c8"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-05 20:47:53.000 UTC",
+                        "tx_from": "0xfa3dc8db10e7c2f7dfa87e86bba6257066731bc1",
+                        "tx_hash": "0x0d34634a9438ce241e2870b23e70a008c8db839ba38daadc1074c9b1a52be7c7",
+                        "tx_to": "0xba12222222228d8ba445958a75a0704d566bf2c8"
+                    },
+                    {
+                        "amount_usd": 1798.8186143812122,
+                        "block_time": "2024-03-05 20:47:49.000 UTC",
+                        "tx_from": "0xb46b909be665d75f833be22c6e6285ba5ad74dfa",
+                        "tx_hash": "0xcf8d9873f017a8ba9e624c3bb61bede8e11c194965690026cd394f20c55f896a",
+                        "tx_to": "0x1111111254eeb25477b68fb85ed929f73a960582"
+                    }
+                ],
+                "metadata": {
+                    "column_names": [
+                        "block_time",
+                        "tx_from",
+                        "tx_to",
+                        "tx_hash",
+                        "amount_usd"
+                    ],
+                    "row_count": 10,
+                    "result_set_bytes": 2042,
+                    "total_row_count": 100,
+                    "total_result_set_bytes": 56496,
+                    "datapoint_count": 50,
+                    "pending_time_millis": 1185,
+                    "execution_time_millis": 29352
+                }
+            },
+            "next_uri": "https://api.dune.com/api/v1/execution/01HR8AGD6CWGHGP1BN3Z1SJ4MD/results?columns=block_time%2Ctx_from%2Ctx_to%2Ctx_hash%2Camount_usd&filters=block_time+%3E+%272024-03-01%27&limit=10&offset=10",
+            "next_offset": 10
+        }
+    ```
+</Accordion>

@@ -1,0 +1,1177 @@
+---
+title: Sampling
+---
+
+Our API supports sampling on all `/results` endpoints to provide a uniform sample of the dataset for efficient data analysis and visualization. This feature is particularly useful for use cases like charting, where analyzing a full dataset isn't necessary. Sampling returns a randomized subset of data, optimizing performance and resource utilization. You can apply sampling to the following endpoints:
+
+- [Get Execution Results](./endpoint/get-execution-result)
+- [Get Execution Results CSV](./endpoint/get-execution-result-csv)
+- [Get Query Results](./endpoint/get-query-result)
+- [Get Query Results CSV](./endpoint/get-query-result-csv)
+
+
+### Sampling Parameters
+
+#### `sample_count`
+- **Type:** `integer`
+- **Description:** Determines the number of rows to return as a sample from the result set. If the available dataset contains fewer rows than the specified `sample_count`, the entire dataset is returned. 
+
+<Note>
+- Sampling is designed to provide a randomized subset of data, with each request potentially producing different outcomes.
+- When specifying `sample_count` (e.g., `sample_count = 10000`), the number is approximate. The actual number of rows returned may vary slightly (e.g., 10013, 10017), reflecting the approximate nature of the sampling process.
+- `sample_count` is incompatible with `offset`, `limit`, `filters`, and `sort_by` parameters.  
+- `sample_count` can be used with `columns` to specify which data fields to include in the sample.
+</Note>
+
+
+<Accordion title="Example sampling request">
+    <Tabs>
+        <Tab title="cURL">
+        ```bash
+        curl -X GET "https://api.dune.com/api/v1/query/{{query_id}}/results?sample_count=10000" -H "x-dune-api-key: {{api_key}}"
+        ```
+        </Tab>
+
+        <Tab title="Python">
+        ```python
+        import requests
+
+        url = "https://api.dune.com/api/v1/query/{query_id}/results"
+
+        headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+        params = {"sample_count": 10_000}
+
+        response = requests.request("GET", url, headers=headers, params=params)
+
+        print(response.text)
+
+        ```
+        </Tab>
+
+        <Tab title="Javascript">
+        ```javascript
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-DUNE-API-KEY': '<x-dune-api-key>'
+            }
+        };
+
+        const queryParams = new URLSearchParams({
+            sample_count: 10000
+        });
+        const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+
+
+        ```
+        </Tab>
+    </Tabs>
+</Accordion>
+
+### Sampling Response
+
+<Accordion title="Example sampling response">
+    _Showing reponse for `sample_count=200` instead of specified `sample_count=10000` in example request to not overwhelm the doc._
+    ```json
+        {
+            "execution_id": "01HR8D39V7N8WM653SVDW2G9WB",
+            "query_id": 3494402,
+            "is_execution_finished": true,
+            "state": "QUERY_STATE_COMPLETED",
+            "submitted_at": "2024-03-05T22:52:39.144099Z",
+            "expires_at": "2024-06-03T22:54:03.004092Z",
+            "execution_started_at": "2024-03-05T22:52:39.348798256Z",
+            "execution_ended_at": "2024-03-05T22:54:03.00409093Z",
+            "result": {
+                "rows": [
+                    {
+                        "amount_usd": 28.517144710689454,
+                        "block_time": "2024-03-02 12:51:19.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 4892.433,
+                        "block_time": "2024-03-05 13:42:59.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 31.579160400723985,
+                        "block_time": "2024-03-04 20:17:56.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 84.162,
+                        "block_time": "2024-03-05 07:26:54.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1.5276341414539407,
+                        "block_time": "2024-03-03 12:32:44.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 876.1714568508686,
+                        "block_time": "2024-03-05 02:14:47.000 UTC",
+                        "blockchain": "fantom"
+                    },
+                    {
+                        "amount_usd": 4529.057,
+                        "block_time": "2024-03-04 00:18:11.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 3.4650100000000004,
+                        "block_time": "2024-03-03 18:37:13.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 3807.8717711100694,
+                        "block_time": "2024-03-01 14:34:02.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 108.35502074806105,
+                        "block_time": "2024-03-05 21:19:01.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 5626.705727874,
+                        "block_time": "2024-02-25 06:38:03.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 6297.923873206106,
+                        "block_time": "2024-02-25 18:49:35.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 42.89459696180875,
+                        "block_time": "2024-03-04 15:21:36.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 16.2568552273696,
+                        "block_time": "2024-02-26 15:01:57.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 1.1106583668199999,
+                        "block_time": "2024-02-26 23:19:27.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 10.110862222160993,
+                        "block_time": "2024-02-26 01:38:27.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 2205.152411789288,
+                        "block_time": "2024-03-02 21:22:14.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 64.45896703549224,
+                        "block_time": "2024-03-03 17:12:51.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.10009950000000001,
+                        "block_time": "2024-03-04 04:10:09.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.1793018526245563,
+                        "block_time": "2024-03-02 11:40:24.000 UTC",
+                        "blockchain": "fantom"
+                    },
+                    {
+                        "amount_usd": 1764.6136378019573,
+                        "block_time": "2024-03-04 15:30:59.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 754.1411959794449,
+                        "block_time": "2024-03-05 14:39:56.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 60.40392415666184,
+                        "block_time": "2024-03-04 05:12:45.000 UTC",
+                        "blockchain": "fantom"
+                    },
+                    {
+                        "amount_usd": 1008.50671212564,
+                        "block_time": "2024-03-04 00:50:35.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 557.6575443177599,
+                        "block_time": "2024-03-02 11:58:31.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 156.95770147122337,
+                        "block_time": "2024-02-26 07:58:49.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 1418.012065641238,
+                        "block_time": "2024-02-25 08:35:21.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.1469761086913701,
+                        "block_time": "2024-03-05 08:00:34.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 7.389113212229015,
+                        "block_time": "2024-03-02 20:02:22.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 2.2360448030817,
+                        "block_time": "2024-03-03 18:36:36.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 624.8131957104512,
+                        "block_time": "2024-03-03 09:09:36.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.4232590237993572,
+                        "block_time": "2024-03-04 03:52:17.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 39.63555574305464,
+                        "block_time": "2024-03-03 16:33:44.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 18.033143733499998,
+                        "block_time": "2024-03-01 18:37:37.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 19.27257264210368,
+                        "block_time": "2024-03-02 22:03:18.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 251.45309401901636,
+                        "block_time": "2024-03-05 10:08:58.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1001.039,
+                        "block_time": "2024-03-05 15:03:14.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 69.98049741614801,
+                        "block_time": "2024-02-25 03:04:40.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 724.869705168678,
+                        "block_time": "2024-02-25 17:26:31.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 3.3748796966933337,
+                        "block_time": "2024-02-26 05:42:46.000 UTC",
+                        "blockchain": "fantom"
+                    },
+                    {
+                        "amount_usd": 3939.2188699207695,
+                        "block_time": "2024-02-25 23:17:35.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 3.4743546989550493,
+                        "block_time": "2024-03-03 20:07:06.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 2410.48064705844,
+                        "block_time": "2024-03-02 06:48:21.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 201.94357555355361,
+                        "block_time": "2024-02-25 22:33:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 145.27394384575086,
+                        "block_time": "2024-03-04 10:54:32.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1070.7173780527592,
+                        "block_time": "2024-03-04 13:57:21.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 223.82524240905198,
+                        "block_time": "2024-03-02 08:31:15.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 1950.3639893741088,
+                        "block_time": "2024-03-03 05:09:47.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 719.5529722030446,
+                        "block_time": "2024-03-05 09:27:23.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 6.89141479932381,
+                        "block_time": "2024-03-01 03:35:39.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 368.6550396139464,
+                        "block_time": "2024-03-04 11:05:35.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 105.21798800684901,
+                        "block_time": "2024-03-05 16:04:47.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 31.17956089030626,
+                        "block_time": "2024-03-05 18:17:05.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 43.21002361278373,
+                        "block_time": "2024-03-03 14:40:21.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1448.8800596106462,
+                        "block_time": "2024-03-02 12:47:21.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 0.01001462,
+                        "block_time": "2024-03-03 02:18:02.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 43.94295029931569,
+                        "block_time": "2024-03-02 13:25:28.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 608.562,
+                        "block_time": "2024-02-25 13:13:11.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 85.02994808708173,
+                        "block_time": "2024-02-25 15:36:48.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 2849.089609803931,
+                        "block_time": "2024-02-25 21:21:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 742.1382966435165,
+                        "block_time": "2024-02-26 09:23:10.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1523.857600998093,
+                        "block_time": "2024-02-26 21:29:40.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1.000853,
+                        "block_time": "2024-02-25 22:25:16.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 187.32483603639648,
+                        "block_time": "2024-02-26 05:38:59.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 9.365232080867631,
+                        "block_time": "2024-03-04 21:59:33.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 7.85318483149416,
+                        "block_time": "2024-02-28 02:39:53.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 62.43033115744735,
+                        "block_time": "2024-02-27 06:40:47.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 245.49353625178662,
+                        "block_time": "2024-02-27 08:02:35.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 2.1101359357968,
+                        "block_time": "2024-02-28 17:24:20.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 887.988462523146,
+                        "block_time": "2024-02-29 08:56:34.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-02-27 16:20:57.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 0.9971501669140281,
+                        "block_time": "2024-03-05 20:28:38.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 16.03705776420069,
+                        "block_time": "2024-03-03 23:27:03.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 5.38636576521727,
+                        "block_time": "2024-03-01 23:00:13.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 52.111918183984876,
+                        "block_time": "2024-03-02 00:27:54.000 UTC",
+                        "blockchain": "avalanche_c"
+                    },
+                    {
+                        "amount_usd": 3086.7522020525853,
+                        "block_time": "2024-02-28 04:03:07.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 4.949428055682485,
+                        "block_time": "2024-02-27 04:56:28.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1006.8313144085251,
+                        "block_time": "2024-02-29 12:24:29.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 2.0418000000000003,
+                        "block_time": "2024-02-29 15:22:16.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 2.9266318215833373,
+                        "block_time": "2024-02-29 21:35:22.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 70.53850127553798,
+                        "block_time": "2024-02-29 14:29:49.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 81.29563594598649,
+                        "block_time": "2024-02-25 14:37:32.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 13.470793740263442,
+                        "block_time": "2024-03-05 01:37:06.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 99.97248453156416,
+                        "block_time": "2024-03-03 21:06:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 5069.518869870854,
+                        "block_time": "2024-03-03 20:50:12.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 1336.734240829484,
+                        "block_time": "2024-03-05 07:04:42.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 1360.739160201772,
+                        "block_time": "2024-03-04 00:50:02.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 5.539351790066339,
+                        "block_time": "2024-03-02 19:02:53.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 876.2572272291376,
+                        "block_time": "2024-03-02 04:38:26.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-04 11:03:33.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 99.617352581385,
+                        "block_time": "2024-02-29 07:15:55.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.0035383528152093564,
+                        "block_time": "2024-03-01 20:12:40.000 UTC",
+                        "blockchain": "gnosis"
+                    },
+                    {
+                        "amount_usd": 392.659627608414,
+                        "block_time": "2024-03-05 13:26:20.000 UTC",
+                        "blockchain": "fantom"
+                    },
+                    {
+                        "amount_usd": 1046.0549999999998,
+                        "block_time": "2024-03-04 03:08:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 53.957966390133336,
+                        "block_time": "2024-03-02 16:08:06.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 68.3838595588595,
+                        "block_time": "2024-03-04 17:44:34.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 128.8615741005422,
+                        "block_time": "2024-03-04 00:27:50.000 UTC",
+                        "blockchain": "fantom"
+                    },
+                    {
+                        "amount_usd": 1939.5375873865573,
+                        "block_time": "2024-03-04 18:12:43.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 22.840125454941465,
+                        "block_time": "2024-03-04 06:20:04.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 367.74,
+                        "block_time": "2024-03-02 02:22:04.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 250.29096705482596,
+                        "block_time": "2024-03-02 17:31:31.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 13.439278226512002,
+                        "block_time": "2024-03-04 12:57:51.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 104.26376017249082,
+                        "block_time": "2024-03-04 22:40:34.000 UTC",
+                        "blockchain": "avalanche_c"
+                    },
+                    {
+                        "amount_usd": 31.88978867703773,
+                        "block_time": "2024-03-02 01:39:50.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 21.652089999999998,
+                        "block_time": "2024-03-05 16:55:08.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1000.476076393368,
+                        "block_time": "2024-02-28 06:59:47.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 0.04531468812179952,
+                        "block_time": "2024-02-29 23:08:30.000 UTC",
+                        "blockchain": "gnosis"
+                    },
+                    {
+                        "amount_usd": 399.12280518383807,
+                        "block_time": "2024-02-27 02:11:17.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 21.906857751774933,
+                        "block_time": "2024-02-27 19:52:50.000 UTC",
+                        "blockchain": "celo"
+                    },
+                    {
+                        "amount_usd": 2159.603139417664,
+                        "block_time": "2024-02-29 06:57:46.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 170.0917675,
+                        "block_time": "2024-02-27 14:06:41.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 2.1773270098107673,
+                        "block_time": "2024-03-04 14:38:21.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 967.1366202115264,
+                        "block_time": "2024-03-05 19:17:51.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 638.6084000000001,
+                        "block_time": "2024-03-05 12:25:47.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 177.7136606833474,
+                        "block_time": "2024-03-04 12:25:55.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 210.509420768122,
+                        "block_time": "2024-03-04 08:36:21.000 UTC",
+                        "blockchain": "avalanche_c"
+                    },
+                    {
+                        "amount_usd": 98.74021181680514,
+                        "block_time": "2024-03-01 07:40:11.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1673.2,
+                        "block_time": "2024-02-28 18:07:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 348.1682228564602,
+                        "block_time": "2024-02-28 17:13:29.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 39.394020303514665,
+                        "block_time": "2024-02-29 22:00:22.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 2004.2563903499524,
+                        "block_time": "2024-02-28 08:14:15.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 1.088293714872,
+                        "block_time": "2024-02-25 14:47:09.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 88.8998748501281,
+                        "block_time": "2024-03-03 07:52:08.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1842.1814055883046,
+                        "block_time": "2024-03-02 19:16:33.000 UTC",
+                        "blockchain": "avalanche_c"
+                    },
+                    {
+                        "amount_usd": 1798.39,
+                        "block_time": "2024-03-04 19:57:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 295.04999999999995,
+                        "block_time": "2024-03-05 04:04:26.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 137.43506123345884,
+                        "block_time": "2024-03-01 23:23:23.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 2384.557258329636,
+                        "block_time": "2024-03-03 14:54:31.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 162.39680550951056,
+                        "block_time": "2024-03-05 10:56:59.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 267.9077158,
+                        "block_time": "2024-03-04 15:37:31.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 54.13774887589809,
+                        "block_time": "2024-03-02 19:03:35.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.004109132722992842,
+                        "block_time": "2024-03-04 14:30:02.000 UTC",
+                        "blockchain": "avalanche_c"
+                    },
+                    {
+                        "amount_usd": 49.947082245577235,
+                        "block_time": "2024-03-03 17:20:15.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1.1645993806674555,
+                        "block_time": "2024-03-04 21:20:25.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 52.21802207375,
+                        "block_time": "2024-03-05 03:37:17.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 551.7493524393489,
+                        "block_time": "2024-03-05 00:05:15.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 143.7620630115403,
+                        "block_time": "2024-02-27 10:48:56.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1170.115644926676,
+                        "block_time": "2024-03-04 10:38:59.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 0.01002096,
+                        "block_time": "2024-03-03 07:14:43.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 135.55841297748802,
+                        "block_time": "2024-02-27 07:45:41.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 3655.873260822289,
+                        "block_time": "2024-03-05 15:04:29.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 274.2296,
+                        "block_time": "2024-03-01 09:17:11.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 434.4504287688064,
+                        "block_time": "2024-03-02 18:49:25.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 13379.691687583825,
+                        "block_time": "2024-03-05 17:20:26.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 512.8804428495613,
+                        "block_time": "2024-03-03 21:22:47.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 200.7127436100967,
+                        "block_time": "2024-03-05 15:12:14.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-03-02 15:47:15.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 832.9092079437867,
+                        "block_time": "2024-03-05 05:08:08.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 24.38412842,
+                        "block_time": "2024-03-04 03:59:32.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 578.8588689529976,
+                        "block_time": "2024-03-02 07:37:16.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 260.07494353895214,
+                        "block_time": "2024-03-04 07:19:59.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 353.0716624091462,
+                        "block_time": "2024-03-05 04:32:38.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 11.456682345122639,
+                        "block_time": "2024-03-03 23:50:22.000 UTC",
+                        "blockchain": "celo"
+                    },
+                    {
+                        "amount_usd": 88.47981927839506,
+                        "block_time": "2024-03-01 03:13:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 0.600146661556,
+                        "block_time": "2024-03-02 04:38:14.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 163.626602508674,
+                        "block_time": "2024-03-05 04:05:58.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 794.470140369408,
+                        "block_time": "2024-03-03 14:49:09.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 326.8233011398602,
+                        "block_time": "2024-02-25 17:08:39.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 231.9911658111045,
+                        "block_time": "2024-02-25 12:45:33.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.30618156820099995,
+                        "block_time": "2024-02-26 08:21:23.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 71.73425953186863,
+                        "block_time": "2024-02-29 00:45:10.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 15.643788384486243,
+                        "block_time": "2024-02-27 01:12:49.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 31.592730273722967,
+                        "block_time": "2024-02-27 15:29:00.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 3253.785400919688,
+                        "block_time": "2024-03-05 19:17:17.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 177.45842179259998,
+                        "block_time": "2024-03-05 09:38:11.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 101.28513923403,
+                        "block_time": "2024-02-25 21:49:31.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 9.637478549066158,
+                        "block_time": "2024-03-01 08:52:01.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 39.004182418515995,
+                        "block_time": "2024-02-27 10:07:51.000 UTC",
+                        "blockchain": "base"
+                    },
+                    {
+                        "amount_usd": 17758.853042834915,
+                        "block_time": "2024-02-29 02:40:08.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 279.3426979300901,
+                        "block_time": "2024-02-29 08:51:37.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 35.46307627660113,
+                        "block_time": "2024-02-28 12:14:04.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 623.4442597222543,
+                        "block_time": "2024-02-27 21:37:48.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 976.2749536366576,
+                        "block_time": "2024-02-28 08:48:11.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 62.324258475499896,
+                        "block_time": "2024-02-27 05:14:21.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 112.15925637393602,
+                        "block_time": "2024-02-29 02:49:46.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 4020.915341661476,
+                        "block_time": "2024-02-28 17:34:00.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1.3838462063913513,
+                        "block_time": "2024-02-28 11:16:19.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1030.9016372906506,
+                        "block_time": "2024-02-27 08:47:36.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 7.330449133007608,
+                        "block_time": "2024-02-28 09:27:24.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 141.23601970940535,
+                        "block_time": "2024-02-27 09:38:17.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.5162878256640194,
+                        "block_time": "2024-02-27 16:55:55.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 5.759831219556,
+                        "block_time": "2024-02-29 00:43:09.000 UTC",
+                        "blockchain": "avalanche_c"
+                    },
+                    {
+                        "amount_usd": 349.45900000000006,
+                        "block_time": "2024-03-04 02:56:11.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 685.1241072780512,
+                        "block_time": "2024-03-02 00:36:25.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 462.8814260906218,
+                        "block_time": "2024-02-25 19:58:07.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 6417.8695756556,
+                        "block_time": "2024-02-26 05:52:31.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 52.039936000000004,
+                        "block_time": "2024-02-27 14:38:51.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 7047.771495682372,
+                        "block_time": "2024-02-28 17:38:07.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 18.280807329181343,
+                        "block_time": "2024-02-27 17:34:49.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 8999.255269738846,
+                        "block_time": "2024-02-28 09:00:15.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 47983.583037886354,
+                        "block_time": "2024-02-28 17:15:02.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": null,
+                        "block_time": "2024-02-28 20:17:39.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 1000.796,
+                        "block_time": "2024-02-27 07:56:35.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 8.097879680245764,
+                        "block_time": "2024-02-27 16:49:49.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 12.194494416375017,
+                        "block_time": "2024-03-01 18:02:54.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 1529.2941298943172,
+                        "block_time": "2024-03-05 05:04:27.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 13691.664540468053,
+                        "block_time": "2024-02-25 01:06:59.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 11.64870430206082,
+                        "block_time": "2024-02-29 15:50:32.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 1716.7262653514017,
+                        "block_time": "2024-02-29 00:12:35.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 330.0052796085,
+                        "block_time": "2024-02-29 22:41:35.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 1.969879679604156,
+                        "block_time": "2024-02-29 03:56:11.000 UTC",
+                        "blockchain": "optimism"
+                    },
+                    {
+                        "amount_usd": 343.7014925373134,
+                        "block_time": "2024-02-28 17:18:47.000 UTC",
+                        "blockchain": "ethereum"
+                    },
+                    {
+                        "amount_usd": 136.03740000000002,
+                        "block_time": "2024-02-29 21:42:55.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 55.551221337382,
+                        "block_time": "2024-02-29 03:01:41.000 UTC",
+                        "blockchain": "polygon"
+                    },
+                    {
+                        "amount_usd": 298.61151090804725,
+                        "block_time": "2024-02-28 20:13:40.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 439.5248834248171,
+                        "block_time": "2024-02-28 12:07:29.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 17.291999999999998,
+                        "block_time": "2024-02-27 22:17:32.000 UTC",
+                        "blockchain": "avalanche_c"
+                    },
+                    {
+                        "amount_usd": 5681.692547395195,
+                        "block_time": "2024-02-26 16:09:18.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 0.15411516309877768,
+                        "block_time": "2024-02-26 14:29:41.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 588.78913268846,
+                        "block_time": "2024-02-29 16:40:27.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 41.42185177315197,
+                        "block_time": "2024-02-29 20:41:30.000 UTC",
+                        "blockchain": "arbitrum"
+                    },
+                    {
+                        "amount_usd": 238.57242927402504,
+                        "block_time": "2024-02-28 16:43:25.000 UTC",
+                        "blockchain": "bnb"
+                    },
+                    {
+                        "amount_usd": 30.130297357061917,
+                        "block_time": "2024-02-27 02:20:07.000 UTC",
+                        "blockchain": "bnb"
+                    }
+                ],
+                "metadata": {
+                    "column_names": [
+                        "blockchain",
+                        "block_time",
+                        "amount_usd"
+                    ],
+                    "row_count": 213,
+                    "result_set_bytes": 12119,
+                    "total_row_count": 22325371,
+                    "total_result_set_bytes": 1175314615,
+                    "datapoint_count": 639,
+                    "pending_time_millis": 204,
+                    "execution_time_millis": 83655
+                }
+            }
+        }
+    ```
+</Accordion>
