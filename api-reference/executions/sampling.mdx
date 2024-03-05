@@ -21,6 +21,7 @@ Our API supports sampling on all `/results` endpoints to provide a uniform sampl
 - When specifying `sample_count` (e.g., `sample_count = 10000`), the number is approximate. The actual number of rows returned may vary slightly (e.g., 10013, 10017), reflecting the approximate nature of the sampling process.
 - `sample_count` is incompatible with `offset`, `limit`, `filters`, and `sort_by` parameters.  
 - `sample_count` can be used with `columns` to specify which data fields to include in the sample.
+- Specifying a low sample_count relative to total rows (e.g., 10 in 100,000) may convert to 0% and return 0 rows, due to percentage-based sampling calculation.
 </Note>
 
 
