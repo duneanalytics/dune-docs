@@ -381,6 +381,15 @@
           },
           {
             "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included. Tip: use this to limit the result to specific columns, reducing datapoints cost of the call."
+          },
+          {
+            "in": "query",
             "name": "query_parameters",
             "required": false,
             "explode": true,
@@ -535,6 +544,15 @@
               "type": "integer"
             },
             "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+          },
+          {
+            "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included. Tip: use this to limit the result to specific columns, reducing datapoints cost of the call."
           },
           {
             "in": "query",
@@ -709,6 +727,15 @@
           },
           {
             "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included. Tip: use this to limit the result to specific columns, reducing datapoints cost of the call."
+          },
+          {
+            "in": "query",
             "name": "ignore_max_datapoints_per_request",
             "required": false,
             "schema": {
@@ -843,6 +870,15 @@
               "type": "integer"
             },
             "description": "Number of samples to return from the result. This is useful when you want to get a uniform sample instead of the entire result. If the result has less than the sample count, the entire result is returned. Note that this will return a randomized sample, so not every call will return the same result. This parameter is incompatible with pagination (limit and offset)."
+          },
+          {
+            "in": "query",
+            "name": "columns",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included. Tip: use this to limit the result to specific columns, reducing datapoints cost of the call."
           },
           {
             "in": "query",
