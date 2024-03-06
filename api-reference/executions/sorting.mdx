@@ -9,7 +9,7 @@ Our API allows for sorting on all `/results` endpoints to organize query results
 - [Get Query Results](./endpoint/get-query-result)
 - [Get Query Results CSV](./endpoint/get-query-result-csv)
 
-Sorting can be effectively combined with [pagination](./pagination) and [filtering](./filtering) to optimize data retrieval.
+Sorting can be effectively combined with [pagination](./pagination), [filtering](./filtering) and [sampling](./sampling) to optimize data retrieval.
 
 ### Sorting Parameters
 
@@ -40,7 +40,8 @@ Sorting can be effectively combined with [pagination](./pagination) and [filteri
 
         headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
 
-        params = {"limit": 10, 
+        params = {
+          "limit": 10, 
           "filters": "block_time > '2024-03-01'",
           "columns": "tx_from,tx_to,tx_hash,amount_usd",
           "sort_by": "amount_usd desc, block_time"

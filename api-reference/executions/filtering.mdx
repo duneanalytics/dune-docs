@@ -15,7 +15,7 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
 
 #### `filters`
 - **Type:** `string`
-- **Description:** Allows specifying criteria to filter rows in the result set. It functions similarly to a SQL `WHERE` clause.
+- **Description:** Allows specifying criteria to filter rows in the result set. It functions similarly to a SQL `WHERE` clause. If omitted, all results are returned.
 
 <Note>
 - Use the format `<column_name> <operator> <value>` for criteria, for example, `block_time >= '2024-03-05 15:03'`.
@@ -29,7 +29,7 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
 
 #### `columns`
 - **Type:** `string`
-- **Description:** Identifies specific column names to include in the result set. If omitted, all columns are returned.
+- **Description:** Specifies the column names to include in the result set. If omitted, all columns are returned.
 
 <Note>
 - List column names without spaces, e.g., use `project,block_time,amount_usd` instead of `project, block_time, amount_usd`.
@@ -53,7 +53,8 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
 
         headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
 
-        params = {"limit": 10, 
+        params = {
+          "limit": 10, 
           "filters": "block_time > '2024-03-01'",
           "columns": "tx_from,tx_to,tx_hash,amount_usd",
           "sort_by": "amount_usd desc, block_time"
