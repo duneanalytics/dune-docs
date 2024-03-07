@@ -130,7 +130,7 @@
                     "table"
                 ],
                 "summary": "Insert data into a Dune table.",
-                "description": "Insert the data in a file into a table.\nSupported filetypes are CSV files (`text/csv`) and JSON files where each line is one table row (`application/x-ndjson`). CSV files must use a comma as delimiter. The data in the files must conform to the schema. The files must use the same column names as the schema, i.e. for a CSV the headers must match, and for a JSON file each object must have keys to match column names.\nConsumes 10 credits.\n",
+                "description": "Insert the data in a file into a table.\nOnly public tables are supported.\nSupported filetypes are CSV files (`text/csv`) and JSON files where each line is one table row (`application/x-ndjson`). CSV files must use a comma as delimiter. The data in the files must conform to the schema. The files must use the same column names as the schema, i.e. for a CSV the headers must match, and for a JSON file each object must have keys to match column names.\nConsumes 10 credits.\n",
                 "parameters": [
                     {
                         "name": "namespace",
@@ -258,7 +258,7 @@
                     "is_private": {
                         "type": "boolean",
                         "default": false,
-                        "description": "If true, the table will be private and only visible to the team or user that your API key is associated with."
+                        "description": "If true, the table will be private. This is not supported yet, it has to be `false`. If private it is only visible to the team or user that your API key is associated with."
                     },
                     "description": {
                         "type": "string",
