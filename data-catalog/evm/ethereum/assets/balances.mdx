@@ -1,11 +1,47 @@
 ---
 title: tokens_ethereum.balances
-sidebarTitle: "Balances"
-description: 
+sidebarTitle: "Daily Balances"
+description: "Daily token balances for all EVM addresses." 
 ---
 
-<CardGroup cols={1}>
-    <Card title="Under Construction" icon="person-digging" iconType="duotone">
-        This section is currently under construction.
-    </Card>
-</CardGroup>
+Our daily balances tables contain all token balances for all EVM addresses. This includes:
+
+- **native (ETH, MATIC, etc.) balances**
+- **ERC-20 token balances**
+- **ERC-721 token balances**
+- **ERC-1155 token balances**
+
+## Usage
+
+The balances tables are a great starting point for any analysis that requires token balances. For example, you can use the balances tables to:
+- **Analyze the distribution of token holdings**
+- **Identify the top token holders**
+- **Monitor the movement of tokens**
+- **Analyze a wallet's token holdings**
+- **Inspect the holdings of a multi-sig wallet**
+
+and much more.
+
+### Coverage
+
+These tables currently cover the following networks:
+
+- Arbitrum
+- Base 
+- Ethereum Mainnet
+- Optimism
+
+We are working on adding support for all EVM networks. 
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens_ethereum" tableName="balances_daily" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tokens_ethereum" tableName="balances_daily" /> 
+
