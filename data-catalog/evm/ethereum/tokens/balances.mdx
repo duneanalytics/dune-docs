@@ -4,12 +4,20 @@ sidebarTitle: "Daily Balances"
 description: "Comprehensive daily records of token balances for Ethereum Virtual Machine (EVM) addresses, covering native currencies and various token standards." 
 ---
 
-The `tokens_ethereum.balances` table contains all daily token balances across all addresses on EVM-compatible networks. This dataset encompasses:
+The `tokens_ethereum.balances` table contains all daily token balances across all addresses and on EVM-compatible networks. This dataset encompasses:
 
 - **Native currency balances** (such as ETH, MATIC)
 - **ERC-20 token balances**
 - **ERC-721 (NFT) balances**
 - **ERC-1155 token balances**
+
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens_ethereum" tableName="balances_daily" />
+
 
 ### Utility
 
@@ -24,14 +32,14 @@ and much more, offering a granular view into the dynamics of token economics.
 
 ### Network Coverage
 
-The current scope of our tables includes these notable networks:
+Balances are currently limited to:
 
 - Arbitrum
 - Base 
 - Ethereum Mainnet
 - Optimism
 
-We are continually expanding our coverage to include additional networks. 
+We will add all remaining EVM chains over the coming weeks. 
 
 ### Balance Calculation Methodology
 
@@ -45,12 +53,6 @@ These dependencies on transfer and NFT event tables introduce a delay to balance
 
 This also means that if an address has not been involved in any of the above activities, its balance will not be updated.
 This might be the case for non-standard erc20 contracts that do not emit the `Transfer` event, or for addresses that have not been involved in any transactions or NFT transfers. If there is a specific token that does not emit the `Transfer` event, but has a different event for token transfers, please let us know and we will see if we can include it in our balance calculations.
-
-## Column Descriptions
-
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
-
-<ColumnDescriptions tableSchema="tokens_ethereum" tableName="balances_daily" />
 
 ## Table Sample
 
