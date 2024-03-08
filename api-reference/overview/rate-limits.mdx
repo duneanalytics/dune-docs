@@ -8,14 +8,20 @@ Our rate limits are implemented in three ways: IP, low vs. high limit endpoints 
 - Low limit endpoints _(write-heavy operations)_
     - [create query](../queries/endpoint/create)
     - [update query](../queries/endpoint/update)
-    - toggle private query
-    - archive query
+    - [private query](../queries/endpoint/private)
+    - [unprivate query](../queries/endpoint/unprivate)
+    - [archive query](../queries/endpoint/archive)
+    - [unarchive query](../queries/endpoint/unarchive)
     - [execute query](../executions/endpoint/execute-query)
     - [create table](../tables/endpoint/create)
     - [insert into table](../tables/endpoint/insert)
     - [upload CSV](../tables/endpoint/upload)
 - High limit endpoints _(read-heavy operations)_
-    - [read query](../queries/endpoint/read), read result (in any form), [get execution status](../executions/endpoint/get-execution-status), [cancel execution](../executions/endpoint/cancel-execution).
+    - [read query](../queries/endpoint/read)
+    - [get execution result](../queries/endpoint/get-execution-result)
+    - [get execution result CSV](../queries/endpoint/get-execution-result-csv)
+    - [get execution status](../executions/endpoint/get-execution-status)
+    - [cancel execution](../executions/endpoint/cancel-execution)
 
 | Dimension         |    | Limit                              |
 |-------------------|----|------------------------------------|
