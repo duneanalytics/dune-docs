@@ -189,16 +189,16 @@
           ]
         },
         {
-          "group": "Assets",
+          "group": "Tokens",
           "pages": [
-            "data-catalog/evm/ethereum/assets/overview",
-            "data-catalog/evm/ethereum/assets/balances",
+            "data-catalog/evm/ethereum/tokens/overview",
+            "data-catalog/evm/ethereum/tokens/balances",
             {
               "group": "Transfers",
               "pages": [
-                "data-catalog/evm/ethereum/assets/transfers/erc20-transfers",
-                "data-catalog/evm/ethereum/assets/transfers/erc721-transfers",
-                "data-catalog/evm/ethereum/assets/transfers/erc1155-transfers"
+                "data-catalog/evm/ethereum/tokens/transfers/erc20-transfers",
+                "data-catalog/evm/ethereum/tokens/transfers/erc721-transfers",
+                "data-catalog/evm/ethereum/tokens/transfers/erc1155-transfers"
               ]
             }
           ]

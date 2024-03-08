@@ -1,0 +1,151 @@
+---
+title: Daily Token Balances on EVM Networks
+sidebarTitle: "Daily Balances"
+description: "Comprehensive daily records of token balances for Ethereum Virtual Machine (EVM) addresses, covering native currencies and various token standards." 
+---
+
+The `tokens_ethereum.balances` table contains all daily token balances across all addresses on EVM-compatible networks. This dataset encompasses:
+
+- **Native currency balances** (such as ETH, MATIC)
+- **ERC-20 token balances**
+- **ERC-721 (NFT) balances**
+- **ERC-1155 token balances**
+
+### Utility
+
+Leveraging the balances tables equips analysts and developers with a foundational dataset for diverse applications, enabling you to:
+
+- **Evaluate token distribution patterns**
+- **Identify leading token holders**
+- **Examine an address's token portfolio**
+- **Review multi-signature wallet holdings**
+
+and much more, offering a granular view into the dynamics of token economics.
+
+### Network Coverage
+
+The current scope of our tables includes these notable networks:
+
+- Arbitrum
+- Base 
+- Ethereum Mainnet
+- Optimism
+
+We are continually expanding our coverage to include additional networks. 
+
+### Balance Calculation Methodology
+
+Our approach to storing balances is the following: We calculate and store token balances for each address on a daily basis. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_ethereum.balances` table, which is updated daily. In order for the balance to be queried, the address must have appeard in any of the following tables:
+
+- **For native currencies**: Transactions and traces ``to``/``from`` addresses, Ethereum-specific withdrawals, and block mining/validator activities.
+- **For ERC20**: Analysis is based on token transfer events detailed in the [tokens_ethereum_base_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/tokens/ethereum/tokens_ethereum_base_transfers.sql). The address balance is updated based on the `to`/`from` addresses in the transfer events.
+- **For ERC721 and ERC1155**: Inspection of NFT transfer activities via the [nft_ethereum_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/nft/transfers/chains/nft_ethereum_transfers.sql), focusing on the `to`/`from` addresses.
+
+These dependencies on transfer and NFT event tables introduce a delay to balance updates, contingent on the latency inherent in the Spellbook's processing.
+
+This also means that if an address has not been involved in any of the above activities, its balance will not be updated.
+This might be the case for non-standard erc20 contracts that do not emit the `Transfer` event, or for addresses that have not been involved in any transactions or NFT transfers. If there is a specific token that does not emit the `Transfer` event, but has a different event for token transfers, please let us know and we will see if we can include it in our balance calculations.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens_ethereum" tableName="balances_daily" />
+
+## Table Sample
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3503489/5892307/"
+    width="100%"
+    height="300px"
+    frameBorder="0"
+    scrolling="no"
+  ></iframe>
+</div>
+
+## Sample Queries
+
+#### Querying for latest fungible Token Balances for a specific Address
+
+```sql
+select 
+    address
+    ,token_symbol as symbol
+    ,balance
+    ,balance_usd
+    ,token_address
+from tokens_{{blockchain}}.balances_daily
+where address = {{wallet_address}} and day = date_trunc('day', now())
+    and (token_standard = 'erc20' or token_standard = 'native')
+    and balance_usd > 1
+order by balance_usd desc
+```
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3459600/5814175/"
+    width="100%"
+    height="300px"
+    frameBorder="0"
+    scrolling="no"
+  ></iframe>
+</div>
+
+#### Querying for daily fungible Token Balances for a specific Address
+
+```sql
+select
+     b.day
+    ,b.token_symbol
+    ,b.token_address
+    ,b.balance
+    ,b.balance_usd
+from tokens_{{blockchain}}.balances_daily  b
+where address = {{wallet_address}} 
+    and (token_standard = 'erc20' or token_standard = 'native')
+    and b.day > date_trunc('day',now()) - interval '{{months}}' month
+    and balance_usd > 1
+order by day desc, balance_usd desc
+```
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3456704/5814342/"
+    width="100%"
+    height="300px"
+    frameBorder="0"
+    scrolling="no"
+></iframe>
+</div>
+
+#### Find the top 50 token holders for a specific token
+
+```sql
+WITH RankedBalances AS (
+    SELECT
+        b.address,
+        b.balance,
+        ROW_NUMBER() OVER(PARTITION BY b.day ORDER BY b.balance DESC) AS rank
+    FROM tokens_ethereum.balances_daily b
+    WHERE token_address = 0xbaac2b4491727d78d2b78815144570b9f2fe8899
+    AND b.day = date_trunc('day', current_date)
+)
+SELECT
+    address,
+    balance
+FROM RankedBalances
+WHERE rank <= 50;
+``` 
+
+https://dune.com/embeds/3503852/5892563/
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3503852/5892563/"
+    width="100%"
+    height="300px"
+    frameBorder="0"
+    scrolling="no"
+></iframe>
+</div>
