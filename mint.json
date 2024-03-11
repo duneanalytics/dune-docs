@@ -322,8 +322,11 @@
     {
       "group": "Executions and Results",
       "pages": [
-        "api-reference/executions/endpoint/execution-object",
-        "api-reference/executions/endpoint/pagination",
+        "api-reference/executions/execution-object",
+        "api-reference/executions/pagination",
+        "api-reference/executions/filtering",
+        "api-reference/executions/sorting",
+        "api-reference/executions/sampling",
         "api-reference/executions/endpoint/execute-query",
         "api-reference/executions/endpoint/cancel-execution",
         "api-reference/executions/endpoint/get-execution-status",

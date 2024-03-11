@@ -2,9 +2,9 @@
 title: 'Execution & Results'
 ---
 
-In this quickstart, we will walk through how to query for Dune data in Python. 
+In this quickstart, we will walk through how to fetch Dune data in Python. 
 
-Prerequisites
+### Prerequisites
 - Python environment set up (check out [Anaconda Navigator](https://docs.continuum.io/free/navigator/) if you want somewhere to start.)
 - Have a Dune API key (to obtain one [follow the steps here](../overview/authentication#generate-an-api-key))
 
@@ -85,10 +85,10 @@ You can choose to either get the latest query result without triggering an execu
 </Tabs>
 
 <Note>
-  - To paginate query results, please visit the [pagination page](../executions/endpoint/pagination) to get more info.
+  - To paginate query results, please visit the [pagination page](../executions/pagination) to get more info.
   - If you are using the [Python SDK](https://github.com/duneanalytics/dune-client/tree/main):
     - For [higher level functions](https://github.com/duneanalytics/dune-client/blob/main/dune_client/api/extensions.py) like `run_query()`, pagination is handled for you automatically behind the scene, so you will get the entire dataset as the returned result. You can pass in parameter `batch_size` to define the maximum number of rows per batch or pagination call.
-    - For [lower level functions](https://github.com/duneanalytics/dune-client/blob/main/dune_client/api/execution.py) like `get_execution_results()`, you can pass in pagination parameters `limit` and `offset` directly, as instructed [here](../executions/endpoint/pagination#pagination-parameters).
+    - For [lower level functions](https://github.com/duneanalytics/dune-client/blob/main/dune_client/api/execution.py) like `get_execution_results()`, you can pass in pagination parameters `limit` and `offset` directly, as instructed [here](../executions/pagination#pagination-parameters).
 </Note>
 
 <Accordion title="Putting it all together">

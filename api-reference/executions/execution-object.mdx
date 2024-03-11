@@ -1,0 +1,27 @@
+---
+title: 'Overview'
+---
+
+Results are linked to executions, and executions are tied to queries. Each execution has an `execution id`. An execution ID is generated when you initiate the execution of a query through the [execute query](./endpoint/execute-query) endpoint.
+
+Unlike a query ID, which identifies a specific query, an execution ID represents a particular execution of that query. With an execution ID, you can monitor the execution's status using the [check status](./endpoint/get-execution-status) endpoint. The status can be one of the following: pending, success, or failure.
+
+If an execution is successful, you can get the result using [get result](./endpoint/get-execution-result). Results are saved and can be retrieved multiple times.
+Results data from an execution are stored with an expiration date of 90 days (subject to change). This is visible on the API response on the “expires_at” field in the execution status and results json body (not on the CSV endpoint).
+
+<Tip>
+    Consider saving your execution ID in some cases to retrieve the result later without initiating a new execution.
+</Tip>
+
+Dune API offers a range of endpoints under the categories of "Execution" and "Results". These endpoints facilitate the execution of predefined queries, retrieval of results in various formats, and management of query executions. Below is an overview of each endpoint, providing a high-level understanding of their functionalities.
+
+
+| Endpoint Title           | Endpoint                          | Description                                                                                   |
+|--------------------------|-----------------------------------|-----------------------------------------------------------------------------------------------|
+| [Cancel Execution](./endpoint/cancel-execution)    | `POST /v1/execution/{execution_id}/cancel` | Cancels an ongoing query execution. Requires the `execution_id`. Returns a success boolean.   |
+| [Execute Query](./endpoint/execute-query)       | `POST /v1/query/{query_id}/execute` | Triggers an execution based on the `query_id`. Returns a `execution_id`. |
+| [Get Execution Status](./endpoint/get-execution-status) | `GET /v1/execution/{execution_id}/status` | Provides the status of a query execution give an `execution_id`. |
+| [Get Execution Result in CSV](./endpoint/get-execution-result-csv) | `GET /v1/execution/{execution_id}/results/csv` | Retrieves the status, metadata, and results in CSV format. Includes data retention and limit information. |
+| [Get Execution Result](./endpoint/get-execution-result) | `GET /v1/execution/{execution_id}/results` | Fetches the execution status, metadata, and results in JSON format. Similar data handling as CSV endpoint. |
+| [Get Latest Query Result in CSV](./endpoint/get-query-result-csv) | `GET /v1/query/{query_id}/results/csv` | Returns the latest results of a query in CSV format, irrespective of the execution method. Queries must be public or owned. |
+| [Get Latest Query Result](./endpoint/get-query-result) | `GET /v1/query/{query_id}/results` | Similar to the CSV endpoint but returns results in JSON format. Follows the same access and data limit policies. |

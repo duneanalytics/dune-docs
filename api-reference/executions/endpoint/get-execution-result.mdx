@@ -11,7 +11,7 @@ Result returns the status, metadata, and query results (in JSON) from a query ex
 <Info> 
 - Results data from an execution are stored for 90 days. This is visible on the API response on the “expires_at” field in the execution status and results body. 
 - Dune internally has a maximum query result size limit (which currently is 8GB, but subject to increase in the future). If your query yields more than 8GB of data, the result will be truncated in storage. In such cases, pulling the result data (using pagination) but without specifying `allow_partial_results` set to true will trigger an error message: "error": "Partial Result, please request with 'allows_partial_results=true'". If you wish to retrieve partial results, you can pass the parameter `allow_partial_results=true`. But please make sure you indeed want to fetch the truncated result.
-- We recommend reading about [Pagination](./pagination) to get the most out of the API and handle large results.
+- We recommend reading about [Pagination](../pagination) to get the most out of the API and handle large results.
 
 </Info>
 
@@ -50,7 +50,7 @@ Result returns the status, metadata, and query results (in JSON) from a query ex
 
     <Tab title="Typescript SDK">
       ``` typescript
-      import { QueryParameter, DuneClient } from "@cowprotocol/ts-dune-client";
+      import { QueryParameter, DuneClient } from "@duneanalytics/client-sdk";
       const { DUNE_API_KEY } = process.env;
       const client = new DuneClient(DUNE_API_KEY ?? "");
       ```

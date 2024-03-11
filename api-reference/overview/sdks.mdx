@@ -48,30 +48,32 @@ results_df = dune.run_query_dataframe(query)
 
 ## Typescript
 
-We have a community client from the Cow Protocol team that can be [found here](https://www.npmjs.com/package/@cowprotocol/ts-dune-client).
+We have a community client from the Cow Protocol team that can be [found here](https://www.npmjs.com/package/@duneanalytics/client-sdk).
 
 To install, run this command 
 
 ```bash 
-yarn add @cowprotocol/ts-dune-client
+yarn add @duneanalytics/client-sdk
 ```
 
 Currently this client only supports the execution based endpoints, and not Query Endpoints or uploads. Here is an example query:
 
 ```typescript
-import { QueryParameter, DuneClient } from "@cowprotocol/ts-dune-client";
+import { QueryParameter, DuneClient } from "@duneanalytics/client-sdk";
 const { DUNE_API_KEY } = process.env;
 
 const client = new DuneClient(DUNE_API_KEY ?? "");
 const queryID = 1215383;
-const parameters = [
-  QueryParameter.text("TextField", "Plain Text"),
-  QueryParameter.number("NumberField", 3.1415926535),
-  QueryParameter.date("DateField", "2022-05-04 00:00:00"),
-  QueryParameter.enum("ListField", "Option 1"),
-];
+const params = {
+  query_parameters = [
+    QueryParameter.text("TextField", "Plain Text"),
+    QueryParameter.number("NumberField", 3.1415926535),
+    QueryParameter.date("DateField", "2022-05-04 00:00:00"),
+    QueryParameter.enum("ListField", "Option 1"),
+  ]
+};
 
 client
-  .refresh(queryID, parameters)
+  .runQuery(queryID, params)
   .then((executionResult) => console.log(executionResult.result?.rows));
 ```
