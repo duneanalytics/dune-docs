@@ -65,8 +65,9 @@ If you query a table in DuneSQL, the system will access the data in the followin
 4. **Page Level:** Within the column chunk, the data is further segmented into pages. The database reads these pages into memory, benefiting from any compression or encoding optimizations.
 
 
-The engine will repeat this process for each parquet file and row group that might contain the data needed for the query. Once all the data is read into memory, the system will process the data and return the results to the user.    
-If the query is too large to fit in memory, the data will "spill" from memory to disk. This is called a "spill to disk" and is a common occurrence in databases. This will negatively impact query performance, as reading data from disk is much slower than reading data from memory. To avoid this issue, it's important to write efficient queries that minimize the amount of data that needs to be read into memory.
+During this process the engine starts stream processing from the first chunks of data it has read. It will optimize on the flight: based on the data it has already read, it can resign from reading other data if that data recognized as irrelevant. This is called dynamic filtering and will usually save a lot of resources.   
+
+If the query is too large to be processed in memory, the data will "spill" from memory to disk. This is called "spill to disk" and is a common occurrence in databases. This will negatively impact query performance, as reading data from disk is much slower than reading data from memory. To avoid this issue, it's important to write efficient queries that minimize the amount of data that needs to be read into memory.
 
 ### Tips for Writing Efficient Queries on DuneSQL 
 
@@ -103,9 +104,9 @@ using the steps above the query engine would do the following:
 
 4. **Page Level:** Within the column chunk, the data is further segmented into pages. The database reads these pages into memory, benefiting from any compression or encoding optimizations.
 
-As you can see, the query engine can skip entire parquet files and row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered. This is why it's important to use filter conditions based on columns that are not random and can be ordered, such as `block_number` and `block_time`.
+As you can see, the query engine can skip entire parquet files and row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered. This is why it's important to use filter conditions based on columns that are not random and can be ordered, such as `block_number`,`block_time` or `block_date`.
 
-The above example is pretty theoretical, as you will most likely not be querying the `ethereum.transactions` table for a specific transaction hash. However, the same principle applies to other tables and queries. For example, if we want to query `ethereum.transactions` for all transactions to a specific smart contract, we can use `block_number` or `block_time` to skip entire parquet files and row groups within files while scanning through the table. 
+The above example is pretty theoretical, as you will most likely not be querying the `ethereum.transactions` table for a specific transaction hash. However, the same principle applies to other tables and queries. For example, if we want to query `ethereum.traces` for all calls to a specific smart contract, we can use `block_number`,`block_time` or `block_date` to skip entire parquet files and row groups within files while scanning through the table. 
 
 Usually you would write a query like this:
 
@@ -116,19 +117,23 @@ FROM ethereum.traces
 WHERE to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
-With our new knowledge, we can deduct that this query will be very inefficient, as the engine will have to read almost all the files and row groups associated with the table. Instead, we can write the query like this:
+With our new knowledge, we can deduct that this query will be very inefficient, as the engine will have to read almost all the files and row groups associated with the table. Instead, we can optimize the query by helping the engine to skip files with a `block_number` greater than a specific value. For example, if we know that the smart contract was deployed in block `17580247`, we can write the query like this: 
 
 ```sql
 Select 
-  *
+  "from"
+  ,to
+  ,block_time
+  ,tx_hash
+  , 
 FROM ethereum.traces
 where block_number > 17580247
 and to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
-By including the `block_number` column in the query, the engine can quickly narrow down the search to files and row groups that have a `block_number` greater than `17580247`. This significantly reduces the amount of data that needs to be read, thereby improving query performance.
+By including the `block_number` column in the query, the engine can quickly narrow down the search to files and row groups that have a `block_number` greater than `17580247`. This significantly reduces the amount of data that needs to be read, thereby improving query performance. 
 
-We can also apply the same principle to join tables. For example, if we want to join the `ethereum.transactions` on `uniswap_v3_ethereum.Pair_evt_Swap` table, we can write the query like this:
+We can also apply the same principle to join tables. For example, if we want to join `ethereum.transactions` with `uniswap_v3_ethereum.Pair_evt_Swap`, we can write the query like this:
 
 ```sql
 Select
@@ -148,7 +153,7 @@ where
 
 By including the `block_number` column in the join condition, the engine can quickly narrow down the search in `ethereum.transactions` to files and row groups that contain the `block_number` contained in a specific row in `uniswap_v3_ethereum.Pair_evt_Swap`. This significantly reduces the amount of data that needs to be read, thereby improving query performance.
 
-It also makes a difference whether we join `ethereum.transactions` on `uniswap_v3_ethereum.Pair_evt_Swap` or the other way around. The following query will be even faster:
+It also makes a difference whether we join `ethereum.transactions` to `uniswap_v3_ethereum.Pair_evt_Swap` or the other way around. The following query will be even faster:
 
 ```sql
 Select
@@ -165,11 +170,11 @@ where
   swap.contract_address = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
-<info> Using `block_date` is often better than using `block_number` or block_time as there is less distinct values to check against. Use `block_date` during joins where it is possible. </info>  
+<info> Using `block_date` is often better than using `block_number` or `block_time` as there is less distinct values to check against. Use `block_date` during joins where it is possible. </info>  
 
-This join order optimization is related to the size of the tables. **You should always join the smaller table on the bigger table**. In this case, `ethereum.transactions` is much bigger than `uniswap_v3_ethereum.Pair_evt_Swap`, so we should join `uniswap_v3_ethereum.Pair_evt_Swap` on `ethereum.transactions`. 
+This join order optimization is related to the size of the tables. **You should always join the smaller table on the bigger table**. In this case, `ethereum.transactions` is much bigger than `uniswap_v3_ethereum.Pair_evt_Swap`, so we should join `uniswap_v3_ethereum.Pair_evt_Swap` with `ethereum.transactions`. 
 
-Additionally, to enjoy these optimizations, **you will have to use inner joins**. Left joins and right joins will not benefit in the same way.
+Inner joins are generally faster than outer joins. If you can use an inner join instead of an outer join, it will improve query performance.
 
 
 ### Exceptions
@@ -189,15 +194,15 @@ In addition to leveraging the columnar storage format and using sequentially ord
 
 5. **Use window functions**: Window functions can be more efficient than self-joins or subqueries for computing aggregations over a set of rows related to the current row.
 
-6. **Avoid using DISTINCT when possible**: DISTINCT can be computationally expensive, especially on large datasets. If you can use GROUP BY or other aggregation methods to achieve the same result, it may improve query performance. Try using approx_distinct instead.
+6. **Avoid using DISTINCT when possible**: DISTINCT can be computationally expensive, especially on large datasets. Trino has implemted a range of [**approximate aggregate functions**](/query-engine/Functions-and-operators/aggregate#approximate-aggregate-functions) functions that can be used to get a good estimate of the distinct values in a column with a much lower computational cost.
 
-7. **Optimize subqueries**: Subqueries (Select * from (select * from table) as x) can sometimes cause performance issues. Consider using Common Table Expressions (CTEs) or rewriting the query using JOINs to optimize subqueries.
+7. **Use `UNION ALL` instead of `UNION`**: If you're combining the results of multiple queries, use `UNION ALL` instead of `UNION` to avoid the overhead of removing duplicate rows.
 
-8. **Optimize data types**: Use appropriate data types for your columns, as it can improve query performance by reducing the amount of data processed. For example, varbinary operations are faster that varchar so be careful casting around too much.
+8. **Careful with CTEs**: CTEs are inlined in each place where they're referenced (they're not precomputed) -- and so using CTEs multiple times, or combining CTEs in CTEs can lead to huge query plans.
 
-9. **Only order when necessary**: Ordering results can be computationally expensive. If you don't need ordered results, avoid using ORDER BY.
+9. **Optimize data types**: Use appropriate data types for your columns, as it can improve query performance by reducing the amount of data processed. For example, `varbinary` operations are faster than `varchar` operations as the data is compressed and encoded. Always use the smallest possible data type for your columns.
 
-10. **Use `UNION ALL` instead of `UNION`**: If you're combining the results of multiple queries, use `UNION ALL` instead of `UNION` to avoid the overhead of removing duplicate rows.
+10. **Only order when necessary**: Ordering results can be computationally expensive. If you don't need ordered results, avoid using `ORDER BY`.
 
 11. **Always use the actual data while fitlering. Do not use functions on the filter columns**: For example, if you want to filter on a date, do not use `date_trunc('day', block_time) > '2022-01-01'`. Instead, use `block_time > '2022-01-01'`. The first example will not be able to use the min/max values of the `block_time` column to skip entire parquet files or row groups within files while scanning through a table, while the second example will. The same goes for other functions, such as `substr`, `lower`, `upper` etc. 
 
@@ -206,4 +211,4 @@ In addition to leveraging the columnar storage format and using sequentially ord
 13. **Check your execution statistics**: Click on "last run x seconds ago" to see the execution statistics for your query. This can help you identify potential performance bottlenecks and optimize your queries accordingly.
 
 
-By following these tips, you can write more efficient queries on DuneSQL with TrinoSQL and optimize the performance of your data processing tasks. Remember that DuneSQL's unique structure, such as the parquet file format and columnar storage, should be taken into account when optimizing your queries to fully benefit from the system's capabilities.
+By following these tips, you can write more efficient queries on DuneSQL with Trino and optimize the performance of your data processing tasks. Remember that DuneSQL's structure, such as the parquet file format and columnar storage, should be taken into account when optimizing your queries to fully benefit from the system's capabilities.
