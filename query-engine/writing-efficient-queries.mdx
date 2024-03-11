@@ -9,7 +9,7 @@ In order to write efficient queries on DuneSQL, it's important to understand the
 
 ## DuneSQL Architecture
 
-DuneSQL is a Trino-based query engine designed for handling data stored in a columnar format. More spcifically, we use Parquet files as the underlying storage format. This allows for efficient data access and query processing, as well as fast data loading and data compression. In order to understand how to write efficient queries on DuneSQL, it's important to understand how data is stored and accessed in DuneSQL. Therefore this guide will start with a short introduction to databases and then move on to how DuneSQL works under the hood.
+DuneSQL is a Trino-based query engine designed for handling data stored in a columnar format. More specifically, we use Parquet files as the underlying storage format. This allows for efficient data access and query processing, as well as fast data loading and data compression. In order to understand how to write efficient queries on DuneSQL, it's important to understand how data is stored and accessed in DuneSQL. Therefore this guide will start with a short introduction to databases and then move on to how DuneSQL works under the hood.
 
 ### Short Introduction to Databases
 
@@ -40,7 +40,7 @@ Every time you query a table, the database needs to read the data from disk into
 
 Now that we understand how databases work, let's take a look at how DuneSQL works under the hood. Specifically, let's look at how data is stored and accessed in DuneSQL.
 
-Dune stores data in parquet files, which are first and foremost columnar storage files, but also ultilize some of the advantages of row-oriented storage. Data in parquet systems is partitioned by rows into multiple parquet files, and within each file, the data is further partitioned into row groups. However, the pages inside of row groups store data in columns rather than rows. As a result, the database appears row-oriented at a higher level, but it reads data from column-oriented pages when accessing specific values. Additionally, each parquet file contains metadata about the data it stores, mainly **min/max** column statistics for each column. This allows the database to efficiently skip entire parquet files or row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered. **Writing queries that take advantage of this is essential for writing efficient queries on DuneSQL.**
+Dune stores data in parquet files, which are first and foremost columnar storage files, but also utilize some of the advantages of row-oriented storage. Data in parquet systems is partitioned by rows into multiple parquet files, and within each file, the data is further partitioned into row groups. However, the pages inside of row groups store data in columns rather than rows. As a result, the database appears row-oriented at a higher level, but it reads data from column-oriented pages when accessing specific values. Additionally, each parquet file contains metadata about the data it stores, mainly **min/max** column statistics for each column. This allows the database to efficiently skip entire parquet files or row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered. **Writing queries that take advantage of this is essential for writing efficient queries on DuneSQL.**
 
 In a very simplified schematic view, our `ethereum.transactions` table is stored in a parquet file that looks like this:
 
@@ -64,13 +64,13 @@ If you query a table in DuneSQL, the system will access the data in the followin
 
 4. **Page Level:** Within the column chunk, the data is further segmented into pages. The database reads these pages into memory, benefiting from any compression or encoding optimizations.
 
-During this process the engine starts stream processing from the first chunks of data it has read. It will optimize on the flight: based on the data it has already read, it can resign from reading other data if that data recognized as irrelevant. This is called dynamic filtering and will usually save a lot of resources.
+During this process the engine starts stream processing from the first chunks of data it has read. It will optimize on the flight: based on the data it has already read, it can resign from reading other data if that data is recognized as irrelevant. This is called dynamic filtering and will usually save a lot of resources.
 
 If the query is too large to be processed in memory, the data will "spill" from memory to disk. This is called "spill to disk" and is a common occurrence in databases. This will negatively impact query performance, as reading data from disk is much slower than reading data from memory. To avoid this issue, it's important to write efficient queries that minimize the amount of data that needs to be read into memory.
 
 ### Tips for Writing Efficient Queries on DuneSQL
 
-To write efficient queries on DuneSQL, it's crucial to use filter conditions based on columns that are are not random and can be ordered. Columns like `block_time`, `block_date` and `block_number` are the best candidates for this, as they are sequentially ordered and can be used to efficiently skip entire parquet files or row groups within files while scanning through a table.
+To write efficient queries on DuneSQL, it's crucial to use filter conditions based on columns that are not random and can be ordered. Columns like `block_time`, `block_date` and `block_number` are the best candidates for this, as they are sequentially ordered and can be used to efficiently skip entire parquet files or row groups within files while scanning through a table.
 
 Let's take a look at an example. Say you want to query the `ethereum.transactions` table for a specific transaction hash. The query would usually look like this:
 
@@ -116,7 +116,7 @@ FROM ethereum.traces
 WHERE to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
-With our new knowledge, we can deduct that this query will be very inefficient, as the engine will have to read almost all the files and row groups associated with the table. Instead, we can optimize the query by helping the engine to skip files with a `block_number` greater than a specific value. For example, if we know that the smart contract was deployed in block `17580248`, we can write the query like this:
+With our new knowledge, we can deduce that this query will be very inefficient, as the engine will have to read almost all the files and row groups associated with the table. Instead, we can optimize the query by helping the engine to skip files with a `block_number` greater than a specific value. For example, if we know that the smart contract was deployed in block `17580248`, we can write the query like this:
 
 ```sql
 Select
@@ -130,7 +130,7 @@ where block_number > 17580247
 and to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
-By including the `block_number` column in the query, the engine can quickly narrow down the search to files and row groups that have a `block_number` greater than `17580247`. This significantly reduces the amount of data that needs to be read, thereby improving query performance. Additonally, only querying the columns you absolutely need will also improve query performance.
+By including the `block_number` column in the query, the engine can quickly narrow down the search to files and row groups that have a `block_number` greater than `17580247`. This significantly reduces the amount of data that needs to be read, thereby improving query performance. Additionally, only querying the columns you absolutely need will also improve query performance.
 
 We can also apply the same principle to join tables. For example, if we want to join `ethereum.transactions` with `uniswap_v3_ethereum.Pair_evt_Swap`, we can write the query like this:
 
@@ -169,7 +169,7 @@ where
   swap.contract_address = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
-<info> Using `block_date` is often better than using `block_number` or `block_time` as there is less distinct values to check against. Use `block_date` during joins where  it is possible.{" "} </info>
+<info> Using `block_date` is often better than using `block_number` or `block_time` as there are less distinct values to check against. Use `block_date` during joins where  it is possible.{" "} </info>
 
 This join order optimization is related to the size of the tables. **You should always join the smaller table on the bigger table**. In this case, `ethereum.transactions` is much bigger than `uniswap_v3_ethereum.Pair_evt_Swap`, so we should join `uniswap_v3_ethereum.Pair_evt_Swap` with `ethereum.transactions`.
 
@@ -193,7 +193,7 @@ In addition to leveraging the columnar storage format and using sequentially ord
 
 5. **Use window functions**: Window functions can be more efficient than self-joins or subqueries for computing aggregations over a set of rows related to the current row.
 
-6. **Avoid using DISTINCT when possible**: DISTINCT can be computationally expensive, especially on large datasets. Trino has implemted a range of [**approximate aggregate functions**](/query-engine/Functions-and-operators/aggregate#approximate-aggregate-functions) functions that can be used to get a good estimate of the distinct values in a column with a much lower computational cost.
+6. **Avoid using DISTINCT when possible**: DISTINCT can be computationally expensive, especially on large datasets. Trino has implemented a range of [**approximate aggregate functions**](/query-engine/Functions-and-operators/aggregate#approximate-aggregate-functions) functions that can be used to get a good estimate of the distinct values in a column with a much lower computational cost.
 
 7. **Use `UNION ALL` instead of `UNION`**: If you're combining the results of multiple queries, use `UNION ALL` instead of `UNION` to avoid the overhead of removing duplicate rows.
 
@@ -203,7 +203,7 @@ In addition to leveraging the columnar storage format and using sequentially ord
 
 10. **Only order when necessary**: Ordering results can be computationally expensive. If you don't need ordered results, avoid using `ORDER BY`.
 
-11. **Always use the actual data while fitlering. Do not use functions on the filter columns**: For example, if you want to filter on a date, do not use `date_trunc('day', block_time) > '2022-01-01'`. Instead, use `block_time > '2022-01-01'`. The first example will not be able to use the min/max values of the `block_time` column to skip entire parquet files or row groups within files while scanning through a table, while the second example will. The same goes for other functions, such as `substr`, `lower`, `upper` etc.
+11. **Always use the actual data while filtering. Do not use functions on the filter columns**: For example, if you want to filter on a date, do not use `date_trunc('day', block_time) > '2022-01-01'`. Instead, use `block_time > '2022-01-01'`. The first example will not be able to use the min/max values of the `block_time` column to skip entire parquet files or row groups within files while scanning through a table, while the second example will. The same goes for other functions, such as `substr`, `lower`, `upper` etc.
 
 12. **Use the `EXPLAIN` command**: Use the `EXPLAIN` command to understand how the query engine processes your query. This can help you identify potential performance bottlenecks and optimize your queries accordingly.
 
