@@ -48,18 +48,18 @@ results_df = dune.run_query_dataframe(query)
 
 ## Typescript
 
-We have a community client from the Cow Protocol team that can be [found here](https://www.npmjs.com/package/@cowprotocol/ts-dune-client).
+We have a community client from the Cow Protocol team that can be [found here](https://www.npmjs.com/package/@duneanalytics/client-sdk).
 
 To install, run this command 
 
 ```bash 
-yarn add @cowprotocol/ts-dune-client
+yarn add @duneanalytics/client-sdk
 ```
 
 Currently this client only supports the execution based endpoints, and not Query Endpoints or uploads. Here is an example query:
 
 ```typescript
-import { QueryParameter, DuneClient } from "@cowprotocol/ts-dune-client";
+import { QueryParameter, DuneClient } from "@duneanalytics/client-sdk";
 const { DUNE_API_KEY } = process.env;
 
 const client = new DuneClient(DUNE_API_KEY ?? "");
