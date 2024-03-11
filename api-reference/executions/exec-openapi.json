@@ -958,12 +958,7 @@
     "schemas": {
       "QueryResult": {
         "type": "object",
-        "required": [
-          "execution_id",
-          "query_id",
-          "state",
-          "submitted_at"
-        ],
+        "required": ["execution_id", "query_id", "state", "submitted_at"],
         "example": {
           "execution_id": "01HKZSJAW6N2MFVCBHA3R8S64X",
           "query_id": 1252207,
@@ -1101,12 +1096,7 @@
       },
       "ExecutionStatus": {
         "type": "object",
-        "required": [
-          "execution_id",
-          "query_id",
-          "state",
-          "submitted_at"
-        ],
+        "required": ["execution_id", "query_id", "state", "submitted_at"],
         "example": {
           "execution_id": "01HJ3EBNGZ8WT12KX8ZCARM5ES",
           "query_id": 3298913,
@@ -1367,10 +1357,7 @@
       },
       "Performance": {
         "type": "string",
-        "enum": [
-          "medium",
-          "large"
-        ],
+        "enum": ["medium", "large"],
         "description": "The performance engine tier the execution will be run on. Can be either medium or large. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is medium."
       },
       "UnauthorizedError": {
