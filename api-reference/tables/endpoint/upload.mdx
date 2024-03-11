@@ -3,6 +3,10 @@ title: 'Upload CSV'
 openapi: 'POST /v1/table/upload/csv'
 ---
 
+<Warning>
+This endpoint is in maintenance mode. Consider using the [`/create`](./create) and [`/insert`](./insert) endpoints instead.
+</Warning>
+
 <Tip>
 You can also upload CSV through the [Dune UI](https://dune.com/) by pressing the "create" dropdown.
 </Tip>
@@ -20,7 +24,7 @@ If you have larger datasets you want to upload, please [contact us here](https:/
 
 <RequestExample>
 
-```bash cURL
+```bash curl
 curl --request POST \
   --url https://api.dune.com/api/v1/table/upload/csv \
   --header 'Content-Type: application/json' \

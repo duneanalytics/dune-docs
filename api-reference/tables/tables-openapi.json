@@ -1,0 +1,309 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Table endpoints",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/v1/table/{namespace}/{table_name}/create": {
+            "post": {
+                "tags": [
+                    "table"
+                ],
+                "summary": "Create a new Dune table",
+                "description": "Create a new Dune table with the specified name and namespace.",
+                "parameters": [
+                    {
+                        "name": "namespace",
+                        "in": "path",
+                        "description": "The namespace of the table to create. Must be the name of your associated API key, i.e. either `my_user` or `my_team`.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "my_user"
+                        }
+                    },
+                    {
+                        "name": "table_name",
+                        "in": "path",
+                        "description": "The name of the table to create. Must begin with `dataset_` and contain only lowercase letters, digits, and underscores.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "dataset_my_data"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create a new Dune Table for uploads",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateTableRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "The Dune table `namespace.table_name` was created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The request was invalid. Please consult the error message.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Content-Type header is not application/json"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "You are unauthorized to create this table. Either the table is private and you cannot create a private table, or you are not allowed to create a table under namespace `namespace`, or you are not allowed to create a table with name `table_name`.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "You are not authorized to create a table under the 'other_user' namespace"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "A table with this name already exists.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "This table already exists"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/table/{namespace}/{table_name}/insert": {
+            "post": {
+                "tags": [
+                    "table"
+                ],
+                "summary": "Insert data into a Dune table.",
+                "description": "Insert the data in a file into a table.",
+                "parameters": [
+                    {
+                        "name": "namespace",
+                        "in": "path",
+                        "description": "The namespace of the table to insert into (e.g. `my_user`).",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table_name",
+                        "in": "path",
+                        "description": "The name of the table to insert into (e.g. `dataset_interest_rates`).",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "The file to insert into the table.",
+                    "content": {
+                        "text/csv": {},
+                        "application/x-ndjson": {}
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Invalid content type 'text/plain'. We support CSV (Content-Type: text/csv) and newline delimited JSON (Content-Type: application/x-ndjson)."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "You are not authorized to write to the table named 'other_user.dataset_interest_rates'"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The table does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "This table was not found"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateTableRequest": {
+                "required": [
+                    "schema"
+                ],
+                "type": "object",
+                "properties": {
+                    "schema": {
+                        "description": "An ordered list of columns that define the table schema. Cannot be empty.",
+                        "type": "array",
+                        "items": {
+                            "description": "A column of the table.",
+                            "$ref": "#/components/schemas/Column"
+                        }
+                    },
+                    "is_private": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If true, the table will be private. This is not supported yet, it has to be `false`. If private it is only visible to the team or user that your API key is associated with."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description of the table."
+                    }
+                }
+            },
+            "Column": {
+                "required": [
+                    "name",
+                    "type"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The column name. Can contain letters, numbers, and underscores, but must begin with a letter or an underscore.",
+                        "example": "my_column123"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "varchar",
+                            "integer",
+                            "double",
+                            "boolean",
+                            "timestamp"
+                        ],
+                        "description": "The column type.",
+                        "example": "timestamp"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "x-dune-api-key",
+                "description": "The API key of your team or user."
+            }
+        }
+    },
+    "security": [
+        {
+            "api_key": []
+        }
+    ]
+}
