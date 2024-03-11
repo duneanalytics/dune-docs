@@ -1,7 +1,21 @@
 ---
-title: 'Create'
+title: 'Create (beta)'
 openapi: 'POST /v1/table/{namespace}/{table_name}/create'
 ---
+
+<Warning>
+This endpoint is currently in beta, and may change without warning.
+</Warning>
+
+The resulting table will be empty, and can be inserted into with the [/insert endpoint](./insert).
+
+<Note>
+- A table must currently be created as public. If the request tries to create a private table, it will fail.
+- If a table already exists with the same name, the request will fail.
+- Column names in the table can't start with a special character or a digit.
+- To delete a table, you must go to `user settings (dune.com) -> data -> delete`.
+- Creating a table does not incur credits.
+</Note>
 
 <RequestExample>
 

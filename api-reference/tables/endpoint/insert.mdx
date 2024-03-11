@@ -1,17 +1,33 @@
 ---
-title: 'Insert'
+title: 'Insert (beta)'
 openapi: 'POST /v1/table/{namespace}/{table_name}/insert'
 ---
 
-<RequestExample>
+<Warning>
+This endpoint is currently in beta, and may change without warning.
+</Warning>
 
+To be able to insert into a table, it must have been created with the [/create endpoint](./create).
+
+<Note>
+- The data in the files must conform to the schema, and must use the same column names as the schema.
+- One successful `/insert` request consumes 10 credits.
+</Note>
+
+## Supported filetypes
+### CSV files (`Content-Type: text/csv`)
+CSV files must use a comma as delimiter, and the column names in the header must match the column names of the table.
+
+### JSON files (`Content-Type: application/x-ndjson`)
+These are files where each line is a complete JSON object which creates one table row.
+Each line must have keys that match the column names of the table.
+
+<RequestExample>
 ```bash curl
 curl --request POST \
   --url https://api.dune.com/api/v1/table/my_user/dataset_interest_rates/insert \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
   --header 'Content-Type: text/csv' \
   --upload-file interest_rates.csv
-'
 ```
-
 </RequestExample>

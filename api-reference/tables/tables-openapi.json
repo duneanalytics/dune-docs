@@ -11,7 +11,7 @@
                     "table"
                 ],
                 "summary": "Create a new Dune table",
-                "description": "Create a new Dune table with the specified name and namespace. The resulting table will be empty, and can be inserted into with the [/insert endpoint](./insert).\nThe request will fail if a table with this name already exists. It will also fail if you are not permitted to create a table with this name.\nCreating a table does not incur credits.\n",
+                "description": "Create a new Dune table with the specified name and namespace.",
                 "parameters": [
                     {
                         "name": "namespace",
@@ -130,7 +130,7 @@
                     "table"
                 ],
                 "summary": "Insert data into a Dune table.",
-                "description": "Insert the data in a file into a table.\nOnly public tables are supported.\nSupported filetypes are CSV files (`text/csv`) and JSON files where each line is one table row (`application/x-ndjson`). CSV files must use a comma as delimiter. The data in the files must conform to the schema. The files must use the same column names as the schema, i.e. for a CSV the headers must match, and for a JSON file each object must have keys to match column names.\nConsumes 10 credits.\n",
+                "description": "Insert the data in a file into a table.",
                 "parameters": [
                     {
                         "name": "namespace",
