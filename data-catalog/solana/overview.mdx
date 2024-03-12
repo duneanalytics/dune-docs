@@ -8,40 +8,55 @@ description: Solana data on Dune Analytics
 <CardGroup cols={1}>
   <Card
     title="Full Solana data guide "
-    icon= "map"
+    icon="map"
     href="https://web3datadegens.substack.com/p/how-to-analyze-bitcoin-data-with"
   ></Card>
 </CardGroup>
 
-Raw data tables are very useful to get transactions, pre and post balances, and instructions data. As a non-EVM chain, Solana Raw data looks quite different from other chains (largely due to it's account structure). You can learn to get started with Solana analysis [in this guide](https://web3datadegens.substack.com/p/starter-guide-to-solana-data-analysis).
+Raw data tables are very useful for getting transactions, pre and post-balances, and instructions data. As a non-EVM chain, Solana Raw data looks quite different from other chains (largely due to its account structure). You can learn to get started with Solana analysis [in this guide](https://web3datadegens.substack.com/p/starter-guide-to-solana-data-analysis).
 
-However, queries that have been written using raw data tables are notoriously hard to understand and audit due to the nature of the the encoded data commonly found in these tables. Furthermore, the raw data tables have a very large number of rows and hence can be slow to query. Most of the time you are better off working with [decoded data](/data-catalog/solana/idl-tables).
+However, queries that have been written using raw data tables are notoriously hard to understand and audit due to the nature of the encoded data commonly found in these tables. Furthermore, the raw data tables have a very large number of rows and hence can be slow to query. Most of the time you are better off working with [decoded data](/data-catalog/solana/idl-tables) from IDL decoding.
 
-<CardGroup cols={3}>
-  <Card title="Solana Account Activity" icon="table" href="/data-catalog/solana/account-activity">
+<CardGroup cols={2}>
+  <Card
+    title="Solana Account Activity"
+    icon="user-check"
+    href="/data-catalog/solana/account-activity"
+  >
     Detailed account activity on Solana
   </Card>
-  <Card title="Solana Blocks" icon="table" href="/data-catalog/solana/blocks">
+  <Card title="Solana Blocks" icon="cubes" href="/data-catalog/solana/blocks">
     Block information and statistics on Solana
   </Card>
-  <Card title="Solana IDL Tables" icon="table" href="/data-catalog/solana/idl-tables">
+  <Card
+    title="Solana IDL Tables"
+    icon="code"
+    href="/data-catalog/solana/idl-tables"
+  >
     Interface description language (IDL) tables for Solana
   </Card>
-  <Card title="Solana Instruction Calls" icon="table" href="/data-catalog/solana/instruction-calls">
+  <Card
+    title="Solana Instruction Calls"
+    icon="terminal"
+    href="/data-catalog/solana/instruction-calls"
+  >
     Solana instruction calls data
   </Card>
-  <Card title="Solana Overview" icon="table" href="/data-catalog/solana/overview">
-    Overview of Solana tables
-  </Card>
-  <Card title="Solana Rewards" icon="table" href="/data-catalog/solana/rewards">
+  <Card title="Solana Rewards" icon="gift" href="/data-catalog/solana/rewards">
     Reward distributions on Solana
   </Card>
-  <Card title="Solana Transactions" icon="table" href="/data-catalog/solana/transactions">
+  <Card
+    title="Solana Transactions"
+    icon="message-arrow-up"
+    href="/data-catalog/solana/transactions"
+  >
     Transaction details on Solana
   </Card>
-  <Card title="Solana Vote Transactions" icon="table" href="/data-catalog/solana/vote-transactions">
+  <Card
+    title="Solana Vote Transactions"
+    icon="check-to-slot"
+    href="/data-catalog/solana/vote-transactions"
+  >
     Voting transactions within the Solana network
   </Card>
 </CardGroup>
-
-    
