@@ -69,6 +69,7 @@
         "learning/how-tos/create-your-first-visualization",
         "learning/how-tos/navigate-query-editor",
         "learning/how-tos/find-datasets",
+        "learning/how-tos/dune-frames",
         "learning/how-tos/export-data-out",
         "learning/how-tos/create-and-manage-teams",
         "learning/how-tos/credit-system-on-dune",
@@ -235,7 +236,7 @@
         "data-catalog/aptos/move_table_items",
         "data-catalog/aptos/signatures"
       ]
-    },    
+    },
     {
       "group": "Solana",
       "pages": [

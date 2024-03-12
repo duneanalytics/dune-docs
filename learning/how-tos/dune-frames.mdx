@@ -1,0 +1,39 @@
+---
+title: Build a Frame with Dune API
+description: How to build a Farcaster Frame using Frog and Dune API
+---
+
+This guide provides a step-by-step process on using typescript and Dune API to create a user recommendation frame for Farcaster.
+
+## Set up your environment with the example repo
+
+[Fork this repo](https://github.com/andrewhong5297/dune-frames) and then run `npm install -g frog` and `npm install` to get all your packages. If you don't have npm set up, then [go download node js first](https://nodejs.org/en/download).
+
+Once installations are finished, try running `npm run dev` and it should take you to a localhost dev environment. Now, you'll need to get a Dune API key from [your user settings](https://dune.com/settings/api) and set it in an `.env` file.
+
+With that done, you'll be able to run the frame - click "See From Your Followers" in your localhost environment.
+
+## Explaining the Dune API function
+
+We call the Dune API in the `/api/dune.ts` file in the `getRecommendations(fid)` function [defined here](https://github.com/andrewhong5297/dune-frames/blob/main/api/dune.ts#L10).
+
+Below is the main API call, which makes a [FILTER](/api-reference/executions/filtering) call on an [existing result set](/api-reference/executions/endpoint/get-query-result). Using filters, we get our results in 20-30ms instead of reruning the whole query (which may take 10-20 seconds).
+
+```javascript
+//schedule the query on a 6 hour interval, and then fetch by filtering for the user fid within the query results
+//dune query where each row is a unique fid and each column is a recommended set of users: https://dune.com/queries/3509966
+const meta = {
+    "x-dune-api-key": DUNE_API_KEY || ""
+};
+const header = new Headers(meta);
+const latest_response = await fetch(`https://api.dune.com/api/v1/query/3509966/results?&filters=query_fid=${fid}` //filter for single fid
+, {
+    method: 'GET',
+    headers: header,
+});
+
+const body = await latest_response.text();
+const recs = JSON.parse(body).result.rows[0]; //will only be one row in the result, for the filtered fid
+```
+
+You can write your own aggregation queries in the same format, and then use filters to make the API fast enough for app/frame development. Good luck!
