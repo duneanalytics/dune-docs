@@ -35,9 +35,11 @@ and much more, offering a granular view into the dynamics of token economics.
 Balances are available for the following EVM-compatible networks:
 
 - Arbitrum
+- Avalanche C-Chain
 - Base 
 - Ethereum Mainnet
 - Optimism
+- Scroll
 
 We will add all remaining EVM chains over the coming weeks. 
 
@@ -53,6 +55,14 @@ These dependencies on transfer and NFT event tables introduce a delay to balance
 
 This also means that if an address has not been involved in any of the above activities, its balance will not be updated.
 This might be the case for non-standard erc20 contracts that do not emit the `Transfer` event, or for addresses that have not been involved in any transactions or NFT transfers. If there is a specific token that does not emit the `Transfer` event, but has a different event for token transfers, please let us know and we will see if we can include it in our balance calculations.
+
+### Granular balances
+
+We also provide a more granular view of token balances in the `tokens_ethereum.balances` table, which contains granular balance changes for each address, token combination per block. This table is updated in near real-time and is used to calculate the daily balances. This table is useful for more granular analysis, such as tracking the balance changes of a specific address over time. 
+
+However, the `tokens_ethereum.balances` table is very large and is not suitable for querying large time ranges or for querying balances for many addresses at once. For these use cases, the `tokens_ethereum.balances_daily` table is more suitable. 
+
+The `tokens_ethereum.balances` table adds a new row every time a balance changes but does not carry the balance forward for every block. Instead, it only creates a new row for a balance change of an address and token combination.
 
 ## Table Sample
 
