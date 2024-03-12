@@ -9,7 +9,7 @@ Our API supports filtering on all `/results` endpoints to refine query results. 
 - [Get Query Results](./endpoint/get-query-result)
 - [Get Query Results CSV](./endpoint/get-query-result-csv)
 
-Filtering can be effectively used in conjunction with [pagination](./pagination) and [sorting](./sorting) to further enhance query efficiency and relevance.
+Filtering can be effectively used in conjunction with [pagination](./pagination) and [sorting](./sorting) to further enhance query efficiency and relevance. See an example of filtering in action with [this Dune farcaster frame](/learning/how-tos/dune-frames).
 
 ### Filtering Parameters
 
@@ -54,7 +54,7 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
         headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
 
         params = {
-          "limit": 10, 
+          "limit": 10,
           "filters": "block_time > '2024-03-01'",
           "columns": "tx_from,tx_to,tx_hash,amount_usd",
           "sort_by": "amount_usd desc, block_time"
@@ -78,7 +78,7 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
         };
 
         const queryParams = new URLSearchParams({
-            limit: 10, 
+            limit: 10,
             filters: "block_time > '2024-03-01'",
             columns: "tx_from,tx_to,tx_hash,amount_usd",
             sort_by: "amount_usd desc, block_time"
