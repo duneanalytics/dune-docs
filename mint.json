@@ -223,6 +223,20 @@
       ]
     },
     {
+      "group": "Aptos",
+      "pages": [
+        "data-catalog/aptos/overview",
+        "data-catalog/aptos/blocks",
+        "data-catalog/aptos/transactions",
+        "data-catalog/aptos/user_transactions",
+        "data-catalog/aptos/events",
+        "data-catalog/aptos/move_resources",
+        "data-catalog/aptos/move_modules",
+        "data-catalog/aptos/move_table_items",
+        "data-catalog/aptos/signatures"
+      ]
+    },    
+    {
       "group": "Solana",
       "pages": [
         "data-catalog/solana/overview",
