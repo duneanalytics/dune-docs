@@ -4,7 +4,7 @@ sidebarTitle: "Daily Balances"
 description: "Comprehensive daily records of token balances for Ethereum Virtual Machine (EVM) addresses, covering native currencies and various token standards." 
 ---
 
-The `tokens_ethereum.balances` table contains all daily token balances across all addresses and on EVM-compatible networks. This dataset encompasses:
+The `tokens_ethereum.balances_daily` table contains all daily token balances across all addresses and on EVM-compatible networks. This dataset encompasses:
 
 - **Native currency balances** (such as ETH, MATIC)
 - **ERC-20 token balances**
@@ -21,7 +21,7 @@ import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 
 ### Utility
 
-Leveraging the balances tables equips analysts and developers with a foundational dataset for diverse applications, enabling you to:
+Leveraging the balance tables equips analysts and developers with a foundational dataset for diverse applications, enabling you to:
 
 - **Evaluate token distribution patterns**
 - **Identify leading token holders**
@@ -32,7 +32,7 @@ and much more, offering a granular view into the dynamics of token economics.
 
 ### Network Coverage
 
-Balances are currently limited to:
+Balances are available for the following EVM-compatible networks:
 
 - Arbitrum
 - Base 
@@ -43,7 +43,7 @@ We will add all remaining EVM chains over the coming weeks.
 
 ### Balance Calculation Methodology
 
-Our approach to storing balances is the following: We calculate and store token balances for each address on a daily basis. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_ethereum.balances` table, which is updated daily. In order for the balance to be queried, the address must have appeard in any of the following tables:
+Our approach to storing balances is the following: We calculate and store token balances for each address daily. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_ethereum.balances` table, which is updated daily. For the balance to be queried, the address must have appeared in any of the following tables:
 
 - **For native currencies**: Transactions and traces ``to``/``from`` addresses, Ethereum-specific withdrawals, and block mining/validator activities.
 - **For ERC20**: Analysis is based on token transfer events detailed in the [tokens_ethereum_base_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/tokens/ethereum/tokens_ethereum_base_transfers.sql). The address balance is updated based on the `to`/`from` addresses in the transfer events.
@@ -68,7 +68,9 @@ This might be the case for non-standard erc20 contracts that do not emit the `Tr
 
 ## Sample Queries
 
-#### Querying for latest fungible Token Balances for a specific Address
+#### Querying for the latest fungible Token Balances for a specific Address
+
+This query will return the latest fungible token balances for the specified address. Fungible tokens refer to erc20 and native tokens. Please keep in mind that the balance table lags behind the real state by approximately 2 hours.
 
 ```sql
 select 
@@ -96,6 +98,8 @@ order by balance_usd desc
 
 #### Querying for daily fungible Token Balances for a specific Address
 
+This query will return the daily fungible token balances for the specified address over time. Fungible tokens refer to erc20 and native tokens.
+
 ```sql
 select
      b.day
@@ -122,6 +126,8 @@ order by day desc, balance_usd desc
 </div>
 
 #### Find the top 50 token holders for a specific token
+
+This query will return the top 50 token holders for a specific ERC20 token on the Ethereum Mainnet.
 
 ```sql
 WITH RankedBalances AS (
