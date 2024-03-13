@@ -1,0 +1,37 @@
+---
+title: SS58 functions
+---
+
+ss58 or substrate58 is an address encoding scheme that is commonly used in substrate-based chains. It is similar to [Base58](/query-engine/Functions-and-operators/base58) encoding format, with some modifications.
+
+Under basic ss58 encoding format an address can be encoded as:
+```
+base58encode ( concat ( <address-type>, <address>, <checksum> ) )
+```
+
+## Functions
+
+#### from_ss58()
+**`from_ss58(varchar)`** → `varbinary`
+
+Converts an ss58-encoded string to the corresponding `VARBINARY` address.
+
+```sql
+SELECT 
+    from_ss58('1qnJN7FViy3HZaxZK9tGAA71zxHSBeUweirKqCaox4t8GT7')
+-- results in VARBINARY 0x2534454d30f8a028e42654d6b535e0651d1d026ddf115cef59ae1dd71bae074e
+```
+
+#### to_ss58()
+**`to_ss58(varbinary, int)`** → `varchar`
+
+Encodes an address of a specific network type into its ss58 `VARCHAR` representation. For example:
+    * `Polkadot` has address type 0
+    * `Kusama` has address type 2
+    * `Generic Substrate` has address type 42
+
+```sql
+SELECT 
+    to_ss58('0x2534454d30f8a028e42654d6b535e0651d1d026ddf115cef59ae1dd71bae074e', 2)
+-- results 'DR6pMC4GJiVbgPtNNuw1xgxJyEsYYuXKXq7ZCVBjfFrh3V5'
+```
