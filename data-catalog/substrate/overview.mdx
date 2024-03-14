@@ -1,0 +1,54 @@
+---
+title: Polkadot & Substrate Overview
+sidebarTitle: "Overview"
+icon: "star"
+description: Polkadot enables cross-blockchain transfers of any type of data or asset, not just tokens.
+---
+
+Polkadot, designed as a scalable heterogeneous multi-chain blockchain, aims to address the limitations of previous blockchain technologies by enabling different blockchains to co-exist and communicate within a secure shared system. The platform introduces a sophisticated governance model where all DOT token holders can participate in decision-making. Polkadot optimizes both security and decentralization compared to traditional Proof of Stake (PoS) and Proof of Work (PoW) systems. Polkadot include  the platform's hybrid consensus protocol, validity and availability mechanisms, and Cross-Chain Message Passing (XCMP) feature, which facilitates secure and orderly inter-parachain communication.
+
+You can learn more about Polkadot by visiting the [Polkadot Wiki](https://wiki.polkadot.network/).
+
+*Note*: All substrate chains share identical schemas. For documentation purposes, we will use polkadot.\<_tables_\> to showcase how to use all other \<_substrate_chain_\>.\<_tables_\> in general.
+
+## Onboarding Status
+
+<div>
+    <iframe
+      src={`https://dune.com/embeds/3523887/5925917`}
+      style={{ width: '100%', height: '500px', border: 'none', marginTop: '10px' }}
+    />
+</div>
+
+
+## Data Available
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/substrate/blocks">
+    Block comprise various transactions that collectively represent a change in the blockchain's state.
+  </Card>
+  <Card title="Extrinsics" icon="cube" href="/data-catalog/substrate/extinsics">
+    Extrinsics are external messages or transactions in Polkadot.
+  </Card>
+  <Card title="Balances" icon="cube" href="/data-catalog/substrate/balances">
+    Stored various types of tokens along with their real-time value, as well as assets on the blockchain.
+  </Card>
+  <Card title="Calls" icon="cube" href="/data-catalog/substrate/calls">
+    Flattened extrinsics table.
+  </Card>
+  <Card title="Events" icon="cube" href="/data-catalog/substrate/events">
+    Events emitted by extrinsics.
+  </Card>
+  <Card title="Transfers" icon="cube" href="/data-catalog/substrate/transfers">
+    All transfers occurring on the chain.
+  </Card>
+  <Card title="Stakings" icon="cube" href="/data-catalog/substrate/stakings">
+    Raw Staking-related Data for Validators, Nominators, Pools, and Pool Members (Polkadot and Kusama Only)
+  </Card>
+  <Card title="Traces" icon="cube" href="/data-catalog/substrate/traces">
+    Relevant snapshot data that are otherwise difficult to acquire from calls or events tables.
+  </Card>
+  <Card title="MetViews" icon="cube" href="/data-catalog/substrate/metviews">
+    Some useful but complexed queries that have been already materialized.
+  </Card>
+</CardGroup>

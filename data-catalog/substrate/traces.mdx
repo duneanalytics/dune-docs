@@ -1,0 +1,35 @@
+---
+title: polkadot.traces
+sidebarTitle: "Traces"
+description: Description of the polkadot.traces table on Dune.
+---
+
+## Table description
+
+Traces table, also known as the "snapshot" table, stores relevant on-chain state data that are otherwise difficult to acquire from base tables such as extrinsics and events. Having these snapshots enables Dune wizards to build useful dashboards on Dune
+such as :
+    * [Polkadot Staking](https://dune.com/substrate/polkadot-staking)
+    * [Polkadot OpenGov](https://dune.com/substrate/polkadot-gov)
+    * [HydraDX OmniPool](https://dune.com/substrate/hydradx)
+    * [Interlay Vaults](https://dune.com/substrate/interlay)
+
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="polkadot" tableName="traces" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="polkadot" tableName="traces" />
+
+<TableSample tableSchema="kusama" tableName="traces" />
+
+<TableSample tableSchema="assethub" tableName="traces" />
+
+<TableSample tableSchema="interlay" tableName="traces" />
+
+<TableSample tableSchema="hydradx" tableName="traces" />
