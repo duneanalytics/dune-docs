@@ -225,6 +225,21 @@
       ]
     },
     {
+      "group": "Polkadot",
+      "pages": [
+        "data-catalog/substrate/overview",
+        "data-catalog/substrate/blocks",
+        "data-catalog/substrate/balances",
+        "data-catalog/substrate/transfers",
+        "data-catalog/substrate/extrinsics",
+        "data-catalog/substrate/calls",
+        "data-catalog/substrate/events",
+        "data-catalog/substrate/stakings",
+        "data-catalog/substrate/traces",
+        "data-catalog/substrate/metviews"
+      ]
+    },
+    {
       "group": "Aptos",
       "pages": [
         "data-catalog/aptos/overview",
