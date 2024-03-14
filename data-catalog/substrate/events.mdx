@@ -1,12 +1,16 @@
 ---
 title: polkadot.events
 sidebarTitle: "Events"
-description: Description of the polkadot.events table on Dune.
+description: Description of the Substrate events tables on Dune.
 ---
 
 ## Table description
 
-Store all events that occur on the chain, including their section and method, as well as the data involved in the event.
+The `events` table (e.g. `polkadot.events`) holds all events that occur on the chain, including their pallet `section` and `method`, as well as the decoded data involved in the event.  
+
+
+Common queries on the `events` table will typically filter on `block_time`, `section` and `ethod` and extract JSON encoded information in
+`data` or `decoded_data`.
 
 ## Column Descriptions
 

@@ -2,16 +2,18 @@
 title: Polkadot & Substrate Overview
 sidebarTitle: "Overview"
 icon: "star"
-description: Polkadot enables cross-blockchain transfers of any type of data or asset, not just tokens.
+description: Substrate chains (e.g. Polkadot and their parachains) are on Dune.
 ---
 
-Polkadot, designed as a scalable heterogeneous multi-chain blockchain, aims to address the limitations of previous blockchain technologies by enabling different blockchains to co-exist and communicate within a secure shared system. The platform introduces a sophisticated governance model where all DOT token holders can participate in decision-making. Polkadot optimizes both security and decentralization compared to traditional Proof of Stake (PoS) and Proof of Work (PoW) systems. Polkadot include  the platform's hybrid consensus protocol, validity and availability mechanisms, and Cross-Chain Message Passing (XCMP) feature, which facilitates secure and orderly inter-parachain communication.
+The Polkadot Relay Chain is a proof-of-stake blockchain that provides shared security and secure interoperability to other blockchains, known as parachains.  Parachain's transactions are processed in parallel by Polkadot.   Kusama is a sister relay chain, designed as a canary blockchain, largely to test new Polkadot functionality prior to be being deployed on Polkadot.
 
-You can learn more about Polkadot by visiting the [Polkadot Wiki](https://wiki.polkadot.network/).
+Both relay chains and all their parachains are built with Substrate.  Substrate is the primary blockchain SDK used by developers to create the parachains that make up the Polkadot and Kusama network.  There is a growing number of chains built with Substrate that are outside of Polkadot shared security infrastructure.
 
-*Note*: All substrate chains share identical schemas. For documentation purposes, we will use polkadot.\<_tables_\> to showcase how to use all other \<_substrate_chain_\>.\<_tables_\> in general.
+In Dune, Substrate tables model the activity of Substrate chains and are ingested hourly.  All Substrate chains share identical schemas.  For documentation purposes, we use polkadot.\<_tables_\> to showcase how to use all other \<_substrate_chain_\>.\<_tables_\> in general.
 
 ## Onboarding Status
+
+Both Polkadot and Kusama relay chains and several leading parachains have been onboarded as of March 2024.  All Polkadot system chains and Polkadot parachains (as of early 2024) are being be onboarded in early Q2 2024.  Modeling EVM Activity within Substrate is planned in mid to late Q2 2024.
 
 <div>
     <iframe
@@ -20,35 +22,126 @@ You can learn more about Polkadot by visiting the [Polkadot Wiki](https://wiki.p
     />
 </div>
 
+Polkadot data is indexed by Colorful Notion and is supported by Polkadot OpenGov.  See [March 2024 blog post](https://dune.com/blog/polkadot-kusama-are-now-live-on-dune) for more information.
 
-## Data Available
+## Substrate Tables
+
+All tables are organized by a temporal variable (`block_time` or `ts`).  Because Substrate is organized by _pallets_ several of the key tables (`calls`, `events` and `extrinsics`) are usually filtered by the pallet section and method (`call_section` and `call_method` for `calls`, or `section` and `method` for `events` and `extrinsics`).  Decoded data is available in `decoded_data` for these tables in JSON form.  A small amount of JSON extraction is necessary to
 
 <CardGroup cols={2}>
   <Card title="Blocks" icon="cube" href="/data-catalog/substrate/blocks">
-    Block comprise various transactions that collectively represent a change in the blockchain's state.
+    `blocks` holds a summary of block hash and summary statistics.
   </Card>
   <Card title="Extrinsics" icon="cube" href="/data-catalog/substrate/extinsics">
-    Extrinsics are external messages or transactions in Polkadot.
+    `extrinsics` holds transaction data, and may be signed or unsigned, representing top-level calls to a pallet's section/method.
   </Card>
   <Card title="Balances" icon="cube" href="/data-catalog/substrate/balances">
-    Stored various types of tokens along with their real-time value, as well as assets on the blockchain.
+    `balances` holds a snapshot of user assets at the end of each day.
   </Card>
   <Card title="Calls" icon="cube" href="/data-catalog/substrate/calls">
-    Flattened extrinsics table.
+    `calls` holds records of all calls, flattening the top-level extrinsics call into multiple records.
   </Card>
   <Card title="Events" icon="cube" href="/data-catalog/substrate/events">
-    Events emitted by extrinsics.
+    `events` holds records of events emitted by extrinsics / calls.
   </Card>
   <Card title="Transfers" icon="cube" href="/data-catalog/substrate/transfers">
-    All transfers occurring on the chain.
-  </Card>
-  <Card title="Stakings" icon="cube" href="/data-catalog/substrate/stakings">
-    Raw Staking-related Data for Validators, Nominators, Pools, and Pool Members (Polkadot and Kusama Only)
+    `transfers` holds all records of transfers occurring on the chain.
   </Card>
   <Card title="Traces" icon="cube" href="/data-catalog/substrate/traces">
-    Relevant snapshot data that are otherwise difficult to acquire from calls or events tables.
+    `traces` hold Substrate storage data that are otherwise difficult to construct from events tables.
   </Card>
-  <Card title="MetViews" icon="cube" href="/data-catalog/substrate/metviews">
-    Some useful but complexed queries that have been already materialized.
+  <Card title="Stakings" icon="cube" href="/data-catalog/substrate/stakings">
+    `stakings` hold raw Staking-related Data for Validators, Nominators, Pools, and Pool Members for Polkadot and Kusama Relay Chain Only
+  </Card>
+  <Card title="Materialized Views" icon="cube" href="/data-catalog/substrate/materializedviews">
+    **Materialized Views hold cached pipelined data for chains, typically involving post-processed `traces` data.
   </Card>
 </CardGroup>
+
+## Getting Started: Sample Queries
+
+Get a summary of recent polkadot blocks using `polkadot.blocks` table:
+
+```
+SELECT DATE(block_time) AS logDT,
+       count(distinct number) numBlocks,
+       MAX(block_time) AS lastBlockTime,
+       MIN(number) AS b0,
+       MAX(number) AS b1,
+       (MAX(number) -MIN(number) - count(distinct number)) + 1 as missing
+FROM polkadot.blocks
+WHERE block_time > DATE('2024-01-01')
+GROUP BY 1
+order by 1 desc;
+```
+
+Get a summary of popular pallets and their number of distinct users using `polkadot.calls` table:
+
+```
+select count(distinct signer_ss58) numUsers, count(*) numCalls, call_section, call_method from polkadot.calls
+where call_section not in ('timestamp', 'utility', 'proxy')
+group by call_section, call_method order by count(*) desc
+```
+
+Get a summary of popular events using `polkadot.events` table:
+
+```
+select  count(*) numEvents, concat(section, ':', method)  as sm from polkadot.events
+where section not in ('system')
+group by 2 order by count(*) desc
+```
+
+To get the schema for any table, use the following:
+
+```
+show columns in polkadot.transfers
+```
+
+To get at a different chain, adjust the namespace from `polkadot`:
+
+```
+SELECT
+  date_format(block_time, '%Y-%m') as monthDT,
+  call_method,
+  COUNT(DISTINCT signer_ss58) AS numUniqueActiveUsers,
+  COUNT(Distinct extrinsic_id ) AS numCalls
+FROM
+  assethub.calls
+WHERE
+  call_section IN ('nfts')  
+  AND call_method IN ('buyItem', 'mint')
+  AND block_time >= TIMESTAMP '2023-01-01'
+GROUP BY
+  1, 2
+ORDER BY
+  1, 2;
+```
+
+Extraction of JSON commonly requires `JSON_VALUE`, `CAST` and similar functions:
+
+```
+SELECT
+    E.block_time,
+    JSON_VALUE(E.data, 'strict $[0]') as account,
+    JSON_VALUE(E.data_decoded, 'strict $[0].address') as pub_key,
+    CAST(JSON_VALUE(E.data, 'strict $[1]') AS SMALLINT) as asset_id_1,
+    CAST(JSON_VALUE(E.data, 'strict $[2]') AS SMALLINT) as asset_id_2,
+    (JSON_VALUE(E.data, 'strict $[3]'))as amount_1,
+    (JSON_VALUE(E.data, 'strict $[4]'))as amount_2,
+    (JSON_VALUE(E.data, 'strict $[5]'))as hub_in,
+    (JSON_VALUE(E.data, 'strict $[6]'))as hub_out,
+    (JSON_VALUE(E.data, 'strict $[7]'))as asset_fee,
+    (JSON_VALUE(E.data, 'strict $[8]'))as protocol_fee,
+    A1.decimals as decimals_1,
+    A1.ticker as ticker_1,
+    A2.decimals as decimals_2,
+    A2.ticker as ticker_2,
+    method
+    FROM hydradx.events E
+    LEFT JOIN query_3482301 A1 on A1.asset_id=CAST(JSON_VALUE(data, 'strict $[1]') as INT)
+    LEFT JOIN query_3482301 A2 on A2.asset_id=CAST(JSON_VALUE(data, 'strict $[2]') as INT)
+    WHERE section='omnipool' and method in('SellExecuted', 'BuyExecuted')
+```
+
+As Substrate chains uses SS58 Addresses, the following Dune function are very useful:
+* [SS58 functions: from_ss58(varchar) + to_ss58(varbinary, int)](https://docs.dune.com/query-engine/Functions-and-operators/ss58)
