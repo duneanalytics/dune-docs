@@ -8,7 +8,7 @@ result.
 Except for `count`, `count_if`, `max_by`, `min_by` and `approx_distinct`, all of these aggregate functions ignore null values and return null for no input rows or when all values are null. For example, `sum` returns null rather than zero and `avg` does not include null values in the count. The `coalesce` function can be used to convert null into zero.
 
 
-## Ordering during aggregation \{#aggregate-function-ordering-during-aggregation}
+## Ordering during aggregation 
 
 Some aggregate functions such as `array_agg` produce different results depending on the order of input values. This ordering can be specified by writing an `order-by-clause` within the aggregate function:
 
@@ -16,7 +16,7 @@ Some aggregate functions such as `array_agg` produce different results depending
     array_agg(x ORDER BY y DESC)
     array_agg(x ORDER BY x, y, z)
 ```
-## Filtering during aggregation \{#aggregate-function-filtering-during-aggregation}
+## Filtering during aggregation 
 
 The `FILTER` keyword can be used to remove rows from aggregation
 processing with a condition expressed using a `WHERE` clause. This is
@@ -51,11 +51,13 @@ versicolor |   50
 
 If you just use a normal `WHERE` statement you lose information:
 
+```sql
     SELECT species,
         count(*) AS count
     FROM iris
     WHERE petal_length_cm > 4
     GROUP BY species;
+```
 
 ``` text
 species    | count
@@ -66,10 +68,12 @@ versicolor |   34
 
 Using a filter you retain all information:
 
+```sql
     SELECT species,
            count(*) FILTER (where petal_length_cm > 4) AS count
     FROM iris
     GROUP BY species;
+```
 
 ``` text
 species    | count
