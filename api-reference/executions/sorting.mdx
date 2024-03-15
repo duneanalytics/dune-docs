@@ -11,6 +11,168 @@ Our API allows for sorting on all `/results` endpoints to organize query results
 
 Sorting can be effectively combined with [pagination](./pagination), [filtering](./filtering) and [sampling](./sampling) to optimize data retrieval.
 
+#### Example Sorting Request
+<Tabs>
+    <Tab title="cURL">
+    ```bash
+    curl -X GET "https://api.dune.com/api/v1/query/{{query_id}}/results?limit=100&filters=block_time%20%3E%20'2024-03-05'&columns=tx_from,tx_to,tx_hash,amount_usd&sort_by=amount_usd%20desc,%20block_time" -H "x-dune-api-key: {{api_key}}"
+    ```
+    </Tab>
+
+    <Tab title="Python">
+    ```python
+    import requests
+
+    url = "https://api.dune.com/api/v1/query/{query_id}/results"
+
+    headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+    params = {
+        "limit": 10, 
+        "filters": "block_time > '2024-03-01'",
+        "columns": "tx_from,tx_to,tx_hash,amount_usd",
+        "sort_by": "amount_usd desc, block_time"
+        }
+
+    response = requests.request("GET", url, headers=headers, params=params)
+
+    print(response.text)
+
+    ```
+    </Tab>
+
+    <Tab title="Javascript">
+    ```javascript
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-DUNE-API-KEY': '<x-dune-api-key>'
+        }
+    };
+
+    const queryParams = new URLSearchParams({
+        limit: 10, 
+        filters: "block_time > '2024-03-01'",
+        columns: "tx_from,tx_to,tx_hash,amount_usd",
+        sort_by: "amount_usd desc, block_time"
+    });
+    const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
+
+    fetch(url, options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+
+
+    ```
+    </Tab>
+
+    <Tab title="Go">
+    ```go 
+
+    package main
+
+    import (
+        "fmt"
+        "net/http"
+        "io/ioutil"
+        "net/url"
+    )
+
+    func main() {
+        url := "https://api.dune.com/api/v1/query/{query_id}/results"
+
+        // Create query parameters
+        params := url.Values{}
+        params.Set("limit", 10)
+        params.Set("filters", "block_time > '2024-03-01'")
+        params.Set("columns", "tx_from,tx_to,tx_hash,amount_usd")
+        params.Set("sort_by", "amount_usd desc, block_time")
+
+        // Add parameters to URL
+        fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
+
+        req, _ := http.NewRequest("GET", fullURL, nil)
+
+        req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+        res, _ := http.DefaultClient.Do(req)
+
+        defer res.Body.Close()
+        body, _ := ioutil.ReadAll(res.Body)
+
+        fmt.Println(res)
+        fmt.Println(string(body))
+    }
+    ```
+    </Tab>
+
+    <Tab title="PHP">
+    ```php
+    <?php
+
+    $curl = curl_init();
+
+    $url = "https://api.dune.com/api/v1/query/{query_id}/results";
+    $queryParams = http_build_query([
+        'limit' => 10,
+        'filters' => "block_time > '2024-03-01'",
+        'columns' => "tx_from,tx_to,tx_hash,amount_usd",
+        'sort_by' => "amount_usd desc, block_time",
+    ]);
+    $url .= '?' . $queryParams;
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => [
+            "X-DUNE-API-KEY: <x-dune-api-key>"
+        ],
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        echo $response;
+    }
+    ?>
+    ```
+    </Tab>
+
+    <Tab title="Java">
+    ```java
+
+    import kong.unirest.HttpResponse;
+    import kong.unirest.Unirest;
+
+    public class Main {
+        public static void main(String[] args) {
+            HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
+                    .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+                    .queryString("limit", 10)
+                    .queryString("filters", "block_time > '2024-03-01'")
+                    .queryString("columns", "tx_from,tx_to,tx_hash,amount_usd")
+                    .queryString("sort_by", "amount_usd desc, block_time")
+                    .asString();
+
+            System.out.println(response.getBody());
+        }
+    }
+    ```
+    </Tab>
+</Tabs>
+
 ### Sorting Parameters
 
 #### `sort_by`
@@ -24,166 +186,6 @@ Sorting can be effectively combined with [pagination](./pagination), [filtering]
 - By default, sorting is in ascending order if not explicitly specified. Explicitly include `asc` or `desc` to define the sorting order.
 </Note>
 
-<Accordion title="Example sorting request">
-    <Tabs>
-        <Tab title="cURL">
-        ```bash
-        curl -X GET "https://api.dune.com/api/v1/query/{{query_id}}/results?limit=100&filters=block_time%20%3E%20'2024-03-05'&columns=tx_from,tx_to,tx_hash,amount_usd&sort_by=amount_usd%20desc,%20block_time" -H "x-dune-api-key: {{api_key}}"
-        ```
-        </Tab>
-
-        <Tab title="Python">
-        ```python
-        import requests
-
-        url = "https://api.dune.com/api/v1/query/{query_id}/results"
-
-        headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
-
-        params = {
-          "limit": 10, 
-          "filters": "block_time > '2024-03-01'",
-          "columns": "tx_from,tx_to,tx_hash,amount_usd",
-          "sort_by": "amount_usd desc, block_time"
-         }
-
-        response = requests.request("GET", url, headers=headers, params=params)
-
-        print(response.text)
-
-        ```
-        </Tab>
-
-        <Tab title="Javascript">
-        ```javascript
-
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-DUNE-API-KEY': '<x-dune-api-key>'
-            }
-        };
-
-        const queryParams = new URLSearchParams({
-            limit: 10, 
-            filters: "block_time > '2024-03-01'",
-            columns: "tx_from,tx_to,tx_hash,amount_usd",
-            sort_by: "amount_usd desc, block_time"
-        });
-        const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
-
-        fetch(url, options)
-            .then(response => response.json())
-            .then(response => console.log(response))
-            .catch(err => console.error(err));
-
-
-        ```
-
-        ```go Go
-
-        package main
-
-        import (
-            "fmt"
-            "net/http"
-            "io/ioutil"
-            "net/url"
-        )
-
-        func main() {
-            url := "https://api.dune.com/api/v1/query/{query_id}/results"
-
-            // Create query parameters
-            params := url.Values{}
-            params.Set("limit", 10)
-            params.Set("filters", "block_time > '2024-03-01'")
-            params.Set("columns", "tx_from,tx_to,tx_hash,amount_usd")
-            params.Set("sort_by", "amount_usd desc, block_time")
-
-            // Add parameters to URL
-            fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
-
-            req, _ := http.NewRequest("GET", fullURL, nil)
-
-            req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
-
-            res, _ := http.DefaultClient.Do(req)
-
-            defer res.Body.Close()
-            body, _ := ioutil.ReadAll(res.Body)
-
-            fmt.Println(res)
-            fmt.Println(string(body))
-        }
-        ```
-        </Tab>
-
-        <Tab title="PHP">
-        ```php
-        <?php
-
-        $curl = curl_init();
-
-        $url = "https://api.dune.com/api/v1/query/{query_id}/results";
-        $queryParams = http_build_query([
-            'limit' => 10,
-            'filters' => "block_time > '2024-03-01'",
-            'columns' => "tx_from,tx_to,tx_hash,amount_usd",
-            'sort_by' => "amount_usd desc, block_time",
-        ]);
-        $url .= '?' . $queryParams;
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => [
-                "X-DUNE-API-KEY: <x-dune-api-key>"
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            echo $response;
-        }
-        ?>
-        ```
-        </Tab>
-
-        <Tab title="Java">
-        ```java
-
-        import kong.unirest.HttpResponse;
-        import kong.unirest.Unirest;
-
-        public class Main {
-            public static void main(String[] args) {
-                HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
-                        .header("X-DUNE-API-KEY", "<x-dune-api-key>")
-                        .queryString("limit", 10)
-                        .queryString("filters", "block_time > '2024-03-01'")
-                        .queryString("columns", "tx_from,tx_to,tx_hash,amount_usd")
-                        .queryString("sort_by", "amount_usd desc, block_time")
-                        .asString();
-
-                System.out.println(response.getBody());
-            }
-        }
-        ```
-        </Tab>
-    </Tabs>
-</Accordion>
 
 ### Sorted Response
 
