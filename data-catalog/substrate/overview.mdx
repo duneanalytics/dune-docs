@@ -48,10 +48,10 @@ All tables are organized by a temporal variable (`block_time` or `ts`). Because 
     Daily snapshots capturing the state of user assets, reflecting the end-of-day balances.
   </Card>
   <Card title="Calls" icon="arrow-right" href="/data-catalog/substrate/calls">
-    Comprehensive log of function calls, expanding top-level extrinsics into individual actionable records.
+    Comprehensive info on function calls, expanding top-level extrinsics with internal calls.
   </Card>
   <Card title="Events" icon="bolt" href="/data-catalog/substrate/events">
-    A chronological record of system events and state changes triggered by extrinsics or internal calls.
+    All events emitted by the runtime, including system events, and events from all pallets.
   </Card>
   <Card title="Transfers" icon="arrow-up-from-bracket" href="/data-catalog/substrate/transfers">
     Complete ledger of asset transfers across the network, capturing the movement of tokens between accounts.
@@ -63,7 +63,7 @@ All tables are organized by a temporal variable (`block_time` or `ts`). Because 
     Raw staking data including details on Validators, Nominators, Pools, and Pool Members, specific to Polkadot and Kusama Relay Chains.
   </Card>
   <Card title="Materialized Views" icon="database" href="/data-catalog/substrate/materialized_views">
-    Optimized data views storing pre-processed information from traces, streamlining access to pipelined chain data.
+    Optimized data views storing pre-processed information from other tables, streamlining access to pipelined chain data.
   </Card>
 </CardGroup>
 
