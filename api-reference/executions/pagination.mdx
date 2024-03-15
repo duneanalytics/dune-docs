@@ -11,12 +11,6 @@ Our API supports pagination on all `/results` endpoints  to facilitate efficient
 
 Pagination can be effectively combined with [filtering](./filtering) and [sorting](./sorting) to optimize data fetching.
 
-
-To paginate through results:
-1. Use the `limit` parameter to set the maximum number of results per request.
-2. The `offset` parameter defines the starting point for the data retrieval, with a default value of 0 (the first row).
-3. For JSON responses, the `next_offset` and `next_uri` fields in the response body indicate how to fetch the next page. For CSV responses, look for the `X-Dune-Next-Offset` and `X-Dune-Next-Uri` headers. The server may adjust the provided limit if deemed too large, ensuring efficient data handling. Follow these indicators to navigate through the dataset seamlessly.
-
 #### Example Paginating Request
 <Tabs>
     <Tab title="cURL">
@@ -161,6 +155,12 @@ To paginate through results:
     ```
     </Tab>
 </Tabs>
+
+
+To paginate through results:
+1. Use the `limit` parameter to set the maximum number of results per request.
+2. The `offset` parameter defines the starting point for the data retrieval, with a default value of 0 (the first row).
+3. For JSON responses, the `next_offset` and `next_uri` fields in the response body indicate how to fetch the next page. For CSV responses, look for the `X-Dune-Next-Offset` and `X-Dune-Next-Uri` headers. The server may adjust the provided limit if deemed too large, ensuring efficient data handling. Follow these indicators to navigate through the dataset seamlessly.
 
 ### Pagination Parameters
 
