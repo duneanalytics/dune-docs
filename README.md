@@ -24,7 +24,7 @@ For specific syntax and formatting guides, refer to the mintlify documentation [
 
 If you have made changes to the documentation and want to publish them, submit a pull request to the main branch.   
 
-**Please always allow [edits by maintainers)](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork) so the docs maintainers can work with your PR.** 
+**Please always allow [edits by maintainers](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork) so the docs maintainers can work with your PR.** 
  
 Once the pull request is merged, the changes will be automatically published to the documentation website.
 
