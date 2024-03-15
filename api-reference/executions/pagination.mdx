@@ -11,6 +11,151 @@ Our API supports pagination on all `/results` endpoints  to facilitate efficient
 
 Pagination can be effectively combined with [filtering](./filtering) and [sorting](./sorting) to optimize data fetching.
 
+#### Example Paginating Request
+<Tabs>
+    <Tab title="cURL">
+    ```bash
+    curl -X GET 'https://api.dune.com/api/v1/query/{{query_id}}/results?limit=1000' -H 'x-dune-api-key: {{api_key}}'
+    ```
+    </Tab>
+
+    <Tab title="Python">
+    ```python
+    import requests
+
+    url = "https://api.dune.com/api/v1/query/{query_id}/results"
+
+    headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+    params = {"limit": 1000, "offset": 0}  # Define limit and offset parameters
+
+    response = requests.request("GET", url, headers=headers, params=params)
+
+    print(response.text)
+
+    ```
+    </Tab>
+
+    <Tab title="Javascript">
+    ```javascript
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-DUNE-API-KEY': '<x-dune-api-key>'
+        }
+    };
+
+    const queryParams = new URLSearchParams({limit: 1000, offset: 0});  // Define limit and offset parameters
+    const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
+
+    fetch(url, options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+
+
+    ```
+    </Tab>
+
+    <Tab title="Go">
+    ```go 
+
+    package main
+
+    import (
+        "fmt"
+        "net/http"
+        "io/ioutil"
+        "net/url"
+    )
+
+    func main() {
+        url := "https://api.dune.com/api/v1/query/{query_id}/results"
+
+        // Create query parameters
+        params := url.Values{}
+        params.Set("limit", 1000)
+
+        // Add parameters to URL
+        fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
+
+        req, _ := http.NewRequest("GET", fullURL, nil)
+
+        req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+        res, _ := http.DefaultClient.Do(req)
+
+        defer res.Body.Close()
+        body, _ := ioutil.ReadAll(res.Body)
+
+        fmt.Println(res)
+        fmt.Println(string(body))
+    }
+    ```
+    </Tab>
+
+    <Tab title="PHP">
+    ```php
+    <?php
+
+    $curl = curl_init();
+
+    $url = "https://api.dune.com/api/v1/query/{query_id}/results";
+    $queryParams = http_build_query([
+        'limit' => 1000,
+        'offset' => 0
+    ]);
+    $url .= '?' . $queryParams;
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => [
+            "X-DUNE-API-KEY: <x-dune-api-key>"
+        ],
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        echo $response;
+    }
+    ?>
+    ```
+    </Tab>
+
+    <Tab title="Java">
+    ```java
+
+    import kong.unirest.HttpResponse;
+    import kong.unirest.Unirest;
+
+    public class Main {
+        public static void main(String[] args) {
+            HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
+                    .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+                    .queryString("limit", 1000)
+                    .queryString("offset", 0)
+                    .asString();
+
+            System.out.println(response.getBody());
+        }
+    }
+    ```
+    </Tab>
+</Tabs>
+
 
 To paginate through results:
 1. Use the `limit` parameter to set the maximum number of results per request.
@@ -29,150 +174,6 @@ To paginate through results:
 - **Default:** 0 (the first row)
 - **Usage:** Use in conjunction with `limit` to navigate through results in an efficient, incremental manner.
 
-
-<Accordion title="Example paginated request">
-    <Tabs>
-        <Tab title="cURL">
-        ```bash
-        curl -X GET 'https://api.dune.com/api/v1/query/{{query_id}}/results?limit=1000' -H 'x-dune-api-key: {{api_key}}'
-        ```
-        </Tab>
-
-        <Tab title="Python">
-        ```python
-        import requests
-
-        url = "https://api.dune.com/api/v1/query/{query_id}/results"
-
-        headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
-
-        params = {"limit": 1000, "offset": 0}  # Define limit and offset parameters
-
-        response = requests.request("GET", url, headers=headers, params=params)
-
-        print(response.text)
-
-        ```
-        </Tab>
-
-        <Tab title="Javascript">
-        ```javascript
-
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-DUNE-API-KEY': '<x-dune-api-key>'
-            }
-        };
-
-        const queryParams = new URLSearchParams({limit: 1000, offset: 0});  // Define limit and offset parameters
-        const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
-
-        fetch(url, options)
-            .then(response => response.json())
-            .then(response => console.log(response))
-            .catch(err => console.error(err));
-
-
-        ```
-
-        ```go Go
-
-        package main
-
-        import (
-            "fmt"
-            "net/http"
-            "io/ioutil"
-            "net/url"
-        )
-
-        func main() {
-            url := "https://api.dune.com/api/v1/query/{query_id}/results"
-
-            // Create query parameters
-            params := url.Values{}
-            params.Set("limit", 1000)
-
-            // Add parameters to URL
-            fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
-
-            req, _ := http.NewRequest("GET", fullURL, nil)
-
-            req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
-
-            res, _ := http.DefaultClient.Do(req)
-
-            defer res.Body.Close()
-            body, _ := ioutil.ReadAll(res.Body)
-
-            fmt.Println(res)
-            fmt.Println(string(body))
-        }
-        ```
-        </Tab>
-
-        <Tab title="PHP">
-        ```php
-        <?php
-
-        $curl = curl_init();
-
-        $url = "https://api.dune.com/api/v1/query/{query_id}/results";
-        $queryParams = http_build_query([
-            'limit' => 1000,
-            'offset' => 0
-        ]);
-        $url .= '?' . $queryParams;
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => [
-                "X-DUNE-API-KEY: <x-dune-api-key>"
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            echo $response;
-        }
-        ?>
-        ```
-        </Tab>
-
-        <Tab title="Java">
-        ```java
-
-        import kong.unirest.HttpResponse;
-        import kong.unirest.Unirest;
-
-        public class Main {
-            public static void main(String[] args) {
-                HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{query_id}/results")
-                        .header("X-DUNE-API-KEY", "<x-dune-api-key>")
-                        .queryString("limit", 1000)
-                        .queryString("offset", 0)
-                        .asString();
-
-                System.out.println(response.getBody());
-            }
-        }
-        ```
-        </Tab>
-    </Tabs>
-</Accordion>
 
 ### Pagination in Response
 
