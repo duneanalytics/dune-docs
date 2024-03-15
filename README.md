@@ -22,7 +22,10 @@ For specific syntax and formatting guides, refer to the mintlify documentation [
 
 ### Publishing Changes
 
-If you have made changes to the documentation and want to publish them, simply make a pull request to the main branch. Once the pull request is merged, the changes will be automatically published to the documentation website.
+If you have made changes to the documentation and want to publish them, submit a pull request to the main branch.
+**Please always allow "(edits by maintainers)[https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork]" so the docs maintainers can work with your PR.** 
+ 
+Once the pull request is merged, the changes will be automatically published to the documentation website.
 
 ### Adding New Pages
 
@@ -47,13 +50,11 @@ Replace `new-page` with the name of the file you created.
 - Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
 - Page loads as a 404 - Make sure you are running in a folder with `mint.json`
 
-//#F4603E , #F49282, #FFBDB6, #FFECEB
 
-### Addtional functionality
 
 Minflify provides additional functionality to help maintain your documentation.
 
-#### Broken links
+### Broken links
 
 If you have broken links in your documentation, you can use the `mintlify` CLI to find them. Run the following command at the root of your documentation (where mint.json is)
 
@@ -63,7 +64,8 @@ mintlify broken-links
 
 This will output a list of broken links in the console.
 
-#### Renaming files
+This functionality does not work for href links, be especially careful while defining these. 
+### Renaming files
 
 If you rename a file in your documentation, you can use the `mintlify` CLI to update the links in your documentation. Run the following command at the root of your documentation.
 
