@@ -2,7 +2,7 @@
 title: Polkadot & Substrate Overview
 sidebarTitle: "Overview"
 icon: "star"
-description: Substrate chains (e.g. Polkadot and their parachains) are on Dune.
+description: Substrate chains (e.g. Polkadot and its parachains) are on Dune.
 ---
 
 The Polkadot Relay Chain is a proof-of-stake blockchain that provides shared security and secure interoperability to other blockchains, known as parachains. Parachain's transactions are processed in parallel by Polkadot. Kusama is a sister relay chain, designed as a canary blockchain, largely to test new Polkadot functionality before being deployed on Polkadot.
@@ -10,6 +10,12 @@ The Polkadot Relay Chain is a proof-of-stake blockchain that provides shared sec
 Both relay chains and all their parachains are built with Substrate. Substrate is the primary blockchain SDK used by developers to create parachains that make up the Polkadot and Kusama networks. There also is a growing number of chains built with Substrate that are outside of Polkadot's shared security infrastructure.
 
 In Dune, Substrate tables model the activity of Substrate chains and are ingested hourly. All Substrate chains share identical schemas. For documentation purposes, we use `polkadot.<tables>` to showcase how to use all other `<substrate_chain>.<tables>`.
+
+<Info>
+  {" "}
+  Polkadot and all of the substrate chains are ingested by [Colorful Notion](https://colorfulnotion.com)
+  and are supported by [Polkadot OpenGov](https://polkadot.opengov.io).{" "}
+</Info>
 
 ## Onboarding Status
 
@@ -27,60 +33,49 @@ Both Polkadot and Kusama relay chains and several leading parachains have been o
   />
 </div>
 
-Polkadot data is indexed by Colorful Notion and is supported by Polkadot OpenGov. See this [March 2024 blog post](https://dune.com/blog/polkadot-kusama-are-now-live-on-dune) for more information.
-
 ## Substrate Tables
 
-All tables are organized by a temporal variable (`block_time` or `ts`). Because Substrate is organized by _pallets_, several of the key tables (`calls`, `events` and `extrinsics`) are usually filtered by the pallet section and method (`call_section` and `call_method` for `calls`, or `section` and `method` for `events` and `extrinsics`). Decoded data is available in `decoded_data` for these tables in JSON form. A small amount of JSON extraction is necessary to
+All tables are organized by a temporal variable (`block_time` or `ts`). Because Substrate is organized by _pallets_, several of the key tables (`calls`, `events` and `extrinsics`) are usually filtered by the pallet section and method (`call_section` and `call_method` for `calls`, or `section` and `method` for `events` and `extrinsics`). Decoded data is available in `decoded_data` for these tables in JSON form. 
 
 <CardGroup cols={2}>
-  <Card title="Blocks" icon="cube" href="/data-catalog/substrate/blocks">
-    `blocks` holds a summary of block hash and summary statistics.
+  <Card title="Blocks" icon="cubes" href="/data-catalog/substrate/blocks">
+    Each block in the blockchain, summarized with its hash and key statistics for quick overview.
   </Card>
-  <Card
-    title="Extrinsics"
-    icon="cube"
-    href="/data-catalog/substrate/extrinsics"
-  >
-    `extrinsics` holds transaction data, and may be signed or unsigned,
-    representing top-level calls to a pallet's section/method.
+  <Card title="Extrinsics" icon="sitemap" href="/data-catalog/substrate/extrinsics">
+    Detailed transaction data, encompassing both signed and unsigned operations, directly invoking pallet functions.
   </Card>
-  <Card title="Balances" icon="cube" href="/data-catalog/substrate/balances">
-    `balances` holds a snapshot of user assets at the end of each day.
+  <Card title="Balances" icon="wallet" href="/data-catalog/substrate/balances">
+    Daily snapshots capturing the state of user assets, reflecting the end-of-day balances.
   </Card>
-  <Card title="Calls" icon="cube" href="/data-catalog/substrate/calls">
-    `calls` holds records of all calls, flattening the top-level extrinsics call
-    into multiple records.
+  <Card title="Calls" icon="arrow-right" href="/data-catalog/substrate/calls">
+    Comprehensive log of function calls, expanding top-level extrinsics into individual actionable records.
   </Card>
-  <Card title="Events" icon="cube" href="/data-catalog/substrate/events">
-    `events` holds records of events emitted by extrinsics / calls.
+  <Card title="Events" icon="bolt" href="/data-catalog/substrate/events">
+    A chronological record of system events and state changes triggered by extrinsics or internal calls.
   </Card>
-  <Card title="Transfers" icon="cube" href="/data-catalog/substrate/transfers">
-    `transfers` holds all records of transfers occurring on the chain.
+  <Card title="Transfers" icon="arrow-up-from-bracket" href="/data-catalog/substrate/transfers">
+    Complete ledger of asset transfers across the network, capturing the movement of tokens between accounts.
   </Card>
-  <Card title="Traces" icon="cube" href="/data-catalog/substrate/traces">
-    `traces` hold Substrate storage data that are otherwise difficult to
-    construct from events tables.
+  <Card title="Traces" icon="memo-circle-info" href="/data-catalog/substrate/traces">
+    In-depth Substrate storage data, offering insights that are not readily available from the events data alone.
   </Card>
-  <Card title="Stakings" icon="cube" href="/data-catalog/substrate/stakings">
-    `stakings` hold raw Staking-related Data for Validators, Nominators, Pools,
-    and Pool Members for Polkadot and Kusama Relay Chain Only
+  <Card title="Stakings" icon="hand-holding-heart" href="/data-catalog/substrate/stakings">
+    Raw staking data including details on Validators, Nominators, Pools, and Pool Members, specific to Polkadot and Kusama Relay Chains.
   </Card>
-  <Card
-    title="Materialized Views"
-    icon="cube"
-    href="/data-catalog/substrate/materialized_views"
-  >
-    **Materialized Views** hold cached pipelined data for chains, typically
-    involving post-processed `traces` data.
+  <Card title="Materialized Views" icon="database" href="/data-catalog/substrate/materialized_views">
+    Optimized data views storing pre-processed information from traces, streamlining access to pipelined chain data.
   </Card>
 </CardGroup>
 
-## Getting Started: Sample Queries
+## Sample Queries
 
-Get a summary of recent polkadot blocks using `polkadot.blocks` table:
+As Substrate chains use SS58 Addresses, the following Dune function is very useful:
 
-```
+- [SS58 functions: from_ss58(varchar) + to_ss58(varbinary, int)](/query-engine/Functions-and-operators/ss58)
+
+### overview of recent blocks 
+
+```sql
 SELECT DATE(block_time) AS logDT,
        count(distinct number) numBlocks,
        MAX(block_time) AS lastBlockTime,
@@ -93,31 +88,31 @@ GROUP BY 1
 order by 1 desc;
 ```
 
-Get a summary of popular pallets and their number of distinct users using `polkadot.calls` table:
+### popular pallets 
 
-```
+Query the most popular pallets and their methods.
+
+```sql
 select count(distinct signer_ss58) numUsers, count(*) numCalls, call_section, call_method from polkadot.calls
 where call_section not in ('timestamp', 'utility', 'proxy')
 group by call_section, call_method order by count(*) desc
 ```
 
-Get a summary of popular events using `polkadot.events` table:
+### frequent events 
 
-```
+Query the most frequent events, excluding system events.
+
+```sql
 select  count(*) numEvents, concat(section, ':', method)  as sm from polkadot.events
 where section not in ('system')
 group by 2 order by count(*) desc
 ```
 
-To get the schema for any table, use the following:
+### other chains
 
-```
-show columns in polkadot.transfers
-```
+To query other chains, replace `polkadot` with the chain name, e.g. `kusama`, `interlay`, `astar` etc. 
 
-To get at a different chain, adjust the namespace from `polkadot`:
-
-```
+```sql
 SELECT
   date_format(block_time, '%Y-%m') as monthDT,
   call_method,
@@ -135,9 +130,11 @@ ORDER BY
   1, 2;
 ```
 
-Extraction of JSON commonly requires `JSON_VALUE`, `CAST` and similar functions:
+### JSON extraction
 
-```
+You will often need to extract data from JSON fields. Here is an example of how to extract data from the `events` table.
+
+```sql
 SELECT
     E.block_time,
     JSON_VALUE(E.data, 'strict $[0]') as account,
@@ -160,7 +157,3 @@ SELECT
     LEFT JOIN query_3482301 A2 on A2.asset_id=CAST(JSON_VALUE(data, 'strict $[2]') as INT)
     WHERE section='omnipool' and method in('SellExecuted', 'BuyExecuted')
 ```
-
-As Substrate chains uses SS58 Addresses, the following Dune function are very useful:
-
-- [SS58 functions: from_ss58(varchar) + to_ss58(varbinary, int)](/query-engine/Functions-and-operators/ss58)
