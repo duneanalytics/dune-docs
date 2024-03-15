@@ -236,7 +236,7 @@
         "data-catalog/substrate/events",
         "data-catalog/substrate/stakings",
         "data-catalog/substrate/traces",
-        "data-catalog/substrate/metviews"
+        "data-catalog/substrate/materialized_views"
       ]
     },
     {
