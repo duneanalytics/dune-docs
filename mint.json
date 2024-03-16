@@ -53,11 +53,7 @@
   "navigation": [
     {
       "group": "",
-      "pages": [
-        "home",
-        "quickstart",
-        "learning-resources"
-      ]
+      "pages": ["home", "quickstart", "learning-resources"]
     },
     {
       "group": "Jump right in",
@@ -112,10 +108,25 @@
       ]
     },
     {
-      "group": "Query Engine",
+      "group": "",
       "pages": [
-        "query-engine/overview",
+        "query-engine/overview"
+      ]
+    },
+    {
+      "group": "Functionality",
+      "pages": [
         "query-engine/query-executions",
+        "query-engine/query-a-query",
+        "query-engine/materialized-views"
+      ]
+    },
+    {
+      "group": "DuneSQL",
+      "pages": [
+        "query-engine/writing-efficient-queries",
+        "query-engine/datatypes",
+        "query-engine/reserved-keywords",
         {
           "group": "Functions and Operators",
           "pages": [
@@ -153,20 +164,12 @@
             "query-engine/Functions-and-operators/varchar-utility-functions",
             "query-engine/Functions-and-operators/window"
           ]
-        },
-        "query-engine/datatypes",
-        "query-engine/reserved-keywords",
-        "query-engine/writing-efficient-queries",
-        "query-engine/query-a-query",
-        "query-engine/materialized-views"
+        }
       ]
     },
     {
       "group": "",
-      "pages": [
-        "data-catalog/overview",
-        "data-catalog/bring-your-own-data"
-      ]
+      "pages": ["data-catalog/overview", "data-catalog/bring-your-own-data"]
     },
     {
       "group": "EVM Chains",
@@ -218,9 +221,7 @@
         },
         {
           "group": "NFT",
-          "pages": [
-            "data-catalog/evm/ethereum/NFT/nft-trades"
-          ]
+          "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
         }
       ]
     },
@@ -331,9 +332,7 @@
     },
     {
       "group": "Webhooks",
-      "pages": [
-        "api-reference/webhooks/webhook"
-      ]
+      "pages": ["api-reference/webhooks/webhook"]
     },
     {
       "group": "Executions and Results",
@@ -367,9 +366,7 @@
     },
     {
       "group": "",
-      "pages": [
-        "datashare/datashare"
-      ]
+      "pages": ["datashare/datashare"]
     }
   ],
   "feedback": {
