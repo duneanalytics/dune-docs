@@ -258,7 +258,7 @@
                     "is_private": {
                         "type": "boolean",
                         "default": false,
-                        "description": "If true, the table will be private. This is not supported yet, it has to be `false`. If private it is only visible to the team or user that your API key is associated with."
+                        "description": "If true, the table will be private. If private it is only visible to the team or user that your API key is associated with."
                     },
                     "description": {
                         "type": "string",
