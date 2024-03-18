@@ -1,0 +1,159 @@
+---
+title: Polkadot & Substrate Overview
+sidebarTitle: "Overview"
+icon: "star"
+description: Substrate chains (e.g. Polkadot and its parachains) are on Dune.
+---
+
+The Polkadot Relay Chain is a proof-of-stake blockchain that provides shared security and secure interoperability to other blockchains, known as parachains. Parachain's transactions are processed in parallel by Polkadot. Kusama is a sister relay chain, designed as a canary blockchain, largely to test new Polkadot functionality before being deployed on Polkadot.
+
+Both relay chains and all their parachains are built with Substrate. Substrate is the primary blockchain SDK used by developers to create parachains that make up the Polkadot and Kusama networks. There also is a growing number of chains built with Substrate that are outside of Polkadot's shared security infrastructure.
+
+In Dune, Substrate tables model the activity of Substrate chains and are ingested hourly. All Substrate chains share identical schemas. For documentation purposes, we use `polkadot.<tables>` to showcase how to use all other `<substrate_chain>.<tables>`.
+
+<Info>
+  {" "}
+  Polkadot and all of the substrate chains are ingested by [Colorful Notion](https://colorfulnotion.com)
+  and are supported by [Polkadot OpenGov](https://polkadot.opengov.io).{" "}
+</Info>
+
+## Onboarding Status
+
+Both Polkadot and Kusama relay chains and several leading parachains have been onboarded as of March 2024. All Polkadot system chains and Polkadot parachains (as of early 2024) are being onboarded in early Q2 2024. Modeling EVM Activity within Substrate is planned in mid to late Q2 2024.
+
+<div>
+  <iframe
+    src={`https://dune.com/embeds/3523887/5925917`}
+    style={{
+      width: "100%",
+      height: "500px",
+      border: "none",
+      marginTop: "10px",
+    }}
+  />
+</div>
+
+## Substrate Tables
+
+All tables are organized by a temporal variable (`block_time` or `ts`). Because Substrate is organized by _pallets_, several of the key tables (`calls`, `events` and `extrinsics`) are usually filtered by the pallet section and method (`call_section` and `call_method` for `calls`, or `section` and `method` for `events` and `extrinsics`). Decoded data is available in `decoded_data` for these tables in JSON form. 
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cubes" href="/data-catalog/substrate/blocks">
+    Each block in the blockchain, summarized with its hash and key statistics for quick overview.
+  </Card>
+  <Card title="Extrinsics" icon="sitemap" href="/data-catalog/substrate/extrinsics">
+    Detailed transaction data, encompassing both signed and unsigned operations, directly invoking pallet functions.
+  </Card>
+  <Card title="Balances" icon="wallet" href="/data-catalog/substrate/balances">
+    Daily snapshots capturing the state of user assets, reflecting the end-of-day balances.
+  </Card>
+  <Card title="Calls" icon="arrow-right" href="/data-catalog/substrate/calls">
+    Comprehensive info on function calls, expanding top-level extrinsics with internal calls.
+  </Card>
+  <Card title="Events" icon="bolt" href="/data-catalog/substrate/events">
+    All events emitted by the runtime, including system events, and events from all pallets.
+  </Card>
+  <Card title="Transfers" icon="arrow-up-from-bracket" href="/data-catalog/substrate/transfers">
+    Complete ledger of asset transfers across the network, capturing the movement of tokens between accounts.
+  </Card>
+  <Card title="Traces" icon="memo-circle-info" href="/data-catalog/substrate/traces">
+    In-depth Substrate storage data, offering insights that are not readily available from the events data alone.
+  </Card>
+  <Card title="Stakings" icon="hand-holding-heart" href="/data-catalog/substrate/stakings">
+    Raw staking data including details on Validators, Nominators, Pools, and Pool Members, specific to Polkadot and Kusama Relay Chains.
+  </Card>
+  <Card title="Materialized Views" icon="database" href="/data-catalog/substrate/materialized_views">
+    Optimized data views storing pre-processed information from other tables, streamlining access to pipelined chain data.
+  </Card>
+</CardGroup>
+
+## Sample Queries
+
+As Substrate chains use SS58 Addresses, the following Dune function is very useful:
+
+- [SS58 functions: from_ss58(varchar) + to_ss58(varbinary, int)](/query-engine/Functions-and-operators/ss58)
+
+### overview of recent blocks 
+
+```sql
+SELECT DATE(block_time) AS logDT,
+       count(distinct number) numBlocks,
+       MAX(block_time) AS lastBlockTime,
+       MIN(number) AS b0,
+       MAX(number) AS b1,
+       (MAX(number) -MIN(number) - count(distinct number)) + 1 as missing
+FROM polkadot.blocks
+WHERE block_time > DATE('2024-01-01')
+GROUP BY 1
+order by 1 desc;
+```
+
+### popular pallets 
+
+Query the most popular pallets and their methods.
+
+```sql
+select count(distinct signer_ss58) numUsers, count(*) numCalls, call_section, call_method from polkadot.calls
+where call_section not in ('timestamp', 'utility', 'proxy')
+group by call_section, call_method order by count(*) desc
+```
+
+### frequent events 
+
+Query the most frequent events, excluding system events.
+
+```sql
+select  count(*) numEvents, concat(section, ':', method)  as sm from polkadot.events
+where section not in ('system')
+group by 2 order by count(*) desc
+```
+
+### other chains
+
+To query other chains, replace `polkadot` with the chain name, e.g. `kusama`, `interlay`, `astar` etc. 
+
+```sql
+SELECT
+  date_format(block_time, '%Y-%m') as monthDT,
+  call_method,
+  COUNT(DISTINCT signer_ss58) AS numUniqueActiveUsers,
+  COUNT(Distinct extrinsic_id ) AS numCalls
+FROM
+  assethub.calls
+WHERE
+  call_section IN ('nfts')
+  AND call_method IN ('buyItem', 'mint')
+  AND block_time >= TIMESTAMP '2023-01-01'
+GROUP BY
+  1, 2
+ORDER BY
+  1, 2;
+```
+
+### JSON extraction
+
+You will often need to extract data from JSON fields. Here is an example of how to extract data from the `events` table.
+
+```sql
+SELECT
+    E.block_time,
+    JSON_VALUE(E.data, 'strict $[0]') as account,
+    JSON_VALUE(E.data_decoded, 'strict $[0].address') as pub_key,
+    CAST(JSON_VALUE(E.data, 'strict $[1]') AS SMALLINT) as asset_id_1,
+    CAST(JSON_VALUE(E.data, 'strict $[2]') AS SMALLINT) as asset_id_2,
+    (JSON_VALUE(E.data, 'strict $[3]'))as amount_1,
+    (JSON_VALUE(E.data, 'strict $[4]'))as amount_2,
+    (JSON_VALUE(E.data, 'strict $[5]'))as hub_in,
+    (JSON_VALUE(E.data, 'strict $[6]'))as hub_out,
+    (JSON_VALUE(E.data, 'strict $[7]'))as asset_fee,
+    (JSON_VALUE(E.data, 'strict $[8]'))as protocol_fee,
+    A1.decimals as decimals_1,
+    A1.ticker as ticker_1,
+    A2.decimals as decimals_2,
+    A2.ticker as ticker_2,
+    method
+    FROM hydradx.events E
+    LEFT JOIN query_3482301 A1 on A1.asset_id=CAST(JSON_VALUE(data, 'strict $[1]') as INT)
+    LEFT JOIN query_3482301 A2 on A2.asset_id=CAST(JSON_VALUE(data, 'strict $[2]') as INT)
+    WHERE section='omnipool' and method in('SellExecuted', 'BuyExecuted')
+```
