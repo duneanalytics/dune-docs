@@ -5,35 +5,13 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/v1/table/{namespace}/{table_name}/create": {
+        "/v1/table/create": {
             "post": {
                 "tags": [
                     "table"
                 ],
                 "summary": "Create a new Dune table",
                 "description": "Create a new Dune table with the specified name and namespace.",
-                "parameters": [
-                    {
-                        "name": "namespace",
-                        "in": "path",
-                        "description": "The namespace of the table to create. Must be the name of your associated API key, i.e. either `my_user` or `my_team`.",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "my_user"
-                        }
-                    },
-                    {
-                        "name": "table_name",
-                        "in": "path",
-                        "description": "The name of the table to create. Must begin with `dataset_` and contain only lowercase letters, digits, and underscores.",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "dataset_my_data"
-                        }
-                    }
-                ],
                 "requestBody": {
                     "description": "Create a new Dune Table for uploads",
                     "content": {
@@ -243,15 +221,26 @@
         "schemas": {
             "CreateTableRequest": {
                 "required": [
+                    "namespace",
+                    "table_name",
                     "schema"
                 ],
                 "type": "object",
                 "properties": {
+                    "namespace": {
+                        "description": "The namespace of the table to create. Must be the name of your associated API key, i.e. either `my_user` or `my_team`.",
+                        "type": "string",
+                        "example": "my_user"
+                    },
+                    "table_name": {
+                        "description": "The name of the table to create. Must begin with `dataset_` and contain only lowercase letters, digits, and underscores.",
+                        "type": "string",
+                        "example": "dataset_my_data"
+                    },
                     "schema": {
                         "description": "An ordered list of columns that define the table schema. Cannot be empty.",
                         "type": "array",
                         "items": {
-                            "description": "A column of the table.",
                             "$ref": "#/components/schemas/Column"
                         }
                     },
@@ -267,6 +256,7 @@
                 }
             },
             "Column": {
+                "description": "A column of the table.",
                 "required": [
                     "name",
                     "type"
