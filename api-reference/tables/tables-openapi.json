@@ -7,9 +7,10 @@
   "paths": {
     "/v1/table/create": {
       "post": {
-        "tags": ["table"],
+        "tags": [
+          "table"
+        ],
         "summary": "Create a new Dune table",
-
         "description": "Create a new Dune table with the specified name and namespace.",
         "requestBody": {
           "description": "Create a new Dune Table for uploads",
@@ -28,8 +29,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "example": {}
+                  "$ref": "#/components/schemas/CreateTableResponse"
                 }
               }
             }
@@ -103,7 +103,9 @@
     },
     "/v1/table/{namespace}/{table_name}/insert": {
       "post": {
-        "tags": ["table"],
+        "tags": [
+          "table"
+        ],
         "summary": "Insert data into a Dune table.",
         "description": "Insert the data in a file into a table.",
         "parameters": [
@@ -217,7 +219,11 @@
   "components": {
     "schemas": {
       "CreateTableRequest": {
-        "required": ["namespace", "table_name", "schema"],
+        "required": [
+          "namespace",
+          "table_name",
+          "schema"
+        ],
         "type": "object",
         "properties": {
           "namespace": {
@@ -250,7 +256,10 @@
       },
       "Column": {
         "description": "A column of the table.",
-        "required": ["name", "type"],
+        "required": [
+          "name",
+          "type"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -259,9 +268,40 @@
           },
           "type": {
             "type": "string",
-            "enum": ["varchar", "integer", "double", "boolean", "timestamp"],
+            "enum": [
+              "varchar",
+              "integer",
+              "double",
+              "boolean",
+              "timestamp"
+            ],
             "description": "The column type.",
             "example": "timestamp"
+          }
+        }
+      },
+      "CreateTableResponse": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "description": "The namespace of the created table.",
+            "type": "string",
+            "example": "my_user"
+          },
+          "table_name": {
+            "description": "The name of the created table.",
+            "type": "string",
+            "example": "dataset_my_data"
+          },
+          "full_name": {
+            "description": "The full name of the created table, as it should be referred to in a query.",
+            "type": "string",
+            "example": "dune.my_user.dataset_my_data"
+          },
+          "example_query": {
+            "description": "An example query to use on Dune querying your new table.",
+            "type": "string",
+            "example": "select * from dune.my_user.dataset_my_data"
           }
         }
       }
