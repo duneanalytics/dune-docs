@@ -4,12 +4,16 @@
     "title": "Table endpoints",
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "https://api.dune.com/api"
+    }
+  ],
   "paths": {
     "/v1/table/create": {
       "post": {
         "tags": ["table"],
         "summary": "Create a new Dune table",
-
         "description": "Create a new Dune table with the specified name and namespace.",
         "requestBody": {
           "description": "Create a new Dune Table for uploads",
