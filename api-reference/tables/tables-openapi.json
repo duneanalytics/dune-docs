@@ -142,8 +142,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "example": {}
+                  "$ref": "#/components/schemas/InsertTableResponse"
                 }
               }
             }
@@ -299,9 +298,19 @@
             "example": "dune.my_user.dataset_my_data"
           },
           "example_query": {
-            "description": "An example query to use on Dune querying your new table.",
+            "description": "Asn example query to use on Dune querying your new table.",
             "type": "string",
             "example": "select * from dune.my_user.dataset_my_data"
+          }
+        }
+      },
+      "InsertTableResponse": {
+        "type": "object",
+        "properties": {
+          "rows_written": {
+            "description": "The number of rows that were written to the table.",
+            "type": "number",
+            "example": 9000
           }
         }
       }
