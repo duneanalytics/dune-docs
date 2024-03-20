@@ -255,6 +255,16 @@
       ]
     },
     {
+      "group": "Tron",
+      "pages": [
+        "data-catalog/tron/overview",
+        "data-catalog/tron/blocks",
+        "data-catalog/tron/transactions",
+        "data-catalog/tron/logs",
+        "data-catalog/tron/tether"
+      ]
+    },
+    {
       "group": "Solana",
       "pages": [
         "data-catalog/solana/overview",
