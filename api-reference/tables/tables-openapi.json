@@ -121,7 +121,7 @@
           {
             "name": "table_name",
             "in": "path",
-            "description": "The name of the table to insert into (e.g. `dataset_interest_rates`).",
+            "description": "The name of the table to insert into (e.g. `interest_rates`).",
             "required": true,
             "schema": {
               "type": "string"
@@ -172,7 +172,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "You are not authorized to write to the table named 'other_user.dataset_interest_rates'"
+                      "example": "You are not authorized to write to the table named 'other_user.interest_rates'"
                     }
                   }
                 }
@@ -231,9 +231,9 @@
             "example": "my_user"
           },
           "table_name": {
-            "description": "The name of the table to create. Must begin with `dataset_` and contain only lowercase letters, digits, and underscores.",
+            "description": "The name of the table to create. Must begin with a lowercase letter and contain only lowercase letters, digits, and underscores.",
             "type": "string",
-            "example": "dataset_my_data"
+            "example": "my_data"
           },
           "schema": {
             "description": "An ordered list of columns that define the table schema. Cannot be empty.",
@@ -290,17 +290,17 @@
           "table_name": {
             "description": "The name of the created table.",
             "type": "string",
-            "example": "dataset_my_data"
+            "example": "my_data"
           },
           "full_name": {
             "description": "The full name of the created table, as it should be referred to in a query.",
             "type": "string",
-            "example": "dune.my_user.dataset_my_data"
+            "example": "dune.my_user.my_data"
           },
           "example_query": {
             "description": "Asn example query to use on Dune querying your new table.",
             "type": "string",
-            "example": "select * from dune.my_user.dataset_my_data"
+            "example": "select * from dune.my_user.my_data"
           }
         }
       },
