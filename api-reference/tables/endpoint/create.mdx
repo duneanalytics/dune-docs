@@ -25,7 +25,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
   "namespace":"my_user",
-  "table_name":"dataset_interest_rates",
+  "table_name":"interest_rates",
   "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
   "is_private": false,
   "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double"}]
@@ -40,9 +40,9 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.', '.env')
 dotenv.load_dotenv(".env")
 dune = DuneClient.from_env()
 
-table = DuneClient.from_env().create_table(
+table = dune.create_table(
         namespace="my_user",
-        table_name="dataset_interest_rates",
+        table_name="interest_rates",
         description="10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
         schema= [
             {"name": "date", "type": "timestamp"},
@@ -59,7 +59,7 @@ url = "https://api.dune.com/api/v1/table/create"
 
 payload = {
     "namespace": "my_user",
-    "table_name": "dataset_interest_rates",
+    "table_name": "interest_rates",
     "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
     "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double"}],
     "is_private": False
@@ -79,7 +79,7 @@ const url = "https://api.dune.com/api/v1/table/create";
 
 const payload = {
     "namespace": "my_user",
-    "table_name": "dataset_interest_rates",
+    "table_name": "interest_rates",
     "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
     "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double"}],
     "is_private": false
@@ -87,7 +87,7 @@ const payload = {
 
 const headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>",
-    "Content-Type": "text/csv"
+    "Content-Type": "application/json"
 };
 
 fetch(url, {

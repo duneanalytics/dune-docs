@@ -25,7 +25,7 @@ Each line must have keys that match the column names of the table.
 <RequestExample>
 ```bash curl
 curl --request POST \
-  --url https://api.dune.com/api/v1/table/my_user/dataset_interest_rates/insert \
+  --url https://api.dune.com/api/v1/table/my_user/interest_rates/insert \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
   --header 'Content-Type: text/csv' \
   --upload-file interest_rates.csv
@@ -42,7 +42,7 @@ dune = DuneClient.from_env()
 with open("./interest_rates.csv", "rb") as data:
     response = dune.insert_table(
             namespace="my_user",
-            table_name="dataset_interest_rates",
+            table_name="interest_rates",
             data=data,
             content_type="text/csv"
         )
@@ -51,7 +51,7 @@ with open("./interest_rates.csv", "rb") as data:
 ```python Python
 import requests
 
-url = "https://api.dune.com/api/v1/table/my_user/dataset_interest_rates/insert"
+url = "https://api.dune.com/api/v1/table/my_user/interest_rates/insert"
 
 headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>",
@@ -64,7 +64,7 @@ with open("./interest_rates.csv", "rb") as data:
 
 
 ```javascript Javascript
-const url = "https://api.dune.com/api/v1/table/my_user/dataset_interest_rates/insert";
+const url = "https://api.dune.com/api/v1/table/my_user/interest_rates/insert";
 
 const headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>",
