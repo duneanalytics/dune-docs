@@ -258,10 +258,51 @@
       "group": "Tron",
       "pages": [
         "data-catalog/tron/overview",
-        "data-catalog/tron/blocks",
-        "data-catalog/tron/transactions",
-        "data-catalog/tron/logs",
-        "data-catalog/tron/tether"
+        {
+          "group": "Raw",
+          "pages": [
+            "data-catalog/tron/raw/transactions",
+            "data-catalog/tron/raw/logs",
+            "data-catalog/tron/raw/blocks"
+          ]
+        },
+        {
+          "group": "Decoded",
+          "pages": [
+            "data-catalog/tron/decoded/overview",
+            "data-catalog/tron/decoded/call-tables",
+            "data-catalog/tron/decoded/event-logs",
+            "data-catalog/tron/decoded/contracts",
+            "data-catalog/tron/decoded/logs-decoded",
+            "data-catalog/tron/decoded/traces-decoded"
+          ]
+        },
+        {
+          "group": "Tokens",
+          "pages": [
+            "data-catalog/tron/tokens/overview",
+            "data-catalog/tron/tokens/balances",
+            {
+              "group": "Transfers",
+              "pages": [
+                "data-catalog/tron/tokens/transfers/erc20-transfers",
+                "data-catalog/tron/tokens/transfers/erc721-transfers",
+                "data-catalog/tron/tokens/transfers/erc1155-transfers"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "DEX",
+          "pages": [
+            "data-catalog/tron/DEX/dex-trades",
+            "data-catalog/tron/DEX/dex-aggregator-trades"
+          ]
+        },
+        {
+          "group": "NFT",
+          "pages": ["data-catalog/tron/NFT/nft-trades"]
+        }
       ]
     },
     {
