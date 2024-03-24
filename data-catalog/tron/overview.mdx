@@ -5,26 +5,29 @@ sidebarTitle: "Overview"
 description: Tron data on Dune Analytics
 ---
 
-Raw data tables are very useful for getting transactions, pre and post-balances, and instructions data. As a non-EVM chain, Tron Raw data looks quite different from other chains (largely due to its account structure). You can learn to get started with Tron analysis [in this guide](https://web3datadegens.substack.com/p/starter-guide-to-tron-data-analysis).
+Tron is a blockchain platform that aims to build a decentralized internet. It is known for its high throughput and low fees. Tron uses a Delegated Proof of Stake (DPoS) consensus mechanism, where 27 Super Representatives are elected to validate transactions and produce blocks.
 
-However, queries that have been written using raw data tables are notoriously hard to understand and audit due to the nature of the encoded data commonly found in these tables. Furthermore, the raw data tables have a very large number of rows and hence can be slow to query. Most of the time you are better off working with [decoded data](/data-catalog/tron/idl-tables) from IDL decoding.
+The Tron network has a native token called TRX, which is used to pay for transactions and smart contract execution. Tron also supports the creation of custom tokens, which can be used for various purposes such as fundraising and governance. Tron's smart contract platform is compatible with the Ethereum Virtual Machine (EVM), which allows developers to deploy Solidity smart contracts on Tron.
+
+Dune Analytics provides a range of datasets for analyzing the Tron blockchain. You can explore event logs from smart contracts, block information, and transaction details. Use the data to track network activity, monitor smart contract interactions, and analyze on-chain behavior.
+
+
+## Data Catalog
 
 <CardGroup cols={2}>
-  <Card
-    title="Tron Account Activity"
-    icon="user-check"
-    href="/data-catalog/tron/account-activity"
-  >
-    Detailed account activity on Tron
+  <Card title="Logs" icon="bolt" href="/data-catalog/tron/decoded/logs">
+    Event logs from smart contracts
   </Card>
-  <Card title="Tron Blocks" icon="cubes" href="/data-catalog/tron/blocks">
-    Block information and statistics on Tron
+  <Card title="Blocks" icon="cubes" href="/data-catalog/tron/blocks">
+    Block information and statistics
   </Card>
-  <Card
-    title="Tron Transactions"
-    icon="message-arrow-up"
-    href="/data-catalog/tron/transactions"
-  >
-    Transaction details on Tron
+  <Card title="Transactions" icon="message-arrow-up" href="/data-catalog/tron/transactions">
+    Transaction details
+  </Card>
+  <Card title="Tokens" icon="database" href="/data-catalog/tron/tokens/overview">
+    Data for TRC tokens
+  </Card>
+  <Card title="Tether" icon="coin" href="/data-catalog/tron/tether/overview">
+    Data for Tether on Tron
   </Card>
 </CardGroup>
