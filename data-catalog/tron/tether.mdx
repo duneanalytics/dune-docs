@@ -6,6 +6,8 @@ description: Decoded USDT data on the Tron network.
 
 USDT is a stablecoin pegged to the US dollar. It is issued by Tether, a company that has issued several stablecoins on different blockchains. USDT on Tron is a TRC-20 token, which means it is issued on the Tron network. USDT on Tron is the most popular stablecoin that is used in the real world. It is used by traders, investors, and businesses to transfer value across the world. On Dune, you can explore USDT on Tron data, including the number of transactions, the number of holders, and the total supply.
 
+<Info> technically, Tether belongs to the [decoded category](/data-catalog/tron/decoded), but Tether is >90% of activity on Tron, so we decided to give it its own page </Info>
+
 ## Data Overview
 
 The [USDT smart contract](https://tronscan.org/#/token20/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t) on the Tron network is a TRC-20 token contract. It is used to issue and manage USDT tokens on the Tron network. The contract has several functions that allow users to transfer, issue, and manage USDT tokens. The contract also has several events that are logged when certain actions are performed. These events can be used to track the history of the contract and the USDT tokens that are issued by it.
@@ -33,6 +35,8 @@ These are the events that are logged by the USDT contract on the Tron network an
 - `tether_tron.tether_usd_evt_transfer`: Tracks transfer events between addresses, a core functionality for a token contract, logging the sender, receiver, and amount.
 
 - `tether_tron.tether_usd_evt_unpause`: Captures the moments when the contract's pause is lifted, thereby resuming normal operations and transactions.
+
+You can query these events using SQL to get insights into the USDT contract on the Tron network.
 
 
 ## Example queries 
