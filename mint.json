@@ -280,7 +280,8 @@
             "data-catalog/tron/tokens/transfers/erc721-transfers",
             "data-catalog/tron/tokens/transfers/erc1155-transfers"
           ]
-        }
+        },
+        "data-catalog/tron/tether"
       ]
     },
     {

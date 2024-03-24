@@ -5,12 +5,12 @@ sidebarTitle: "Overview"
 description: Tron data on Dune Analytics
 ---
 
-Tron is a blockchain platform that aims to build a decentralized internet. It is known for its high throughput and low fees. Tron uses a Delegated Proof of Stake (DPoS) consensus mechanism, where 27 Super Representatives are elected to validate transactions and produce blocks.
+Tron is a EVM-compatible Layer1 blockchain that uses a Delegated Proof of Stake (DPoS) consensus mechanism, where 27 Super Representatives are elected to validate transactions and produce blocks.
 
 The Tron network has a native token called TRX, which is used to pay for transactions and smart contract execution. Tron also supports the creation of custom tokens, which can be used for various purposes such as fundraising and governance. Tron's smart contract platform is compatible with the Ethereum Virtual Machine (EVM), which allows developers to deploy Solidity smart contracts on Tron.
 
-Dune Analytics provides a range of datasets for analyzing the Tron blockchain. You can explore event logs from smart contracts, block information, and transaction details. Use the data to track network activity, monitor smart contract interactions, and analyze on-chain behavior.
-
+Dune provides raw, decoded and aggregated data for the Tron network, including event logs, blocks, transactions, tokens and Tether on Tron.
+The datasets are similar to our EVM chains, but without internal transactions and traces as the tron clients do not provide this data.
 
 ## Data Catalog
 
@@ -24,10 +24,14 @@ Dune Analytics provides a range of datasets for analyzing the Tron blockchain. Y
   <Card title="Transactions" icon="message-arrow-up" href="/data-catalog/tron/transactions">
     Transaction details
   </Card>
+  <Card title="decoded" icon="file" href="/data-catalog/tron/decoded">
+    Human readable smart contract activity
+  </Card>
   <Card title="Tokens" icon="database" href="/data-catalog/tron/tokens/overview">
     Data for TRC tokens
   </Card>
   <Card title="Tether" icon="coin" href="/data-catalog/tron/tether/overview">
     Data for Tether on Tron
   </Card>
+  
 </CardGroup>
