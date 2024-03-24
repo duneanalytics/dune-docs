@@ -1,0 +1,36 @@
+---
+title: Tron Overview
+icon: "star"
+sidebarTitle: "Overview"
+description: Tron data on Dune Analytics
+---
+
+Tron is a EVM-compatible Layer1 blockchain that uses a Delegated Proof of Stake (DPoS) consensus mechanism, where 27 Super Representatives are elected to validate transactions and produce blocks.
+
+The Tron network has a native token called TRX, which is used to pay for transactions and smart contract execution. Tron also supports the creation of custom tokens, which can be used for various purposes such as fundraising and governance. Tron's smart contract platform is compatible with the Ethereum Virtual Machine (EVM), which allows developers to deploy Solidity smart contracts on Tron.
+
+Dune provides raw, decoded and aggregated data for the Tron network, including event logs, blocks, transactions, tokens and Tether on Tron.
+The datasets are similar to our EVM chains, but without internal transactions and traces as the tron clients do not provide this data.
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="/data-catalog/tron/raw/logs">
+    Event logs from smart contracts
+  </Card>
+  <Card title="Blocks" icon="cubes" href="/data-catalog/tron/raw/blocks">
+    Block information and statistics
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="/data-catalog/tron/raw/transactions">
+    Transaction details
+  </Card>
+  <Card title="decoded" icon="file" href="/data-catalog/tron/decoded/">
+    Human readable smart contract activity
+  </Card>
+  <Card title="Tokens" icon="database" href="/data-catalog/tron/tokens/overview">
+    Data for TRC tokens
+  </Card>
+  <Card title="Tether" icon="coin" href="/data-catalog/tron/tether">
+    Data for Tether on Tron
+  </Card>
+</CardGroup>

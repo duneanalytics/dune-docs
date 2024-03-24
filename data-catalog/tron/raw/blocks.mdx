@@ -1,0 +1,66 @@
+---
+title: tron.blocks
+sidebarTitle: "Blocks"
+description: Description of the tron.blocks table on Dune
+---
+
+## Table Description
+
+The `tron.blocks` table contains information about blocks in the Tron blockchain. A block is a collection of transactions that are hashed and added to the blockchain. Each block contains a reference to the previous block, known as the parent hash, and a timestamp. The table contains information about each block, such as the block number, the block hash, the block size, the number of transactions, and the gas used.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tron" tableName="blocks" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tron" tableName="blocks" />
+
+
+## Examples
+
+### Show the most recent blocks
+
+```sql
+SELECT
+  number,
+  hash,
+  size,
+  gas_used
+FROM
+  tron.blocks
+ORDER BY
+  number DESC
+LIMIT 10
+```
+
+### Show the number of blocks mined each day
+
+```sql
+SELECT
+  date_trunc('day', time) AS day,
+  count(distinct number)
+FROM
+  tron.blocks
+GROUP BY
+  day
+ORDER BY
+  day DESC
+```
+
+### Show the number of transactions in each block
+
+```sql
+SELECT
+  number,
+  count(*)
+FROM
+  tron.blocks
+group by 1 
+
+LIMIT 10
+```

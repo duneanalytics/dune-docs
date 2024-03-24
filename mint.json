@@ -109,9 +109,7 @@
     },
     {
       "group": "",
-      "pages": [
-        "query-engine/overview"
-      ]
+      "pages": ["query-engine/overview"]
     },
     {
       "group": "Functionality",
@@ -252,6 +250,38 @@
         "data-catalog/substrate/stakings",
         "data-catalog/substrate/traces",
         "data-catalog/substrate/materialized_views"
+      ]
+    },
+    {
+      "group": "Tron",
+      "pages": [
+        "data-catalog/tron/overview",
+        {
+          "group": "Raw",
+          "pages": [
+            "data-catalog/tron/raw/transactions",
+            "data-catalog/tron/raw/logs",
+            "data-catalog/tron/raw/blocks"
+          ]
+        },
+        {
+          "group": "Decoded",
+          "pages": [
+            "data-catalog/tron/decoded/overview",
+            "data-catalog/tron/decoded/event-logs",
+            "data-catalog/tron/decoded/contracts"
+          ]
+        },
+        {
+          "group": "Tokens",
+          "pages": [
+            "data-catalog/tron/tokens/overview",
+            "data-catalog/tron/tokens/transfers/erc20-transfers",
+            "data-catalog/tron/tokens/transfers/erc721-transfers",
+            "data-catalog/tron/tokens/transfers/erc1155-transfers"
+          ]
+        },
+        "data-catalog/tron/tether"
       ]
     },
     {

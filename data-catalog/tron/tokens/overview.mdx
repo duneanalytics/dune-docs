@@ -1,0 +1,35 @@
+---
+title: Tokens
+sidebarTitle: Overview
+description: Exploring the landscape of digital assets on the blockchain.
+icon: "star"
+---
+
+Tron adheres to the Ethereum Virtual Machine (EVM) standards for token creation and management. These standards define the rules and interfaces that smart contracts must follow in order to create and manage tokens on the blockchain. The most common token standards include:
+
+- [ERC20](https://eips.ethereum.org/EIPS/eip-20)
+- [ERC721](https://eips.ethereum.org/EIPS/eip-721)
+- [ERC1155](https://eips.ethereum.org/EIPS/eip-1155)
+
+ERC20 tokens are fungible, meaning that each token is identical to every other token. ERC721 tokens are non-fungible, meaning that each token is unique. ERC1155 tokens are a hybrid of the two, allowing for both fungible and non-fungible tokens to be created.
+
+On Tron, these standards are called **TRC20**, **TRC721**, and **TRC1155**, respectively.
+
+Additionally, there is also the native asset of the TVM, `TRX`, which is used to pay for transaction fees. TRX is not an ERC20 token, but it is still a digital asset that can be transferred and owned by users.
+
+## Data Catalog
+
+The following datasets are available for exploring the landscape of digital assets on the blockchain:
+
+<CardGroup cols={2}>
+  <Card
+    title="TRC20" icon="layer-group" href="/data-catalog/tron/tokens/transfers/erc20-transfers">
+    All TRC20 token transfers that have occurred on the network.
+    </Card>
+  <Card title="TRC721" icon="layer-group" href="/data-catalog/tron/tokens/transfers/erc721-transfers">
+    All TRC721 token transfers that have occurred on the network.
+  </Card>
+  <Card title="TRC1155" icon="layer-group" href="/data-catalog/tron/tokens/transfers/erc1155-transfers">
+    All TRC1155 token transfers that have occurred on the network.
+  </Card>
+</CardGroup>

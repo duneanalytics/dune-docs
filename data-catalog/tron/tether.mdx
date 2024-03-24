@@ -1,0 +1,80 @@
+---
+title: USDT on tron
+sidebarTitle: "Tether"
+description: Decoded USDT data on the Tron network.
+---
+
+USDT is a stablecoin pegged to the US dollar. It is issued by Tether, a company that has issued several stablecoins on different blockchains. USDT on Tron is a TRC-20 token, which means it is issued on the Tron network. USDT on Tron is the most popular stablecoin that is used in the real world. It is used by traders, investors, and businesses to transfer value across the world. On Dune, you can explore USDT on Tron data, including the number of transactions, the number of holders, and the total supply.
+
+<Info> technically, Tether belongs to the [decoded category](/data-catalog/tron/decoded), but Tether is >90% of activity on Tron, so we decided to give it its own page </Info>
+
+## Data Overview
+
+The [USDT smart contract](https://tronscan.org/#/token20/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t) on the Tron network is a TRC-20 token contract. It is used to issue and manage USDT tokens on the Tron network. The contract has several functions that allow users to transfer, issue, and manage USDT tokens. The contract also has several events that are logged when certain actions are performed. These events can be used to track the history of the contract and the USDT tokens that are issued by it.
+
+These are the events that are logged by the USDT contract on the Tron network and their respective descriptions:
+
+- `tether_tron.tether_usd_evt_addedblacklist`: Records events where addresses are added to the blacklist by the contract. This could imply restrictions on transactions for the addresses involved.
+
+- `tether_tron.tether_usd_evt_approval`: Logs approval events, indicating when a user has allowed another account to withdraw a certain amount of USDT on their behalf.
+
+- `tether_tron.tether_usd_evt_deprecate`: Captures instances where the contract has been deprecated, which might happen when a contract is upgraded or migrated.
+
+- `tether_tron.tether_usd_evt_destroyedblackfunds`: Details events where funds from blacklisted addresses are destroyed or removed from circulation by the contract.
+
+- `tether_tron.tether_usd_evt_issue`: Contains records of issue events, where new USDT tokens are created and issued within the ecosystem.
+
+- `tether_tron.tether_usd_evt_ownershipttransferred`: Logs the transfer of contract ownership events, which indicates a change in who can execute administrative functions on the contract.
+
+- `tether_tron.tether_usd_evt_params`: Stores data related to changes in the contract's operational parameters, which could include things like fees, transaction limits, or other configuration settings.
+
+- `tether_tron.tether_usd_evt_pause`: Details when the contract has been paused, which prevents all transfers, issuances, and blacklisting until it is unpaused.
+
+- `tether_tron.tether_usd_evt_removedblacklist`: Logs events where addresses are removed from the blacklist, usually re-enabling their ability to execute transactions.
+
+- `tether_tron.tether_usd_evt_transfer`: Tracks transfer events between addresses, a core functionality for a token contract, logging the sender, receiver, and amount.
+
+- `tether_tron.tether_usd_evt_unpause`: Captures the moments when the contract's pause is lifted, thereby resuming normal operations and transactions.
+
+
+You can query all of these tables in the `tether_tron` schema in the Dune database.
+
+## Example queries 
+
+### Daily transfer count of USDT on Tron.
+
+```sql
+SELECT 
+  date_trunc('day', evt_block_time) as day,
+  count(*) as transfer_count
+FROM tether_tron.Tether_USD_evt_transfer
+where evt_block_time > now() - interval '10' day
+group by 1
+```
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3556879/5985629/"
+    width="100%"
+    height="300px"
+  ></iframe>
+</div>
+
+### Daily transfer volume of USDT on Tron.
+
+```sql
+SELECT 
+  date_trunc('day', evt_block_time) as day,
+  sum(value/1e6) as transfer_volume
+FROM tether_tron.Tether_USD_evt_transfer
+where evt_block_time > now() - interval '10' day
+group by 1
+```
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3556889/5985657/"
+    width="100%"
+    height="300px"
+  ></iframe>
+</div>
