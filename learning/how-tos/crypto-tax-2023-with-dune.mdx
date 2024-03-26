@@ -1,0 +1,43 @@
+---
+title: 2023 Crypto Tax with Dune
+description: How to simplify your 2023 crypto tax filing with Dune
+---
+
+This guide walks you through using a Python notebook for your 2023 crypto tax calculations. By simply inputting your wallet addresses, the notebook fetches line item details and calculates your overall profit or loss (PnL) for the year (in dollar value). It employs the average cost basis method for fungible tokens, which you can learn more about [here](https://www.investopedia.com/terms/a/averagecostbasismethod.asp).
+
+
+## Accessing the notebook
+- Start editing via this [Google Colab Notebook](https://colab.research.google.com/drive/1Nhszieu6OP-CD8HEam6lSsrZfPZv7UaY?usp=sharing) (_Note to save you must save another copy._)
+- Download from this [Hex Notebook](https://app.hex.tech/d12aba6a-f113-4485-a72b-b7d812bc2234/hex/babc2bb4-bf85-416a-9bc4-b4b796f6cd32/draft/logic)
+
+
+## Setup
+
+Ensure you have the Dune API SDK installed and your API key ready. 
+
+- Install Dune API SDK: 
+```bash 
+pip install dune_client
+```
+- [Obtain an API key](https://docs.dune.com/api-reference/overview/authentication)
+
+
+## How to use the notebook
+
+Replace `'your_api_key_here'` with your Dune API key:
+
+```python
+dune_api_key = 'your_api_key_here'
+dune = DuneClient(api_key=dune_api_key, base_url="https://api.dune.com", request_timeout=300)
+```
+
+Input a list of EVM and Solana wallets, separated by commas. For example:
+
+```python
+evm_wallets = '0xd8da6bf26964af9d7eed9e03e53415d37aa96045, 0xd7029bdea1c17493893aafe29aad69ef892b8ff2'
+# ...
+solana_wallets = '6by8iRgL41nY5fzFAmoH8dxzWFwmDmYiMbVUq6fpK69d, FNQVDmTdmWtTaswoL9ysoyorsHZvjRbNsbAdgmcREHVi'
+```
+
+The notebook processes these inputs to provide detailed line items and PnL calculations.
+Download the line items CSVs and jot down the total PnL. 🎉
