@@ -395,7 +395,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Expressiong to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
           },
           {
             "in": "query",
@@ -579,7 +579,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Expressiong to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
           },
           {
             "in": "query",
@@ -777,7 +777,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Expressiong to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
           },
           {
             "in": "query",
