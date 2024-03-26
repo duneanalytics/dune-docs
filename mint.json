@@ -368,7 +368,7 @@
       ]
     },
     {
-      "group": "Tables",
+      "group": "Tables (upload data)",
       "pages": [
         "api-reference/tables/endpoint/create",
         "api-reference/tables/endpoint/insert",
