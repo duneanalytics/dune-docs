@@ -272,6 +272,8 @@
               "integer",
               "double",
               "boolean",
+              "int256",
+              "uint256",
               "timestamp"
             ],
             "description": "The column type.",
