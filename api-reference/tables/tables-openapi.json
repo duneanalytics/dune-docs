@@ -213,6 +213,97 @@
           }
         }
       }
+    },
+    "/v1/table/{namespace}/{table_name}": {
+      "delete": {
+        "tags": [
+          "table"
+        ],
+        "summary": "Delete a Dune table",
+        "description": "Delete a Dune table with the specified name and namespace.",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "The namespace of the table to delete (e.g. `my_user`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_name",
+            "in": "path",
+            "description": "The name of the table to delete (e.g. `interest_rates`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+        ,
+        "responses": {
+          "200": {
+            "description": "Table successfully deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "description": "The error message",
+                      "type": "string",
+                      "example": "You are not authorized to delete table other_user.interest_rates. If your key belongs to the correct namespace, you need admin privileges to delete."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Table not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Table my_user.interest_rates not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -313,6 +404,16 @@
             "description": "The number of rows that were written to the table.",
             "type": "number",
             "example": 9000
+          }
+        }
+      },
+      "DeleteTableResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "description": "The confirmation message of the deleted table",
+            "type": "string",
+            "example": "Table my_user.interest_rates successfully deleted"
           }
         }
       }

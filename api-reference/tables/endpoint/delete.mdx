@@ -1,0 +1,25 @@
+---
+title: 'Delete Table (beta)'
+openapi: 'DELETE /v1/table/{namespace}/{table_name}'
+---
+
+<Warning>
+This endpoint is currently in beta, and may change without warning.
+</Warning>
+
+To be able to delete a table, it must have been created with the [/create endpoint](./create).
+
+<Note>
+- You must be an admin to delete the table.
+- You can also delete a table through `user settings (dune.com) -> data -> delete`.
+- Deleting a table does not incur credits.
+</Note>
+
+<RequestExample>
+
+```bash curl
+curl --request DELETE \
+  --url https://api.dune.com/api/v1/table/my_user/interest_rates \
+  --header 'Content-Type: application/json'
+```
+</RequestExample>
