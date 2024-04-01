@@ -244,7 +244,7 @@
         ,
         "responses": {
           "200": {
-            "description": "Table my_user.interest_rates successfully deleted",
+            "description": "Table successfully deleted",
             "content": {
               "application/json": {
                 "schema": {
@@ -280,22 +280,6 @@
                     "error": {
                       "type": "string",
                       "example": "Table my_user.interest_rates not found"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Table already exists",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "This table already exists"
                     }
                   }
                 }
