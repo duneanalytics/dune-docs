@@ -172,67 +172,74 @@
     {
       "group": "EVM Chains",
       "pages": [
-        {"group": "Ethereum",
-        "pages":[
-        "data-catalog/evm/overview",
         {
-          "group": "Raw",
+          "group": "Ethereum",
           "pages": [
-            "data-catalog/evm/ethereum/raw/transactions",
-            "data-catalog/evm/ethereum/raw/logs",
-            "data-catalog/evm/ethereum/raw/traces",
-            "data-catalog/evm/ethereum/raw/creation-traces",
-            "data-catalog/evm/ethereum/raw/blocks",
-            "data-catalog/evm/ethereum/raw/withdrawals"
-          ]
-        },
-        {
-          "group": "Decoded",
-          "pages": [
-            "data-catalog/evm/ethereum/decoded/overview",
-            "data-catalog/evm/ethereum/decoded/call-tables",
-            "data-catalog/evm/ethereum/decoded/event-logs",
-            "data-catalog/evm/ethereum/decoded/contracts",
-            "data-catalog/evm/ethereum/decoded/logs-decoded",
-            "data-catalog/evm/ethereum/decoded/traces-decoded"
-          ]
-        },
-        {
-          "group": "Tokens",
-          "pages": [
-            "data-catalog/evm/ethereum/tokens/overview",
-            "data-catalog/evm/ethereum/tokens/balances",
+            "data-catalog/evm/overview",
             {
-              "group": "Transfers",
+              "group": "Raw",
               "pages": [
-                "data-catalog/evm/ethereum/tokens/transfers/erc20-transfers",
-                "data-catalog/evm/ethereum/tokens/transfers/erc721-transfers",
-                "data-catalog/evm/ethereum/tokens/transfers/erc1155-transfers"
+                "data-catalog/evm/ethereum/raw/transactions",
+                "data-catalog/evm/ethereum/raw/logs",
+                "data-catalog/evm/ethereum/raw/traces",
+                "data-catalog/evm/ethereum/raw/creation-traces",
+                "data-catalog/evm/ethereum/raw/blocks",
+                "data-catalog/evm/ethereum/raw/withdrawals"
               ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/ethereum/decoded/overview",
+                "data-catalog/evm/ethereum/decoded/call-tables",
+                "data-catalog/evm/ethereum/decoded/event-logs",
+                "data-catalog/evm/ethereum/decoded/contracts",
+                "data-catalog/evm/ethereum/decoded/logs-decoded",
+                "data-catalog/evm/ethereum/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Tokens",
+              "pages": [
+                "data-catalog/evm/ethereum/tokens/overview",
+                "data-catalog/evm/ethereum/tokens/balances",
+                {
+                  "group": "Transfers",
+                  "pages": [
+                    "data-catalog/evm/ethereum/tokens/transfers/erc20-transfers",
+                    "data-catalog/evm/ethereum/tokens/transfers/erc721-transfers",
+                    "data-catalog/evm/ethereum/tokens/transfers/erc1155-transfers"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "DEX",
+              "pages": [
+                "data-catalog/evm/ethereum/DEX/dex-trades",
+                "data-catalog/evm/ethereum/DEX/dex-aggregator-trades"
+              ]
+            },
+            {
+              "group": "NFT",
+              "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
             }
           ]
         },
         {
-          "group": "DEX",
+          "group": "Arbitrum",
           "pages": [
-            "data-catalog/evm/ethereum/DEX/dex-trades",
-            "data-catalog/evm/ethereum/DEX/dex-aggregator-trades"
+            "data-catalog/evm/arbitrum/raw/blocks",
+            "data-catalog/evm/arbitrum/raw/creation-traces",
+            "data-catalog/evm/arbitrum/raw/logs",
+            "data-catalog/evm/arbitrum/raw/transactions",
+            "data-catalog/evm/arbitrum/raw/traces"
           ]
-        },
-        {
-          "group": "NFT",
-          "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
         }
       ]
     },
-    {
-      "group": "Arbitrum",
-      "pages": ["data-catalog/evm/arbitrum/raw/blocks"]
-    }
-  ]
-},
 
-{
+    {
       "group": "Aptos",
       "pages": [
         "data-catalog/aptos/overview",
