@@ -286,6 +286,22 @@
               }
             }
           },
+          "409": {
+            "description": "Table already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "This table already exists"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal error occurred",
             "content": {
