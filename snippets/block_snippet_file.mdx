@@ -1,0 +1,48 @@
+export const BlockSnippet = ({ blockchain }) => (
+  <div>
+    <h2>Table description</h2>
+    <p>
+      The <code>{blockchain}.blocks</code> table contains information about blocks in the {blockchain} blockchain. A block is a collection of transactions that are hashed and added to the blockchain. Each block contains a reference to the previous block, known as the parent hash, and a timestamp. The table contains information about each block, such as the block number, the block hash, the block size, the number of transactions, and the gas used.
+    </p>
+    <h2>
+        Column Descriptions
+    </h2>
+    <ColumnDescriptions tableSchema={blockchain} tableName="blocks" />
+    <h2>
+        Table Sample
+    </h2>
+    <TableSample tableSchema={blockchain} tableName="blocks" />
+    <h2>
+        Examples
+    </h2>
+    <h3>Show the most recent blocks</h3>
+  <pre><code>{
+`SELECT
+    number,
+    hash, 
+    size,
+    gas_used
+  FROM ${blockchain}.blocks
+  ORDER BY number DESC
+  LIMIT 10`}</code></pre>
+
+  <h3>Show the number of blocks mined each day</h3>
+  <pre><code>{
+`SELECT
+    date_trunc('day', time) AS day,
+    count(distinct number)
+  FROM ${blockchain}.blocks
+  GROUP BY day
+  ORDER BY day DESC`}</code></pre>
+
+  <h3>Show the number of transactions in each block</h3>
+  <pre><code>{
+`SELECT
+    number,
+    count(*)
+  FROM ${blockchain}.blocks
+  GROUP BY 1 
+  LIMIT 10`}</code></pre>
+  </div>
+);
+

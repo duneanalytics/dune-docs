@@ -172,6 +172,8 @@
     {
       "group": "EVM Chains",
       "pages": [
+        {"group": "Ethereum",
+        "pages":[
         "data-catalog/evm/overview",
         {
           "group": "Raw",
@@ -224,6 +226,13 @@
       ]
     },
     {
+      "group": "Arbitrum",
+      "pages": ["data-catalog/evm/arbitrum/blocks"]
+    }
+  ]
+},
+
+{
       "group": "Aptos",
       "pages": [
         "data-catalog/aptos/overview",
