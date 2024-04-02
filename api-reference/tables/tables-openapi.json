@@ -403,6 +403,11 @@
             "description": "The number of rows that were written to the table.",
             "type": "number",
             "example": 9000
+          },
+          "bytes_written": {
+            "description": "The number of bytes that were written to the table.",
+            "type": "number",
+            "example": 90
           }
         }
       },
