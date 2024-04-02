@@ -141,6 +141,7 @@
             "query-engine/Functions-and-operators/conversion",
             "query-engine/Functions-and-operators/datetime",
             "query-engine/Functions-and-operators/decimal",
+            "query-engine/Functions-and-operators/http",
             "query-engine/Functions-and-operators/hyperloglog",
             "query-engine/Functions-and-operators/lambda",
             "query-engine/Functions-and-operators/list-by-topic",
