@@ -20,7 +20,7 @@ To be able to delete a table, it must have been created with the [/create endpoi
 ```bash curl
 curl --request DELETE \
   --url https://api.dune.com/api/v1/table/my_user/interest_rates \
-  --header 'Content-Type: application/json'
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>'
 ```
 
 ```python Python SDK
