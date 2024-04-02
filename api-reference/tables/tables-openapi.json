@@ -310,14 +310,13 @@
     "schemas": {
       "CreateTableRequest": {
         "required": [
-          "namespace",
           "table_name",
           "schema"
         ],
         "type": "object",
         "properties": {
           "namespace": {
-            "description": "The namespace of the table to create. Must be the name of your associated API key, i.e. either `my_user` or `my_team`.",
+            "description": "The namespace of the table to create. Only the name of your associated API key is allowed at the moment, i.e. either `my_user` or `my_team`. (Optional. Default is the namespace of your API key.)",
             "type": "string",
             "example": "my_user"
           },
