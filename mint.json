@@ -176,139 +176,489 @@
       "pages": [
         "data-catalog/evm/overview",
         {
-          "group": "Raw",
+          "group": "Ethereum",
           "pages": [
-            "data-catalog/evm/ethereum/raw/transactions",
-            "data-catalog/evm/ethereum/raw/logs",
-            "data-catalog/evm/ethereum/raw/traces",
-            "data-catalog/evm/ethereum/raw/creation-traces",
-            "data-catalog/evm/ethereum/raw/blocks",
-            "data-catalog/evm/ethereum/raw/withdrawals"
-          ]
-        },
-        {
-          "group": "Decoded",
-          "pages": [
-            "data-catalog/evm/ethereum/decoded/overview",
-            "data-catalog/evm/ethereum/decoded/call-tables",
-            "data-catalog/evm/ethereum/decoded/event-logs",
-            "data-catalog/evm/ethereum/decoded/contracts",
-            "data-catalog/evm/ethereum/decoded/logs-decoded",
-            "data-catalog/evm/ethereum/decoded/traces-decoded"
-          ]
-        },
-        {
-          "group": "Tokens",
-          "pages": [
-            "data-catalog/evm/ethereum/tokens/overview",
-            "data-catalog/evm/ethereum/tokens/balances",
             {
-              "group": "Transfers",
+              "group": "Raw",
               "pages": [
-                "data-catalog/evm/ethereum/tokens/transfers/erc20-transfers",
-                "data-catalog/evm/ethereum/tokens/transfers/erc721-transfers",
-                "data-catalog/evm/ethereum/tokens/transfers/erc1155-transfers"
+                "data-catalog/evm/ethereum/raw/transactions",
+                "data-catalog/evm/ethereum/raw/logs",
+                "data-catalog/evm/ethereum/raw/traces",
+                "data-catalog/evm/ethereum/raw/creation-traces",
+                "data-catalog/evm/ethereum/raw/blocks",
+                "data-catalog/evm/ethereum/raw/withdrawals"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/ethereum/decoded/overview",
+                "data-catalog/evm/ethereum/decoded/call-tables",
+                "data-catalog/evm/ethereum/decoded/event-logs",
+                "data-catalog/evm/ethereum/decoded/contracts",
+                "data-catalog/evm/ethereum/decoded/logs-decoded",
+                "data-catalog/evm/ethereum/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Tokens",
+              "pages": [
+                "data-catalog/evm/ethereum/tokens/overview",
+                "data-catalog/evm/ethereum/tokens/balances",
+                {
+                  "group": "Transfers",
+                  "pages": [
+                    "data-catalog/evm/ethereum/tokens/transfers/erc20-transfers",
+                    "data-catalog/evm/ethereum/tokens/transfers/erc721-transfers",
+                    "data-catalog/evm/ethereum/tokens/transfers/erc1155-transfers"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "DEX",
+              "pages": [
+                "data-catalog/evm/ethereum/DEX/dex-trades",
+                "data-catalog/evm/ethereum/DEX/dex-aggregator-trades"
+              ]
+            },
+            {
+              "group": "NFT",
+              "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
+            }
+          ]
+        },
+        {
+          "group": "Arbitrum",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/arbitrum/raw/blocks",
+                "data-catalog/evm/arbitrum/raw/creation-traces",
+                "data-catalog/evm/arbitrum/raw/logs",
+                "data-catalog/evm/arbitrum/raw/transactions",
+                "data-catalog/evm/arbitrum/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/arbitrum/decoded/overview",
+                "data-catalog/evm/arbitrum/decoded/call-tables",
+                "data-catalog/evm/arbitrum/decoded/event-logs",
+                "data-catalog/evm/arbitrum/decoded/contracts",
+                "data-catalog/evm/arbitrum/decoded/logs-decoded",
+                "data-catalog/evm/arbitrum/decoded/traces-decoded"
               ]
             }
           ]
         },
         {
-          "group": "DEX",
+          "group": "Avalanche",
           "pages": [
-            "data-catalog/evm/ethereum/DEX/dex-trades",
-            "data-catalog/evm/ethereum/DEX/dex-aggregator-trades"
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/avalanche/raw/blocks",
+                "data-catalog/evm/avalanche/raw/creation-traces",
+                "data-catalog/evm/avalanche/raw/logs",
+                "data-catalog/evm/avalanche/raw/transactions",
+                "data-catalog/evm/avalanche/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/avalanche/decoded/overview",
+                "data-catalog/evm/avalanche/decoded/call-tables",
+                "data-catalog/evm/avalanche/decoded/event-logs",
+                "data-catalog/evm/avalanche/decoded/contracts",
+                "data-catalog/evm/avalanche/decoded/logs-decoded",
+                "data-catalog/evm/avalanche/decoded/traces-decoded"
+              ]
+            }
           ]
         },
         {
-          "group": "NFT",
-          "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
+          "group": "Base",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/base/raw/blocks",
+                "data-catalog/evm/base/raw/creation-traces",
+                "data-catalog/evm/base/raw/logs",
+                "data-catalog/evm/base/raw/transactions",
+                "data-catalog/evm/base/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/base/decoded/overview",
+                "data-catalog/evm/base/decoded/call-tables",
+                "data-catalog/evm/base/decoded/event-logs",
+                "data-catalog/evm/base/decoded/contracts",
+                "data-catalog/evm/base/decoded/logs-decoded",
+                "data-catalog/evm/base/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "BNB",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/bnb/raw/blocks",
+                "data-catalog/evm/bnb/raw/creation-traces",
+                "data-catalog/evm/bnb/raw/logs",
+                "data-catalog/evm/bnb/raw/transactions",
+                "data-catalog/evm/bnb/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/bnb/decoded/overview",
+                "data-catalog/evm/bnb/decoded/call-tables",
+                "data-catalog/evm/bnb/decoded/event-logs",
+                "data-catalog/evm/bnb/decoded/contracts",
+                "data-catalog/evm/bnb/decoded/logs-decoded",
+                "data-catalog/evm/bnb/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Celo",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/celo/raw/blocks",
+                "data-catalog/evm/celo/raw/creation-traces",
+                "data-catalog/evm/celo/raw/logs",
+                "data-catalog/evm/celo/raw/transactions",
+                "data-catalog/evm/celo/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/celo/decoded/overview",
+                "data-catalog/evm/celo/decoded/call-tables",
+                "data-catalog/evm/celo/decoded/event-logs",
+                "data-catalog/evm/celo/decoded/contracts",
+                "data-catalog/evm/celo/decoded/logs-decoded",
+                "data-catalog/evm/celo/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Fantom",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/fantom/raw/blocks",
+                "data-catalog/evm/fantom/raw/creation-traces",
+                "data-catalog/evm/fantom/raw/logs",
+                "data-catalog/evm/fantom/raw/transactions",
+                "data-catalog/evm/fantom/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/fantom/decoded/overview",
+                "data-catalog/evm/fantom/decoded/call-tables",
+                "data-catalog/evm/fantom/decoded/event-logs",
+                "data-catalog/evm/fantom/decoded/contracts",
+                "data-catalog/evm/fantom/decoded/logs-decoded",
+                "data-catalog/evm/fantom/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Gnosis",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/gnosis/raw/blocks",
+                "data-catalog/evm/gnosis/raw/creation-traces",
+                "data-catalog/evm/gnosis/raw/logs",
+                "data-catalog/evm/gnosis/raw/transactions",
+                "data-catalog/evm/gnosis/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/gnosis/decoded/overview",
+                "data-catalog/evm/gnosis/decoded/call-tables",
+                "data-catalog/evm/gnosis/decoded/event-logs",
+                "data-catalog/evm/gnosis/decoded/contracts",
+                "data-catalog/evm/gnosis/decoded/logs-decoded",
+                "data-catalog/evm/gnosis/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Optimism",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/optimism/raw/blocks",
+                "data-catalog/evm/optimism/raw/creation-traces",
+                "data-catalog/evm/optimism/raw/logs",
+                "data-catalog/evm/optimism/raw/transactions",
+                "data-catalog/evm/optimism/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/optimism/decoded/overview",
+                "data-catalog/evm/optimism/decoded/call-tables",
+                "data-catalog/evm/optimism/decoded/event-logs",
+                "data-catalog/evm/optimism/decoded/contracts",
+                "data-catalog/evm/optimism/decoded/logs-decoded",
+                "data-catalog/evm/optimism/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Polygon",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/polygon/raw/blocks",
+                "data-catalog/evm/polygon/raw/creation-traces",
+                "data-catalog/evm/polygon/raw/logs",
+                "data-catalog/evm/polygon/raw/transactions",
+                "data-catalog/evm/polygon/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/polygon/decoded/overview",
+                "data-catalog/evm/polygon/decoded/call-tables",
+                "data-catalog/evm/polygon/decoded/event-logs",
+                "data-catalog/evm/polygon/decoded/contracts",
+                "data-catalog/evm/polygon/decoded/logs-decoded",
+                "data-catalog/evm/polygon/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Polygon-zkEVM",
+          "pages": [ "data-catalog/evm/polygon-zkEVM/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/polygon-zkEVM/raw/blocks",
+                "data-catalog/evm/polygon-zkEVM/raw/creation-traces",
+                "data-catalog/evm/polygon-zkEVM/raw/logs",
+                "data-catalog/evm/polygon-zkEVM/raw/transactions",
+                "data-catalog/evm/polygon-zkEVM/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/polygon-zkEVM/decoded/overview",
+                "data-catalog/evm/polygon-zkEVM/decoded/call-tables",
+                "data-catalog/evm/polygon-zkEVM/decoded/event-logs",
+                "data-catalog/evm/polygon-zkEVM/decoded/contracts",
+                "data-catalog/evm/polygon-zkEVM/decoded/logs-decoded",
+                "data-catalog/evm/polygon-zkEVM/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Scroll",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/scroll/raw/blocks",
+                "data-catalog/evm/scroll/raw/creation-traces",
+                "data-catalog/evm/scroll/raw/logs",
+                "data-catalog/evm/scroll/raw/transactions",
+                "data-catalog/evm/scroll/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/scroll/decoded/overview",
+                "data-catalog/evm/scroll/decoded/call-tables",
+                "data-catalog/evm/scroll/decoded/event-logs",
+                "data-catalog/evm/scroll/decoded/contracts",
+                "data-catalog/evm/scroll/decoded/logs-decoded",
+                "data-catalog/evm/scroll/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "zkSync",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/zksync/raw/blocks",
+                "data-catalog/evm/zksync/raw/creation-traces",
+                "data-catalog/evm/zksync/raw/logs",
+                "data-catalog/evm/zksync/raw/transactions",
+                "data-catalog/evm/zksync/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/zksync/decoded/overview",
+                "data-catalog/evm/zksync/decoded/call-tables",
+                "data-catalog/evm/zksync/decoded/event-logs",
+                "data-catalog/evm/zksync/decoded/contracts",
+                "data-catalog/evm/zksync/decoded/logs-decoded",
+                "data-catalog/evm/zksync/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Zora",
+          "pages": [
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/zora/raw/blocks",
+                "data-catalog/evm/zora/raw/creation-traces",
+                "data-catalog/evm/zora/raw/logs",
+                "data-catalog/evm/zora/raw/transactions",
+                "data-catalog/evm/zora/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/zora/decoded/overview",
+                "data-catalog/evm/zora/decoded/call-tables",
+                "data-catalog/evm/zora/decoded/event-logs",
+                "data-catalog/evm/zora/decoded/contracts",
+                "data-catalog/evm/zora/decoded/logs-decoded",
+                "data-catalog/evm/zora/decoded/traces-decoded"
+              ]
+            }
+          ]
         }
       ]
     },
+
     {
-      "group": "Aptos",
+      "group": "non-EVM Chains",
       "pages": [
-        "data-catalog/aptos/overview",
-        "data-catalog/aptos/blocks",
-        "data-catalog/aptos/transactions",
-        "data-catalog/aptos/user_transactions",
-        "data-catalog/aptos/events",
-        "data-catalog/aptos/move_resources",
-        "data-catalog/aptos/move_modules",
-        "data-catalog/aptos/move_table_items",
-        "data-catalog/aptos/signatures"
-      ]
-    },
-    {
-      "group": "Polkadot",
-      "pages": [
-        "data-catalog/substrate/overview",
-        "data-catalog/substrate/blocks",
-        "data-catalog/substrate/balances",
-        "data-catalog/substrate/transfers",
-        "data-catalog/substrate/extrinsics",
-        "data-catalog/substrate/calls",
-        "data-catalog/substrate/events",
-        "data-catalog/substrate/stakings",
-        "data-catalog/substrate/traces",
-        "data-catalog/substrate/materialized_views"
-      ]
-    },
-    {
-      "group": "Tron",
-      "pages": [
-        "data-catalog/tron/overview",
         {
-          "group": "Raw",
+          "group": "Aptos",
           "pages": [
-            "data-catalog/tron/raw/transactions",
-            "data-catalog/tron/raw/logs",
-            "data-catalog/tron/raw/blocks"
+            "data-catalog/aptos/overview",
+            "data-catalog/aptos/blocks",
+            "data-catalog/aptos/events",
+            "data-catalog/aptos/move_modules",
+            "data-catalog/aptos/move_resources",
+            "data-catalog/aptos/move_table_items",
+            "data-catalog/aptos/signatures",
+            "data-catalog/aptos/transactions",
+            "data-catalog/aptos/user_transactions"
           ]
         },
         {
-          "group": "Decoded",
+          "group": "Bitcoin",
           "pages": [
-            "data-catalog/tron/decoded/overview",
-            "data-catalog/tron/decoded/event-logs",
-            "data-catalog/tron/decoded/contracts"
+            "data-catalog/bitcoin/overview",
+            "data-catalog/bitcoin/blocks",
+            "data-catalog/bitcoin/inputs",
+            "data-catalog/bitcoin/outputs",
+            "data-catalog/bitcoin/transactions"
           ]
         },
         {
-          "group": "Tokens",
+          "group": "Polkadot",
           "pages": [
-            "data-catalog/tron/tokens/overview",
-            "data-catalog/tron/tokens/transfers/erc20-transfers",
-            "data-catalog/tron/tokens/transfers/erc721-transfers",
-            "data-catalog/tron/tokens/transfers/erc1155-transfers"
+            "data-catalog/substrate/overview",
+            "data-catalog/substrate/balances",
+            "data-catalog/substrate/blocks",
+            "data-catalog/substrate/calls",
+            "data-catalog/substrate/events",
+            "data-catalog/substrate/extrinsics",
+            "data-catalog/substrate/materialized_views",
+            "data-catalog/substrate/stakings",
+            "data-catalog/substrate/transfers",
+            "data-catalog/substrate/traces"
           ]
         },
-        "data-catalog/tron/tether"
+        {
+          "group": "Solana",
+          "pages": [
+            "data-catalog/solana/overview",
+            "data-catalog/solana/account-activity",
+            "data-catalog/solana/blocks",
+            "data-catalog/solana/idl-tables",
+            "data-catalog/solana/instruction-calls",
+            "data-catalog/solana/rewards",
+            "data-catalog/solana/transactions",
+            "data-catalog/solana/vote-transactions"
+          ]
+        },
+        {
+          "group": "Tron",
+          "pages": [
+            "data-catalog/tron/overview",
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/tron/decoded/contracts",
+                "data-catalog/tron/decoded/event-logs",
+                "data-catalog/tron/decoded/overview"
+              ]
+            },
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/tron/raw/blocks",
+                "data-catalog/tron/raw/logs",
+                "data-catalog/tron/raw/transactions"
+              ]
+            },
+            "data-catalog/tron/tether",
+            {
+              "group": "Tokens",
+              "pages": [
+                "data-catalog/tron/tokens/overview",
+                "data-catalog/tron/tokens/transfers/erc1155-transfers",
+                "data-catalog/tron/tokens/transfers/erc20-transfers",
+                "data-catalog/tron/tokens/transfers/erc721-transfers"
+              ]
+            }
+          ]
+        }
       ]
     },
-    {
-      "group": "Solana",
-      "pages": [
-        "data-catalog/solana/overview",
-        "data-catalog/solana/account-activity",
-        "data-catalog/solana/blocks",
-        "data-catalog/solana/idl-tables",
-        "data-catalog/solana/instruction-calls",
-        "data-catalog/solana/rewards",
-        "data-catalog/solana/transactions",
-        "data-catalog/solana/vote-transactions"
-      ]
-    },
-    {
-      "group": "Bitcoin",
-      "pages": [
-        "data-catalog/bitcoin/overview",
-        "data-catalog/bitcoin/inputs",
-        "data-catalog/bitcoin/outputs",
-        "data-catalog/bitcoin/blocks",
-        "data-catalog/bitcoin/transactions"
-      ]
-    },
+    
     {
       "group": "Community Data",
       "pages": [
@@ -349,6 +699,7 @@
         }
       ]
     },
+
     {
       "group": "API Documentation",
       "pages": [
