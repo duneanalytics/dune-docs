@@ -462,7 +462,7 @@
         },
         {
           "group": "Polygon-zkEVM",
-          "pages": [
+          "pages": [ "data-catalog/evm/polygon-zkEVM/overview",
             {
               "group": "Raw",
               "pages": [

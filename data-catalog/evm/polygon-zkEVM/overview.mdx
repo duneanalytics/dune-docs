@@ -1,0 +1,37 @@
+---
+title: Polygon zkEVM Overview
+icon: "star"
+sidebarTitle: "Overview"
+description: Polygon zkEVM data on Dune Analytics
+---
+
+Polygon zkEVM is a Layer 2 scaling solution for Ethereum that leverages zero-knowledge proofs to ensure scalability and privacy. It is designed to be Ethereum Virtual Machine (EVM)-compatible, enabling developers to deploy existing Solidity smart contracts without modifications. 
+
+The core feature of Polygon zkEVM is its use of zk-SNARKs (zero-knowledge Succinct Non-Interactive Arguments of Knowledge) to bundle hundreds of transactions into a single proof, verifying them on the Ethereum mainnet. This process enhances throughput, reduces transaction costs, and maintains the robust security guarantees of Ethereum.
+
+The native utility token for Polygon zkEVM is Ether, used primarily for transaction fees and participating in the network's security via staking. Unlike traditional Layer1 blockchains, Polygon zkEVM aims to provide a seamless scaling solution that inherits Ethereum's security and decentralization features while significantly improving performance and cost-efficiency.
+
+Dune Analytics offers comprehensive datasets for Polygon zkEVM, including event logs, transactions, blocks, and token activities. These datasets enable deep insights into the network's performance, usage patterns, and smart contract interactions.
+
+<CardGroup cols={1}>
+  <Card title="Polygon zkEVM docs" icon="link" href= "https://polygon.technology/polygon-zkevm">
+    The official documentation for Polygon zkEVM, providing detailed information on the protocol, architecture, and developer resources
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="/data-catalog/evm/polygon-zkevm/raw/logs">
+    Event logs from smart contracts, providing insights into contract interactions
+  </Card>
+  <Card title="Blocks" icon="cubes" href="/data-catalog/evm/polygon-zkevm/raw/blocks">
+    Information and statistics on blocks, showcasing the network's activity and throughput
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="/data-catalog/evm/polygon-zkevm/raw/transactions">
+    Detailed transaction data, highlighting the execution and efficiency of operations
+  </Card>
+  <Card title="decoded" icon="file" href="/data-catalog/evm/polygon-zkevm/decoded/overview">
+    Decoded transaction data for easier understanding and analysis of smart contract executions
+  </Card>
+</CardGroup>
