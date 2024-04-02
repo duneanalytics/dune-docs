@@ -172,10 +172,10 @@
     {
       "group": "EVM Chains",
       "pages": [
+        "data-catalog/evm/overview",
         {
           "group": "Ethereum",
           "pages": [
-            "data-catalog/evm/overview",
             {
               "group": "Raw",
               "pages": [
@@ -568,89 +568,95 @@
     },
 
     {
-      "group": "Aptos",
+      "group": "non-EVM Chains",
       "pages": [
-        "data-catalog/aptos/overview",
-        "data-catalog/aptos/blocks",
-        "data-catalog/aptos/transactions",
-        "data-catalog/aptos/user_transactions",
-        "data-catalog/aptos/events",
-        "data-catalog/aptos/move_resources",
-        "data-catalog/aptos/move_modules",
-        "data-catalog/aptos/move_table_items",
-        "data-catalog/aptos/signatures"
-      ]
-    },
-    {
-      "group": "Polkadot",
-      "pages": [
-        "data-catalog/substrate/overview",
-        "data-catalog/substrate/blocks",
-        "data-catalog/substrate/balances",
-        "data-catalog/substrate/transfers",
-        "data-catalog/substrate/extrinsics",
-        "data-catalog/substrate/calls",
-        "data-catalog/substrate/events",
-        "data-catalog/substrate/stakings",
-        "data-catalog/substrate/traces",
-        "data-catalog/substrate/materialized_views"
-      ]
-    },
-    {
-      "group": "Tron",
-      "pages": [
-        "data-catalog/tron/overview",
         {
-          "group": "Raw",
+          "group": "Aptos",
           "pages": [
-            "data-catalog/tron/raw/transactions",
-            "data-catalog/tron/raw/logs",
-            "data-catalog/tron/raw/blocks"
+            "data-catalog/aptos/blocks",
+            "data-catalog/aptos/events",
+            "data-catalog/aptos/move_modules",
+            "data-catalog/aptos/move_resources",
+            "data-catalog/aptos/move_table_items",
+            "data-catalog/aptos/overview",
+            "data-catalog/aptos/signatures",
+            "data-catalog/aptos/transactions",
+            "data-catalog/aptos/user_transactions"
           ]
         },
         {
-          "group": "Decoded",
+          "group": "Bitcoin",
           "pages": [
-            "data-catalog/tron/decoded/overview",
-            "data-catalog/tron/decoded/event-logs",
-            "data-catalog/tron/decoded/contracts"
+            "data-catalog/bitcoin/blocks",
+            "data-catalog/bitcoin/inputs",
+            "data-catalog/bitcoin/outputs",
+            "data-catalog/bitcoin/overview",
+            "data-catalog/bitcoin/transactions"
           ]
         },
         {
-          "group": "Tokens",
+          "group": "Polkadot",
           "pages": [
-            "data-catalog/tron/tokens/overview",
-            "data-catalog/tron/tokens/transfers/erc20-transfers",
-            "data-catalog/tron/tokens/transfers/erc721-transfers",
-            "data-catalog/tron/tokens/transfers/erc1155-transfers"
+            "data-catalog/substrate/balances",
+            "data-catalog/substrate/blocks",
+            "data-catalog/substrate/calls",
+            "data-catalog/substrate/events",
+            "data-catalog/substrate/extrinsics",
+            "data-catalog/substrate/materialized_views",
+            "data-catalog/substrate/overview",
+            "data-catalog/substrate/stakings",
+            "data-catalog/substrate/transfers",
+            "data-catalog/substrate/traces"
           ]
         },
-        "data-catalog/tron/tether"
+        {
+          "group": "Solana",
+          "pages": [
+            "data-catalog/solana/account-activity",
+            "data-catalog/solana/blocks",
+            "data-catalog/solana/idl-tables",
+            "data-catalog/solana/instruction-calls",
+            "data-catalog/solana/overview",
+            "data-catalog/solana/rewards",
+            "data-catalog/solana/transactions",
+            "data-catalog/solana/vote-transactions"
+          ]
+        },
+        {
+          "group": "Tron",
+          "pages": [
+            "data-catalog/tron/overview",
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/tron/decoded/contracts",
+                "data-catalog/tron/decoded/event-logs",
+                "data-catalog/tron/decoded/overview"
+              ]
+            },
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/tron/raw/blocks",
+                "data-catalog/tron/raw/logs",
+                "data-catalog/tron/raw/transactions"
+              ]
+            },
+            "data-catalog/tron/tether",
+            {
+              "group": "Tokens",
+              "pages": [
+                "data-catalog/tron/tokens/overview",
+                "data-catalog/tron/tokens/transfers/erc1155-transfers",
+                "data-catalog/tron/tokens/transfers/erc20-transfers",
+                "data-catalog/tron/tokens/transfers/erc721-transfers"
+              ]
+            }
+          ]
+        }
       ]
     },
-    {
-      "group": "Solana",
-      "pages": [
-        "data-catalog/solana/overview",
-        "data-catalog/solana/account-activity",
-        "data-catalog/solana/blocks",
-        "data-catalog/solana/idl-tables",
-        "data-catalog/solana/instruction-calls",
-        "data-catalog/solana/rewards",
-        "data-catalog/solana/transactions",
-        "data-catalog/solana/vote-transactions"
-      ]
-    },
-    {
-      "group": "Bitcoin",
-      "pages": [
-        "data-catalog/bitcoin/overview",
-        "data-catalog/bitcoin/inputs",
-        "data-catalog/bitcoin/outputs",
-        "data-catalog/bitcoin/blocks",
-        "data-catalog/bitcoin/transactions"
-      ]
-    },
+    
     {
       "group": "Community Data",
       "pages": [
@@ -691,6 +697,7 @@
         }
       ]
     },
+
     {
       "group": "API Documentation",
       "pages": [
