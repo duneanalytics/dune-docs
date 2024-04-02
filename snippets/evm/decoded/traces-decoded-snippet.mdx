@@ -1,0 +1,15 @@
+export const TracesDecodedSnippet = ({ blockchain }) => (
+  <div>
+    <h2>Table Description</h2>
+    <p>
+      The <code>traces_decoded</code> table contains decoded traces from {blockchain} transactions. The table matches <code>MethodID</code>, which consists of the first 4 bytes of any eth call, to the trace signature and the corresponding Method name. The table does not contain the full trace data and is not suitable for analysis of smart contract level data. For that, use the specific event tables as described in <a href={`/data-catalog/evm/${blockchain}/decoded/traces-decoded`}>Call-tables</a>.
+    </p>
+    <p>
+      This table is great for gaining a high level understanding of the types of events that are being emitted by a smart contract or smart contracts of a certain protocol.
+    </p>
+    <h2>Column Descriptions</h2>
+    <ColumnDescriptions tableSchema={blockchain} tableName="traces_decoded" />
+    <h2>Table Sample</h2>
+    <TableSample tableSchema={blockchain} tableName="traces_decoded" />
+  </div>
+);

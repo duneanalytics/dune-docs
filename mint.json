@@ -238,6 +238,17 @@
                 "data-catalog/evm/arbitrum/raw/transactions",
                 "data-catalog/evm/arbitrum/raw/traces"
               ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/arbitrum/decoded/overview",
+                "data-catalog/evm/arbitrum/decoded/call-tables",
+                "data-catalog/evm/arbitrum/decoded/event-logs",
+                "data-catalog/evm/arbitrum/decoded/contracts",
+                "data-catalog/evm/arbitrum/decoded/logs-decoded",
+                "data-catalog/evm/arbitrum/decoded/traces-decoded"
+              ]
             }
           ]
         },
@@ -252,6 +263,17 @@
                 "data-catalog/evm/avalanche/raw/logs",
                 "data-catalog/evm/avalanche/raw/transactions",
                 "data-catalog/evm/avalanche/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/avalanche/decoded/overview",
+                "data-catalog/evm/avalanche/decoded/call-tables",
+                "data-catalog/evm/avalanche/decoded/event-logs",
+                "data-catalog/evm/avalanche/decoded/contracts",
+                "data-catalog/evm/avalanche/decoded/logs-decoded",
+                "data-catalog/evm/avalanche/decoded/traces-decoded"
               ]
             }
           ]
