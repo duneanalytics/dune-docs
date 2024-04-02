@@ -573,12 +573,12 @@
         {
           "group": "Aptos",
           "pages": [
+            "data-catalog/aptos/overview",
             "data-catalog/aptos/blocks",
             "data-catalog/aptos/events",
             "data-catalog/aptos/move_modules",
             "data-catalog/aptos/move_resources",
             "data-catalog/aptos/move_table_items",
-            "data-catalog/aptos/overview",
             "data-catalog/aptos/signatures",
             "data-catalog/aptos/transactions",
             "data-catalog/aptos/user_transactions"
@@ -587,23 +587,23 @@
         {
           "group": "Bitcoin",
           "pages": [
+            "data-catalog/bitcoin/overview",
             "data-catalog/bitcoin/blocks",
             "data-catalog/bitcoin/inputs",
             "data-catalog/bitcoin/outputs",
-            "data-catalog/bitcoin/overview",
             "data-catalog/bitcoin/transactions"
           ]
         },
         {
           "group": "Polkadot",
           "pages": [
+            "data-catalog/substrate/overview",
             "data-catalog/substrate/balances",
             "data-catalog/substrate/blocks",
             "data-catalog/substrate/calls",
             "data-catalog/substrate/events",
             "data-catalog/substrate/extrinsics",
             "data-catalog/substrate/materialized_views",
-            "data-catalog/substrate/overview",
             "data-catalog/substrate/stakings",
             "data-catalog/substrate/transfers",
             "data-catalog/substrate/traces"
@@ -612,11 +612,11 @@
         {
           "group": "Solana",
           "pages": [
+            "data-catalog/solana/overview",
             "data-catalog/solana/account-activity",
             "data-catalog/solana/blocks",
             "data-catalog/solana/idl-tables",
             "data-catalog/solana/instruction-calls",
-            "data-catalog/solana/overview",
             "data-catalog/solana/rewards",
             "data-catalog/solana/transactions",
             "data-catalog/solana/vote-transactions"
