@@ -143,6 +143,7 @@
             "query-engine/Functions-and-operators/decimal",
             "query-engine/Functions-and-operators/http",
             "query-engine/Functions-and-operators/hyperloglog",
+            "query-engine/Functions-and-operators/json",
             "query-engine/Functions-and-operators/lambda",
             "query-engine/Functions-and-operators/list-by-topic",
             "query-engine/Functions-and-operators/list",
