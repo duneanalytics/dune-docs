@@ -1,11 +1,7 @@
 ---
-title: 'Create Table (beta)'
+title: 'Create Table'
 openapi: 'POST /v1/table/create'
 ---
-
-<Warning>
-This endpoint is currently in beta, and may change without warning.
-</Warning>
 
 The resulting table will be empty, and can be inserted into with the [/insert endpoint](./insert).
 
@@ -35,7 +31,7 @@ curl --request POST \
 ```python Python SDK
 import dotenv, os
 from dune_client.client import DuneClient
- 
+
 dotenv_path = os.path.join(os.path.dirname(__file__), '.', '.env')
 dotenv.load_dotenv(".env")
 dune = DuneClient.from_env()
