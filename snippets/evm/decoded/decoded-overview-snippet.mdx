@@ -1,0 +1,128 @@
+export const OverviewDecodedDataApproach = ({ blockchain }) => (
+  <div>
+    <h2>Overview of Dune's Decoded Data Approach</h2>
+    <p>
+      Dune uses the ABI (Application Binary Interface) of smart contracts to decode blockchain transactions into structured tables. Each event log and function call from the ABI are parsed into their own tables. This decoding process transforms the raw, encoded data on the blockchain into human-readable tables, simplifying the analysis of smart contract data.
+    </p>
+    <p>Dune's decoded data approach offers several benefits:</p>
+    <ul>
+      <li><strong>Enhanced Readability:</strong> The decoded data tables provide a clear and intuitive representation of smart contract activities.</li>
+      <li><strong>Efficient Analysis:</strong> The structured tables enable efficient querying and analysis of smart contract data.</li>
+      <li><strong>Handling Multiple Contract Instances:</strong> For smart contracts with multiple instances, Dune aggregates the data from these instances into a single table, simplifying the analysis process.</li>
+      <li><strong>Collaborative Mapping:</strong> Dune's smart contract library is continuously expanded through the active participation of the Dune community, ensuring that the decoding coverage remains comprehensive and current.</li>
+    </ul>
+    
+    <CardGroup cols={2}>
+      <Card
+        title="Explore decoded logs"
+        icon="circle-bolt"
+        iconType="duotone"
+        href={`/data-catalog/evm/${blockchain}/decoded/event-logs`}
+      ></Card>
+      <Card
+        title="Explore decoded traces"
+        icon="layer-group"
+        iconType="duotone"
+        href={`/data-catalog/evm/${blockchain}/decoded/call-tables`}
+      ></Card>
+    </CardGroup>
+
+    <h2>Which contracts have decoded data?</h2>
+    <p>
+      Contract submission on Dune are driven by the community. Usually, the odds are good that the contract you are looking at is already decoded, but especially for new projects or new contracts, it might be that the contract is not decoded yet. In those cases, you can submit the contract to be decoded. Decoding usually takes about 24 hours, in special cases it might take longer.
+    </p>
+    <p>
+      You can check if contracts are already decoded by querying the <code>[blockchain].contracts</code> tables, the <a href="/web-app/query-editor/data-explorer">data explorer</a>, or use <a href="https://dune.com/dune/is-my-contract-decoded-yet-v2">this dashboard</a>.
+    </p>
+    <p>
+      If you want to submit several contracts at the same time, there is also the possibility of submitting a batch of contracts. To do so, please use <a href="https://gist.github.com/antonio-mendes/c6a43c22862581674c11462cae230e23">this CSV</a> as a template and fill it in with the appropriate information for the contracts you want to decode. Afterwards, send the CSV to decoding@dune.com.
+    </p>
+
+    <CardGroup cols={2}>
+      <Card
+        title="Submit any contract for decoding"
+        icon="file-import"
+        iconType="duotone"
+        href="/web-app/decoding-contracts"
+      ></Card>
+      <Card
+        title="Explore already decoded contracts"
+        icon="database"
+        iconType="duotone"
+        href= {`/data-catalog/evm/${blockchain}/decoded/contracts`}
+      ></Card>
+    </CardGroup>
+
+    
+    <h2>How does decoding work?</h2>
+    <p>
+      Smart Contracts on any EVM blockchain are mostly written in high-level languages like <a href="https://docs.soliditylang.org/en/v0.8.2">Solidity</a> or <a href="https://vyper.readthedocs.io/en/stable">Vyper</a>. In order for them to be deployed to an EVM execution environment, they need to be compiled to EVM executable bytecode. Once deployed, the bytecode gets associated with an address on the respective chain and is permanently stored in the chain's state storage.
+    </p>
+    <p>
+      To be able to interact with this smart contract, which is now just bytecode, we need a guide to call the functions defined in the high-level languages. This translation of names and arguments into byte representation is done using an <strong>Application Binary Interface (ABI)</strong>. The ABI documents names, types, and arguments precisely, which allows us to interact with the smart contract using a somewhat human-readable format. The ABI can be compiled using the high-level language source code.
+    </p>
+    <p><strong>The ABI is used to call a smart contract or interpret the data it emits.</strong></p>
+    <img src="/data-catalog/images/decoding.png" alt="Decoding process illustration" />
+
+    <h2>Decoding Example</h2>
+    <p>
+      We are going to look at an event log of an ERC20 transfer event from the <a href="https://etherscan.io/token/0x429881672B9AE42b8EbA0E26cD9C73711b891Ca5#readContract">smart contract</a> that represents the $PICKLE token. On <a href="https://etherscan.io/tx/0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5#eventlog">Etherscan</a>, the undecoded event looks like this:
+    </p>
+    <img src="/data-catalog/images/etherscan.png" alt="Etherscan event log screenshot" />
+
+    <p>
+      If we query for this transaction in the `ethereum.logs` table in the Dune database, we will receive the same encoded bytecode as our result dataset.
+    </p>
+    <pre><code>{
+`SELECT *
+FROM ethereum.logs
+WHERE tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5
+`}</code></pre>
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3455255/5806543/"
+    width="100%"
+    height="200px"
+  ></iframe>
+</div>
+
+    <p>
+      We could make short work of this encoded bytecode by using <a href="/query-engine/Functions-and-operators/varbinary">DuneSQL Varbinary functions</a> to decode it, but having the contract's ABI at hand makes this process much easier. <br />
+      This contract is decoded in Dune, so we can use the <code>pickle_finance_ethereum.PickleToken_evt_Transfer</code> table to access the decoded event log.
+    </p>
+    <pre><code>{`SELECT *
+FROM pickle_finance_ethereum.PickleToken_evt_Transfer
+WHERE evt_tx_hash = '0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5'`}</code></pre>
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3455274/5806581/"
+    width="100%"
+    height="200px"
+  ></iframe>
+</div>
+
+    <p><strong>Now this is actually useful for analyzing this transaction!</strong></p>
+    <p> This data is much more readable and understandable than the encoded bytecode. We can see the sender, receiver, and the amount of tokens transferred in this event log.</p>
+
+
+    <h2>How do I understand decoded data?</h2>
+    <p>
+      Decoded data is the high level programming language representation of two pieces of software talking to each other via the blockchain.
+    </p>
+    <p>
+      It's not always easy for a human to understand what exactly is going on in these interactions, but most of the time, looking at column names and the data that is transmitted within them should help you to understand what is happening within that specific log or call.
+    </p>
+    <p>
+      If you are not able to make sense of the data by just searching the tables, it usually helps to look at single transactions using the transaction hash and <a href="https://etherscan.io">Etherscan</a>.
+    </p>
+    <p>
+      Furthermore, going into the code of the smart contract (our favorite way to do this is <a href="https://etherscan.deth.net">DethCode</a>) to read the comments or the actual logic can help to understand the smart contract's emitted data.
+    </p>
+    <p>
+      If that also doesn't lead to satisfactory results, scouring the relevant docs and GitHub of the project can lead you to the desired answers. Furthermore, talking to the developers and core community of a project can also help you to get an understanding of the smart contracts.
+    </p>
+
+  </div>
+);

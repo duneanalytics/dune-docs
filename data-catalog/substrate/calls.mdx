@@ -1,0 +1,24 @@
+---
+title: polkadot.calls
+sidebarTitle: "Calls"
+description: Description of Substrate calls tables on Dune.
+---
+
+## Table description
+
+Compared to the `extrinsics` table, which only has a top-level call, the `calls` Substrate table represents _internal_ calls, including recursive internal calls of `proxy` and `utility` (batch) pallets, and provides detailed call arguments each level of the call tree.
+
+Common queries on the `calls` table will typically filter on `block_time`, `call_section` and `call_method` and extract JSON encoded information in
+`data` or `decoded_data`.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="polkadot" tableName="calls" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="polkadot" tableName="calls" />

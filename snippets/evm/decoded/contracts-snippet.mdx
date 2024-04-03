@@ -1,0 +1,13 @@
+export const ContractsSnippet = ({ blockchain }) => (
+  <div>
+    <h2>Table Description</h2>
+    <p>
+      This table contains information about the contracts Dune has decoded on the {blockchain} blockchain.
+    </p>
+    <h2>Column Descriptions</h2>
+    <ColumnDescriptions tableSchema={blockchain} tableName="contracts" />
+    <h2>Table Sample</h2>
+    <TableSample tableSchema={blockchain} tableName="contracts" />
+  </div>
+);
+

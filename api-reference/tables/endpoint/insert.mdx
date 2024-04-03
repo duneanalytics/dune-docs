@@ -1,5 +1,5 @@
 ---
-title: 'Insert (beta)'
+title: 'Insert Data (beta)'
 openapi: 'POST /v1/table/{namespace}/{table_name}/insert'
 ---
 
@@ -12,7 +12,11 @@ To be able to insert into a table, it must have been created with the [/create e
 <Note>
 - The data in the files must conform to the schema, and must use the same column names as the schema.
 - One successful `/insert` request consumes 10 credits.
+- The maximum request size is 1.2GB
 </Note>
+
+## Concurrent requests
+A limited number of concurrent insertion requests per table is supported. However, there will be a slight performance penalty as we serialize the writes behind the scenes to ensure data integrity. Larger number of concurrent requests per table may result in an increased number of failures. Therefore, we recommend managing your requests within a 5-10 threshold to maintain optimal performance.
 
 ## Supported filetypes
 ### CSV files (`Content-Type: text/csv`)
@@ -25,9 +29,66 @@ Each line must have keys that match the column names of the table.
 <RequestExample>
 ```bash curl
 curl --request POST \
-  --url https://api.dune.com/api/v1/table/my_user/dataset_interest_rates/insert \
+  --url https://api.dune.com/api/v1/table/my_user/interest_rates/insert \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
   --header 'Content-Type: text/csv' \
   --upload-file interest_rates.csv
+```
+
+```python Python SDK
+import dotenv, os
+from dune_client.client import DuneClient
+ 
+dotenv_path = os.path.join(os.path.dirname(__file__), '.', '.env')
+dotenv.load_dotenv(".env")
+dune = DuneClient.from_env()
+
+with open("./interest_rates.csv", "rb") as data:
+    response = dune.insert_table(
+            namespace="my_user",
+            table_name="interest_rates",
+            data=data,
+            content_type="text/csv"
+        )
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/table/my_user/interest_rates/insert"
+
+headers = {
+    "X-DUNE-API-KEY": "<x-dune-api-key>",
+    "Content-Type": "text/csv"
+}
+
+with open("./interest_rates.csv", "rb") as data:
+  response = requests.request("POST", url, data=data, headers=headers)
+```
+
+
+```javascript Javascript
+const url = "https://api.dune.com/api/v1/table/my_user/interest_rates/insert";
+
+const headers = {
+    "X-DUNE-API-KEY": "<x-dune-api-key>",
+    "Content-Type": "text/csv"
+};
+
+fs.readFile('./interest_rates.csv', (err, data) => {
+  if (err) {
+      console.error(err);
+      return;
+  }
+
+  fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })  
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+});
 ```
 </RequestExample>

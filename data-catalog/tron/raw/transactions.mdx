@@ -1,0 +1,55 @@
+---
+title: tron.transactions
+sidebarTitle: "Transactions"
+description: Description of the tron.transactions table on Dune
+---
+
+## Table Description
+
+The `transactions` table contains information about all transactions on the Tron blockchain. Each row represents a single transaction and includes information such as block number, hash, timestamp, sender, recipient, value, gas, gas price, and more. 
+Transactions are the fundamental unit of interaction with the Tron blockchain. Transactions are created by users and are used to send value, deploy smart contracts, and interact with smart contracts.
+
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tron" tableName="transactions" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tron" tableName="transactions" />
+
+## Examples
+
+### Show all transactions sent by a specific address
+
+```sql
+select * 
+from tron.transactions where "from" = 0x50A1b5c358F8D34F0d35aA2f10742c46054E247e
+```
+
+### Count the number of transactions per block
+
+```sql
+SELECT 
+    block_number, 
+    COUNT(*)
+FROM tron.transactions
+GROUP BY 1
+ORDER BY 1 DESC
+LIMIT 10
+```
+
+### Show the top 10 transactions with the highest gas price
+
+```sql
+SELECT 
+    hash, 
+    gas_price
+FROM tron.transactions
+ORDER BY gas_price DESC
+LIMIT 10
+```

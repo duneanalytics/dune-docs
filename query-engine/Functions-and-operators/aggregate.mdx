@@ -8,7 +8,7 @@ result.
 Except for `count`, `count_if`, `max_by`, `min_by` and `approx_distinct`, all of these aggregate functions ignore null values and return null for no input rows or when all values are null. For example, `sum` returns null rather than zero and `avg` does not include null values in the count. The `coalesce` function can be used to convert null into zero.
 
 
-## Ordering during aggregation \{#aggregate-function-ordering-during-aggregation}
+## Ordering during aggregation 
 
 Some aggregate functions such as `array_agg` produce different results depending on the order of input values. This ordering can be specified by writing an `order-by-clause` within the aggregate function:
 
@@ -16,7 +16,7 @@ Some aggregate functions such as `array_agg` produce different results depending
     array_agg(x ORDER BY y DESC)
     array_agg(x ORDER BY x, y, z)
 ```
-## Filtering during aggregation \{#aggregate-function-filtering-during-aggregation}
+## Filtering during aggregation 
 
 The `FILTER` keyword can be used to remove rows from aggregation
 processing with a condition expressed using a `WHERE` clause. This is
@@ -51,11 +51,13 @@ versicolor |   50
 
 If you just use a normal `WHERE` statement you lose information:
 
+```sql
     SELECT species,
         count(*) AS count
     FROM iris
     WHERE petal_length_cm > 4
     GROUP BY species;
+```
 
 ``` text
 species    | count
@@ -66,10 +68,12 @@ versicolor |   34
 
 Using a filter you retain all information:
 
+```sql
     SELECT species,
            count(*) FILTER (where petal_length_cm > 4) AS count
     FROM iris
     GROUP BY species;
+```
 
 ``` text
 species    | count
@@ -82,71 +86,71 @@ versicolor |   34
 ## General aggregate functions
 
 #### arbitrary()
-**``arbitrary(x)``** &#8594 [same as input]
+**``arbitrary(x)``** → [same as input]
 
 Returns an arbitrary non-null value of `x`, if one exists.
 
 #### any_value()
 
-**``any_value(x)``** &#8594 [same as input]
+**``any_value(x)``** → [same as input]
 
 Returns an arbitrary non-null value of `x`, if one exists. This is an alias for `arbitrary`.
 
 #### array_agg()
-**``array_agg(x)``** &#8594 [same as input]
+**``array_agg(x)``** → [same as input]
 
 Returns an array created from the input `x` elements.
 
 #### avg()
-**``avg(x)``** &#8594 double
+**``avg(x)``** → double
 
 Returns the average (arithmetic mean) of all input values.
 
-**``avg(time interval type)``** &#8594 time interval type
+**``avg(time interval type)``** → time interval type
 
 Returns the average interval length of all input values.
 
 #### bool_and()
-**``bool_and(boolean)``** &#8594 boolean
+**``bool_and(boolean)``** → boolean
 
 Returns `TRUE` if every input value is `TRUE`, otherwise `FALSE`.
 
 #### bool_or()
-**``bool_or(boolean)``** &#8594 boolean
+**``bool_or(boolean)``** → boolean
 
 Returns `TRUE` if any input value is `TRUE`, otherwise `FALSE`.
 
 #### checksum()
-**``checksum(x)``** &#8594 varbinary
+**``checksum(x)``** → varbinary
 
 Returns an order-insensitive checksum of the given values.
 
 #### count()
-**``count(*)``** &#8594 bigint
+**``count(*)``** → bigint
 
 Returns the number of input rows.
 
-**``count(x)``** &#8594 bigint
+**``count(x)``** → bigint
 
 Returns the number of non-null input values.
 
 #### count_if()
-**``count_if(x)``** &#8594 bigint
+**``count_if(x)``** → bigint
 
 Returns the number of `TRUE` input values. This function is equivalent to `count(CASE WHEN x THEN 1 END)`.
 
 #### every()
-**``every(boolean)``** &#8594 boolean
+**``every(boolean)``** → boolean
 
 This is an alias for `bool_and`.
 
 #### geometric_mean()
-**``geometric_mean(x)``** &#8594 double
+**``geometric_mean(x)``** → double
 
 Returns the geometric mean of all input values.
 
 #### listagg()
-**``listagg(x, separator)``** &#8594 varchar
+**``listagg(x, separator)``** → varchar
 
 Returns the concatenated input values, separated by the `separator` string.
 
@@ -204,85 +208,90 @@ frames.
 
 
 #### max()
-**``max(x)``** &#8594 [same as input]
+**``max(x)``** → [same as input]
 
 Returns the maximum value of all input values.
 
-**``max(x, n)``** &#8594 array\<[same as x]>
+**``max(x, n)``** → array\<[same as x]>
 
 Returns `n` largest values of all input values of `x`.
 
 #### max_by()
-**``max_by(x, y)``** &#8594 [same as x]
+**``max_by(x, y)``** → [same as x]
 
 Returns the value of `x` associated with the maximum value of `y` over all input values.
 
-**``max_by(x, y, n)``** &#8594 array\<[same as x]>
+**``max_by(x, y, n)``** → array\<[same as x]>
 
 Returns `n` values of `x` associated with the `n` largest of all input values of `y` in descending order of `y`.
 
 #### min()
-**``min(x)``** &#8594 [same as input]
+**``min(x)``** → [same as input]
 
 Returns the minimum value of all input values.
 
-**``min(x, n)``** &#8594 array\<[same as x]>
+**``min(x, n)``** → array\<[same as x]>
 
 Returns `n` smallest values of all input values of `x`.
 
 #### min_by()
-**``min_by(x, y)``** &#8594 [same as x]
+**``min_by(x, y)``** → [same as x]
 
 Returns the value of `x` associated with the minimum value of `y` over all input values.
 
-**``min_by(x, y, n)``** &#8594 array\<[same as x]>
+**``min_by(x, y, n)``** → array\<[same as x]>
 
 Returns `n` values of `x` associated with the `n` smallest of all input values of `y` in ascending order of `y`.
 
 #### sum()
-**``sum(x)``** &#8594 [same as input]
+**``sum(x)``** → [same as input]
 
 Returns the sum of all input values.
+
+#### try_sum()
+**``try_sum(uint256)``** → uint256
+
+Returns the sum of all input values, or null if an addition overflow occurred.
 
 ## Bitwise aggregate functions
 
 #### bitwise_and_agg()
-**``bitwise_and_agg(x)``** &#8594 bigint
+**``bitwise_and_agg(x)``** → bigint
 
 Returns the bitwise AND of all input values in 2's complement representation.
 
 #### bitwise_or_agg()
-**``bitwise_or_agg(x)``** &#8594 bigint
+**``bitwise_or_agg(x)``** → bigint
 
 Returns the bitwise OR of all input values in 2's complement representation.
 
 #### histogram()
-**``histogram(x)``** &#8594 map\<K,bigint>
+**``histogram(x)``** → map\<K,bigint>
 
 Returns a map containing the count of the number of times each input value occurs.
 
 #### map_agg()
-**``map_agg(key, value)``** &#8594 map\<K,V>
+**``map_agg(key, value)``** → map\<K,V>
 
 Returns a map created from the input `key` / `value` pairs.
 
 #### map_union()
-**``map_union(x(K,V))``** &#8594 map\<K,V>
+**``map_union(x(K,V))``** → map\<K,V>
 
 Returns the union of all the input maps. If a key is found in multiple input maps, that key's value in the resulting map comes from an arbitrary input map.
 
 #### map_union_agg()
-**``map_union_agg(x(K,V))``** &#8594 map\<K,V>
+**``map_union_agg(x(K,V))``** → map\<K,V>
 
 Returns the union of all the input maps. If a key is found in multiple input maps, that key's value in the resulting map comes from the last input map.
 
 #### multimap_agg()
-**``multimap_agg(key, value)``** &#8594 multimap\<K,V>
+**``multimap_agg(key, value)``** → multimap\<K,V>
 
 Returns a multimap created from the input `key` / `value` pairs.
 
 #### multimap_union()
-**``multimap_union(x(K,V))``** &#8594 multimap\<K,V>
+**``multimap_union(x(K,V))``** → multimap\<K,V>
 
 Returns the union of all the input multimaps. If a key is found in multiple input multimaps, that key's values in the resulting multimap are the union of all the values from the input multimaps.
 
@@ -291,20 +300,20 @@ Returns the union of all the input multimaps. If a key is found in multiple inpu
 ## Approximate aggregate functions
 
 #### approx_distinct()
-**``approx_distinct(x)``** &#8594 bigint
+**``approx_distinct(x)``** → bigint
 
 Returns the approximate number of distinct input values. This function provides an approximation of `count(DISTINCT x)`. Zero is returned if all input values are null.
 
 This function should produce a standard error of 2.3%, which is the standard deviation of the (approximately normal) error distribution over all possible sets. It does not guarantee an upper bound on the error for any specific input set.
 
-**``approx_distinct(x, e)``** &#8594 bigint
+**``approx_distinct(x, e)``** → bigint
 
 Returns the approximate number of distinct input values. This function provides an approximation of `count(DISTINCT x)`. Zero is returned if all input values are null.
 
 This function should produce a standard error of no more than `e`, which is the standard deviation of the (approximately normal) error distribution over all possible sets. It does not guarantee an upper bound on the error for any specific input set. The current implementation of this function requires that `e` be in the range of 0.0040625 to 0.26000.
 
 #### approx_most_frequent()
-**``approx_most_frequent(x, k)``** &#8594 map\<[same as x], bigint>
+**``approx_most_frequent(x, k)``** → map\<[same as x], bigint>
 
 Computes the top frequent values up to `buckets` elements approximately.
 Approximate estimation of the function enables us to pick up the
@@ -326,46 +335,46 @@ Streams](https://www.cse.ust.hk/~raywong/comp5331/References/EfficientComputatio
 by A. Metwalley, D. Agrawl and A. Abbadi.
 
 #### approx_percentile()
-**``approx_percentile(x, percentage)``** &#8594 [same as x]
+**``approx_percentile(x, percentage)``** → [same as x]
 
 Returns the approximate percentile for all input values of `x` at the given `percentage`. The value of `percentage` must be between zero and one and must be constant for all input rows.
 
-**``approx_percentile(x, percentages)``** &#8594 array\<[same as x]>
+**``approx_percentile(x, percentages)``** → array\<[same as x]>
 
 Returns the approximate percentile for all input values of `x` at each of the specified percentages. Each element of the `percentages` array must be between zero and one, and the array must be constant for all input rows.
 
-**``approx_percentile(x, w, percentage)``** &#8594 [same as x]
+**``approx_percentile(x, w, percentage)``** → [same as x]
 
 Returns the approximate weighed percentile for all input values of `x` using the per-item weight `w` at the percentage `percentage`. Weights must be greater or equal to 1. Integer-value weights can be thought of as a replication count for the value `x` in the percentile set. The value of `percentage` must be between zero and one and must be constant for all input rows.
 
-**``approx_percentile(x, w, percentages)``** &#8594 array\<[same as x]>
+**``approx_percentile(x, w, percentages)``** → array\<[same as x]>
 
 Returns the approximate weighed percentile for all input values of `x` using the per-item weight `w` at each of the given percentages specified in the array. Weights must be greater or equal to 1. Integer-value weights can be thought of as a replication count for the value `x` in the percentile set. Each element of the `percentages` array must be between zero and one, and the array must be constant for all input rows.
 
 #### approx_set()
-**``approx_set(x)``** &#8594 HyperLogLog
+**``approx_set(x)``** → HyperLogLog
 
 See `hyperloglog`.
 
 #### merge()
-**``merge(x)``** &#8594 HyperLogLog
+**``merge(x)``** → HyperLogLog
 
 See `hyperloglog`.
 
-**``merge(qdigest(T))``** &#8594 qdigest(T)
+**``merge(qdigest(T))``** → qdigest(T)
 
 See `qdigest`.
 
-**``merge(tdigest)``** &#8594 tdigest
+**``merge(tdigest)``** → tdigest
 
 See `tdigest`.
 
 #### numeric_histogram()
-**``numeric_histogram(buckets, value)``** &#8594 map\<double, double>
+**``numeric_histogram(buckets, value)``** → map\<double, double>
 
 Computes an approximate histogram with up to `buckets` number of buckets for all `value`s. This function is equivalent to the variant of `numeric_histogram` that takes a `weight`, with a per-item weight of `1`.
 
-**``numeric_histogram(buckets, value, weight)``** &#8594 map\<double, double>
+**``numeric_histogram(buckets, value, weight)``** → map\<double, double>
 
 Computes an approximate histogram with up to `buckets` number of buckets for all `value`s with a per-item weight of `weight`. The algorithm is based loosely on:
 
@@ -376,22 +385,22 @@ Yael Ben-Haim and Elad Tom-Tov, "A streaming parallel decision tree algorithm", 
 `buckets` must be a `bigint`. `value` and `weight` must be numeric.
 
 #### qdigest_agg()
-**``qdigest_agg(x)``** &#8594 qdigest
+**``qdigest_agg(x)``** → qdigest
 
 See [Quantile digest functions](/query-engine/Functions-and-operators/qdigest).
 
 #### qdigest_agg()
-**``qdigest_agg(x, w)``** &#8594 qdigest
+**``qdigest_agg(x, w)``** → qdigest
 
 See [Quantile digest functions](/query-engine/Functions-and-operators/qdigest).
 
 #### tdigest_agg()
-**``tdigest_agg(x)``** &#8594 tdigest
+**``tdigest_agg(x)``** → tdigest
 
 See [T-Digest functions](/query-engine/Functions-and-operators/tdigest).
 
 #### tdigest_agg()
-**``tdigest_agg(x, w)``** &#8594 tdigest
+**``tdigest_agg(x, w)``** → tdigest
 
 See [T-Digest functions](/query-engine/Functions-and-operators/tdigest).
 
@@ -399,22 +408,22 @@ See [T-Digest functions](/query-engine/Functions-and-operators/tdigest).
 ## Statistical aggregate functions
 
 #### corr()
-**``corr(x, y)``** &#8594 double
+**``corr(x, y)``** → double
 
 Returns correlation coefficient of input values.
 
 #### covar_pop()
-**``covar_pop(y, x)``** &#8594 double
+**``covar_pop(y, x)``** → double
 
 Returns the population covariance of input values.
 
 #### covar_samp()
-**``covar_samp(y, x)``** &#8594 double
+**``covar_samp(y, x)``** → double
 
 Returns the sample covariance of input values.
 
 #### kurtosis()
-**``kurtosis(x)``** &#8594 double
+**``kurtosis(x)``** → double
 
 Returns the excess kurtosis of all input values. Unbiased estimate using the following expression:
 ``` text
@@ -422,47 +431,47 @@ kurtosis(x) = n(n+1)/((n-1)(n-2)(n-3))sum[(x_i-mean)^4]/stddev(x)^4-3(n-1)^2/((n
 ```
 
 #### regr_intercept()
-**``regr_intercept(y, x)``** &#8594 double
+**``regr_intercept(y, x)``** → double
 
 Returns linear regression intercept of input values. `y` is the dependent value and `x` is the independent value.
 
 #### regr_slope()
-**``regr_slope(y, x)``** &#8594 double
+**``regr_slope(y, x)``** → double
 
 Returns linear regression slope of input values. `y` is the dependent value and `x` is the independent value.
 
 #### skewness()
-**``skewness(x)``** &#8594 double
+**``skewness(x)``** → double
 
 Returns the skewness of all input values. Returns the Fisher’s moment coefficient of [skewness](https://en.wikipedia.org/wiki/Skewness) of all input values.
 
 #### stddev()
-**``stddev(x)``** &#8594 double
+**``stddev(x)``** → double
 
 Returns the standard deviation of all input values.
 
 #### stddev_pop()
-**``stddev_pop(x)``** &#8594 double
+**``stddev_pop(x)``** → double
 
 Returns the population standard deviation of all input values.
 
 #### stddev_samp()
-**``stddev_samp(x)``** &#8594 double
+**``stddev_samp(x)``** → double
 
 Returns the sample standard deviation of all input values.
 
 #### variance()
-**``variance(x)``** &#8594 double
+**``variance(x)``** → double
 
 Returns the variance of all input values.
 
 #### var_pop()
-**``var_pop(x)``** &#8594 double
+**``var_pop(x)``** → double
 
 Returns the population variance of all input values.
 
 #### var_samp()
-**``var_samp(x)``** &#8594 double
+**``var_samp(x)``** → double
 
 Returns the sample variance of all input values.
 
@@ -470,7 +479,7 @@ Returns the sample variance of all input values.
 ## Lambda aggregate functions
 
 #### reduce_agg()
-**``reduce_agg(inputValue T, initialState S, inputFunction(S, T, S), combineFunction(S, S, S))``** &#8594 S
+**``reduce_agg(inputValue T, initialState S, inputFunction(S, T, S), combineFunction(S, S, S))``** → S
 
 Reduces all input values into a single value. `inputFunction` will be
 invoked for each non-null input value. In addition to taking the input

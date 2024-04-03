@@ -1,0 +1,23 @@
+---
+title: polkadot.extrinsics
+sidebarTitle: "Extrinsics"
+description: Description of Substrate extrinsics table on Dune.
+---
+
+## Table description
+
+Extrinsics (aka "transactions") normally contain a signature, some data to describe if the extrinsic has passed some validity checks and a reference to the pallet and call that it is intended for.  Extrinsics may be signed or unsigned.  Some extrinsics have a complex structure, e.g. when using proxy or utility pallets, resulting in the top-level call initiating other calls involving other pallets.  
+
+Common queries on the `extrinsics` table (e.g. `polkadot.extrinsics`) will typically filter on `block_time`, `section` and `method` and extract JSON encoded information in `data` or `decoded_data`.  In many cases, an initial query on the `extrinsics` table is best developed on the calls table instead to properly capture how users often use proxy and utility constructs to interact with the Substrate chain.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="polkadot" tableName="extrinsics" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="polkadot" tableName="extrinsics" />

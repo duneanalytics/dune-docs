@@ -9,6 +9,78 @@ Our API supports sampling on all `/results` endpoints to provide a uniform sampl
 - [Get Query Results](./endpoint/get-query-result)
 - [Get Query Results CSV](./endpoint/get-query-result-csv)
 
+#### Example Sampling Request
+<Tabs>
+    <Tab title="Python SDK">
+    ```python
+    import dotenv, os
+    from dune_client.types import QueryParameter
+    from dune_client.client import DuneClient
+    from dune_client.query import QueryBase
+
+    os.chdir("<path_to_your_dotevn_file>")
+
+    # load .env file
+    dotenv.load_dotenv(".env")
+    # setup Dune Python client
+    dune = DuneClient.from_env()
+
+    query_result = dune.get_latest_result_dataframe(
+        query=3582296 # https://dune.com/queries/3582296 -> OHLC Price
+        , sample_count = 5000
+    ) 
+
+    print(query_result)
+
+    ```
+    </Tab>
+    <Tab title="cURL">
+    ```bash
+    curl -X GET "https://api.dune.com/api/v1/query/{{query_id}}/results?sample_count=10000" -H "x-dune-api-key: {{api_key}}"
+    ```
+    </Tab>
+
+    <Tab title="Python">
+    ```python
+    import requests
+
+    url = "https://api.dune.com/api/v1/query/{query_id}/results"
+
+    headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+    params = {"sample_count": 10_000}
+
+    response = requests.request("GET", url, headers=headers, params=params)
+
+    print(response.text)
+
+    ```
+    </Tab>
+
+    <Tab title="Javascript">
+    ```javascript
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-DUNE-API-KEY': '<x-dune-api-key>'
+        }
+    };
+
+    const queryParams = new URLSearchParams({
+        sample_count: 10000
+    });
+    const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
+
+    fetch(url, options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+
+
+    ```
+    </Tab>
+</Tabs>
 
 ### Sampling Parameters
 
@@ -24,57 +96,6 @@ Our API supports sampling on all `/results` endpoints to provide a uniform sampl
 - Specifying a low `sample_count` relative to total rows, being probabilistic, may return 0 rows due to the probability based sampling calculation (e.g., 10 in 100,000, means each row has ~0.01% chance to be included) 
 </Note>
 
-
-<Accordion title="Example sampling request">
-    <Tabs>
-        <Tab title="cURL">
-        ```bash
-        curl -X GET "https://api.dune.com/api/v1/query/{{query_id}}/results?sample_count=10000" -H "x-dune-api-key: {{api_key}}"
-        ```
-        </Tab>
-
-        <Tab title="Python">
-        ```python
-        import requests
-
-        url = "https://api.dune.com/api/v1/query/{query_id}/results"
-
-        headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
-
-        params = {"sample_count": 10_000}
-
-        response = requests.request("GET", url, headers=headers, params=params)
-
-        print(response.text)
-
-        ```
-        </Tab>
-
-        <Tab title="Javascript">
-        ```javascript
-
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-DUNE-API-KEY': '<x-dune-api-key>'
-            }
-        };
-
-        const queryParams = new URLSearchParams({
-            sample_count: 10000
-        });
-        const url = `https://api.dune.com/api/v1/query/{query_id}/results?${queryParams}`;
-
-        fetch(url, options)
-            .then(response => response.json())
-            .then(response => console.log(response))
-            .catch(err => console.error(err));
-
-
-        ```
-        </Tab>
-    </Tabs>
-</Accordion>
 
 ### Sampling Response
 

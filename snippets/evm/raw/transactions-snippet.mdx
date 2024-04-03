@@ -1,0 +1,37 @@
+export const TransactionsSnippet = ({ blockchain }) => (
+  <div>
+    <h2>Table Description</h2>
+    <p>
+      The <code>{blockchain}.transactions</code> table contains information about all transactions on the {blockchain} blockchain. Each row represents a single transaction and includes information such as block number, hash, timestamp, sender, recipient, value, gas, gas price, and more. Transactions are the fundamental unit of interaction with the {blockchain} blockchain. Transactions are created by users and are used to send value, deploy smart contracts, and interact with smart contracts.
+    </p>
+    <p>
+      This is the raw version of this table, for decoded transaction calls, see the <a href={`/data-catalog/evm/${blockchain}/decoded/call-tables`}>call tables</a> section.
+    </p>
+    <h2>Column Descriptions</h2>
+    <ColumnDescriptions tableSchema={blockchain} tableName="transactions" />
+    <h2>Table Sample</h2>
+    <TableSample tableSchema={blockchain} tableName="transactions" />
+    <h2>Examples</h2>
+    <h3>Show all transactions sent by a specific address</h3>
+    <pre><code>{`SELECT * 
+FROM ${blockchain}.transactions WHERE "from" = '0x50A1b5c358F8D34F0d35aA2f10742c46054E247e'
+`}</code></pre>
+    <h3>Count the number of transactions per block</h3>
+    <pre><code>{`SELECT 
+    block_number, 
+    COUNT(*)
+FROM ${blockchain}.transactions
+GROUP BY 1
+ORDER BY 1 DESC
+LIMIT 10
+`}</code></pre>
+    <h3>Show the top 10 transactions with the highest gas price</h3>
+    <pre><code>{`SELECT 
+    hash, 
+    gas_price
+FROM ${blockchain}.transactions
+ORDER BY gas_price DESC
+LIMIT 10
+`}</code></pre>
+  </div>
+);

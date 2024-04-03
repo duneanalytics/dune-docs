@@ -142,37 +142,20 @@ Query executions on Dune are triggered in four ways:
   </Tab>
   <Tab title="API query execution">
     You can trigger query executions via the API. This is useful if you want to embed a query result in your own application or if you want to trigger a query execution via a cron job.
-
-    [→ API executions](/api-reference/executions/endpoint/execute-query.mdx)
+  <CardGroup cols={1}>
+    <Card title="API executions" icon="arrow-pointer" iconType="duotone" href="/api-reference/executions/endpoint/execute-query">
+    **Trigger**: multiple API endpoints
+    </Card>
+  </CardGroup>
+    [→ API executions](/api-reference/executions/endpoint/execute-query)
 
   </Tab>
   <Tab title="popular dashboard executions">
-    Popular dashboards are automatically refreshed based on their popularity. We measure popularity based on the number of views a dashboard has received. The most popular dashboards are refreshed every hour, the less popular dashboards are refreshed every 24 hours. Popular dashboards are refreshed via the community cluster.
+    Popular dashboards are refreshed automatically. We measure popularity based on the number of views a dashboard has received. The most popular dashboards are refreshed every hour, the less popular dashboards are refreshed every 24 hours.
 
   ![](/query-engine/images/popular-dashboard.jpeg)
   </Tab>
 </Tabs>
-
-
-**Learn more about the different execution triggers:**
-
-
-<CardGroup cols={2}>
-  <Card title="Interactive executions" icon="arrow-pointer" iconType="duotone" href="/web-app/query-editor/query-window">
-    Trigger: user clicks "Run" button in query editor or refreshes dashboard
-  </Card>
-  <Card title="Scheduled executions" icon="calendar" iconType="duotone" href="/web-app/query-editor/query-scheduler">
-    Trigger: scheduled dashboard or query
-  </Card>
-  <Card title="API executions" icon="square-terminal" iconType="duotone" href="/api-reference/executions/endpoint/execute-query">
-    Trigger: API call
-
-  </Card>
-  <Card title="Popular dashboards" icon="window" iconType="duotone" href="">
-    Trigger: Dashboard popularity
-  </Card>
-</CardGroup>
-
 
 ## Query engine size
 
@@ -207,16 +190,17 @@ Dune has three query engine sizes: **community**, **medium**, and **large**. The
 
 
 
-#### Free engine size
+#### Community engine size
 
-The community engine is the default query engine for all queries on Dune. It is a shared cluster, meaning that it is used by all Dune users. This means that the community cluster can be busy at times, if many users are running queries at the same time. 
+The community engine is the default query engine for all queries on Dune. It is a shared cluster, meaning that it is used by all Dune users. This means that the community cluster can be busy at times if many users are running queries at the same time. 
 To avoid long loading times and timeouts, we recommend using the medium or large engine for resource-intensive queries.   
-Executions on the community engine are free of charge.
+Executions on the community engine are free of charge and will time out after 2 minutes.
 
 #### Medium engine size
 
-The medium engine is built to handle most queries on Dune. It is cheap, reliable and fast. The medium engine will scale up and down depening on the demand. 
+The medium engine is built to handle most queries on Dune. It is cheap, reliable and fast. The medium engine will scale up and down depending on the demand. 
 Executions on the medium engine cost 10 credits.
+It has a capacity equivalent to the Free engine, but executions can run for longer, timing out only after 30 minutes.
 
 #### Large engine size
 
@@ -225,3 +209,4 @@ The large engine is built to handle the most resource-intensive queries on Dune.
 In addition to that, the large engine is also the only engine that can handle queries that requires lots of planning time. This mostly happens when you query a large amount of data, when you use a lot of joins or large aggregate window functions.
    
 Executions on the large engine cost 20 credits.
+It has twice the capacity of the Medium engine, and executions can also run for 30 minutes.
