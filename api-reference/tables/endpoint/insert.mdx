@@ -14,6 +14,9 @@ To be able to insert into a table, it must have been created with the [/create e
 - One successful `/insert` request consumes 10 credits.
 </Note>
 
+## Concurrent requests
+A limited number of concurrent insertion requests per table is supported. However, there will be a slight performance penalty as we serialize the writes behind the scenes to ensure data integrity. Larger number of concurrent requests per table may result in an increased number of failures. Therefore, we recommend managing your requests within a 5-10 threshold to maintain optimal performance.
+
 ## Supported filetypes
 ### CSV files (`Content-Type: text/csv`)
 CSV files must use a comma as delimiter, and the column names in the header must match the column names of the table.
