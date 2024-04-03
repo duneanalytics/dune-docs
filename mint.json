@@ -321,40 +321,30 @@
       ]
     },
     {
-      "group": "Tables",
+      "group": "API Endpoints",
       "pages": [
         {
-          "group": "endpoints",
+          "group": "Tables",
           "pages": [
             "api-reference/tables/endpoint/create",
             "api-reference/tables/endpoint/insert",
             "api-reference/tables/endpoint/upload"
           ]
         }
-      ]
-    },
-    {
-      "group": "Webhooks",
-      "pages": [
-        {
-          "group": "endpoints",
+        , {
+          "group": "Webhooks",
           "pages": [
             "api-reference/webhooks/webhook"
           ]
         }
-      ]
-    },
-    {
-      "group": "Executions and Results",
-      "pages": [
-        "api-reference/executions/execution-object",
-        "api-reference/executions/pagination",
-        "api-reference/executions/filtering",
-        "api-reference/executions/sorting",
-        "api-reference/executions/sampling",
-        {
-          "group": "endpoints",
+        , {
+          "group": "Executions and Results",
           "pages": [
+            "api-reference/executions/execution-object",
+            "api-reference/executions/pagination",
+            "api-reference/executions/filtering",
+            "api-reference/executions/sorting",
+            "api-reference/executions/sampling",
             "api-reference/executions/endpoint/execute-query",
             "api-reference/executions/endpoint/cancel-execution",
             "api-reference/executions/endpoint/get-execution-status",
@@ -364,15 +354,10 @@
             "api-reference/executions/endpoint/get-query-result-csv"
           ]
         }
-      ]
-    },
-    {
-      "group": "Queries",
-      "pages": [
-        "api-reference/queries/endpoint/query-object",
-        {
-          "group": "endpoints",
+        , {
+          "group": "Queries",
           "pages": [
+            "api-reference/queries/endpoint/query-object",
             "api-reference/queries/endpoint/create",
             "api-reference/queries/endpoint/read",
             "api-reference/queries/endpoint/update",
