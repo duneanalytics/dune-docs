@@ -13,9 +13,36 @@ Sorting can be effectively combined with [pagination](./pagination), [filtering]
 
 #### Example Sorting Request
 <Tabs>
+    <Tab title="Python SDK">
+    ```python
+    import dotenv, os
+    from dune_client.types import QueryParameter
+    from dune_client.client import DuneClient
+    from dune_client.query import QueryBase
+
+    os.chdir("<path_to_your_dotevn_file>")
+
+    # load .env file
+    dotenv.load_dotenv(".env")
+    # setup Dune Python client
+    dune = DuneClient.from_env()
+
+    query_result = dune.get_latest_result_dataframe(
+        query=3567562 # https://dune.com/queries/3567562
+        , filters="overtip_amount > 0"
+        , columns=["donor_fname","overtip_amount","days_overtipped","overall_tip_given_amount","overall_avg_tip_amount"]
+        , sort_by=["overall_tip_given_amount desc"]
+    ) 
+
+    print(query_result)
+
+    ```
+    </Tab>
+
     <Tab title="cURL">
     ```bash
-    curl -X GET "https://api.dune.com/api/v1/query/{{query_id}}/results?limit=100&filters=block_time%20%3E%20'2024-03-05'&columns=tx_from,tx_to,tx_hash,amount_usd&sort_by=amount_usd%20desc,%20block_time" -H "x-dune-api-key: {{api_key}}"
+    curl -X GET 'https://api.dune.com/api/v1/query/{{query_id}}/results?limit=100&filters=chain%20in%20(%27base%27%2C%20%27optimism%27)%20and%20token_pair%20like%20%27%USDC%%27&sort_by=thirty_day_volume%20desc' \
+-H 'x-dune-api-key:{{api_key}}’
     ```
     </Tab>
 

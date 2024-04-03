@@ -13,6 +13,57 @@ Pagination can be effectively combined with [filtering](./filtering) and [sortin
 
 #### Example Paginating Request
 <Tabs>
+    <Tab title="Python SDK">
+    ```python
+    '''
+    When using higher level functions like `get_latest_result_dataframe`, 
+    pagination via `limit` param is done automatically behind the scenes 
+    to get all rows in the result set.
+    
+    To actually paginate manually, i.e., 
+    limit the number of rows each call returns, 
+    use a lower level function like `get_execution_results_csv`.
+    '''
+
+    import dotenv, os
+    from dune_client.types import QueryParameter
+    from dune_client.client import DuneClient
+    from dune_client.query import QueryBase
+
+    os.chdir("<path_to_your_dotevn_file>")
+
+    # load .env file
+    dotenv.load_dotenv(".env")
+    # setup Dune Python client
+    dune = DuneClient.from_env()
+
+    # Higher level function, let pagination be handled automatically and get full query result
+    query = QueryBase(
+        query_id=3567562 # https://dune.com/queries/3568055 -> DEX Pair Stats
+    )
+
+    query_result = dune.get_latest_result_dataframe(
+        query=query
+        , filters="overtip_amount > 0"
+        , sort_by=["overall_tip_given_amount desc"]
+    ) 
+
+    print(query_result)
+
+    # Lower level function, paginate manually to actually get a subset of results one chunk at a time 
+    query_result2 = dune.get_execution_results(
+        job_id = '01HTJ5J9R1D366ZQ08S5B40P0W'
+        , limit = 100
+        , filters="overtip_amount > 0"
+        , sort_by=["overall_tip_given_amount desc"]
+    ) 
+
+    print("next_uri = " + query_result2.next_uri + "\n")
+    print("next_offset = " + str(query_result2.next_offset) + "\n")
+    print(query_result2.result.rows)
+
+    ```
+    </Tab>
     <Tab title="cURL">
     ```bash
     curl -X GET 'https://api.dune.com/api/v1/query/{{query_id}}/results?limit=1000' -H 'x-dune-api-key: {{api_key}}'

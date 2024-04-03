@@ -4,18 +4,12 @@ title: 'Execution & Results'
 
 In this quickstart, we will walk through how to fetch Dune data in Python. 
 
-For a quickstart on TypeScript, please [download Dune TypeScript SDK](https://github.com/bh2smith/ts-dune-client?tab=readme-ov-file) and [follow this demo project](https://github.com/bh2smith/demo-ts-dune-client).
+- 📓 You also can choose to use [this Google Colab Notebook](https://colab.research.google.com/drive/1h3p8Aq7oGZ6lp_R8hOTc0FpX82K1c6d3?usp=sharing) or [this Hex Notebook](https://app.hex.tech/d12aba6a-f113-4485-a72b-b7d812bc2234/hex/401d8569-13f7-43fc-99f4-5b41592ebe44/draft/logic) to get started fast.
+- ⌨️ For a quickstart on TypeScript, please [download Dune TypeScript SDK](https://github.com/bh2smith/ts-dune-client?tab=readme-ov-file) and [follow this demo project](https://github.com/bh2smith/demo-ts-dune-client).
 
 ### Prerequisites
 - Python environment set up (check out [Anaconda Navigator](https://docs.continuum.io/free/navigator/) if you want somewhere to start.)
 - Have a Dune API key (to obtain one [follow the steps here](../overview/authentication#generate-an-api-key))
-
-<Tip> 
-Save your Dune API key in a .env file. 
-```
-DUNE_API_KEY=<paste your API key here>
-```
-</Tip>
 
 ### Step 1: Prepare your Dune query
 Have a Dune query you'd like to pull data from. Here, we'll use [this query](https://dune.com/queries/3373921/5660178) to get the DAI token balance for vitalik.eth.
@@ -29,28 +23,73 @@ pip install dune-client
 
 ### Step 3: Get data from Dune query
 
-#### Import packages and set up a Dune Python client
-```python
-import dotenv, os
-from dune_client.types import QueryParameter
-from dune_client.client import DuneClient
-from dune_client.query import QueryBase
+#### Import packages 
+  ```python
+  from dune_client.types import QueryParameter
+  from dune_client.client import DuneClient
+  from dune_client.query import QueryBase
+  # import other needed packages
+  import pandas as pd
+  ```
 
-# change the current working directory where .env file lives
-os.chdir("/Users/abc/project")
-# load .env file
-dotenv.load_dotenv(".env")
-# setup Dune Python client
-dune = DuneClient.from_env()
-```
+#### Set up a Dune Python client
+<Tabs>
 
-<Tip> 
-To avoid request timeout, you can increase the request timeout setting to be higher than the default 10 seconds in the same .env file we saved the API key information.
-```
-DUNE_API_KEY=<paste your API key here>
-DUNE_API_REQUEST_TIMEOUT=120
-```
-</Tip>
+  <Tab title="inline">
+  ```python
+  dune = DuneClient(
+      api_key='<paste your api key here>',
+      base_url="https://api.dune.com",
+      request_timeout=300 # request will time out after 300 seconds
+  )
+  ```
+  </Tab>
+
+  <Tab title="using .env file">
+  ```python
+  import dotenv, os
+  
+  # change the current working directory where .env file lives
+  os.chdir("/Users/abc/project")
+  # load .env file
+  dotenv.load_dotenv(".env")
+  # setup Dune Python client
+  dune = DuneClient.from_env()
+  ```
+
+  <Tip> 
+  To avoid request timeout, you can increase the request timeout setting to be higher than the default 10 seconds in the same .env file we saved the API key information. Here is a sample .env file.
+  ```
+  DUNE_API_KEY=<paste your API key here>
+  DUNE_API_REQUEST_TIMEOUT=120
+  ```
+  </Tip>
+
+  </Tab>
+  
+  <Tab title="using .py file">
+  ```python
+  import config
+
+  dune = DuneClient(
+      api_key=config.dune_api_key,
+      base_url="https://api.dune.com",
+      request_timeout=(config.request_timeout)
+  )
+  ```
+
+  <Tip> 
+  To avoid request timeout, you can increase the request timeout setting to be higher than the default 10 seconds in the same config.py file we saved the API key information. Here is a sample config.py file.
+  ```
+  dune_api_key='<paste your API key here>'
+  request_timeout=300
+  ```
+  </Tip>
+
+  </Tab>
+
+</Tabs>
+
 
 
 #### Get query result
