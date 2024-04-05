@@ -12,6 +12,15 @@ The resulting table will be empty, and can be inserted into with the [/insert en
 - To delete a table, you can go to `user settings (dune.com) -> data -> delete` or use the [/delete endpoint](./delete).
 </Note>
 
+## Schema
+You need to define the schema of your data by providing `schema` array of columns in the request. Each column has three parameters: 
+
+**name**: the name of the field
+
+**type**: the data type of the field
+
+**nullable**: if the column is nullable (true/false, true by default)
+
 <RequestExample>
 
 ```bash curl
@@ -24,7 +33,7 @@ curl --request POST \
   "table_name":"interest_rates",
   "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
   "is_private": false,
-  "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double"}]
+  "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double",  "nullable": true}]
 }'
 ```
 
@@ -42,7 +51,7 @@ table = dune.create_table(
         description="10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
         schema= [
             {"name": "date", "type": "timestamp"},
-            {"name": "dgs10", "type": "double"}
+            {"name": "dgs10", "type": "double", "nullable": True}
         ],
         is_private=False
 )
@@ -57,7 +66,7 @@ payload = {
     "namespace": "my_user",
     "table_name": "interest_rates",
     "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
-    "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double"}],
+    "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double", "nullable": True}],
     "is_private": False
 }
 
@@ -77,7 +86,7 @@ const payload = {
     "namespace": "my_user",
     "table_name": "interest_rates",
     "description": "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
-    "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double"}],
+    "schema": [{"name": "date", "type": "timestamp"}, {"name": "dgs10", "type": "double", "nullable": true}],
     "is_private": false
 };
 
