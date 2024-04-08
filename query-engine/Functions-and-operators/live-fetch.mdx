@@ -1,13 +1,13 @@
 ---
-title: HTTP functions
-description: HTTP functions send HTTP requests to a specified URL.
+title: LiveFetch functions
+description: LiveFetch functions send HTTP requests to a specified URL.
 ---
 
-The HTTP functions send HTTP requests to a specified URL.
-Using the HTTP functions, you can interact with HTTP servers directly in SQL queries.
+The LiveFetch functions send HTTP requests to a specified URL.
+Using the LiveFetch functions, you can interact with HTTP servers directly in SQL queries.
 They allow to fetch data from external APIs, as well as invoke remote procedure calls.
 
-With the HTTP functions we can e.g. pull in a list of coins from coingecko:
+With the LiveFetch functions we can e.g. pull in a list of coins from coingecko:
 
 ```sql
 SELECT * FROM UNNEST(
@@ -25,13 +25,13 @@ SELECT * FROM UNNEST(
 </div>
 
 <CardGroup cols={1}>
-  <Card title="Example Dashboard" icon="chart-simple" href="https://dune.com/dune/dunesql-http-functions">
-    A dashboard with examples of HTTP functions.
+  <Card title="Example Dashboard" icon="chart-simple" href="https://dune.com/dune/dunesql-live-fetch-functions">
+    A dashboard with examples of LiveFetch functions.
   </Card>
 </CardGroup>
 
 <Warning>
-The HTTP functions are only available for customers on a paid plan.
+The LiveFetch functions are only available for customers on a paid plan.
 </Warning>
 
 ## API support and credentials
