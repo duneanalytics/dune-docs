@@ -465,7 +465,8 @@
         },
         {
           "group": "Polygon-zkEVM",
-          "pages": [ "data-catalog/evm/polygon-zkEVM/overview",
+          "pages": [
+            "data-catalog/evm/polygon-zkEVM/overview",
             {
               "group": "Raw",
               "pages": [
@@ -659,7 +660,7 @@
         }
       ]
     },
-    
+
     {
       "group": "Community Data",
       "pages": [
@@ -677,6 +678,26 @@
             "data-catalog/community/farcaster/storage",
             "data-catalog/community/farcaster/user_data",
             "data-catalog/community/farcaster/verifications"
+          ]
+        },
+        {
+          "group": "Lens",
+          "pages": [
+            "data-catalog/community/lens/overview",
+            "data-catalog/community/lens/namespace-handle",
+            "data-catalog/community/lens/namespace-handle-link",
+            "data-catalog/community/lens/profile-follower",
+            "data-catalog/community/lens/profile-follow-module",
+            "data-catalog/community/lens/profile-follow-module-record",
+            "data-catalog/community/lens/profile-metadata",
+            "data-catalog/community/lens/profile-record",
+            "data-catalog/community/lens/publication-metadata",
+            "data-catalog/community/lens/publication-open-action-module",
+            "data-catalog/community/lens/publication-open-action-module-acted-recorded",
+            "data-catalog/community/lens/publication-open-action-module-acted-multirecipient",
+            "data-catalog/community/lens/publication-reaction",
+            "data-catalog/community/lens/publication-record",
+            "data-catalog/community/lens/publication-reference-module"
           ]
         },
         {
@@ -732,14 +753,12 @@
             "api-reference/tables/endpoint/upload",
             "api-reference/tables/endpoint/delete"
           ]
-        }
-        , {
+        },
+        {
           "group": "Webhooks",
-          "pages": [
-            "api-reference/webhooks/webhook"
-          ]
-        }
-        , {
+          "pages": ["api-reference/webhooks/webhook"]
+        },
+        {
           "group": "Executions and Results",
           "pages": [
             "api-reference/executions/execution-object",
@@ -755,8 +774,8 @@
             "api-reference/executions/endpoint/get-query-result",
             "api-reference/executions/endpoint/get-query-result-csv"
           ]
-        }
-        , {
+        },
+        {
           "group": "Queries",
           "pages": [
             "api-reference/queries/endpoint/query-object",
