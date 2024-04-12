@@ -746,7 +746,7 @@
       "group": "API Endpoints",
       "pages": [
         {
-          "group": "Tables",
+          "group": "Data Upload and Table Management",
           "pages": [
             "api-reference/tables/endpoint/create",
             "api-reference/tables/endpoint/insert",
