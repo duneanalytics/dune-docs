@@ -438,6 +438,33 @@
           ]
         },
         {
+          "group": "Linea",
+          "pages": [
+            "data-catalog/evm/linea/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/linea/raw/blocks",
+                "data-catalog/evm/linea/raw/creation-traces",
+                "data-catalog/evm/linea/raw/logs",
+                "data-catalog/evm/linea/raw/transactions",
+                "data-catalog/evm/linea/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/linea/decoded/overview",
+                "data-catalog/evm/linea/decoded/call-tables",
+                "data-catalog/evm/linea/decoded/event-logs",
+                "data-catalog/evm/linea/decoded/contracts",
+                "data-catalog/evm/linea/decoded/logs-decoded",
+                "data-catalog/evm/linea/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Polygon",
           "pages": [
             {
