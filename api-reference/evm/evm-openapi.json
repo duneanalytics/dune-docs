@@ -11,11 +11,11 @@
     }
   ],
   "paths": {
-    "/v1/farcaster/trends/users": {
+    "/v1/trends/evm/contracts/{chain}": {
       "get": {
-        "summary": "get trending farcaster users who have casted in the last 14 days",
-        "description": "Get trending farcaster users who have casted in the last 14 days",
-        "operationId": "trendingUsers",
+        "summary": "get trending contracts deployed on any EVM chain",
+        "description": "get trending contracts deployed on any EVM chain",
+        "operationId": "trendingContracts",
         "parameters": [
           {
             "in": "header",
@@ -34,6 +34,15 @@
             },
             "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
             "required": false
+          },
+          {
+            "in": "path",
+            "name": "chain",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "EVM chain name (use Dune namespace, i.e. ethereum, bnb, polygon, optimsm, etc)"
           },
           {
             "in": "query",
@@ -71,15 +80,6 @@
               "type": "string"
             },
             "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
-          },
-          {
-            "in": "query",
-            "name": "columns",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included. Tip: use this to limit the result to specific columns, reducing datapoints cost of the call."
           }
         ],
         "responses": {
@@ -93,12 +93,12 @@
                       "execution_id": {
                         "type": "string",
                         "description": "Unique identifier for the execution",
-                        "example": "01HVKQK08KDVDKHYDKKKHTJWMC"
+                        "example": "01HT6JP0406V2P27ER1Q5VVGVN"
                       },
                       "query_id": { 
                         "type": "integer",
                         "description": "Unique identifier for the query",
-                        "example": 3418402
+                        "example": 3575084
                       },
                       "is_execution_finished": {
                         "type": "boolean",
@@ -135,110 +135,56 @@
                           "description": "results from query",
                           "example": {
                             "rows": [
-                                {
-                                    "account_age": 223,
-                                    "addresses": [
-                                        "0xa14b4c95b5247199d74c5578531b4887ca5e4909",
-                                        "0x6b0bda3f2ffed5efc83fa8c024acff1dd45793f1",
-                                        "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
-                                        "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
-                                        "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
-                                        "0xb877f7bb52d28f06e60f557c00a56225124b357f",
-                                        "0x8fc5d6afe572fefc4ec153587b63ce543f6fa2ea"
-                                    ],
-                                    "all_channels": [
-                                        "farcaster",
-                                        "warpcast",
-                                        "product",
-                                        "fc-devs",
-                                        "fc-updates",
-                                        "memes",
-                                        "founders",
-                                        "eclipse",
-                                        "social",
-                                        "honest-work",
-                                        "shower-thoughts",
-                                        "aoe2",
-                                        "history",
-                                        "moz",
-                                        "frames",
-                                        "evm",
-                                        "uniswap",
-                                        "onchain",
-                                        "buywisely",
-                                        "9dcc",
-                                        "rounds",
-                                        "zora",
-                                        "rainbow",
-                                        "talent",
-                                        "pain-points",
-                                        "supercast",
-                                        "christin",
-                                        "ama",
-                                        "spirituality",
-                                        "undefined",
-                                        "six",
-                                        "food",
-                                        "actions",
-                                        "higher",
-                                        "someone-build",
-                                        "cameron",
-                                        "ethereum",
-                                        "apple",
-                                        "replyguys",
-                                        "fc-suggestions",
-                                        "travel"
-                                    ],
-                                    "all_domains": [
-                                        "warpcast.notion.site",
-                                        "youtube.com",
-                                        "docs.farcaster.xyz"
-                                    ],
-                                    "casts": 178,
-                                    "channels": 41,
-                                    "contracts_deployed": 204,
-                                    "engagement": 64197.15777799128,
-                                    "fid": 3,
-                                    "fid_active_tier": 4,
-                                    "fid_active_tier_last": 4,
-                                    "fid_active_tier_name": "\ud83d\udc8e vip",
-                                    "fname": "dwr.eth",
-                                    "fname_link": "<a href='https://warpcast.com/dwr.eth' target='_blank'>dwr.eth</a>",
-                                    "followers": 251641,
-                                    "got_likes": 23542,
-                                    "got_recasts": 2723,
-                                    "got_replies": 5556,
-                                    "split_0": "||",
-                                    "top_channels": [
-                                        "farcaster",
-                                        "warpcast",
-                                        "product"
-                                    ],
-                                    "top_domains": [
-                                        "warpcast.notion.site",
-                                        "youtube.com"
-                                    ],
-                                    "top_engagers": [
-                                        "warpcastbot",
-                                        "iturner.eth",
-                                        "kidmmo"
-                                    ],
-                                    "total_transactions": 1185,
-                                    "trading_volume_usd": 790785.0209452906,
-                                    "wow_casts": -93,
-                                    "wow_engage": 14473.54593665625,
-                                    "wow_followers": 15145,
-                                    "wow_likes": -2099,
-                                    "wow_recasts": 2723,
-                                    "wow_replies": 799
-                                }
+                              {
+                                "blockchain": "ethereum",
+                                "contract_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                                "contract_calls": 2700467,
+                                "contract_name": "Tether_USD",
+                                "contract_project": "Tether",
+                                "created_time": "2017-11-28 00:41:21.000 UTC",
+                                "deployed_days_ago": 2314,
+                                "deployer": "0x36928500bc1dcd7af6a2b4008875cc336b927d57",
+                                "token_standard": null,
+                                "transaction_calls": 3311351,
+                                "unique_callers": 937948,
+                                "unique_contract_callers": 85191,
+                                "usd_value_recieved": 1830950.412353698
+                              }
                             ]
+                        }
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "description": "metadata about the results", 
+                        "example": {
+                          "column_names": [
+                              "contract_address",
+                              "blockchain",
+                              "deployer",
+                              "contract_project",
+                              "contract_name",
+                              "created_time",
+                              "deployed_days_ago",
+                              "token_standard",
+                              "usd_value_recieved",
+                              "transaction_calls",
+                              "unique_callers",
+                              "contract_calls",
+                              "unique_contract_callers"
+                          ],
+                          "row_count": 1,
+                          "result_set_bytes": 440,
+                          "total_row_count": 994180,
+                          "total_result_set_bytes": 155079150,
+                          "datapoint_count": 13,
+                          "pending_time_millis": 48645,
+                          "execution_time_millis": 96350
                         }
                       },
                       "next_uri": {
                         "type": "string",
                         "description": "URI to get the next set of results",
-                        "example": "https://api.dune.com/api/v1/execution/01HVKQK08KDVDKHYDKKKHTJWMC/results?filters=&limit=10&offset=10&sort_by=followers+desc"
+                        "example": "https://api.dune.com/api/v1/execution/01HT6JP0406V2P27ER1Q5VVGVN/results?filters=blockchain%3D%22ethereum%22&limit=1&offset=1&sort_by=transaction_calls+desc"
                       },
                       "next_offset": {
                         "type": "integer",
