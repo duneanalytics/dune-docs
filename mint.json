@@ -746,6 +746,13 @@
       "group": "API Endpoints",
       "pages": [
         {
+          "group": "Trends Endpoints",
+          "pages": [
+            "api-reference/predefined/endpoint/trending.mdx",
+            "api-reference/predefined/endpoint/farcaster_users.mdx"
+          ]
+        },
+        {
           "group": "Data Upload and Table Management",
           "pages": [
             "api-reference/tables/endpoint/create",
@@ -753,10 +760,6 @@
             "api-reference/tables/endpoint/upload",
             "api-reference/tables/endpoint/delete"
           ]
-        },
-        {
-          "group": "Webhooks",
-          "pages": ["api-reference/webhooks/webhook"]
         },
         {
           "group": "Executions and Results",
@@ -787,6 +790,10 @@
             "api-reference/queries/endpoint/private",
             "api-reference/queries/endpoint/unprivate"
           ]
+        },
+        {
+          "group": "Webhooks",
+          "pages": ["api-reference/webhooks/webhook"]
         }
       ]
     },
