@@ -748,8 +748,8 @@
         {
           "group": "Trends Endpoints",
           "pages": [
-            "api-reference/predefined/trending.mdx",
-            "api-reference/predefined/endpoint/farcaster_users.mdx"
+            "api-reference/predefined/trending",
+            "api-reference/predefined/endpoint/farcaster_users"
           ]
         },
         {
