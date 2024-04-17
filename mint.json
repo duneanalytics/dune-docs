@@ -144,6 +144,7 @@
             "query-engine/Functions-and-operators/hyperloglog",
             "query-engine/Functions-and-operators/json",
             "query-engine/Functions-and-operators/lambda",
+            "query-engine/Functions-and-operators/live-fetch",
             "query-engine/Functions-and-operators/logical",
             "query-engine/Functions-and-operators/map",
             "query-engine/Functions-and-operators/math",
