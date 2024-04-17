@@ -8,6 +8,14 @@ openapi: 'GET /v1/farcaster/trends/users'
 - Scheduled to update every 6 hours
 </Note>
 
+# Use Cases
+
+- Recommend trending users based on engagement, domains, or onchain activity (i.e. developers by deployed contracts)
+- Curate feeds that segment users by type (small and growing, large and established)
+- Filter out likely bot users (high number of casts, low engagement)
+
+# Column Descriptions
+
 | Column                | Description                           | Type       |
 | --------------------- | ------------------------------------- | ---------- |
 | fid_active_tier_name  | name of farcaster tier this week    | string |
