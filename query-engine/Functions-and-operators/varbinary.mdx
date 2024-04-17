@@ -364,9 +364,9 @@ LIMIT 100
 
 ```
 
-**``varbinary_starts_with(varchar, varchar)``** → boolean
+**``varbinary_starts_with(varbinary, varbinary)``** → boolean
 
-Determines whether a string starts with a prefix.
+Determines whether a varbinary starts with a prefix.
 
 
 ```sql
@@ -389,11 +389,9 @@ SELECT 0x0000000000000000000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead90
        varbinary_substring(0x0000000000000000000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2,21) as bytearraysubstring_data
 ```
 
-**``varbinary_substring(varchar, integer)``** → varchar
 
-Returns a suffix string starting at a given index.
 
-Returns a sub varbinary or string of a given length starting at an index.
+Returns a subvarbinary of a given length starting at an index.
 
 
 ```sql
@@ -410,24 +408,18 @@ AND tx_hash IN (0x3e3c558e7f723e3bb7de1d8f5f920ca206e3e878984296a2b8e6af2969003a
                 0xccfd2033adfb1fdd14fdfc047fe554ba7549e396abc6c559e9528a4259295b89) 
 ```
 
-**``varbinary_substring(varchar, integer, integer)``** → varchar
-
-Returns a sub string of a given length starting at an index.
-
-
-```sql
--- returns 	'0xabcd'
-SELECT '0xabcdefabcdef' as varchar_data,
-       varbinary_substring('0xabcdefabcdef',1,3) as varchar_substring
-```
-
 **``varbinary_substring(varbinary, integer, integer)``** → varbinary
 
+Returns a subvarbinary of a given length starting at an index. Be aware that the length is in bytes, not characters.
 
 ```sql
--- returns  0xabcd
+-- returns  0xabcdef
 SELECT 0xabcdefabcdef as varbinary_data,
        varbinary_substring(0xabcdefabcdef,1,3) as varbinary_substring
 ```
+
+
+
+
 
 
