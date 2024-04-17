@@ -817,8 +817,11 @@
       ]
     },
     {
-      "group": "",
-      "pages": ["datashare/datashare"]
+      "group": "Datashare",
+      "pages": [
+        "datashare/datashare",
+        "datashare/datashare-trial"
+      ]
     }
   ],
   "feedback": {
