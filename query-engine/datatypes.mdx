@@ -290,11 +290,11 @@ Example: `ROW(1, 2.0)[1]`
 An IP address that can represent either an IPv4 or IPv6 address.
 Internally, the type is a pure IPv6 address. Support for IPv4 is handled
 using the _IPv4-mapped IPv6 address_ range
-(`4291#section-2.5.5.2`\{.interpreted-text role="rfc"}). When creating an
+(`4291#section-2.5.5.2`). When creating an
 `IPADDRESS`, IPv4 addresses will be mapped into that range. When
 formatting an `IPADDRESS`, any address within the mapped range will be
 formatted as an IPv4 address. Other addresses will be formatted as IPv6
-using the canonical format defined in `5952`\{.interpreted-textrole="rfc"}.
+using the canonical format defined in `5952`.
 
 Examples: `IPADDRESS '10.0.0.1'`, `IPADDRESS '2001:db8::1'`
 
@@ -304,7 +304,7 @@ Examples: `IPADDRESS '10.0.0.1'`, `IPADDRESS '2001:db8::1'`
 
 This type represents a UUID (Universally Unique IDentifier), also known
 as a GUID (Globally Unique IDentifier), using the format defined in
-`4122`\{.interpreted-text role="rfc"}.
+`4122`\
 
 Example: `UUID '12151fd2-7586-11e9-8f9e-2a86e4085a59'`
 
@@ -313,20 +313,16 @@ Example: `UUID '12151fd2-7586-11e9-8f9e-2a86e4085a59'`
 Calculating the approximate distinct count can be done much more cheaply
 than an exact count using the
 [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data sketch.
-See `/functions/hyperloglog`\{.interpreted-text role="doc"}.
 
 ### `HyperLogLog`
 
-A HyperLogLog sketch allows efficient computation of
-`approx_distinct`\{.interpreted-text role="func"}. It starts as a sparse
+A HyperLogLog sketch allows efficient computation of `approx_distinct`. It starts as a sparse
 representation, switching to a dense representation when it becomes more
 efficient.
 
 ### `P4HyperLogLog`
 
-A P4HyperLogLog sketch is similar to
-`hyperloglog_type`\{.interpreted-text role="ref"}, but it starts (and
-remains) in the dense representation.
+A P4HyperLogLog sketch is similar to `hyperloglog_type`, but it starts (and remains) in the dense representation.
 
 ## SetDigest
 
