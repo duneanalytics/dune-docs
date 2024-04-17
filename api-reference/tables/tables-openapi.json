@@ -377,7 +377,7 @@
           "nullable": {
             "type": "boolean",
             "description": "Flag that denotes if the column is nullable (true/false, true by default).",
-            "example": "false"
+            "example": false
           }
         }
       },
