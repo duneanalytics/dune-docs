@@ -35,6 +35,7 @@ These are the filters we currently support:
 | `tags` | Search by tag or tags. | `tags:usdc` |
 | `author` | Search by author. | `author:dune` |
 | `description` | Only applicable to Queries, find matches in the description. | `description:usdc` |
+| `code` | Only applicable to Queries, find matches in the code. | `code:"from dex.trades"` |
 | `created_before` | Only include matches created before or at a given date. | `created_before:2023-01-30` |
 | `created_after` | Only include matches created after or at a given date. | `created_after:2023-01-30` |
 | `updated_before` | Only include matches updated before or at a given date. | `updated_before:2023-01-30` |
@@ -48,8 +49,3 @@ Notes:
 - You can also exclude results by prefixing it with a minus sign (`-`) (e.g. `-tags:ethereum`).
 
 <Note>Advanced Search is currently only supported for Dashboards and Queries.</Note>
-
-
-## Code search
-
-For queries, you can tick the *Search code* box to find relevant queries whose SQL code matches your input. Use it to find examples of queries that query a specific table, namespace or queries using a particular kind of SQL operation or syntax.
