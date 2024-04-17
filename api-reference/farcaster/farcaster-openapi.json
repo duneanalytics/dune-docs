@@ -89,7 +89,7 @@
                       "query_id": { 
                         "type": "integer",
                         "description": "Unique identifier for the query",
-                        "example": 3418402
+                        "example": 3633428
                       },
                       "is_execution_finished": {
                         "type": "boolean",
@@ -349,7 +349,7 @@
                       "query_id": { 
                         "type": "integer",
                         "description": "Unique identifier for the query",
-                        "example": 3418402
+                        "example": 3633434
                       },
                       "is_execution_finished": {
                         "type": "boolean",
