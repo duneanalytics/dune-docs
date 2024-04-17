@@ -369,6 +369,7 @@
               "boolean",
               "int256",
               "uint256",
+              "varbinary",
               "timestamp"
             ],
             "description": "The column type.",
