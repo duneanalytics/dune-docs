@@ -7,3 +7,34 @@ openapi: 'GET /v1/farcaster/trends/channels'
 - Query can be found [here](https://dune.com/queries/3418331/5739528)
 - Scheduled to update every 6 hours
 </Note>
+
+| Column                | Description                           | Type       |
+| --------------------- | ------------------------------------- | ---------- |
+| channel_tier_name     | name of channel tier this week       | string     |
+| channel_tier          | farcaster channel tier this week          | integer        |
+| channel_tier_last     | farcaster channel tier last week          | integer        |
+| channel               | farcaster channel name              | string        |
+| channel_age           | age of channel in days               | integer     |
+| influential_casters   | top casters by engagement in channel| array(string) |
+| top_domains | top domains in casts in channel | array(string) |
+| top_casters | top casters by number of casts in channel | array(string) |
+| got_casts             | number of casts in channels in the last week | integer |
+| wow_cast              | week over week change in number of casts  | integer |
+| engagement            | engagement on channel casts in the last week | integer |
+| wow_engage            | week over week change in number of engagement | integer |
+| active_npc            | npc tier users that have casted in the channel  | integer        |
+| wow_npc               | week over week change in number of npc tier casters | integer |
+| active_user           | active tier users that have casted in the channel | integer        |
+| wow_active_user       | week over week change in number of active tier casters | integer      |
+| active_star           | star tier users that have casted in the channel | integer     |
+| wow_star              | week over week change in number of star tier casters  | integer     |
+| active_influencer     | influencer tier users that have casted in the channel    | integer        |
+| wow_influencer        | week over week change in number of influencer tier casters  | integer        |
+| active_vip            | vip tier users that have casted in the channel  | integer        |
+| wow_vip               | week over week change in number of vip tier casters | integer        |
+| got_replies           | number of replies in the last week | integer     |
+| wow_reply             | week over week change in number of replies    | integer        |
+| got_likes             | number of likes in the last week | integer  |
+| wow_likes             | week over week change in number of likes    | integer        |
+| got_recasts           | number of recasts in the last week | integer  |
+| wow_recasts           | week over week change in number of recasts | integer |

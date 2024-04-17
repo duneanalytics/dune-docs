@@ -7,3 +7,19 @@ openapi: 'GET /v1/trends/evm/contracts/{chain}'
 - Query can be found [here](https://dune.com/queries/3575084)
 - Scheduled to update once a day (12am UTC)
 </Note>
+
+| Column Name              | Description                     | Type                   |
+|--------------------------|---------------------------------|------------------------|
+| contract_address         | Contract address of the contract         | string                 |
+| blockchain               | Blockchain of the contract      | string                 |
+| deployer                 | Deployer address of the contract        | string                 |
+| contract_project         | Project of the contract         | string                 |
+| contract_name            | Name of the contract             | string                 |
+| created_time             | Time when the contract was created | string              |
+| deployed_days_ago        | Number of days since deployment | integer                |
+| token_standard           | Standard of the token (ERC20,ERC721,ERC1155) if applicable  | string                 |
+| usd_value_received       | Value received in USD in ETH and ERC20 tokens   | number                 |
+| transaction_calls        | Number of transaction calls (top level transactions)    | integer                |
+| unique_callers           | Number of unique callers (tx from)      | integer                |
+| contract_calls           | Number of calls from other contracts     | integer                |
+| unique_contract_callers  | Number of unique contracts calling this contract in traces | integer                |
