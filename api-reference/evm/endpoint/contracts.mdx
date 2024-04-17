@@ -10,9 +10,9 @@ openapi: 'GET /v1/trends/evm/contracts/{chain}'
 
 # Use Cases
 
-- Feed into a CRM of developers and projects 
+- Feed into a CRM of developers and projects based on contract popularity
 - Build an explorer of top contracts, with basic metadata
-- Track trending contracts by value and type
+- Track trending contracts by value and type (user facing, contract facing, token, router, safes, etc.)
 
 # Column Descriptions
 
@@ -26,8 +26,8 @@ openapi: 'GET /v1/trends/evm/contracts/{chain}'
 | created_time             | Time when the contract was created | string              |
 | deployed_days_ago        | Number of days since deployment | integer                |
 | token_standard           | Standard of the token (ERC20,ERC721,ERC1155) if applicable  | string                 |
-| usd_value_received       | Value received in USD in ETH and ERC20 tokens   | integer                 |
-| transaction_calls        | Number of transaction calls (top level transactions)    | integer                |
-| unique_callers           | Number of unique callers (tx from)      | integer                |
-| contract_calls           | Number of calls from other contracts     | integer                |
-| unique_contract_callers  | Number of unique contracts calling this contract in traces | integer                |
+| usd_value_received       | Value received in USD in ETH and ERC20 tokens in last 30 days   | integer                 |
+| transaction_calls        | Number of transaction calls (top level transactions) in last 30 days   | integer                |
+| unique_callers           | Number of unique callers (tx from) in last 30 days     | integer                |
+| contract_calls           | Number of calls from other contracts in last 30 days     | integer                |
+| unique_contract_callers  | Number of unique contracts calling this contract in traces in last 30 days | integer                |

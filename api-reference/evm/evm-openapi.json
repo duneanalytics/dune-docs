@@ -13,8 +13,8 @@
   "paths": {
     "/v1/trends/evm/contracts/{chain}": {
       "get": {
-        "summary": "get trending contracts deployed on any EVM chain",
-        "description": "get trending contracts deployed on any EVM chain",
+        "summary": "get trending contracts deployed on any EVM chain based on activity in last 30 days",
+        "description": "get trending contracts deployed on any EVM chain based on activity in last 30 days",
         "operationId": "trendingContracts",
         "parameters": [
           {
