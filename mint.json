@@ -820,7 +820,9 @@
       "group": "Datashare",
       "pages": [
         "datashare/datashare",
-        "datashare/datashare-trial"
+        "datashare/datashare-trial",
+        "datashare/datashare-faqs"
+
       ]
     }
   ],
