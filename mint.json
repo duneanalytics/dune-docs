@@ -772,17 +772,26 @@
       "group": "API Endpoints",
       "pages": [
         {
-          "group": "Data Upload and Table Management",
+          "group": "Farcaster",
+          "pages": [
+            "api-reference/farcaster/endpoint/farcaster_users",
+            "api-reference/farcaster/endpoint/farcaster_channels"
+          ]
+        },
+        {
+          "group": "EVM Contracts",
+          "pages": [
+            "api-reference/evm/endpoint/contracts"
+          ]
+        },
+        {
+          "group": "Uploaded Tables",
           "pages": [
             "api-reference/tables/endpoint/create",
             "api-reference/tables/endpoint/insert",
             "api-reference/tables/endpoint/upload",
             "api-reference/tables/endpoint/delete"
           ]
-        },
-        {
-          "group": "Webhooks",
-          "pages": ["api-reference/webhooks/webhook"]
         },
         {
           "group": "Executions and Results",
@@ -813,6 +822,10 @@
             "api-reference/queries/endpoint/private",
             "api-reference/queries/endpoint/unprivate"
           ]
+        },
+        {
+          "group": "Webhooks",
+          "pages": ["api-reference/webhooks/webhook"]
         }
       ]
     },

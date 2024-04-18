@@ -1,0 +1,34 @@
+---
+title: 'Trending Contracts'
+openapi: 'GET /v1/trends/evm/contracts/{chain}'
+---
+
+<Note>
+- Query can be found [here](https://dune.com/queries/3575084)
+- Scheduled to update once a day (12am UTC)
+- You can apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+</Note>
+
+# Use Cases
+
+- Feed into a CRM of developers and projects based on contract popularity
+- Build an explorer page of top trending contracts, with basic metadata to support.
+- Track trending contracts by value and type (user facing, contract facing, token, router, safes, etc.)
+
+# Column Descriptions
+
+| Column Name              | Description                     | Type                   |
+|--------------------------|---------------------------------|------------------------|
+| contract_address         | Contract address of the contract         | string                 |
+| blockchain               | Blockchain of the contract      | string                 |
+| deployer                 | Deployer address of the contract        | string                 |
+| contract_project         | Project of the contract         | string                 |
+| contract_name            | Name of the contract             | string                 |
+| created_time             | Time when the contract was created | string              |
+| deployed_days_ago        | Number of days since deployment | integer                |
+| token_standard           | Standard of the token (ERC20,ERC721,ERC1155) if applicable  | string                 |
+| usd_value_received       | Value received in USD in ETH and ERC20 tokens in last 30 days   | integer                 |
+| transaction_calls        | Number of transaction calls (top level transactions) in last 30 days   | integer                |
+| unique_callers           | Number of unique callers (tx from) in last 30 days     | integer                |
+| contract_calls           | Number of calls from other contracts in last 30 days     | integer                |
+| unique_contract_callers  | Number of unique contracts calling this contract in traces in last 30 days | integer                |
