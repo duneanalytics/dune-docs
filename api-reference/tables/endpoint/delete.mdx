@@ -31,6 +31,16 @@ table = dune.delete_table(
 )
 ```
 
+```typescript TS Client SDK
+import { DuneClient } from "@duneanalytics/client-sdk";
+
+client = new DuneClient(process.env.DUNE_API_KEY!);
+const result = await client.table.delete({
+  namespace: "my_user",
+  table_name: "interest_rates",
+});
+```
+
 ```python Python
 import requests
 
