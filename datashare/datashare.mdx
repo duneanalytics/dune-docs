@@ -16,21 +16,17 @@ Unlock the full potential of blockchain analytics with Dune's Datashare on Snowf
 - **Cross Region Replication**: Data is available in multiple regionsto ensure data proximity and help keep your query costs low.
 - **Precision and Accuracy**: Data is meticulously curated and maintained, ensuring the highest quality and reliability.
 
-## Getting Started
+## Datashare 101's
 
-To start leveraging Dune's Datashare on Snowflake for your blockchain analytics needs, visit the Dune profile on the [Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune). You will find one listing for each blockchain, and a listing for our Cross Chain datasets. For each listing, you will only see a couple of tables available. These are sample datasets for testing and available under free trial. To access the full data catalog and start your subscription, please contact us via the contact form on our [enterprise page](https://dune.com/enterprise).
+To start leveraging Dune's Datashare on Snowflake for your blockchain analytics needs, visit the Dune profile on the [Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune). There are trial tables available. If interested in participating in the trial please refer to our trial guide under "Getting Started".
 
-## Accessing the Data
+## Dune vs. Datashare
 
-Once you have subscribed to Dune's Datashare on Snowflake, you can access the data directly from your Snowflake account. The data is organized into schemas, with each schema representing a blockchain or a cross-chain dataset. You can query the data using SQL, and use the results to power your analytics and insights. 
+The data we provide on the Snowflake Marketplace is the same data that powers our own analytics platform. However, since the data is in a different environment, there are slight differences in the way we need to store the data.
 
-## Data Updates and Availability
+### Datatypes
 
-Currently the data is updated every 24 hours by default, for special cases we can disucss more frequent updates. We replicate the data to multiple regions to ensure low latency and high availability.
-
-## Datatypes
-
-The data we provide on the Snowflake Marketplace is the same data that powers our own analytics platform. However, since the data is in a different environment, there is a slight difference in the way we need to store the data. This affects what datatypes we use to store the data, since there is no native support for common blockchain data types in Snowflake. This affects the way we store addresses, hashes, call data and other varbinary data. Furthermore, high-precisions integers like `uint256` and `int256` are also affected.
+On Snowflake, the way we store data is different, since there is no native support for common blockchain data types in Snowflake. This affects the way we store addresses, hashes, call data and other varbinary data. Furthermore, high-precisions integers like `uint256` and `int256` are also affected.
 
 ### Varbinary Data
 
