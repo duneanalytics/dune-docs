@@ -1,0 +1,47 @@
+---
+title: 'Farcaster Users'
+openapi: 'GET /v1/farcaster/trends/users'
+---
+
+<Note>
+- Query can be found [here](https://dune.com/queries/3633428)
+- Scheduled to update every 6 hours
+- You can apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+</Note>
+
+# Use Cases
+
+- Recommend trending users based on engagement, domains, or onchain activity (i.e. developers by deployed contracts)
+- Curate feeds that segment users by type (small and growing, large and established)
+- Filter out likely bot users (high number of casts, low engagement)
+
+# Column Descriptions
+
+| Column                | Description                           | Type       |
+| --------------------- | ------------------------------------- | ---------- |
+| fid_active_tier_name  | name of farcaster tier this week    | string |
+| fid_active_tier       | farcaster user tier this week        | integer        |
+| fid_active_tier_last  | farcaster user tier last week | integer        |
+| fid                   | farcaster user id            | integer        |
+| fname                 | farcaster username of user          | string |
+| account_age           | age of account in days      | integer        |
+| channels              | number of casted in channels in the last week        | integer        |
+| top_channels          | top casted in channels        | array(string)|
+| top_domains           | top casted domains         | array(string)|
+| top_engagers          | top cast engagers        | array(string)|
+| followers             | total number of followers           | integer        |
+| wow_followers         | week over week change in number of followers  | integer        |
+| casts                 | number of casts in the last week   | integer        |
+| wow_casts             | week over week change in number of casts | integer        |
+| engagement            | engagement on user casts in the last week  | integer        |
+| wow_engage            | week over week change in number of engage  | integer        |
+| total_transactions    | total number of wallet transactions  | integer        |
+| trading_volume_usd    | total NFT and DEX trading volume (USD)| integer        |
+| contracts_deployed    | total number of deployed contracts  | integer        |
+| got_likes             | number of likes in the last week  | integer        |
+| wow_likes             | week over week change in number of likes | integer        |
+| got_recasts           | number of recasts in the last week    | integer        |
+| wow_recasts           | week over week change in number of recasts  | integer        |
+| got_replies           | number of replies in the last week     | integer        |
+| wow_replies           | week over week change in number of replies  | integer  |
+| addresses             | user verified addresses         |  array(string)  |
