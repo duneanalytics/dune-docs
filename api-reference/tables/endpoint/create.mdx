@@ -66,6 +66,20 @@ table = dune.create_table(
 )
 ```
 
+```typescript TS SDK
+import { DuneClient, ColumnType } from "@duneanalytics/client-sdk";
+
+client = new DuneClient(process.env.DUNE_API_KEY!);
+const result = await client.table.create({
+  namespace: "my_user",
+  table_name: "interest_rates",
+  schema: [
+    {"name": "date", "type": ColumnType.Timestamp},
+    {"name": "dgs10", "type": ColumnType.Double}
+  ]
+});
+```
+
 ```python Python
 import requests
 

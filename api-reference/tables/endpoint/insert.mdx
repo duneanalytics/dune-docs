@@ -55,6 +55,23 @@ with open("./interest_rates.csv", "rb") as data:
         )
 ```
 
+```typescript TS SDK
+import * as fs from "fs/promises";
+import { DuneClient, ContentType } from "@duneanalytics/client-sdk";
+
+client = new DuneClient(process.env.DUNE_API_KEY!);
+const data = await fs.readFile("./sample_table_insert.csv");
+// Or JSON
+// const data: Buffer = await fs.readFile("./sample_table_insert.json");
+
+const result = await client.table.insert({
+  namespace: "my_user",
+  table_name: "interest_rates",
+  data,
+  content_type: ContentType.Csv, // or ContentType.Json
+});
+```
+
 ```python Python
 import requests
 

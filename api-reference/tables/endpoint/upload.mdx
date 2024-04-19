@@ -57,6 +57,21 @@ table = dune.upload_csv(
 )
 ```
 
+```typescript TS SDK
+import * as fs from "fs/promises";
+import { DuneClient, ContentType } from "@duneanalytics/client-sdk";
+
+client = new DuneClient(process.env.DUNE_API_KEY!);
+const data = await fs.readFile("./sample_table_insert.csv");
+
+const result = await client.table.uploadCsv({
+  table_name: "ten_year_us_interest_rates",
+  description: "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10",
+  data,
+  is_private: false,
+});
+```
+
 ```python Python
 import requests
 
