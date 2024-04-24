@@ -14,7 +14,7 @@
     "/v1/dex/pairs/{chain}": {
       "get": {
         "summary": "Get DEX pair statistics for a given chain",
-        "description": "Retrieves essential metadata and statistical data for token pairs on a given blockchain. Metadata encompasses all pool addresses associated with the token pair, the DEXs or projects where they are available, and their token addresses. Key statistics provided include one-day, seven-day, and thirty-day trading volumes, USD liquidity, and the seven-day volume-to-liquidity ratio.",
+        "description": "Given a blockchain, retrieves essential metadata and statistical data for token pairs. Metadata encompasses all pool addresses associated with the token pair, the DEXs or projects where they are available, and their token addresses. Key statistics provided include one-day, seven-day, and thirty-day trading volumes, USD liquidity, and the seven-day volume-to-liquidity ratio.",
         "operationId": "dexPairs",
         "parameters": [
           {
