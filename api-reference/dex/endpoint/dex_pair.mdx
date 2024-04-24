@@ -1,0 +1,35 @@
+---
+title: 'DEX Pair Stats'
+openapi: 'GET /v1/dex/pairs/{chain}'
+---
+
+<Note>
+- Query can be found [here](https://dune.com/queries/3568055)
+- Chains included are: `arbitrum`, `base`, `bnb`, `celo`, `ethereum`, `fantom`, `gnosis`, `optimism`, `polygon`, `scroll`, `zk_sync`, `solana`
+- Scheduled to update every 30 minutes
+- You can apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+- Each row is uniquely identified by the `chain`, `token_a_address`, and `token_b_address` columns combination.
+</Note>
+
+# Use Cases 
+
+- Enable DEX aggregators to identify all pools for swapping specific token pairs or addresses, using filters such as `filter='USDC-WETH'` or `filters=token_a_address = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48' or token_b_address = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'`.
+- Identify the token pair with the highest USD liquidity on a given chain by sorting results with `sort_by=usd_liquidity desc`.
+- Provide aggregated DEX pair statistics, including volume and liquidity, to algorithmic trading bots and risk management systems.
+
+# Column Descriptions
+
+| Column                          | Description                                                              | Type          |
+|---------------------------------|--------------------------------------------------------------------------|---------------|
+| chain                           | The blockchain where the token pair is traded                            | string        |
+| token_pair                      | The identifier of the token pair, e.g., 'USDC-WETH'                      | string        |
+| projects                        | List of DEX projects offering the token pair                             | array(string) |
+| pool_ids                        | Contract addresses of pools containing the token pair                    | array(string) |
+| token_a_address                 | Contract address of the first token in the pair                          | string        |
+| token_b_address                 | Contract address of the second token in the pair                         | string        |
+| one_day_volume                  | 24-hour USD trading volume for the token pair across all pools on all DEXes | double        |
+| seven_day_volume                | 7-day USD trading volume for the token pair across all pools on all DEXes | double        |
+| thirty_day_volume               | 30-day USD trading volume for the token pair across all pools on all DEXes | double        |
+| all_time_volume                 | Total USD trading volume for the token pair since inception across all pools on all DEXes | double        |
+| usd_liquidity                   | Current USD liquidity available in all pools for the token pair on all DEXes | double        |
+| seven_day_volume_liquidity_ratio| 7-day trading volume to liquidity ratio for the token pair  across all pools on all DEXes | double        |

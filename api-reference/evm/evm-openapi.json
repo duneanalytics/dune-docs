@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI for trends API",
-    "description": "API for predefined trends endpoints",
+    "title": "OpenAPI for EVM API",
+    "description": "API for predefined EVM-related endpoints",
     "version": "1.0.0"
   },
   "servers": [
@@ -90,107 +90,107 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                      "execution_id": {
-                        "type": "string",
-                        "description": "Unique identifier for the execution",
-                        "example": "01HT6JP0406V2P27ER1Q5VVGVN"
-                      },
-                      "query_id": { 
-                        "type": "integer",
-                        "description": "Unique identifier for the query",
-                        "example": 3575084
-                      },
-                      "is_execution_finished": {
-                        "type": "boolean",
-                        "description": "Flag to indicate if the execution is finished",
-                        "example": true
-                      },
-                      "state": { 
-                        "type": "string",
-                        "description": "State of the query execution",
-                        "example": "QUERY_STATE_COMPLETED"
-                      },
-                      "submitted_at": {
-                        "type": "string",
-                        "description": "Time when the query was submitted",
-                        "example": "2024-04-16T15:14:43.606076Z"
-                      },
-                      "expires_at": {
-                        "type": "string",
-                        "description": "Time when the query will expire",
-                        "example": "2024-07-15T15:15:31.475503Z"
-                      },
-                      "execution_started_at": {
-                        "type": "string",
-                        "description": "Time when the execution started",
-                        "example": "2024-04-16T15:15:11.247805Z"
-                      },
-                      "execution_ended_at": {
-                        "type": "string",
-                        "description": "Time when the execution ended",
-                        "example": "2024-04-16T15:15:31.4755Z"
-                      },
-                      "result": {
-                          "type": "object",
-                          "description": "results from query",
-                          "example": {
-                            "rows": [
-                              {
-                                "blockchain": "ethereum",
-                                "contract_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-                                "contract_calls": 2700467,
-                                "contract_name": "Tether_USD",
-                                "contract_project": "Tether",
-                                "created_time": "2017-11-28 00:41:21.000 UTC",
-                                "deployed_days_ago": 2314,
-                                "deployer": "0x36928500bc1dcd7af6a2b4008875cc336b927d57",
-                                "token_standard": null,
-                                "transaction_calls": 3311351,
-                                "unique_callers": 937948,
-                                "unique_contract_callers": 85191,
-                                "usd_value_recieved": 1830950.412353698
-                              }
-                            ]
-                        }
-                      },
-                      "metadata": {
-                        "type": "object",
-                        "description": "metadata about the results", 
-                        "example": {
-                          "column_names": [
-                              "contract_address",
-                              "blockchain",
-                              "deployer",
-                              "contract_project",
-                              "contract_name",
-                              "created_time",
-                              "deployed_days_ago",
-                              "token_standard",
-                              "usd_value_recieved",
-                              "transaction_calls",
-                              "unique_callers",
-                              "contract_calls",
-                              "unique_contract_callers"
-                          ],
-                          "row_count": 1,
-                          "result_set_bytes": 440,
-                          "total_row_count": 994180,
-                          "total_result_set_bytes": 155079150,
-                          "datapoint_count": 13,
-                          "pending_time_millis": 48645,
-                          "execution_time_millis": 96350
-                        }
-                      },
-                      "next_uri": {
-                        "type": "string",
-                        "description": "URI to get the next set of results",
-                        "example": "https://api.dune.com/api/v1/execution/01HT6JP0406V2P27ER1Q5VVGVN/results?filters=blockchain%3D%22ethereum%22&limit=1&offset=1&sort_by=transaction_calls+desc"
-                      },
-                      "next_offset": {
-                        "type": "integer",
-                        "description": "Offset to get the next set of results",
-                        "example": 10
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": "01HT6JP0406V2P27ER1Q5VVGVN"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3575084
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-04-16T15:14:43.606076Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-07-15T15:15:31.475503Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-04-16T15:15:11.247805Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-04-16T15:15:31.4755Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "blockchain": "ethereum",
+                            "contract_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                            "contract_calls": 2700467,
+                            "contract_name": "Tether_USD",
+                            "contract_project": "Tether",
+                            "created_time": "2017-11-28 00:41:21.000 UTC",
+                            "deployed_days_ago": 2314,
+                            "deployer": "0x36928500bc1dcd7af6a2b4008875cc336b927d57",
+                            "token_standard": null,
+                            "transaction_calls": 3311351,
+                            "unique_callers": 937948,
+                            "unique_contract_callers": 85191,
+                            "usd_value_recieved": 1830950.412353698
+                          }
+                        ]
                       }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "metadata about the results",
+                      "example": {
+                        "column_names": [
+                          "contract_address",
+                          "blockchain",
+                          "deployer",
+                          "contract_project",
+                          "contract_name",
+                          "created_time",
+                          "deployed_days_ago",
+                          "token_standard",
+                          "usd_value_recieved",
+                          "transaction_calls",
+                          "unique_callers",
+                          "contract_calls",
+                          "unique_contract_callers"
+                        ],
+                        "row_count": 1,
+                        "result_set_bytes": 440,
+                        "total_row_count": 994180,
+                        "total_result_set_bytes": 155079150,
+                        "datapoint_count": 13,
+                        "pending_time_millis": 48645,
+                        "execution_time_millis": 96350
+                      }
+                    },
+                    "next_uri": {
+                      "type": "string",
+                      "description": "URI to get the next set of results",
+                      "example": "https://api.dune.com/api/v1/execution/01HT6JP0406V2P27ER1Q5VVGVN/results?filters=blockchain%3D%22ethereum%22&limit=1&offset=1&sort_by=transaction_calls+desc"
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "description": "Offset to get the next set of results",
+                      "example": 10
+                    }
                   }
                 }
               }

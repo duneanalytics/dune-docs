@@ -779,10 +779,19 @@
           ]
         },
         {
-          "group": "EVM Contracts",
+          "group": "DEX",
           "pages": [
-            "api-reference/evm/endpoint/contracts"
+            "api-reference/dex/endpoint/dex_pair",
+            "api-reference/dex/endpoint/dex_ohlc"
           ]
+        },
+        {
+          "group": "EVM Contracts",
+          "pages": ["api-reference/evm/endpoint/contracts"]
+        },
+        {
+          "group": "Markets",
+          "pages": ["api-reference/markets/endpoint/marketplace_marketshare"]
         },
         {
           "group": "Uploaded Tables",
@@ -835,7 +844,6 @@
         "datashare/datashare",
         "datashare/datashare-trial",
         "datashare/datashare-faqs"
-
       ]
     }
   ],
