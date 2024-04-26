@@ -652,6 +652,7 @@
                         "rows": [
                           {
                             "word_raw": "DEGEN",
+                            "related_symbol":"🎩",
                             "activity_level": 24807277.002432942,
                             "activity_wow": -22679691.683773145,
                             "blockchain": "base",
@@ -695,6 +696,7 @@
                       "example": {
                         "column_names": [
                             "word_raw",
+                            "related_symbol",
                             "token_contract_address",
                             "blockchain",
                             "deployed_days_ago",
