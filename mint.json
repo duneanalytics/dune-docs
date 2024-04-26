@@ -775,7 +775,8 @@
           "group": "Farcaster",
           "pages": [
             "api-reference/farcaster/endpoint/farcaster_users",
-            "api-reference/farcaster/endpoint/farcaster_channels"
+            "api-reference/farcaster/endpoint/farcaster_channels",
+            "api-reference/farcaster/endpoint/farcaster_memecoins"
           ]
         },
         {

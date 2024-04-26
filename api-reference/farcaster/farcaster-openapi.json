@@ -534,6 +534,263 @@
           }
         }
       }
+    },
+    "/v1/farcaster/trends/memecoins": {
+      "get": {
+        "summary": "get trending farcaster memecoins that have been casted",
+        "description": "get trending farcaster memecoins that have been casted",
+        "operationId": "trendingMemecoins",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10,
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the Filtering section of the doc. This parameter is incompatible with `sample_count`."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": "01HWBTTTV89PHNTNW7BS9TBZ27"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3662242
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-04-16T15:14:43.606076Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-07-15T15:15:31.475503Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-04-16T15:15:11.247805Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-04-16T15:15:31.4755Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "word_raw": "DEGEN",
+                            "activity_level": 24807277.002432942,
+                            "activity_wow": -22679691.683773145,
+                            "blockchain": "base",
+                            "buy_volume_week": 69449195.66125394,
+                            "buy_volume_wow": -19452047.862753436,
+                            "casters": 10374,
+                            "casters_wow": -2641,
+                            "casts": 138232,
+                            "casts_wow": -83908,
+                            "channels": 476,
+                            "channels_wow": -182,
+                            "day_pnl": -0.09455416194472792,
+                            "deployed_days_ago": 109,
+                            "fdv": 983543127.8897532,
+                            "financial_score": 627.74,
+                            "liquidity_usd": 9726985.075777544,
+                            "liquidity_wow": -237483.66550707817,
+                            "median_price": 0.02661,
+                            "month_pnl": 0.7140550503404604,
+                            "percent_recipient_casters": 0.9253903990746096,
+                            "percent_recipient_wow": 0.022585942678143955,
+                            "recipient_casters": 9600,
+                            "recipient_casters_wow": -2150,
+                            "rolling_one_months_trades": 848654,
+                            "sell_volume_week": 68724401.02564587,
+                            "sell_volume_wow": -20176842.498361513,
+                            "social_score": 491.56,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "total_supply": 36965730333,
+                            "total_volume_week": 138173596.6868998,
+                            "total_volume_wow": -39628890.36111495,
+                            "transfers_one_month": 3583424,
+                            "week_pnl": -0.18248784976233895
+                          }
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Metadata for the query",
+                      "example": {
+                        "column_names": [
+                            "word_raw",
+                            "token_contract_address",
+                            "blockchain",
+                            "deployed_days_ago",
+                            "social_score",
+                            "financial_score",
+                            "casters",
+                            "casters_wow",
+                            "percent_recipient_casters",
+                            "percent_recipient_wow",
+                            "recipient_casters",
+                            "recipient_casters_wow",
+                            "casts",
+                            "casts_wow",
+                            "channels",
+                            "channels_wow",
+                            "activity_level",
+                            "activity_wow",
+                            "total_supply",
+                            "fdv",
+                            "median_price",
+                            "day_pnl",
+                            "week_pnl",
+                            "month_pnl",
+                            "liquidity_usd",
+                            "liquidity_wow",
+                            "rolling_one_months_trades",
+                            "transfers_one_month",
+                            "total_volume_week",
+                            "total_volume_wow",
+                            "buy_volume_week",
+                            "buy_volume_wow",
+                            "sell_volume_week",
+                            "sell_volume_wow"
+                        ],
+                        "row_count": 1,
+                        "result_set_bytes": 1029,
+                        "total_row_count": 51,
+                        "total_result_set_bytes": 19912,
+                        "datapoint_count": 34,
+                        "pending_time_millis": 1445,
+                        "execution_time_millis": 417705
+                      }
+                    },
+                    "next_uri": {
+                      "type": "string",
+                      "description": "URI to get the next set of results",
+                      "example": "https://api.dune.com/api/v1/execution/01HWBTTTV89PHNTNW7BS9TBZ27/results?limit=1&offset=1&sort_by=casters+desc"
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "description": "Offset to get the next set of results",
+                      "example": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Core request validation failed, make sure you've given required columns and followed formatting rules for the CSV (no special characters or digits in column names)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
