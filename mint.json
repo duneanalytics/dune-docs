@@ -829,10 +829,7 @@
         },
         {
           "group": "DEX",
-          "pages": [
-            "api-reference/dex/endpoint/dex_pair",
-            "api-reference/dex/endpoint/dex_ohlc"
-          ]
+          "pages": ["api-reference/dex/endpoint/dex_pair"]
         },
         {
           "group": "EVM Contracts",

@@ -50,7 +50,7 @@ Returns an execution_id associated with the triggered query execution and the st
 
 ```bash cURL
 curl -X POST "https://api.dune.com/api/v1/query/{{query_id}}/execute"   \
-  -H "X-Dune-API-Key: {{api_key}}                                       \
+  -H "X-Dune-API-Key: {{api_key}}"                                       \
   -H "Content-Type: application/json"                                   \
   -d '{"query_parameters": {"param1":24}, "performance": "large"}'
 ```
