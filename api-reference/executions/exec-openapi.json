@@ -408,7 +408,7 @@
           },
           {
             "in": "query",
-            "name": "params.<key>",
+            "name": "params",
             "required": false,
             "explode": true,
             "style": "deepObject",
