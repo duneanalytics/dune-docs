@@ -772,6 +772,10 @@
       "group": "General API Endpoints",
       "pages": [
         {
+          "group": "Blockchains",
+          "pages": ["api-reference/tables/blockchain/insert"]
+        },
+        {
           "group": "Uploaded Tables",
           "pages": [
             "api-reference/tables/endpoint/create",
