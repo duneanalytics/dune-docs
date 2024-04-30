@@ -1,17 +1,21 @@
 ---
-title: Data freshness
-description: How often is the data on Dune updated?
+title: Data Freshness
+description: Understand the frequency of updates for various data types on Dune.
 icon: "clock"
 ---
 
-Data on Dune is updated in three stages: **Raw data**, **Decoded data**, and **Curated data**. The frequency of updates varies depending on the type of data.
+At Dune, data is continually refreshed through a multi-stage process to ensure accuracy and reliability. The three main stages of data updates are: **Raw Data**, **Decoded Data**, and **Curated Data**. The update frequency for each type of data varies based on several factors.
 
+## Raw Data
 
-## Raw data
+Raw data consists of tables such as `ethereum.blocks` or `ethereum.transactions` that are directly ingested from the blockchain. The frequency of raw data updates is primarily influenced by the blockchain's frequency of producing blocks and its likelihood of a reorg. 
 
-Raw data are tables like `ethereum.blocks` or `ethereum.transactions` that are directly ingested from the blockchain. 
-The raw data ingestion in Dune depends on the historical likelihood of a reorg on any given Chain. 
-For example, Optimism, Arbitrum and Avalanche ingestion times are lower than Polygon or Ethereum because the former chains do not face the possibility of reorgs. The latter chains have a significant potential for reorgs, therefore we wait for these potential reorgs to pass and only then start ingesting the data in our database.
+### Blockchain Dependence
+
+- **Chains like Optimism, Arbitrum, and Avalanche**: These blockchains exhibit lower chances of undergoing reorgs. As a result, data ingestion occurs more swiftly since the stability of these chains allows for quicker validation of block data.
+- **Chains like Polygon and Ethereum**: Given their higher propensity for reorgs, there is a deliberate delay in data ingestion. This delay ensures that only stable and reorg-resistant blocks are considered, preventing the ingestion of potentially unstable or reversible transactions.
+
+We do our best to ensure that the data is as fresh as possible while maintaining the integrity of the data. You can find the data freshness of the raw data in the table below.
 
 <div>
   <iframe
@@ -23,7 +27,16 @@ For example, Optimism, Arbitrum and Avalanche ingestion times are lower than Pol
 
 
 ## Decoded Data
-Decoded data are tables like `uniswap_v3_ethereum.Factory_evt_PoolCreated` or `tokens_ethereum.erc20` that are derived from the raw data, but already decode the same to make it easier to work with. This decoding process happens on the fly and is dependent on the volume of data that is being decoded. Usually, this process takes anywhere from 15-60 seconds after we have ingested the raw data.
+
+Decoded data refers to tables such as `uniswap_v3_ethereum.Factory_evt_PoolCreated` or `tokens_ethereum.erc20` that are derived from the raw data. This stage of data processing involves transforming raw blockchain data into more accessible and interpretable formats.
+
+The decoding of data is performed in real-time and is contingent on the volume of data being processed. The typical timeline for decoding is as follows:
+
+- **Time Frame**: Decoding generally occurs within 15 to 60 seconds following the ingestion of raw data.
+- **Dependency on Data Volume**: The specific duration within this range depends on the current data throughput and the complexity of the decoding operations required.
+
+You can find the data freshness of the decoded data in the table below.
+
 
 <div>
   <iframe
@@ -35,7 +48,7 @@ Decoded data are tables like `uniswap_v3_ethereum.Factory_evt_PoolCreated` or `t
 
 # Curated data
 Curated data on Dune are tables like `dex.trades` or `nft.trades` that are derived from the decoded data. They take away the complexity of working with raw or even decoded data and are ready to be used for analysis.
-The data pipelines are defined in this [github repo](https://github.com/duneanalytics/spellbook).
+The data pipelines are defined and documented in this [GitHub repo](https://github.com/duneanalytics/spellbook).
 
 Curated tables are usually scheduled to run once every hour. The runtime of the data models can vary depending on the volume of transactions on any given day, therefore curated datasets are sometimes slower than the usual 1-hour target to update.
 
@@ -47,7 +60,7 @@ Curated tables are usually scheduled to run once every hour. The runtime of the 
   ></iframe>
 </div>
 
-## Community Data
+# Community Data
 
 Several notable 3rd party data providers are uploading their data into Dune. These data providers have their own update schedules and are not controlled by Dune. The data freshness of these providers can be found in the table below.
 
