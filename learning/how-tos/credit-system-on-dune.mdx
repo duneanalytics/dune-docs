@@ -1,36 +1,52 @@
 ---
-title: Credit System on Dune
+title: Understanding Credits on Dune
 description: What is the credit system on Dune and how credits work on Dune
 ---
 
 Dune's operations largely rely on a credit system. This guide will explain the concept of credits, their consumption, and management.
 
-## What are Credits?
-Credits serve as Dune's platform currency, facilitating executions and data access via the API. Opting for better performance or larger data exports will consume more credits.
+## Introduction
+### What are credits?
+Credits are the key to accessing a wide range of functions on the Dune platform. Whether you're delving into data queries or simply exploring dashboards, knowing how credits operate is crucial.
 
-Each month, based on your subscription plan, your account receives a specific credit allocation. Please note that any unused credits will not carry over to the next month.
+### Why are credits important?
+All actions on Dune, from running complex data queries to simply refreshing your view to see the latest insights, consume credits. It's vital for every user, viewer, or creator alike, to be mindful of their credit usage.
 
-For those using Dune in a team account, credits are shared among all team members.
+## Your Credit Allocation
+### 🎟️ Monthly Credit Allowance
+- **Set Number of Credits:** Each month, your subscription plan provides a set allotment of credits.
+- **Top-Up:** Run out of credits? Our 'pay as you go' option lets you add more anytime, ensuring your work is always in flow.
+### 🔄 Rollover Policy
+- **Monthly Refresh:** Credits reset at the start of each billing cycle; they do not roll over to the next month.
+- **Maximize Use:** Plan your activities to maximize the utility of your credits.
+### 👥 Team Accounts
+- **Collective Pool:** All team members draw from a shared pot of credits. Sync up to make the most of your resources.
 
-## What Consumes Credits?
 
-- Executing queries
-- [Scheduling queries](/web-app/query-editor/query-scheduler)
-- [Materializing query results](/query-engine/materialized-views)
-- [Data exports via API](/api-reference/executions/endpoint/get-query-result)
-- [Inserting data into tables](/api-reference/tables/endpoint/insert)
+## Understanding Credit Use on Dune
+Credits power your work on Dune, and here's how they're typically used:
+- [**Queries:**](https://docs.dune.com/web-app/query-editor/query-window) Running and creating queries consumes credits, with the amount varying based on complexity
+- [**Engine Power:**](https://docs.dune.com/query-engine/query-executions#query-engine-size) Larger tasks need more powerful engines, increasing credit usage, which we detail upfront.
+- [**Refreshes:**](https://docs.dune.com/web-app/dashboards#keeping-your-dashboard-up-to-date) Refreshing dashboards or widgets consumes credits; exact numbers are displayed contextually.
+- [**Exports:**](https://docs.dune.com/learning/how-tos/export-data-out) Exporting data costs credits, with higher amounts for larger exports. Estimates are provided beforehand.
+- [**Auto-Runs:**](https://docs.dune.com/web-app/query-editor/query-scheduler) Scheduling queries to run regularly consumes credits each time, with details available in the setup options.
 
-<Note>Opting for larger, more powerful engines will result in higher credit consumption.</Note>
+### Estimating Credit Usage
+Understanding how your activities on Dune consume credits can help you manage your resources more effectively:
+- **Credit Estimates:** Always check for tooltips or on-screen indicators that provide real-time estimates of credit costs before you perform actions.
+- **Simulation Tools:** Use preview features, where available, to simulate actions and understand potential credit consumption without committing.
+- **Active Monitoring:** Keep a regular tab on your credit usage through the dashboard. This helps you avoid unexpected shortages and manage your budget better.
 
 ## Managing Your Credits
-
-To view your current credit usage, hover over the odometer icon at the top of your dashboard. Ensure you're checking within the correct context.
-
-
-
-For a detailed view of credit usage and other quotas, navigate to Settings → Subscriptions.
-
-
-
-If you need additional credits beyond your plan's allocation, utilize the "pay-as-I-go" feature. Adjust the "Limit extra credits" field to set a maximum dollar amount for additional credit purchases. By default, this limit is set to $0.
-
+### Tracking Your Usage
+Hover over the odometer icon in your navigation bar for a quick glance at your credits. Make sure you're looking at the right account context.
+### Detailed Credit Information
+Go to **Settings** → **Subscriptions** for a deeper dive into your credit usage and options.
+### Handling Excess Usage
+Exceeding your monthly allocation? Here's how to handle it:
+1. Turn on the **pay-as-I-go** feature.
+2. Set a cap in the **limit extra credits** field to keep your spending in check.
+## Pro Tips for Managing Credit Use
+- **Plan Ahead:** Think through your data needs to consolidate queries, avoiding unnecessary executions.
+- **Use Off-Peak Hours:** Data-heavy tasks can sometimes cost less when the system is quieter.
+- **Regular Checks:** Monitor your credit meter like a hawk. Adapt your Dune activities to avoid running dry on credits.
