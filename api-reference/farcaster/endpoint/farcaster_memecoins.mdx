@@ -1,0 +1,56 @@
+---
+title: 'Farcaster Memecoins'
+openapi: 'GET /v1/farcaster/trends/memecoins'
+---
+
+<Note>
+- Query can be found [here](https://dune.com/queries/3662242)
+- Scheduled to update every 6 hours
+- You can apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+</Note>
+
+# Use Cases
+
+- Recommend trending memecoins based on farcaster engagement, liquidity, volume, or other onchain activity
+
+# Column Descriptions
+
+Learn more about the score and methodology [in this article](https://read.cryptodatabytes.com/p/a-social-and-financial-study-of-memecoins).
+
+| Column                | Description                                                           | Type    |
+| --------------------- | --------------------------------------------------------------------- | ------- |
+| word_raw              | Ticker symbol of the token                                            | string  |
+| related_symbol        | any symbol or word that is related to the token (i.e. the degen hat or higher arrow)  | string  |
+| token_contract_address| Contract address of the token                                          | string  |
+| blockchain            | Blockchain on which the token is deployed                             | string  |
+| deployed_days_ago     | Number of days since the token was deployed                           | integer |
+| social_score          | Social score of the token                                             | integer |
+| financial_score       | Financial score of the token                                          | integer |
+| casters               | Number of users who have casted the token ticker                            | integer |
+| casters_wow           | Change in the number of casters week over week                        | integer |
+| percent_recipient_casters | Percentage of casters this week that have received the token before | integer |
+| percent_recipient_wow | Change in the percentage of recipient casters week over week           | integer |
+| recipient_casters     | Number of casters this week that have received the token before        | integer |
+| recipient_casters_wow | Change in the number of recipient casters week over week               | integer |
+| casts                 | Number of times the token ticker has been casted                             | integer |
+| casts_wow             | Change in the number of casts week over week                           | integer |
+| channels              | Number of channels the token ticker has been casted in                         | integer |
+| channels_wow          | Change in the number of channels week over week                        | integer |
+| activity_level        | Activity level of the token                                           | integer |
+| activity_wow          | Change in the activity level week over week                           | integer |
+| total_supply          | Total supply of the token                                              | integer |
+| fdv                   | Fully diluted valuation of the token                                   | integer |
+| median_price          | Median price of the token                                              | integer |
+| day_pnl               | Profit and loss of the token price in the last 24 hours                      | integer |
+| week_pnl              | Profit and loss of the token price in the last 7 days                        | integer |
+| month_pnl             | Profit and loss of the token price in the last 30 days                       | integer |
+| liquidity_usd         | Liquidity of the token in USD                                          | integer |
+| liquidity_wow         | Change in liquidity week over week                                     | integer |
+| rolling_one_months_trades | Number of trades in the last month                                  | integer |
+| transfers_one_month   | Number of token transfers in the last month                            | integer |
+| total_volume_week     | Total trading volume of the token in the last 7 days                   | integer |
+| total_volume_wow      | Change in total trading volume week over week                          | integer |
+| buy_volume_week       | Total buying volume of the token in the last 7 days                    | integer |
+| buy_volume_wow        | Change in total buying volume week over week                           | integer |
+| sell_volume_week      | Total selling volume of the token in the last 7 days                   | integer |
+| sell_volume_wow       | Change in total selling volume week over week                          | integer |

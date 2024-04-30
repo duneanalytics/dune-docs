@@ -1,0 +1,167 @@
+---
+title: 'Insert Data (beta)'
+openapi: 'POST /v1/blockchain/{chain}/{table_name}/insert'
+---
+
+If the table does not exist on the first insert, the endpoint will create a table for your namespace and insert the data from the file.
+
+## Supported tables
+The endpoint supports inserting data into the following tables with the specified schemas:
+
+<AccordionGroup>
+  <Accordion title="Blocks">
+    | Name | Type | Nullable |
+    |------|------|----------|
+    | date | date | false |
+    | time | timestamp | |
+    | number | bigint | |
+    | gas_limit | uint256 | |
+    | gas_used | uint256 | |
+    | difficulty | uint256 | |
+    | total_difficulty | uint256 | |
+    | size | bigint | |
+    | base_fee_per_gas | bigint | |
+    | state_root | varbinary | |
+    | transactions_root | varbinary | |
+    | receipts_root | varbinary | |
+    | hash | varbinary | |
+    | parent_hash | varbinary | |
+    | miner | varbinary | |
+    | nonce | varbinary | |
+    | extra_data | varbinary | |
+    | l1_batch_number | bigint | |
+    | l1_batch_timestamp | timestamp | |
+  </Accordion>
+  <Accordion title="Logs">
+    | Name | Type | Nullable |
+    |------|------|----------|
+    | block_date | date | false |
+    | block_time | timestamp | |
+    | block_number | bigint | |
+    | block_hash | varbinary | |
+    | contract_address | varbinary | |
+    | topic0 | varbinary | |
+    | topic1 | varbinary | |
+    | topic2 | varbinary | |
+    | topic3 | varbinary | |
+    | data | varbinary | |
+    | tx_hash | varbinary | |
+    | index | integer | |
+    | tx_index | integer | |
+    | tx_from | varbinary | |
+    | tx_to | varbinary | |
+    | l1_batch_number | bigint | |
+    | l1_batch_tx_index | bigint | |
+  </Accordion>
+  <Accordion title="Traces">
+    | Name | Type | Nullable |
+    |------|------|----------|
+    | block_date | date | false |
+    | block_time | timestamp | |
+    | block_number | bigint | |
+    | value | uint256 | |
+    | gas | uint256 | |
+    | gas_used | uint256 | |
+    | call_type | varchar | |
+    | success | boolean | |
+    | revert_reason | varchar | |
+    | error | varchar | |
+    | tx_success | boolean | |
+    | type | varchar | |
+    | block_hash | varbinary | |
+    | tx_index | integer | |
+    | sub_traces | bigint | |
+    | tx_hash | varbinary | |
+    | from | varbinary | |
+    | to | varbinary | |
+    | trace_address | array[bigint] | |
+    | address | varbinary | |
+    | code | varbinary | |
+    | input | varbinary | |
+    | output | varbinary | |
+    | refund_address | varbinary | |
+    | tx_from | varbinary | |
+    | tx_to | varbinary | |
+  </Accordion>
+  <Accordion title="Transactions">
+    | Name | Type | Nullable |
+    |------|------|----------|
+    | block_date | date | false |
+    | block_time | timestamp | |
+    | value | uint256 | |
+    | block_number | bigint | |
+    | gas_limit | uint256 | |
+    | gas_price | uint256 | |
+    | gas_used | uint256 | |
+    | max_fee_per_gas | bigint | |
+    | max_priority_fee_per_gas | bigint | |
+    | priority_fee_per_gas | bigint | |
+    | nonce | bigint | |
+    | index | bigint | |
+    | success | boolean | |
+    | type | varchar | |
+    | chain_id | varchar | |
+    | from | varbinary | |
+    | to | varbinary | |
+    | block_hash | varbinary | |
+    | data | varbinary | |
+    | hash | varbinary | |
+    | l1_gas_used | bigint | |
+    | l1_gas_price | bigint | |
+    | l1_fee | bigint | |
+    | l1_fee_scalar | double | |
+    | l1_block_number | bigint | |
+    | l1_timestamp | bigint | |
+    | l1_tx_origin | varbinary | |
+  </Accordion>
+</AccordionGroup>
+
+
+<Note>
+- The data in the files must conform to the schema, and must use the same column names as the schema.
+- One successful `/insert` request consumes 10 credits.
+- The maximum request size is 1.2GB
+</Note>
+
+
+## Supported filetypes
+### CSV files (`Content-Type: text/csv`)
+CSV files must use a comma as delimiter, and the column names in the header must match the column names of the table.
+
+### JSON files (`Content-Type: application/x-ndjson`)
+These are files where each line is a complete JSON object which creates one table row.
+Each line must have keys that match the column names of the table.
+
+
+<RequestExample>
+```bash curl
+curl --request POST \
+  --url https://api.dune.com/api/v1/blockchain/my_chain/blocks/insert \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
+  --header 'Content-Type: text/csv' \
+  --upload-file blocks.csv
+```
+
+
+```python Python
+import requests
+
+
+url = "https://api.dune.com/api/v1/blockchain/my_chain/blocks/insert"
+
+
+headers = {
+   "X-DUNE-API-KEY": "{api_key}", 
+   "Content-Type": "text/csv"
+}
+
+
+with open("./blocks.csv", "rb") as data:
+ response = requests.request("POST", url, data=data, headers=headers)
+
+
+print("Response:", response.status_code)
+print("Response Body:", response.content)
+```
+
+</RequestExample>

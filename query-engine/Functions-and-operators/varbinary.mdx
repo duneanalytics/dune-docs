@@ -28,7 +28,6 @@ and tx_hash IN (0x3e3c558e7f723e3bb7de1d8f5f920ca206e3e878984296a2b8e6af2969003a
 <tip> Varbinary functions were previously called byte array functions. You might find e.g. `bytearray_to_uint256` in some of our older queries. These functions are identical to the varbinary functions and work as aliases. </tip>
 
 
-
 ## Varbinary to Numeric Functions
 
 The varbinary conversion functions throw an overflow exception if the varbinary is larger than the number of bytes supported of the type, even if the most significant bytes are all zero. It is possible to use `varbinary_ltrim` in order to trim the zero bytes from the left.
@@ -141,6 +140,21 @@ and tx_hash IN (0x3e3c558e7f723e3bb7de1d8f5f920ca206e3e878984296a2b8e6af2969003a
 **``bytea2numeric(varbinary)``** → bigint
 
 This function has been deprecated. It is an alias for `varbinary_to_bigint`.
+
+## Numeric to Varbinary
+
+#### Converting uint256 to varbinary
+
+**``varbinary_ltrim(cast(uint256 as varbinary))``** → varbinary
+
+Converts a uint256 type number into varbinary.
+
+```sql
+select varbinary_ltrim(
+        cast(UINT256 '101691398105299641525402875323276528467270701520' as varbinary)
+    ) as vb
+```
+
 
 ## Varbinary to text
 

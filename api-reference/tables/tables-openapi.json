@@ -309,6 +309,103 @@
           }
         }
       }
+    },
+    "/v1/blockchain/{chain}/{table_name}/insert": {
+      "post": {
+        "tags": [
+          "table"
+        ],
+        "summary": "Insert data into a Dune table.",
+        "description": "Insert blockchain data into a table with a predefined schema.",
+        "parameters": [
+          {
+            "name": "chain",
+            "in": "path",
+            "description": "The blockchain of the table to insert into (e.g. `my_chain`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_name",
+            "in": "path",
+            "description": "The name of one of the supported tables to insert into (e.g. `blocks`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The file to insert into the table.",
+          "content": {
+            "text/csv": {},
+            "application/x-ndjson": {}
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertTableResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid content type 'text/plain'. We support CSV (Content-Type: text/csv) and newline delimited JSON (Content-Type: application/x-ndjson)."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "You are not authorized to create a table under the 'my_chain' namespace. Your accessible namespaces: 'other_namespace'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -431,7 +528,19 @@
             "example": "Table my_user.interest_rates successfully deleted"
           }
         }
+      },
+      "BlockchainTablesSchemas": {
+        "type": "object",
+        "properties": {
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Column"
+            }
+
       }
+    }
+  }
     },
     "securitySchemes": {
       "api_key": {

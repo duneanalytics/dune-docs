@@ -1,0 +1,2443 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI for DEX API",
+    "description": "API for predefined DEX/AMM related endpoints",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dune.com/api"
+    }
+  ],
+  "paths": {
+    "/v1/dex/pairs/{chain}": {
+      "get": {
+        "summary": "Get DEX pair statistics for a given chain",
+        "description": "Given a blockchain, retrieves essential metadata and statistical data for token pairs. Metadata encompasses all pool addresses associated with the token pair, the DEXs or projects where they are available, and their token addresses. Key statistics provided include one-day, seven-day, and thirty-day trading volumes, USD liquidity, and the seven-day volume-to-liquidity ratio.",
+        "operationId": "dexPairs",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "path",
+            "name": "chain",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "chain name (use Dune namespace, i.e. ethereum, solana, bnb, polygon, optimsm, etc)"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10,
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the Filtering section of the doc. This parameter is incompatible with `sample_count`."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": "01HW6N7VF1H7VYQ91GC0NP673E"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3568055
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-04-23T23:39:15.297947Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-07-22T23:39:29.38954Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-04-23T23:39:18.83657Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-04-23T23:39:29.389539Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "all_time_volume": 719158248605.0413,
+                            "chain": "ethereum",
+                            "one_day_volume": 225530031.24242783,
+                            "pool_ids": [
+                              "0x5311b0bfd1eb656522ef75ea4d22ce8bcfa6fd42",
+                              "0xcbed6f3ccec8446f639bd2fa176c671c1972494b",
+                              "0x655edce464cc797526600a462a8154650eee4b77",
+                              "0x76730720bc5ef699e8e6f691065948be2fb3632e",
+                              "0x1373e57f764a7944bdd7a4bd5ca3007d496934da",
+                              "0x7f86bf177dd4f3494b841a37e810a34dd56c829b",
+                              "0x2e8135be71230c6b1b4045696d41c09db0414226",
+                              "0xcbcf7be78c33b513e95d8708ee422b217aec90f1",
+                              "0x68a241796628ecf44e48f0533fb00d07dd3419d2",
+                              "0x1445f32d1a74872ba41f3d8cf4022e9996120b31",
+                              "0xe5d505055a4c607cf9049b0629c7f069abaa8dbf",
+                              "0x9446625e3090d155fd7c74752edf4e87cf44de05",
+                              "0x3e0c31c3d4067ed5d7d294f08b79b6003b7bf9c8",
+                              "0x8a649274e4d777ffc6851f13d23a86bbfa2f2fbf",
+                              "0xc0b2b0c5376cb2e6f73b473a7caa341542f707ce",
+                              "0xc537e898cd774e2dcba3b14ea6f34c93d5ea45e1",
+                              "0xab1e2d29699146a2e07c3a1c8ad8cb914a536f7a",
+                              "0x52d611146dc3ea66aea7f047e6c181c7f142e198",
+                              "0x97dec872013f6b5fb443861090ad931542878126",
+                              "0x67f117350eab45983374f4f83d275d8a5d62b1bf",
+                              "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+                              "0xb93f696e5c46b6772fc2ff65e459cf9685fac782",
+                              "0x2fe16dd18bba26e457b7dd2080d5674312b026a2",
+                              "0xe7b1d394f3b40abeaa0b64a545dbcf89da1ecb3f",
+                              "0x5426178799ee0a0181a89b4f57efddfab49941ec",
+                              "0x8287913adfa69adca06beb00deab68a99c9e8d46",
+                              "0x2ee268541b96b2b8129a06b006fd247b467f6118",
+                              "0x6e1fbeeaba87bae1100d95f8340dc27ad7c8427b",
+                              "0xeeb82fa092e3cecb1ba99f8342775b70efb40cf8",
+                              "0xf859a6c44f18aa5f7fc71387b603c6b63a0dbe04",
+                              "0x3aa370aacf4cb08c7e1e7aa8e8ff9418d73c7e0f",
+                              "0xec577a919fca1b682f584a50b1048331ef0f30dd",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0xeed9f9795bf12739cf4f50f8c84ab9f13ada8129",
+                              "0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+                              "0xaf59044157ed99f3630c4c67f8870e09a5d1a6e2",
+                              "0x7bea39867e4169dbe237d55c8242a8f2fcdcc387",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0x72a8f00913226b49e63cb7f27bc31ee5cfd09646",
+                              "0x496d3fe47211521eca1fff521d1f8022b0287c9f",
+                              "0xe969991ce475bcf817e01e1aad4687da7e1d6f83",
+                              "0x1f06f01fdbdcdf1a6604878cbd90e88ad6d3c654",
+                              "0x1ac1a8feaaea1900c4166deeed0c11cc10669d36",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0x4572f2554421bd64bef1c22c8a81840e8d496bea",
+                              "0x760afd4460089edbb77f71149f6fe1d7554c5450",
+                              "0x20e95253e54490d8d30ea41574b24f741ee70201",
+                              "0xc50cb225e0f45e814fd41bcb3a120463ab1f04c3",
+                              "0xd772227d51fb33802cab2cd641cedf708f0e7235",
+                              "0x96646936b91d6b9d7d0c47c496afbf3d6ec7b6f8",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0x75c23271661d9d143dcb617222bc4bec783eff34",
+                              "0x11a653ddfbb61e0feff5484919f06d9d254bf65f",
+                              "0xcb5cde8da12555bf770e185e8e323290e5c443d4",
+                              "0x2471de1547296aadb02cc1af84afe369b6f67c87",
+                              "0x9b208194acc0a8ccb2a8dcafeacfbb7dcc093f81",
+                              "0x763d3b7296e7c9718ad5b058ac2692a19e5b3638",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb",
+                              "0xc88b0e9cbfdffc1ceac078321442d546874eb3ef",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x012245db1919bbb6d727b9ce787c3169f963a898",
+                              "0x397ff1542f962076d0bfe58ea045ffa2d347aca0",
+                              "0xf4d8c95478d9fb81c3ba863353b19f5484e799ed",
+                              "0x9ca2a439810524250e543ba8fb6e88578af242bc",
+                              "0x1be21dd1fa2aced16656b7d765b88afa6853cc98",
+                              "0xe7ce624c00381b4b7abb03e633fb4acac4537dd6",
+                              "0xa5910940b97b7b8771a01b202583fd9331cb8be3",
+                              "0x4d6c17259332b3a1229bc4938894a7d295f90aeb",
+                              "0x6b3db695d5a79742f5daf96fec7aff39db28bc84",
+                              "0xe02e8ddecbe302ba1a40107c726e3ee889b0ff10",
+                              "0x02e1300a7e6c3211c65317176cf1795f9bb1daab",
+                              "0x660f30293df5e2506b6a2e09ce64c1454eebd9a4",
+                              "0x69d460e01070a7ba1bc363885bc8f4f0daa19bf5",
+                              "0x0887aca1f6acadba3912ddd83a881650c5a53de6",
+                              "0x5f752aa9e748ffc007a15b7ca0fad8f2127f186c",
+                              "0x032d9bc3f3c1042b431f29df63aaa547f5ed6ee6",
+                              "0x265b6d1a6c12873a423c177eba6dd2470f40a3b5",
+                              "0xa51831e33a1ac245d327ff92def377e5e681c9cc",
+                              "0xaad387f18e015cf9be4bdf96854845be51ddc977",
+                              "0xc45a95642bc59df699364237b80057eadc8d8a14",
+                              "0x8762cb30fee5661521bd21cedbe64c5075275f2d",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                              "0x156d96eac6fe0e403428379c2d891c17a24c77f9",
+                              "0xd0382ad6fe3759ab65fc4bc435f47045ffea77c7",
+                              "0x2257aaac34bcb27900291f7b84ee2565a6cbac57",
+                              "0x35644fb61afbc458bf92b15add6abc1996be5014",
+                              "0x0d88b55317516b84e78fbba7cde3f910d5686901",
+                              "0x6b0cc136f7babd971b5decd21690be65718990e2",
+                              "0xa87e10cb085512931ccd277338e66cdacb52ca79",
+                              "0xcc12532e95c2a6a4c53af153b9b739a3cc9218a7",
+                              "0x6f0ed6f346007563d3266de350d174a831bde0ca",
+                              "0x21e7fd84385d47076208ca3ba993ecf292691394",
+                              "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8",
+                              "0xe7b0ce0526fbe3969035a145c9e9691d4d9d216c",
+                              "0xe6c2e229c763ed3e1d5d57b3648aeb1d4011eacd"
+                            ],
+                            "projects": [
+                              "curve",
+                              "carbon_defi",
+                              "uniswap",
+                              "integral",
+                              "verse_dex",
+                              "defiswap",
+                              "pancakeswap",
+                              "0x API",
+                              "shibaswap",
+                              "balancer",
+                              "airswap",
+                              "dodo",
+                              "maverick",
+                              "bancor",
+                              "sushiswap",
+                              "apeswap",
+                              "clipper"
+                            ],
+                            "seven_day_volume": 2238565201.534937,
+                            "seven_day_volume_liquidity_ratio": 582.509942102559,
+                            "thirty_day_volume": 12411887006.320002,
+                            "token_a_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_b_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                            "token_pair": "USDC-WETH",
+                            "usd_liquidity": 368924620.5338033
+                          },
+                          {
+                            "all_time_volume": 457686715301.6169,
+                            "chain": "ethereum",
+                            "one_day_volume": 155330005.34512585,
+                            "pool_ids": [
+                              "0xc50cb225e0f45e814fd41bcb3a120463ab1f04c3",
+                              "0x81b7f92c7b7d9349b989b4982588761bfa1aa627",
+                              "0x7858e59e0c01ea06df3af3d20ac7b0003275d4bf",
+                              "0x06364f10b501e868329afbc005b3492902d6c763",
+                              "0x2dded6da1bf5dbdf597c45fcfaa3194e53ecfeaf",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0x06cb22615ba53e60d67bf6c341a0fd5e718e1655",
+                              "0xc9c32cd16bf7efb85ff14e0c8603cc90f6f2ee49",
+                              "0x46557085e28bcc6d8f653a9ee84c6c9b67642b93",
+                              "0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7",
+                              "0x42d7025938bec20b69cbae5a77421082407f053a",
+                              "0x4807862aa8b2bf68830e4c8dc86d0e9a998e085a",
+                              "0xaa5a67c256e27a5d80712c51971408db3370927d",
+                              "0xe6b5cc1b4b47305c58392ce3d359b10282fc36ea",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0x3252efd4ea2d6c78091a1f43982ee2c3659cc3d1",
+                              "0x8038c01a0390a8c547446a0b2c18fc9aefecc10c",
+                              "0x2e9c6dcdca22a5952a88c4b18edb5b54c5155bc9",
+                              "0xe8d7a52aabe8a0569314f28e90fdb8544860a424",
+                              "0xfa6e8e97ececdc36302eca534f63439b1e79487b",
+                              "0x7abd51bba7f9f6ae87ac77e1ea1c5783ada56e5c",
+                              "0x890f4e345b1daed0367a877a1612f86a1f86985f",
+                              "0x3041cbd36888becc7bbcbc0045e3b1f144466f5f",
+                              "0x8474ddbe98f5aa3179b3b3f5942d724afcdec9f6",
+                              "0xc270b3b858c335b6ba5d5b10e2da8a09976005ad",
+                              "0x04c8577958ccc170eb3d2cca76f9d51bc6e42d8f",
+                              "0xbd482ffb3e6e50dc1c437557c3bea2b68f3683ee",
+                              "0xa77d09743f77052950c4eb4e6547e9665299becd",
+                              "0x43b4fdfd4ff969587185cdb6f0bd875c5fc83f8c",
+                              "0x4f062658eaaf2c1ccf8c8e36d6824cdf41167956",
+                              "0x79a8c46dea5ada233abaffd40f3a0a2b1e5a4f27",
+                              "0x06df3b2bbb68adc8b0e302443692037ed9f91b42",
+                              "0x892d701d94a43bdbcb5ea28891daca2fa22a690b",
+                              "0x6491f4cf9c084ef8fc055eaaf735bdceccf69370",
+                              "0xed279fdd11ca84beef15af5d39bb4d4bee23f0ca",
+                              "0xe7b0ce0526fbe3969035a145c9e9691d4d9d216c",
+                              "0x5b3b5df2bf2b6543f78e053bd91c4bdd820929f1",
+                              "0xecd5e75afb02efa118af914515d6521aabd189f1",
+                              "0x3ef6a01a0f81d6046290f3e2a8c5b843e738e604",
+                              "0x1822456fc778419420cee4ef48ab1fa3fc5120fc",
+                              "0x87650d7bbfc3a9f10587d7778206671719d9910d",
+                              "0xee4cf3b78a74affa38c6a926282bcd8b5952818d",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x0f9cb53ebe405d49a0bbdbd291a65ff571bc83e1",
+                              "0x9547429c0e2c3a8b88c6833b58fce962734c0e8c",
+                              "0x79c58f70905f734641735bc61e45c19dd9ad60bc",
+                              "0x618788357d0ebd8a37e763adab3bc575d54c2c7d",
+                              "0x3ab6564d5c214bc416ee8421e05219960504eead",
+                              "0x27a0c7e1d6051c334d1e80ef6f521aa38eb0a448",
+                              "0xc537e898cd774e2dcba3b14ea6f34c93d5ea45e1",
+                              "0x655edce464cc797526600a462a8154650eee4b77",
+                              "0x4572f2554421bd64bef1c22c8a81840e8d496bea",
+                              "0x952ffc4c47d66b454a8181f5c68b6248e18b66ec",
+                              "0xd86a120a06255df8d4e2248ab04d4267e23adfaa",
+                              "0xdebf20617708857ebe4f679508e7b7863a8a8eee",
+                              "0xcc12532e95c2a6a4c53af153b9b739a3cc9218a7",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0x9baa4cb7e2a470a37a984cfeb5a2ba3d07ca9fe5",
+                              "0x3416cf6c708da44db2624d63ea0aaef7113527c6",
+                              "0x9ca2a439810524250e543ba8fb6e88578af242bc",
+                              "0xceaf7747579696a2f0bb206a14210e3c9e6fb269",
+                              "0x8353157092ed8be69a9df8f95af097bbf33cb2af",
+                              "0x3a70dfa7d2262988064a2d051dd47521e43c9bdd",
+                              "0x52ea46506b9cc5ef470c5bf89f17dc28bb35d85c",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0x5a6a4d54456819380173272a5e8e9b9904bdf41b",
+                              "0x306121f1344ac5f84760998484c0176d7bfb7134",
+                              "0x1033812efec8716bbae0c19e5678698d25e26edf",
+                              "0x8ee017541375f6bcd802ba119bddc94dad6911a1",
+                              "0x9f383f91c89cbd649c700c2bf69c2a828af299aa",
+                              "0xa5407eae9ba41422680e2e00537571bcc53efbfd",
+                              "0xe2f2a5c287993345a840db3b0845fbc70f5935a5",
+                              "0xd0b2f5018b5d22759724af6d4281ac0b13266360",
+                              "0x6ec472b613012a492693697fa551420e60567ea7",
+                              "0x3e01dd8a5e1fb3481f0f589056b428fc308af0fb",
+                              "0xc9f93163c99695c6526b799ebca2207fdf7d61ad",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0xd632f22692fac7611d2aa1c0d552930d43caed3b"
+                            ],
+                            "projects": [
+                              "0x API",
+                              "clipper",
+                              "sushiswap",
+                              "uniswap",
+                              "balancer",
+                              "defiswap",
+                              "bancor",
+                              "verse_dex",
+                              "carbon_defi",
+                              "pancakeswap",
+                              "airswap",
+                              "kyberswap",
+                              "curve",
+                              "mstable",
+                              "maverick",
+                              "integral",
+                              "dodo"
+                            ],
+                            "seven_day_volume": 1375465626.851398,
+                            "seven_day_volume_liquidity_ratio": 598.5019267025988,
+                            "thirty_day_volume": 7409623634.7758875,
+                            "token_a_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_b_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                            "token_pair": "USDC-USDT",
+                            "usd_liquidity": 181556281.89857996
+                          },
+                          {
+                            "all_time_volume": 332594074340.3848,
+                            "chain": "ethereum",
+                            "one_day_volume": 92699347.47933117,
+                            "pool_ids": [
+                              "0x9b208194acc0a8ccb2a8dcafeacfbb7dcc093f81",
+                              "0xd0382ad6fe3759ab65fc4bc435f47045ffea77c7",
+                              "0xee60ca08cca968dc1b36e7bbcc779efe34d7ef62",
+                              "0x31ac258b911af9a0d2669ebdfc4e39d92e96b772",
+                              "0x3ab6564d5c214bc416ee8421e05219960504eead",
+                              "0x21e7fd84385d47076208ca3ba993ecf292691394",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0xc537e898cd774e2dcba3b14ea6f34c93d5ea45e1",
+                              "0x4572f2554421bd64bef1c22c8a81840e8d496bea",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb",
+                              "0x7abd51bba7f9f6ae87ac77e1ea1c5783ada56e5c",
+                              "0x2673099769201c08e9a5e63b25fbaf25541a6557",
+                              "0x1033812efec8716bbae0c19e5678698d25e26edf",
+                              "0x81b7f92c7b7d9349b989b4982588761bfa1aa627",
+                              "0xa87e10cb085512931ccd277338e66cdacb52ca79",
+                              "0xb93f696e5c46b6772fc2ff65e459cf9685fac782",
+                              "0x43b4fdfd4ff969587185cdb6f0bd875c5fc83f8c",
+                              "0xdebf20617708857ebe4f679508e7b7863a8a8eee",
+                              "0x655edce464cc797526600a462a8154650eee4b77",
+                              "0xec577a919fca1b682f584a50b1048331ef0f30dd",
+                              "0x5b3b5df2bf2b6543f78e053bd91c4bdd820929f1",
+                              "0xc50cb225e0f45e814fd41bcb3a120463ab1f04c3",
+                              "0xd7b6d14b76595ab7938c2c781079d787ef3bd5ee",
+                              "0x9ca2a439810524250e543ba8fb6e88578af242bc",
+                              "0x06df3b2bbb68adc8b0e302443692037ed9f91b42",
+                              "0xecd5e75afb02efa118af914515d6521aabd189f1",
+                              "0xed279fdd11ca84beef15af5d39bb4d4bee23f0ca",
+                              "0x178e029173417b1f9c8bc16dcec6f697bc323746",
+                              "0xceaf7747579696a2f0bb206a14210e3c9e6fb269",
+                              "0x2dded6da1bf5dbdf597c45fcfaa3194e53ecfeaf",
+                              "0xa77d09743f77052950c4eb4e6547e9665299becd",
+                              "0x1ee383389c621c37ee5aa476f88413a815083c5d",
+                              "0xa5407eae9ba41422680e2e00537571bcc53efbfd",
+                              "0x79a8c46dea5ada233abaffd40f3a0a2b1e5a4f27",
+                              "0x02e1300a7e6c3211c65317176cf1795f9bb1daab",
+                              "0x0f9cb53ebe405d49a0bbdbd291a65ff571bc83e1",
+                              "0xe2f2a5c287993345a840db3b0845fbc70f5935a5",
+                              "0x9547429c0e2c3a8b88c6833b58fce962734c0e8c",
+                              "0x4f062658eaaf2c1ccf8c8e36d6824cdf41167956",
+                              "0xb04f13750cd764eeceb07e19254564787c9c72bf",
+                              "0xcc12532e95c2a6a4c53af153b9b739a3cc9218a7",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0x3252efd4ea2d6c78091a1f43982ee2c3659cc3d1",
+                              "0xb5214edee5741324a13539bcc207bc549e2491ff",
+                              "0x69d460e01070a7ba1bc363885bc8f4f0daa19bf5",
+                              "0x1f06f01fdbdcdf1a6604878cbd90e88ad6d3c654",
+                              "0x3e01dd8a5e1fb3481f0f589056b428fc308af0fb",
+                              "0xe6b5cc1b4b47305c58392ce3d359b10282fc36ea",
+                              "0xc88b0e9cbfdffc1ceac078321442d546874eb3ef",
+                              "0x618788357d0ebd8a37e763adab3bc575d54c2c7d",
+                              "0x5777d92f208679db4b9778590fa3cab3ac9e2168",
+                              "0xaad387f18e015cf9be4bdf96854845be51ddc977",
+                              "0x8ee017541375f6bcd802ba119bddc94dad6911a1",
+                              "0x5c6a6cf9ae657a73b98454d17986af41fc7b44ee",
+                              "0xaa5a67c256e27a5d80712c51971408db3370927d",
+                              "0xc0b2b0c5376cb2e6f73b473a7caa341542f707ce",
+                              "0x1b8874baceaafba9ea194a625d12e8b270d77016",
+                              "0xc270b3b858c335b6ba5d5b10e2da8a09976005ad",
+                              "0xae461ca67b15dc8dc81ce7615e0320da1a9ab8d5",
+                              "0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7",
+                              "0x57755f7dec33320bca83159c26e93751bfd30fbe",
+                              "0x06364f10b501e868329afbc005b3492902d6c763",
+                              "0x42d7025938bec20b69cbae5a77421082407f053a",
+                              "0x4807862aa8b2bf68830e4c8dc86d0e9a998e085a",
+                              "0x8038c01a0390a8c547446a0b2c18fc9aefecc10c",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0xe7b0ce0526fbe3969035a145c9e9691d4d9d216c",
+                              "0xd9e497bd8f491fe163b42a62c296fb54caea74b7",
+                              "0x2e9c6dcdca22a5952a88c4b18edb5b54c5155bc9",
+                              "0x3a70dfa7d2262988064a2d051dd47521e43c9bdd",
+                              "0x53dc703b78794b61281812f3a901918253beefee",
+                              "0xa2b47e3d5c44877cca798226b7b8118f9bfb7a56",
+                              "0x890f4e345b1daed0367a877a1612f86a1f86985f",
+                              "0x5a6a4d54456819380173272a5e8e9b9904bdf41b",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0x6870f9b4dd5d34c7fc53d0d85d9dbd1aab339bf7",
+                              "0xbd482ffb3e6e50dc1c437557c3bea2b68f3683ee",
+                              "0x8474ddbe98f5aa3179b3b3f5942d724afcdec9f6",
+                              "0xbc68fa58930a2f36d37d16f2f7cfebdd2b7902c6",
+                              "0x06cb22615ba53e60d67bf6c341a0fd5e718e1655",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0x52ea46506b9cc5ef470c5bf89f17dc28bb35d85c",
+                              "0xd632f22692fac7611d2aa1c0d552930d43caed3b",
+                              "0xaaf5110db6e744ff70fb339de037b990a20bdace",
+                              "0x1373e57f764a7944bdd7a4bd5ca3007d496934da",
+                              "0x4567fc23d02fc4ba0b960639d43ecfe8cac6e68f",
+                              "0xc74eba6863c11266dcffbbf39de34f5845e0ebe4",
+                              "0x87650d7bbfc3a9f10587d7778206671719d9910d",
+                              "0x72a8f00913226b49e63cb7f27bc31ee5cfd09646",
+                              "0x79c58f70905f734641735bc61e45c19dd9ad60bc",
+                              "0xc9c32cd16bf7efb85ff14e0c8603cc90f6f2ee49",
+                              "0xc45a95642bc59df699364237b80057eadc8d8a14",
+                              "0x3ef6a01a0f81d6046290f3e2a8c5b843e738e604",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0x6c6bc977e13df9b0de53b251522280bb72383700"
+                            ],
+                            "projects": [
+                              "bancor",
+                              "carbon_defi",
+                              "curve",
+                              "mstable",
+                              "clipper",
+                              "0x API",
+                              "defiswap",
+                              "uniswap",
+                              "pancakeswap",
+                              "maverick",
+                              "sushiswap",
+                              "dodo",
+                              "balancer",
+                              "airswap"
+                            ],
+                            "seven_day_volume": 737039227.6180601,
+                            "seven_day_volume_liquidity_ratio": 281.975796372453,
+                            "thirty_day_volume": 3678990033.201309,
+                            "token_a_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+                            "token_b_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_pair": "DAI-USDC",
+                            "usd_liquidity": 248314669.2889558
+                          },
+                          {
+                            "all_time_volume": 116709024541.30284,
+                            "chain": "ethereum",
+                            "one_day_volume": 347313.65828850656,
+                            "pool_ids": [
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x3ab6564d5c214bc416ee8421e05219960504eead",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0xc537e898cd774e2dcba3b14ea6f34c93d5ea45e1",
+                              "0x2f9ec37d6ccfff1cab21733bdadede11c823ccb0",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef"
+                            ],
+                            "projects": ["bancor", "0x API", "carbon_defi"],
+                            "seven_day_volume": 7494228.013474621,
+                            "seven_day_volume_liquidity_ratio": 136.4840258342926,
+                            "thirty_day_volume": 74588861.33509746,
+                            "token_a_address": "0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c",
+                            "token_b_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_pair": "BNT-USDC",
+                            "usd_liquidity": 384364.36625934794
+                          },
+                          {
+                            "all_time_volume": 112894833162.56816,
+                            "chain": "ethereum",
+                            "one_day_volume": 8420129.259111162,
+                            "pool_ids": [
+                              "0xa3511c4cb6f7d956c19aba2dfddef590346d2b04",
+                              "0x004375dff511095cc5a197a54140a24efef3a416",
+                              "0xe7b0ce0526fbe3969035a145c9e9691d4d9d216c",
+                              "0x156d96eac6fe0e403428379c2d891c17a24c77f9",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0xc0b2b0c5376cb2e6f73b473a7caa341542f707ce",
+                              "0x72a8f00913226b49e63cb7f27bc31ee5cfd09646",
+                              "0xc537e898cd774e2dcba3b14ea6f34c93d5ea45e1",
+                              "0x7f86bf177dd4f3494b841a37e810a34dd56c829b",
+                              "0x09bc559189d309695804cfe0ed64d8fa23128206",
+                              "0xf3f82bc165a83425e81b8f2858d786e41ab21671",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0xcbfb0745b8489973bf7b334d54fdbd573df7ef3c",
+                              "0xb93f696e5c46b6772fc2ff65e459cf9685fac782",
+                              "0xe6c2e229c763ed3e1d5d57b3648aeb1d4011eacd",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0xc45a95642bc59df699364237b80057eadc8d8a14",
+                              "0x1f06f01fdbdcdf1a6604878cbd90e88ad6d3c654",
+                              "0x655edce464cc797526600a462a8154650eee4b77",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb",
+                              "0x02e1300a7e6c3211c65317176cf1795f9bb1daab",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0x8762cb30fee5661521bd21cedbe64c5075275f2d",
+                              "0x99ac8ca7087fa4a2a1fb6357269965a2014abc35",
+                              "0x265b6d1a6c12873a423c177eba6dd2470f40a3b5",
+                              "0x2ee268541b96b2b8129a06b006fd247b467f6118",
+                              "0xc88b0e9cbfdffc1ceac078321442d546874eb3ef",
+                              "0x1dd2cb1745aaf061380a46d5dd3b1ee2f5d5e8ad",
+                              "0x21e7fd84385d47076208ca3ba993ecf292691394",
+                              "0xcf2ea8f81e30d5150f9556f81cc6cd134d7ff8b1",
+                              "0x9446625e3090d155fd7c74752edf4e87cf44de05",
+                              "0x2257aaac34bcb27900291f7b84ee2565a6cbac57",
+                              "0x9a772018fbd77fcd2d25657e5c547baff3fd7d16",
+                              "0x2109f78b46a789125598f5ad2b7f243751c2934d",
+                              "0x68a241796628ecf44e48f0533fb00d07dd3419d2",
+                              "0xe7b1d394f3b40abeaa0b64a545dbcf89da1ecb3f",
+                              "0x9ca2a439810524250e543ba8fb6e88578af242bc",
+                              "0x4572f2554421bd64bef1c22c8a81840e8d496bea",
+                              "0xcb5cde8da12555bf770e185e8e323290e5c443d4",
+                              "0x2e9c6dcdca22a5952a88c4b18edb5b54c5155bc9",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0xc50cb225e0f45e814fd41bcb3a120463ab1f04c3",
+                              "0xcc12532e95c2a6a4c53af153b9b739a3cc9218a7"
+                            ],
+                            "projects": [
+                              "uniswap",
+                              "clipper",
+                              "0x API",
+                              "carbon_defi",
+                              "curve",
+                              "verse_dex",
+                              "airswap",
+                              "bancor",
+                              "balancer",
+                              "defiswap",
+                              "dodo",
+                              "pancakeswap"
+                            ],
+                            "seven_day_volume": 130466141.38920131,
+                            "seven_day_volume_liquidity_ratio": 125.9849469319493,
+                            "thirty_day_volume": 600776578.4217021,
+                            "token_a_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_b_address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+                            "token_pair": "USDC-WBTC",
+                            "usd_liquidity": 45565048.530961305
+                          },
+                          {
+                            "all_time_volume": 94313504772.55698,
+                            "chain": "ethereum",
+                            "one_day_volume": 1674146.1481379208,
+                            "pool_ids": [
+                              "0xe2f2a5c287993345a840db3b0845fbc70f5935a5",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0xe55e68925809784c8234dfcf6f8fa42c3a48b2c3",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0xbc68fa58930a2f36d37d16f2f7cfebdd2b7902c6",
+                              "0x4572f2554421bd64bef1c22c8a81840e8d496bea",
+                              "0x1ee383389c621c37ee5aa476f88413a815083c5d",
+                              "0xecd5e75afb02efa118af914515d6521aabd189f1",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0x39529e96c28807655b5856b3d342c6225111770e",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x33baeda08b8afacc4d3d07cf31d49fc1f1f3e893",
+                              "0xf1f27db872b7f6e8b873c97f785fe4f9a6c92161"
+                            ],
+                            "projects": [
+                              "mstable",
+                              "0x API",
+                              "airswap",
+                              "balancer",
+                              "uniswap",
+                              "curve"
+                            ],
+                            "seven_day_volume": 9336213.926152254,
+                            "seven_day_volume_liquidity_ratio": 3588.0000155662356,
+                            "thirty_day_volume": 50471927.563405074,
+                            "token_a_address": "0x0000000000085d4780b73119b644ae5ecd22b376",
+                            "token_b_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_pair": "TUSD-USDC",
+                            "usd_liquidity": 39030.994505216884
+                          },
+                          {
+                            "all_time_volume": 94051550278.08916,
+                            "chain": "ethereum",
+                            "one_day_volume": 1610611.7966684166,
+                            "pool_ids": [
+                              "0xbd482ffb3e6e50dc1c437557c3bea2b68f3683ee",
+                              "0x00cef0386ed94d738c8f8a74e8bfd0376926d24c",
+                              "0x8fdb0bb9365a46b145db80d0b1c5c5e979c84190",
+                              "0xfe842e95f8911dcc21c943a1daa4bd641a1381c6",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0x81b7f92c7b7d9349b989b4982588761bfa1aa627",
+                              "0x9ca2a439810524250e543ba8fb6e88578af242bc",
+                              "0x524847c615639e76fe7d0fe0b16be8c4eac9cf3c",
+                              "0x5e35c4eba72470ee1177dcb14dddf4d9e6d915f4",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0x3ab6564d5c214bc416ee8421e05219960504eead",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0x4572f2554421bd64bef1c22c8a81840e8d496bea",
+                              "0x4807862aa8b2bf68830e4c8dc86d0e9a998e085a",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x79a8c46dea5ada233abaffd40f3a0a2b1e5a4f27",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8"
+                            ],
+                            "projects": [
+                              "mstable",
+                              "balancer",
+                              "pancakeswap",
+                              "uniswap",
+                              "bancor",
+                              "0x API",
+                              "airswap",
+                              "curve"
+                            ],
+                            "seven_day_volume": 9582693.692927752,
+                            "seven_day_volume_liquidity_ratio": 5034.898797007897,
+                            "thirty_day_volume": 52270429.14287423,
+                            "token_a_address": "0x4fabb145d64652a948d72533023f6e7a623c7c53",
+                            "token_b_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_pair": "BUSD-USDC",
+                            "usd_liquidity": 34258.58064420375
+                          },
+                          {
+                            "all_time_volume": 90294759705.52713,
+                            "chain": "ethereum",
+                            "one_day_volume": 2827504.919142756,
+                            "pool_ids": [
+                              "0xd0fc8ba7e267f2bc56044a7715a489d851dc6d78",
+                              "0xab2044f105c43c25b1de3ee27504f0b889ce5953",
+                              "0x4572f2554421bd64bef1c22c8a81840e8d496bea",
+                              "0x72a8f00913226b49e63cb7f27bc31ee5cfd09646",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0xc537e898cd774e2dcba3b14ea6f34c93d5ea45e1",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0x8762cb30fee5661521bd21cedbe64c5075275f2d",
+                              "0xc50cb225e0f45e814fd41bcb3a120463ab1f04c3",
+                              "0xe8bf7d7358a96fa870d3945bb37bfcc91a9041cc",
+                              "0xebfb684dd2b01e698ca6c14f10e4f289934a54d6",
+                              "0x9ca2a439810524250e543ba8fb6e88578af242bc"
+                            ],
+                            "projects": [
+                              "uniswap",
+                              "balancer",
+                              "bancor",
+                              "airswap",
+                              "carbon_defi",
+                              "0x API",
+                              "pancakeswap"
+                            ],
+                            "seven_day_volume": 20436505.74916102,
+                            "seven_day_volume_liquidity_ratio": 51.273970307133546,
+                            "thirty_day_volume": 100313531.19630384,
+                            "token_a_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+                            "token_b_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_pair": "UNI-USDC",
+                            "usd_liquidity": 6775769.374883028
+                          },
+                          {
+                            "all_time_volume": 90092193021.80107,
+                            "chain": "ethereum",
+                            "one_day_volume": 1748066.5905444843,
+                            "pool_ids": [
+                              "0x562c0b218cc9ba06d9eb42f3aef54c54cc5a4650",
+                              "0x4b6b06de9a52e8a3fb91df2d1615e17705371f86",
+                              "0x1373e57f764a7944bdd7a4bd5ca3007d496934da",
+                              "0x8287913adfa69adca06beb00deab68a99c9e8d46",
+                              "0xd8c8a2b125527bf97c8e4845b25de7e964468f77",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0xcb5cde8da12555bf770e185e8e323290e5c443d4",
+                              "0xc0b2b0c5376cb2e6f73b473a7caa341542f707ce",
+                              "0xc537e898cd774e2dcba3b14ea6f34c93d5ea45e1",
+                              "0x1f06f01fdbdcdf1a6604878cbd90e88ad6d3c654",
+                              "0xc88b0e9cbfdffc1ceac078321442d546874eb3ef",
+                              "0x5f752aa9e748ffc007a15b7ca0fad8f2127f186c",
+                              "0x68a241796628ecf44e48f0533fb00d07dd3419d2",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6",
+                              "0xe6c2e229c763ed3e1d5d57b3648aeb1d4011eacd",
+                              "0x9ca2a439810524250e543ba8fb6e88578af242bc",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0xb93f696e5c46b6772fc2ff65e459cf9685fac782",
+                              "0xfad57d2039c21811c8f2b5d5b65308aa99d31559",
+                              "0x1be21dd1fa2aced16656b7d765b88afa6853cc98",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0x032d9bc3f3c1042b431f29df63aaa547f5ed6ee6",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb"
+                            ],
+                            "projects": [
+                              "dodo",
+                              "balancer",
+                              "carbon_defi",
+                              "airswap",
+                              "pancakeswap",
+                              "uniswap",
+                              "0x API",
+                              "bancor"
+                            ],
+                            "seven_day_volume": 12528060.859976402,
+                            "seven_day_volume_liquidity_ratio": 385.68845448165985,
+                            "thirty_day_volume": 93276129.33738266,
+                            "token_a_address": "0x514910771af9ca656af840dff83e8264ecf986ca",
+                            "token_b_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_pair": "LINK-USDC",
+                            "usd_liquidity": 812058.3280625618
+                          },
+                          {
+                            "all_time_volume": 90020606554.59792,
+                            "chain": "ethereum",
+                            "one_day_volume": 1680068.0993446708,
+                            "pool_ids": [
+                              "0xb06e7ed37cfa8f0f2888355dd1913e45412798c5",
+                              "0xdfa42ba0130425b21a1568507b084cc246fb0c8f",
+                              "0x080bf510fcbf18b91105470639e9561022937712",
+                              "0xc549a5c701cb6e6cbc091007a80c089c49595468",
+                              "0x14462305d211c12a736986f4e8216e28c5ea7ab4",
+                              "0xd82fa167727a4dc6d6f55830a2c47abbb4b3a0f8",
+                              "0x61935cbdd02287b511119ddb11aeb42f1593b7ef",
+                              "0xeef417e1d5cc832e619ae18d2f140de2999dd4fb",
+                              "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+                              "0x522d6f36c95a1b6509a14272c17747bbb582f2a6"
+                            ],
+                            "projects": [
+                              "uniswap",
+                              "balancer",
+                              "0x API",
+                              "bancor",
+                              "airswap"
+                            ],
+                            "seven_day_volume": 11390285.80369365,
+                            "seven_day_volume_liquidity_ratio": 976.8687139129809,
+                            "thirty_day_volume": 72361946.88776392,
+                            "token_a_address": "0xc944e90c64b2c07662a292be6244bdf05cda44a7",
+                            "token_b_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "token_pair": "GRT-USDC",
+                            "usd_liquidity": 116599.96518947062
+                          }
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "metadata about the results",
+                      "example": {
+                        "column_names": [
+                          "chain",
+                          "token_pair",
+                          "projects",
+                          "pool_ids",
+                          "token_a_address",
+                          "token_b_address",
+                          "one_day_volume",
+                          "seven_day_volume",
+                          "thirty_day_volume",
+                          "all_time_volume",
+                          "usd_liquidity",
+                          "seven_day_volume_liquidity_ratio"
+                        ],
+                        "column_types": [
+                          "VARCHAR",
+                          "VARCHAR",
+                          "VARCHAR",
+                          "VARCHAR",
+                          "VARCHAR",
+                          "VARCHAR",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "DOUBLE"
+                        ],
+                        "row_count": 10,
+                        "result_set_bytes": 21763,
+                        "total_row_count": 589932,
+                        "total_result_set_bytes": 140805054,
+                        "datapoint_count": 218,
+                        "pending_time_millis": 3538,
+                        "execution_time_millis": 10552
+                      }
+                    },
+                    "next_uri": {
+                      "type": "string",
+                      "description": "URI to get the next set of results",
+                      "example": "https://api.dune.com/api/v1/execution/01HW6N7VF1H7VYQ91GC0NP673E/results?filters=chain%3D%22ethereum%22+AND+token_a_address+%3D+%270xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48%27+or+token_b_address+%3D+%270xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48%27&limit=10&offset=10&sort_by=all_time_volume+desc"
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "description": "Offset to get the next set of results",
+                      "example": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Core request validation failed, make sure you've given required columns and followed formatting rules for the CSV (no special characters or digits in column names)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dex/ohlc/{token}/{chain}": {
+      "get": {
+        "summary": "get OHLC price of a token from DEXes",
+        "description": "Get the OHLC (open, high, low, close) price of a particular token based on DEX trades.",
+        "operationId": "dexOHLC",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "path",
+            "name": "chain",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "chain name (use Dune namespace, i.e. ethereum, solana, bnb, polygon, optimsm, etc)"
+          },
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "address of the token, must be lower cased string"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10,
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the Filtering section of the doc. This parameter is incompatible with `sample_count`."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": "01HW6MZ2716Z7KR0342D3R32BE"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3582296
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-04-23T23:34:27.298521Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-07-22T23:51:57.404508Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-04-23T23:34:27.976689Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-04-23T23:51:57.404505Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000001339797364359806,
+                            "high_price": 0.0000017393837792984431,
+                            "low_price": 8.144932651443802e-7,
+                            "median_price": 9.797077784481638e-7,
+                            "opening_price": 9.374287225291818e-7,
+                            "period": "2024-01-07 00:00:00.000 UTC",
+                            "sample_size": 16,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000017930200359062352,
+                            "high_price": 0.000029124225555736704,
+                            "low_price": 0.000006844831245667829,
+                            "median_price": 0.000021757713405844475,
+                            "opening_price": 0.0000020227877187057407,
+                            "period": "2024-01-08 00:00:00.000 UTC",
+                            "sample_size": 823,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000020188958930914662,
+                            "high_price": 0.00002287912394641912,
+                            "low_price": 0.000017463732859620803,
+                            "median_price": 0.000020043511484410677,
+                            "opening_price": 0.000018001342307299428,
+                            "period": "2024-01-09 00:00:00.000 UTC",
+                            "sample_size": 174,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000014663927680920409,
+                            "high_price": 0.000019561000390183526,
+                            "low_price": 0.000012816022193016558,
+                            "median_price": 0.00001534770367941116,
+                            "opening_price": 0.00001949114852586376,
+                            "period": "2024-01-10 00:00:00.000 UTC",
+                            "sample_size": 90,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000020871153336812076,
+                            "high_price": 0.000021144941079127897,
+                            "low_price": 0.000014406357711886949,
+                            "median_price": 0.000017773309261359855,
+                            "opening_price": 0.00001532698845759139,
+                            "period": "2024-01-11 00:00:00.000 UTC",
+                            "sample_size": 80,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000032419259067417694,
+                            "high_price": 0.00003774955909887806,
+                            "low_price": 0.000022382194929613656,
+                            "median_price": 0.00003229329374658379,
+                            "opening_price": 0.00002151254414048667,
+                            "period": "2024-01-12 00:00:00.000 UTC",
+                            "sample_size": 198,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00003245333128605506,
+                            "high_price": 0.00003658482881857416,
+                            "low_price": 0.00002336120863522709,
+                            "median_price": 0.00003103932468370162,
+                            "opening_price": 0.000030122976862648864,
+                            "period": "2024-01-13 00:00:00.000 UTC",
+                            "sample_size": 153,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00002209023876189172,
+                            "high_price": 0.00003248234585763605,
+                            "low_price": 0.00002140631175055063,
+                            "median_price": 0.000023043358349799032,
+                            "opening_price": 0.000032184163555039374,
+                            "period": "2024-01-14 00:00:00.000 UTC",
+                            "sample_size": 85,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00003302136446111182,
+                            "high_price": 0.00003659851431886276,
+                            "low_price": 0.00002287366239486505,
+                            "median_price": 0.000031240650510707996,
+                            "opening_price": 0.000022913203519174982,
+                            "period": "2024-01-15 00:00:00.000 UTC",
+                            "sample_size": 101,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00006628957331488984,
+                            "high_price": 0.00007018045071166413,
+                            "low_price": 0.000033133453864523787,
+                            "median_price": 0.0000431700420634055,
+                            "opening_price": 0.00003333249352725634,
+                            "period": "2024-01-16 00:00:00.000 UTC",
+                            "sample_size": 134,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00010370910168390201,
+                            "high_price": 0.00010283575807710332,
+                            "low_price": 0.0000680527816897682,
+                            "median_price": 0.00008062462677897736,
+                            "opening_price": 0.00006769290063530582,
+                            "period": "2024-01-17 00:00:00.000 UTC",
+                            "sample_size": 396,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0001234376882256523,
+                            "high_price": 0.00013214568842440078,
+                            "low_price": 0.00009268770895387293,
+                            "median_price": 0.00011739473976344085,
+                            "opening_price": 0.0001011523894083975,
+                            "period": "2024-01-18 00:00:00.000 UTC",
+                            "sample_size": 287,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00017985758845795262,
+                            "high_price": 0.00018938177816643417,
+                            "low_price": 0.0001229182659779341,
+                            "median_price": 0.00016995485450711399,
+                            "opening_price": 0.0001218601872106799,
+                            "period": "2024-01-19 00:00:00.000 UTC",
+                            "sample_size": 433,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00020168184733439015,
+                            "high_price": 0.0002137129664667489,
+                            "low_price": 0.00017495520822567473,
+                            "median_price": 0.00018619498532499666,
+                            "opening_price": 0.0001776552405770378,
+                            "period": "2024-01-20 00:00:00.000 UTC",
+                            "sample_size": 260,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0002112407314968642,
+                            "high_price": 0.00020190562485181832,
+                            "low_price": 0.00014342041468541982,
+                            "median_price": 0.0001761135900257444,
+                            "opening_price": 0.00019736136014208836,
+                            "period": "2024-01-21 00:00:00.000 UTC",
+                            "sample_size": 283,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00024505628136467625,
+                            "high_price": 0.000269120612446629,
+                            "low_price": 0.0001982227855351539,
+                            "median_price": 0.00024237343997590442,
+                            "opening_price": 0.00021232290345921584,
+                            "period": "2024-01-22 00:00:00.000 UTC",
+                            "sample_size": 490,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00023228031470752343,
+                            "high_price": 0.0002810414893703997,
+                            "low_price": 0.00017445349903132988,
+                            "median_price": 0.00021605085114318728,
+                            "opening_price": 0.0002492547523910211,
+                            "period": "2024-01-23 00:00:00.000 UTC",
+                            "sample_size": 574,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00020244979291944234,
+                            "high_price": 0.0002385087721415596,
+                            "low_price": 0.0001726151501610933,
+                            "median_price": 0.00020015804494387724,
+                            "opening_price": 0.0002393866489675859,
+                            "period": "2024-01-24 00:00:00.000 UTC",
+                            "sample_size": 299,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00018752184376868733,
+                            "high_price": 0.00021429928369429046,
+                            "low_price": 0.00018111196289902228,
+                            "median_price": 0.0002011942019783723,
+                            "opening_price": 0.00020559948331092798,
+                            "period": "2024-01-25 00:00:00.000 UTC",
+                            "sample_size": 195,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000235441472489098,
+                            "high_price": 0.00024602354970978886,
+                            "low_price": 0.00020752558040320089,
+                            "median_price": 0.0002345048640330368,
+                            "opening_price": 0.00019390201786376383,
+                            "period": "2024-01-26 00:00:00.000 UTC",
+                            "sample_size": 234,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00023504770424872737,
+                            "high_price": 0.00029101345653354866,
+                            "low_price": 0.00022479571898809748,
+                            "median_price": 0.00024329355985278447,
+                            "opening_price": 0.00023353108786523216,
+                            "period": "2024-01-27 00:00:00.000 UTC",
+                            "sample_size": 273,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00026683444563131134,
+                            "high_price": 0.00028786144443233993,
+                            "low_price": 0.00023897126805160748,
+                            "median_price": 0.00025975610580379166,
+                            "opening_price": 0.00023706439231455304,
+                            "period": "2024-01-28 00:00:00.000 UTC",
+                            "sample_size": 288,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00044690978031297304,
+                            "high_price": 0.0004922417852267805,
+                            "low_price": 0.00025132964493268495,
+                            "median_price": 0.00032783869657144896,
+                            "opening_price": 0.0002597098362748042,
+                            "period": "2024-01-29 00:00:00.000 UTC",
+                            "sample_size": 1010,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0009819020553327024,
+                            "high_price": 0.0012880175115995004,
+                            "low_price": 0.00048650296220415255,
+                            "median_price": 0.0009774041149875248,
+                            "opening_price": 0.0004620172888830389,
+                            "period": "2024-01-30 00:00:00.000 UTC",
+                            "sample_size": 4109,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0007754180766086796,
+                            "high_price": 0.0009983533203376676,
+                            "low_price": 0.0007211843453158437,
+                            "median_price": 0.000880401079011965,
+                            "opening_price": 0.0009824197026771315,
+                            "period": "2024-01-31 00:00:00.000 UTC",
+                            "sample_size": 1923,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0010208276086529477,
+                            "high_price": 0.0011941547224630978,
+                            "low_price": 0.0007984909649011426,
+                            "median_price": 0.0009767515521671,
+                            "opening_price": 0.0007837150727348623,
+                            "period": "2024-02-01 00:00:00.000 UTC",
+                            "sample_size": 1725,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.001525942027406363,
+                            "high_price": 0.0016702284719796756,
+                            "low_price": 0.001014924572769239,
+                            "median_price": 0.0013016203639707486,
+                            "opening_price": 0.0010219332748666664,
+                            "period": "2024-02-02 00:00:00.000 UTC",
+                            "sample_size": 2933,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0019011924717885378,
+                            "high_price": 0.0020367636138464195,
+                            "low_price": 0.0012808849338987699,
+                            "median_price": 0.0016032792410459675,
+                            "opening_price": 0.0015096683503982799,
+                            "period": "2024-02-03 00:00:00.000 UTC",
+                            "sample_size": 6358,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00399405626472624,
+                            "high_price": 0.003988538784617605,
+                            "low_price": 0.0020195764066338754,
+                            "median_price": 0.00315894866250964,
+                            "opening_price": 0.001896399931264986,
+                            "period": "2024-02-04 00:00:00.000 UTC",
+                            "sample_size": 16017,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0022521231796069213,
+                            "high_price": 0.003808193088491939,
+                            "low_price": 0.0016862838721834435,
+                            "median_price": 0.0026551234783555415,
+                            "opening_price": 0.003973794136890664,
+                            "period": "2024-02-05 00:00:00.000 UTC",
+                            "sample_size": 9782,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0023050365357131382,
+                            "high_price": 0.0027007439248363336,
+                            "low_price": 0.0018163949545743005,
+                            "median_price": 0.0022016454565958136,
+                            "opening_price": 0.0023016714989555825,
+                            "period": "2024-02-06 00:00:00.000 UTC",
+                            "sample_size": 3992,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.004215661408861883,
+                            "high_price": 0.004708486012159498,
+                            "low_price": 0.002501565580988713,
+                            "median_price": 0.004033780986124107,
+                            "opening_price": 0.0023391520018884353,
+                            "period": "2024-02-07 00:00:00.000 UTC",
+                            "sample_size": 8742,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0034279310068246254,
+                            "high_price": 0.0058126204481590655,
+                            "low_price": 0.0032946238718878636,
+                            "median_price": 0.004264573876724689,
+                            "opening_price": 0.004198553788778528,
+                            "period": "2024-02-08 00:00:00.000 UTC",
+                            "sample_size": 5062,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0028595849571563777,
+                            "high_price": 0.0038928026485728737,
+                            "low_price": 0.0026533200069731094,
+                            "median_price": 0.003282683789136441,
+                            "opening_price": 0.0034063825432629714,
+                            "period": "2024-02-09 00:00:00.000 UTC",
+                            "sample_size": 5267,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.002417940861533553,
+                            "high_price": 0.0030389481362000535,
+                            "low_price": 0.0020433557923453644,
+                            "median_price": 0.0026070856560247405,
+                            "opening_price": 0.0029125131683824836,
+                            "period": "2024-02-10 00:00:00.000 UTC",
+                            "sample_size": 3789,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00247820730884593,
+                            "high_price": 0.003269748385960993,
+                            "low_price": 0.002435743684633002,
+                            "median_price": 0.002925743061067469,
+                            "opening_price": 0.002450437001951365,
+                            "period": "2024-02-11 00:00:00.000 UTC",
+                            "sample_size": 2338,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0016761713520629783,
+                            "high_price": 0.002386330552753966,
+                            "low_price": 0.0013690208162857862,
+                            "median_price": 0.0019119525103527052,
+                            "opening_price": 0.0024136463333760453,
+                            "period": "2024-02-12 00:00:00.000 UTC",
+                            "sample_size": 3863,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0017396705166929107,
+                            "high_price": 0.0022726382908594845,
+                            "low_price": 0.00141554798706782,
+                            "median_price": 0.001716367854490358,
+                            "opening_price": 0.0016214008994807649,
+                            "period": "2024-02-13 00:00:00.000 UTC",
+                            "sample_size": 3042,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00271525823259118,
+                            "high_price": 0.003132001134376797,
+                            "low_price": 0.0015001358562480702,
+                            "median_price": 0.0022536560238248593,
+                            "opening_price": 0.0017477250288483177,
+                            "period": "2024-02-14 00:00:00.000 UTC",
+                            "sample_size": 4138,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.002701929722327439,
+                            "high_price": 0.0031593381171509984,
+                            "low_price": 0.0022143457313532067,
+                            "median_price": 0.002689645959697026,
+                            "opening_price": 0.002706423348532479,
+                            "period": "2024-02-15 00:00:00.000 UTC",
+                            "sample_size": 3017,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.002039497361516361,
+                            "high_price": 0.002710211102085916,
+                            "low_price": 0.0018147751813245825,
+                            "median_price": 0.0020398085021874255,
+                            "opening_price": 0.0027127123982632036,
+                            "period": "2024-02-16 00:00:00.000 UTC",
+                            "sample_size": 2267,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.001929004942007972,
+                            "high_price": 0.0023118760704601764,
+                            "low_price": 0.0017260418945402416,
+                            "median_price": 0.0019978171496767678,
+                            "opening_price": 0.0020166364537990223,
+                            "period": "2024-02-17 00:00:00.000 UTC",
+                            "sample_size": 1350,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0018503436661024338,
+                            "high_price": 0.00214565965434613,
+                            "low_price": 0.001843701746601917,
+                            "median_price": 0.001996141279582965,
+                            "opening_price": 0.0019122334911238481,
+                            "period": "2024-02-18 00:00:00.000 UTC",
+                            "sample_size": 1165,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.001822986654338412,
+                            "high_price": 0.0018949659446086402,
+                            "low_price": 0.0016539203423751431,
+                            "median_price": 0.00182686210352311,
+                            "opening_price": 0.0018571546959081937,
+                            "period": "2024-02-19 00:00:00.000 UTC",
+                            "sample_size": 1164,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0016703504221626051,
+                            "high_price": 0.0019101328473447002,
+                            "low_price": 0.0013713400217083632,
+                            "median_price": 0.0016482174622497107,
+                            "opening_price": 0.0017998441521404438,
+                            "period": "2024-02-20 00:00:00.000 UTC",
+                            "sample_size": 1958,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0014312855104557506,
+                            "high_price": 0.0020588506534796034,
+                            "low_price": 0.0013861848520311756,
+                            "median_price": 0.0016312388653411415,
+                            "opening_price": 0.0016774307564654336,
+                            "period": "2024-02-21 00:00:00.000 UTC",
+                            "sample_size": 1905,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.000962060161092003,
+                            "high_price": 0.0014205444798641852,
+                            "low_price": 0.000860293451240011,
+                            "median_price": 0.0011173488675517034,
+                            "opening_price": 0.0014281194094995719,
+                            "period": "2024-02-22 00:00:00.000 UTC",
+                            "sample_size": 3125,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0009194633581367271,
+                            "high_price": 0.0010655042046841443,
+                            "low_price": 0.0007488954552720186,
+                            "median_price": 0.0008524209913518412,
+                            "opening_price": 0.0009491215510783775,
+                            "period": "2024-02-23 00:00:00.000 UTC",
+                            "sample_size": 2193,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00103687458956273,
+                            "high_price": 0.0011694299254554662,
+                            "low_price": 0.0009196065051099797,
+                            "median_price": 0.0010546004539950951,
+                            "opening_price": 0.0009219933525902345,
+                            "period": "2024-02-24 00:00:00.000 UTC",
+                            "sample_size": 1266,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.001173219830586375,
+                            "high_price": 0.0012391653681079438,
+                            "low_price": 0.0010375226871568157,
+                            "median_price": 0.0011664755272523767,
+                            "opening_price": 0.001050775282056151,
+                            "period": "2024-02-25 00:00:00.000 UTC",
+                            "sample_size": 879,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0008259631146322226,
+                            "high_price": 0.0012025438568552757,
+                            "low_price": 0.0007905885686080606,
+                            "median_price": 0.0010634550505448806,
+                            "opening_price": 0.0011756945348806497,
+                            "period": "2024-02-26 00:00:00.000 UTC",
+                            "sample_size": 1584,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0008840038345830365,
+                            "high_price": 0.0008926576476124016,
+                            "low_price": 0.0006930824708487365,
+                            "median_price": 0.0008205205389376177,
+                            "opening_price": 0.0008370268808877343,
+                            "period": "2024-02-27 00:00:00.000 UTC",
+                            "sample_size": 1790,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0011980759637657793,
+                            "high_price": 0.0015365293346678653,
+                            "low_price": 0.0008892448719014079,
+                            "median_price": 0.0012561088173987322,
+                            "opening_price": 0.0008865343180812233,
+                            "period": "2024-02-28 00:00:00.000 UTC",
+                            "sample_size": 2006,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0010877964821029938,
+                            "high_price": 0.001462476782105426,
+                            "low_price": 0.0008034480347429289,
+                            "median_price": 0.001083104324803488,
+                            "opening_price": 0.0011995971993130272,
+                            "period": "2024-02-29 00:00:00.000 UTC",
+                            "sample_size": 4651,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0016238348877416476,
+                            "high_price": 0.0016892700358869543,
+                            "low_price": 0.0010090072726256362,
+                            "median_price": 0.001219042584368445,
+                            "opening_price": 0.0010794420640559575,
+                            "period": "2024-03-01 00:00:00.000 UTC",
+                            "sample_size": 2807,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0016415188786684891,
+                            "high_price": 0.0021223900273843513,
+                            "low_price": 0.0015848369333919248,
+                            "median_price": 0.0018581332115548785,
+                            "opening_price": 0.0016161169598202705,
+                            "period": "2024-03-02 00:00:00.000 UTC",
+                            "sample_size": 3354,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0025395000870534505,
+                            "high_price": 0.002517804971386715,
+                            "low_price": 0.0015874910722393054,
+                            "median_price": 0.001782620382225569,
+                            "opening_price": 0.0016918677062253487,
+                            "period": "2024-03-03 00:00:00.000 UTC",
+                            "sample_size": 2172,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.002917586270497459,
+                            "high_price": 0.0029335670608185804,
+                            "low_price": 0.0019025753194315486,
+                            "median_price": 0.0023096325243489985,
+                            "opening_price": 0.0025637437033014547,
+                            "period": "2024-03-04 00:00:00.000 UTC",
+                            "sample_size": 3176,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0023867190560988285,
+                            "high_price": 0.0032922264044453553,
+                            "low_price": 0.001967641565824182,
+                            "median_price": 0.0028618094559449527,
+                            "opening_price": 0.0029445250254802303,
+                            "period": "2024-03-05 00:00:00.000 UTC",
+                            "sample_size": 4155,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.002282470826372964,
+                            "high_price": 0.00287496403163428,
+                            "low_price": 0.002238861604609035,
+                            "median_price": 0.002586692874507805,
+                            "opening_price": 0.0023709311874938856,
+                            "period": "2024-03-06 00:00:00.000 UTC",
+                            "sample_size": 2174,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0021940611667073157,
+                            "high_price": 0.002424256604225378,
+                            "low_price": 0.0019369996334705365,
+                            "median_price": 0.002108890257164605,
+                            "opening_price": 0.002291624958903179,
+                            "period": "2024-03-07 00:00:00.000 UTC",
+                            "sample_size": 2060,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.00170404199232758,
+                            "high_price": 0.002307310678783792,
+                            "low_price": 0.0016572561444344461,
+                            "median_price": 0.0018911540689680055,
+                            "opening_price": 0.0021935847258232233,
+                            "period": "2024-03-08 00:00:00.000 UTC",
+                            "sample_size": 1773,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0018472471140918794,
+                            "high_price": 0.0018693240701401885,
+                            "low_price": 0.001466948330273898,
+                            "median_price": 0.0016837023364888318,
+                            "opening_price": 0.0017052382365329417,
+                            "period": "2024-03-09 00:00:00.000 UTC",
+                            "sample_size": 1573,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.002118426372299776,
+                            "high_price": 0.002270075446676945,
+                            "low_price": 0.0018506736295433957,
+                            "median_price": 0.0020425805015205274,
+                            "opening_price": 0.0018674659075163021,
+                            "period": "2024-03-10 00:00:00.000 UTC",
+                            "sample_size": 1615,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.001862475800378887,
+                            "high_price": 0.002136337036028895,
+                            "low_price": 0.00185000054896745,
+                            "median_price": 0.001979708332267509,
+                            "opening_price": 0.0021308337255210178,
+                            "period": "2024-03-11 00:00:00.000 UTC",
+                            "sample_size": 1592,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0017809992906667928,
+                            "high_price": 0.0018730773110567965,
+                            "low_price": 0.0016376146658076613,
+                            "median_price": 0.0017667767962399686,
+                            "opening_price": 0.0018621241515556365,
+                            "period": "2024-03-12 00:00:00.000 UTC",
+                            "sample_size": 1241,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0017537996830231562,
+                            "high_price": 0.0018990221583732002,
+                            "low_price": 0.0017405762959311216,
+                            "median_price": 0.001803282112168688,
+                            "opening_price": 0.0018145637065582348,
+                            "period": "2024-03-13 00:00:00.000 UTC",
+                            "sample_size": 948,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.003855667921004937,
+                            "high_price": 0.004126059615448481,
+                            "low_price": 0.0017937219548096177,
+                            "median_price": 0.0032757980876888517,
+                            "opening_price": 0.0017683071287340891,
+                            "period": "2024-03-14 00:00:00.000 UTC",
+                            "sample_size": 9907,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.005268447423905269,
+                            "high_price": 0.005681644712822546,
+                            "low_price": 0.0031539879829450444,
+                            "median_price": 0.0041968166623064795,
+                            "opening_price": 0.003855744645083452,
+                            "period": "2024-03-15 00:00:00.000 UTC",
+                            "sample_size": 8779,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.003963105133597813,
+                            "high_price": 0.005840178244309118,
+                            "low_price": 0.0038948972526136115,
+                            "median_price": 0.005033337407482432,
+                            "opening_price": 0.005279147834786759,
+                            "period": "2024-03-16 00:00:00.000 UTC",
+                            "sample_size": 7132,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.005180955774387645,
+                            "high_price": 0.005608093906255504,
+                            "low_price": 0.004034850753184805,
+                            "median_price": 0.004842331262305622,
+                            "opening_price": 0.003976862740232043,
+                            "period": "2024-03-17 00:00:00.000 UTC",
+                            "sample_size": 5043,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.003906598214292482,
+                            "high_price": 0.005339,
+                            "low_price": 0.0038270380978869083,
+                            "median_price": 0.004644613261162467,
+                            "opening_price": 0.005178497947572069,
+                            "period": "2024-03-18 00:00:00.000 UTC",
+                            "sample_size": 5118,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.003742947400434514,
+                            "high_price": 0.004256064981028501,
+                            "low_price": 0.002691109282665112,
+                            "median_price": 0.0034354996534404587,
+                            "opening_price": 0.0038911735534579,
+                            "period": "2024-03-19 00:00:00.000 UTC",
+                            "sample_size": 6346,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0061409127899512,
+                            "high_price": 0.0077979386117546364,
+                            "low_price": 0.0038708057456902875,
+                            "median_price": 0.006361687787546113,
+                            "opening_price": 0.0037297410041704318,
+                            "period": "2024-03-20 00:00:00.000 UTC",
+                            "sample_size": 11658,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.008793957715809394,
+                            "high_price": 0.009278356178055449,
+                            "low_price": 0.0061335954360664585,
+                            "median_price": 0.007930980886782303,
+                            "opening_price": 0.00610713453240836,
+                            "period": "2024-03-21 00:00:00.000 UTC",
+                            "sample_size": 8539,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.008330796004370117,
+                            "high_price": 0.009941429494712455,
+                            "low_price": 0.007469700311471787,
+                            "median_price": 0.008401602124358464,
+                            "opening_price": 0.008852084888757189,
+                            "period": "2024-03-22 00:00:00.000 UTC",
+                            "sample_size": 7962,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.010338832098715011,
+                            "high_price": 0.010497859244353954,
+                            "low_price": 0.008119543524000915,
+                            "median_price": 0.009034439733295698,
+                            "opening_price": 0.008362757116423546,
+                            "period": "2024-03-23 00:00:00.000 UTC",
+                            "sample_size": 5942,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.011715488963527958,
+                            "high_price": 0.011794508937970596,
+                            "low_price": 0.009648079697792595,
+                            "median_price": 0.010682968492498446,
+                            "opening_price": 0.010283049173801575,
+                            "period": "2024-03-24 00:00:00.000 UTC",
+                            "sample_size": 8837,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.016770299626341165,
+                            "high_price": 0.01934692843928539,
+                            "low_price": 0.011150557771377231,
+                            "median_price": 0.016340487783925946,
+                            "opening_price": 0.011771947477252829,
+                            "period": "2024-03-25 00:00:00.000 UTC",
+                            "sample_size": 20451,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0171855255037349,
+                            "high_price": 0.020130219099482632,
+                            "low_price": 0.013470008660218849,
+                            "median_price": 0.016951627156994165,
+                            "opening_price": 0.016801266639439618,
+                            "period": "2024-03-26 00:00:00.000 UTC",
+                            "sample_size": 11735,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.01373754958575025,
+                            "high_price": 0.018736189178918863,
+                            "low_price": 0.01311142407564048,
+                            "median_price": 0.01554244914578062,
+                            "opening_price": 0.017323862024062577,
+                            "period": "2024-03-27 00:00:00.000 UTC",
+                            "sample_size": 8456,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.023078308094571766,
+                            "high_price": 0.02602220850230713,
+                            "low_price": 0.01387456485667864,
+                            "median_price": 0.020061634633085995,
+                            "opening_price": 0.013820973351405284,
+                            "period": "2024-03-28 00:00:00.000 UTC",
+                            "sample_size": 26791,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.02986046051406354,
+                            "high_price": 0.03025445837758706,
+                            "low_price": 0.02077757918327769,
+                            "median_price": 0.02488931582986002,
+                            "opening_price": 0.02303486650510537,
+                            "period": "2024-03-29 00:00:00.000 UTC",
+                            "sample_size": 32112,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.04173920991219256,
+                            "high_price": 0.0416492175499449,
+                            "low_price": 0.024101927675000304,
+                            "median_price": 0.031215807259608482,
+                            "opening_price": 0.028917388199956966,
+                            "period": "2024-03-30 00:00:00.000 UTC",
+                            "sample_size": 53512,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.05629044939998342,
+                            "high_price": 0.06364930237812817,
+                            "low_price": 0.040170045529585016,
+                            "median_price": 0.05146317454324219,
+                            "opening_price": 0.041900470195943826,
+                            "period": "2024-03-31 00:00:00.000 UTC",
+                            "sample_size": 76179,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.04879774884398451,
+                            "high_price": 0.0572274181594322,
+                            "low_price": 0.045279570150801855,
+                            "median_price": 0.0506096301454298,
+                            "opening_price": 0.05638757375501119,
+                            "period": "2024-04-01 00:00:00.000 UTC",
+                            "sample_size": 41472,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03764677373634791,
+                            "high_price": 0.04885360896496635,
+                            "low_price": 0.03430356682281047,
+                            "median_price": 0.04091430579677977,
+                            "opening_price": 0.04876185010703633,
+                            "period": "2024-04-02 00:00:00.000 UTC",
+                            "sample_size": 42655,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.04679495230082385,
+                            "high_price": 0.054321593910803156,
+                            "low_price": 0.033727582991953366,
+                            "median_price": 0.04567509261406037,
+                            "opening_price": 0.03802576467968346,
+                            "period": "2024-04-03 00:00:00.000 UTC",
+                            "sample_size": 38361,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03859206746657841,
+                            "high_price": 0.048428336483956204,
+                            "low_price": 0.03732102240191842,
+                            "median_price": 0.04342056647549632,
+                            "opening_price": 0.04660106423381935,
+                            "period": "2024-04-04 00:00:00.000 UTC",
+                            "sample_size": 28487,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.0358932734032667,
+                            "high_price": 0.03899440297025729,
+                            "low_price": 0.029585686853899174,
+                            "median_price": 0.03405272592089011,
+                            "opening_price": 0.03862309034114688,
+                            "period": "2024-04-05 00:00:00.000 UTC",
+                            "sample_size": 34709,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03602506654974817,
+                            "high_price": 0.039636592384473195,
+                            "low_price": 0.034673554239615975,
+                            "median_price": 0.03639786573994042,
+                            "opening_price": 0.035826516319124826,
+                            "period": "2024-04-06 00:00:00.000 UTC",
+                            "sample_size": 25618,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03656309120871832,
+                            "high_price": 0.03651944178492859,
+                            "low_price": 0.029877575094918132,
+                            "median_price": 0.033309741980987496,
+                            "opening_price": 0.03595790841134835,
+                            "period": "2024-04-07 00:00:00.000 UTC",
+                            "sample_size": 24679,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.043739259840102816,
+                            "high_price": 0.04720052672697773,
+                            "low_price": 0.03381087894881788,
+                            "median_price": 0.04293377213629323,
+                            "opening_price": 0.03652863339459052,
+                            "period": "2024-04-08 00:00:00.000 UTC",
+                            "sample_size": 26790,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03500274751654278,
+                            "high_price": 0.0434052655851301,
+                            "low_price": 0.03417247978868953,
+                            "median_price": 0.037740623220603696,
+                            "opening_price": 0.0436130932832199,
+                            "period": "2024-04-09 00:00:00.000 UTC",
+                            "sample_size": 19173,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.037531216703352986,
+                            "high_price": 0.03793505848351253,
+                            "low_price": 0.033609349597927024,
+                            "median_price": 0.03501530458067551,
+                            "opening_price": 0.035058839137649886,
+                            "period": "2024-04-10 00:00:00.000 UTC",
+                            "sample_size": 29095,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03316112174738684,
+                            "high_price": 0.04249494695076253,
+                            "low_price": 0.03282713023438182,
+                            "median_price": 0.03787801628078439,
+                            "opening_price": 0.037235089162755905,
+                            "period": "2024-04-11 00:00:00.000 UTC",
+                            "sample_size": 24136,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.02787072871280425,
+                            "high_price": 0.03575312433347695,
+                            "low_price": 0.02618326751883983,
+                            "median_price": 0.03085861896834729,
+                            "opening_price": 0.033080396848650086,
+                            "period": "2024-04-12 00:00:00.000 UTC",
+                            "sample_size": 23379,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.02182416841628975,
+                            "high_price": 0.02860106907181669,
+                            "low_price": 0.018234545612268695,
+                            "median_price": 0.025494211795332285,
+                            "opening_price": 0.027923746392657777,
+                            "period": "2024-04-13 00:00:00.000 UTC",
+                            "sample_size": 29663,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.02861362582040996,
+                            "high_price": 0.02936562648231967,
+                            "low_price": 0.02072830219814494,
+                            "median_price": 0.02458778207964661,
+                            "opening_price": 0.021563874966224875,
+                            "period": "2024-04-14 00:00:00.000 UTC",
+                            "sample_size": 26609,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.026063206576115206,
+                            "high_price": 0.03265434696628294,
+                            "low_price": 0.024655766122051847,
+                            "median_price": 0.028039551748861177,
+                            "opening_price": 0.02860520167813413,
+                            "period": "2024-04-15 00:00:00.000 UTC",
+                            "sample_size": 24057,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.026442090255512196,
+                            "high_price": 0.02673845840342801,
+                            "low_price": 0.021512305734116405,
+                            "median_price": 0.02416828541581387,
+                            "opening_price": 0.02609047745688343,
+                            "period": "2024-04-16 00:00:00.000 UTC",
+                            "sample_size": 22077,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.02466903664074071,
+                            "high_price": 0.02979280194400511,
+                            "low_price": 0.024577680587121942,
+                            "median_price": 0.02677040338397007,
+                            "opening_price": 0.026403795579068967,
+                            "period": "2024-04-17 00:00:00.000 UTC",
+                            "sample_size": 25499,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.028808509619848276,
+                            "high_price": 0.02927247629337273,
+                            "low_price": 0.02359907634399818,
+                            "median_price": 0.02543639767160546,
+                            "opening_price": 0.024658008734710947,
+                            "period": "2024-04-18 00:00:00.000 UTC",
+                            "sample_size": 22741,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03377202399054073,
+                            "high_price": 0.034855944583959325,
+                            "low_price": 0.02507011431717449,
+                            "median_price": 0.0325101196634281,
+                            "opening_price": 0.028931473680010793,
+                            "period": "2024-04-19 00:00:00.000 UTC",
+                            "sample_size": 25954,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03656691018605181,
+                            "high_price": 0.03695899357373895,
+                            "low_price": 0.031869906598180016,
+                            "median_price": 0.03396843472748648,
+                            "opening_price": 0.03367569275122318,
+                            "period": "2024-04-20 00:00:00.000 UTC",
+                            "sample_size": 24970,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03380471894475732,
+                            "high_price": 0.038784138653772275,
+                            "low_price": 0.03257962354892106,
+                            "median_price": 0.035941695553787956,
+                            "opening_price": 0.03647342181889897,
+                            "period": "2024-04-21 00:00:00.000 UTC",
+                            "sample_size": 20048,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.03174193208538515,
+                            "high_price": 0.035461004718129824,
+                            "low_price": 0.03180286054817826,
+                            "median_price": 0.03362782550095768,
+                            "opening_price": 0.03366201595813404,
+                            "period": "2024-04-22 00:00:00.000 UTC",
+                            "sample_size": 13961,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          },
+                          {
+                            "blockchain": "base",
+                            "closing_price": 0.02737728144708588,
+                            "high_price": 0.03183820469072941,
+                            "low_price": 0.026718935054284246,
+                            "median_price": 0.028595163857990442,
+                            "opening_price": 0.03170079239979038,
+                            "period": "2024-04-23 00:00:00.000 UTC",
+                            "sample_size": 16993,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "token_symbol": "DEGEN"
+                          }
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "metadata about the results",
+                      "example": {
+                        "column_names": [
+                          "period",
+                          "token_contract_address",
+                          "token_symbol",
+                          "blockchain",
+                          "median_price",
+                          "high_price",
+                          "low_price",
+                          "opening_price",
+                          "closing_price",
+                          "sample_size"
+                        ],
+                        "column_types": [
+                          "VARCHAR",
+                          "VARCHAR",
+                          "VARCHAR",
+                          "VARCHAR",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "DOUBLE",
+                          "BIGINT"
+                        ],
+                        "row_count": 108,
+                        "result_set_bytes": 22118,
+                        "total_row_count": 18158713,
+                        "total_result_set_bytes": 3387331412,
+                        "datapoint_count": 1080,
+                        "pending_time_millis": 678,
+                        "execution_time_millis": 1049427
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Core request validation failed, make sure you've given required columns and followed formatting rules for the CSV (no special characters or digits in column names)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "401 unauthorized error for invalid API key",
+            "example": "invalid API Key"
+          }
+        }
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message for resource not found",
+            "example": "The requested resource was not found."
+          }
+        }
+      },
+      "InternalServerError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "internal error"
+          }
+        },
+        "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+      }
+    }
+  }
+}

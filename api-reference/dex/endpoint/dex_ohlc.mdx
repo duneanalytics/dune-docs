@@ -1,0 +1,34 @@
+---
+title: 'OHLC Price'
+openapi: 'GET /v1/dex/ohlc/{token}/{chain}'
+---
+
+<Note>
+- You must pass in `token` address in all lower cased string
+- Query can be found [here](https://dune.com/queries/3582296)
+- Chains included are: all [EVM chains on Dune](../../../../data-catalog/evm/overview)
+- Scheduled to update every 30 minutes
+- You can apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+</Note>
+
+# Use Cases 
+
+- Construct pricing candlestick data for any arbitrary token on a given chain, from memecoins to blue chip coins alike.
+- Utilize historical OHLC data for predictive modeling and price movement forecasting.
+- Incorporate OHLC data into automated trading algorithms to capitalize on price movements and trends.
+
+# Column Descriptions
+
+| Column                | Description                                               | Type         |
+|-----------------------|-----------------------------------------------------------|--------------|
+| period                | Date of the pricing data  | string    |
+| token_contract_address| Token's blockchain contract address         | string    |
+| token_symbol          | Token symbol               | string      |
+| blockchain            | Blockchain where the token is deployed on      | string      |
+| median_price          | The median trading price of the token for the period      | double       |
+| high_price            | The highest trading price of the token during the period, calculated by taking the 99th percentile of day's trades if there are more than 1000 trades for the token on that day, else 95th percentile to account for edge cases  | double       |
+| low_price             | The lowest trading price of the token during the period, calculated by taking the 1st percentile of day's trades if there are more than 1000 trades for the token on that day, else 5th percentile to account for edge cases  | double       |
+| opening_price         | The price of the token at the start of the period, calculated by taking the first 10 trades of the day       | double       |
+| closing_price         | The price of the token at the end of the period, calculated by taking the last 10 trades of the day          | double       |
+| sample_size           | The number of trades sampled to calculate the prices      | int       |
+

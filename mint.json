@@ -773,18 +773,11 @@
       ]
     },
     {
-      "group": "API Endpoints",
+      "group": "General API Endpoints",
       "pages": [
         {
-          "group": "Farcaster",
-          "pages": [
-            "api-reference/farcaster/endpoint/farcaster_users",
-            "api-reference/farcaster/endpoint/farcaster_channels"
-          ]
-        },
-        {
-          "group": "EVM Contracts",
-          "pages": ["api-reference/evm/endpoint/contracts"]
+          "group": "Blockchains",
+          "pages": ["api-reference/tables/blockchain/insert"]
         },
         {
           "group": "Uploaded Tables",
@@ -832,8 +825,37 @@
       ]
     },
     {
-      "group": "",
-      "pages": ["datashare/datashare"]
+      "group": "Defined API Endpoints",
+      "pages": [
+        {
+          "group": "Farcaster",
+          "pages": [
+            "api-reference/farcaster/endpoint/farcaster_users",
+            "api-reference/farcaster/endpoint/farcaster_channels",
+            "api-reference/farcaster/endpoint/farcaster_memecoins"
+          ]
+        },
+        {
+          "group": "DEX",
+          "pages": ["api-reference/dex/endpoint/dex_pair"]
+        },
+        {
+          "group": "EVM Contracts",
+          "pages": ["api-reference/evm/endpoint/contracts"]
+        },
+        {
+          "group": "Markets",
+          "pages": ["api-reference/markets/endpoint/marketplace_marketshare"]
+        }
+      ]
+    },
+    {
+      "group": "Datashare",
+      "pages": [
+        "datashare/datashare",
+        "datashare/datashare-trial",
+        "datashare/datashare-faqs"
+      ]
     }
   ],
   "feedback": {

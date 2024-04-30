@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI for trends API",
-    "description": "API for predefined trends endpoints",
+    "title": "OpenAPI for Farcaster API",
+    "description": "API for predefined Farcaster-related endpoints",
     "version": "1.0.0"
   },
   "servers": [
@@ -81,132 +81,132 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                      "execution_id": {
-                        "type": "string",
-                        "description": "Unique identifier for the execution",
-                        "example": "01HVKQK08KDVDKHYDKKKHTJWMC"
-                      },
-                      "query_id": { 
-                        "type": "integer",
-                        "description": "Unique identifier for the query",
-                        "example": 3633428
-                      },
-                      "is_execution_finished": {
-                        "type": "boolean",
-                        "description": "Flag to indicate if the execution is finished",
-                        "example": true
-                      },
-                      "state": { 
-                        "type": "string",
-                        "description": "State of the query execution",
-                        "example": "QUERY_STATE_COMPLETED"
-                      },
-                      "submitted_at": {
-                        "type": "string",
-                        "description": "Time when the query was submitted",
-                        "example": "2024-04-16T15:14:43.606076Z"
-                      },
-                      "expires_at": {
-                        "type": "string",
-                        "description": "Time when the query will expire",
-                        "example": "2024-07-15T15:15:31.475503Z"
-                      },
-                      "execution_started_at": {
-                        "type": "string",
-                        "description": "Time when the execution started",
-                        "example": "2024-04-16T15:15:11.247805Z"
-                      },
-                      "execution_ended_at": {
-                        "type": "string",
-                        "description": "Time when the execution ended",
-                        "example": "2024-04-16T15:15:31.4755Z"
-                      },
-                      "result": {
-                          "type": "object",
-                          "description": "results from query",
-                          "example": {
-                            "rows": [
-                              {
-                                "account_age": 224,
-                                "addresses": [
-                                    "0x6b0bda3f2ffed5efc83fa8c024acff1dd45793f1",
-                                    "0xb877f7bb52d28f06e60f557c00a56225124b357f",
-                                    "0xa14b4c95b5247199d74c5578531b4887ca5e4909",
-                                    "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
-                                    "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
-                                    "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
-                                    "0x8fc5d6afe572fefc4ec153587b63ce543f6fa2ea"
-                                ],
-                                "casts": 161,
-                                "channels": 42,
-                                "contracts_deployed": 204,
-                                "engagement": 71062.86674253445,
-                                "fid": 3,
-                                "fid_active_tier": 4,
-                                "fid_active_tier_last": 4,
-                                "fid_active_tier_name": "vip",
-                                "fname": "dwr.eth",
-                                "followers": 252265,
-                                "got_likes": 27842,
-                                "got_recasts": 3342,
-                                "got_replies": 6003,
-                                "top_channels": [
-                                    "farcaster",
-                                    "warpcast",
-                                    "product"
-                                ],
-                                "top_domains": [
-                                    "docs.farcaster.xyz",
-                                    "warpcast.notion.site"
-                                ],
-                                "top_engagers": [
-                                    "warpcastbot",
-                                    "iturner.eth",
-                                    "kidmmo"
-                                ],
-                                "total_transactions": 1185,
-                                "trading_volume_usd": 790785.0209452906,
-                                "wow_casts": -114,
-                                "wow_engage": 28414.895986926094,
-                                "wow_followers": 13987,
-                                "wow_likes": 4132,
-                                "wow_recasts": 3342,
-                                "wow_replies": 2057
-                             }
-                            ]
-                        }
-                      },
-                      "metadata": {
-                        "type": "object",
-                        "description": "Metadata for the query",
-                        "example": {
-                          "column_names": [
-                            "fid_active_tier_name",
-                            "fid_active_tier",
-                            "fid_active_tier_last",
-                            "fid",
-                            "fname",
-                            "account_age",
-                            "channels",
-                            "top_channels",
-                            "top_domains",
-                            "top_engagers",
-                            "followers",
-                            "wow_followers",
-                            "casts",
-                            "wow_casts",
-                            "engagement",
-                            "wow_engage",
-                            "total_transactions",
-                            "trading_volume_usd",
-                            "contracts_deployed",
-                            "got_likes",
-                            "wow_likes",
-                            "got_recasts",
-                            "wow_recasts",
-                            "got_replies",
-                            "wow_replies",
-                            "addresses"
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": "01HVKQK08KDVDKHYDKKKHTJWMC"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3633428
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-04-16T15:14:43.606076Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-07-15T15:15:31.475503Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-04-16T15:15:11.247805Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-04-16T15:15:31.4755Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "account_age": 224,
+                            "addresses": [
+                              "0x6b0bda3f2ffed5efc83fa8c024acff1dd45793f1",
+                              "0xb877f7bb52d28f06e60f557c00a56225124b357f",
+                              "0xa14b4c95b5247199d74c5578531b4887ca5e4909",
+                              "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
+                              "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
+                              "0xd7029bdea1c17493893aafe29aad69ef892b8ff2",
+                              "0x8fc5d6afe572fefc4ec153587b63ce543f6fa2ea"
+                            ],
+                            "casts": 161,
+                            "channels": 42,
+                            "contracts_deployed": 204,
+                            "engagement": 71062.86674253445,
+                            "fid": 3,
+                            "fid_active_tier": 4,
+                            "fid_active_tier_last": 4,
+                            "fid_active_tier_name": "vip",
+                            "fname": "dwr.eth",
+                            "followers": 252265,
+                            "got_likes": 27842,
+                            "got_recasts": 3342,
+                            "got_replies": 6003,
+                            "top_channels": [
+                              "farcaster",
+                              "warpcast",
+                              "product"
+                            ],
+                            "top_domains": [
+                              "docs.farcaster.xyz",
+                              "warpcast.notion.site"
+                            ],
+                            "top_engagers": [
+                              "warpcastbot",
+                              "iturner.eth",
+                              "kidmmo"
+                            ],
+                            "total_transactions": 1185,
+                            "trading_volume_usd": 790785.0209452906,
+                            "wow_casts": -114,
+                            "wow_engage": 28414.895986926094,
+                            "wow_followers": 13987,
+                            "wow_likes": 4132,
+                            "wow_recasts": 3342,
+                            "wow_replies": 2057
+                          }
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Metadata for the query",
+                      "example": {
+                        "column_names": [
+                          "fid_active_tier_name",
+                          "fid_active_tier",
+                          "fid_active_tier_last",
+                          "fid",
+                          "fname",
+                          "account_age",
+                          "channels",
+                          "top_channels",
+                          "top_domains",
+                          "top_engagers",
+                          "followers",
+                          "wow_followers",
+                          "casts",
+                          "wow_casts",
+                          "engagement",
+                          "wow_engage",
+                          "total_transactions",
+                          "trading_volume_usd",
+                          "contracts_deployed",
+                          "got_likes",
+                          "wow_likes",
+                          "got_recasts",
+                          "wow_recasts",
+                          "got_replies",
+                          "wow_replies",
+                          "addresses"
                         ],
                         "row_count": 1,
                         "result_set_bytes": 1584,
@@ -217,16 +217,16 @@
                         "execution_time_millis": 23701
                       }
                     },
-                      "next_uri": {
-                        "type": "string",
-                        "description": "URI to get the next set of results",
-                        "example": "https://api.dune.com/api/v1/execution/01HVKQK08KDVDKHYDKKKHTJWMC/results?filters=&limit=10&offset=10&sort_by=followers+desc"
-                      },
-                      "next_offset": {
-                        "type": "integer",
-                        "description": "Offset to get the next set of results",
-                        "example": 10
-                      }
+                    "next_uri": {
+                      "type": "string",
+                      "description": "URI to get the next set of results",
+                      "example": "https://api.dune.com/api/v1/execution/01HVKQK08KDVDKHYDKKKHTJWMC/results?filters=&limit=10&offset=10&sort_by=followers+desc"
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "description": "Offset to get the next set of results",
+                      "example": 10
+                    }
                   }
                 }
               }
@@ -341,136 +341,136 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                      "execution_id": {
-                        "type": "string",
-                        "description": "Unique identifier for the execution",
-                        "example": "01HVKQK08KDVDKHYDKKKHTJWMC"
-                      },
-                      "query_id": { 
-                        "type": "integer",
-                        "description": "Unique identifier for the query",
-                        "example": 3633434
-                      },
-                      "is_execution_finished": {
-                        "type": "boolean",
-                        "description": "Flag to indicate if the execution is finished",
-                        "example": true
-                      },
-                      "state": { 
-                        "type": "string",
-                        "description": "State of the query execution",
-                        "example": "QUERY_STATE_COMPLETED"
-                      },
-                      "submitted_at": {
-                        "type": "string",
-                        "description": "Time when the query was submitted",
-                        "example": "2024-04-16T15:14:43.606076Z"
-                      },
-                      "expires_at": {
-                        "type": "string",
-                        "description": "Time when the query will expire",
-                        "example": "2024-07-15T15:15:31.475503Z"
-                      },
-                      "execution_started_at": {
-                        "type": "string",
-                        "description": "Time when the execution started",
-                        "example": "2024-04-16T15:15:11.247805Z"
-                      },
-                      "execution_ended_at": {
-                        "type": "string",
-                        "description": "Time when the execution ended",
-                        "example": "2024-04-16T15:15:31.4755Z"
-                      },
-                      "result": {
-                          "type": "object",
-                          "description": "results from query",
-                          "example": {
-                            "rows": [
-                              {
-                                "active_influencer": 41,
-                                "active_npc": 9922,
-                                "active_star": 4749,
-                                "active_user": 6555,
-                                "active_vip": 11,
-                                "channel": "zora",
-                                "channel_age": 225,
-                                "channel_tier": 4,
-                                "channel_tier_last": 4,
-                                "channel_tier_name": "stadium",
-                                "engagement": 986141.8744016357,
-                                "got_casts": 70056,
-                                "got_likes": 1897359,
-                                "got_recasts": 610489,
-                                "got_replies": 684280,
-                                "influential_casters": [
-                                    "mikedemarais.eth",
-                                    "six",
-                                    "flexasaurusrex"
-                                ],
-                                "top_casters": [
-                                    "ameenullah",
-                                    "yoonje",
-                                    "samuray07",
-                                    "omid77",
-                                    "ako1988",
-                                    "hank68",
-                                    "ayla1638",
-                                    "maryamtab",
-                                    "ilannnnnnnnkatin",
-                                    "woww"
-                                ],
-                                "top_domains": [
-                                    "zora.co",
-                                    "farcaster.manifold.xyz",
-                                    "frames.poster.fun"
-                                ],
-                                "wow_active_user": 101,
-                                "wow_cast": 8356,
-                                "wow_engage": 175460.7229972462,
-                                "wow_influencer": -6,
-                                "wow_likes": 420394,
-                                "wow_npc": -3690,
-                                "wow_recasts": 180216,
-                                "wow_reply": 25247,
-                                "wow_star": 82,
-                                "wow_vip": -2
-                               }
-                            ]
-                        }
-                      },
-                      "metadata": {
-                        "type": "object",
-                        "description": "Metadata for the query",
-                        "example": {
-                            "column_names": [
-                            "channel_tier_name",
-                            "channel_tier",
-                            "channel_tier_last",
-                            "channel",
-                            "channel_age",
-                            "influential_casters",
-                            "got_casts",
-                            "wow_cast",
-                            "engagement",
-                            "wow_engage",
-                            "active_npc",
-                            "wow_npc",
-                            "active_user",
-                            "wow_active_user",
-                            "active_star",
-                            "wow_star",
-                            "active_influencer",
-                            "wow_influencer",
-                            "active_vip",
-                            "wow_vip",
-                            "got_replies",
-                            "wow_reply",
-                            "got_likes",
-                            "wow_likes",
-                            "got_recasts",
-                            "wow_recasts",
-                            "top_domains",
-                            "top_casters"
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": "01HVKQK08KDVDKHYDKKKHTJWMC"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3633434
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-04-16T15:14:43.606076Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-07-15T15:15:31.475503Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-04-16T15:15:11.247805Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-04-16T15:15:31.4755Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "active_influencer": 41,
+                            "active_npc": 9922,
+                            "active_star": 4749,
+                            "active_user": 6555,
+                            "active_vip": 11,
+                            "channel": "zora",
+                            "channel_age": 225,
+                            "channel_tier": 4,
+                            "channel_tier_last": 4,
+                            "channel_tier_name": "stadium",
+                            "engagement": 986141.8744016357,
+                            "got_casts": 70056,
+                            "got_likes": 1897359,
+                            "got_recasts": 610489,
+                            "got_replies": 684280,
+                            "influential_casters": [
+                              "mikedemarais.eth",
+                              "six",
+                              "flexasaurusrex"
+                            ],
+                            "top_casters": [
+                              "ameenullah",
+                              "yoonje",
+                              "samuray07",
+                              "omid77",
+                              "ako1988",
+                              "hank68",
+                              "ayla1638",
+                              "maryamtab",
+                              "ilannnnnnnnkatin",
+                              "woww"
+                            ],
+                            "top_domains": [
+                              "zora.co",
+                              "farcaster.manifold.xyz",
+                              "frames.poster.fun"
+                            ],
+                            "wow_active_user": 101,
+                            "wow_cast": 8356,
+                            "wow_engage": 175460.7229972462,
+                            "wow_influencer": -6,
+                            "wow_likes": 420394,
+                            "wow_npc": -3690,
+                            "wow_recasts": 180216,
+                            "wow_reply": 25247,
+                            "wow_star": 82,
+                            "wow_vip": -2
+                          }
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Metadata for the query",
+                      "example": {
+                        "column_names": [
+                          "channel_tier_name",
+                          "channel_tier",
+                          "channel_tier_last",
+                          "channel",
+                          "channel_age",
+                          "influential_casters",
+                          "got_casts",
+                          "wow_cast",
+                          "engagement",
+                          "wow_engage",
+                          "active_npc",
+                          "wow_npc",
+                          "active_user",
+                          "wow_active_user",
+                          "active_star",
+                          "wow_star",
+                          "active_influencer",
+                          "wow_influencer",
+                          "active_vip",
+                          "wow_vip",
+                          "got_replies",
+                          "wow_reply",
+                          "got_likes",
+                          "wow_likes",
+                          "got_recasts",
+                          "wow_recasts",
+                          "top_domains",
+                          "top_casters"
                         ],
                         "row_count": 1,
                         "result_set_bytes": 763,
@@ -479,18 +479,277 @@
                         "datapoint_count": 28,
                         "pending_time_millis": 1110,
                         "execution_time_millis": 26170
-                        }
-                      },
-                      "next_uri": {
-                        "type": "string",
-                        "description": "URI to get the next set of results",
-                        "example": "https://api.dune.com/api/v1/execution/01HVKQK08KDVDKHYDKKKHTJWMC/results?filters=&limit=10&offset=10&sort_by=followers+desc"
-                      },
-                      "next_offset": {
-                        "type": "integer",
-                        "description": "Offset to get the next set of results",
-                        "example": 10
                       }
+                    },
+                    "next_uri": {
+                      "type": "string",
+                      "description": "URI to get the next set of results",
+                      "example": "https://api.dune.com/api/v1/execution/01HVKQK08KDVDKHYDKKKHTJWMC/results?filters=&limit=10&offset=10&sort_by=followers+desc"
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "description": "Offset to get the next set of results",
+                      "example": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Core request validation failed, make sure you've given required columns and followed formatting rules for the CSV (no special characters or digits in column names)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/farcaster/trends/memecoins": {
+      "get": {
+        "summary": "get trending farcaster memecoins that have been casted",
+        "description": "get trending farcaster memecoins that have been casted",
+        "operationId": "trendingMemecoins",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10,
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the Filtering section of the doc. This parameter is incompatible with `sample_count`."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": "01HWBTTTV89PHNTNW7BS9TBZ27"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3662242
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-04-16T15:14:43.606076Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-07-15T15:15:31.475503Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-04-16T15:15:11.247805Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-04-16T15:15:31.4755Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "word_raw": "DEGEN",
+                            "related_symbol":"🎩",
+                            "activity_level": 24807277.002432942,
+                            "activity_wow": -22679691.683773145,
+                            "blockchain": "base",
+                            "buy_volume_week": 69449195.66125394,
+                            "buy_volume_wow": -19452047.862753436,
+                            "casters": 10374,
+                            "casters_wow": -2641,
+                            "casts": 138232,
+                            "casts_wow": -83908,
+                            "channels": 476,
+                            "channels_wow": -182,
+                            "day_pnl": -0.09455416194472792,
+                            "deployed_days_ago": 109,
+                            "fdv": 983543127.8897532,
+                            "financial_score": 627.74,
+                            "liquidity_usd": 9726985.075777544,
+                            "liquidity_wow": -237483.66550707817,
+                            "median_price": 0.02661,
+                            "month_pnl": 0.7140550503404604,
+                            "percent_recipient_casters": 0.9253903990746096,
+                            "percent_recipient_wow": 0.022585942678143955,
+                            "recipient_casters": 9600,
+                            "recipient_casters_wow": -2150,
+                            "rolling_one_months_trades": 848654,
+                            "sell_volume_week": 68724401.02564587,
+                            "sell_volume_wow": -20176842.498361513,
+                            "social_score": 491.56,
+                            "token_contract_address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+                            "total_supply": 36965730333,
+                            "total_volume_week": 138173596.6868998,
+                            "total_volume_wow": -39628890.36111495,
+                            "transfers_one_month": 3583424,
+                            "week_pnl": -0.18248784976233895
+                          }
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Metadata for the query",
+                      "example": {
+                        "column_names": [
+                            "word_raw",
+                            "related_symbol",
+                            "token_contract_address",
+                            "blockchain",
+                            "deployed_days_ago",
+                            "social_score",
+                            "financial_score",
+                            "casters",
+                            "casters_wow",
+                            "percent_recipient_casters",
+                            "percent_recipient_wow",
+                            "recipient_casters",
+                            "recipient_casters_wow",
+                            "casts",
+                            "casts_wow",
+                            "channels",
+                            "channels_wow",
+                            "activity_level",
+                            "activity_wow",
+                            "total_supply",
+                            "fdv",
+                            "median_price",
+                            "day_pnl",
+                            "week_pnl",
+                            "month_pnl",
+                            "liquidity_usd",
+                            "liquidity_wow",
+                            "rolling_one_months_trades",
+                            "transfers_one_month",
+                            "total_volume_week",
+                            "total_volume_wow",
+                            "buy_volume_week",
+                            "buy_volume_wow",
+                            "sell_volume_week",
+                            "sell_volume_wow"
+                        ],
+                        "row_count": 1,
+                        "result_set_bytes": 1029,
+                        "total_row_count": 51,
+                        "total_result_set_bytes": 19912,
+                        "datapoint_count": 34,
+                        "pending_time_millis": 1445,
+                        "execution_time_millis": 417705
+                      }
+                    },
+                    "next_uri": {
+                      "type": "string",
+                      "description": "URI to get the next set of results",
+                      "example": "https://api.dune.com/api/v1/execution/01HWBTTTV89PHNTNW7BS9TBZ27/results?limit=1&offset=1&sort_by=casters+desc"
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "description": "Offset to get the next set of results",
+                      "example": 10
+                    }
                   }
                 }
               }

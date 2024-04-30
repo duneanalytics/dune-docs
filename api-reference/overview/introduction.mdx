@@ -4,7 +4,7 @@ title: "Introduction"
 
 ## Welcome
 
-Dune's four core API offerings can be found below:
+Dune's four general API offerings can be found below:
 
 <CardGroup cols={2}>
   <Card
@@ -30,5 +30,38 @@ Dune's four core API offerings can be found below:
   </Card>
   <Card title="Webhooks" icon="webhook" href="/api-reference/webhooks/webhook">
     Push Dune data into your own webhooks, on a custom set schedule
+  </Card>
+</CardGroup>
+
+We also have defined API endpoints for common data themes developers build with:
+
+<CardGroup cols={2}>
+  <Card
+    title="Farcaster"
+    icon="thumbs-up"
+    href="/api-reference/farcaster/endpoint/farcaster_users"
+  >
+    Get trending users, channels, and memecoins
+  </Card>
+  <Card
+    title="Contracts"
+    icon="file-contract"
+    href="/api-reference/evm/endpoint/contracts"
+  >
+    Get trending EVM contracts by contract type, project, name, users, and value
+  </Card>
+  <Card
+    title="DEX"
+    icon="money-bill-trend-up"
+    href="/api-reference/dex/endpoint/dex_pair"
+  >
+    Get token pair stats and OHLC
+  </Card>
+  <Card
+    title="Markets"
+    icon="shop"
+    href="/api-reference/markets/endpoint/marketplace_marketshare"
+  >
+    Track DEX/NFT market share
   </Card>
 </CardGroup>
