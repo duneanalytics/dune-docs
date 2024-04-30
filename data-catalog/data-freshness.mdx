@@ -1,0 +1,60 @@
+---
+title: Data freshness
+description: How often is the data on Dune updated?
+icon: "clock"
+---
+
+Data on Dune is updated in three stages: **Raw data**, **Decoded data**, and **Curated data**. The frequency of updates varies depending on the type of data.
+
+
+## Raw data
+
+Raw data are tables like `ethereum.blocks` or `ethereum.transactions` that are directly ingested from the blockchain. 
+The raw data ingestion in Dune depends on the historical likelihood of a reorg on any given Chain. 
+For example, Optimism, Arbitrum and Avalanche ingestion times are lower than Polygon or Ethereum because the former chains do not face the possibility of reorgs. The latter chains have a significant potential for reorgs, therefore we wait for these potential reorgs to pass and only then start ingesting the data in our database.
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3674011/6192854/"
+    width="100%"
+    height="800px"
+  ></iframe>
+</div>
+
+
+## Decoded Data
+Decoded data are tables like `uniswap_v3_ethereum.Factory_evt_PoolCreated` or `tokens_ethereum.erc20` that are derived from the raw data, but already decode the same to make it easier to work with. This decoding process happens on the fly and is dependent on the volume of data that is being decoded. Usually, this process takes anywhere from 15-60 seconds after we have ingested the raw data.
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3674011/6191881/"
+    width="100%"
+    height="800px"
+  ></iframe>
+</div>
+
+# Curated data
+Curated data on Dune are tables like `dex.trades` or `nft.trades` that are derived from the decoded data. They take away the complexity of working with raw or even decoded data and are ready to be used for analysis.
+The data pipelines are defined in this [github repo](https://github.com/duneanalytics/spellbook).
+
+Curated tables are usually scheduled to run once every hour. The runtime of the data models can vary depending on the volume of transactions on any given day, therefore curated datasets are sometimes slower than the usual 1-hour target to update.
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3675008/6180554/" 
+    width="100%"
+    height="400px"
+  ></iframe>
+</div>
+
+## Community Data
+
+Several notable 3rd party data providers are uploading their data into Dune. These data providers have their own update schedules and are not controlled by Dune. The data freshness of these providers can be found in the table below.
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3675124/6180730/"
+    width="100%"
+    height="400px"
+  ></iframe>
+</div>
