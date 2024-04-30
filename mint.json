@@ -169,7 +169,11 @@
     },
     {
       "group": "",
-      "pages": ["data-catalog/overview", "data-catalog/bring-your-own-data"]
+      "pages": [
+        "data-catalog/overview",
+        "data-catalog/data-freshness",
+        "data-catalog/bring-your-own-data"
+      ]
     },
     {
       "group": "EVM Chains",
@@ -780,9 +784,7 @@
         },
         {
           "group": "EVM Contracts",
-          "pages": [
-            "api-reference/evm/endpoint/contracts"
-          ]
+          "pages": ["api-reference/evm/endpoint/contracts"]
         },
         {
           "group": "Uploaded Tables",
