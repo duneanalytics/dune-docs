@@ -768,26 +768,13 @@
       "group": "API Quickstart",
       "pages": [
         "api-reference/quickstart/results-eg",
-        "api-reference/quickstart/tables-eg",
-        "api-reference/quickstart/queries-eg"
+        "api-reference/quickstart/queries-eg",
+        "api-reference/quickstart/tables-eg"
       ]
     },
     {
-      "group": "General API Endpoints",
+      "group": "Executions and Results",
       "pages": [
-        {
-          "group": "Blockchains",
-          "pages": ["api-reference/tables/blockchain/insert"]
-        },
-        {
-          "group": "Uploaded Tables",
-          "pages": [
-            "api-reference/tables/endpoint/create",
-            "api-reference/tables/endpoint/insert",
-            "api-reference/tables/endpoint/upload",
-            "api-reference/tables/endpoint/delete"
-          ]
-        },
         {
           "group": "Executions and Results",
           "pages": [
@@ -825,16 +812,26 @@
       ]
     },
     {
-      "group": "Defined API Endpoints",
+      "group": "Data Management",
       "pages": [
         {
-          "group": "Farcaster",
-          "pages": [
-            "api-reference/farcaster/endpoint/farcaster_users",
-            "api-reference/farcaster/endpoint/farcaster_channels",
-            "api-reference/farcaster/endpoint/farcaster_memecoins"
-          ]
+          "group": "Blockchains",
+          "pages": ["api-reference/tables/blockchain/insert"]
         },
+        {
+          "group": "Tables",
+          "pages": [
+            "api-reference/tables/endpoint/create",
+            "api-reference/tables/endpoint/insert",
+            "api-reference/tables/endpoint/upload",
+            "api-reference/tables/endpoint/delete"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Domain-specific",
+      "pages": [
         {
           "group": "DEX",
           "pages": ["api-reference/dex/endpoint/dex_pair"]
@@ -842,6 +839,15 @@
         {
           "group": "EVM Contracts",
           "pages": ["api-reference/evm/endpoint/contracts"]
+        },
+
+        {
+          "group": "Farcaster",
+          "pages": [
+            "api-reference/farcaster/endpoint/farcaster_channels",
+            "api-reference/farcaster/endpoint/farcaster_memecoins",
+            "api-reference/farcaster/endpoint/farcaster_users"
+          ]
         },
         {
           "group": "Markets",
