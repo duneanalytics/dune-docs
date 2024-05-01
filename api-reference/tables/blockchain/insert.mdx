@@ -120,7 +120,7 @@ On the initial insert, the endpoint will automatically create a table for you un
 
 <Note>
 - Ensure that data in the files strictly conforms to the specified schema and uses identical column names.
-- For columns of type `varbinary`, submit the data in `varchar` format. Our system will convert these to `varbinary` to enhance performance.
+- For columns of type `varbinary`, submit the data in string format. See [varbinary values](../endpoint/insert#varbinary-values) for more info.
 - Each successful `/insert` request consumes 10 credits.
 - The maximum allowable request size is 1.2GB.
 </Note>
