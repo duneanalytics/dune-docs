@@ -1,0 +1,16 @@
+---
+title: 'Overview'
+---
+
+Blockchain integration is available through either a "Fully Managed" option or a "Hosted" option. The "Hosted" option allows you to upload your blockchain data to Dune using dedicated blockchain endpoints. These endpoints are restricted to enterprise customers. For access, please contact sales@dune.com.
+
+The "Hosted" option includes three primary endpoints for blockchain integration:
+- [Insert endpoint](./insert): Uploads blockchain data to supported raw tables (`blocks`, `transactions`, `logs`, `traces`) with predefined schemas.
+- Clear endpoint: Removes all data within a table. (_Documentation coming soon_)
+- Delete endpoint: Eliminates specific rows within a table, offering more granularity than the `Clear` endpoint. (_Currently unavailable_)
+
+<Note>
+    - Currently, the endpoints support only EVM-compatible chains.
+    - Dune accepts any data source, provided it conforms to the predefined schemas of the `Insert` endpoint.
+    - These endpoints accommodate micro-batch uploads with sub-second processing times and a maximum batch size of approximately 1.2GB — suitable for chains with block times of 1-2 seconds.
+</Note>

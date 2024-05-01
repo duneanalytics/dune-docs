@@ -12,9 +12,7 @@
   "paths": {
     "/v1/table/create": {
       "post": {
-        "tags": [
-          "table"
-        ],
+        "tags": ["table"],
         "summary": "Create a new Dune table",
         "description": "Create a new Dune table with the specified name and namespace.",
         "requestBody": {
@@ -108,9 +106,7 @@
     },
     "/v1/table/{namespace}/{table_name}/insert": {
       "post": {
-        "tags": [
-          "table"
-        ],
+        "tags": ["table"],
         "summary": "Insert data into a Dune table.",
         "description": "Insert the data in a file into a table.",
         "parameters": [
@@ -221,9 +217,7 @@
     },
     "/v1/table/{namespace}/{table_name}": {
       "delete": {
-        "tags": [
-          "table"
-        ],
+        "tags": ["table"],
         "summary": "Delete a Dune table",
         "description": "Delete a Dune table with the specified name and namespace.",
         "parameters": [
@@ -245,8 +239,7 @@
               "type": "string"
             }
           }
-        ]
-        ,
+        ],
         "responses": {
           "200": {
             "description": "Table successfully deleted",
@@ -312,11 +305,9 @@
     },
     "/v1/blockchain/{chain}/{table_name}/insert": {
       "post": {
-        "tags": [
-          "table"
-        ],
+        "tags": ["table"],
         "summary": "Insert data into a Dune table.",
-        "description": "Insert blockchain data into a table with a predefined schema.",
+        "description": "Insert blockchain data into supported table with predefined schema",
         "parameters": [
           {
             "name": "chain",
@@ -411,10 +402,7 @@
   "components": {
     "schemas": {
       "CreateTableRequest": {
-        "required": [
-          "table_name",
-          "schema"
-        ],
+        "required": ["table_name", "schema"],
         "type": "object",
         "properties": {
           "namespace": {
@@ -447,10 +435,7 @@
       },
       "Column": {
         "description": "A column of the table.",
-        "required": [
-          "name",
-          "type"
-        ],
+        "required": ["name", "type"],
         "properties": {
           "name": {
             "type": "string",
@@ -537,10 +522,9 @@
             "items": {
               "$ref": "#/components/schemas/Column"
             }
-
+          }
+        }
       }
-    }
-  }
     },
     "securitySchemes": {
       "api_key": {
