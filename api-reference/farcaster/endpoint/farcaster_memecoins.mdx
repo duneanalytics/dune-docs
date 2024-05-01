@@ -7,6 +7,7 @@ openapi: 'GET /v1/farcaster/trends/memecoins'
 - Query can be found [here](https://dune.com/queries/3662242)
 - Scheduled to update every 6 hours
 - You can apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+- Learn about memecoins and categories [in this article](https://read.cryptodatabytes.com/p/a-social-and-financial-study-of-memecoins)
 </Note>
 
 # Use Cases
@@ -26,6 +27,7 @@ Learn more about the score and methodology [in this article](https://read.crypto
 | deployed_days_ago     | Number of days since the token was deployed                           | integer |
 | social_score          | Social score of the token                                             | integer |
 | financial_score       | Financial score of the token                                          | integer |
+| meme_category            | category of meme based off of social and financial score values           | string  |
 | casters               | Number of users who have casted the token ticker                            | integer |
 | casters_wow           | Change in the number of casters week over week                        | integer |
 | percent_recipient_casters | Percentage of casters this week that have received the token before | integer |

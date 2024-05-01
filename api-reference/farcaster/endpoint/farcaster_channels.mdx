@@ -7,13 +7,14 @@ openapi: 'GET /v1/farcaster/trends/channels'
 - Query can be found [here](https://dune.com/queries/3633434)
 - Scheduled to update every 6 hours
 - You can apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+- Learn about channel tiers [in this article](https://read.cryptodatabytes.com/p/how-to-find-and-analyze-trends-on)
 </Note>
 
 # Use Cases
 
 - Recommend trending channels based on engagement, casters, and/or domains
 - Curate feeds that segment channels by type (small and growing, large and established, influencer led)
-- Filter out likely bot channels (high number of casts, low engagement, no influencers or vips)
+- Filter out likely bot channels (low engagement, no influencers or vips, no "onchain_experts")
 
 # Column Descriptions
 
@@ -27,10 +28,15 @@ openapi: 'GET /v1/farcaster/trends/channels'
 | influential_casters   | top casters by engagement in channel| array(string) |
 | top_domains | top domains in casts in channel | array(string) |
 | top_casters | top casters by number of casts in channel | array(string) |
+| casters             | number of casts in channels in the last week | integer |
+| wow_cast              | week over week change in number of casts  | integer |
 | got_casts             | number of casts in channels in the last week | integer |
 | wow_cast              | week over week change in number of casts  | integer |
 | engagement            | engagement on channel casts in the last week | integer |
 | wow_engage            | week over week change in number of engagement | integer |
+| onchain_experts    | number of casters in the last week who have transacted 100+ times ever | integer |
+| trading_experts | number of casters in the last week who have traded $10k+ in DEX or NFT volume ever | integer |
+| contract_experts  | number of casters in the last week who have deployed 10+ contracts ever | integer |
 | active_npc            | npc tier users that have casted in the channel  | integer        |
 | wow_npc               | week over week change in number of npc tier casters | integer |
 | active_user           | active tier users that have casted in the channel | integer        |
