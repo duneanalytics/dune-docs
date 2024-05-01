@@ -7,10 +7,16 @@ The `Insert` endpoint allows you to push your raw blockchain data onto Dune. Sup
 
 On the initial insert, the endpoint will automatically create a table for you under the associated namespace under your API key, e.g. `my_chain`.`blocks`.
 
+The `Insert` endpoint allows you to push your raw blockchain data onto Dune. Supported tables and required schemas are listed below. 
 
+On the initial insert, the endpoint will automatically create a table for you under the associated namespace under your API key, e.g. `my_chain`.`blocks`.
+
+
+## Supported tables and required schemas 
 ## Supported tables and required schemas 
 
 <AccordionGroup>
+  <Accordion title="blocks">
   <Accordion title="blocks">
     | Name | Type | Nullable |
     |------|------|----------|
@@ -66,6 +72,38 @@ On the initial insert, the endpoint will automatically create a table for you un
     | l1_tx_origin | varbinary | |
   </Accordion>
   <Accordion title="logs">
+  <Accordion title="transactions">
+    | Name | Type | Nullable |
+    |------|------|----------|
+    | block_date | date | false |
+    | block_time | timestamp | |
+    | value | uint256 | |
+    | block_number | bigint | |
+    | gas_limit | uint256 | |
+    | gas_price | uint256 | |
+    | gas_used | uint256 | |
+    | max_fee_per_gas | bigint | |
+    | max_priority_fee_per_gas | bigint | |
+    | priority_fee_per_gas | bigint | |
+    | nonce | bigint | |
+    | index | bigint | |
+    | success | boolean | |
+    | type | varchar | |
+    | chain_id | varchar | |
+    | from | varbinary | |
+    | to | varbinary | |
+    | block_hash | varbinary | |
+    | data | varbinary | |
+    | hash | varbinary | |
+    | l1_gas_used | bigint | |
+    | l1_gas_price | bigint | |
+    | l1_fee | bigint | |
+    | l1_fee_scalar | double | |
+    | l1_block_number | bigint | |
+    | l1_timestamp | bigint | |
+    | l1_tx_origin | varbinary | |
+  </Accordion>
+  <Accordion title="logs">
     | Name | Type | Nullable |
     |------|------|----------|
     | block_date | date | false |
@@ -86,6 +124,7 @@ On the initial insert, the endpoint will automatically create a table for you un
     | l1_batch_number | bigint | |
     | l1_batch_tx_index | bigint | |
   </Accordion>
+  <Accordion title="traces">
   <Accordion title="traces">
     | Name | Type | Nullable |
     |------|------|----------|
@@ -120,7 +159,7 @@ On the initial insert, the endpoint will automatically create a table for you un
 
 <Note>
 - Ensure that data in the files strictly conforms to the specified schema and uses identical column names.
-- For columns of type `varbinary`, submit the data in `varchar` format. Our system will convert these to `varbinary` to enhance performance.
+- For columns of type `varbinary`, submit the data in string format. See [varbinary values](../endpoint/insert#varbinary-values) for more info.
 - Each successful `/insert` request consumes 10 credits.
 - The maximum allowable request size is 1.2GB.
 </Note>
