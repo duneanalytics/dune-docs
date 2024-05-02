@@ -5,6 +5,27 @@ description: How to export data out of Dune
 
 This guide provides a step-by-step process on exporting data from Dune, either through CSV downloads or the API.
 
+## Export Methods and File Formats
+You can export data from Dune using two primary methods: CSV downloads and the API. Each offers different capabilities and file formats:
+- **CSV Downloads:** Ideal for static data exports, CSV downloads allow you to save query results in a spreadsheet-compatible format. You can easily open these files in spreadsheet software like Microsoft Excel or Google Sheets.
+- **API Exports**: API exports offer more flexibility and customization options. You can retrieve data in JSON or CSV formats, making it suitable for integration with third-party tools or custom analytics platforms.
+
+## Understanding Credit Usage for Data Export
+Before you start exporting data from Dune, it's essential to understand how credits are consumed during the export process. Each export action, whether through CSV downloads or the API, deducts credits from your account based on the amount of data and the method used.
+
+For a comprehensive overview of how credits work in Dune, please refer to our [detailed guide on the credit system](https://docs.dune.com/learning/how-tos/credit-system-on-dune)
+
+### Costs for Exporting Data:
+- **CSV Exports:** Available only to users on [Plus and Premium plans](https://dune.com/pricing). Exporting data as CSV involves a fixed credit charge per file download, depending on the size and complexity of the data extracted.
+   - **Plus Plan:** 5 credits per 25,000 data points.
+   - **Premium Plan:** 1 credit per 25,000 data points.
+- **API Exports:** Available across all plans, but with varying rate limits and credit costs. Users can retrieve data from the API in either JSON or CSV format.
+
+For more details on each plan, visit our [pricing page.](https://dune.com/pricing)
+
+### Rate Limits:
+Rate limits determine how frequently you can initiate data exports and at what volume. For detailed information on adjusting your export activities to stay within these limits while managing your credits efficiently, refer to our [API rate limits guide](https://docs.dune.com/api-reference/overview/rate-limits).
+
 ## Identify the Dataset for Export
 
 Begin by pinpointing the dataset or query result you wish to export. For instance, given the recent buzz around Friend.Tech, you might want to export the results from this query: https://dune.com/queries/2945343.
@@ -45,8 +66,8 @@ Begin by pinpointing the dataset or query result you wish to export. For instanc
 
 Ensure you have an API key. If not, generate one:
 
-1. Navigate to: Settings → API.
-2. Click on "Create new API key".
+1. Navigate to: **Settings** → **API**.
+2. Click on **"Create new API key"**.
 3. Remember to copy the entire API key before confirming.
 
 <div
