@@ -306,7 +306,7 @@
     "/v1/blockchain/{chain}/{table_name}/insert": {
       "post": {
         "tags": ["table"],
-        "summary": "Insert data into a Blockchain table.",
+        "summary": "Insert data into a blockchain table.",
         "description": "Insert blockchain data into supported table with predefined schema",
         "parameters": [
           {
