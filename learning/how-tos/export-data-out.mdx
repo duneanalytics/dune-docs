@@ -6,7 +6,7 @@ description: How to export data out of Dune
 This guide provides a step-by-step process on exporting data from Dune, either through CSV downloads or the API.
 
 ## Export Methods and File Formats
-You can export data from Dune using two primary methods: CSV downloads and the API. Each offers different capabilities and file formats:
+You can export data from Dune using two primary methods. Each offers different capabilities and file formats:
 - **CSV Downloads:** Ideal for static data exports, CSV downloads allow you to save query results in a spreadsheet-compatible format. You can easily open these files in spreadsheet software like Microsoft Excel or Google Sheets.
 - **API Exports**: API exports offer more flexibility and customization options. You can retrieve data in JSON or CSV formats, making it suitable for integration with third-party tools or custom analytics platforms.
 
@@ -16,10 +16,13 @@ Before you start exporting data from Dune, it's essential to understand how cred
 For a comprehensive overview of how credits work in Dune, please refer to our [detailed guide on the credit system](https://docs.dune.com/learning/how-tos/credit-system-on-dune)
 
 ### Costs for Exporting Data:
-- **CSV Exports:** Available only to users on [Plus and Premium plans](https://dune.com/pricing). Exporting data as CSV involves a fixed credit charge per file download, depending on the size and complexity of the data extracted.
-   - **Plus Plan:** 5 credits per 25,000 data points.
-   - **Premium Plan:** 1 credit per 25,000 data points.
-- **API Exports:** Available across all plans, but with varying rate limits and credit costs. Users can retrieve data from the API in either JSON or CSV format.
+- **CSV Exports:** Available **only** to users on [Plus and Premium plans](https://dune.com/pricing). Each CSV file download will deduct credits depending on the size and complexity of the data extracted:
+   - **Plus Plan:** 5,000 data points per credit
+   - **Premium Plan:** 25,000 data points per credit
+- **API Exports:** Available across all plans, but with varying rate limits and credit costs:
+  - **Free Plan:** 1,000 data points per credit
+  - **Plus Plan:** 5,000 data points per credit
+  - **Premium Plan:** 25,000 data points per credit
 
 For more details on each plan, visit our [pricing page.](https://dune.com/pricing)
 
