@@ -157,10 +157,6 @@ headers = {
 
 with open("./blocks.csv", "rb") as data:
  response = requests.request("POST", url, data=data, headers=headers)
-
-
-print("Response:", response.status_code)
-print("Response Body:", response.content)
 ```
 
 </RequestExample>
