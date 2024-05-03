@@ -408,20 +408,11 @@
           },
           {
             "in": "query",
-            "name": "params",
+            "name": "params.<key>",
             "required": false,
             "explode": true,
-            "style": "deepObject",
             "schema": {
-                "type": "object",
-                "additionalProperties": {
-                    "oneOf": [
-                        { "type": "string" },
-                        { "type": "integer" },
-                        { "type": "boolean" },
-                        { "type": "number" }
-                    ]
-                }
+              "type": "string"
             },
             "description": "SQL Query parameters in key-value pairs. Each parameter is to be provided as a separate parameter such as `param.$key=$value` in the URL. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page."
           },
