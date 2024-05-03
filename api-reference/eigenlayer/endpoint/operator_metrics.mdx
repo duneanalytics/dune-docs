@@ -1,0 +1,33 @@
+---
+title: 'Operator Metrics'
+openapi: 'GET /v1/eigenlayer/operator-stats'
+---
+
+<Note>
+- Query powering this endpoint can be found [here](https://dune.com/queries/3685928)
+- Scheduled to update 15 minutes
+- Apply [filters](../../executions/filtering) like WHERE, IN, AND/OR upon results
+- Use a combination of `sort_by` and `limit` to grab a subset of results, see [pagination](../../executions/pagination) and [sorting](../../executions/sorting) for more info
+</Note>
+
+# Column Descriptions
+
+| Column                    | Description                                         | Type       |
+| ------------------------- | --------------------------------------------------- | ---------- |
+| operator_name             | Name of the operator                                | string    |
+| operator_contract_address | Ethereum contract address of the operator           | string  |
+| total_TVL                 | Total value locked in the operator across all strategies     | double     |
+| delegators                | Number of delegators staking to the operator   | double     |
+| cbETH_TVL                 | Total value locked in cbETH strategy in the operator         | double     |
+| stETH_TVL                 | Total value locked in stETH strategy in the operator         | double     |
+| rETH_TVL                  | Total value locked in rETH strategy in the operator          | double     |
+| ETHx_TVL                  | Total value locked in ETHx strategy in the operator          | double     |
+| ankrETH_TVL               | Total value locked in ankrETH strategy in the operator       | double     |
+| OETH_TVL                  | Total value locked in OETH strategy in the operator          | double     |
+| osETH_TVL                 | Total value locked in osETH strategy in the operator         | double     |
+| swETH_TVL                 | Total value locked in swETH strategy in the operator         | double     |
+| wBETH_TVL                 | Total value locked in wBETH strategy in the operator         | double     |
+| sfrxETH_TVL               | Total value locked in sfrxETH strategy in the operator       | double     |
+| lsETH_TVL                 | Total value locked in lsETH strategy in the operator         | double     |
+| mETH_TVL                  | Total value locked in mETH strategy in the operator          | double     |
+| beacon_chain_ETH_TVL      | Total value locked in Beacon Chain ETH strategy in the operator | double  |
