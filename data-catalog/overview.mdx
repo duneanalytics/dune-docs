@@ -4,50 +4,102 @@ description: Dune's extensive data catalog provides detailed analytics for a wid
 icon: "books"
 ---
 
-Dune provides a repository of blockchain data across a range of networks. Our tables are designed to deliver detailed analytics suitable for developers, traders, and researchers.
-All of our data tables are accessible through the Dune [Web App](/web-app/overview), the [Dune API](api-reference/overview/introduction) or the [Snowflake Data Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune).
+Our entire data catalog is accessible through the Dune [Web App](/web-app/overview), the [Dune API](api-reference/overview/introduction) or the [Snowflake Data Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune).
+
+Our data catalog can be divided into the following categories:
+
+- [Blockchain Data](#blockchain-data)
+        - [EVM-Compatible Chains](#evm-compatible-chains)
+        - [Other chains](#other-chains)
+- [Curated Data](#curated-data)
+    - dex trades
+    - nft trades
+    - labels
+    - etc.
+- [Community Data](#community-data)
+    - farcaster
+    - lens protocol
+    - snapshot
+    - reservoir
+    - etc.
+
+
+# Blockchain Data
+
+Dune provides data for a wide range of blockchains. Our data catalog includes raw data, decoded data, and curated data tables for each blockchain.
+
+### EVM Chains
+
+We provide the most comprehensive data catalog for Ethereum Mainnet and EVM-compatible rollups, sidechains and other layer 2 solutions. 
+All EVM chains on Dune have raw data, decoded data and curated data tables available. 
+
+<CardGroup cols={3}>
+  <Card title="Raw data" icon="bolt" href="./evm/ethereum/raw/transactions">
+    </Card>
+  <Card title="Decoded data" icon="file" href="./evm/ethereum/decoded/overview">
+  </Card>
+    <Card title="Curated data" icon="star" href="./evm/ethereum/DEX/dex-trades"></Card>
+</CardGroup>
+
+
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3695907/6218008/"
+    width="100%"
+    height="600px"
+  ></iframe>
+</div>
+
+
+
+### Other Chains
+
+We also provide data for a wide range of other chains. The depth of data available for these chains may vary, but we always carry the full chain history.
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3695909/6218011/"
+    width="100%"
+    height="400px"
+  ></iframe>
+</div>
+
+### Adding new blockchains
+
+If you are a representative of a blockchain you would like to see supported on Dune, please reach out to us. We are always looking to expand our data catalog and provide the most comprehensive data available.
+
+<CardGroup cols={1}>
+  <Card title="" icon="upload" href="https://dune.com/enterprise">
+    Request a new blockchain integration!
+    </Card>
+  </CardGroup>
+
+# Community Data
+
+Dune also carries off-chain data important to the web3 ecosystem that is provided by third-party data providers. 
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3695961/6218101/"
+    width="100%"
+    height="400px"
+  ></iframe>
+</div>
 
 ## Our Data Difference
 
 We are building world-class data infrastructure so you don't have to. Our data catalog is designed to provide the most comprehensive and accurate blockchain data available. We are committed to delivering the highest quality data, with the following features:
 
-- **Rapid Refresh Rates:** Data from blockchain networks is updated almost instantaneously, typically within two minutes.
 - **Comprehensive Chain Histories:** Full access to blockchain data histories without gaps, ensuring source integrity.
 - **Accurate and Validated Data:** Commitment to accuracy, with validated consistency and uniqueness for all transactions and events.
 - **Rich Data Variety:** Decoded data transforms complex byte arrays into clear, structured, and usable information.
-- **Curated Data:** Dune's [Spellbook](https://github.com/duneanalytics/spellbook) enables collaborative, community driven data modelling, unlocking new insights at lightning speed.
+- **Curated Data:** Dune's [Spellbook](https://github.com/duneanalytics/spellbook) enables collaborative, community-driven data modeling, unlocking new insights at lightning speed.
 - **Vibrant Community Data Pools:** Access to vast pools of data contributed by an active and innovative community.
 - **Cross-Chain:** Our entire data catalog is hosted in the same database, making it easy to compare and contrast data across different chains.
 
+ 
 
-## Indexed Chains
 
-We maintain data tables for a wide range of blockchains, focusing on capturing a wide spectrum of on-chain activities. If you are interested in adding your chain to Dune, please use the contact form on the bottom of [this blog article](https://dune.com/blog/our-approach-to-blockchain-integrations).  
+  
 
-### EVM-Compatible Chains
-
-We provide the most comprehensive data catalog for Ethereum Mainnet and EVM-compatible rollups, sidechains and other layer 2 solutions. These include:
-
-- Arbitrum
-- Avalanche C-Chain
-- BNB Chain
-- Base
-- Celo
-- Ethereum
-- Fantom
-- Gnosis Chain
-- Goerli
-- Optimism
-- Polygon
-- Scroll
-- Zora
-- zkSync
-
-### Non EVM chains
-
-We index data for a range of non-EVM chains, including:
-
-- Aptos
-- Bitcoin
-- Solana
-- Polkadot (Substrate)
