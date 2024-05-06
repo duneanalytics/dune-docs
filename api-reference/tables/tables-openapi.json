@@ -86,20 +86,7 @@
             }
           },
           "500": {
-            "description": "Internal error occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Internal server error"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/InternalError"
           }
         }
       }
@@ -181,7 +168,52 @@
             }
           },
           "404": {
-            "description": "The table does not exist",
+            "$ref": "#/components/responses/TableNotFoundError" 
+            },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        }
+      }
+    },
+    "/v1/table/{namespace}/{table_name}/clear": {
+      "post": {
+        "tags": ["table"],
+        "summary": "Clear data in a table.",
+        "description": "Clear data in a table.",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "The the table to clear (e.g. `my_user`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_name",
+            "in": "path",
+            "description": "The name of the table to clear (e.g. `interest_rates`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearTableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -189,32 +221,22 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "This table was not found"
+                      "example": "You are not authorized to write to namespace 'other_user'. You are allowed to upload into the namespace which is the same as the user or team which your token is associated with."
                     }
                   }
                 }
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/TableNotFoundError"
+          },
           "500": {
-            "description": "Internal error occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Internal server error"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/InternalError"
           }
         }
-      }
-    },
+    }
+  },
     "/v1/table/{namespace}/{table_name}": {
       "delete": {
         "tags": ["table"],
@@ -285,20 +307,7 @@
             }
           },
           "500": {
-            "description": "Internal error occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Internal server error"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/InternalError"
           }
         }
       }
@@ -380,20 +389,7 @@
             }
           },
           "500": {
-            "description": "Internal error occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Internal server error"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/InternalError"
           }
         }
       }
@@ -429,13 +425,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Table my_chain.blocks successfully cleared."
-                    }
-                  }
+                  "$ref": "#/components/schemas/ClearTableResponse"
                 }
               }
             }
@@ -473,20 +463,7 @@
             }
           },
           "500": {
-            "description": "Internal error occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Internal server error"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/InternalError"
           }
         }
     }
@@ -597,6 +574,16 @@
           }
         }
       },
+      "ClearTableResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "description": "The confirmation message of the cleared table",
+            "type": "string",
+            "example": "Table my_user.interest_rates successfully cleared"
+          }
+        }
+      },
       "DeleteTableResponse": {
         "type": "object",
         "properties": {
@@ -625,6 +612,40 @@
         "in": "header",
         "name": "x-dune-api-key",
         "description": "The API key of your team or user."
+      }
+    },
+    "responses": {
+      "TableNotFoundError": {
+        "description": "The table does not exist",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "This table was not found"
+                }
+              }
+            }
+          }
+      }
+    },
+      "InternalError": {
+        "description": "Internal error occurred",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
