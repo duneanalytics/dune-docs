@@ -221,7 +221,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "You are not authorized to write to namespace 'other_chain'. You are allowed to upload into the namespace which is the same as the user or team which your token is associated with."
+                      "example": "You are not authorized to write to namespace 'other_user'. You are allowed to upload into the namespace which is the same as the user or team which your token is associated with."
                     }
                   }
                 }
