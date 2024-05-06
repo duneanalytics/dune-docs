@@ -867,6 +867,13 @@
         {
           "group": "Markets",
           "pages": ["api-reference/markets/endpoint/marketplace_marketshare"]
+        },
+        {
+          "group": "Projects",
+          "pages": [
+            "api-reference/projects/introduction",
+            "api-reference/projects/endpoint/linea_lxp"
+          ]
         }
       ]
     },
