@@ -1,0 +1,387 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI for Project Specific API",
+    "description": "API for predefined projects-specific endpoints",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dune.com/api"
+    }
+  ],
+  "paths": {
+    "/v1/points/linea/lxp": {
+      "get": {
+        "summary": "Get LXP balance for wallet, along with social and onchain behavior stats",
+        "description": "Get [Linea LXP](https://docs.linea.build/use-mainnet/linea-xp) balance for wallet, along with Farcaster social stats and onchain behavior metrics",
+        "operationId": "lineaLXP",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10,
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results from. This together with 'limit' allows easy pagination through results in an incremental and efficient way. This parameter is incompatible with sampling (sample_count)."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to filter out rows from the results to return. This expression is similar to a SQL WHERE clause. More details about it in the Filtering section of the doc. This parameter is incompatible with `sample_count`."
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expression to define the order in which the results should be returned. This expression is similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution",
+                      "example": " 01HX5HHMTFZK2JC00FE8FV33EE"
+                    },
+                    "query_id": {
+                      "type": "integer",
+                      "description": "Unique identifier for the query",
+                      "example": 3672612
+                    },
+                    "is_execution_finished": {
+                      "type": "boolean",
+                      "description": "Flag to indicate if the execution is finished",
+                      "example": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "State of the query execution",
+                      "example": "QUERY_STATE_COMPLETED"
+                    },
+                    "submitted_at": {
+                      "type": "string",
+                      "description": "Time when the query was submitted",
+                      "example": "2024-05-05T23:31:09.264056Z"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "description": "Time when the query will expire",
+                      "example": "2024-08-03T23:34:33.10589Z"
+                    },
+                    "execution_started_at": {
+                      "type": "string",
+                      "description": "Time when the execution started",
+                      "example": "2024-05-05T23:31:12.553842Z"
+                    },
+                    "execution_ended_at": {
+                      "type": "string",
+                      "description": "Time when the execution ended",
+                      "example": "2024-05-05T23:34:33.105887Z"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": {
+                        "rows": [
+                          {
+                            "L14D_active_tier": "not active",
+                            "connected_wallets": [null],
+                            "contracts_deployed": 14,
+                            "current_lxp": 4934,
+                            "days_old_onchain": 992,
+                            "dex_volume_usd": 4600.9847997694715,
+                            "fid": null,
+                            "fname": "-",
+                            "nft_volume_usd": 228.8637985996,
+                            "num_followers": null,
+                            "num_onchain_txns": 1513,
+                            "num_quests": 5,
+                            "on_farcaster": false,
+                            "times_contracts_called": 29,
+                            "top_channels": null,
+                            "top_domains": null,
+                            "top_engagers": null,
+                            "wallet": "0x2c21dc4fe422fbadd7dc1eda8ac4d10a8d9ffa2e"
+                          },
+                          {
+                            "L14D_active_tier": "npc",
+                            "connected_wallets": [
+                              "0x213616d873093efea758b5deb884ca88a77edbd48db751b27ed0cad68027774f",
+                              "0x42f36d45381e3f5d9443e872b6192aaf0db55b53",
+                              "0xd463122fcb41a0a63f3ea4060c9b812dea3f9f53"
+                            ],
+                            "contracts_deployed": 582,
+                            "current_lxp": 4904,
+                            "days_old_onchain": 980,
+                            "dex_volume_usd": 137706.3038118183,
+                            "fid": 217012,
+                            "fname": "danbir",
+                            "nft_volume_usd": 1446.9546141276132,
+                            "num_followers": 31,
+                            "num_onchain_txns": 12632,
+                            "num_quests": 5,
+                            "on_farcaster": true,
+                            "times_contracts_called": 647,
+                            "top_channels": ["onchain", "guild", "raffle"],
+                            "top_domains": ["base.org"],
+                            "top_engagers": ["innainna"],
+                            "wallet": "0x42f36d45381e3f5d9443e872b6192aaf0db55b53"
+                          },
+                          {
+                            "L14D_active_tier": "npc",
+                            "connected_wallets": [
+                              "0x662790673de63afe086e0a8692388b17601eccf5",
+                              "0xcd0d4cdb238eec15fcf4ff9d13d5a59051e507d7"
+                            ],
+                            "contracts_deployed": 69,
+                            "current_lxp": 4882,
+                            "days_old_onchain": 1383,
+                            "dex_volume_usd": 26857099.90605816,
+                            "fid": 190446,
+                            "fname": "mike0182",
+                            "nft_volume_usd": 78821.98331677902,
+                            "num_followers": 24,
+                            "num_onchain_txns": 11929,
+                            "num_quests": 5,
+                            "on_farcaster": true,
+                            "times_contracts_called": 183,
+                            "top_channels": ["base"],
+                            "top_domains": ["referrals.linea.build"],
+                            "top_engagers": ["youoy"],
+                            "wallet": "0xcd0d4cdb238eec15fcf4ff9d13d5a59051e507d7"
+                          },
+                          {
+                            "L14D_active_tier": "not active",
+                            "connected_wallets": [
+                              "0x7451e319282999940a79bcfa6e74e94d2ce7b96b",
+                              "0xf0b8bcd1921d37bf83d71ccee40d55a13b98f3c5"
+                            ],
+                            "contracts_deployed": 16,
+                            "current_lxp": 4834,
+                            "days_old_onchain": 1172,
+                            "dex_volume_usd": 181373.9776894516,
+                            "fid": 332387,
+                            "fname": "sayin",
+                            "nft_volume_usd": 5244.725172223999,
+                            "num_followers": null,
+                            "num_onchain_txns": 4893,
+                            "num_quests": 5,
+                            "on_farcaster": true,
+                            "times_contracts_called": 26,
+                            "top_channels": null,
+                            "top_domains": null,
+                            "top_engagers": null,
+                            "wallet": "0xf0b8bcd1921d37bf83d71ccee40d55a13b98f3c5"
+                          },
+                          {
+                            "L14D_active_tier": "npc",
+                            "connected_wallets": [
+                              "0xc1275b83e32d0b80ad045ee38dee2efbc2d6f5c8",
+                              "0x76f34d1a4535241ec054b49d969bdb37f444eb38"
+                            ],
+                            "contracts_deployed": 101,
+                            "current_lxp": 4829,
+                            "days_old_onchain": 1087,
+                            "dex_volume_usd": 942760.2390544564,
+                            "fid": 344993,
+                            "fname": "vitoloeth",
+                            "nft_volume_usd": 35789.65250788195,
+                            "num_followers": 11,
+                            "num_onchain_txns": 10840,
+                            "num_quests": 5,
+                            "on_farcaster": true,
+                            "times_contracts_called": 132,
+                            "top_channels": null,
+                            "top_domains": ["subsquid.deform.cc"],
+                            "top_engagers": [null],
+                            "wallet": "0x76f34d1a4535241ec054b49d969bdb37f444eb38"
+                          }
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Metadata for the query",
+                      "example": {
+                        "column_names": [
+                          "wallet",
+                          "current_lxp",
+                          "num_quests",
+                          "on_farcaster",
+                          "fid",
+                          "fname",
+                          "connected_wallets",
+                          "L14D_active_tier",
+                          "top_channels",
+                          "top_domains",
+                          "top_engagers",
+                          "num_followers",
+                          "num_onchain_txns",
+                          "days_old_onchain",
+                          "nft_volume_usd",
+                          "dex_volume_usd",
+                          "contracts_deployed",
+                          "times_contracts_called"
+                        ],
+                        "column_types": [
+                          "varbinary",
+                          "double",
+                          "bigint",
+                          "boolean",
+                          "bigint",
+                          "varchar",
+                          "array(varbinary)",
+                          "varchar(10)",
+                          "array(varchar)",
+                          "array(varchar)",
+                          "array(varchar)",
+                          "bigint",
+                          "bigint",
+                          "bigint",
+                          "double",
+                          "double",
+                          "bigint",
+                          "bigint"
+                        ],
+                        "row_count": 5,
+                        "result_set_bytes": 1585,
+                        "total_row_count": 699992,
+                        "total_result_set_bytes": 93605533,
+                        "datapoint_count": 90,
+                        "pending_time_millis": 3289,
+                        "execution_time_millis": 200552
+                      }
+                    },
+                    "next_uri": {
+                      "type": "string",
+                      "description": "URI to get the next set of results",
+                      "example": "https://api.dune.com/api/v1/execution/01HX5HHMTFZK2JC00FE8FV33EE/results?limit=5&offset=5&sort_by=current_lxp+desc"
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "description": "Offset to get the next set of results",
+                      "example": 5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Core request validation failed, make sure you've given required columns and followed formatting rules for the CSV (no special characters or digits in column names)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred. This usually happens due to unexpected issues in processing the request. It may include errors such as failure in core API execution, invalid query parameters, or issues with the customer data provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "401 unauthorized error for invalid API key",
+            "example": "invalid API Key"
+          }
+        }
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message for resource not found",
+            "example": "The requested resource was not found."
+          }
+        }
+      },
+      "InternalServerError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "internal error"
+          }
+        },
+        "description": "Generic error message, given when an unexpected condition is encountered and no more specific message is available. Please consult the API documentation for more details."
+      }
+    }
+  }
+}

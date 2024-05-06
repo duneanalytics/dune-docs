@@ -828,6 +828,7 @@
             "api-reference/tables/endpoint/create",
             "api-reference/tables/endpoint/insert",
             "api-reference/tables/endpoint/upload",
+            "api-reference/tables/endpoint/clear",
             "api-reference/tables/endpoint/delete"
           ]
         }
@@ -867,6 +868,13 @@
         {
           "group": "Markets",
           "pages": ["api-reference/markets/endpoint/marketplace_marketshare"]
+        },
+        {
+          "group": "Projects",
+          "pages": [
+            "api-reference/projects/introduction",
+            "api-reference/projects/endpoint/linea_lxp"
+          ]
         }
       ]
     },

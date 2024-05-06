@@ -1,0 +1,35 @@
+---
+title: 'Linea LXP'
+openapi: 'GET /v1/points/linea/lxp'
+---
+
+<Note>
+- Query powering this endpoint can be found [here](https://dune.com/queries/3672612)
+- Scheduled to update daily
+- Apply [filters](../../executions/filtering#filters) like WHERE, IN, AND/OR upon results
+- Use a combination of `sort_by` and `limit` to grab a subset of results, see [pagination](../../executions/pagination) and [sorting](../../executions/sorting) for more info
+</Note>
+
+
+# Column Descriptions
+
+| Column                  | Description                                             | Type            |
+| ----------------------- | ------------------------------------------------------- | --------------- |
+| wallet                  | User wallet which hold LXP points                        | string       |
+| current_lxp             | Current [Linea Voyage LXP](https://docs.linea.build/use-mainnet/linea-xp)  balance         | double          |
+| num_quests              | Number of quests completed by the user to obtain LXP                  | integer          |
+| on_farcaster            | Indicates if the wallet is connected to a Farcaster account            | boolean         |
+| fid                     | Farcaster ID for the connected wallet user                       | integer          |
+| fname                   | Farcaster name for the connected wallet user                           | string         |
+| connected_wallets       | List of wallet addresses connected to the user          | array(string)|
+| L14D_active_tier        | The active tier of the connected wallet user over the last 14 days. Possible values are "vip", "influencer", "star", "active", "npc", and "not active"     | string     |
+| top_channels            | Top 3 channels where connected wallet user is active           | array(string)  |
+| top_domains             | Top 3 domains frequented casted by the connected wallet user              | array(string)  |
+| top_engagers            | Top 3 users who engage with this connected wallet user             | array(string)  |
+| num_followers           | Number of followers the connected wallet user has on Farcaster           | integer          |
+| num_onchain_txns        | Number of on-chain transactions performed by the connected wallet user   | integer          |
+| days_old_onchain        | Onchain age of the connected wallet users; days since the first onchain transaction    | integer          |
+| nft_volume_usd          | Volume of NFT transactions in USD of the connected wallet user               | double          |
+| dex_volume_usd          | Volume of DEX transactions in USD of the connected wallet user                     | double          |
+| contracts_deployed      | Number of smart contracts deployed by the connected wallet user          | integer          |
+| times_contracts_called  | Number of times the connected wallet user's deployed contracts were called | integer        |

@@ -274,7 +274,7 @@
     "/v1/farcaster/trends/channels": {
       "get": {
         "summary": "get trending farcaster channels that have had casts in the last 14 days",
-        "description": "Get trending farcaster hannels that have had casts in the last 14 days",
+        "description": "Get trending farcaster channels that have had casts in the last 14 days",
         "operationId": "trendingChannels",
         "parameters": [
           {
