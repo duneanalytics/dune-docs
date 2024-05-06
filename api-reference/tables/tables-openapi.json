@@ -168,21 +168,8 @@
             }
           },
           "404": {
-            "description": "The table does not exist",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "This table was not found"
-                    }
-                  }
-                }
-              }
-            }
-          },
+            "$ref": "#/components/responses/TableNotFoundError" 
+            },
           "500": {
             "$ref": "#/components/responses/InternalError"
           }
@@ -225,22 +212,6 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Table name other_table is not supported for blockchain endpoint"
-                    }
-                  }
-                }
-              }
-            }
-          },
           "401": {
             "description": "Unauthorized",
             "content": {
@@ -256,6 +227,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "$ref": "#/components/responses/TableNotFoundError"
           },
           "500": {
             "$ref": "#/components/responses/InternalError"
@@ -641,6 +615,22 @@
       }
     },
     "responses": {
+      "TableNotFoundError": {
+        "description": "The table does not exist",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "This table was not found"
+                }
+              }
+            }
+          }
+      }
+    },
       "InternalError": {
         "description": "Internal error occurred",
         "content": {
