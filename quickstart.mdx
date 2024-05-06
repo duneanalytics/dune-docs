@@ -1,52 +1,31 @@
 ---
 title: Quickstart
-description: Get started on Dune in five minutes!
+description: Dive into Dune in five minutes
 ---
 
 <Frame caption="Convert data into knowledge!">
   <img src="/images/quickstart-cover.jpeg" />
 </Frame>
 
-### Welcome to Dune
+## Welcome to Dune
 
-This guide will help you get started on Dune in five minutes. We'll walk you through how to:
+**Ready to transform blockchain data into actionable insights?**   
+This guide will fast-track your understanding of how to **query**, **visualize**, and **share** insights using Dune. Let's dive in!
 
-1.  Query blockchain data
-2.  Create a visualization
-3.  Present your data
+Dune offers many features, but this guide focuses on the essentials you'll need to get started. For more detailed guides, check out our [Analytics Guidelines](/learning-resources) and [Data Tables](/data-catalog/) sections.
 
-Dune has many more features, but these are the basics you'll need to get started. If you're looking for more advanced guides, check out the [Analytics Guidelines](/learning-resources) and [Data Tables](/data-catalog/) sections.
+### **Prerequisites:**
 
-**Prerequisites:**
+*   **Dune Account:** You'll need a Dune account to follow along. If you don't already have one, [sign up here](https://dune.com/auth/register).
+*   **Basic Knowledge:** Gain a basic understanding of SQL and blockchain concepts to enhance your Dune experience.
 
-*   You'll need to have a Dune account to follow along. If you don't have one, you can [sign up here](https://dune.com/auth/register).
-*   We also recommend you have a basic understanding of SQL and Blockchain concepts.
+## Query blockchain data
 
-### 1. Query blockchain data
+Begin by constructing the SQL queries you need using Dune's **Query Editor**, a powerful tool for writing and executing SQL. Check out our detailed guide on **[writing queries](./web-app/query-editor/query-window).**
 
-To query for blockchain data on Dune you'll need to:
-
-1.  Create a new query
-2.  Write some SQL
-3.  Run the query
-4.  Name and save the query
-
-```sql
---Query to get Ethereum's unique daily active users and passive users  in 2023
-
-SELECT  
---truncate time to day
-date_trunc('day', block_time) AS time,
--- count distinct addresses that sent a transactions
-COUNT(distinct "from") AS users,
--- count distinct addresses that received a transaction
-COUNT(distinct "to") AS receiving_addresses
-FROM ethereum.transactions
-WHERE block_time > DATE '2023-01-01'
-GROUP BY 1
-```
-
-**[Direct link to query here.](https://dune.com/queries/2335378)**
+### 1.  **Create a new query** 
+- Open the Query Editor in the Dune interface. 
+- Here's an embedded demo to help you get started:
 
 <div
   style={{
@@ -74,16 +53,46 @@ GROUP BY 1
   />
 </div>
 
-### 2. Create a visualization
+### 2.  Write SQL
 
-To create a visualization you'll need to:
+- Analyze daily activity on Ethereum by entering the following SQL:
 
-1.  Create a new visualization
-2.  Select the type of visualization you want to create
-3.  Choose the data source for the x and y axis
-4.  adjust the visualization settings
+```sql
+--Query to get Ethereum's unique daily active users and passive users  in 2023
 
-In our example below, we'll create a line chart to visualize the number of unique daily active users and passive users on Ethereum in 2023. Additionally, we format the axis label and tick label to `0a`to make the numbers more readable.
+SELECT  
+--truncate time to day
+date_trunc('day', block_time) AS time,
+-- count distinct addresses that sent a transactions
+COUNT(distinct "from") AS users,
+-- count distinct addresses that received a transaction
+COUNT(distinct "to") AS receiving_addresses
+FROM ethereum.transactions
+WHERE block_time > DATE '2023-01-01'
+GROUP BY time
+```
+
+- **[Run this query now.](https://dune.com/queries/2335378)**
+
+
+### 3.  Run and save your query
+Make sure your work is not lost.
+- After crafting your query, run it to verify it executes correctly.
+- Click the **"Save"** button at the upper right part of the screen. This saves your query, allowing you to monitor the data continuously.
+
+
+## Create a visualization
+After executing a query, the results are displayed in a table below the Query Editor. The next step is to transform these raw data into a more digestible format through visualization.
+
+### 1.  Create a New Visualization
+  - Click on **"New Visualization"**, select your desired chart type, and click **"Add Visualization."**
+### 2.  Set data sources
+  - Choose the appropriate fields for the x and y axes to shape how your data will be displayed.
+### 3.  Customize the visualization settings
+  - Adjust the settings to suit your visualization needs, such as formatting axis labels and tick marks to enhance readability.
+
+
+In the example below, we'll create a line chart to visualize the number of unique daily active users and passive users on Ethereum in 2023. We'll format the axis label and tick label to `0a`to make the numbers more user-friendly.
 
 <div
   style={{
@@ -111,14 +120,31 @@ In our example below, we'll create a line chart to visualize the number of uniqu
   />
 </div>
 
-### 3. Present your data
 
-To present your data you'll need to:
+### **Learn more**
 
-1.  Create a new dashboard
-2.  Add a visualization to the dashboard
-3.  Adjust the layout of the dashboard
-4.  Name and save the dashboard
+For more detailed guidance on visual data representation, explore our resources:
+- **[How to create a visualization](./learning/how-tos/create-your-first-visualization)**
+- **[Formatting tables](./web-app/visualizations/tables)** 
+- **[Formatting graphs & charts](./web-app/visualizations/charts-graphs)** 
+- **[Using counters](./web-app/visualizations/counters)**
+
+
+## Present your data
+Easily share your insights by creating and customizing a dashboard on Dune. Follow these steps to get started:
+### 1.  **Create & name a new dashboard**
+- Navigate to the **Create** menu and select **"New Dashboard"**
+- Enter a name for your dashboard. This name will also become part of the dashboard's URL slug, **which cannot be changed later.** Choose wisely!
+### 2.  **Save and Open**
+- Click on **"Save and Open"** to activate your dashboard and move to the editing interface.
+### 3. **Edit dashboard & add widgets**
+- Click the **"Edit"** button in the top right corner to enter edit mode.
+- Click on **"Add Widget"** in the top right corner. 
+### 4.  Adjust widget layout
+- **Resize:** Drag the bottom right corner of the widget to adjust its size.
+- **Move:** Drag the widget to your desired location on the dashboard.
+### 5.  Finalize & save your work
+- Once your widgets are positioned and customized to your satisfaction, click the **"Save"** button in the top right corner to save your changes.
 
 <div
   style={{
@@ -146,22 +172,22 @@ To present your data you'll need to:
   />
 </div>
 
-### Recap
+For detailed instructions on dashboard creation, widget customization, and advanced settings, refer to our comprehensive guide on **[Creating Dashboards.](./web-app/dashboards)**
+
+## Recap
 
 **Congratulations, you've just queried blockchain data, created a visualization, and presented your data on Dune!**
 
-You can now share your dashboard with the world.
+Now, you can share your dashboard with the world. Learn more about sharing your content effectively in our guide on **[how to share Dune content.](./learning/how-tos/share-dune-content)**
 
-We'll take care of updating this dashboard whenever somebody looks at it, so you don't have to worry about keeping it up to date.
+## Next steps
 
-### Next steps
+Enhance your Dune skills and community engagement with these resources:
 
-Check out these resources to learn more about Dune:
+*   **[Dune Official Getting Started Video Series](https://www.youtube.com/watch?v=S-cctFmR828\&list=PLK3b5d4iK10ext4v-GBySekaA8-GP8quD\&index=1)::** Learn how the data flows and how to navigate the Dune app to create queries, visualizations, and dashboards.
 
-*   [Dune Official Getting Started Video Series](https://www.youtube.com/watch?v=S-cctFmR828\&list=PLK3b5d4iK10ext4v-GBySekaA8-GP8quD\&index=1) to learn how the data flows and how to navigate the Dune app to create queries, visualizations, and dashboards.
+*   **[All Ethereum and SQL Basics](https://web3datadegens.substack.com/p/a-basic-wizard-guide-to-dune-sql):** Learn all the basic SQL concepts and Ethereum tables that you'll need in your analysis.
 
-*   [All Ethereum and SQL Basics](https://web3datadegens.substack.com/p/a-basic-wizard-guide-to-dune-sql) to learn all the basic SQL concepts and Ethereum tables you'll need in your analysis.
+*   **Pure SQL Practice:** Sharpen your skills with the "easy" problems **[on hackerrank](https://www.hackerrank.com/domains/sql).**
 
-*   For pure SQL practice, try going through the "easy" problems [on hackerrank](https://www.hackerrank.com/domains/sql).
-
-Join the community and learn together [in Discord](https://discord.com/invite/ErrzwBz) by participating in the `#🐥︱beginners` and `#🙋︱query-questions` channels
+*   **Join the community**: Connect and learn [in our Discord community](https://discord.com/invite/ErrzwBz) in the `#🐥︱beginners` and `#🙋︱query-questions` channels.
