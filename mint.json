@@ -846,6 +846,7 @@
           "pages": [
             "api-reference/eigenlayer/introduction",
             "api-reference/eigenlayer/endpoint/avs_metadata",
+            "api-reference/eigenlayer/endpoint/avs_metrics",
             "api-reference/eigenlayer/endpoint/operator_metadata",
             "api-reference/eigenlayer/endpoint/operator_metrics",
             "api-reference/eigenlayer/endpoint/operator_to_avs_mapping"
