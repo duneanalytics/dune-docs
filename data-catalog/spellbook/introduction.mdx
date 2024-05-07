@@ -1,0 +1,44 @@
+---
+title: Spellbook Overview
+sidebarTitle: Overview
+icon: "star"
+description: Spellbook (dbt abstractions) on Dune
+---
+
+### Spellbook Tables are the easiest way to query blockchain data on Dune
+
+<CardGroup cols={2}>
+  <Card
+    title="Github Repo"
+    icon="github"
+    href="https://github.com/duneanalytics/spellbook"
+  >
+    Go to the dbt github repo with over 400+ contributors
+  </Card>
+  <Card
+    title="Model Docs"
+    icon="table"
+    href="https://dune.com/spellbook"
+  >
+    See a complete list of Spellbook Spell tables.
+  </Card>
+  <Card
+    title="Adding/Editing a Table"
+    icon="code-pull-request"
+    href="https://github.com/duneanalytics/spellbook/tree/main/docs"
+  >
+    Find all our guides explaining dbt concepts and repo architecture.
+  </Card>
+</CardGroup>
+
+## Abstraction and Aggregation Tables for Blockchain Data
+
+Spellbook is an open-source [dbt repository](https://docs.getdbt.com/docs/introduction) for creating and maintaining high-level blockchain data tables using SQL and [Jinja templating](https://realpython.com/primer-on-jinja-templating/).
+
+**Spells are custom tables that are built and maintained by Dune and our community.**
+
+It enables the community to build toward a standardized way to transform data into meaningful abstraction layers. With web3 data, we have a foundational layer of [Raw Data](../raw/index.md) - blockchain transactions, traces, and logs. Spellbook lets us create abstracted data sets, like [dex.trades](https://dune.com/spellbook#!/model/model.spellbook.dex_trades) and [nft.trades](https://dune.com/spellbook#!/model/model.spellbook.nft_trades), which aggregate and organize raw data from multiple sources to make it much easier to query.
+
+dbt natively understands the dependencies between all models. In our old abstractions logic we were managing dependencies manually, which made deploying and maintaining them a mess. With dependency management, we can guarantee that all models are deployed in the correct order.
+
+We hope you are as excited as we are about this tool. You can add a view, seed file (excel/csv), or materialized table (incremental or not) by [contributing to spellbook](../spellbook/index.md).

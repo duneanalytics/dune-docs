@@ -176,6 +176,24 @@
       ]
     },
     {
+      "group": "Spellbook",
+      "pages": [
+        "data-catalog/spellbook/introduction",
+          {
+            "group": "DEX",
+            "pages": [
+              "data-catalog/spellbook/DEX/dex-trades",
+              "data-catalog/spellbook/DEX/dex-aggregator-trades"
+            ]
+          },
+          {
+            "group": "NFT",
+            "pages": ["data-catalog/spellbook/NFT/nft-trades"]
+          },
+          "data-catalog/spellbook/prices"
+        ]
+    },
+    {
       "group": "EVM Chains",
       "pages": [
         "data-catalog/evm/overview",
