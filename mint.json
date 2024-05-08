@@ -176,7 +176,7 @@
       ]
     },
     {
-      "group": "EVM Chains",
+      "group": "EVM Networks",
       "pages": [
         "data-catalog/evm/overview",
         {
@@ -602,7 +602,7 @@
     },
 
     {
-      "group": "non-EVM Chains",
+      "group": "other Networks",
       "pages": [
         {
           "group": "Aptos",
