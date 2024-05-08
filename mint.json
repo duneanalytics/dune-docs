@@ -841,6 +841,12 @@
       ]
     },
     {
+      "group": "Realtime (Beta)",
+      "pages": [
+            "api-reference/realtime/overview"
+      ]
+    },
+    {
       "group": "Domain-specific",
       "pages": [
         {
