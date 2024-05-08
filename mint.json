@@ -203,32 +203,6 @@
                 "data-catalog/evm/ethereum/decoded/logs-decoded",
                 "data-catalog/evm/ethereum/decoded/traces-decoded"
               ]
-            },
-            {
-              "group": "Tokens",
-              "pages": [
-                "data-catalog/evm/ethereum/tokens/overview",
-                "data-catalog/evm/ethereum/tokens/balances",
-                {
-                  "group": "Transfers",
-                  "pages": [
-                    "data-catalog/evm/ethereum/tokens/transfers/erc20-transfers",
-                    "data-catalog/evm/ethereum/tokens/transfers/erc721-transfers",
-                    "data-catalog/evm/ethereum/tokens/transfers/erc1155-transfers"
-                  ]
-                }
-              ]
-            },
-            {
-              "group": "DEX",
-              "pages": [
-                "data-catalog/evm/ethereum/DEX/dex-trades",
-                "data-catalog/evm/ethereum/DEX/dex-aggregator-trades"
-              ]
-            },
-            {
-              "group": "NFT",
-              "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
             }
           ]
         },
@@ -690,7 +664,39 @@
         }
       ]
     },
-
+    {
+      "group": "Abstractions",
+      "pages": [
+        "data-catalog/spellbook/overview",
+        {
+          "group": "DEX",
+          "pages": [
+            "data-catalog/spellbook/DEX/dex-trades",
+            "data-catalog/spellbook/DEX/dex-aggregator-trades"
+          ]
+        },
+        {
+          "group": "NFT",
+          "pages": ["data-catalog/spellbook/NFT/nft-trades"]
+        },
+        "data-catalog/spellbook/prices",
+        {
+          "group": "Tokens",
+          "pages": [
+            "data-catalog/spellbook/tokens/overview",
+            "data-catalog/spellbook/tokens/balances",
+            {
+              "group": "Transfers",
+              "pages": [
+                "data-catalog/spellbook/tokens/transfers/erc20-transfers",
+                "data-catalog/spellbook/tokens/transfers/erc721-transfers",
+                "data-catalog/spellbook/tokens/transfers/erc1155-transfers"
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "group": "Community Data",
       "pages": [
