@@ -837,8 +837,7 @@
     {
       "group": "Realtime (Beta)",
       "pages": [
-            "api-reference/realtime/overview",
-            "api-reference/realtime/balances"
+            "api-reference/realtime/overview"
       ]
     },
     {
