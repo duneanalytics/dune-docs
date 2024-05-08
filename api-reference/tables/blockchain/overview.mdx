@@ -2,20 +2,42 @@
 title: 'Hosted Blockchain Integration'
 ---
 
-Blockchain integration is available through either a "Fully Managed" option or a "Hosted" option. The "Hosted" option allows you to upload your blockchain data to Dune using dedicated blockchain endpoints.
+Blockchain integrations on Dune are offered through two options: **"Fully Managed"** and **"Hosted"**. While the **"Fully Managed"** service involves comprehensive management by Dune, the **"Hosted"** option allows blockchain teams to upload their blockchain data using dedicated blockchain endpoints.
 
-<Note> 
-- These endpoints are available only on **enterprise plan**. For access, please contact sales@dune.com.
-- There is **no** credit consumption involved in these endpoints. The cost model is different from our other API endpoints.
-</Note>
+<Info>  
+Access to these dedicated endpoints is exclusive to the **enterprise plan**. For more information, [contact our integrations team](https://dune.com/enterprise).
+</Info>
 
-"Hosted" option includes three primary endpoints for blockchain integration:
-- [Insert endpoint](./insert): Uploads blockchain data to supported raw tables (`blocks`, `transactions`, `logs`, `traces`) with predefined schemas.
-- [Clear endpoint](./clear): Removes all data in a blockchain table.
-- Delete endpoint: Eliminates specific rows within a table, offering more granularity than the `Clear` endpoint. (_Currently unavailable_)
 
-<Tip>
-    - Currently, the endpoints support only EVM-compatible chains.
-    - Dune accepts any data source, provided it conforms to the predefined schemas of the `Insert` endpoint.
-    - These endpoints accommodate micro-batch uploads with sub-second processing times and a maximum batch size of approximately 1.2GB — suitable for chains with block times of 1-2 seconds.
-</Tip>
+## Endpoints
+
+<CardGroup cols={1}>
+  <Card
+    title="Insert Endpoint"
+    icon="upload"
+    href="./insert"
+  >
+    This endpoint facilitates upload of raw blockchain data to content specific tables (`blocks`, `transactions`, `logs`, `traces`) with predefined schemas.
+  </Card>
+  <Card
+    title="Clear Endpoint"
+    icon="trash"
+    href="./clear"
+  >
+    This endpoint allows for the removal of all data within a blockchain table.
+  </Card>
+  <Card
+    title="Delete Endpoint"
+    icon="bullseye-pointer"
+    href="#"
+  >
+    (_Still in development_) This endpoint will enable targeted deletion within a table, providing more granularity than the `Clear` endpoint.
+  </Card>
+</CardGroup>
+
+
+## Limitations 
+
+    - Currently, these endpoints only support EVM-compatible chains.
+    - These endpoints are optimized for micro-batch uploads, featuring sub-second processing times and supporting a maximum batch size of approximately 1.2GB — ideal for chains with block times of 1-2 seconds.
+
