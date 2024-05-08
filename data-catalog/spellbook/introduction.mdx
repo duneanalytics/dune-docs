@@ -46,8 +46,8 @@ Spellbook is an open-source [dbt repository](https://docs.getdbt.com/docs/introd
 
 **Spells are custom tables that are built and maintained by Dune and our community.**
 
-It enables the community to build toward a standardized way to transform data into meaningful abstraction layers. With web3 data, we have a foundational layer of [Raw Data](../raw/index.md) - blockchain transactions, traces, and logs. Spellbook lets us create abstracted data sets, like [dex.trades](https://dune.com/spellbook#!/model/model.spellbook.dex_trades) and [nft.trades](https://dune.com/spellbook#!/model/model.spellbook.nft_trades), which aggregate and organize raw data from multiple sources to make it much easier to query.
+It enables the community to build toward a standardized way to transform data into meaningful abstraction layers. With web3 data, we have a foundational layer of raw data - blockchain transactions, traces, and logs. Spellbook lets us create abstracted data sets, like dex.trades and nft.trades, which aggregate and organize raw data from multiple sources to make it much easier to query.
 
 dbt natively understands the dependencies between all models. In our old abstractions logic we were managing dependencies manually, which made deploying and maintaining them a mess. With dependency management, we can guarantee that all models are deployed in the correct order.
 
-We hope you are as excited as we are about this tool. You can add a view, seed file (excel/csv), or materialized table (incremental or not) by [contributing to spellbook](../spellbook/index.md).
+We hope you are as excited as we are about this tool. You can add a view, seed file (excel/csv), or materialized table (incremental or not) by contributing to spellbook.
