@@ -767,6 +767,17 @@
             "data-catalog/community/reservoir/token-floor-ask-events",
             "data-catalog/community/reservoir/tokens"
           ]
+        },
+        {
+          "group": "Snapshot",
+          "pages": [
+            "data-catalog/community/snapshot/overview",
+            "data-catalog/community/snapshot/proposals",
+            "data-catalog/community/snapshot/votes",
+            "data-catalog/community/snapshot/users",
+            "data-catalog/community/snapshot/spaces",
+            "data-catalog/community/snapshot/follows"
+          ]
         }
       ]
     },
