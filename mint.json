@@ -707,6 +707,13 @@
       "group": "Community Data",
       "pages": [
         {
+          "group": "Flashbots",
+          "pages": [
+            "data-catalog/community/flashbots/overview",
+            "data-catalog/community/flashbots/mempool-dumpster"
+          ]
+        },
+        {
           "group": "Farcaster",
           "pages": [
             "data-catalog/community/farcaster/overview",

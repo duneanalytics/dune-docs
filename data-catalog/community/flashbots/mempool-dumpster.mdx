@@ -1,0 +1,40 @@
+---
+title: dune.flashbots.dataset_mempool_dumpster
+sidebarTitle: "Mempool Dumpster Dataset"
+description: Description of the dune.flashbots.dataset_mempool_dumpster table on Dune
+---
+
+## Table description
+
+This table captures detailed transaction data from the Ethereum mempool. It includes transactions that might attempt to extract value through reordering, sandwiching, or other MEV strategies.
+
+## Column descriptions
+
+| Column Name                   | Description                                                                                            | Data Type |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------ | --------- |
+| `to`                          | The recipient address of the transaction.                                                              | varchar    |
+| `from`                        | The sender address of the transaction.                                                                 | Varchar    |
+| `hash`                        | The unique transaction hash.                                                                           | Varchar    |
+| `nonce`                       | The nonce of the transaction, a counter of the sender's transactions.                                  | Integer   |
+| `value`                       | The value transferred in the transaction, in wei.                                                      | BigInt    |
+| `gas`                         | The gas limit set for the transaction.                                                                 | Integer   |
+| `gas_price`                   | The gas price set for the transaction, in wei.                                                         | BigInt    |
+| `data_size`                   | The size of the data payload in the transaction, in bytes.                                             | Integer   |
+| `data_4bytes`                 | The first four bytes of the transaction data, typically the method identifier in a contract call.      | Varchar    |
+| `sources`                     | The sources that captured the transaction data.                                                        | Varchar    |
+| `chain_id`                    | The identifier for the blockchain network (e.g., 1 for Ethereum Mainnet).                              | Integer   |
+| `gas_fee_cap`                 | The maximum amount of gas fee the sender is willing to pay (EIP-1559).                                 | BigInt    |
+| `gas_tip_cap`                 | The maximum tip the sender is willing to pay miners (EIP-1559).                                        | BigInt    |
+| `timestamp_ms`                | The timestamp when the transaction was first seen, in milliseconds.                                    | BigInt    |
+| `inclusion_delay_ms`          | The delay in milliseconds from when the transaction was first seen to when it was included in a block. | Integer   |
+| `included_at_block_height`    | The block height at which the transaction was included.                                                | Integer   |
+| `included_block_timestamp_ms` | The timestamp of the block at which the transaction was included, in milliseconds.                     | BigInt    |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample
+  tableSchema="dune.flashbots"
+  tableName="dataset_mempool_dumpster"
+/>
