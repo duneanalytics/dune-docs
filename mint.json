@@ -181,7 +181,7 @@
         "data-catalog/evm/overview",
         {
           "group": "Ethereum",
-          "pages": [
+          "pages": ["data-catalog/evm/ethereum/overview",
             {
               "group": "Raw",
               "pages": [
@@ -209,6 +209,7 @@
         {
           "group": "Arbitrum",
           "pages": [
+            "data-catalog/evm/arbitrum/overview",
             {
               "group": "Raw",
               "pages": [
@@ -235,6 +236,7 @@
         {
           "group": "Avalanche",
           "pages": [
+            "data-catalog/evm/avalanche/overview",
             {
               "group": "Raw",
               "pages": [
@@ -261,6 +263,7 @@
         {
           "group": "Base",
           "pages": [
+            "data-catalog/evm/base/overview",
             {
               "group": "Raw",
               "pages": [
@@ -287,6 +290,7 @@
         {
           "group": "BNB",
           "pages": [
+            "data-catalog/evm/bnb/overview",
             {
               "group": "Raw",
               "pages": [
@@ -313,6 +317,7 @@
         {
           "group": "Celo",
           "pages": [
+            "data-catalog/evm/celo/overview",
             {
               "group": "Raw",
               "pages": [
@@ -339,6 +344,7 @@
         {
           "group": "Fantom",
           "pages": [
+            "data-catalog/evm/fantom/overview",
             {
               "group": "Raw",
               "pages": [
@@ -365,6 +371,7 @@
         {
           "group": "Gnosis",
           "pages": [
+            "data-catalog/evm/gnosis/overview",
             {
               "group": "Raw",
               "pages": [
@@ -391,6 +398,7 @@
         {
           "group": "Optimism",
           "pages": [
+            "data-catalog/evm/optimism/overview",
             {
               "group": "Raw",
               "pages": [
@@ -416,8 +424,7 @@
         },
         {
           "group": "Linea",
-          "pages": [
-            "data-catalog/evm/linea/overview",
+          "pages": ["data-catalog/evm/linea/overview",
             {
               "group": "Raw",
               "pages": [
@@ -443,7 +450,7 @@
         },
         {
           "group": "Polygon",
-          "pages": [
+          "pages": ["data-catalog/evm/polygon/overview",
             {
               "group": "Raw",
               "pages": [
@@ -469,8 +476,7 @@
         },
         {
           "group": "Polygon-zkEVM",
-          "pages": [
-            "data-catalog/evm/polygon-zkEVM/overview",
+          "pages": ["data-catalog/evm/polygon-zkEVM/overview",
             {
               "group": "Raw",
               "pages": [
@@ -496,7 +502,7 @@
         },
         {
           "group": "Scroll",
-          "pages": [
+          "pages": ["data-catalog/evm/scroll/overview",
             {
               "group": "Raw",
               "pages": [
@@ -522,7 +528,7 @@
         },
         {
           "group": "zkSync",
-          "pages": [
+          "pages": ["data-catalog/evm/zksync/overview",
             {
               "group": "Raw",
               "pages": [
@@ -548,7 +554,7 @@
         },
         {
           "group": "Zora",
-          "pages": [
+          "pages": ["data-catalog/evm/zora/overview",
             {
               "group": "Raw",
               "pages": [
@@ -701,6 +707,13 @@
       "group": "Community Data",
       "pages": [
         {
+          "group": "Flashbots",
+          "pages": [
+            "data-catalog/community/flashbots/overview",
+            "data-catalog/community/flashbots/mempool-dumpster"
+          ]
+        },
+        {
           "group": "Farcaster",
           "pages": [
             "data-catalog/community/farcaster/overview",
@@ -753,6 +766,17 @@
             "data-catalog/community/reservoir/token-attributes",
             "data-catalog/community/reservoir/token-floor-ask-events",
             "data-catalog/community/reservoir/tokens"
+          ]
+        },
+        {
+          "group": "Snapshot",
+          "pages": [
+            "data-catalog/community/snapshot/overview",
+            "data-catalog/community/snapshot/proposals",
+            "data-catalog/community/snapshot/votes",
+            "data-catalog/community/snapshot/users",
+            "data-catalog/community/snapshot/spaces",
+            "data-catalog/community/snapshot/follows"
           ]
         }
       ]
@@ -842,9 +866,7 @@
     },
     {
       "group": "Realtime (Beta)",
-      "pages": [
-            "api-reference/realtime/overview"
-      ]
+      "pages": ["api-reference/realtime/overview"]
     },
     {
       "group": "Domain-specific",
