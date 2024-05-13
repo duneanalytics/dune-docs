@@ -181,7 +181,8 @@
         "data-catalog/evm/overview",
         {
           "group": "Ethereum",
-          "pages": ["data-catalog/evm/ethereum/overview",
+          "pages": [
+            "data-catalog/evm/ethereum/overview",
             {
               "group": "Raw",
               "pages": [
@@ -424,7 +425,8 @@
         },
         {
           "group": "Linea",
-          "pages": ["data-catalog/evm/linea/overview",
+          "pages": [
+            "data-catalog/evm/linea/overview",
             {
               "group": "Raw",
               "pages": [
@@ -450,7 +452,8 @@
         },
         {
           "group": "Polygon",
-          "pages": ["data-catalog/evm/polygon/overview",
+          "pages": [
+            "data-catalog/evm/polygon/overview",
             {
               "group": "Raw",
               "pages": [
@@ -476,7 +479,8 @@
         },
         {
           "group": "Polygon-zkEVM",
-          "pages": ["data-catalog/evm/polygon-zkEVM/overview",
+          "pages": [
+            "data-catalog/evm/polygon-zkEVM/overview",
             {
               "group": "Raw",
               "pages": [
@@ -502,7 +506,8 @@
         },
         {
           "group": "Scroll",
-          "pages": ["data-catalog/evm/scroll/overview",
+          "pages": [
+            "data-catalog/evm/scroll/overview",
             {
               "group": "Raw",
               "pages": [
@@ -528,7 +533,8 @@
         },
         {
           "group": "zkSync",
-          "pages": ["data-catalog/evm/zksync/overview",
+          "pages": [
+            "data-catalog/evm/zksync/overview",
             {
               "group": "Raw",
               "pages": [
@@ -554,7 +560,8 @@
         },
         {
           "group": "Zora",
-          "pages": ["data-catalog/evm/zora/overview",
+          "pages": [
+            "data-catalog/evm/zora/overview",
             {
               "group": "Raw",
               "pages": [
@@ -787,7 +794,6 @@
       "pages": [
         "api-reference/overview/introduction",
         "api-reference/overview/authentication",
-        "api-reference/overview/sdks",
         "api-reference/overview/rate-limits",
         "api-reference/overview/troubleshooting",
         "api-reference/overview/billing",
@@ -800,6 +806,14 @@
         "api-reference/quickstart/results-eg",
         "api-reference/quickstart/queries-eg",
         "api-reference/quickstart/tables-eg"
+      ]
+    },
+    {
+      "group": "SDKs",
+      "pages": [
+        "api-reference/sdks/overview",
+        "api-reference/sdks/python",
+        "api-reference/sdks/ts"
       ]
     },
     {
