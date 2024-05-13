@@ -6,7 +6,14 @@ title: 'Python SDK'
 
 ## Configuration options
 
-## Debugging 
+## Logging & Debugging 
+```python
+import logging
+log = logging.getLogger('dune_client.api.base')
+log.setLevel(logging.WARNING)
+```
+
+## Handling errors
 
 ## Using the Async client
 
