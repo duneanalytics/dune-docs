@@ -1,0 +1,49 @@
+---
+title: labels.addresses
+sidebarTitle: "All labels"
+icon: "maximize"
+description: Description of the labels.addresses table on Dune
+---
+
+The `labels.addresses` table on Dune Analytics catalogs specific blockchain addresses, associating them with descriptive labels, categories, and usage metrics. This table is a superset of many other `labels.<category>` tables, providing a comprehensive overview of labeled addresses across various categories and blockchains.
+You can use the `category` column to filter labels for the specific type of address you are interested in.
+
+<Note>
+The `labels.addresses` table serves as a central repository for all labeled addresses on Dune Analytics, offering a consolidated view of labeled entities across different categories and blockchains. 
+</Note>
+
+## Column Descriptions
+
+| Column Name   | Description                                                                         |
+|---------------|-------------------------------------------------------------------------------------|
+| `blockchain`  | The blockchain network where the address is located (e.g., Ethereum, Binance Chain).|
+| `address`     | The blockchain address being labeled.                                               |
+| `name`        | Descriptive name or label for the address.                                          |
+| `category`    | The category that best describes the address' role (e.g., dex, wallet).              |
+| `contributor` | The Dune user who contributed the data.                                             |
+| `source`      | The source or methodology used to gather or verify the information.                 |
+| `created_at`  | The date when the label record was first created.                                    |
+| `updated_at`  | The date when the label record was last updated.                                     |
+| `model_name`  | The model used for categorizing or labeling the address.                             |
+| `label_type`  | The type of label applied to the address, indicating its primary usage or function.  |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="labels" tableName="addresses" />
+
+## Example Query
+
+The following SQL query demonstrates how to find addresses categorized under 'dex' within the Binance blockchain:
+
+```sql
+SELECT
+  address,
+  name
+FROM
+  labels.addresses
+WHERE
+  category = 'dex' AND
+  blockchain = 'bnb'
+```

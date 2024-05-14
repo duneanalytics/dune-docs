@@ -181,7 +181,8 @@
         "data-catalog/evm/overview",
         {
           "group": "Ethereum",
-          "pages": ["data-catalog/evm/ethereum/overview",
+          "pages": [
+            "data-catalog/evm/ethereum/overview",
             {
               "group": "Raw",
               "pages": [
@@ -424,7 +425,8 @@
         },
         {
           "group": "Linea",
-          "pages": ["data-catalog/evm/linea/overview",
+          "pages": [
+            "data-catalog/evm/linea/overview",
             {
               "group": "Raw",
               "pages": [
@@ -450,7 +452,8 @@
         },
         {
           "group": "Polygon",
-          "pages": ["data-catalog/evm/polygon/overview",
+          "pages": [
+            "data-catalog/evm/polygon/overview",
             {
               "group": "Raw",
               "pages": [
@@ -476,7 +479,8 @@
         },
         {
           "group": "Polygon-zkEVM",
-          "pages": ["data-catalog/evm/polygon-zkEVM/overview",
+          "pages": [
+            "data-catalog/evm/polygon-zkEVM/overview",
             {
               "group": "Raw",
               "pages": [
@@ -502,7 +506,8 @@
         },
         {
           "group": "Scroll",
-          "pages": ["data-catalog/evm/scroll/overview",
+          "pages": [
+            "data-catalog/evm/scroll/overview",
             {
               "group": "Raw",
               "pages": [
@@ -528,7 +533,8 @@
         },
         {
           "group": "zkSync",
-          "pages": ["data-catalog/evm/zksync/overview",
+          "pages": [
+            "data-catalog/evm/zksync/overview",
             {
               "group": "Raw",
               "pages": [
@@ -554,7 +560,8 @@
         },
         {
           "group": "Zora",
-          "pages": ["data-catalog/evm/zora/overview",
+          "pages": [
+            "data-catalog/evm/zora/overview",
             {
               "group": "Raw",
               "pages": [
@@ -671,7 +678,7 @@
       ]
     },
     {
-      "group": "Abstractions",
+      "group": "Curated Data",
       "pages": [
         "data-catalog/spellbook/overview",
         {
@@ -686,6 +693,33 @@
           "pages": ["data-catalog/spellbook/NFT/nft-trades"]
         },
         "data-catalog/spellbook/prices",
+        {
+          "group": "Labels",
+          "pages": [
+            "data-catalog/spellbook/labels/overview",
+            {
+              "group": "Owner Labels",
+              "icon": "tag",
+              "pages": [
+                "data-catalog/spellbook/labels/owners/overview",
+                "data-catalog/spellbook/labels/owners/owner-addresses",
+                "data-catalog/spellbook/labels/owners/owner-details",
+                {
+                  "group": "Labeled Asset Flows",
+                  "icon": "right-left",
+                  "pages": [
+                    "data-catalog/spellbook/labels/owners/value-flows/transfer-summary",
+                    "data-catalog/spellbook/labels/owners/value-flows/counterparty-summary",
+                    "data-catalog/spellbook/labels/owners/value-flows/transfer-summary-daily"
+                  ]
+                },
+                "data-catalog/spellbook/labels/owners/audit"
+              ]
+            },
+            "data-catalog/spellbook/labels/ens-labels",
+            "data-catalog/spellbook/labels/address-labels"
+          ]
+        },
         {
           "group": "Tokens",
           "pages": [

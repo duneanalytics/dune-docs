@@ -1,0 +1,43 @@
+---
+title: labels.ens
+sidebarTitle: "ENS"
+icon: "signature"
+description: Description of the labels.ens table on Dune
+---
+
+The `labels.ens` table on Dune Analytics provides key information about Ethereum Name Service (ENS) domains and their associated addresses. This table is instrumental in linking human-readable names with blockchain addresses, aiding in identity verification and data aggregation within the Ethereum ecosystem.
+
+## Column Descriptions
+
+| Column Name   | Description                                                             |
+|---------------|-------------------------------------------------------------------------|
+| `blockchain`  | The blockchain network associated with the ENS record (e.g., Ethereum). |
+| `address`     | The blockchain address linked to an ENS name.                           |
+| `name`        | The ENS name corresponding to the address.                              |
+| `category`    | Category of the label, typically set to 'ENS' for all records.          |
+| `contributor` | The Dune user who contributed or verified the data.                     |
+| `source`      | The data source or method used to obtain the ENS information.           |
+| `created_at`  | The date when the record was first created.                             |
+| `updated_at`  | The date when the record was last updated.                              |
+| `model_name`  | The model used for categorizing or labeling, typically 'ens'.           |
+| `label_type`  | The type of label, typically 'identifier' for ENS names.                |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="labels" tableName="ens" />
+
+## Example Query
+
+The following SQL query demonstrates how to retrieve details for a specific ENS name within the Ethereum blockchain:
+
+```sql
+SELECT
+  address,
+  name
+FROM
+  labels.ens
+WHERE
+  name = 'vitalik.eth'
+```

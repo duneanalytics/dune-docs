@@ -1,0 +1,81 @@
+---
+title: labels.owner_addresses
+sidebarTitle: "Addresses"
+icon: "house"
+description: Description of the labels.owner_addresses table on Dune
+---
+
+The `labels.owner_addresses` table on Dune Analytics provides detailed data on blockchain addresses associated with various owners within the ecosystem, enhancing visibility into ownership distributions, contract deployments, and operational scopes. It’s a crucial tool for analysts to track ownership and custody of assets across blockchains.
+
+<Tip>
+  You can find more details on the account owners and custody owners in the `labels.owner_details` table.
+</Tip>
+
+## Column Descriptions
+
+| Column Name                | Description                                                                                       |
+|----------------------------|---------------------------------------------------------------------------------------------------|
+| `address`                  | The blockchain address associated with an entity.                                                 |
+| `blockchain`               | The blockchain network where the address is located (e.g., Ethereum, Binance Smart Chain).        |
+| `owner_key`                | A unique identifier linked to the owner of the address.                                           |
+| `custody_owner`            | The name of the entity that has custody of the assets at the address.                             |
+| `account_owner`            | Details about the account owner (this field is often not used and may be null).                   |
+| `contract_name`            | Name of the smart contract deployed by this address, if applicable.                               |
+| `contract_version`         | Version of the smart contract, if applicable.                                                     |
+| `eoa`                      | Indicates if the address is an Externally Owned Account (EOA) (this field is often not used).     |
+| `factory_contract`         | Indicates if the address belongs to a factory contract that deploys other contracts.              |
+| `source`                   | Reference to the data source providing the information (this field is often not used).            |
+| `indentifying_transaction` | Transaction ID that can be used to identify the ownership (this field is often not used).         |
+| `algorithm_name`           | Algorithm associated with the address for cryptographic operations (this field is often not used).|
+| `source_website`           | Website URL providing the data about the address (this field is often not used).                  |
+| `source_evidence`          | Any evidence supporting the data provided (this field is often not used).                         |
+| `created_at`               | Timestamp of when the record was first created.                                                   |
+| `created_by`               | Identifier of the contributor who created the record.                                             |
+| `updated_at`               | Timestamp of the last update to the record (if updated).                                          |
+| `updated_by`               | Identifier of the contributor who last updated the record (if updated).                           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="labels" tableName="owner_addresses" />
+
+## Example Query
+
+The following SQL query demonstrates how to retrieve details about addresses owned by 'Coinbase':
+
+```sql
+SELECT
+  *
+FROM
+  labels.owner_addresses
+ where custody_owner = 'Coinbase'
+```
+
+The other way around is also possible, to find the custody owner of specific addresses. Here we match entities that have deposited assets to the ``0x00000000219ab540356cBB839Cbe05303d7705Fa`` address, which is the ETH 2.0 deposit contract.
+
+```sql
+Select
+  "from",
+  "to",
+  value,
+  block_date,
+  hash,
+  custody_owner
+from
+  ethereum.transactions
+  inner join labels.owner_addresses on "from" = labels.owner_addresses.address
+where
+  "to" = 0x00000000219ab540356cBB839Cbe05303d7705Fa
+```
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3730682/6274458/"
+    width="100%"
+    height="600"
+    
+  ></iframe>
+</div>
+
+
