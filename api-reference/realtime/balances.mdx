@@ -1,14 +1,5 @@
 ---
 title: 'Token Balances API (Beta)'
-<<<<<<< HEAD
-openapi: 'GET /beta/balance/{address}'
----
-
-The Token Balances API provides accurate and fast (sub 500ms) real time balances of the native and ERC20 tokens of accounts on support blockchains (EVM currently).
-
-<Note>
-  - URL may change
-=======
 openapi: 'GET /balances/{address}'
 ---
 
@@ -21,28 +12,10 @@ Authentication
 <Note>
 Caveats
   - URL will change
->>>>>>> main
   - Currently no filtering available (e.g. Spam filtering)
   - We are using CoinMarketCap for price information
 </Note>
 
-<<<<<<< HEAD
-# Column Descriptions
-
-| Column                          | Description                                                   | Type          |
-|---------------------------------|---------------------------------------------------------------|---------------|
-| request_time                    | Time of request                                               | timestamp     |
-| response_time                   | Time of response                                              | timestamp     |
-| wallet_address                  | Wallet address                                                | string        |
-| chain                           | Name of blockchain of token                                   | string        |
-| address                         | ERC20 contract address or blockchain name for native token    | string        |
-| amount                          | Amount of token owned in WEI                                  | double        |
-| symbol                          | Symbol of token, if avilable                                  | string        |
-| decimals                        | Decimals of token, if available                               | double        |
-| price_usd                       | Current price of token, if available                          | double        |
-| value_usd                       | Current value of token owned, if available                    | double        |
-
-=======
 
 
 ## Balances endpoint:
@@ -141,16 +114,10 @@ curl --compressed https://balances.dev.dunetech.io/balance/0xd8dA6BF26964aF9D7eE
   ]
 }
 ```
->>>>>>> main
 
 ## Filter by blockchain
 
 ```bash
-<<<<<<< HEAD
-https://api.dune.com/api/beta/balances/{chain}/{address}
-```
-
-=======
 https://balances.dev.dunetech.io/balance/{chain}/{address}
 ```
 
@@ -254,5 +221,4 @@ curl --compressed https://balances.dev.dunetech.io/chains
   ]
 }
 ```
->>>>>>> main
 
