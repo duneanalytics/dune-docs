@@ -123,6 +123,16 @@ On the initial insert, the endpoint will automatically create a table for you un
 - The maximum allowable request size is 1.2GB.
 </Note>
 
+## Consistency
+A request to this endpoint has two possible outcomes: Either all of the data in the request was inserted, or none of it was.
+It's not possible for parts of the request data to be inserted, while the rest is not inserted.
+In other words, please use and trust the status codes that the endpoint returns.
+A status code of 200 means that the data in the request was successfully inserted.
+If you get any other status code, you can safely retry your request after addressing the issue that the error message indicated.
+
+## Concurrent requests
+A limited number of concurrent insertion requests per table is supported. However, there will be a slight performance penalty as we serialize the writes behind the scenes to ensure data integrity. Larger number of concurrent requests per table may result in an increased number of failures. Therefore, we recommend managing your requests within a 5-10 threshold to maintain optimal performance.
+
 ## Supported filetypes
 ### CSV files (`Content-Type: text/csv`)
 CSV files must use a comma as delimiter, and the column names in the header must match the column names of the table.

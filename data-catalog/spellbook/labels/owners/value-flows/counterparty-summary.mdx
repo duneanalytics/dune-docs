@@ -1,0 +1,49 @@
+---
+title: labels.counterparty_activity_daily
+sidebarTitle: "Daily Counterparty activity"
+description: Provides daily insights into transactions between labeled addresses and their counterparties, detailing asset flows and interactions.
+---
+
+# Counterparty Activity Daily
+
+The `labels.counterparty_activity_daily` table offers detailed insights into the daily transactions between labeled owners and their counterparties. This table is crucial for analyzing the dynamics of asset flows between entities on a day-to-day basis.
+
+## Column Descriptions
+
+| Column Name     | Description                                                                    |
+|-----------------|--------------------------------------------------------------------------------|
+| `blockchain`    | The blockchain network where the transactions occurred.                        |
+| `address`       | The blockchain address of the labeled owner.                                   |
+| `custody_owner` | The entity or organization that has custody of the address.                    |
+| `account_owner` | The specific account owner of the address, if applicable.                      |
+| `block_date`    | The date of the transactions recorded.                                         |
+| `counterparty`  | The counterparty involved in the transactions with the owner.                  |
+| `transfers_in`  | Number of transfers into the address from the counterparty on the specified day.|
+| `transfers_out` | Number of transfers out of the address to the counterparty on the specified day.|
+| `usd_in`        | Total USD value of assets transferred into the address on the specified day.   |
+| `usd_out`       | Total USD value of assets transferred out of the address on the specified day.  |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="labels" tableName="counterparty_activity_daily" />
+
+## Example Query
+
+The following SQL query demonstrates how to find daily transaction details between a labeled owner and a specific counterparty:
+
+```sql
+SELECT
+  block_date,
+  transfers_in,
+  transfers_out,
+  usd_in,
+  usd_out
+FROM
+    labels.counterparty_activity_daily
+    WHERE
+    address = 0x7777773606e7e46c8ba8b98c08f5cd218e31d340 AND
+    counterparty = 0x8888883606e7e46c8ba8b98c08f5cd218e31d340 AND
+    block_date BETWEEN '2023-10-27' AND '2024-03-01'
+    ```

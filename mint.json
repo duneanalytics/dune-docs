@@ -176,12 +176,13 @@
       ]
     },
     {
-      "group": "EVM Chains",
+      "group": "EVM Networks",
       "pages": [
         "data-catalog/evm/overview",
         {
           "group": "Ethereum",
           "pages": [
+            "data-catalog/evm/ethereum/overview",
             {
               "group": "Raw",
               "pages": [
@@ -203,38 +204,13 @@
                 "data-catalog/evm/ethereum/decoded/logs-decoded",
                 "data-catalog/evm/ethereum/decoded/traces-decoded"
               ]
-            },
-            {
-              "group": "Tokens",
-              "pages": [
-                "data-catalog/evm/ethereum/tokens/overview",
-                "data-catalog/evm/ethereum/tokens/balances",
-                {
-                  "group": "Transfers",
-                  "pages": [
-                    "data-catalog/evm/ethereum/tokens/transfers/erc20-transfers",
-                    "data-catalog/evm/ethereum/tokens/transfers/erc721-transfers",
-                    "data-catalog/evm/ethereum/tokens/transfers/erc1155-transfers"
-                  ]
-                }
-              ]
-            },
-            {
-              "group": "DEX",
-              "pages": [
-                "data-catalog/evm/ethereum/DEX/dex-trades",
-                "data-catalog/evm/ethereum/DEX/dex-aggregator-trades"
-              ]
-            },
-            {
-              "group": "NFT",
-              "pages": ["data-catalog/evm/ethereum/NFT/nft-trades"]
             }
           ]
         },
         {
           "group": "Arbitrum",
           "pages": [
+            "data-catalog/evm/arbitrum/overview",
             {
               "group": "Raw",
               "pages": [
@@ -261,6 +237,7 @@
         {
           "group": "Avalanche",
           "pages": [
+            "data-catalog/evm/avalanche/overview",
             {
               "group": "Raw",
               "pages": [
@@ -287,6 +264,7 @@
         {
           "group": "Base",
           "pages": [
+            "data-catalog/evm/base/overview",
             {
               "group": "Raw",
               "pages": [
@@ -313,6 +291,7 @@
         {
           "group": "BNB",
           "pages": [
+            "data-catalog/evm/bnb/overview",
             {
               "group": "Raw",
               "pages": [
@@ -339,6 +318,7 @@
         {
           "group": "Celo",
           "pages": [
+            "data-catalog/evm/celo/overview",
             {
               "group": "Raw",
               "pages": [
@@ -365,6 +345,7 @@
         {
           "group": "Fantom",
           "pages": [
+            "data-catalog/evm/fantom/overview",
             {
               "group": "Raw",
               "pages": [
@@ -391,6 +372,7 @@
         {
           "group": "Gnosis",
           "pages": [
+            "data-catalog/evm/gnosis/overview",
             {
               "group": "Raw",
               "pages": [
@@ -417,6 +399,7 @@
         {
           "group": "Optimism",
           "pages": [
+            "data-catalog/evm/optimism/overview",
             {
               "group": "Raw",
               "pages": [
@@ -470,6 +453,7 @@
         {
           "group": "Polygon",
           "pages": [
+            "data-catalog/evm/polygon/overview",
             {
               "group": "Raw",
               "pages": [
@@ -523,6 +507,7 @@
         {
           "group": "Scroll",
           "pages": [
+            "data-catalog/evm/scroll/overview",
             {
               "group": "Raw",
               "pages": [
@@ -549,6 +534,7 @@
         {
           "group": "zkSync",
           "pages": [
+            "data-catalog/evm/zksync/overview",
             {
               "group": "Raw",
               "pages": [
@@ -575,6 +561,7 @@
         {
           "group": "Zora",
           "pages": [
+            "data-catalog/evm/zora/overview",
             {
               "group": "Raw",
               "pages": [
@@ -602,7 +589,7 @@
     },
 
     {
-      "group": "non-EVM Chains",
+      "group": "other Networks",
       "pages": [
         {
           "group": "Aptos",
@@ -690,10 +677,76 @@
         }
       ]
     },
-
+    {
+      "group": "Curated Data",
+      "pages": [
+        "data-catalog/spellbook/overview",
+        {
+          "group": "DEX",
+          "pages": [
+            "data-catalog/spellbook/DEX/dex-trades",
+            "data-catalog/spellbook/DEX/dex-aggregator-trades"
+          ]
+        },
+        {
+          "group": "NFT",
+          "pages": ["data-catalog/spellbook/NFT/nft-trades"]
+        },
+        "data-catalog/spellbook/prices",
+        {
+          "group": "Labels",
+          "pages": [
+            "data-catalog/spellbook/labels/overview",
+            {
+              "group": "Owner Labels",
+              "icon": "tag",
+              "pages": [
+                "data-catalog/spellbook/labels/owners/overview",
+                "data-catalog/spellbook/labels/owners/owner-addresses",
+                "data-catalog/spellbook/labels/owners/owner-details",
+                {
+                  "group": "Labeled Asset Flows",
+                  "icon": "right-left",
+                  "pages": [
+                    "data-catalog/spellbook/labels/owners/value-flows/transfer-summary",
+                    "data-catalog/spellbook/labels/owners/value-flows/counterparty-summary",
+                    "data-catalog/spellbook/labels/owners/value-flows/transfer-summary-daily"
+                  ]
+                },
+                "data-catalog/spellbook/labels/owners/audit"
+              ]
+            },
+            "data-catalog/spellbook/labels/ens-labels",
+            "data-catalog/spellbook/labels/address-labels"
+          ]
+        },
+        {
+          "group": "Tokens",
+          "pages": [
+            "data-catalog/spellbook/tokens/overview",
+            "data-catalog/spellbook/tokens/balances",
+            {
+              "group": "Transfers",
+              "pages": [
+                "data-catalog/spellbook/tokens/transfers/erc20-transfers",
+                "data-catalog/spellbook/tokens/transfers/erc721-transfers",
+                "data-catalog/spellbook/tokens/transfers/erc1155-transfers"
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "group": "Community Data",
       "pages": [
+        {
+          "group": "Flashbots",
+          "pages": [
+            "data-catalog/community/flashbots/overview",
+            "data-catalog/community/flashbots/mempool-dumpster"
+          ]
+        },
         {
           "group": "Farcaster",
           "pages": [
@@ -748,6 +801,17 @@
             "data-catalog/community/reservoir/token-floor-ask-events",
             "data-catalog/community/reservoir/tokens"
           ]
+        },
+        {
+          "group": "Snapshot",
+          "pages": [
+            "data-catalog/community/snapshot/overview",
+            "data-catalog/community/snapshot/proposals",
+            "data-catalog/community/snapshot/votes",
+            "data-catalog/community/snapshot/users",
+            "data-catalog/community/snapshot/spaces",
+            "data-catalog/community/snapshot/follows"
+          ]
         }
       ]
     },
@@ -773,7 +837,7 @@
       ]
     },
     {
-      "group": "Executions and Results",
+      "group": "SQL Endpoints",
       "pages": [
         {
           "group": "Executions and Results",
@@ -836,6 +900,7 @@
     },
     {
       "group": "Realtime (Beta)",
+<<<<<<< HEAD
       "pages": [
         {   "group": "Account APIs",
             "pages": [
@@ -848,6 +913,12 @@
     },
     {
       "group": "Domain-specific",
+=======
+      "pages": ["api-reference/realtime/overview"]
+    },
+    {
+      "group": "Preset Endpoints",
+>>>>>>> main
       "pages": [
         {
           "group": "DEX",

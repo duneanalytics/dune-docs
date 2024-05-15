@@ -2,16 +2,50 @@
 title: 'Overview'
 ---
 
-Results are linked to executions, and executions are tied to queries. Each execution has an `execution id`. An execution ID is generated when you initiate the execution of a query through the [execute query](./endpoint/execute-query) endpoint.
+Results are linked to executions, and executions are tied to queries. Each execution has an `execution_id`. An `execution_id` is generated when you initiate the execution of a query through the [execute query](./endpoint/execute-query) endpoint.
 
-Unlike a query ID, which identifies a specific query, an execution ID represents a particular execution of that query. With an execution ID, you can monitor the execution's status using the [check status](./endpoint/get-execution-status) endpoint. The status can be one of the following: pending, success, or failure.
+Unlike a `query_id`, which identifies a specific query, an `execution_id` represents a particular execution of that query. With an `execution_id`, you can monitor the execution's status using the [check status](./endpoint/get-execution-status) endpoint. The status can be one of the following: pending, success, or failure.
 
 If an execution is successful, you can get the result using [get result](./endpoint/get-execution-result). Results are saved and can be retrieved multiple times.
 Results data from an execution are stored with an expiration date of 90 days (subject to change). This is visible on the API response on the “expires_at” field in the execution status and results json body (not on the CSV endpoint).
 
 <Tip>
-    Consider saving your execution ID in some cases to retrieve the result later without initiating a new execution.
+    - Save your `execution_id` for later use without re-executing.
+    - Use the [get latest query result](./endpoint/get-query-result) endpoint to fetch the most recent result.
+    - Understanding the differences and relationships between query results filters, schedules, executions, and params is crucial. Further details are provided below.
 </Tip>
+
+## Query Filters vs. Execution Parameters
+
+Two primary methods exist for fetching data from the Dune API while applying specific conditions:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/5PM4IyHitWo"
+  title="YouTube video player" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen>
+</iframe>
+
+**Option 1**: Utilize filters with the latest query result and employ schedules to maintain data freshness.
+1. Obtain the `query_id`.
+2. Use [get latest query result](./endpoint/get-query-result) endpoint to access the most recent results.
+3. Apply [filters](./filtering) for desired data subsets.
+4. Implement schedules for maintaining data freshness.
+
+**Option 2**: Execute a query with parameters to retrieve the desired subset of data. 
+1. Obtain the `query_id`.
+2. Use [execute query](./endpoint/execute-query) endpoint with parameters to trigger fresh execution. 
+3. Grab the `execution_id` from the response.
+4. Fetch results via [get execution result](./endpoint/get-execution-result) endpoint using the `execution_id`. 
+
+### Choosing Between Options
+
+- Option 1 offers speed, as it builds upon existing results with filters. Use it when quick results are essential.
+- Option 2 allows dynamic parameter passing for fresh executions. Employ it when real-time parameterization is required.
+
+## Dune API Endpoints Overview
 
 Dune API offers a range of endpoints under the categories of "Execution" and "Results". These endpoints facilitate the execution of predefined queries, retrieval of results in various formats, and management of query executions. Below is an overview of each endpoint, providing a high-level understanding of their functionalities.
 

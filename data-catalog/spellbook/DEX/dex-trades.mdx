@@ -1,0 +1,60 @@
+---
+title: dex.trades
+sidebarTitle: "DEX Trades"
+description: Description of the dex.trades table on Dune
+---
+
+The dex.trades table on Dune Analytics encapsulates the functional logic of recording and analyzing decentralized exchange (DEX) transactions. It serves as a foundational element for understanding the mechanics of trade execution, market dynamics, and participant behavior within the DeFi ecosystem.
+
+## Usage
+
+The `dex.trades` table is a valuable resource for understanding the dynamics of decentralized exchanges. It provides a comprehensive view of the trading activity, including the amount, price, side, and timestamp of each trade. Analysts can use this data to gain a deeper understanding of the market structure, trading behavior, dynamics on various decentralized exchanges.
+
+## Coverage
+
+The `dex.trades` table is maintained by Dune and its community of contributors. We try to make sure that the data is as accurate and up-to-date as possible. However, Dune does not guarantee the accuracy or completeness of the data provided. The table covers the following decentralized exchanges and their versions:
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3453733/5803844/"
+    width="100%"
+    height="300px"
+  ></iframe>
+</div>
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="dex" tableName="trades" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="dex" tableName="trades" />
+
+## Example
+
+The following query demonstrates how to use the dex.trades table to calculate the total volume of trades on a weekly basis.
+
+```sql
+SELECT
+  blockchain,
+  DATE_TRUNC('week', block_time),
+  SUM(CAST(amount_usd AS DOUBLE)) AS usd_volume
+FROM
+  dex."trades" AS t
+WHERE
+ block_time > NOW() - INTERVAL '365' day
+GROUP BY 1,2
+```
+<div>
+  <iframe
+    src="https://dune.com/embeds/2180075/3571504/"
+    width="100%"
+    height="500px"
+  ></iframe>
+</div>
+
+For more examples of how to use the `dex.trades` table, check out the [DEX metrics dashboard](https://dune.com/hagaetc/dex-metrics).

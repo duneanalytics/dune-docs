@@ -1,0 +1,46 @@
+---
+title: labels.transfer_summary
+sidebarTitle: "Transfer Summary"
+description: Summarizes the aggregate flow of assets into and out of labeled addresses, offering insights into the broader transaction patterns over time.
+---
+
+# Transfer Summary
+
+The `labels.transfer_summary` table aggregates transaction data across the total history of an address to provide a broad overview of asset flows through labeled addresses.
+
+## Column Descriptions
+
+| Column Name     | Description                                                                         |
+|-----------------|-------------------------------------------------------------------------------------|
+| `blockchain`    | The blockchain network where the transactions occurred.                             |
+| `address`       | The blockchain address of the labeled entity involved in the transactions.          |
+| `custody_owner` | The entity or organization that has custody of the address.                         |
+| `account_owner` | The specific account owner of the address, if applicable.                           |
+| `transfers_in`  | Total number of transfers into the address over the covered period.                 |
+| `transfers_out` | Total number of transfers out of the address over the covered period.               |
+| `usd_in`        | Total USD value of assets transferred into the address over the covered period.     |
+| `usd_out`       | Total USD value of assets transferred out of the address over the covered period.   |
+| `first_tx_hash` | Transaction hash of the first recorded transaction involving the address.           |
+| `last_tx_hash`  | Transaction hash of the last recorded transaction involving the address before data collection ended.|
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="labels" tableName="transfer_summary" />
+
+## Example Query
+
+The following SQL query demonstrates how to retrieve the transfer volume summary for a specific labeled address:
+
+```sql
+SELECT
+  transfers_in,
+  transfers_out,
+  usd_in,
+  usd_out
+FROM
+    labels.transfer_summary
+WHERE
+    address = '0xf09786d1e1bda9966d7166957c41bd8a66fde7cf'
+    ```
