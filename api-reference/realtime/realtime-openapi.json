@@ -1,6 +1,5 @@
-
         {
-          "openapi": "3.0.0",
+          "openapi": "3.0.1",
           "info": {
             "title": "Token Balance API",
             "description": "This API provides realtime balances information from accounts across different blockchains.",
@@ -112,7 +111,7 @@
                                   "amount": "27000000000000000000000000000"
                                 }
                               ]
-                                },
+                            },
                               "type": "array",
                               "items": {
                                 "type": "object",
