@@ -900,7 +900,6 @@
     },
     {
       "group": "Realtime (Beta)",
-<<<<<<< HEAD
       "pages": [
         {   "group": "Account APIs",
             "pages": [
@@ -913,12 +912,6 @@
     },
     {
       "group": "Domain-specific",
-=======
-      "pages": ["api-reference/realtime/overview"]
-    },
-    {
-      "group": "Preset Endpoints",
->>>>>>> main
       "pages": [
         {
           "group": "DEX",
