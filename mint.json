@@ -900,25 +900,10 @@
     },
     {
       "group": "Realtime (Beta)",
-<<<<<<< HEAD
-      "pages": [
-        {   "group": "Account APIs",
-            "pages": [
-            "api-reference/realtime/overview",
-            "api-reference/realtime/balances",
-            "api-reference/realtime/chains"
-          ]
-          }
-      ]
-    },
-    {
-      "group": "Domain-specific",
-=======
       "pages": ["api-reference/realtime/overview"]
     },
     {
       "group": "Preset Endpoints",
->>>>>>> main
       "pages": [
         {
           "group": "DEX",
