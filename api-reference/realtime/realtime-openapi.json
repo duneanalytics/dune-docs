@@ -16,9 +16,6 @@
               "get": {
                 "summary": "Get ERC20 or native balance for a given address",
                 "operationId": "getAccountBalances",
-                "tags": [
-                  "Wallet"
-                ],
                 "parameters": [
                   {
                     "in": "header",
@@ -115,7 +112,51 @@
                                   "amount": "27000000000000000000000000000"
                                 }
                               ]
-
+                                },
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "chain": {
+                                    "type": "string",
+                                    "description": "Name of blockchain of token",
+                                    "example": "ethereum"
+                                  },
+                                  "address": {
+                                    "type": "string",
+                                    "description": "ERC20 contract address or blockchain name for native token",
+                                    "example": "native"
+                                  },
+                                  "amount": {
+                                    "type": "string",
+                                    "description": "amount of tokend owned in WEI",
+                                    "example": "605371497350928252303"
+                                  },
+                                  "symbol": {
+                                    "type": "string",
+                                    "description": "symbol of token, if avilable",
+                                    "example": "ETH"
+                                  },
+                                  "decimals": {
+                                    "type": "integer",
+                                    "description": "decimals of token, if available",
+                                    "example": 18
+                                  },
+                                  "price_usd": {
+                                    "type": "number",
+                                    "format": "float",
+                                    "description": "current price of token, if available",
+                                    "example": 3042.816964922323
+                                  },
+                                  "value_usd": {
+                                    "type": "number",
+                                    "format": "float",
+                                    "description": "current value of token owned, if available",
+                                    "example": 1842034.6622198338
+                                  }
+                                }
+                              },
+                              "description": "List of balances for each asset in the wallet."
                             }
                           }
                         }
@@ -213,5 +254,5 @@
               }
             }
           }
-        }
+
         
