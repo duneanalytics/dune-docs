@@ -1269,7 +1269,7 @@ You can pass SQL values of types boolean, numeric, and character string. They
 are converted to corresponding JSON literals:
 
 ```sql
-SELECT json_object('x' : true, 'y' : 12e-1, z : text)
+SELECT json_object('x' : true, 'y' : 12e-1, 'z' : text)
 --> {"x":true,"y":1.2,"z":"text"}
 ```
 
