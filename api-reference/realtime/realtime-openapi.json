@@ -1,257 +1,215 @@
-        {
-          "openapi": "3.0.1",
-          "info": {
-            "title": "Token Balance API",
-            "description": "This API provides realtime balances information from accounts across different blockchains.",
-            "version": "1.0"
-          },
-          "servers": [
-            {
-              "url": "https://api.dune.com/api"
-            }
-          ],
-          "paths": {
-            "/beta/balance/{address}": {
-              "get": {
-                "summary": "Get ERC20 or native balance for a given address",
-                "operationId": "getAccountBalances",
-                "parameters": [
-                  {
-                    "in": "header",
-                    "name": "X-DUNE-API-KEY",
-                    "schema": {
-                      "type": "string"
-                    },
-                    "description": "API Key for the service",
-                    "required": true
-                  },
-                  {
-                    "in": "path",
-                    "name": "address",
-                    "required": true,
-                    "schema": {
-                      "type": "string"
-                    },
-                    "description": "The wallet address to retrieve balances for."
-                  }
-                ],
-                "responses": {
-                  "200": {
-                    "description": "Successful response",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "object",
-                          "properties": {
-                            "request_time": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Time when the request was made."
-                            },
-                            "response_time": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Time when the response was sent."
-                            },
-                            "wallet_address": {
-                              "type": "string",
-                              "description": "The queried wallet address.",
-                              "example": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
-                            },
-                            "balances": {
-                              "type": "object",
-                              "description": "results from query",
-                              "example": [
-                                {
-                                  "chain": "ethereum",
-                                  "address": "native",
-                                  "amount": "605371497350928252303",
-                                  "symbol": "ETH",
-                                  "decimals": 18,
-                                  "price_usd": 3042.816964922323,
-                                  "value_usd": 1842034.6622198338
-                                },
-                                {
-                                  "chain": "ethereum",
-                                  "address": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
-                                  "amount": "10000000000000000",
-                                  "symbol": "AAVE",
-                                  "decimals": 18,
-                                  "price_usd": 84.98095610644617,
-                                  "value_usd": 0.8498095610644617
-                                },
-                                {
-                                  "chain": "optimism",
-                                  "address": "0x4200000000000000000000000000000000000042",
-                                  "amount": "7546290050379685580416",
-                                  "symbol": "OP",
-                                  "decimals": 18,
-                                  "price_usd": 2.3725008543999992,
-                                  "value_usd": 17903.57959207602
-                                },
-                                {
-                                  "chain": "polygon",
-                                  "address": "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
-                                  "amount": "5399227165596652653",
-                                  "symbol": "DAI",
-                                  "decimals": 18,
-                                  "price_usd": 0.9999638397385662,
-                                  "value_usd": 5.399031928130804
-                                },
-                                {
-                                  "chain": "arbitrum",
-                                  "address": "0x74885b4d524d497261259b38900f54e6dbad2210",
-                                  "amount": "46901991483382549444",
-                                  "symbol": "APE",
-                                  "decimals": 18
-                                },
-                                {
-                                  "chain": "base",
-                                  "address": "0x2f105b53a3ab17100ad47027792012bb02c4c281",
-                                  "amount": "27000000000000000000000000000"
-                                }
-                              ]
-                            },
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "chain": {
-                                    "type": "string",
-                                    "description": "Name of blockchain of token",
-                                    "example": "ethereum"
-                                  },
-                                  "address": {
-                                    "type": "string",
-                                    "description": "ERC20 contract address or blockchain name for native token",
-                                    "example": "native"
-                                  },
-                                  "amount": {
-                                    "type": "string",
-                                    "description": "amount of tokend owned in WEI",
-                                    "example": "605371497350928252303"
-                                  },
-                                  "symbol": {
-                                    "type": "string",
-                                    "description": "symbol of token, if avilable",
-                                    "example": "ETH"
-                                  },
-                                  "decimals": {
-                                    "type": "integer",
-                                    "description": "decimals of token, if available",
-                                    "example": 18
-                                  },
-                                  "price_usd": {
-                                    "type": "number",
-                                    "format": "float",
-                                    "description": "current price of token, if available",
-                                    "example": 3042.816964922323
-                                  },
-                                  "value_usd": {
-                                    "type": "number",
-                                    "format": "float",
-                                    "description": "current value of token owned, if available",
-                                    "example": 1842034.6622198338
-                                  }
-                                }
-                              },
-                              "description": "List of balances for each asset in the wallet."
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "400": {
-                    "description": "Bad Request - The request could not be understood by the server due to malformed syntax."
-                  },
-                  "404": {
-                    "description": "Not Found - The specified wallet could not be found."
-                  },
-                  "500": {
-                    "description": "Internal Server Error - A generic error occurred on the server."
-                  }
-                }
-              }
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Token Balance API",
+    "description": "This API provides realtime balances information from accounts across different blockchains.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dune.com/api"
+    }
+  ],
+  "paths": {
+    "/beta/balance/{address}": {
+      "get": {
+        "summary": "Get ERC20 or native balance for a given address",
+        "operationId": "getAccountBalances",
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
             },
-            "/beta/balance/chains": {
-              "get": {
-                "summary": "Get list of supported blockchains",
-                "operationId": "getBlockchains",
-                "tags": [
-                  "chains"
-                ],
-                "parameters": [
-                  {
-                    "in": "header",
-                    "name": "X-DUNE-API-KEY",
-                    "schema": {
-                      "type": "string"
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The wallet address to retrieve balances for."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "request_time": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Time when the request was made."
                     },
-                    "description": "API Key for the service",
-                    "required": true
-                  }
-                ],
-                "responses": {
-                  "200": {
-                    "description": "Successful response",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "object",
-                          "description": "list of supported chains",
-                          "example": {
-                            "chains": [
-                              {
-                                "name": "arbitrum",
-                                "id": 42161
-                            },
-                            {
-                                "name": "avalanche_c",
-                                "id": 43114
-                            },
-                            {
-                                "name": "base",
-                                "id": 8453
-                            },
-                            {
-                                "name": "bnb",
-                                "id": 56
-                            },
-                            {
-                                "name": "ethereum",
-                                "id": 1
-                            },
-                            {
-                                "name": "polygon",
-                                "id": 137
-                            },
-                            {
-                                "name": "optimism",
-                                "id": 10
-                            },
-                            {
-                                "name": "celo",
-                                "id": 42220
-                            }
-                            ]
-                          }
+                    "response_time": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Time when the response was sent."
+                    },
+                    "wallet_address": {
+                      "type": "string",
+                      "description": "The queried wallet address.",
+                      "example": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+                    },
+                    "balances": {
+                      "type": "object",
+                      "description": "results from query",
+                      "example": [
+                        {
+                          "chain": "ethereum",
+                          "address": "native",
+                          "amount": "605371497350928252303",
+                          "symbol": "ETH",
+                          "decimals": 18,
+                          "price_usd": 3042.816964922323,
+                          "value_usd": 1842034.6622198338
+                        },
+                        {
+                          "chain": "ethereum",
+                          "address": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+                          "amount": "10000000000000000",
+                          "symbol": "AAVE",
+                          "decimals": 18,
+                          "price_usd": 84.98095610644617,
+                          "value_usd": 0.8498095610644617
+                        },
+                        {
+                          "chain": "optimism",
+                          "address": "0x4200000000000000000000000000000000000042",
+                          "amount": "7546290050379685580416",
+                          "symbol": "OP",
+                          "decimals": 18,
+                          "price_usd": 2.3725008543999992,
+                          "value_usd": 17903.57959207602
+                        },
+                        {
+                          "chain": "polygon",
+                          "address": "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
+                          "amount": "5399227165596652653",
+                          "symbol": "DAI",
+                          "decimals": 18,
+                          "price_usd": 0.9999638397385662,
+                          "value_usd": 5.399031928130804
+                        },
+                        {
+                          "chain": "arbitrum",
+                          "address": "0x74885b4d524d497261259b38900f54e6dbad2210",
+                          "amount": "46901991483382549444",
+                          "symbol": "APE",
+                          "decimals": 18
+                        },
+                        {
+                          "chain": "base",
+                          "address": "0x2f105b53a3ab17100ad47027792012bb02c4c281",
+                          "amount": "27000000000000000000000000000"
                         }
-                      }
+                      ]
+
                     }
-                  },
-                  "400": {
-                    "description": "Bad Request - The request could not be understood by the server due to malformed syntax."
-                  },
-                  "404": {
-                    "description": "Not Found"
-                  },
-                  "500": {
-                    "description": "Internal Server Error - A generic error occurred on the server."
                   }
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax."
+          },
+          "404": {
+            "description": "Not Found - The specified wallet could not be found."
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
           }
-
-        
+        }
+      }
+    },
+    "/beta/balance/chains": {
+      "get": {
+        "summary": "Get list of supported blockchains",
+        "operationId": "getBlockchains",
+        "tags": [
+          "chains"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "list of supported chains",
+                  "example": {
+                    "chains": [
+                      {
+                        "name": "arbitrum",
+                        "id": 42161
+                    },
+                    {
+                        "name": "avalanche_c",
+                        "id": 43114
+                    },
+                    {
+                        "name": "base",
+                        "id": 8453
+                    },
+                    {
+                        "name": "bnb",
+                        "id": 56
+                    },
+                    {
+                        "name": "ethereum",
+                        "id": 1
+                    },
+                    {
+                        "name": "polygon",
+                        "id": 137
+                    },
+                    {
+                        "name": "optimism",
+                        "id": 10
+                    },
+                    {
+                        "name": "celo",
+                        "id": 42220
+                    }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax."
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    }
+  }
+}
