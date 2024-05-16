@@ -125,7 +125,10 @@
       "pages": [
         "query-engine/writing-efficient-queries",
         "query-engine/datatypes",
-        "query-engine/reserved-keywords",
+        "query-engine/reserved-keywords"
+      ]
+    },
+    
         {
           "group": "Functions and Operators",
           "pages": [
@@ -164,9 +167,9 @@
             "query-engine/Functions-and-operators/varchar-utility-functions",
             "query-engine/Functions-and-operators/window"
           ]
-        }
-      ]
-    },
+        },
+      
+    
     {
       "group": "",
       "pages": [
