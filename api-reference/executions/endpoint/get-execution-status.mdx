@@ -7,6 +7,18 @@ You must pass the `execution_id` obtained from making an [execute query](/api-re
 
 Returns the status of a query execution along with relevant metadata of the results if the execution is completed.
 
+## Execution States
+
+Once an execution is triggered, it can be in one of the following states:
+
+- `QUERY_STATE_PENDING`: The query execution is waiting for an execution slot.
+- `QUERY_STATE_EXECUTING`: The query is currently executing.
+- `QUERY_STATE_FAILED`: The query execution failed. This is a terminal state.
+- `QUERY_STATE_COMPLETED`: The query execution completed successfully. You can retrieve the query result for this execution_id.
+- `QUERY_STATE_CANCELLED`: The query execution was cancelled by the user.
+- `QUERY_STATE_EXPIRED`: The query execution expired, and the result is no longer available.
+- `QUERY_STATE_COMPLETED_PARTIAL`: The query execution was successful, but the result returned was truncated because it was too large. To get full data result, pass the `allow_partial_results = true` flag is passed in the API request.
+
 <RequestExample>
 
 ```bash cURL
