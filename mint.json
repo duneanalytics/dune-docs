@@ -234,6 +234,12 @@
                 "data-catalog/evm/arbitrum/decoded/logs-decoded",
                 "data-catalog/evm/arbitrum/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                "data-catalog/evm/arbitrum/curated-data/dex-trades"
+              ]
             }
           ]
         },
