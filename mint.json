@@ -128,48 +128,47 @@
         "query-engine/reserved-keywords"
       ]
     },
-    
-        {
-          "group": "Functions and Operators",
-          "pages": [
-            "query-engine/Functions-and-operators/index",
-            "query-engine/Functions-and-operators/aggregate",
-            "query-engine/Functions-and-operators/array",
-            "query-engine/Functions-and-operators/base58",
-            "query-engine/Functions-and-operators/binary",
-            "query-engine/Functions-and-operators/bitwise",
-            "query-engine/Functions-and-operators/chain-utility-functions",
-            "query-engine/Functions-and-operators/comparison",
-            "query-engine/Functions-and-operators/conditional",
-            "query-engine/Functions-and-operators/conversion",
-            "query-engine/Functions-and-operators/datetime",
-            "query-engine/Functions-and-operators/decimal",
-            "query-engine/Functions-and-operators/hyperloglog",
-            "query-engine/Functions-and-operators/json",
-            "query-engine/Functions-and-operators/lambda",
-            "query-engine/Functions-and-operators/live-fetch",
-            "query-engine/Functions-and-operators/logical",
-            "query-engine/Functions-and-operators/map",
-            "query-engine/Functions-and-operators/math",
-            "query-engine/Functions-and-operators/ml",
-            "query-engine/Functions-and-operators/qdigest",
-            "query-engine/Functions-and-operators/regexp",
-            "query-engine/Functions-and-operators/setdigest",
-            "query-engine/Functions-and-operators/ss58",
-            "query-engine/Functions-and-operators/tronaddress",
-            "query-engine/Functions-and-operators/string",
-            "query-engine/Functions-and-operators/system",
-            "query-engine/Functions-and-operators/tdigest",
-            "query-engine/Functions-and-operators/teradata",
-            "query-engine/Functions-and-operators/url",
-            "query-engine/Functions-and-operators/uuid",
-            "query-engine/Functions-and-operators/varbinary",
-            "query-engine/Functions-and-operators/varchar-utility-functions",
-            "query-engine/Functions-and-operators/window"
-          ]
-        },
-      
-    
+
+    {
+      "group": "Functions and Operators",
+      "pages": [
+        "query-engine/Functions-and-operators/index",
+        "query-engine/Functions-and-operators/aggregate",
+        "query-engine/Functions-and-operators/array",
+        "query-engine/Functions-and-operators/base58",
+        "query-engine/Functions-and-operators/binary",
+        "query-engine/Functions-and-operators/bitwise",
+        "query-engine/Functions-and-operators/chain-utility-functions",
+        "query-engine/Functions-and-operators/comparison",
+        "query-engine/Functions-and-operators/conditional",
+        "query-engine/Functions-and-operators/conversion",
+        "query-engine/Functions-and-operators/datetime",
+        "query-engine/Functions-and-operators/decimal",
+        "query-engine/Functions-and-operators/hyperloglog",
+        "query-engine/Functions-and-operators/json",
+        "query-engine/Functions-and-operators/lambda",
+        "query-engine/Functions-and-operators/live-fetch",
+        "query-engine/Functions-and-operators/logical",
+        "query-engine/Functions-and-operators/map",
+        "query-engine/Functions-and-operators/math",
+        "query-engine/Functions-and-operators/ml",
+        "query-engine/Functions-and-operators/qdigest",
+        "query-engine/Functions-and-operators/regexp",
+        "query-engine/Functions-and-operators/setdigest",
+        "query-engine/Functions-and-operators/ss58",
+        "query-engine/Functions-and-operators/tronaddress",
+        "query-engine/Functions-and-operators/string",
+        "query-engine/Functions-and-operators/system",
+        "query-engine/Functions-and-operators/tdigest",
+        "query-engine/Functions-and-operators/teradata",
+        "query-engine/Functions-and-operators/url",
+        "query-engine/Functions-and-operators/uuid",
+        "query-engine/Functions-and-operators/varbinary",
+        "query-engine/Functions-and-operators/varchar-utility-functions",
+        "query-engine/Functions-and-operators/window"
+      ]
+    },
+
     {
       "group": "",
       "pages": [
@@ -820,23 +819,34 @@
     },
 
     {
-      "group": "API Documentation",
+      "group": "",
       "pages": [
         "api-reference/overview/introduction",
+        {
+          "group": "API Quickstart",
+          "pages": [
+            "api-reference/quickstart/results-eg",
+            "api-reference/quickstart/queries-eg",
+            "api-reference/quickstart/tables-eg"
+          ],
+          "icon": "forward-fast"
+        },
         "api-reference/overview/authentication",
         "api-reference/overview/sdks",
+        {
+          "group": "Result Filtering",
+          "pages": [
+            "api-reference/executions/pagination",
+            "api-reference/executions/filtering",
+            "api-reference/executions/sorting",
+            "api-reference/executions/sampling"
+          ],
+          "icon": "filter"
+        },
         "api-reference/overview/rate-limits",
         "api-reference/overview/troubleshooting",
         "api-reference/overview/billing",
         "api-reference/overview/faq"
-      ]
-    },
-    {
-      "group": "API Quickstart",
-      "pages": [
-        "api-reference/quickstart/results-eg",
-        "api-reference/quickstart/queries-eg",
-        "api-reference/quickstart/tables-eg"
       ]
     },
     {
@@ -846,10 +856,6 @@
           "group": "Executions and Results",
           "pages": [
             "api-reference/executions/execution-object",
-            "api-reference/executions/pagination",
-            "api-reference/executions/filtering",
-            "api-reference/executions/sorting",
-            "api-reference/executions/sampling",
             "api-reference/executions/endpoint/execute-query",
             "api-reference/executions/endpoint/cancel-execution",
             "api-reference/executions/endpoint/get-execution-status",
@@ -879,7 +885,7 @@
       ]
     },
     {
-      "group": "Data Management",
+      "group": "Data Management Endpoints",
       "pages": [
         {
           "group": "Blockchains",
@@ -892,6 +898,7 @@
         {
           "group": "Tables",
           "pages": [
+            "api-reference/tables/endpoint/overview",
             "api-reference/tables/endpoint/create",
             "api-reference/tables/endpoint/insert",
             "api-reference/tables/endpoint/upload",
@@ -902,15 +909,16 @@
       ]
     },
     {
-      "group": "Realtime (Beta)",
+      "group": "Realtime Endpoints (Beta)",
       "pages": [
-        {   "group": "Account APIs",
-            "pages": [
+        {
+          "group": "Account APIs",
+          "pages": [
             "api-reference/realtime/overview",
             "api-reference/realtime/balances",
             "api-reference/realtime/chains"
           ]
-          }
+        }
       ]
     },
     {
