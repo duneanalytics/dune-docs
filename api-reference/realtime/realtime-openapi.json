@@ -36,6 +36,16 @@
               "type": "string"
             },
             "description": "The wallet address to retrieve balances for."
+          },
+          {
+            "in": "query",
+            "name": "all_chains",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "description": "Get the response for all Dune supported"
           }
         ],
         "responses": {
