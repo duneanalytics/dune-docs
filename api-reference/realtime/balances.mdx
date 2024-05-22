@@ -7,9 +7,16 @@ The Token Balances API provides accurate and fast (sub 500ms) real time balances
 
 <Note>
   - URL may change
+  - verify `?all_chains` is in the url to access all supported chains
   - Currently no filtering available (e.g. Spam filtering)
   - We are using CoinMarketCap for price information
 </Note>
+
+## Filter by blockchain
+
+```bash
+https://api.dune.com/api/beta/balances/{chain}/{address}?all_chains
+```
 
 # Column Descriptions
 
@@ -25,9 +32,3 @@ The Token Balances API provides accurate and fast (sub 500ms) real time balances
 | decimals                        | Decimals of token, if available                               | double        |
 | price_usd                       | Current price of token, if available                          | double        |
 | value_usd                       | Current value of token owned, if available                    | double        |
-
-## Filter by blockchain
-
-```bash
-https://api.dune.com/api/beta/balances/{chain}/{address}?all_chains=true
-```
