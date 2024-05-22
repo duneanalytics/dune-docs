@@ -1,80 +1,103 @@
 ---
-title: "Introduction"
+title: "Dune API Overview"
+icon: "connectdevelop"
 ---
 
-Dune's four general API offerings can be found below:
+Dune API provides a variety of endpoints for developers, ranging from low-level, customizable options to high-level, preset endpoints ready for immediate use.
 
-<CardGroup cols={2}>
+## SQL Endpoints
+They help you manage and execute queries, as well as fetch data from these queries.
+
+<CardGroup cols={3}>
   <Card
-    title="SQL Endpoints"
+    title="Executions and Results"
     icon="cloud-arrow-down"
     href="/api-reference/executions/execution-object"
   >
-    Execute queries and get results in JSON or CSV form
+    Execute queries and retrieve results in JSON or CSV format.
   </Card>
   <Card
     title="Query Management"
     icon="floppy-disk"
     href="/api-reference/queries/endpoint/query-object"
   >
-    Manage your queries through the API, good for combining with GitHub.
-  </Card>
-  <Card
-    title="Data Upload and Table Management"
-    icon="upload"
-    href="/api-reference/tables/endpoint/create"
-  >
-    Upload data into Dune to create your own queryable tables
+    Manage your queries through the API, ideal for integration with GitHub.
   </Card>
   <Card title="Webhooks" icon="webhook" href="/api-reference/webhooks/webhook">
-    Push Dune data into your own webhooks, on a custom set schedule
+    Push Dune data to your webhooks on a custom schedule.
+  </Card>
+</CardGroup>
+
+## Data Management Endpoints
+They help you upload and manage data on Dune.
+
+<CardGroup cols={2}>
+  <Card
+    title="Table Management"
+    icon="upload"
+    href="/api-reference/tables/endpoint/overview"
+  >
+    Upload data to Dune to create queryable tables.
+  </Card>
+
+  <Card
+    title="Hosted Blockchain Integration"
+    icon="hive"
+    href="/api-reference/tables/blockchain/overview"
+  >
+    Integrate your blockchain data with Dune using dedicated API endpoints. (_Enterprise only_)
   </Card>
 </CardGroup>
 
 ## Preset Endpoints
-We also have preset endpoints for common data themes developers build with:
+These are curated endpoints built by Dune, ready for immediate use. No SQL required. Developers can use these endpoints to access data on popular topics.
 
-<CardGroup cols={2}>
-  <Card
-    title="Farcaster"
-    icon="thumbs-up"
-    href="/api-reference/farcaster/introduction"
-  >
-    Get trending users, channels, and memecoins
-  </Card>
-  <Card
-    title="EigenLayer"
-    icon="layer-group"
-    href="/api-reference/eigenlayer/introduction"
-  >
-    Get metadata and metrics for Eigenlayer AVSs and Operators
-  </Card>
-  <Card
-    title="Projects"
-    icon="diagram-project"
-    href="/api-reference/projects/introduction"
-  >
-    Get API endpoints specific to a project or a protocol
-  </Card>
+<CardGroup cols={3}>
   <Card
     title="Contracts"
     icon="file-contract"
     href="/api-reference/evm/endpoint/contracts"
   >
-    Get trending EVM contracts by contract type, project, name, users, and value
+    Get trending EVM contracts by type, project, name, users, and value.
   </Card>
+  
   <Card
     title="DEX"
     icon="money-bill-trend-up"
     href="/api-reference/dex/endpoint/dex_pair"
   >
-    Get token pair stats
+    Get statistics for token pairs.
   </Card>
+  
+  <Card
+    title="EigenLayer"
+    icon="layer-group"
+    href="/api-reference/eigenlayer/introduction"
+  >
+    Get metadata and metrics for EigenLayer AVSs and operators.
+  </Card>
+
+  <Card
+    title="Farcaster"
+    icon="thumbs-up"
+    href="/api-reference/farcaster/introduction"
+  >
+    Get trending users, channels, and memecoins.
+  </Card>
+
   <Card
     title="Markets"
     icon="shop"
     href="/api-reference/markets/endpoint/marketplace_marketshare"
   >
-    Track DEX/NFT market share
+    Track DEX and NFT market share.
+  </Card>
+
+  <Card
+    title="Projects"
+    icon="diagram-project"
+    href="/api-reference/projects/introduction"
+  >
+    Access API endpoints specific to various projects and protocols.
   </Card>
 </CardGroup>
