@@ -892,7 +892,8 @@
           "pages": [
             "api-reference/tables/blockchain/overview",
             "api-reference/tables/blockchain/insert",
-            "api-reference/tables/blockchain/clear"
+            "api-reference/tables/blockchain/clear",
+            "api-reference/tables/blockchain/delete"
           ]
         },
         {

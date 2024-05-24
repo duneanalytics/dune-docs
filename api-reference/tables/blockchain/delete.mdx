@@ -1,0 +1,36 @@
+---
+title: 'Delete Data (beta)'
+openapi: 'POST /v1/blockchain/{chain}/{table_name}/delete?date={block_date}'
+---
+
+The `Delete` endpoint clears all data corresponding to a specific date from the designated blockchain table. It leaves data from other dates intact. This endpoint allows you to correct or delete certain entries without needing to clear the whole table.
+
+## Supported tables
+
+- `blocks`
+- `transactions`
+- `logs`
+- `traces`
+
+<RequestExample>
+
+```bash curl
+curl --request POST \
+  --url https://api.dune.com/api/v1/blockchain/my_chain/blocks/delete?date=2020-06-22 \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>'
+```
+
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/blockchain/my_chain/blocks/delete?date=2020-06-22"
+
+headers = {
+    "X-DUNE-API-KEY": "<x-dune-api-key>"
+}
+
+response = requests.request("POST", url, data=data, headers=headers)
+```
+
+</RequestExample>
