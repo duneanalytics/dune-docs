@@ -1,9 +1,11 @@
 ---
 title: 'Delete Data (beta)'
-openapi: 'POST /v1/blockchain/{chain}/{table_name}/delete?date={block_date}'
+openapi: 'POST /v1/blockchain/{chain}/{table_name}/delete'
 ---
 
-The `Delete` endpoint clears all data corresponding to a specific date from the designated blockchain table. It leaves data from other dates intact. This endpoint allows you to correct or delete certain entries without needing to clear the whole table.
+The Delete endpoint clears all the data in a predicate from the designated blockchain table. It leaves the other data intact. This endpoint allows you to correct or delete certain entries without needing to clear the whole table.
+
+For now, only a single date is supported as a filtering condition. See  'Query Parameters'.
 
 ## Supported tables
 

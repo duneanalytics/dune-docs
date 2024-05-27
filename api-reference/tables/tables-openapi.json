@@ -395,11 +395,11 @@
         }
       }
     },
-    "/v1/blockchain/{chain}/{table_name}/delete?date={block_date}": {
+    "/v1/blockchain/{chain}/{table_name}/delete": {
       "post": {
         "tags": ["table"],
-        "summary": "Deletes data from a specific date in a blockchain table. Other dates remain intact.",
-        "description": "Deletes data from a blockchain table for a specified date.",
+        "summary": "Deletes data from a predicate in a blockchain table. Other data remains intact.",
+        "description": "Deletes data from a predicate in a blockchain table.",
         "parameters": [
           {
             "name": "chain",
@@ -421,7 +421,7 @@
             }
           },
           {
-            "name": "block_date",
+            "name": "date",
             "in": "query",
             "description": "The date to delete data from in the format `YYYY-MM-DD` (e.g. `2024-04-28`).",
             "required": true,
