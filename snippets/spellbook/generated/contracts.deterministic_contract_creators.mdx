@@ -1,0 +1,9 @@
+## contracts.deterministic_contract_creators 
+A list of contract creator addresses that are non-deterministic (i.e. standard factories), and should not be used for contract mapping.
+
+<ParamField path="creator_address">
+Attribution to the highest-level contract creator address (i.e. which address deployed the factory which deployed contracts), or the tx_from when the contract creator address is non-deterministic.
+</ParamField>
+<ParamField path="creator_name">
+Name of the creator, indicating why we shouldn&#x27;t use it for mapping.
+</ParamField>

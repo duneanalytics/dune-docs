@@ -1,0 +1,124 @@
+## magiceden_mmm_solana.trades 
+magiceden solana trades
+
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="project">
+Project
+</ParamField>
+<ParamField path="version">
+Project version
+</ParamField>
+<ParamField path="block_time">
+UTC event block time
+</ParamField>
+<ParamField path="trade_type">
+primary or secondary
+</ParamField>
+<ParamField path="number_of_items">
+Number of items traded
+</ParamField>
+<ParamField path="trade_category">
+buy or sell
+</ParamField>
+<ParamField path="seller">
+Seller wallet address
+</ParamField>
+<ParamField path="buyer">
+Buyer wallet address
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>
+<ParamField path="amount_original">
+Traded amount in original currency
+</ParamField>
+<ParamField path="amount_raw">
+Traded amount in original currency before decimals correction
+</ParamField>
+<ParamField path="currency_symbol">
+Symbol of original currency used for payment
+</ParamField>
+<ParamField path="currency_contract">
+Contract address of original token used for payment, with ETH contract address swapped for WETH
+</ParamField>
+<ParamField path="account_merkle_tree">
+only applies to cNFTs, this is the tree the NFT is appended to
+</ParamField>
+<ParamField path="leaf_id">
+only applies to cNFTs, this is the leaf ID of the NFT (order of append)
+</ParamField>
+<ParamField path="account_mint">
+Mint for the account. This is the token mint address from spl_token
+</ParamField>
+<ParamField path="project_program_id">
+Program ID for the project
+</ParamField>
+<ParamField path="aggregator_name">
+If the trade was performed via an aggregator, displays aggregator name
+</ParamField>
+<ParamField path="aggregator_address">
+If the trade was performed via an aggregator, displays aggregator address
+</ParamField>
+<ParamField path="tx_id">
+Transaction hash
+</ParamField>
+<ParamField path="block_slot">
+Block slot in which the transaction was executed 
+</ParamField>
+<ParamField path="tx_signer">
+
+</ParamField>
+<ParamField path="taker_fee_amount_raw">
+Raw numerical amount for taker fees
+</ParamField>
+<ParamField path="taker_fee_amount">
+taker fee amount in original token currency (properly formatted in decimals)
+</ParamField>
+<ParamField path="taker_fee_amount_usd">
+taker fee amount in USD
+</ParamField>
+<ParamField path="taker_fee_percentage">
+taker fee in % of the amount paid for a given trade
+</ParamField>
+<ParamField path="royalty_fee_currency_symbol">
+Symbol of the token in which fees are paid out
+</ParamField>
+<ParamField path="royalty_fee_amount_raw">
+Raw numerical amount for royalty fees
+</ParamField>
+<ParamField path="royalty_fee_amount">
+Royalty fee amount in original token currency (properly formatted in decimals)
+</ParamField>
+<ParamField path="royalty_fee_amount_usd">
+Royalty fee amount in USD
+</ParamField>
+<ParamField path="royalty_fee_percentage">
+Royalty fee in % of the amount paid for a given trade
+</ParamField>
+<ParamField path="amm_fee_amount_raw">
+Raw numerical amount for amm fees
+</ParamField>
+<ParamField path="amm_fee_amount">
+amm fee amount in original token currency (properly formatted in decimals)
+</ParamField>
+<ParamField path="amm_fee_amount_usd">
+amm fee amount in USD
+</ParamField>
+<ParamField path="amm_fee_percentage">
+amm fee in % of the amount paid for a given trade
+</ParamField>
+<ParamField path="unique_trade_id">
+Unique trade ID
+</ParamField>
+<ParamField path="instruction">
+name of the instruction called for the trade
+</ParamField>
+<ParamField path="outer_instruction_index">
+outer index of instruction call
+</ParamField>
+<ParamField path="inner_instruction_index">
+inner index of instruction call
+</ParamField>

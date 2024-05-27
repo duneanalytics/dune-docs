@@ -1,0 +1,51 @@
+## tigris_arbitrum.positions_close 
+data on close posititions that includes margin on v1 &amp; v2
+
+<ParamField path="evt_tx_hash">
+blockchain transaction hash
+</ParamField>
+<ParamField path="evt_block_time">
+blockchain transaction event block time
+</ParamField>
+<ParamField path="leverage">
+leverage of trade at evt block time
+</ParamField>
+<ParamField path="position_id">
+unqiue id assigned to nft
+</ParamField>
+<ParamField path="payout">
+amount paid out to trader
+</ParamField>
+<ParamField path="previous_margin">
+margin before payout was processed
+</ParamField>
+<ParamField path="new_margin">
+margin after payout was processed
+</ParamField>
+<ParamField path="project_contract_address">
+trading contract address
+</ParamField>
+<ParamField path="positions_contract">
+corresponding position contract address
+</ParamField>
+<ParamField path="day">
+date_trunc of block time of position opening
+</ParamField>
+<ParamField path="block_month">
+date_trunc of block month of trade
+</ParamField>
+<ParamField path="version">
+project contract version
+</ParamField>
+<ParamField path="trader">
+trader that was liquidated
+</ParamField>
+<ParamField path="evt_index">
+blockchain transaction index 
+</ParamField>
+<ParamField path="price">
+entry price of trade
+</ParamField>
+<ParamField path="protocol_version">
+tigris project version 
+</ParamField>

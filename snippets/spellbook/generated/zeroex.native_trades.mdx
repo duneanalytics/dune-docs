@@ -1,0 +1,73 @@
+## zeroex.native_trades 
+0x native swaps thru 0x exchange contracts (without using 0x API) on Ethereum &amp; Polygon &amp; Arbitrum &amp; Fantom &amp; BNB
+
+
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed
+</ParamField>
+<ParamField path="project">
+The project that the swap was made on
+</ParamField>
+<ParamField path="version">
+The version of the 0x API
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of each DEX trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each DEX trade
+</ParamField>
+<ParamField path="block_number">
+Block Number of the fill
+</ParamField>
+<ParamField path="token_bought_symbol">
+Token symbol of the token bought by the taker
+</ParamField>
+<ParamField path="token_sold_symbol">
+Token symbol of the token sold by the taker
+</ParamField>
+<ParamField path="token_pair">
+Token symbol pair for each token involved in the transaction
+</ParamField>
+<ParamField path="token_bought_amount">
+The amount of the token taker buys
+</ParamField>
+<ParamField path="token_sold_amount">
+The amount of the token taker sells
+</ParamField>
+<ParamField path="token_bought_amount_raw">
+The amount of the token taker buys in raw format
+</ParamField>
+<ParamField path="token_sold_amount_raw">
+The amount of the token taker sells in raw format
+</ParamField>
+<ParamField path="amount_usd">
+The amount of the token taker buys in USD
+</ParamField>
+<ParamField path="token_bought_address">
+The address of the token taker buys
+</ParamField>
+<ParamField path="token_sold_address">
+The address of the token taker sells
+</ParamField>
+<ParamField path="taker">
+Address of trader who purchased a token
+</ParamField>
+<ParamField path="maker">
+Address of trader who sold a token
+</ParamField>
+<ParamField path="project_contract_address">
+The address of the project contract
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the DEX
+</ParamField>
+<ParamField path="tx_from">
+Address which initiated the transaction
+</ParamField>
+<ParamField path="tx_to">
+Address which received the transaction
+</ParamField>
+<ParamField path="evt_index">
+the position of this event log within this transaction
+</ParamField>

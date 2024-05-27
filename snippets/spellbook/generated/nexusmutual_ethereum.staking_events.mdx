@@ -1,0 +1,45 @@
+## nexusmutual_ethereum.staking_events 
+Staking pools event history for Nexus Mutual on Ethereum
+
+<ParamField path="flow_type">
+flow event type: deposit, deposit extended, withdraw or stake burn
+</ParamField>
+<ParamField path="block_time">
+UTC event block time
+</ParamField>
+<ParamField path="pool_address">
+pool contract deployment address
+</ParamField>
+<ParamField path="token_id">
+ERC721 token id representing staking position
+</ParamField>
+<ParamField path="tranche_id">
+staking tranche period
+</ParamField>
+<ParamField path="init_tranche_id">
+initial staking tranche period (applies to: deposit extended)
+</ParamField>
+<ParamField path="new_tranche_id">
+new staking tranche period (applies to: deposit extended)
+</ParamField>
+<ParamField path="tranche_expiry_date">
+staking period expiry date
+</ParamField>
+<ParamField path="is_active">
+is staking event still active or already expired
+</ParamField>
+<ParamField path="amount">
+staking amount
+</ParamField>
+<ParamField path="topup_amount">
+staking top-up amount (applies to: deposit extended)
+</ParamField>
+<ParamField path="user">
+staking user
+</ParamField>
+<ParamField path="evt_index">
+
+</ParamField>
+<ParamField path="tx_hash">
+unique transaction hash value
+</ParamField>

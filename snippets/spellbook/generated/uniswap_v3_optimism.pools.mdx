@@ -1,0 +1,34 @@
+## uniswap_v3_optimism.pools 
+A canonical table containing all Uniswap pools created on Optimism. Pools from OVM1 will be missing from factory_evt_poolcreated, so we use this table to get pool information.
+
+
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed
+</ParamField>
+<ParamField path="project">
+Project name of the DEX
+</ParamField>
+<ParamField path="version">
+Version of the contract built and deployed by the DEX project
+</ParamField>
+<ParamField path="pool">
+Uniswap liquidity pool contract address
+</ParamField>
+<ParamField path="token0">
+Token0 contract address
+</ParamField>
+<ParamField path="token1">
+Token1 contract address
+</ParamField>
+<ParamField path="fee">
+Swap fee of a Uniswap liquidity pool. Divide by 1e6 or power(10,6) to get the fee percentage
+</ParamField>
+<ParamField path="creation_block_time">
+Block time of pool creation
+</ParamField>
+<ParamField path="creation_block_number">
+Block number of pool creation
+</ParamField>
+<ParamField path="contract_address">
+Contract address used to create the pool
+</ParamField>

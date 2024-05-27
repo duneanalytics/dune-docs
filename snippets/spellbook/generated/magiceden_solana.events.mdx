@@ -1,0 +1,76 @@
+## magiceden_solana.events 
+Magic Eden events on Solana
+
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash
+</ParamField>
+<ParamField path="block_time">
+UTC event block time
+</ParamField>
+<ParamField path="token_id">
+NFT Token ID. In Solana case, we display the token address
+</ParamField>
+<ParamField path="currency_symbol">
+Currency Symbol of the trade value
+</ParamField>
+<ParamField path="currency_contract">
+Contract address of the currency in which the trade is denominated in
+</ParamField>
+<ParamField path="token_standard">
+Token standard (Metaplex for Solana NFTs)
+</ParamField>
+<ParamField path="trade_type">
+Identify whether it was a single NFT trade or multiple NFTs traded
+</ParamField>
+<ParamField path="amount_original">
+Value of the trade at time of execution in the original currency
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>
+<ParamField path="number_of_items">
+Number of items traded
+</ParamField>
+<ParamField path="project_contract_address">
+Contract address used by the v1 project
+</ParamField>
+<ParamField path="evt_type">
+Event type (Trade, Mint, Burn, Bid, List)
+</ParamField>
+<ParamField path="seller">
+Seller wallet address
+</ParamField>
+<ParamField path="buyer">
+Buyer wallet address
+</ParamField>
+<ParamField path="platform_fee_amount_raw">
+Raw numerical amount for platform fees
+</ParamField>
+<ParamField path="platform_fee_amount">
+Platform fee amount in original token currency (properly formatted in decimals)
+</ParamField>
+<ParamField path="platform_fee_amount_usd">
+Platform fee in % of the amount paid for a given trade
+</ParamField>
+<ParamField path="royalty_fee_amount_raw">
+Raw numerical amount for royalty fees
+</ParamField>
+<ParamField path="royalty_fee_amount">
+Royalty fee amount in original token currency (properly formatted in decimals)
+</ParamField>
+<ParamField path="royalty_fee_amount_usd">
+Royalty fee amount in USD
+</ParamField>
+<ParamField path="royalty_fee_percentage">
+Royalty fee in % of the amount paid for a given trade
+</ParamField>
+<ParamField path="royalty_fee_currency_symbol">
+Symbol of the token in which fees are paid out
+</ParamField>
+<ParamField path="unique_trade_id">
+Unique trade id, combination of signatures[0] and id
+</ParamField>

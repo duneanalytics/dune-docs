@@ -1,0 +1,46 @@
+## yield_yak_avalanche_c.reinvests 
+yield yak reinvests on avalanche_c
+
+
+<ParamField path="blockchain">
+Blockchain on which the YRT contract is deployed
+</ParamField>
+<ParamField path="contract_address">
+Address of the YRT smart contract / strategy
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash of the deposit/withdraw/reinvest
+</ParamField>
+<ParamField path="evt_index">
+The position of this event log within this transaction
+</ParamField>
+<ParamField path="tx_index">
+Index of the transaction within the block
+</ParamField>
+<ParamField path="block_time">
+UTC time of the deposit/withdraw/reinvest
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of the deposit/withdraw/reinvest
+</ParamField>
+<ParamField path="block_number">
+Block number of the deposit/withdraw/reinvest
+</ParamField>
+<ParamField path="reinvest_by_address">
+Address which triggered the transaction containing this Reinvest event
+</ParamField>
+<ParamField path="new_total_deposits">
+The total amount of deposit token in the strategy following the Reinvest event
+</ParamField>
+<ParamField path="new_total_supply">
+The total supply of YRT following the Reinvest event
+</ParamField>
+<ParamField path="apy">
+Annual Percentage Yield. Calculated using a weighted combination of recent Reinvest events
+</ParamField>
+<ParamField path="ratio">
+new_total_deposits / new_total_supply
+</ParamField>
+<ParamField path="recent_reinvest_info">
+An array of the ratio growth and time between reinvests for the last 25 Reinvest events
+</ParamField>

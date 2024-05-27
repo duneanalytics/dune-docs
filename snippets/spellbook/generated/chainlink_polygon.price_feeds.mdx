@@ -1,0 +1,40 @@
+## chainlink_polygon.price_feeds 
+Table pulling price updates for known Chainlink oracle addresses
+
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="block_time">
+Block time
+</ParamField>
+<ParamField path="block_date">
+Block time truncated to date
+</ParamField>
+<ParamField path="block_month">
+Block time truncated to month
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="feed_name">
+Feed name from Chainlink docs
+</ParamField>
+<ParamField path="oracle_price">
+Price returned by Chainlink oracle update
+</ParamField>
+<ParamField path="proxy_address">
+Address of the proxy contract for the Chainlink oracle
+</ParamField>
+<ParamField path="aggregator_address">
+Address of the aggregator contract tied to the proxy for the Chainlink oracle (via Read Contract)
+</ParamField>
+<ParamField path="base">
+Base token of the pair
+</ParamField>
+<ParamField path="quote">
+Quote token of the pair
+</ParamField>
+<ParamField path="underlying_token_price">
+Price of the underlying token, with extra decimal adjustments if needed
+</ParamField>

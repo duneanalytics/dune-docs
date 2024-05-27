@@ -1,0 +1,33 @@
+## contracts.predeploys 
+Mapping of predeploy contracts to its creators and names on EVM chains.
+
+<ParamField path="blockchain">
+Name of chain in Dune database
+</ParamField>
+<ParamField path="trace_creator_address">
+Address creating the contract in the transaction trace
+</ParamField>
+<ParamField path="contract_address">
+Address of the contract
+</ParamField>
+<ParamField path="contract_project">
+Project name of the contract
+</ParamField>
+<ParamField path="contract_name">
+Contract name
+</ParamField>
+<ParamField path="creator_address">
+Attribution to the highest-level contract creator address (i.e. which address deployed the factory which deployed contracts), or the tx_from when the contract creator address is non-deterministic.
+</ParamField>
+<ParamField path="created_time">
+contract creation time
+</ParamField>
+<ParamField path="is_self_destruct">
+Flag if it is a self destruct contract
+</ParamField>
+<ParamField path="created_tx_hash">
+Contract creation transaction hash
+</ParamField>
+<ParamField path="source">
+Where the Predeploy contract was sourced from
+</ParamField>

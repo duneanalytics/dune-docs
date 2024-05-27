@@ -1,0 +1,51 @@
+## ethereum.blobs 
+Blob table but enriched with size, blob version hash, blob submitter, base fee, ..
+
+<ParamField path="beacon_slot_time">
+UTC slot time of the beacon slot
+</ParamField>
+<ParamField path="blob_versioned_hash">
+hash of the blob
+</ParamField>
+<ParamField path="beacon_epoch">
+A specific epoch during which this block was proposed. An epoch is a division of time in Ethereum&#x27;s Proof of Stake mechanism.
+</ParamField>
+<ParamField path="beacon_slot_number">
+A slot in which a validator has the opportunity to propose a new block. Each slot represents a chance for a block to be added.
+</ParamField>
+<ParamField path="blob_index">
+Index of the blob in the block slot
+</ParamField>
+<ParamField path="beacon_proposer_index">
+Identifier for the validator that proposed the specific block.
+</ParamField>
+<ParamField path="blob_kzg_commitment">
+A cryptographic commitment used to ensure data integrity within blob transactions. KZG commitments are a form of cryptographic proof used to represent blob data within blocks.
+</ParamField>
+<ParamField path="blob_parent_root">
+A hash of the parent block, linking the current block to the previous one in the blockchain.
+</ParamField>
+<ParamField path="used_blob_byte_count">
+total non-zero byte size of the blob
+</ParamField>
+<ParamField path="blob_byte_count">
+total byte size of the blob
+</ParamField>
+<ParamField path="blob_gas_used">
+gas units used by the blob
+</ParamField>
+<ParamField path="blob_submitter">
+address that submitted the blob
+</ParamField>
+<ParamField path="blob_submitter_label">
+the entity that submitted the blob
+</ParamField>
+<ParamField path="blob_base_fee">
+the base fee (wei) per blob gas
+</ParamField>
+<ParamField path="max_fee_per_blob_gas">
+the maximum fee (wei) per blob gas the tx is willing to pay
+</ParamField>
+<ParamField path="is_blobscription">
+boolean wether the blob was used as a blobscription
+</ParamField>

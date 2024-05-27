@@ -1,0 +1,21 @@
+## nexusmutual_ethereum.staking_deposit_extensions 
+Staking pools deposit extensions for Nexus Mutual on Ethereum
+
+<ParamField path="pool_address">
+pool contract deployment address
+</ParamField>
+<ParamField path="token_id">
+ERC721 token id representing staking position
+</ParamField>
+<ParamField path="init_tranche_id">
+initial staking tranche period (applies to: deposit extended)
+</ParamField>
+<ParamField path="current_tranche_id">
+current staking tranche period (most recent one in the chain of extensions)
+</ParamField>
+<ParamField path="total_amount">
+total staking amount (initial deposit + all top-up amounts)
+</ParamField>
+<ParamField path="is_active">
+is staking event still active or already expired
+</ParamField>

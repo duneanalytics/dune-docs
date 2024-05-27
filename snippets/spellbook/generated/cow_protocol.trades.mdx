@@ -1,0 +1,73 @@
+## cow_protocol.trades 
+CoW Protocol trades on all chains across all contracts and versions.  This table will load dex trades downstream. This particular version of the protocol trades table is intended to conform  with the columns as specified in dex.trades sector.  A more detailed version of the protocol trades table can be found under &#x60;cow_protocol_ethereum.trades&#x60;
+
+
+<ParamField path="blockchain">
+Blockchain which the project is deployed
+</ParamField>
+<ParamField path="project">
+Project name
+</ParamField>
+<ParamField path="version">
+Version of the contract built and deployed by the project
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of each trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each trade
+</ParamField>
+<ParamField path="token_bought_symbol">
+Token symbol for token bought in the trade
+</ParamField>
+<ParamField path="token_sold_symbol">
+Token symbol for token sold in the trade
+</ParamField>
+<ParamField path="token_pair">
+Token symbol pair for each token involved in the trade
+</ParamField>
+<ParamField path="token_bought_amount">
+Value of the token bought at time of execution in the original currency
+</ParamField>
+<ParamField path="token_sold_amount">
+Value of the token sold at time of execution in the original currency
+</ParamField>
+<ParamField path="token_bought_amount_raw">
+Raw value of the token bought at time of execution in the original currency
+</ParamField>
+<ParamField path="token_sold_amount_raw">
+Raw value of the token sold at time of execution in the original currency
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>
+<ParamField path="token_bought_address">
+Contract address of the token bought
+</ParamField>
+<ParamField path="token_sold_address">
+Contract address of the token sold
+</ParamField>
+<ParamField path="taker">
+Address of trader who purchased a token
+</ParamField>
+<ParamField path="maker">
+Address of trader who sold a token
+</ParamField>
+<ParamField path="project_contract_address">
+Project contract address which executed the trade on the blockchain
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the DEX
+</ParamField>
+<ParamField path="tx_from">
+Trader address owning the order being filled
+</ParamField>
+<ParamField path="tx_to">
+Address which received the token bought
+</ParamField>
+<ParamField path="trace_address">
+
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding trade event
+</ParamField>

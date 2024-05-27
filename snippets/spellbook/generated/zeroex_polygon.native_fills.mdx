@@ -1,0 +1,73 @@
+## zeroex_polygon.native_fills 
+0x API erc20 swaps raw fills (including multihops) and also native swaps thru 0x exchange contracts (without using 0x API) on Ethereum
+
+
+<ParamField path="tx_hash">
+Transaction hash of the fill
+</ParamField>
+<ParamField path="contract_address">
+
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_number">
+Block number of the event
+</ParamField>
+<ParamField path="maker">
+seller of the nft
+</ParamField>
+<ParamField path="taker">
+buyer of the nft
+</ParamField>
+<ParamField path="taker_token">
+Contract address of the token taker sells
+</ParamField>
+<ParamField path="taker_symbol">
+Symbol of the token taker sells
+</ParamField>
+<ParamField path="maker_token">
+Contract address of the token taker buys
+</ParamField>
+<ParamField path="maker_symbol">
+Symbol of the token taker buys
+</ParamField>
+<ParamField path="token_pair">
+Token pair traded
+</ParamField>
+<ParamField path="taker_token_amount">
+The after-decimal amount of the token taker sells
+</ParamField>
+<ParamField path="taker_token_amount_raw">
+The raw amount of the token taker sells
+</ParamField>
+<ParamField path="maker_token_amount">
+The after-decimal amount of the token taker buys
+</ParamField>
+<ParamField path="maker_token_amount_raw">
+The raw amount of the token taker buys
+</ParamField>
+<ParamField path="volume_usd">
+Trading volume measured in USD value
+</ParamField>
+<ParamField path="tx_from">
+Address which initiated the trade
+</ParamField>
+<ParamField path="tx_to">
+Address which received the trade
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding order filled event
+</ParamField>
+<ParamField path="blockchain">
+Blockchain which the aggregator project is deployed
+</ParamField>
+<ParamField path="native_fill_type">
+type of native fill - RFQ, limit order, OTC, fill
+</ParamField>
+<ParamField path="matcha_limit_order_flag">
+If the swap&#x27;s order was initially created and submitted thru Matcha. This is for Matcha related query needs.
+</ParamField>
+<ParamField path="protocol_fee_paid_eth">
+The protocol fee paid in ETH
+</ParamField>

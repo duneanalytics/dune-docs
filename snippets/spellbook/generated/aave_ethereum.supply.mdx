@@ -1,0 +1,42 @@
+## aave_ethereum.supply 
+All aave transactions involving supply transactions on ethereum
+
+<ParamField path="version">
+Aave version
+</ParamField>
+<ParamField path="transaction_type">
+The transaction type
+</ParamField>
+<ParamField path="symbol">
+Symbol of the reserve
+</ParamField>
+<ParamField path="token_address">
+Aave reserve contract address
+</ParamField>
+<ParamField path="depositor">
+Depositor wallet address
+</ParamField>
+<ParamField path="withdrawn_to">
+The wallet address where the tokens are withdrawn
+</ParamField>
+<ParamField path="liquidator">
+Liquidator wallet address
+</ParamField>
+<ParamField path="amount">
+Token amount present in the transaction. Note: withdraw amounts may be more than deposited amounts due to interest
+</ParamField>
+<ParamField path="usd_amount">
+Token amount in USD
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash of the event
+</ParamField>
+<ParamField path="evt_index">
+Event index
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_number">
+Event block number
+</ParamField>

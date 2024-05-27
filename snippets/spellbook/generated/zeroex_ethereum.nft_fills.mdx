@@ -1,0 +1,55 @@
+## zeroex_ethereum.nft_fills 
+NFT Swaps enabled by 0x exchange contracts
+
+
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of each trade
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding fill/swap event
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash of the fill
+</ParamField>
+<ParamField path="maker">
+For limit order, the wallet who posted order first; for AMM orders, the liquidity pools; for RFQ orders, the professional market makers.
+</ParamField>
+<ParamField path="taker">
+User who is taking the order
+</ParamField>
+<ParamField path="matcher">
+address/bot that brings two public quotes (from buy as well as from the sell side) together
+</ParamField>
+<ParamField path="nft_address">
+NFT project address
+</ParamField>
+<ParamField path="nft_id">
+Token ID of the NFT project address
+</ParamField>
+<ParamField path="label">
+type of nft - ERC 721 OR ERC 1155
+</ParamField>
+<ParamField path="price_label">
+token address used to genearate the amount in usd - for eth, we take the price of weth
+</ParamField>
+<ParamField path="token">
+token used to pay for the transaction
+</ParamField>
+<ParamField path="token_amount_raw">
+raw token amount used to pay for the transaction
+</ParamField>
+<ParamField path="symbol">
+symbol of the token used to pay for the transaction - use this column for all your descriptive needs + aggregations
+</ParamField>
+<ParamField path="price_usd">
+price of a transaction in USD
+</ParamField>
+<ParamField path="token_amount">
+token amount, after dividing by the correct decimal
+</ParamField>
+<ParamField path="project_name">
+name of the nft project
+</ParamField>
