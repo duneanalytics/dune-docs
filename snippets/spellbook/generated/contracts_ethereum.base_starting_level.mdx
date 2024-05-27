@@ -1,0 +1,45 @@
+## contracts_ethereum.base_starting_level 
+Base Level for mapping of contracts to its creators and names on Ethereum.
+
+<ParamField path="blockchain">
+Name of chain in Dune database
+</ParamField>
+<ParamField path="trace_creator_address">
+Address creating the contract in the transaction trace
+</ParamField>
+<ParamField path="contract_address">
+Address of the contract
+</ParamField>
+<ParamField path="created_time">
+contract creation time
+</ParamField>
+<ParamField path="created_month">
+Monthly partition, when the contract was created
+</ParamField>
+<ParamField path="created_block_number">
+Contract creation block number
+</ParamField>
+<ParamField path="created_tx_hash">
+Contract creation transaction hash
+</ParamField>
+<ParamField path="created_tx_from">
+Contract creation transaction from address
+</ParamField>
+<ParamField path="created_tx_to">
+Contract creation transaction to address
+</ParamField>
+<ParamField path="created_tx_method_id">
+Method ID of the transaction. This is useful for determining how a contract was deployed (i.e Safe transaction vs traditional deployment)
+</ParamField>
+<ParamField path="created_tx_index">
+Index of the contract creation transaction within its block
+</ParamField>
+<ParamField path="code_bytelength">
+Length of the deployed code, measured in bytes. This is used for spam filtering
+</ParamField>
+<ParamField path="code">
+Runtime bytecode of the contract
+</ParamField>
+<ParamField path="reinitialize_rank">
+Rank of the same contract being deployed in descending order - used to only ensure we get the most recent contract instance (allowlist &amp; self-destructs can cause duplicates).
+</ParamField>

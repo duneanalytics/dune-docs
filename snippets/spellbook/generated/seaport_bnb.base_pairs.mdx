@@ -1,0 +1,97 @@
+## seaport_bnb.base_pairs 
+Exploded table from Seaport trade events with &#x60;offer&#x60; and &#x60;consideration&#x60; array columns
+
+
+<ParamField path="block_time">
+Block time in UTC
+</ParamField>
+<ParamField path="block_number">
+Block number of transaction
+</ParamField>
+<ParamField path="tx_hash">
+Hash ID of transaction
+</ParamField>
+<ParamField path="evt_index">
+Event log index
+</ParamField>
+<ParamField path="sub_type">
+Exploded column : &#x60;offer&#x60;|&#x60;consideration&#x60;
+</ParamField>
+<ParamField path="sub_idx">
+Index number of &#x60;sub_type&#x60;
+</ParamField>
+<ParamField path="offer_first_item_type">
+First item_type of offer in this trade : &#x60;native&#x60;|&#x60;erc20&#x60;|&#x60;erc721&#x60;|&#x60;erc1155&#x60;
+</ParamField>
+<ParamField path="consideration_first_item_type">
+First item_type of consideration in this trade : &#x60;native&#x60;|&#x60;erc20&#x60;|&#x60;erc721&#x60;|&#x60;erc1155&#x60;
+</ParamField>
+<ParamField path="sender">
+Item sender
+</ParamField>
+<ParamField path="receiver">
+Item receiver
+</ParamField>
+<ParamField path="zone">
+Zone address
+</ParamField>
+<ParamField path="token_contract_address">
+Item contract address
+</ParamField>
+<ParamField path="original_amount">
+Number of Items
+</ParamField>
+<ParamField path="item_type">
+&#x60;native&#x60;|&#x60;erc20&#x60;|&#x60;erc721&#x60;|&#x60;erc1155&#x60;
+</ParamField>
+<ParamField path="token_id">
+NFT Token ID
+</ParamField>
+<ParamField path="platform_contract_address">
+platform&#x27;s contract_address
+</ParamField>
+<ParamField path="offer_cnt">
+Total number of offer items
+</ParamField>
+<ParamField path="consideration_cnt">
+Total number of consideration items
+</ParamField>
+<ParamField path="is_private">
+If trade is private sale then &#x60;true&#x60; else &#x60;false&#x60; (boolean)
+</ParamField>
+<ParamField path="eth_erc_idx">
+Sequencial number of native or erc20 tokens only
+</ParamField>
+<ParamField path="nft_cnt">
+Total number of traded NFT in this trade
+</ParamField>
+<ParamField path="erc721_cnt">
+Total number of traded erc721 in this trade
+</ParamField>
+<ParamField path="erc1155_cnt">
+Total number of traded erc1155 in this trade
+</ParamField>
+<ParamField path="order_type">
+Direction of trade. &#x60;buy&#x60; or &#x60;offer accepted&#x60; only (lowercase)
+</ParamField>
+<ParamField path="is_price">
+Part of volume or not. &#x60;true&#x60; makes volume of this trade
+</ParamField>
+<ParamField path="is_netprice">
+Change of &#x60;price - platform_fee - creator_fee&#x60;, (but might not be used)
+</ParamField>
+<ParamField path="is_platform_fee">
+Platform fee if &#x60;true&#x60;
+</ParamField>
+<ParamField path="is_creator_fee">
+Creator fee if &#x60;true&#x60;
+</ParamField>
+<ParamField path="creator_fee_idx">
+Sequencial number only for creator fee
+</ParamField>
+<ParamField path="is_traded_nft">
+Traded NFT if &#x60;true&#x60;, because it is traded or just transferred.
+</ParamField>
+<ParamField path="is_moved_nft">
+Transferred NFT if &#x60;true&#x60;, because it is traded or just transferred.
+</ParamField>

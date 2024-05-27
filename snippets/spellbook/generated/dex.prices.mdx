@@ -1,0 +1,22 @@
+## dex.prices 
+This table loads the prices of tokens from the dex.trades table. This helps for missing tokens from the prices.usd table
+
+
+<ParamField path="block_month">
+Month corresponding to the prices data
+</ParamField>
+<ParamField path="hour">
+hour corresponding to the prices data
+</ParamField>
+<ParamField path="contract_address">
+token&#x27;s contract address
+</ParamField>
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed
+</ParamField>
+<ParamField path="median_price">
+Median price of the token in USD within the corresponding hour
+</ParamField>
+<ParamField path="sample_size">
+Number of times the token was traded within the coressponding hour
+</ParamField>

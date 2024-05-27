@@ -1,0 +1,82 @@
+## zeroex_bnb.api_fills_deduped 
+0x API erc20 swaps deduped fills (excluding multihops) and also native swaps thru 0x exchange contracts (without using 0x API) on bnb
+
+
+<ParamField path="tx_hash">
+Transaction hash of the fill
+</ParamField>
+<ParamField path="block_number">
+Block Number of the fill
+</ParamField>
+<ParamField path="contract_address">
+
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of each trade
+</ParamField>
+<ParamField path="block_month">
+UTC event block month of each trade
+</ParamField>
+<ParamField path="maker">
+For limit order, the wallet who posted order first; for AMM orders, the liquidity pools; for RFQ orders, the professional market makers.
+</ParamField>
+<ParamField path="taker">
+User who is taking the order
+</ParamField>
+<ParamField path="taker_token">
+Contract address of the token taker sells
+</ParamField>
+<ParamField path="taker_symbol">
+Symbol of the token taker sells
+</ParamField>
+<ParamField path="maker_token">
+Contract address of the token taker buys
+</ParamField>
+<ParamField path="maker_symbol">
+Symbol of the token taker buys
+</ParamField>
+<ParamField path="token_pair">
+Token pair of the trade
+</ParamField>
+<ParamField path="taker_token_amount">
+The after-decimal amount of the token taker sells
+</ParamField>
+<ParamField path="taker_token_amount_raw">
+The raw amount of the token taker sells
+</ParamField>
+<ParamField path="maker_token_amount">
+The after-decimal amount of the token taker buys
+</ParamField>
+<ParamField path="maker_token_amount_raw">
+The raw amount of the token taker buys
+</ParamField>
+<ParamField path="type">
+The liquidity route the order went thru
+</ParamField>
+<ParamField path="affiliate_address">
+The recipient address of the affiliate, or the applications that is using 0x API, for receiving affiliate fee
+</ParamField>
+<ParamField path="swap_flag">
+If the swap was filled/consumed thru 0x API
+</ParamField>
+<ParamField path="matcha_limit_order_flag">
+If the swap&#x27;s order was initially created and submitted thru Matcha. This is for Matcha related query needs.
+</ParamField>
+<ParamField path="volume_usd">
+Trading volume measured in USD value
+</ParamField>
+<ParamField path="tx_from">
+Address which initiated the trade
+</ParamField>
+<ParamField path="tx_to">
+Address which received the trade
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding fill/swap event
+</ParamField>
+<ParamField path="blockchain">
+Blockchain which the aggregator project is deployed
+</ParamField>

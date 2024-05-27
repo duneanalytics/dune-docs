@@ -1,0 +1,48 @@
+## labels.sandwich_attackers 
+## Known sandwich attacker addresses
+
+The logic to identify a sandwich attacker is as follows:
+
+1. Two separate trades, t1 and t2 in no particular order, in the same block initiated by the same address
+2. Both trades initiated on the same project
+3. Token bought in t1 &#x3D; token sold in t2
+4. Token sold in t1 &#x3D; token bought in t2
+5. Amount bought in t1 &#x3D; Amount sold in t2
+6. Amount sold in t1 &lt; amount bought in t2 (excluded)
+7. (index of t1 &gt;&#x3D; index of t2 + 2) or (index of t2 &gt;&#x3D; index of t1 + 2)
+8. Exclude uniswap v2 router address since this gets included as a false positive for some reason
+
+This logic should work to include both buy-first and less common sell-first sandwiches
+By excluding point 6, we also include sandwich attacks that made a loss
+By using &#x27;&gt;&#x3D;&#x27; instead of just &#x27;&#x3D;&#x27; in point 7, we can also include sandwich attackers that are perhaps not using flashbots and not tightly bundling their transactions
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="address">
+Address of known sandwich attacker contract
+</ParamField>
+<ParamField path="name">
+Label name (Sandwich attacker)
+</ParamField>
+<ParamField path="category">
+Label category (sandwich_attackers)
+</ParamField>
+<ParamField path="contributor">
+Wizard(s) contributing to labels
+</ParamField>
+<ParamField path="source">
+How were labels generated (query)
+</ParamField>
+<ParamField path="created_at">
+When were labels created
+</ParamField>
+<ParamField path="updated_at">
+When were labels updated for the last time
+</ParamField>
+<ParamField path="model_name">
+Name of the label model sourced from
+</ParamField>
+<ParamField path="label_type">
+Type of label (see labels overall readme)
+</ParamField>

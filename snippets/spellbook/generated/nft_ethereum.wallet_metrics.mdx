@@ -1,0 +1,82 @@
+## nft_ethereum.wallet_metrics 
+This spell aggregates nft trading stats (profit, ROI, spend, gain, loss/win %, collections traded) per wallet and filters out wash trades.
+
+
+<ParamField path="wallet">
+NFT trader&#x27;s wallet address
+</ParamField>
+<ParamField path="unique_collections_traded">
+Count of unqiue collections/ERC721-contracts traded
+</ParamField>
+<ParamField path="buys_count">
+Count of NFT buys or mints
+</ParamField>
+<ParamField path="sells_count">
+Count of NFT sales
+</ParamField>
+<ParamField path="trades_count">
+Count of Mints+Buys+Sells
+</ParamField>
+<ParamField path="profitable_trades_count">
+Count of trades that were protitable (i.e. profit &gt; 0)
+</ParamField>
+<ParamField path="unprofitable_trades_count">
+Count of trades that were unprotitable (i.e. profit &lt;&#x3D; 0)
+</ParamField>
+<ParamField path="win_percentage">
+Percent of sales that had positive profit
+</ParamField>
+<ParamField path="loss_percentage">
+Percent of sales that had negative profit
+</ParamField>
+<ParamField path="breakeven_percentage">
+Percent of sales that had breakeven profit
+</ParamField>
+<ParamField path="spent_eth">
+Amount of ETH spent on NFTs (not including gas)
+</ParamField>
+<ParamField path="spent_eth_realized">
+Amount of ETH spent on NFTs that were later sold
+</ParamField>
+<ParamField path="spent_eth_unrealized">
+Amount of ETH spent on NFTs that have not been sold yet
+</ParamField>
+<ParamField path="gained_eth">
+Amount of ETH gained from NFTs sold or appreication of currently held NFTs based on floor price
+</ParamField>
+<ParamField path="gained_eth_realized">
+Amount of ETH gained from NFTs sold
+</ParamField>
+<ParamField path="gained_eth_unrealized">
+Amount of ETH gained from appreication of currently held NFTs based on floor price
+</ParamField>
+<ParamField path="roi_eth">
+Percent ETH ROI from appreciation+sales over buy amount (range 0-1)
+</ParamField>
+<ParamField path="roi_eth_realized">
+Percent ETH ROI from sales over buy amount on those sales (range 0-1)
+</ParamField>
+<ParamField path="roi_eth_unrealized">
+Percent ETH ROI from appreciation over buy amount on unsold NFTs (range 0-1)
+</ParamField>
+<ParamField path="eth_profit">
+Total of realized + unrealized profit from NFTs (i.e. (sale_price-buy_price) for sold nfts + (current_floor_price - buy_price) for unsold NFTs)
+</ParamField>
+<ParamField path="eth_profit_realized">
+ Total of realized profit (in ETH) from sale of NFTs
+</ParamField>
+<ParamField path="eth_profit_unrealized">
+Total of unrealized profit (in ETH) from sale of NFTs
+</ParamField>
+<ParamField path="avg_win_size">
+Average size of profit from protitable NFT trades
+</ParamField>
+<ParamField path="avg_loss_size">
+Average size of loss from protitable NFT trades
+</ParamField>
+<ParamField path="unique_weeks_buying">
+Unique weeks the trader bought NFTs in
+</ParamField>
+<ParamField path="unique_weeks_selling">
+Unique weeks the trader sold NFTs in
+</ParamField>

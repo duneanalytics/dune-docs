@@ -1,0 +1,82 @@
+## orca_whirlpool.trades 
+all whirlpool dex trades on Solana
+
+
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed
+</ParamField>
+<ParamField path="project">
+Project name of the DEX
+</ParamField>
+<ParamField path="version">
+Version of the contract built and deployed by the DEX project
+</ParamField>
+<ParamField path="block_month">
+UTC event block month of each DEX trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each DEX trade
+</ParamField>
+<ParamField path="trade_source">
+Was the trade a direct call to the whirlpool or did it go through another program like Jupiter (Dex Aggregator)
+</ParamField>
+<ParamField path="token_bought_symbol">
+Token symbol for token bought in the trade
+</ParamField>
+<ParamField path="token_sold_symbol">
+Token symbol for token sold in the trade
+</ParamField>
+<ParamField path="token_pair">
+Token symbol pair for each token involved in the trade
+</ParamField>
+<ParamField path="token_bought_amount">
+Value of the token bought at time of execution in the original currency
+</ParamField>
+<ParamField path="token_sold_amount">
+Value of the token sold at time of execution in the original currency
+</ParamField>
+<ParamField path="token_bought_amount_raw">
+Raw value of the token bought at time of execution in the original currency
+</ParamField>
+<ParamField path="token_sold_amount_raw">
+Raw value of the token sold at time of execution in the original currency
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>
+<ParamField path="fee_tier">
+Whirlpool fee tier (fee %)
+</ParamField>
+<ParamField path="fee_usd">
+Whirlpool fee usd paid on swap
+</ParamField>
+<ParamField path="token_bought_address">
+token mint address of the token bought
+</ParamField>
+<ParamField path="token_sold_address">
+token mint address of the token sold
+</ParamField>
+<ParamField path="token_bought_vault">
+token associated address for the whirlpool, of the token bought
+</ParamField>
+<ParamField path="token_sold_vault">
+token associated address for the whirlpool, of the token sold
+</ParamField>
+<ParamField path="project_program_id">
+Project program id that the trade was executed on - like the whirlpool id
+</ParamField>
+<ParamField path="trader_id">
+id (address) of trader who purchased a token
+</ParamField>
+<ParamField path="tx_id">
+Unique transaction id value tied to each transaction on the DEX
+</ParamField>
+<ParamField path="outer_instruction_index">
+top level instruction index for a given transaction id
+</ParamField>
+<ParamField path="inner_instruction_index">
+inner instruction index for a given transaction id
+</ParamField>
+<ParamField path="tx_index">
+index of the transaction in the block slot
+</ParamField>

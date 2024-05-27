@@ -1,0 +1,31 @@
+## balancer_ethereum.vebal_slopes 
+Slope and bias of veBAL per wallet after each balance update Depends on veBAL_call_create_lock, veBAL_evt_Deposit and veBAL_evt_Withdraw
+
+
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="block_time">
+Block time in UTC
+</ParamField>
+<ParamField path="block_timestamp">
+Block timestamp
+</ParamField>
+<ParamField path="wallet_address">
+Address of the wallet holding the veBAL
+</ParamField>
+<ParamField path="bpt_balance">
+Amount of BPT held in the veBAL lock
+</ParamField>
+<ParamField path="unlocked_at">
+Timestamp at which B-80BAL-20WETH BPT can be unlocked
+</ParamField>
+<ParamField path="slope">
+veBAL decay rate (per second)
+</ParamField>
+<ParamField path="bias">
+veBAL balance at the moment user locks or re-locks
+</ParamField>
+<ParamField path="block_date">
+Block time trunc to date
+</ParamField>

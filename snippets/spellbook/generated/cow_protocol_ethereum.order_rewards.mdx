@@ -1,0 +1,25 @@
+## cow_protocol_ethereum.order_rewards 
+Order Rewards (or more appropriately named Order Meta) contains off-chain meta data relevant  to the solver competition on the granularity level of orders.
+
+
+<ParamField path="tx_hash">
+Transaction hash of trade
+</ParamField>
+<ParamField path="solver">
+Address of the solver who settled the order (i.e. the from address of the corresponding transaction)
+</ParamField>
+<ParamField path="block_number">
+Block number that the transaction was included
+</ParamField>
+<ParamField path="cow_reward">
+COW token reward distributed to solver for settling order
+</ParamField>
+<ParamField path="surplus_fee">
+Fee taken from limit orders
+</ParamField>
+<ParamField path="order_uid">
+Unique identifier of order involved in trade. Note that partially fillable orders can be touched multiple times so this is not a unique ID for trade events.
+</ParamField>
+<ParamField path="quote_solver">
+Address of the solver who provided the winning quote for this order
+</ParamField>

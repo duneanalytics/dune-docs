@@ -1,0 +1,54 @@
+## hashflow_ethereum.raw_trades 
+Hashflow contract trades on Ethereum - decoded
+
+<ParamField path="block_date">
+UTC event block date of each trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each trade
+</ParamField>
+<ParamField path="composite_index">
+Ethereum log index or Hashflow trade event index if exists, else -1 (-1 means decoded from traces)
+</ParamField>
+<ParamField path="fill_status">
+Boolean, was the trade successful
+</ParamField>
+<ParamField path="maker_symbol">
+Token symbol for token bought in the transaction
+</ParamField>
+<ParamField path="maker_token">
+Token contract address pair for token bought in the transaction
+</ParamField>
+<ParamField path="maker_token_amount">
+Value of the token bought at time of execution
+</ParamField>
+<ParamField path="method_id">
+Method of trade - tbc
+</ParamField>
+<ParamField path="pool">
+Contract address of the pool
+</ParamField>
+<ParamField path="router_contract">
+Taking top level contract called in tx as router, not necessarily HF contract
+</ParamField>
+<ParamField path="source">
+
+</ParamField>
+<ParamField path="taker_symbol">
+Token symbol for token sold in the transaction
+</ParamField>
+<ParamField path="taker_token">
+Token contract address pair for token sold in the transaction
+</ParamField>
+<ParamField path="taker_token_amount">
+Value of the token sold at time of execution
+</ParamField>
+<ParamField path="trader">
+Address of trader who sold a token
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>

@@ -1,0 +1,73 @@
+## dodo_bnb.aggregator_trades 
+DODO Aggregation on BNBChain.
+
+
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed (specify: arbitrum)
+</ParamField>
+<ParamField path="project">
+Project name of the DEX (specify: DODO)
+</ParamField>
+<ParamField path="version">
+Version of dodo contracts (0 - dodo_aggregator, 1 - DODOV1, 2_dvm - DODOV2 public pool, 2_dsp - DODOV2 stable pool, 2_dpp - DODOV2 private pool)
+</ParamField>
+<ParamField path="block_date">
+Truncated to day UTC event block date of each DEX trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each DEX trade
+</ParamField>
+<ParamField path="token_bought_symbol">
+Token symbol for token bought in the trade
+</ParamField>
+<ParamField path="token_sold_symbol">
+Token symbol for token sold in the trade
+</ParamField>
+<ParamField path="token_pair">
+Token symbol pair for each token involved in the trade
+</ParamField>
+<ParamField path="token_bought_amount">
+Value of the token bought at time of execution with its decimals factored in
+</ParamField>
+<ParamField path="token_sold_amount">
+Value of the token sold at time of execution with its decimals factored in
+</ParamField>
+<ParamField path="token_bought_amount_raw">
+Raw value of the token bought at time of execution without division by its decimals
+</ParamField>
+<ParamField path="token_sold_amount_raw">
+Raw value of the token sold at time of execution without division by its decimals
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>
+<ParamField path="token_bought_address">
+Contract address of the token bought
+</ParamField>
+<ParamField path="token_sold_address">
+Contract address of the token sold
+</ParamField>
+<ParamField path="taker">
+Address of trader who purchased a token
+</ParamField>
+<ParamField path="maker">
+Address of trader who sold a token.
+</ParamField>
+<ParamField path="project_contract_address">
+Project contract address which executed the trade on the blockchain
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the DEX
+</ParamField>
+<ParamField path="tx_from">
+Address which initiated the trade
+</ParamField>
+<ParamField path="tx_to">
+Address which received the trade
+</ParamField>
+<ParamField path="trace_address">
+address of the trace within the call graph forest
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding trade event
+</ParamField>

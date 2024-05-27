@@ -1,0 +1,63 @@
+## tokens_solana.nft 
+NFTs minted using the Metaplex standard, with a master edition or cNFT tree
+
+<ParamField path="account_mint_authority">
+mint authority for the account. this is set so that the account cannot mint more tokens
+</ParamField>
+<ParamField path="account_merkle_tree">
+only applies to cNFTs, this is the tree the NFT is appended to
+</ParamField>
+<ParamField path="leaf_id">
+only applies to cNFTs, this is the leaf ID of the NFT (order of append)
+</ParamField>
+<ParamField path="account_master_edition">
+master edition for the account. all NFTs have a master edition
+</ParamField>
+<ParamField path="account_metadata">
+metadata for the account. contains stuff like the name, symbol, and uri, etc
+</ParamField>
+<ParamField path="account_mint">
+mint for the account. this is the token mint address from spl_token
+</ParamField>
+<ParamField path="minter">
+the account_payer or account_leafOwner that minted the NFT
+</ParamField>
+<ParamField path="version">
+version of the NFT - Token Metdata, cNFT, etc
+</ParamField>
+<ParamField path="token_standard">
+
+</ParamField>
+<ParamField path="token_name">
+
+</ParamField>
+<ParamField path="token_symbol">
+
+</ParamField>
+<ParamField path="token_uri">
+
+</ParamField>
+<ParamField path="seller_fee_basis_points">
+
+</ParamField>
+<ParamField path="collection_mint">
+this is the token mint address of the collection. this is the same for all NFTs in the collection
+</ParamField>
+<ParamField path="verified_creator">
+this is the first creator in the creator_struct for the NFT. the first creator was originally used as the collection mint reference
+</ParamField>
+<ParamField path="creator_struct">
+all creators and their royalty splits
+</ParamField>
+<ParamField path="call_tx_id">
+
+</ParamField>
+<ParamField path="call_block_time">
+
+</ParamField>
+<ParamField path="call_block_slot">
+
+</ParamField>
+<ParamField path="call_tx_signer">
+
+</ParamField>

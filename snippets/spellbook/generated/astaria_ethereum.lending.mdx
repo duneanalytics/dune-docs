@@ -1,0 +1,82 @@
+## astaria_ethereum.lending 
+Astaria lending (repay &amp; borrow &amp; liquidation) on ethereum
+
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="project">
+Project
+</ParamField>
+<ParamField path="version">
+Project version
+</ParamField>
+<ParamField path="lending_category">
+Type of loans offered by the project, usually either pool to borrower or peer to peer
+</ParamField>
+<ParamField path="block_time">
+UTC event block time
+</ParamField>
+<ParamField path="block_date">
+UTC event block date
+</ParamField>
+<ParamField path="token_id">
+NFT Token ID
+</ParamField>
+<ParamField path="collection">
+NFT collection name
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>
+<ParamField path="token_standard">
+Token standard
+</ParamField>
+<ParamField path="evt_type">
+Event type (Borrow, Repay, Liquidation)
+</ParamField>
+<ParamField path="borrower">
+Address that opened the loan
+</ParamField>
+<ParamField path="lender">
+Address that faciliated the loan
+</ParamField>
+<ParamField path="amount_original">
+Traded amount in original currency
+</ParamField>
+<ParamField path="amount_raw">
+Traded amount in original currency before decimals correction
+</ParamField>
+<ParamField path="collateral_currency_symbol">
+Symbol of collateral currency used for loan
+</ParamField>
+<ParamField path="collteral_currency_contract">
+Contract Address of the Collateral (NFT)
+</ParamField>
+<ParamField path="nft_contract_address">
+NFT contract address
+</ParamField>
+<ParamField path="project_contract_address">
+Contract address used by the project, in this case bend_dao contract
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash
+</ParamField>
+<ParamField path="block_number">
+Block number in which the transaction was executed 
+</ParamField>
+<ParamField path="tx_from">
+Address that initiated the transaction
+</ParamField>
+<ParamField path="tx_to">
+Address that received the transaction
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding lending event
+</ParamField>
+<ParamField path="lien_id">
+Unique loan id  
+</ParamField>
+<ParamField path="block_month">
+UTC event block month
+</ParamField>

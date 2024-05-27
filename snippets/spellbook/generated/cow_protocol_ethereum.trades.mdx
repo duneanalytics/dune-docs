@@ -1,0 +1,106 @@
+## cow_protocol_ethereum.trades 
+CoW Protocol enriched trades list on Ethereum
+
+
+<ParamField path="block_date">
+UTC event block date of each trade
+</ParamField>
+<ParamField path="block_number">
+Block number that the transaction was included
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash of trade
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding trade event
+</ParamField>
+<ParamField path="order_uid">
+Unique identifier of order involved in trade. Note that partially fillable orders can be touched multiple times so this is not a unique ID for trade events.
+</ParamField>
+<ParamField path="trader">
+Owner of the order being traded (aka trader)
+</ParamField>
+<ParamField path="sell_token_address">
+Ethereum address of sellToken
+</ParamField>
+<ParamField path="sell_token">
+Symbol of sellToken
+</ParamField>
+<ParamField path="buy_token_address">
+Ethereum address of buyToken
+</ParamField>
+<ParamField path="buy_token">
+Symbol of buyToken
+</ParamField>
+<ParamField path="token_pair">
+Ordered concatenation of buy/sell token symbols involved in trade
+</ParamField>
+<ParamField path="units_sold">
+Units of sellToken sold (incorporates token decimals).
+</ParamField>
+<ParamField path="atoms_sold">
+Amount (in atoms) of the sellToken sold
+</ParamField>
+<ParamField path="units_bought">
+Units of buyToken bought (incorporates token decimals).
+</ParamField>
+<ParamField path="atoms_bought">
+Amount (in atoms) of the buyToken bought
+</ParamField>
+<ParamField path="usd_value">
+USD value of trade (taken as the max of buy value, sell value when both available, otherwise whichever is known)
+</ParamField>
+<ParamField path="buy_price">
+USD price of buyToken at the time of trade
+</ParamField>
+<ParamField path="buy_value_usd">
+USD value of buyToken amount
+</ParamField>
+<ParamField path="sell_price">
+USD price of sellToken at the time of trade
+</ParamField>
+<ParamField path="sell_value_usd">
+USD value of sellToken amount
+</ParamField>
+<ParamField path="fee">
+Unit of fee taken (in sellToken) - incorporating token decimals
+</ParamField>
+<ParamField path="fee_atoms">
+Amount (in atoms) of fee - taken in sellToken
+</ParamField>
+<ParamField path="fee_usd">
+USD value of trade fee
+</ParamField>
+<ParamField path="app_data">
+Hashed metadata related to trade event (full content available on IPFS)
+</ParamField>
+<ParamField path="receiver">
+Recipient of trades buyToken
+</ParamField>
+<ParamField path="limit_sell_amount">
+Sell amount side of the limit price
+</ParamField>
+<ParamField path="limit_buy_amount">
+Buy amount side of the limit price
+</ParamField>
+<ParamField path="valid_to">
+epoch timestamp (in seconds) until when the order was valid
+</ParamField>
+<ParamField path="flags">
+bitmap with additional trade information (cf. https://github.com/cowprotocol/contracts/blob/main/src/contracts/libraries/GPv2Trade.sol#L58-L94)
+</ParamField>
+<ParamField path="surplus_usd">
+USD value of surplus (difference between limit and executed price)
+</ParamField>
+<ParamField path="order_type">
+SELL/BUY string indicating if the trade was a sell or buy order
+</ParamField>
+<ParamField path="partial_fill">
+Boolean indicating if the order is partially fill-able
+</ParamField>
+<ParamField path="fill_proportion">
+
+</ParamField>

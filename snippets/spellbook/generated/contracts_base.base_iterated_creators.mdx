@@ -1,0 +1,84 @@
+## contracts_base.base_iterated_creators 
+Iterated creators for mapping of contracts to its creators and names on base.
+
+<ParamField path="blockchain">
+Name of chain in Dune database
+</ParamField>
+<ParamField path="trace_creator_address">
+Address creating the contract in the transaction trace
+</ParamField>
+<ParamField path="creator_address">
+Highest-level contract creator address (i.e. which address deployed the factory which deployed contracts), or the tx_from when the contract creator address is non-deterministic.
+</ParamField>
+<ParamField path="trace_deployer_address">
+Attribution to the mapped deployer address at the creation trace, handles for ~most deterministic deployers and smart wallet creations.
+</ParamField>
+<ParamField path="contract_address">
+Address of the contract
+</ParamField>
+<ParamField path="created_time">
+contract creation time
+</ParamField>
+<ParamField path="created_month">
+Monthly partition, when the contract was created
+</ParamField>
+<ParamField path="top_level_contract_address">
+Top-Level contract address
+</ParamField>
+<ParamField path="top_level_time">
+Top-Level contract creation transaction block time
+</ParamField>
+<ParamField path="created_tx_hash">
+Contract creation transaction hash
+</ParamField>
+<ParamField path="created_block_number">
+Contract creation block number
+</ParamField>
+<ParamField path="top_level_tx_hash">
+Top-Level contract creation transaction hash
+</ParamField>
+<ParamField path="top_level_block_number">
+Top-Level contract creation transaction block number
+</ParamField>
+<ParamField path="top_level_tx_from">
+Top-Level contract creation transaction from address
+</ParamField>
+<ParamField path="top_level_tx_to">
+Top-Level contract creation transaction to address
+</ParamField>
+<ParamField path="top_level_tx_method_id">
+Method ID of the top-level transaction. This is useful for determining how the top-level contract was deployed (i.e Safe transaction vs traditional deployment)
+</ParamField>
+<ParamField path="created_tx_from">
+Contract creation transaction from address
+</ParamField>
+<ParamField path="created_tx_to">
+Contract creation transaction to address
+</ParamField>
+<ParamField path="created_tx_method_id">
+Method ID of the transaction. This is useful for determining how a contract was deployed (i.e Safe transaction vs traditional deployment)
+</ParamField>
+<ParamField path="created_tx_index">
+Index of the contract creation transaction within its block
+</ParamField>
+<ParamField path="code_bytelength">
+Length of the deployed code, measured in bytes. This is used for spam filtering
+</ParamField>
+<ParamField path="code_deploy_rank_by_chain">
+Was this the 1st, 2rd, 3rd, etc time the same exact bytecode was deployed by chain? (1 &#x3D; 1st). This can be used for spam filtering.
+</ParamField>
+<ParamField path="code">
+Runtime bytecode of the contract
+</ParamField>
+<ParamField path="is_self_destruct">
+Flag if it is a self destruct contract
+</ParamField>
+<ParamField path="creator_address_lineage">
+array of the lineage of creator addresses until the top-level creator
+</ParamField>
+<ParamField path="tx_method_id_lineage">
+array of the lineage of tx method ids until the top-level creator
+</ParamField>
+<ParamField path="token_standard_erc20">
+Token Standard ERC20 Only
+</ParamField>

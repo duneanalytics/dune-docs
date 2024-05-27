@@ -1,0 +1,49 @@
+## cow_protocol_ethereum.eth_flow_orders 
+ETHFlow enables the sale of Native ETH via CoW Protocol. This works essentially by placing an (onchain) order,  through the ETHFlow contract (https://github.com/cowprotocol/ethflowcontract) sending native which then wraps  the asset as an ERC20. The order is filled through this intermediary contract that uses ERC1271 signature  verification to place the order on the user&#x27;s behalf.
+
+
+<ParamField path="block_date">
+UTC event block date of each trade
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_number">
+Block number that the transaction was included
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash of trade
+</ParamField>
+<ParamField path="environment">
+Development environment
+</ParamField>
+<ParamField path="valid_to">
+epoch timestamp (in seconds) until when the order was valid
+</ParamField>
+<ParamField path="quote_id">
+Integer corresponding to the quote user was given in the interface.
+</ParamField>
+<ParamField path="sell_amount">
+sell amount as part of the signed user order
+</ParamField>
+<ParamField path="fee">
+Unit of fee taken (in sellToken) - incorporating token decimals
+</ParamField>
+<ParamField path="buy_amount">
+buy amount as part of the signed user order
+</ParamField>
+<ParamField path="buy_token">
+Symbol of buyToken
+</ParamField>
+<ParamField path="receiver">
+Recipient of trades buyToken
+</ParamField>
+<ParamField path="sender">
+sender of order placement transaction. Equivalent to &quot;trader&quot;
+</ParamField>
+<ParamField path="app_hash">
+Unique identifier of AppData published on-chain, used to fetch remaining content from IPFS. This can be recovered from call data provided to the Settlement Contracts &#x60;settle&#x60; method
+</ParamField>
+<ParamField path="order_uid">
+Unique identifier of order involved in trade. Note that partially fillable orders can be touched multiple times so this is not a unique ID for trade events.
+</ParamField>

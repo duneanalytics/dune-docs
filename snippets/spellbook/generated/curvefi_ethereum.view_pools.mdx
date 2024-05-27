@@ -1,0 +1,73 @@
+## curvefi_ethereum.view_pools 
+view details of pools for Curve.fi on Ethereum
+
+
+<ParamField path="version">
+Versions of the pool: Regular, Factory V1 Plain, Factory V1 Meta, Factory V2
+</ParamField>
+<ParamField path="name">
+Pool name
+</ParamField>
+<ParamField path="symbol">
+Pool symbol
+</ParamField>
+<ParamField path="pool_address">
+Address for the pool
+</ParamField>
+<ParamField path="decoded">
+Whether the contract for the pool is decoded on Dune or not
+</ParamField>
+<ParamField path="dune_namespace">
+Namespace for the decoded contract on Dune
+</ParamField>
+<ParamField path="dune_table_name">
+Table name for the decoded contract on Dune
+</ParamField>
+<ParamField path="amplification_param">
+Amplification Parameter for Factory pools: [4,000 to 4,000,000,000] Larger value of A make the curve better resemble a straight line in the center (when pool is near balance).  Highly volatile assets should use a lower value, while assets that are closer together may be best with a higher value.
+</ParamField>
+<ParamField path="mid_fee">
+Mid Fee: [.005 to 100] Percentage.  Fee when the pool is maximally balanced.  This is the minimum fee.
+</ParamField>
+<ParamField path="out_fee">
+Out Fee: [Mid Fee to 100] Fee when the pool is imbalanced.  Must be larger than the Mid Fee and represents the maximum fee.
+</ParamField>
+<ParamField path="token_address">
+Address for the pool token
+</ParamField>
+<ParamField path="deposit_contract">
+Address for the deposit contract
+</ParamField>
+<ParamField path="coin0">
+Address for the first token in the pool
+</ParamField>
+<ParamField path="coin1">
+Address for the second token in the pool, when applicable
+</ParamField>
+<ParamField path="coin2">
+Address for the third token in the pool, when applicable
+</ParamField>
+<ParamField path="coin3">
+Address for the fourth token in the pool, when applicable
+</ParamField>
+<ParamField path="undercoin0">
+Address for the first token in the pool, same as &#x27;coin0&#x27; 
+</ParamField>
+<ParamField path="undercoin1">
+Address for first underlying coin, when applicable. E.g. DAI/USDC/USDT token address will have 3 underlying coins: DAI, USDC, USDT.
+</ParamField>
+<ParamField path="undercoin2">
+Address for second underlying coin, when applicable
+</ParamField>
+<ParamField path="undercoin3">
+Address for third underlying coin, when applicable
+</ParamField>
+<ParamField path="coins">
+All of the coins aggregated into an array, useful for exchange trades
+</ParamField>
+<ParamField path="undercoins">
+All of the undercoins aggregated into an array, useful for exchange_underlying trades
+</ParamField>
+<ParamField path="gauge_contract">
+Contract address for the liquidity gauge of the pool (https://resources.curve.fi/reward-gauges/understanding-gauges)
+</ParamField>

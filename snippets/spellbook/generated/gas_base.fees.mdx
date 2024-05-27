@@ -1,0 +1,64 @@
+## gas_base.fees 
+Gas Fees on Base rollup Layer 2
+
+
+<ParamField path="blockchain">
+Blockchain name
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="tx_hash">
+Primary key of the transaction
+</ParamField>
+<ParamField path="tx_sender">
+Initiated the transaction
+</ParamField>
+<ParamField path="tx_receiver">
+Received the transaction
+</ParamField>
+<ParamField path="native_token_symbol">
+Symbol of native token (ETH) for the Ethereum Blockchain
+</ParamField>
+<ParamField path="tx_amount_native">
+Amount of native tokens (ETH) transferred from sender to recipient
+</ParamField>
+<ParamField path="tx_amount_usd">
+Amount of $USD transferred from sender to recipient
+</ParamField>
+<ParamField path="tx_fee_native">
+Total amount of native tokens (ETH) paid in gas fees
+</ParamField>
+<ParamField path="tx_fee_usd">
+Total amount of $USD paid in gas fees
+</ParamField>
+<ParamField path="burned_native">
+Total amount of native tokens (ETH) burned for this transaction, not applicable to L2 because transactions only indirectly burn gas on L1
+</ParamField>
+<ParamField path="burned_usd">
+Total amount of $USD burned for this transaction, not applicable to L2 because transactions only indirectly burn gas on L1
+</ParamField>
+<ParamField path="validator">
+Address of blockchain validator for this transaction within the block, also referred to as miner before the Merge when Ethereum&#x27;s consensus mechanism was PoW
+</ParamField>
+<ParamField path="gas_price_gwei">
+Gas price (per gas unit) denoted in gwei
+</ParamField>
+<ParamField path="gas_price_usd">
+Gas price (per gas unit) denoted in $USD
+</ParamField>
+<ParamField path="gas_used">
+Amount of L2 gas units consumed by the transaction
+</ParamField>
+<ParamField path="gas_limit">
+Maximum amount of gas units that can be consumed by the transaction on zksync L2
+</ParamField>
+<ParamField path="gas_usage_percent">
+Percentage of Gas Used relative to the gas limit on zksync L2
+</ParamField>
+<ParamField path="type">
+Legacy (Pre Typed-Transactions), AccessList (EIP-2930), DynamicFee (EIP-1559), EIP-712, or Priority (L1 -&gt; L2 Transactions)
+</ParamField>
