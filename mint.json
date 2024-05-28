@@ -879,7 +879,8 @@
             "api-reference/queries/endpoint/archive",
             "api-reference/queries/endpoint/unarchive",
             "api-reference/queries/endpoint/private",
-            "api-reference/queries/endpoint/unprivate"
+            "api-reference/queries/endpoint/unprivate",
+            "api-reference/queries/endpoint/refresh-matview"
           ]
         },
         {
