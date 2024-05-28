@@ -850,6 +850,10 @@
       ]
     },
     {
+      "group": "Custom Endpoints",
+      "pages": ["api-reference/custom/overview"]
+    },
+    {
       "group": "SQL Endpoints",
       "pages": [
         {
