@@ -1,14 +1,13 @@
-export const DexTradesSnippet = ({ blockchain }) => (
+export const DexAggregatorTradesSnippet = ({ blockchain }) => (
   <div>
     <h2>Table Description</h2>
     <p>
-
       The <code>dex.trades</code> table is a valuable resource for understanding the dynamics of decentralized exchanges. It provides a comprehensive view of the trading activity, including the amount, price, side, and timestamp of each trade. Analysts can use this data to gain a deeper understanding of the market structure, trading behavior, and dynamics of various decentralized exchanges.
     </p>
     <Info> This table is a cross-chain table but can be filtered for {blockchain} transactions.</Info>
     <h2>Table Coverage</h2>
     <p> The following table shows which projects and versions of those projects are covered in the <code>dex.trades</code> table on {blockchain}. </p>
-    <DexCoverage blockchain={blockchain}/>
+    <DexAggregatorCoverage blockchain={blockchain}/>
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema="dex" tableName="trades" />
     <h2>Table Sample</h2>

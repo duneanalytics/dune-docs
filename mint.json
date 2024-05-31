@@ -238,7 +238,9 @@
             {
               "group": "Curated",
               "pages": [
-                "data-catalog/evm/arbitrum/curated-data/dex-trades"
+                "data-catalog/evm/arbitrum/curated-data/dex-trades",
+                "data-catalog/evm/arbitrum/curated-data/dex-aggregator-trades"
+
               ]
             }
           ]
