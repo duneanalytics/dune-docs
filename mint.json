@@ -691,57 +691,57 @@
     {
       "group": "Curated Data",
       "pages": [
-        "data-catalog/spellbook/overview",
+        "data-catalog/curated/overview",
         {
           "group": "DEX",
           "pages": [
-            "data-catalog/spellbook/DEX/dex-trades",
-            "data-catalog/spellbook/DEX/dex-aggregator-trades"
+            "data-catalog/curated/DEX/dex-trades",
+            "data-catalog/curated/DEX/dex-aggregator-trades"
           ]
         },
         {
           "group": "NFT",
-          "pages": ["data-catalog/spellbook/NFT/nft-trades"]
+          "pages": ["data-catalog/curated/NFT/nft-trades"]
         },
-        "data-catalog/spellbook/prices",
+        "data-catalog/curated/prices",
         {
           "group": "Labels",
           "pages": [
-            "data-catalog/spellbook/labels/overview",
+            "data-catalog/curated/labels/overview",
             {
               "group": "Owner Labels",
               "icon": "tag",
               "pages": [
-                "data-catalog/spellbook/labels/owners/overview",
-                "data-catalog/spellbook/labels/owners/owner-addresses",
-                "data-catalog/spellbook/labels/owners/owner-details",
+                "data-catalog/curated/labels/owners/overview",
+                "data-catalog/curated/labels/owners/owner-addresses",
+                "data-catalog/curated/labels/owners/owner-details",
                 {
                   "group": "Labeled Asset Flows",
                   "icon": "right-left",
                   "pages": [
-                    "data-catalog/spellbook/labels/owners/value-flows/transfer-summary",
-                    "data-catalog/spellbook/labels/owners/value-flows/counterparty-summary",
-                    "data-catalog/spellbook/labels/owners/value-flows/transfer-summary-daily"
+                    "data-catalog/curated/labels/owners/value-flows/transfer-summary",
+                    "data-catalog/curated/labels/owners/value-flows/counterparty-summary",
+                    "data-catalog/curated/labels/owners/value-flows/transfer-summary-daily"
                   ]
                 },
-                "data-catalog/spellbook/labels/owners/audit"
+                "data-catalog/curated/labels/owners/audit"
               ]
             },
-            "data-catalog/spellbook/labels/ens-labels",
-            "data-catalog/spellbook/labels/address-labels"
+            "data-catalog/curated/labels/ens-labels",
+            "data-catalog/curated/labels/address-labels"
           ]
         },
         {
           "group": "Tokens",
           "pages": [
-            "data-catalog/spellbook/tokens/overview",
-            "data-catalog/spellbook/tokens/balances",
+            "data-catalog/curated/tokens/overview",
+            "data-catalog/curated/tokens/balances",
             {
               "group": "Transfers",
               "pages": [
-                "data-catalog/spellbook/tokens/transfers/erc20-transfers",
-                "data-catalog/spellbook/tokens/transfers/erc721-transfers",
-                "data-catalog/spellbook/tokens/transfers/erc1155-transfers"
+                "data-catalog/curated/tokens/transfers/erc20-transfers",
+                "data-catalog/curated/tokens/transfers/erc721-transfers",
+                "data-catalog/curated/tokens/transfers/erc1155-transfers"
               ]
             }
           ]

@@ -1,0 +1,43 @@
+---
+title: dex_aggregator.trades
+sidebarTitle: "DEX Aggregator Trades"
+description: Description of the dex_aggregator.trades table on Dune
+---
+
+# dex_aggregator.trades Table
+
+The `dex_aggregator.trades` table captures high-level trade data executed via decentralized exchange (DEX) aggregators. These aggregators aggregate liquidity from multiple DEXs to provide users with the best possible trade execution. Unlike the `dex.trades` table, which records each intermediary step of a trade, `dex_aggregator.trades` condenses the trade data to reflect the user's intended trade, presenting it as a single entry.
+
+## Table Description
+
+The `dex_aggregator.trades` table provides a simplified view of trades by recording the user's initial token sold and final token bought, without detailing the intermediary swaps across different DEXs.
+
+### Functional Overview
+
+Users can expect the `dex_aggregator.trades` table to provide a high-level view of DEX trades facilitated by aggregators. This table simplifies trade records by showing a single entry for trades that may involve multiple DEXs and liquidity pools. For instance, a user might initiate a trade to swap USDC for PEPE via a DEX aggregator. The aggregator might route this trade through several liquidity pools such as WETH-USDC and WETH-PEPE, but `dex_aggregator.trades` will record it as a single USDC -> PEPE trade.
+
+
+## Coverage
+
+The `dex.aggreator_trades` table is maintained by Dune and its community of contributors. We try to make sure that the data is as accurate and up-to-date as possible. However, Dune does not guarantee the accuracy or completeness of the data provided. The table covers the following decentralized exchanges and their versions:
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3457736/5810651/"
+    width="100%"
+    height="500px"
+  ></iframe>
+</div>
+
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="dex_aggregator" tableName="trades" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="dex_aggregator" tableName="trades" />
