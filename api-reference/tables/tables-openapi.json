@@ -676,7 +676,17 @@
           "message": {
             "description": "The confirmation message of the deleted predicate",
             "type": "string",
-            "example": "Successfully deleted from table namespace.blocks with predicate date = CAST('2021-01-01' as DATE)"
+            "example": "Successfully deleted from table namespace.logs"
+          },
+          "num_files_removed": {
+            "description": "The number of files removed from the underlying filesystem",
+            "type": "number",
+            "example": 1
+          },
+          "num_rows_deleted": {
+            "description": "The number of rows deleted from the specified table",
+            "type": "number",
+            "example": 1925
           }
         }
       },
