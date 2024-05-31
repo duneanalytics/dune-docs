@@ -1,7 +1,7 @@
 ---
 title: dex_aggregator.trades
 sidebarTitle: "DEX Aggregator Trades"
-description: The `dex_aggregator.trades` table captures data on actions taken on aggregator protocols - recording all events across various aggregators and blockchains."
+description: "The `dex_aggregator.trades` table captures data on actions taken on aggregators - recording all events across various aggregators and blockchains."
 ---
 
 <Frame caption="This table stores data on aggregator trades across protocols...">
@@ -16,7 +16,7 @@ description: The `dex_aggregator.trades` table captures data on actions taken on
 
 The `dex_aggregator.trades` table captures high-level trade data executed via decentralized exchange (DEX) aggregators. These aggregators aggregate liquidity from multiple DEXs to provide users with the best possible trade execution. Unlike the `dex.trades` table, which records each intermediary step of a trade, `dex_aggregator.trades` condenses the trade data to reflect the user's intended trade, presenting it as a single entry.
 
-### Functional Overview
+## Functional Overview
 
 Users can expect the `dex_aggregator.trades` table to provide a high-level view of DEX trades facilitated by aggregators. This table simplifies trade records by showing a single entry for trades that may involve multiple DEXs and liquidity pools.   
 For instance, a user might initiate a trade to swap USDC for PEPE via a DEX aggregator. The aggregator might route this trade through several liquidity pools such as WETH-USDC and WETH-PEPE, but `dex_aggregator.trades` will record it as a single USDC -> PEPE trade.

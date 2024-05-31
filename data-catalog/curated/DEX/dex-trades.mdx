@@ -18,9 +18,9 @@ The `dex.trades` table captures detailed data on trades executed via decentraliz
 
 
 
-### Functional Overview
+## Functional Overview
 
-The `dex.trades` table provides an in-depth view of DEX trades. This table includes entries for each segment of a trade that passes through different liquidity pools, as well as single-step trades. For example, a user may initiate a trade to swap USDC for PEPE. If this trade is executed through multiple liquidity pools, such as USDC-WETH and WETH-PEPE, the `dex.trades` table will record each segment of the trade as a separate entry. Conversely, a single-step trade, such as directly swapping USDC for ETH, will be recorded as a single entry.
+The `dex.trades` table provides an in-depth view of trades on decentralized exchanges like uniswap or curve. This table includes entries for each segment of a trade that passes through different liquidity pools, as well as single-step trades. For example, a user may initiate a trade to swap USDC for PEPE. If this trade is executed through multiple liquidity pools, such as USDC-WETH and WETH-PEPE, the `dex.trades` table will record each segment of the trade as a separate entry. Conversely, a single-step trade, such as directly swapping USDC for ETH, will be recorded as a single entry.
 
 This detailed approach allows for granular analysis of trade execution paths, enabling users to:
 
@@ -57,7 +57,7 @@ import { TableSample } from "/snippets/table-sample.mdx";
 
 <TableSample tableSchema="dex" tableName="trades" />
 
-## Example
+## Examples
 
 The following query demonstrates how to use the dex.trades table to calculate the total volume of trades on a weekly basis.
 
@@ -80,4 +80,8 @@ GROUP BY 1,2
   ></iframe>
 </div>
 
-For more examples of how to use the `dex.trades` table, check out the [DEX metrics dashboard](https://dune.com/hagaetc/dex-metrics).
+<CardGroup cols={1}>
+  <Card title="Dex Dashboard" icon="chart-waterfall" href="https://dune.com/dune/dex-metrics">
+    For more examples of how to use the `dex.trades` table, check out this dashboard.
+  </Card>
+</CardGroup>
