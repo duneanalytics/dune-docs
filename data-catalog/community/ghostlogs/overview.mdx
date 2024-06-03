@@ -8,16 +8,32 @@ description: Define and emit custom gasless events, replay historical transactio
 # GhostLogs
 [GhostLogs](https://ghostlogs.xyz) - add and emit gasless events from Smart Contracts.
 
-Are you working with Smart Contracts that don't emit necessary event logs? With GhostLogs,
-you can modify any deployed contract to emit gasless events and then export those logs
-to Dune tables. After that you'll be able to query and join with other native
+GhostLogs is a tool that allows you to define and emit custom gasless events from Smart Contracts. Using these additonal events,  you can replay historical transactions and automatically upload the data to Dune. This way, you can modify any deployed contract to emit gasless events and then export those logs to Dune tables. After that you'll be able to query and join with other native
 tables to create dashboards.
+
+## What are gasless events?
+
+Gasless events are events that only exist on a local EVM fork and are not actually included in the blockchain. By replaying "real" transactions on a local fork, you can emit these gasless events and then export them to Dune.
+
+## Why gasless events?
+
+Events are a powerful tool in Solidity, but they have a limitation: they cost gas to emit. This means that historically, developers have had to choose between emitting events and paying for them, or not emitting them at all. With gasless events, you can have the best of both worlds: you can emit events without paying for them, and then export them to Dune for analysis.
+
+It is important to note that gasless events are not a replacement for regular events. They are a complementary tool that can be used in conjunction with regular events to provide additional data for analysis. For example, you might use gasless events to emit additional data that is not critical to the operation of your contract, but that you still want to analyze.
+
+This is a powerful tool that can be used to create dashboards, analyze historical data, and more. By using gasless events, you can get a more complete picture of what is happening on the blockchain, and make better decisions based on that data.
+
+Since anyone can replay transactions on a local fork and emit whatever events they want, this is also a great way for analysts to go into the past and extract data that would usually be very hard to come by. This can be useful for debugging, analysis, and more.  
+
+## Resources
 
 **Website** : [https://ghostlogs.xyz](https://ghostlogs.xyz)
 
 **Documentation** : [https://docs.ghostlogs.xyz](https://docs.ghostlogs.xyz)
 
 **Steps to Export Data to Dune** : Follow our [Walk-Through](https://docs.ghostlogs.xyz/ghostlogs/integrations/dune)
+
+**A wizard using GhostLogs in prod** : whale_hunter shares on [Twitter](https://x.com/whale_hunter_/status/1793348725244330470)
 
 **Reach the team** : [Telegram](https://t.me/ghostlogsxyz) and mention Dune to get whitelisted.
 
