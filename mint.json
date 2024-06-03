@@ -453,6 +453,33 @@
           ]
         },
         {
+          "group": "Mantle",
+          "pages": [
+            "data-catalog/evm/mantle/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/mantle/raw/blocks",
+                "data-catalog/evm/mantle/raw/creation-traces",
+                "data-catalog/evm/mantle/raw/logs",
+                "data-catalog/evm/mantle/raw/transactions",
+                "data-catalog/evm/mantle/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/mantle/decoded/overview",
+                "data-catalog/evm/mantle/decoded/call-tables",
+                "data-catalog/evm/mantle/decoded/event-logs",
+                "data-catalog/evm/mantle/decoded/contracts",
+                "data-catalog/evm/mantle/decoded/logs-decoded",
+                "data-catalog/evm/mantle/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Polygon",
           "pages": [
             "data-catalog/evm/polygon/overview",
