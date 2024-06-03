@@ -46,8 +46,8 @@ You can find the data freshness of the decoded data in the table below.
   ></iframe>
 </div>
 
-# Abstractions
-Abstractions on Dune are tables like `dex.trades` or `nft.trades` that are derived from the decoded data. They take away the complexity of working with raw or even decoded data and are ready to be used for analysis.
+# Curated Data
+Curated data tables on Dune are tables like `dex.trades` or `nft.trades` that are derived from raw and decoded data. They take away the complexity of working with raw or even decoded data and are ready to be used for analysis.
 The data pipelines are defined and documented in this [GitHub repo](https://github.com/duneanalytics/spellbook).
 
 Curated tables are usually scheduled to run once every hour. The runtime of the data models can vary depending on the volume of transactions on any given day, therefore curated datasets are sometimes slower than the usual 1-hour target to update.
