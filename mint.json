@@ -793,6 +793,12 @@
           ]
         },
         {
+          "group": "GhostLogs",
+          "pages": [
+            "data-catalog/community/ghostlogs/overview"
+          ]
+        },
+        {
           "group": "Lens",
           "pages": [
             "data-catalog/community/lens/overview",
