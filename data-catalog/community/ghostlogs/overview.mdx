@@ -23,7 +23,25 @@ It is important to note that gasless events are not a replacement for regular ev
 
 This is a powerful tool that can be used to create dashboards, analyze historical data, and more. By using gasless events, you can get a more complete picture of what is happening on the blockchain, and make better decisions based on that data.
 
-Since anyone can replay transactions on a local fork and emit whatever events they want, this is also a great way for analysts to go into the past and extract data that would usually be very hard to come by. This can be useful for debugging, analysis, and more.  
+Since anyone can replay transactions on a local fork and emit whatever events they want, this is also a great way for analysts to go into the past and extract data that would usually be very hard to come by.
+
+## How to use GhostLogs
+
+To use GhostLogs data on Dune, you need to create an account on GhostLogs and follow the steps to export the data to Dune. You can find the detailed steps in the [documentation](https://docs.ghostlogs.xyz/ghostlogs/integrations/dune). 
+
+The data will be uploaded to Dune on your behalf by ghostlogs and you can query it like any other table. 
+
+e.g. 
+```sql
+SELECT * FROM dune.resident_wizards.ghostlogs_friend_tech_v2_sell_events
+```
+
+The schema of the table will always be:
+
+```text
+
+dune.<team_name>.ghostlogs_<table_name>
+```
 
 ## Resources
 
@@ -33,7 +51,7 @@ Since anyone can replay transactions on a local fork and emit whatever events th
 
 **Steps to Export Data to Dune** : Follow our [Walk-Through](https://docs.ghostlogs.xyz/ghostlogs/integrations/dune)
 
-**A wizard using GhostLogs in prod** : whale_hunter shares on [Twitter](https://x.com/whale_hunter_/status/1793348725244330470)
+**Wizard using GhostLogs** : whale_hunter shares on [Twitter](https://x.com/whale_hunter_/status/1793348725244330470)
 
 **Reach the team** : [Telegram](https://t.me/ghostlogsxyz) and mention Dune to get whitelisted.
 
