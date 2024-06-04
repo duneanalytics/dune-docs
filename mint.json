@@ -633,6 +633,33 @@
           ]
         },
         {
+          "group": "Mantle",
+          "pages": [
+            "data-catalog/evm/mantle/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/mantle/raw/blocks",
+                "data-catalog/evm/mantle/raw/creation-traces",
+                "data-catalog/evm/mantle/raw/logs",
+                "data-catalog/evm/mantle/raw/transactions",
+                "data-catalog/evm/mantle/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/mantle/decoded/overview",
+                "data-catalog/evm/mantle/decoded/call-tables",
+                "data-catalog/evm/mantle/decoded/event-logs",
+                "data-catalog/evm/mantle/decoded/contracts",
+                "data-catalog/evm/mantle/decoded/logs-decoded",
+                "data-catalog/evm/mantle/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Polygon",
           "pages": [
             "data-catalog/evm/polygon/overview",
@@ -1036,6 +1063,12 @@
           ]
         },
         {
+          "group": "GhostLogs",
+          "pages": [
+            "data-catalog/community/ghostlogs/overview"
+          ]
+        },
+        {
           "group": "Lens",
           "pages": [
             "data-catalog/community/lens/overview",
@@ -1089,11 +1122,30 @@
     },
 
     {
-      "group": "API Documentation",
+      "group": "",
       "pages": [
         "api-reference/overview/introduction",
+        {
+          "group": "API Quickstart",
+          "pages": [
+            "api-reference/quickstart/results-eg",
+            "api-reference/quickstart/queries-eg",
+            "api-reference/quickstart/tables-eg"
+          ],
+          "icon": "forward-fast"
+        },
         "api-reference/overview/authentication",
         "api-reference/overview/sdks",
+        {
+          "group": "Result Filtering",
+          "pages": [
+            "api-reference/executions/pagination",
+            "api-reference/executions/filtering",
+            "api-reference/executions/sorting",
+            "api-reference/executions/sampling"
+          ],
+          "icon": "filter"
+        },
         "api-reference/overview/rate-limits",
         "api-reference/overview/troubleshooting",
         "api-reference/overview/billing",
@@ -1101,12 +1153,8 @@
       ]
     },
     {
-      "group": "API Quickstart",
-      "pages": [
-        "api-reference/quickstart/results-eg",
-        "api-reference/quickstart/queries-eg",
-        "api-reference/quickstart/tables-eg"
-      ]
+      "group": "Custom Endpoints",
+      "pages": ["api-reference/custom/overview"]
     },
     {
       "group": "SQL Endpoints",
@@ -1115,10 +1163,6 @@
           "group": "Executions and Results",
           "pages": [
             "api-reference/executions/execution-object",
-            "api-reference/executions/pagination",
-            "api-reference/executions/filtering",
-            "api-reference/executions/sorting",
-            "api-reference/executions/sampling",
             "api-reference/executions/endpoint/execute-query",
             "api-reference/executions/endpoint/cancel-execution",
             "api-reference/executions/endpoint/get-execution-status",
@@ -1138,7 +1182,8 @@
             "api-reference/queries/endpoint/archive",
             "api-reference/queries/endpoint/unarchive",
             "api-reference/queries/endpoint/private",
-            "api-reference/queries/endpoint/unprivate"
+            "api-reference/queries/endpoint/unprivate",
+            "api-reference/queries/endpoint/refresh-matview"
           ]
         },
         {
@@ -1148,19 +1193,21 @@
       ]
     },
     {
-      "group": "Data Management",
+      "group": "Data Management Endpoints",
       "pages": [
         {
           "group": "Blockchains",
           "pages": [
             "api-reference/tables/blockchain/overview",
             "api-reference/tables/blockchain/insert",
-            "api-reference/tables/blockchain/clear"
+            "api-reference/tables/blockchain/clear",
+            "api-reference/tables/blockchain/delete"
           ]
         },
         {
           "group": "Tables",
           "pages": [
+            "api-reference/tables/endpoint/overview",
             "api-reference/tables/endpoint/create",
             "api-reference/tables/endpoint/insert",
             "api-reference/tables/endpoint/upload",
@@ -1171,7 +1218,7 @@
       ]
     },
     {
-      "group": "Realtime (Beta)",
+      "group": "Realtime Endpoints (Beta)",
       "pages": [
         {
           "group": "Account APIs",

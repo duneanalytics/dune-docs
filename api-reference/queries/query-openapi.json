@@ -326,6 +326,135 @@
         }
       }
     },
+    "/v1/materialized-views/{name}/refresh": {
+      "post": {
+        "summary": "Refresh a materialized view on Dune",
+        "description": "Given a name, trigger the materialized view refresh (i.e. execution) programmatically. Successful response will contain associated `execution_id`.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-DUNE-API-KEY",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "api_key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API Key for the service, alternative to using the HTTP header X-DUNE-API-KEY.",
+            "required": false
+          },
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "unique identifier of the materialized view"
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "performance": {
+                    "type": "string",
+                    "description": "Performance level of the refresh",
+                    "default": "medium",
+                    "enum": ["medium", "large"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sql_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the materialized view",
+                      "example": "dune.dune.result_erc_20_token_summary"
+                    },
+                    "execution_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the execution triggered to refresh the materialized view",
+                      "example": "01HZ065JVE23C23FM2HKWQP2RT"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed syntax or validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid request body payload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Materialized view not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/query/{queryId}/archive": {
       "post": {
         "summary": "Archive a query on Dune",

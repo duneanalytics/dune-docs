@@ -1,0 +1,60 @@
+---
+title: Custom Endpoints
+sidebarTitle: Overview
+description: Create custom API endpoints from Dune queries
+icon: star
+---
+
+Custom Endpoints allow developers to create and manage API endpoints from Dune queries. By selecting a query and scheduling it to run at a specified frequency, developers can call a custom URL to consume data. This flexible alternative to [Preset Endpoints](.././overview/introduction#preset-endpoints) provides greater customization without the complexities of [SQL Endpoints](.././overview/introduction#sql-endpoints).
+
+## How to Create a Custom Endpoint
+
+<div
+  style={{
+    position: "relative",
+    paddingBottom: "69.583%", // Aspect ratio of 1200 by 835
+    height: 0,
+    width: "100%",
+  }}
+>
+  <iframe
+    src="https://demo.arcade.software/3QNIjH9kzMGhCF6ejAJl?embed"
+    title="Parameter demo"
+    frameBorder={0}
+    loading="lazy"
+    webkitallowfullscreen=""
+    mozallowfullscreen=""
+    allowFullScreen=""
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    }}
+  />
+</div>
+
+<br />
+
+<Note>
+- The custom endpoint shares the same refresh schedule as the underlying query. Changing the query schedule will also change the endpoint schedule, and vice versa. See [scheduling queries](../../web-app/query-editor/query-scheduler) for more info.
+- All your custom endpoints can be found in `Library` > `Custom endpoints`.
+</Note>
+
+<Warning> 
+You can only create endpoints from queries you own. Creating endpoints from others' queries can lead to changes in the logic without notification, breaking your data consumption pipeline.
+</Warning>
+
+<Tip>  
+- Leverage [Filtering](../executions/filtering), [Sorting](../executions/sorting), and [Sampling](../executions/sampling) to flexibly grab query results. 
+- Use [Pagination](../executions/pagination) to handle large results.
+</Tip>
+
+### Credits Consumption
+
+Custom endpoints consume credits in two ways:
+1. **Refresh schedule:** Credits are consumed based on the engine size (e.g., 10 credits per refresh for medium, 20 credits for large). The monthly credit consumption is shown during endpoint creation.
+2. **Data fetch:** Credits are charged based on the datapoints read from the endpoint. Utilize result filtering to consume fewer credits by reading fewer datapoints.
+
+For more information on credits, visit [this page](../../learning/how-tos/credit-system-on-dune).

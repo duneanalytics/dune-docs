@@ -1,0 +1,46 @@
+---
+title: Mantle Overview
+icon: "star"
+sidebarTitle: "Overview"
+description: Mantle data on Dune
+---
+
+Mantle Network is dedicated to building an EVM-compatible scaling solution for Ethereum. This means that all contracts and tools running on Ethereum can operate on the Mantle Network with minimal modifications. Taking advantage of its modular architecture, Mantle Network combines an optimistic rollup with various innovative data availability solutions, providing cheaper and more accessible data availability while inheriting the security of Ethereum.
+
+Mantle's design philosophy aims to offer users a less costly and more user-friendly experience, provide developers with a simpler and more flexible development environment, and deliver a comprehensive set of infrastructure for the next wave of mass-adopted dApps.
+
+As an Ethereum L2, Mantle Network offers the security, stability, and scalability necessary to support your onchain applications. Developers can deploy any EVM-compatible codebase and smoothly transition users and assets from Ethereum L1 and other compatible chains.
+
+## Key Features
+
+- **Built as a Rollup**: Utilizes Ethereum validators and consensus protocols to significantly reduce gas fees, decrease latency, and increase throughput. Users can customize transaction confirmation requirements to provide near real-time confirmation latency with minimal security settings.
+
+- **Modular Architecture**: Unlike traditional monolithic chains that execute transaction execution, consensus, settlement, and storage at the same network layer, Mantle separates these functions into individual modules as a modular chain. These include an EVM-compatible execution layer developed by Mantle for transaction execution, a consensus layer and settlement layer completed on Ethereum, and an external DA component (currently Mantle DA powered by EigenDA technology; we will switch to EigenDA upon its mainnet stable launch).
+
+- **Secured by Ethereum**: L2 state transitions are verified by Ethereum validators, undergoing the same consensus and settlement processes as L1 transactions.
+
+- **Modular Data Availability**: Independent DA modules, such as Mantle DA powered by EigenLayer's EigenDA technology. According to internal assessments, this translates to potential cost savings of more than 90% compared to on-chain L1.
+
+<CardGroup cols={1}>
+  <Card title="Mantle documentation" icon="link" href="https://mantle.network/docs">
+    Explore comprehensive documentation on Mantle, detailing its architecture, protocol, and resources for developers.
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Detailed event logs from smart contracts, providing insights into interactions within the Mantle network.
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on blocks, illustrating the operational capacity and activity levels on Mantle.
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Extensive transaction data, showcasing the efficiency and execution of operations on Mantle.
+  </Card>
+  <Card title="Decoded" icon="file" href="./decoded/overview">
+    Enhanced transaction data decoded for better analysis and understanding of contract executions.
+  </Card>
+</CardGroup>
+

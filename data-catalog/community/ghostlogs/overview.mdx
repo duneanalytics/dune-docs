@@ -1,0 +1,60 @@
+---
+title: Export Data from GhostLogs to Dune
+sidebarTitle: "Overview"
+icon: "ghost"
+description: Define and emit custom gasless events, replay historical transactions, and automatically upload the data to Dune.
+---
+
+# GhostLogs
+[GhostLogs](https://ghostlogs.xyz) - add and emit gasless events from Smart Contracts.
+
+GhostLogs is a tool that allows you to define and emit custom gasless events from Smart Contracts. Using these additonal events,  you can replay historical transactions and automatically upload the data to Dune. This way, you can modify any deployed contract to emit gasless events and then export those logs to Dune tables. After that you'll be able to query and join with other native
+tables to create dashboards.
+
+## What are gasless events?
+
+Gasless events are events that only exist on a local EVM fork and are not actually included in the blockchain. By replaying "real" transactions on a local fork, you can emit these gasless events and then export them to Dune.
+
+## Why gasless events?
+
+Events are a powerful tool in Solidity, but they have a limitation: they cost gas to emit. This means that historically, developers have had to choose between emitting events and paying for them, or not emitting them at all. With gasless events, you can have the best of both worlds: you can emit events without paying for them, and then export them to Dune for analysis.
+
+It is important to note that gasless events are not a replacement for regular events. They are a complementary tool that can be used in conjunction with regular events to provide additional data for analysis. For example, you might use gasless events to emit additional data that is not critical to the operation of your contract, but that you still want to analyze.
+
+This is a powerful tool that can be used to create dashboards, analyze historical data, and more. By using gasless events, you can get a more complete picture of what is happening on the blockchain, and make better decisions based on that data.
+
+Since anyone can replay transactions on a local fork and emit whatever events they want, this is also a great way for analysts to go into the past and extract data that would usually be very hard to come by.
+
+## How to use GhostLogs
+
+To use GhostLogs data on Dune, you need to create an account on GhostLogs and follow the steps to export the data to Dune. You can find the detailed steps in the [documentation](https://docs.ghostlogs.xyz/ghostlogs/integrations/dune). 
+
+The data will be uploaded to Dune on your behalf by ghostlogs and you can query it like any other table. 
+
+e.g. 
+```sql
+SELECT * FROM dune.resident_wizards.ghostlogs_friend_tech_v2_sell_events
+```
+
+The schema of the table will always be:
+
+```text
+dune.<team_name>.ghostlogs_<table_name>
+```
+<Info>
+The data is uploaded to Dune by GhostLogs with an API key you provide. This will cost you some DUNE credits.
+</Info>
+
+## Resources
+
+**Website** : [https://ghostlogs.xyz](https://ghostlogs.xyz)
+
+**Documentation** : [https://docs.ghostlogs.xyz](https://docs.ghostlogs.xyz)
+
+**Steps to Export Data to Dune** : Follow our [Walk-Through](https://docs.ghostlogs.xyz/ghostlogs/integrations/dune)
+
+**Wizard using GhostLogs** : whale_hunter shares on [Twitter](https://x.com/whale_hunter_/status/1793348725244330470)
+
+**Reach the team** : [Telegram](https://t.me/ghostlogsxyz) and mention Dune to get whitelisted.
+
+

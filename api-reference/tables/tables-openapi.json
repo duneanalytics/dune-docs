@@ -333,7 +333,8 @@
             "description": "The name of one of the supported tables to insert into (e.g. `blocks`).",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": ["blocks", "transactions", "logs", "traces"]
             }
           }
         ],
@@ -394,6 +395,90 @@
         }
       }
     },
+    "/v1/blockchain/{chain}/{table_name}/delete": {
+      "post": {
+        "tags": ["table"],
+        "summary": "Deletes data from a predicate in a blockchain table. Other data remains intact.",
+        "description": "Deletes data from a predicate in a blockchain table.",
+        "parameters": [
+          {
+            "name": "chain",
+            "in": "path",
+            "description": "The blockchain of the table to clear (e.g. `my_chain`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_name",
+            "in": "path",
+            "description": "The name of one of the supported tables to clear (e.g. `blocks`).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["blocks", "transactions", "logs", "traces"]
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The date to delete data from in the format `YYYY-MM-DD` (e.g. `2024-04-28`).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletePredicateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Table name other_table is not supported for blockchain endpoint"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "You are not authorized to delete in namespace 'other_chain'. You are allowed to delete from the namespace which is the same as the user or team which your token is associated with."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        }
+      }
+    },
     "/v1/blockchain/{chain}/{table_name}/clear": {
       "post": {
         "tags": ["table"],
@@ -415,7 +500,8 @@
             "description": "The name of one of the supported tables to clear (e.g. `blocks`).",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": ["blocks", "transactions", "logs", "traces"]
             }
           }
         ],
@@ -581,6 +667,26 @@
             "description": "The confirmation message of the cleared table",
             "type": "string",
             "example": "Table my_user.interest_rates successfully cleared"
+          }
+        }
+      },
+      "DeletePredicateResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "description": "The confirmation message of the deleted predicate",
+            "type": "string",
+            "example": "Successfully deleted from table namespace.logs"
+          },
+          "num_files_removed": {
+            "description": "The number of files removed from the underlying filesystem",
+            "type": "number",
+            "example": 1
+          },
+          "num_rows_deleted": {
+            "description": "The number of rows deleted from the specified table",
+            "type": "number",
+            "example": 1925
           }
         }
       },

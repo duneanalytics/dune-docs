@@ -1,0 +1,41 @@
+---
+title: 'Refresh Materialized View'
+openapi: 'POST /v1/materialized-views/{name}/refresh'
+---
+
+
+<Note>
+- By default, the refresh runs on the `medium` engine, costing 10 credits per refresh. To boost performance, pass in a JSON body with `{"performance": "large"}`, which consumes 20 credits per refresh.
+- If you prefer `medium` performance, you can omit the `performance` parameter.
+- You must own the materialized view to refresh it.
+</Note>
+
+<Tip>
+- After triggering the refresh, you can check the status by passing the returned `execution_id` into the [Get Execution Status endpoint](/api-reference/executions/endpoint/get-execution-status).
+- To find the name of a materialized view:
+    <div
+    style={{
+        position: "relative",
+        paddingBottom: "69.583%", // Aspect ratio of 1200 by 835
+        height: 0,
+        width: "100%",
+    }}
+    >
+    <iframe
+        src="https://demo.arcade.software/z3uWy6IbZUhKdXRyExL0?embed"
+        title="Parameter demo"
+        frameBorder={0}
+        loading="lazy"
+        webkitallowfullscreen=""
+        mozallowfullscreen=""
+        allowFullScreen=""
+        style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        }}
+    />
+    </div>
+</Tip>

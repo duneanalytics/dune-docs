@@ -2,7 +2,7 @@ export const LogsDecodedSnippet = ({ blockchain }) => (
   <div>
     <h2>Table Description</h2>
     <p>
-      The <code>decoded_logs</code> table contains decoded logs from {blockchain} transactions. The table matches <code>topic0</code> to the event signature and the corresponding event name. The table does not contain the full event data and is not suitable for analysis of smart contract level data. For that, use the specific event tables as described in <a href={`/data-catalog/evm/${blockchain}/decoded/event-logs`}>Event Logs</a>.
+      The <code>logs_decoded</code> table contains decoded logs from {blockchain} transactions. The table matches <code>topic0</code> to the event signature and the corresponding event name. The table does not contain the full event data and is not suitable for analysis of smart contract level data. For that, use the specific event tables as described in <a href={`/data-catalog/evm/${blockchain}/decoded/event-logs`}>Event Logs</a>.
     </p>
     <p>
       This table is great for gaining a high level understanding of the types of events that are being emitted by a smart contract or smart contracts of a certain protocol.
