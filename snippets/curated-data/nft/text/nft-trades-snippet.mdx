@@ -1,0 +1,20 @@
+export const NFTTradesSnippet = ({ blockchain }) => (
+<div>
+    <Info> This is a cross-chain table but can be filtered for {blockchain} transactions.</Info>
+    <h2>Table Description</h2>
+    <p>
+      The `nft.trades` table on Dune Analytics is central to capturing and analyzing Non-Fungible Token (NFT) transactions across various marketplaces. It is a pivotal resource for dissecting the intricacies of NFT trade execution, market behavior, and collector activity within the NFT space.
+    </p>
+    <h2>Usage</h2>
+    <p>
+      The `nft.trades` table serves as an essential tool for delving into the NFT market's complexities. It offers a detailed snapshot of each NFT transaction, encompassing data points such as sale price, transaction timestamp, buyer and seller addresses, and the specific NFT assets involved. This table allows analysts to explore trends in NFT valuation, trading volumes, and marketplace dynamics, providing insights into the evolving landscape of digital collectibles and art.
+    </p>
+    <h2>Table Coverage</h2>
+      <p> The following table shows which projects and versions of those projects are covered in the <code>dex.trades</code> table on {blockchain}. </p>
+    <NFTCoverage blockchain={blockchain}/>
+    <h2>Column Descriptions</h2>
+    <ColumnDescriptions tableSchema="nft" tableName="trades" />
+    <h2>Table Sample</h2>
+    <TableSampleParam tableSchema="nft" tableName="trades" ParamCol="blockchain" ParamValue={blockchain}/>
+</div>
+);

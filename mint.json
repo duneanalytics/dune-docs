@@ -128,48 +128,47 @@
         "query-engine/reserved-keywords"
       ]
     },
-    
-        {
-          "group": "Functions and Operators",
-          "pages": [
-            "query-engine/Functions-and-operators/index",
-            "query-engine/Functions-and-operators/aggregate",
-            "query-engine/Functions-and-operators/array",
-            "query-engine/Functions-and-operators/base58",
-            "query-engine/Functions-and-operators/binary",
-            "query-engine/Functions-and-operators/bitwise",
-            "query-engine/Functions-and-operators/chain-utility-functions",
-            "query-engine/Functions-and-operators/comparison",
-            "query-engine/Functions-and-operators/conditional",
-            "query-engine/Functions-and-operators/conversion",
-            "query-engine/Functions-and-operators/datetime",
-            "query-engine/Functions-and-operators/decimal",
-            "query-engine/Functions-and-operators/hyperloglog",
-            "query-engine/Functions-and-operators/json",
-            "query-engine/Functions-and-operators/lambda",
-            "query-engine/Functions-and-operators/live-fetch",
-            "query-engine/Functions-and-operators/logical",
-            "query-engine/Functions-and-operators/map",
-            "query-engine/Functions-and-operators/math",
-            "query-engine/Functions-and-operators/ml",
-            "query-engine/Functions-and-operators/qdigest",
-            "query-engine/Functions-and-operators/regexp",
-            "query-engine/Functions-and-operators/setdigest",
-            "query-engine/Functions-and-operators/ss58",
-            "query-engine/Functions-and-operators/tronaddress",
-            "query-engine/Functions-and-operators/string",
-            "query-engine/Functions-and-operators/system",
-            "query-engine/Functions-and-operators/tdigest",
-            "query-engine/Functions-and-operators/teradata",
-            "query-engine/Functions-and-operators/url",
-            "query-engine/Functions-and-operators/uuid",
-            "query-engine/Functions-and-operators/varbinary",
-            "query-engine/Functions-and-operators/varchar-utility-functions",
-            "query-engine/Functions-and-operators/window"
-          ]
-        },
-      
-    
+
+    {
+      "group": "Functions and Operators",
+      "pages": [
+        "query-engine/Functions-and-operators/index",
+        "query-engine/Functions-and-operators/aggregate",
+        "query-engine/Functions-and-operators/array",
+        "query-engine/Functions-and-operators/base58",
+        "query-engine/Functions-and-operators/binary",
+        "query-engine/Functions-and-operators/bitwise",
+        "query-engine/Functions-and-operators/chain-utility-functions",
+        "query-engine/Functions-and-operators/comparison",
+        "query-engine/Functions-and-operators/conditional",
+        "query-engine/Functions-and-operators/conversion",
+        "query-engine/Functions-and-operators/datetime",
+        "query-engine/Functions-and-operators/decimal",
+        "query-engine/Functions-and-operators/hyperloglog",
+        "query-engine/Functions-and-operators/json",
+        "query-engine/Functions-and-operators/lambda",
+        "query-engine/Functions-and-operators/live-fetch",
+        "query-engine/Functions-and-operators/logical",
+        "query-engine/Functions-and-operators/map",
+        "query-engine/Functions-and-operators/math",
+        "query-engine/Functions-and-operators/ml",
+        "query-engine/Functions-and-operators/qdigest",
+        "query-engine/Functions-and-operators/regexp",
+        "query-engine/Functions-and-operators/setdigest",
+        "query-engine/Functions-and-operators/ss58",
+        "query-engine/Functions-and-operators/tronaddress",
+        "query-engine/Functions-and-operators/string",
+        "query-engine/Functions-and-operators/system",
+        "query-engine/Functions-and-operators/tdigest",
+        "query-engine/Functions-and-operators/teradata",
+        "query-engine/Functions-and-operators/url",
+        "query-engine/Functions-and-operators/uuid",
+        "query-engine/Functions-and-operators/varbinary",
+        "query-engine/Functions-and-operators/varchar-utility-functions",
+        "query-engine/Functions-and-operators/window"
+      ]
+    },
+
     {
       "group": "",
       "pages": [
@@ -210,8 +209,19 @@
             {
               "group": "Curated",
               "pages": [
-                "data-catalog/evm/arbitrum/curated-data/dex/dex-trades",
-                "data-catalog/evm/arbitrum/curated-data/dex/dex-aggregator-trades"
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/arbitrum/curated-data/dex/dex-trades",
+                    "data-catalog/evm/arbitrum/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/arbitrum/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -240,6 +250,24 @@
                 "data-catalog/evm/avalanche/decoded/logs-decoded",
                 "data-catalog/evm/avalanche/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/avalanche/curated-data/dex/dex-trades",
+                    "data-catalog/evm/avalanche/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/avalanche/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -266,6 +294,24 @@
                 "data-catalog/evm/base/decoded/contracts",
                 "data-catalog/evm/base/decoded/logs-decoded",
                 "data-catalog/evm/base/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/base/curated-data/dex/dex-trades",
+                    "data-catalog/evm/base/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/base/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -294,6 +340,24 @@
                 "data-catalog/evm/bnb/decoded/logs-decoded",
                 "data-catalog/evm/bnb/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/bnb/curated-data/dex/dex-trades",
+                    "data-catalog/evm/bnb/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/bnb/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -320,6 +384,24 @@
                 "data-catalog/evm/celo/decoded/contracts",
                 "data-catalog/evm/celo/decoded/logs-decoded",
                 "data-catalog/evm/celo/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/celo/curated-data/dex/dex-trades",
+                    "data-catalog/evm/celo/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/celo/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -349,6 +431,24 @@
                 "data-catalog/evm/ethereum/decoded/logs-decoded",
                 "data-catalog/evm/ethereum/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/ethereum/curated-data/dex/dex-trades",
+                    "data-catalog/evm/ethereum/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/ethereum/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -375,6 +475,24 @@
                 "data-catalog/evm/fantom/decoded/contracts",
                 "data-catalog/evm/fantom/decoded/logs-decoded",
                 "data-catalog/evm/fantom/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/fantom/curated-data/dex/dex-trades",
+                    "data-catalog/evm/fantom/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/fantom/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -403,6 +521,24 @@
                 "data-catalog/evm/gnosis/decoded/logs-decoded",
                 "data-catalog/evm/gnosis/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/gnosis/curated-data/dex/dex-trades",
+                    "data-catalog/evm/gnosis/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/gnosis/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -429,6 +565,24 @@
                 "data-catalog/evm/optimism/decoded/contracts",
                 "data-catalog/evm/optimism/decoded/logs-decoded",
                 "data-catalog/evm/optimism/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/optimism/curated-data/dex/dex-trades",
+                    "data-catalog/evm/optimism/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/optimism/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -457,6 +611,24 @@
                 "data-catalog/evm/linea/decoded/logs-decoded",
                 "data-catalog/evm/linea/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/linea/curated-data/dex/dex-trades",
+                    "data-catalog/evm/linea/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/linea/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -483,6 +655,24 @@
                 "data-catalog/evm/polygon/decoded/contracts",
                 "data-catalog/evm/polygon/decoded/logs-decoded",
                 "data-catalog/evm/polygon/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/polygon/curated-data/dex/dex-trades",
+                    "data-catalog/evm/polygon/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/polygon/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -511,6 +701,24 @@
                 "data-catalog/evm/polygon-zkEVM/decoded/logs-decoded",
                 "data-catalog/evm/polygon-zkEVM/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/polygon-zkEVM/curated-data/dex/dex-trades",
+                    "data-catalog/evm/polygon-zkEVM/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/polygon-zkEVM/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -537,6 +745,24 @@
                 "data-catalog/evm/scroll/decoded/contracts",
                 "data-catalog/evm/scroll/decoded/logs-decoded",
                 "data-catalog/evm/scroll/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/scroll/curated-data/dex/dex-trades",
+                    "data-catalog/evm/scroll/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/scroll/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -565,6 +791,24 @@
                 "data-catalog/evm/zksync/decoded/logs-decoded",
                 "data-catalog/evm/zksync/decoded/traces-decoded"
               ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/zksync/curated-data/dex/dex-trades",
+                    "data-catalog/evm/zksync/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/zksync/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -591,6 +835,24 @@
                 "data-catalog/evm/zora/decoded/contracts",
                 "data-catalog/evm/zora/decoded/logs-decoded",
                 "data-catalog/evm/zora/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/zora/curated-data/dex/dex-trades",
+                    "data-catalog/evm/zora/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/zora/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -911,13 +1173,14 @@
     {
       "group": "Realtime (Beta)",
       "pages": [
-        {   "group": "Account APIs",
-            "pages": [
+        {
+          "group": "Account APIs",
+          "pages": [
             "api-reference/realtime/overview",
             "api-reference/realtime/balances",
             "api-reference/realtime/chains"
           ]
-          }
+        }
       ]
     },
     {
