@@ -183,34 +183,6 @@
       "pages": [
         "data-catalog/evm/overview",
         {
-          "group": "Ethereum",
-          "pages": [
-            "data-catalog/evm/ethereum/overview",
-            {
-              "group": "Raw",
-              "pages": [
-                "data-catalog/evm/ethereum/raw/transactions",
-                "data-catalog/evm/ethereum/raw/logs",
-                "data-catalog/evm/ethereum/raw/traces",
-                "data-catalog/evm/ethereum/raw/creation-traces",
-                "data-catalog/evm/ethereum/raw/blocks",
-                "data-catalog/evm/ethereum/raw/withdrawals"
-              ]
-            },
-            {
-              "group": "Decoded",
-              "pages": [
-                "data-catalog/evm/ethereum/decoded/overview",
-                "data-catalog/evm/ethereum/decoded/call-tables",
-                "data-catalog/evm/ethereum/decoded/event-logs",
-                "data-catalog/evm/ethereum/decoded/contracts",
-                "data-catalog/evm/ethereum/decoded/logs-decoded",
-                "data-catalog/evm/ethereum/decoded/traces-decoded"
-              ]
-            }
-          ]
-        },
-        {
           "group": "Arbitrum",
           "pages": [
             "data-catalog/evm/arbitrum/overview",
@@ -238,8 +210,8 @@
             {
               "group": "Curated",
               "pages": [
-                "data-catalog/evm/arbitrum/curated-data/dex-trades",
-                "data-catalog/evm/arbitrum/curated-data/dex-aggregator-trades"
+                "data-catalog/evm/arbitrum/curated-data/dex/dex-trades",
+                "data-catalog/evm/arbitrum/curated-data/dex/dex-aggregator-trades"
 
               ]
             }
@@ -349,6 +321,34 @@
                 "data-catalog/evm/celo/decoded/contracts",
                 "data-catalog/evm/celo/decoded/logs-decoded",
                 "data-catalog/evm/celo/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Ethereum",
+          "pages": [
+            "data-catalog/evm/ethereum/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/ethereum/raw/transactions",
+                "data-catalog/evm/ethereum/raw/logs",
+                "data-catalog/evm/ethereum/raw/traces",
+                "data-catalog/evm/ethereum/raw/creation-traces",
+                "data-catalog/evm/ethereum/raw/blocks",
+                "data-catalog/evm/ethereum/raw/withdrawals"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/ethereum/decoded/overview",
+                "data-catalog/evm/ethereum/decoded/call-tables",
+                "data-catalog/evm/ethereum/decoded/event-logs",
+                "data-catalog/evm/ethereum/decoded/contracts",
+                "data-catalog/evm/ethereum/decoded/logs-decoded",
+                "data-catalog/evm/ethereum/decoded/traces-decoded"
               ]
             }
           ]

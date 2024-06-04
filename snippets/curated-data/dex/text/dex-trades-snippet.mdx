@@ -26,6 +26,6 @@ export const DexTradesSnippet = ({ blockchain }) => (
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema="dex" tableName="trades" />
     <h2>Table Sample</h2>
-    <TableSampleParam tableSchema="dex" tableName="trades" />
+    <TableSampleParam tableSchema="dex" tableName="trades" ParamCol="blockchain" ParamValue={blockchain}/>
   </div>
 );
