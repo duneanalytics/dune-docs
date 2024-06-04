@@ -11,7 +11,7 @@ Our data catalog can be divided into the following categories:
 - [Blockchain Data](#blockchain-data)
         - [EVM-Compatible Chains](#evm-compatible-chains)
         - [Other chains](#other-chains)
-- [Abstractions](#abstractions)
+- [Curated Data](#curated)
     - dex trades
     - nft trades
     - labels
@@ -23,7 +23,7 @@ Our data catalog can be divided into the following categories:
     - reservoir
     - etc.
 
-Our entire data catalog is accessible through the Dune [Web App](/web-app/overview), the [Dune API](api-reference/overview/introduction) or the [Snowflake Data Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune).
+Our entire data catalog is accessible through the Dune [Web App](/web-app/overview), the [Dune API](/api-reference/overview/introduction) or the [Snowflake Data Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune).
 
 
 # Blockchain Data
@@ -40,7 +40,7 @@ All EVM chains on Dune have raw data, decoded data and abstracted data tables av
     </Card>
   <Card title="Decoded data" icon="file" href="./evm/ethereum/decoded/overview">
   </Card>
-    <Card title="Curated data" icon="star" href="/data-catalog/spellbook/DEX/dex-trades"></Card>
+    <Card title="Curated data" icon="star" href="/data-catalog/curated/DEX/dex-trades"></Card>
 </CardGroup>
 
 
@@ -77,9 +77,9 @@ If you are a representative of a blockchain you would like to see supported on D
     </Card>
   </CardGroup>
 
-# Abstractions
+# Curated 
 
-Dune provides a wide range of abstraction tables that simplify the process of querying and analyzing blockchain data. These tables are built on top of raw data tables and provide a high-level view of the data.
+Dune provides a wide range of curated tables that simplify the process of querying and analyzing blockchain data. These tables are built on top of raw and decoded data tables and provide a high-level view of the data.
 
 <div>
   <iframe
@@ -89,6 +89,15 @@ Dune provides a wide range of abstraction tables that simplify the process of qu
   ></iframe>
 </div>
 
+<CardGroup cols={1}>
+  <Card
+    title="Curated Data"
+    icon="file"
+    href="/data-catalog/curated/overview"
+  >
+    Curated data simplifies the process of querying and analyzing blockchain data.
+  </Card>
+</CardGroup>
 
 # Community Data
 
@@ -104,15 +113,7 @@ Dune also carries off-chain data important to the web3 ecosystem that is provide
 
 
 
-<CardGroup cols={1}>
-  <Card
-    title="Abstractions"
-    icon="file"
-    href="/data-catalog/spellbook/overview"
-  >
-    Abstractions simplify the process of querying and analyzing blockchain data.
-  </Card>
-</CardGroup>
+
 
 ## Our Data Difference
 

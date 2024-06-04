@@ -1,0 +1,24 @@
+export const DexAggregatorTradesSnippet = ({ blockchain }) => (
+  <div>
+    <Info> This table is a cross-chain table but can be filtered for {blockchain} transactions.</Info>
+    <h2>Table Description</h2>
+    <p>
+      The <code>dex_aggregator.trades</code> table captures high-level data on trades executed via decentralized exchange (DEX) aggregators. These aggregators aggregate liquidity from multiple DEXs to provide users with the best possible trade execution. Unlike the <code>dex.trades</code> table, which records each intermediary step of a trade, <code>dex_aggregator.trades</code> condenses the trade data to reflect the user's intended trade, presenting it as a single entry.
+    </p>
+    <h2>Functional Overview</h2>
+    <p>
+      Users can expect the <code>dex_aggregator.trades</code> table to provide a high-level view of DEX trades facilitated by aggregators. This table simplifies trade records by showing a single entry for trades that may involve multiple DEXs and liquidity pools.
+      For instance, a user might initiate a trade to swap USDC for PEPE via a DEX aggregator. The aggregator might route this trade through several liquidity pools such as WETH-USDC and WETH-PEPE, but <code>dex_aggregator.trades</code> will record it as a single USDC → PEPE trade.
+    </p>
+    <p>
+      Complimentary to <code>dex_aggregator.trades</code> is the <code>dex.trades</code> table, where detailed trade executions are recorded. This table captures the granular steps of each trade, including interactions with different liquidity pools. The volume routed through aggregators is also recorded in the <code>dex.trades</code> table. One row in <code>dex_aggregator.trades</code> corresponds to one or more rows in <code>dex.trades</code>, providing a comprehensive view of the detailed execution path that aggregated trades take.
+    </p>
+    <h2>Coverage</h2>
+    <p> The following table shows which projects and versions of those projects are covered in the <code>dex.trades</code> table on {blockchain}. </p>
+    <DexAggregatorCoverage blockchain={blockchain}/>
+    <h2>Column Descriptions</h2>
+    <ColumnDescriptions tableSchema="dex" tableName="trades" />
+    <h2>Table Sample</h2>
+    <TableSampleParam tableSchema="dex_aggregator" tableName="trades" ParamCol="blockchain" ParamValue={blockchain}/>
+  </div>
+);

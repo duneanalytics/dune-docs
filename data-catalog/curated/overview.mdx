@@ -1,0 +1,78 @@
+---
+title: Curated Data Overview
+sidebarTitle: Overview
+icon: "star"
+description: Curated data Tables are the easiest way to gain insights on Dune
+---
+
+## Overview 
+
+Dune and its community are building a collection of curated data tables that make it easier to query and analyze blockchain data. These tables are built using dbt, a tool that allows you to transform data in your warehouse using SQL and Jinja templating. We sometimes refer to these tables as _spells_ and the collection of them as _spellbook_.
+
+The curated data tables are built on top of raw data tables and provide a high-level view of the data. For example, the `dex.trades` table aggregates data from multiple sources to provide a comprehensive view of all trades on decentralized exchanges.
+
+The curated data tables are maintained in the [Spellbook repository](https://github.com/duneanalytics/spellbook) and are available for anyone to use. You can find the documentation and code for each table in the [Spellbook Docs](https://spellbook-docs.dune.com/).
+
+Here is a non-exhaustive list of some of the curated data tables available in Spellbook:
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3708634/6239879/"
+    width="100%"
+    height="400px"
+  ></iframe>
+</div>
+
+
+## Benefits of curated data Tables
+
+Curated data tables provide several benefits:
+
+- **Simplified Queries**: curated data tables make it easier to query and analyze blockchain data by providing a high-level view of the data.
+- **Consistent Data Models**: The curated data tables follow a consistent data model, making it easier to combine data from different sources.
+- **Community Contributions**: The curated data tables are maintained by the Dune community, so anyone can contribute to them and improve the data quality.
+
+
+
+
+## Resources
+
+
+<CardGroup cols={2}>
+  <Card
+    title="Spellbook Repo"
+    icon="github"
+    href="https://github.com/duneanalytics/spellbook"
+  >
+    Go to the dbt github repo with over 400+ contributors. All models live here.
+  </Card>
+  <Card
+    title="Model Docs"
+    icon="table"
+    href="https://spellbook-docs.dune.com/"
+  >
+    Find the native dbt documentation for all models in spellbook.
+  </Card>
+  <Card
+    title="dbt practices in Spellbook"
+    icon="book"
+    href="https://github.com/duneanalytics/spellbook/tree/main/docs"
+  >
+    Docs for contributing to spellbook and dbt best practices.
+  </Card>
+  <Card
+    title="Adding to Sector Models"
+    icon="code-pull-request"
+    href="https://github.com/duneanalytics/spellbook/blob/main/models/_sector/dex/readme.md"
+  >
+    Learn to contribute to sector models like dex.trades and nft.trades tables
+  </Card>
+  <Card
+    title="Adding a token to prices"
+    icon="dollar-sign"
+    href="https://github.com/duneanalytics/spellbook/blob/main/models/prices/README.md"
+  >
+    Learn to add a token to our prices.usd tracking in a PR
+  </Card>
+</CardGroup>
+

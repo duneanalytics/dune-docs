@@ -1,0 +1,31 @@
+export const DexTradesSnippet = ({ blockchain }) => (
+  <div>
+
+    <Info> This is a cross-chain table but can be filtered for {blockchain} transactions.</Info>
+    <h2>Table Description</h2>
+    <p>
+      The <code>dex.trades</code> table captures detailed data on trades executed via decentralized exchanges (DEXs). This table captures all raw trade events that happen across all liqudity pools. It provides a comprehensive view of the entire trade execution process, detailing the specific paths and liquidity sources utilized.
+    </p>
+    <h2>Functional Overview</h2>
+    <p>
+      The <code>dex.trades</code> table provides an in-depth view of trades on decentralized exchanges like Uniswap or Curve. This table includes entries for each segment of a trade that passes through different liquidity pools, as well as single-step trades. For example, a user may initiate a trade to swap USDC for PEPE. If this trade is executed through multiple liquidity pools, such as USDC-WETH and WETH-PEPE, the <code>dex.trades</code> table will record each segment of the trade as a separate entry. Conversely, a single-step trade, such as directly swapping USDC for ETH, will be recorded as a single entry. 
+    </p>
+    <p>
+      This detailed approach allows for granular analysis of trade execution paths, enabling users to:
+    </p>
+    <ul>
+      <li><strong>Analyze Liquidity Sources:</strong> Understand which liquidity pools are used and how they interact in both single-step and multi-step trades.</li>
+      <li><strong>Track Trade Execution Paths:</strong> Follow the exact route a trade takes across different DEXs and liquidity pools
+      </li>
+      <li><strong>Assess Slippage and Execution Quality:</strong> Evaluate the impact of each step on the overall trade execution, including slippage and price changes.</li>
+      <li><strong>Monitor Market Dynamics:</strong> Gain insights into the behavior and dynamics of different liquidity pools and DEXs over time.</li>
+    </ul>
+    <h2>Table Coverage</h2>
+    <p> The following table shows which projects and versions of those projects are covered in the <code>dex.trades</code> table on {blockchain}. </p>
+    <DexCoverage blockchain={blockchain}/>
+    <h2>Column Descriptions</h2>
+    <ColumnDescriptions tableSchema="dex" tableName="trades" />
+    <h2>Table Sample</h2>
+    <TableSampleParam tableSchema="dex" tableName="trades" ParamCol="blockchain" ParamValue={blockchain}/>
+  </div>
+);

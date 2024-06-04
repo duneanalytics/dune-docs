@@ -1,0 +1,38 @@
+---
+title: Tokens
+sidebarTitle: Overview
+description: Exploring the landscape of digital assets on the blockchain.
+icon: "star"
+---
+
+The EVM has become a popular platform for creating and managing digital assets. These assets are often represented as tokens, which can be traded, transferred, or owned by users. There are three popular smart contract standards for creating tokens on Ethereum:
+
+- [ERC20](https://eips.ethereum.org/EIPS/eip-20)
+- [ERC721](https://eips.ethereum.org/EIPS/eip-721)
+- [ERC1155](https://eips.ethereum.org/EIPS/eip-1155)
+
+ERC20 tokens are fungible, meaning that each token is identical to every other token. ERC721 tokens are non-fungible, meaning that each token is unique. ERC1155 tokens are a hybrid of the two, allowing for both fungible and non-fungible tokens to be created.
+
+Additionally, there is also the native asset of the EVM, `ether`, which is used to pay for transaction fees. Ether is not an ERC20 token, but it is still a digital asset that can be transferred and owned by users.
+
+## Tracking Assets
+
+When it comes to tracking assets, our main focus is on answering two key questions: "where are they now?" and "how did they get there?". In practical terms, this means keeping track of ownership and transfer history. At Dune, we achieve this by monitoring the events emitted by the smart contracts that manage these assets. For instance, the `Transfer` event is emitted by the ERC20, ERC721, and ERC1155 standards whenever a token is transferred from one address to another. By capturing and analyzing these events, we can build a comprehensive record of asset ownership and transfer.
+
+To accurately track balances, we also utilize the `balanceOf` function, which provides the balance of a specific address for a given token. This data is then stored in our database, enabling us to maintain up-to-date and accurate balance information.
+
+Out of these two main data sources, we can derive a wide range of insights, such as the distribution of assets across addresses, the most active tokens, and the most active addresses. This data can be used to track the popularity of tokens, the activity of users, and the overall health of the network.
+
+## Data Catalog
+
+The following datasets are available for exploring the landscape of digital assets on the blockchain:
+
+<CardGroup cols={2}>
+  <Card title="Balances" icon="scale-balanced" href="/data-catalog/curated/tokens/balances"> 
+    The daily balances of tokens held by addresses.
+    </Card>
+  <Card
+    title="Transfers" icon="layer-group" href="/data-catalog/curated/tokens/transfers">
+    All token transfers that have occurred on the network.
+    </Card>
+</CardGroup>
