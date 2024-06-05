@@ -308,9 +308,7 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": [
-                    "data-catalog/evm/base/curated-data/nft/nft-trades"
-                  ]
+                  "pages": ["data-catalog/evm/base/curated-data/nft/nft-trades"]
                 }
               ]
             }
@@ -353,9 +351,7 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": [
-                    "data-catalog/evm/bnb/curated-data/nft/nft-trades"
-                  ]
+                  "pages": ["data-catalog/evm/bnb/curated-data/nft/nft-trades"]
                 }
               ]
             }
@@ -398,10 +394,24 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": [
-                    "data-catalog/evm/celo/curated-data/nft/nft-trades"
-                  ]
+                  "pages": ["data-catalog/evm/celo/curated-data/nft/nft-trades"]
                 }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Degen",
+          "pages": [
+            "data-catalog/evm/degen/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/degen/raw/blocks",
+                "data-catalog/evm/degen/raw/creation-traces",
+                "data-catalog/evm/degen/raw/logs",
+                "data-catalog/evm/degen/raw/transactions",
+                "data-catalog/evm/degen/raw/traces"
               ]
             }
           ]
@@ -543,51 +553,6 @@
           ]
         },
         {
-          "group": "Optimism",
-          "pages": [
-            "data-catalog/evm/optimism/overview",
-            {
-              "group": "Raw",
-              "pages": [
-                "data-catalog/evm/optimism/raw/blocks",
-                "data-catalog/evm/optimism/raw/creation-traces",
-                "data-catalog/evm/optimism/raw/logs",
-                "data-catalog/evm/optimism/raw/transactions",
-                "data-catalog/evm/optimism/raw/traces"
-              ]
-            },
-            {
-              "group": "Decoded",
-              "pages": [
-                "data-catalog/evm/optimism/decoded/overview",
-                "data-catalog/evm/optimism/decoded/call-tables",
-                "data-catalog/evm/optimism/decoded/event-logs",
-                "data-catalog/evm/optimism/decoded/contracts",
-                "data-catalog/evm/optimism/decoded/logs-decoded",
-                "data-catalog/evm/optimism/decoded/traces-decoded"
-              ]
-            },
-            {
-              "group": "Curated",
-              "pages": [
-                {
-                  "group": "DEX",
-                  "pages": [
-                    "data-catalog/evm/optimism/curated-data/dex/dex-trades",
-                    "data-catalog/evm/optimism/curated-data/dex/dex-aggregator-trades"
-                  ]
-                },
-                {
-                  "group": "NFT",
-                  "pages": [
-                    "data-catalog/evm/optimism/curated-data/nft/nft-trades"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "group": "Linea",
           "pages": [
             "data-catalog/evm/linea/overview",
@@ -655,6 +620,67 @@
                 "data-catalog/evm/mantle/decoded/contracts",
                 "data-catalog/evm/mantle/decoded/logs-decoded",
                 "data-catalog/evm/mantle/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Mode",
+          "pages": [
+            "data-catalog/evm/mode/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/mode/raw/blocks",
+                "data-catalog/evm/mode/raw/creation-traces",
+                "data-catalog/evm/mode/raw/logs",
+                "data-catalog/evm/mode/raw/transactions",
+                "data-catalog/evm/mode/raw/traces"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Optimism",
+          "pages": [
+            "data-catalog/evm/optimism/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/optimism/raw/blocks",
+                "data-catalog/evm/optimism/raw/creation-traces",
+                "data-catalog/evm/optimism/raw/logs",
+                "data-catalog/evm/optimism/raw/transactions",
+                "data-catalog/evm/optimism/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/optimism/decoded/overview",
+                "data-catalog/evm/optimism/decoded/call-tables",
+                "data-catalog/evm/optimism/decoded/event-logs",
+                "data-catalog/evm/optimism/decoded/contracts",
+                "data-catalog/evm/optimism/decoded/logs-decoded",
+                "data-catalog/evm/optimism/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/optimism/curated-data/dex/dex-trades",
+                    "data-catalog/evm/optimism/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/optimism/curated-data/nft/nft-trades"
+                  ]
+                }
               ]
             }
           ]
@@ -876,9 +902,7 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": [
-                    "data-catalog/evm/zora/curated-data/nft/nft-trades"
-                  ]
+                  "pages": ["data-catalog/evm/zora/curated-data/nft/nft-trades"]
                 }
               ]
             }
@@ -1064,9 +1088,7 @@
         },
         {
           "group": "GhostLogs",
-          "pages": [
-            "data-catalog/community/ghostlogs/overview"
-          ]
+          "pages": ["data-catalog/community/ghostlogs/overview"]
         },
         {
           "group": "Lens",
