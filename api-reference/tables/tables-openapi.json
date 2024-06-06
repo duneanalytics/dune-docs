@@ -37,6 +37,16 @@
               }
             }
           },
+          "200": {
+            "description": "The Dune table `namespace.table_name` already existed with the same data as the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTableResponse"
+                }
+              }
+            }
+          },
           "400": {
             "description": "The request was invalid. Please consult the error message.",
             "content": {
@@ -624,17 +634,17 @@
         "type": "object",
         "properties": {
           "namespace": {
-            "description": "The namespace of the created table.",
+            "description": "The namespace of the table.",
             "type": "string",
             "example": "my_user"
           },
           "table_name": {
-            "description": "The name of the created table.",
+            "description": "The name of the table.",
             "type": "string",
             "example": "my_data"
           },
           "full_name": {
-            "description": "The full name of the created table, as it should be referred to in a query.",
+            "description": "The full name of the table, as it should be referred to in a query.",
             "type": "string",
             "example": "dune.my_user.my_data"
           },
@@ -642,6 +652,16 @@
             "description": "An example query to use on Dune querying your new table.",
             "type": "string",
             "example": "select * from dune.my_user.my_data"
+          },
+          "already_existed": {
+            "description": "Whether the request already existed.",
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "description": "A message explaining whether the table was created in this request or not. The same information is encoded in `already_existed`.",
+            "type": "string",
+            "example": "Table created successfully"
           }
         }
       },
@@ -735,8 +755,8 @@
               }
             }
           }
-      }
-    },
+        }
+      },
       "InternalError": {
         "description": "Internal error occurred",
         "content": {
