@@ -1,8 +1,7 @@
 export const TransactionsSnippet = ({ blockchain, tableDescription }) => (
   <div>
     <h2>Table Description</h2>
-    <p>
-      {tableDescription}
+    <p dangerouslySetInnerHTML={{__html: tableDescription }} >
     </p>
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema={blockchain} tableName="transactions" />
