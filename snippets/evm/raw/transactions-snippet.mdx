@@ -1,11 +1,8 @@
-export const TransactionsSnippet = ({ blockchain }) => (
+export const TransactionsSnippet = ({ blockchain, tableDescription }) => (
   <div>
     <h2>Table Description</h2>
     <p>
-      The <code>{blockchain}.transactions</code> table contains information about all transactions on the {blockchain} blockchain. Each row represents a single transaction and includes information such as block number, hash, timestamp, sender, recipient, value, gas, gas price, and more. Transactions are the fundamental unit of interaction with the {blockchain} blockchain. Transactions are created by users and are used to send value, deploy smart contracts, and interact with smart contracts.
-    </p>
-    <p>
-      This is the raw version of this table, for decoded transaction calls, see the <a href={`/data-catalog/evm/${blockchain}/decoded/call-tables`}>call tables</a> section.
+      {tableDescription}
     </p>
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema={blockchain} tableName="transactions" />
