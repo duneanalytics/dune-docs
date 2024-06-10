@@ -1101,7 +1101,8 @@
             "data-catalog/community/farcaster/signers",
             "data-catalog/community/farcaster/storage",
             "data-catalog/community/farcaster/user_data",
-            "data-catalog/community/farcaster/verifications"
+            "data-catalog/community/farcaster/verifications",
+            "data-catalog/community/farcaster/power_badge"
           ]
         },
         {
