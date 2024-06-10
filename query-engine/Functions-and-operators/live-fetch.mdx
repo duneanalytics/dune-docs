@@ -133,6 +133,8 @@ SELECT http_post(
 		ARRAY['Content-Type: application/json']);
 ```
 
+If you want a more complex example, [see this post call to compound comet read functions here](https://dune.com/queries/3571891).
+
 ### Handling quotation marks
 If your payload contains the `'` character, you need to quote it properly because it is the bounding character of `varchar`.
 Each `'` character should be doubled, and the query engine will unwrap them.
