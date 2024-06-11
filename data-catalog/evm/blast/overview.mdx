@@ -1,26 +1,27 @@
 ---
-title: Base Overview
+title: Blast Overview
 icon: "star"
 sidebarTitle: "Overview"
-description: Base data on Dune
+description: Blast data on Dune Analytics
 ---
 
-Base is a secure, low-cost, builder-friendly Ethereum Layer 2 solution incubated by Coinbase. It is designed to onboard the next billion users to the blockchain, emphasizing ease of use and accessibility for a global audience. The platform aims for progressive decentralization over the years, underlining its commitment to an open, global cryptoeconomy.
+Blast is a Ethereum Layer 2 (L2) that natively provides yield for ETH and stablecoins. Blast is an EVM-compatible, optimistic rollup that raises the baseline yield for users and developers without changing the experience cryptonatives expect. This yield makes it possible to create new business models for Dapps that aren't possible on other L2s.
 
-As an Ethereum L2, Base offers the security, stability, and scalability necessary to support your onchain applications. Developers can deploy any EVM-compatible codebase and smoothly transition users and assets from Ethereum L1, Coinbase, and other compatible chains.
+### Key Features:
 
-**Big Features, Small Fees:**
-Base provides an Ethereum Virtual Machine (EVM) environment at significantly lower costs. It introduces early access to new Ethereum features such as Account Abstraction (ERC4337), developer-friendly APIs for gasless transactions, and advanced smart contract wallets.
+- **Yield:** Blast is the only Ethereum L2 with native yield for ETH and stablecoins. The yield comes from ETH staking and RWA protocols. The default interest rate on other L2s is 0%. On Blast, it's 4% for ETH and 5% for stablecoins.
 
-**Open Source Commitment:**
-Built on the MIT-licensed OP Stack in collaboration with Optimism, Base contributes as the second Core Development team to ensure the OP Stack remains a public good accessible to all.
+- **Auto Rebasing:** ETH itself, not WETH, STETH, or any other ERC20, is natively rebasing on the L2. The ETH balance for EOAs is automatically rebasing. Smart contracts can opt-in to this rebasing, making it easy for existing Dapps to deploy on Blast without any changes. USDB, Blast's native stablecoin, is automatically rebasing as well. Like ETH on Blast, USDB is automatically rebasing for EOAs. USDB is also automatically rebasing for smart contracts. Smart contracts can opt-out from this rebasing.
 
-**Scaled by Coinbase:**
-Base leverages Coinbase's robust infrastructure to offer decentralized apps enhanced product integration, straightforward fiat onramps, and access to a vast network of millions of verified users within the Coinbase ecosystem.
+- **L1 Staking:** Blast only became possible following Ethereum's Shanghai upgrade. ETH yield from L1 staking, initially Lido, is automatically transferred to users via rebasing ETH on the L2. In the future, the Blast community will have the power to supplement, or even fully replace, Lido with Blast-native solutions or other third-party protocols.
+
+- **T-Bill Yield:** Users who bridge stablecoins receive USDB, Blast's auto-rebasing stablecoin. The yield for USDB comes from MakerDAO's on-chain T-Bill protocol. USDB can be redeemed for DAI when bridging back to Ethereum. In the future, the Blast community will have the power to supplement, or even fully replace, MakerDAO with Blast-native solutions or other third-party protocols.
+
+- **Gas Revenue Sharing:** Other L2s keep revenue from gas fees for themselves. Blast gives net gas revenue back to Dapps programmatically. Dapps developers can keep this revenue for themselves or use it to subsidize gas fees for users.
 
 <CardGroup cols={1}>
-  <Card title="Base documentation" icon="link" href="https://base.org/docs">
-    Explore comprehensive documentation on Base, detailing its architecture, protocol, and resources for developers.
+  <Card title="Blast documentation" icon="link" href="https://docs.blast.io/">
+    Explore comprehensive documentation on Blast, detailing its architecture, protocol, and resources for developers.
   </Card>
 </CardGroup>
 
@@ -28,15 +29,15 @@ Base leverages Coinbase's robust infrastructure to offer decentralized apps enha
 
 <CardGroup cols={2}>
   <Card title="Logs" icon="bolt" href="./raw/logs">
-    Detailed event logs from smart contracts, providing insights into interactions within the Base network.
+    Detailed event logs from smart contracts, providing insights into interactions within the Blast network.
   </Card>
   <Card title="Blocks" icon="cubes" href="./raw/blocks">
-    Information on blocks, illustrating the operational capacity and activity levels on Base.
+    Information on blocks, illustrating the operational capacity and activity levels on Blast.
   </Card>
   <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
-    Extensive transaction data, showcasing the efficiency and execution of operations on Base.
+    Extensive transaction data, showcasing the efficiency and execution of operations on Blast.
   </Card>
-  <Card title="decoded" icon="file" href="./decoded/overview">
+  <Card title="Decoded" icon="file" href="./decoded/overview">
     Enhanced transaction data decoded for better analysis and understanding of contract executions.
   </Card>
 </CardGroup>
