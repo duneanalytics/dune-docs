@@ -884,6 +884,33 @@
           ]
         },
         {
+          "group": "Sepolia",
+          "pages": [
+            "data-catalog/evm/sepolia/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/sepolia/raw/blocks",
+                "data-catalog/evm/sepolia/raw/creation-traces",
+                "data-catalog/evm/sepolia/raw/logs",
+                "data-catalog/evm/sepolia/raw/transactions",
+                "data-catalog/evm/sepolia/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/sepolia/decoded/overview",
+                "data-catalog/evm/sepolia/decoded/call-tables",
+                "data-catalog/evm/sepolia/decoded/event-logs",
+                "data-catalog/evm/sepolia/decoded/contracts",
+                "data-catalog/evm/sepolia/decoded/logs-decoded",
+                "data-catalog/evm/sepolia/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "zkSync",
           "pages": [
             "data-catalog/evm/zksync/overview",

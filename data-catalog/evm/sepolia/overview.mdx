@@ -1,27 +1,27 @@
 ---
-title: sepolia Overview
+title: Sepolia Testnet Overview
 icon: "star"
 sidebarTitle: "Overview"
-description: sepolia data on Dune Analytics
+description: Sepolia data on Dune Analytics
 ---
 
-sepolia is a Ethereum Layer 2 (L2) that natively provides yield for ETH and stablecoins. sepolia is an EVM-compatible, optimistic rollup that raises the baseline yield for users and developers without changing the experience cryptonatives expect. This yield makes it possible to create new business models for Dapps that aren't possible on other L2s.
+Sepolia is an Ethereum testnet that provides a stable environment for developers to test and deploy their applications before launching on the Ethereum mainnet. Sepolia is designed to mirror the conditions of the mainnet, providing a realistic testing environment without the financial risks.
 
 ### Key Features:
 
-- **Yield:** sepolia is the only Ethereum L2 with native yield for ETH and stablecoins. The yield comes from ETH staking and RWA protocols. The default interest rate on other L2s is 0%. On sepolia, it's 4% for ETH and 5% for stablecoins.
+- **Mainnet Parity:** Sepolia offers an environment that closely replicates the Ethereum mainnet, allowing developers to test their applications under conditions similar to the mainnet.
 
-- **Auto Rebasing:** ETH itself, not WETH, STETH, or any other ERC20, is natively rebasing on the L2. The ETH balance for EOAs is automatically rebasing. Smart contracts can opt-in to this rebasing, making it easy for existing Dapps to deploy on sepolia without any changes. USDB, sepolia's native stablecoin, is automatically rebasing as well. Like ETH on sepolia, USDB is automatically rebasing for EOAs. USDB is also automatically rebasing for smart contracts. Smart contracts can opt-out from this rebasing.
+- **EVM Compatibility:** Sepolia supports all Ethereum Virtual Machine (EVM) compatible codebases, enabling seamless testing and deployment of smart contracts and decentralized applications (dApps).
 
-- **L1 Staking:** sepolia only became possible following Ethereum's Shanghai upgrade. ETH yield from L1 staking, initially Lido, is automatically transferred to users via rebasing ETH on the L2. In the future, the sepolia community will have the power to supplement, or even fully replace, Lido with sepolia-native solutions or other third-party protocols.
+- **Cost-Effective Testing:** Transactions on Sepolia are conducted using test ETH, which has no real-world value, allowing developers to experiment and troubleshoot without incurring any costs.
 
-- **T-Bill Yield:** Users who bridge stablecoins receive USDB, sepolia's auto-rebasing stablecoin. The yield for USDB comes from MakerDAO's on-chain T-Bill protocol. USDB can be redeemed for DAI when bridging back to Ethereum. In the future, the sepolia community will have the power to supplement, or even fully replace, MakerDAO with sepolia-native solutions or other third-party protocols.
+- **Stability and Reliability:** Sepolia is maintained to ensure a stable and reliable test environment, providing developers with confidence that their applications will perform as expected on the mainnet.
 
-- **Gas Revenue Sharing:** Other L2s keep revenue from gas fees for themselves. sepolia gives net gas revenue back to Dapps programmatically. Dapps developers can keep this revenue for themselves or use it to subsidize gas fees for users.
+- **Community Support:** Sepolia is backed by a robust community of developers and enthusiasts who contribute to its maintenance and improvement, ensuring it remains a valuable resource for the Ethereum ecosystem.
 
 <CardGroup cols={1}>
-  <Card title="sepolia documentation" icon="link" href="https://docs.sepolia.io/">
-    Explore comprehensive documentation on sepolia, detailing its architecture, protocol, and resources for developers.
+  <Card title="Sepolia documentation" icon="link" href="https://sepolia.org/docs">
+    Explore comprehensive documentation on Sepolia, detailing its architecture, protocol, and resources for developers.
   </Card>
 </CardGroup>
 
@@ -29,13 +29,13 @@ sepolia is a Ethereum Layer 2 (L2) that natively provides yield for ETH and stab
 
 <CardGroup cols={2}>
   <Card title="Logs" icon="bolt" href="./raw/logs">
-    Detailed event logs from smart contracts, providing insights into interactions within the sepolia network.
+    Detailed event logs from smart contracts, providing insights into interactions within the Sepolia network.
   </Card>
   <Card title="Blocks" icon="cubes" href="./raw/blocks">
-    Information on blocks, illustrating the operational capacity and activity levels on sepolia.
+    Information on blocks, illustrating the operational capacity and activity levels on Sepolia.
   </Card>
   <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
-    Extensive transaction data, showcasing the efficiency and execution of operations on sepolia.
+    Extensive transaction data, showcasing the efficiency and execution of operations on Sepolia.
   </Card>
   <Card title="Decoded" icon="file" href="./decoded/overview">
     Enhanced transaction data decoded for better analysis and understanding of contract executions.
