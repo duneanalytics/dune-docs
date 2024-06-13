@@ -433,7 +433,15 @@ SELECT 0xabcdefabcdef as varbinary_data,
 ```
 
 
+#### keccak()
 
+**``keccak(varbinary)``** → varbinary
+
+Returns the Keccak-256 hash of `varbinary`.
+
+```sql
+    SELECT keccak(to_utf8('Transfer(address,address,uint256)')) --0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
+```
 
 
 
