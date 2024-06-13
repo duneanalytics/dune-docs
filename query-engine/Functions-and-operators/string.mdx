@@ -243,6 +243,16 @@ Returns the stem of `word` in the `lang` language.
 
 ## Unicode functions
 
+#### keccak()
+
+**``keccak(varbinary)``** → varbinary
+
+Returns the Keccak-256 hash of `varbinary`.
+
+```sql
+    SELECT keccak(to_utf8('Transfer(address,address,uint256)')) --0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
+```
+
 #### normalize()
 **``normalize(string)``** → varchar
 
@@ -265,6 +275,11 @@ Transforms `string` with the specified normalization form. `form` must be one of
 **``to_utf8(string)``** → varbinary
 
 Encodes `string` into a UTF-8 varbinary representation.
+
+```sql 
+    SELECT to_utf8('Hello, world!'); -- 0x48656C6C6F2C20776F726C6421
+    Select keccak(to_utf8('Transfer(address,address,uint256)')) --0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef 
+```
 
 #### from_utf8()
 **``from_utf8(binary)``** → varchar

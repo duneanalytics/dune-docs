@@ -132,7 +132,7 @@ In this case, they map out like this:
 
 | raw data field | decoded data description                       | raw data                                                           | decoded data                                                                  |
 | -------------- | ---------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| topic0         | keccak256("Transfer(address,address,uint256)") | 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef | not needed, this table only contains event logs from the `transfer` event log |
+| topic0         | keccak('Transfer(address,address,uint256'')) | 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef | not needed, this table only contains event logs from the `transfer` event log |
 | topic1         | from                                           | 0x00000000000000000000000075e89d5979e4f6fba9f97c104c2f0afb3f1dcb88 | 0x75e89d5979e4f6fba9f97c104c2f0afb3f1dcb88                                    |
 | topic2         | to                                             | 0x00000000000000000000000087d9da48db6e1f925cb67d3b7d2a292846c24cf7 | 0x87d9da48db6e1f925cb67d3b7d2a292846c24cf7                                    |
 | data           | value                                          | 0x00000000000000000000000000000000000000000000001a894d51f85cb08000 | 489509000000000000000                                                         |
