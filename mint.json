@@ -1309,15 +1309,6 @@
       "group": "Data Management Endpoints",
       "pages": [
         {
-          "group": "Blockchains",
-          "pages": [
-            "api-reference/tables/blockchain/overview",
-            "api-reference/tables/blockchain/insert",
-            "api-reference/tables/blockchain/clear",
-            "api-reference/tables/blockchain/delete"
-          ]
-        },
-        {
           "group": "Tables",
           "pages": [
             "api-reference/tables/endpoint/overview",
@@ -1394,6 +1385,16 @@
         "datashare/datashare",
         "datashare/datashare-trial",
         "datashare/datashare-faqs"
+      ]
+    },
+    {
+      "group": "Catalyst",
+      "pages": [
+        "catalyst/overview",
+        {
+          "group": "endpoints",
+          "pages": ["catalyst/insert", "catalyst/clear", "catalyst/delete"]
+        }
       ]
     }
   ],
