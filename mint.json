@@ -48,6 +48,10 @@
     {
       "name": "Datashare",
       "url": "datashare"
+    },
+    {
+      "name": "Catalyst",
+      "url": "catalyst"
     }
   ],
   "navigation": [
@@ -1380,7 +1384,7 @@
       ]
     },
     {
-      "group": "Datashare",
+      "group": "",
       "pages": [
         "datashare/datashare",
         "datashare/datashare-trial",
@@ -1391,12 +1395,16 @@
       "group": "catalyst",
       "pages": [
         "catalyst/overview",
+        "catalyst/fully-managed",
         {
-          "group": "endpoints",
+          "group": "Hosted",
+          "icon": "cloud-arrow-up",
           "pages": [
-          "catalyst/insert", 
-          "catalyst/clear", 
-          "catalyst/delete"]
+            "catalyst/hosted/overview",
+            "catalyst/hosted/insert",
+            "catalyst/hosted/clear",
+            "catalyst/hosted/delete"
+          ]
         }
       ]
     }
@@ -1408,7 +1416,7 @@
   "footerSocials": {
     "linkedin": "https://www.linkedin.com/company/duneanalytics",
     "github": "https://github.com/duneanalytics",
-    "twitter": "https://twitter.com/duneanalytics",
+    "twitter": "https://x.com/duneanalytics",
     "discord": "https://discord.gg/ErrzwBz",
     "telegram": "https://t.me/dune_updates",
     "youtube": "https://www.youtube.com/@dunecom"
