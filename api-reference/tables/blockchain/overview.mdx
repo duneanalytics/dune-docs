@@ -1,13 +1,18 @@
 ---
-title: 'Hosted Blockchain Integration'
+title: 'Dune Catalyst Overview'
+icon: "database"
+iconType: "thin"
+sidebarTitle: "Overview"
+description: Quickly take control of your blockchain data using our Hosted solution, seamlessly integrating with Dune's robust infrastructure.
 ---
 
-Blockchain integrations on Dune are offered through two options: **"Fully Managed"** and **"Hosted"**. While the **"Fully Managed"** service involves comprehensive management by Dune, the **"Hosted"** option allows blockchain teams to upload their blockchain data using dedicated blockchain endpoints.
+The **Hosted** option allows blockchain teams to upload their blockchain data using dedicated blockchain endpoints.
 
-<Info>  
-Access to these dedicated endpoints is exclusive to the **enterprise plan**. For more information, [contact our integrations team](https://dune.com/enterprise).
-</Info>
+## Key Features
 
+
+- **Self-Serve Flexibility**: Publish and manage your data independently, supported by Dune's robust infrastructure.
+- **Quick to Market**: Accelerate your go-to-market strategy by cutting down on turnaround time.
 
 ## Endpoints
 
@@ -17,7 +22,7 @@ Access to these dedicated endpoints is exclusive to the **enterprise plan**. For
     icon="upload"
     href="./insert"
   >
-    This endpoint facilitates upload of raw blockchain data to content specific tables (`blocks`, `transactions`, `logs`, `traces`) with predefined schemas.
+    This endpoint facilitates the upload of raw blockchain data to content-specific tables (`blocks`, `transactions`, `logs`, `traces`) with predefined schemas.
   </Card>
   <Card
     title="Clear Endpoint"
@@ -31,13 +36,23 @@ Access to these dedicated endpoints is exclusive to the **enterprise plan**. For
     icon="bullseye-pointer"
     href="./delete"
   >
-    This endpoint will enable targeted deletion within a table, providing more granularity than the `Clear` endpoint.
+    This endpoint enables targeted deletion within a table, providing more granularity than the `Clear` endpoint.
   </Card>
 </CardGroup>
 
+<CardGroup cols={1}>
+  <Card
+    title="Get Started"
+    icon="phone"
+    href="https://dune.com/enterprise"
+  >
+    Ready to streamline your blockchain data integration? Contact our partnership team today to learn more about our Hosted Blockchain service.
+  </Card>
+</CardGroup>
 
-## Limitations 
+## Limitations
 
-    - Currently, these endpoints only support EVM-compatible chains.
-    - These endpoints are optimized for micro-batch uploads, featuring sub-second processing times and supporting a maximum batch size of approximately 1.2GB — ideal for chains with block times of 1-2 seconds.
-
+- Currently, these endpoints only support EVM-compatible chains.
+- These endpoints are optimized for micro-batch uploads, featuring sub-second processing times and supporting a maximum batch size of approximately 1.2GB — ideal for chains with block times of 1-2 seconds.
+- currently hosted chains don't have access to decoded tables
+- hosted chains cannot be used in spellbook
