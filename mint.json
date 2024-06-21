@@ -1388,12 +1388,15 @@
       ]
     },
     {
-      "group": "Catalyst",
+      "group": "catalyst",
       "pages": [
         "catalyst/overview",
         {
           "group": "endpoints",
-          "pages": ["catalyst/insert", "catalyst/clear", "catalyst/delete"]
+          "pages": [
+          "catalyst/insert", 
+          "catalyst/clear", 
+          "catalyst/delete"]
         }
       ]
     }
