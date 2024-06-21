@@ -1392,13 +1392,14 @@
       ]
     },
     {
-      "group": "catalyst",
+      "group": "",
       "pages": [
         "catalyst/overview",
         "catalyst/fully-managed",
         {
           "group": "Hosted",
-          "icon": "cloud-arrow-up",
+          "icon": "database",
+          "iconType": "thin",
           "pages": [
             "catalyst/hosted/overview",
             "catalyst/hosted/insert",

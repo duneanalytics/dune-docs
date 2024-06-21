@@ -1,46 +1,31 @@
 ---
-title: 'Dune Catalyst Overview'
+title: 'Fully Managed Blockchain Integration'
 icon: "database"
+iconType: "sharp-regular"
 sidebarTitle: "Fully Managed"
-description: Dune Catalyst is a blockchain data ingestion service that allows you to easily ingest blockchain data into Dune.
+description: Bring your chain to the largest crypto data community.
 ---
 
-Blockchain integrations on Dune are offered through two options: **"Fully Managed"** and **"Hosted"**. While the **"Fully Managed"** service involves comprehensive management by Dune, the **"Hosted"** option allows blockchain teams to upload their blockchain data using dedicated blockchain endpoints.
+Experience the ultimate convenience with Dune's **Fully Managed Blockchain** service. Our white-glove approach ensures that all aspects of your blockchain data integration are handled by our expert team. All you need are working RPC nodes, and we'll take care of the rest.
 
-<Info>  
-Access to these dedicated endpoints is exclusive to the **enterprise plan**. For more information, [contact our integrations team](https://dune.com/enterprise).
-</Info>
+## Key Features
 
+- **Comprehensive Management**: Our team handles everything from data setup to continuous management, ensuring your data is always accurate, up-to-date, and secure.
+- **White-Glove Service**: Enjoy end-to-end support with our hands-on approach, from initial setup to ongoing maintenance.
+- **Fully Decoded and Curated Datasets**: Gain access to fully decoded and curated datasets, enhancing your data analysis and insights.
 
-## Endpoints
+## Benefits
+
+- **Ease of Use**: With our team managing your data, you can concentrate on leveraging insights rather than handling technical details.
+- **High-Quality Data**: Access meticulously curated datasets that enhance your blockchain analysis.
+- **Scalability**: Our infrastructure supports your growth, ensuring seamless scaling as your data needs expand.
 
 <CardGroup cols={1}>
   <Card
-    title="Insert Endpoint"
-    icon="upload"
-    href="./insert"
+    title="Get Started"
+    icon="phone"
+    href="https://dune.com/enterprise"
   >
-    This endpoint facilitates upload of raw blockchain data to content specific tables (`blocks`, `transactions`, `logs`, `traces`) with predefined schemas.
-  </Card>
-  <Card
-    title="Clear Endpoint"
-    icon="trash"
-    href="./clear"
-  >
-    This endpoint allows for the removal of all data within a blockchain table.
-  </Card>
-  <Card
-    title="Delete Endpoint"
-    icon="bullseye-pointer"
-    href="./delete"
-  >
-    This endpoint will enable targeted deletion within a table, providing more granularity than the `Clear` endpoint.
+    Ready to streamline your blockchain data integration? Contact our partnership team today to learn more about our Fully Managed Blockchain service.
   </Card>
 </CardGroup>
-
-
-## Limitations 
-
-    - Currently, these endpoints only support EVM-compatible chains.
-    - These endpoints are optimized for micro-batch uploads, featuring sub-second processing times and supporting a maximum batch size of approximately 1.2GB — ideal for chains with block times of 1-2 seconds.
-
