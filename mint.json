@@ -48,6 +48,10 @@
     {
       "name": "Datashare",
       "url": "datashare"
+    },
+    {
+      "name": "Blockchain Integrations",
+      "url": "catalyst"
     }
   ],
   "navigation": [
@@ -1389,11 +1393,29 @@
       ]
     },
     {
-      "group": "Datashare",
+      "group": "",
       "pages": [
         "datashare/datashare",
         "datashare/datashare-trial",
         "datashare/datashare-faqs"
+      ]
+    },
+    {
+      "group": "",
+      "pages": [
+        "catalyst/overview",
+        "catalyst/fully-managed",
+        {
+          "group": "Hosted",
+          "icon": "database",
+          "iconType": "thin",
+          "pages": [
+            "catalyst/hosted/overview",
+            "catalyst/hosted/insert",
+            "catalyst/hosted/clear",
+            "catalyst/hosted/delete"
+          ]
+        }
       ]
     }
   ],
@@ -1404,7 +1426,7 @@
   "footerSocials": {
     "linkedin": "https://www.linkedin.com/company/duneanalytics",
     "github": "https://github.com/duneanalytics",
-    "twitter": "https://twitter.com/duneanalytics",
+    "twitter": "https://x.com/duneanalytics",
     "discord": "https://discord.gg/ErrzwBz",
     "telegram": "https://t.me/dune_updates",
     "youtube": "https://www.youtube.com/@dunecom"
