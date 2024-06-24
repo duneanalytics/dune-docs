@@ -182,12 +182,78 @@
       ]
     },
     {
+      "group": "Curated Data",
+      "pages": [
+        "data-catalog/curated/overview",
+        {
+          "group": "DEX",
+          "icon": "arrow-right-arrow-left",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/curated/DEX/dex-trades",
+            "data-catalog/curated/DEX/dex-aggregator-trades"
+          ]
+        },
+        {
+          "group": "NFT",
+          "icon": "monkey",
+          "pages": ["data-catalog/curated/NFT/nft-trades"]
+        },
+        "data-catalog/curated/prices",
+        {
+          "group": "Labels",
+          "icon": "tag",
+          "pages": [
+            "data-catalog/curated/labels/overview",
+            {
+              "group": "Owner Labels",
+              "icon": "tag",
+              "pages": [
+                "data-catalog/curated/labels/owners/overview",
+                "data-catalog/curated/labels/owners/owner-addresses",
+                "data-catalog/curated/labels/owners/owner-details",
+                {
+                  "group": "Labeled Asset Flows",
+                  "icon": "right-left",
+                  "pages": [
+                    "data-catalog/curated/labels/owners/value-flows/transfer-summary",
+                    "data-catalog/curated/labels/owners/value-flows/counterparty-summary",
+                    "data-catalog/curated/labels/owners/value-flows/transfer-summary-daily"
+                  ]
+                },
+                "data-catalog/curated/labels/owners/audit"
+              ]
+            },
+            "data-catalog/curated/labels/ens-labels",
+            "data-catalog/curated/labels/address-labels"
+          ]
+        },
+        {
+          "group": "Tokens",
+          "icon": "coins",
+          "pages": [
+            "data-catalog/curated/tokens/overview",
+            "data-catalog/curated/tokens/balances",
+            {
+              "group": "Transfers",
+              "pages": [
+                "data-catalog/curated/tokens/transfers/erc20-transfers",
+                "data-catalog/curated/tokens/transfers/erc721-transfers",
+                "data-catalog/curated/tokens/transfers/erc1155-transfers"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "group": "EVM Networks",
       "pages": [
         "data-catalog/evm/overview",
         {
           "group": "Arbitrum",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/arbitrum/overview",
             {
@@ -233,7 +299,8 @@
         },
         {
           "group": "Avalanche",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/avalanche/overview",
             {
@@ -279,7 +346,8 @@
         },
         {
           "group": "Base",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/base/overview",
             {
@@ -323,7 +391,8 @@
         },
         {
           "group": "Blast",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/blast/overview",
             {
@@ -369,7 +438,8 @@
         },
         {
           "group": "BNB",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/bnb/overview",
             {
@@ -413,7 +483,8 @@
         },
         {
           "group": "Celo",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/celo/overview",
             {
@@ -457,15 +528,14 @@
         },
         {
           "group": "Degen",
-          "icon": "file-import",
-          "iconType": "solid",
+          "icon": "database",
+          "iconType": "regular",
           "pages": [
             "data-catalog/evm/degen/overview",
             {
               "group": "Raw",
               "pages": [
                 "data-catalog/evm/degen/raw/blocks",
-                "data-catalog/evm/degen/raw/creation-traces",
                 "data-catalog/evm/degen/raw/logs",
                 "data-catalog/evm/degen/raw/transactions",
                 "data-catalog/evm/degen/raw/traces"
@@ -475,7 +545,8 @@
         },
         {
           "group": "Ethereum",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/ethereum/overview",
             {
@@ -522,7 +593,8 @@
         },
         {
           "group": "Fantom",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/fantom/overview",
             {
@@ -568,7 +640,8 @@
         },
         {
           "group": "Gnosis",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/gnosis/overview",
             {
@@ -614,7 +687,8 @@
         },
         {
           "group": "Linea",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/linea/overview",
             {
@@ -660,7 +734,8 @@
         },
         {
           "group": "Mantle",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/mantle/overview",
             {
@@ -706,15 +781,14 @@
         },
         {
           "group": "Mode",
-          "icon": "file-import",
-          "iconType": "solid",
+          "icon": "database",
+          "iconType": "regular",
           "pages": [
             "data-catalog/evm/mode/overview",
             {
               "group": "Raw",
               "pages": [
                 "data-catalog/evm/mode/raw/blocks",
-                "data-catalog/evm/mode/raw/creation-traces",
                 "data-catalog/evm/mode/raw/logs",
                 "data-catalog/evm/mode/raw/transactions",
                 "data-catalog/evm/mode/raw/traces"
@@ -724,7 +798,8 @@
         },
         {
           "group": "Optimism",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/optimism/overview",
             {
@@ -770,7 +845,8 @@
         },
         {
           "group": "Polygon",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/polygon/overview",
             {
@@ -816,7 +892,8 @@
         },
         {
           "group": "Polygon-zkEVM",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/polygon-zkEVM/overview",
             {
@@ -862,7 +939,8 @@
         },
         {
           "group": "Scroll",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/scroll/overview",
             {
@@ -908,7 +986,8 @@
         },
         {
           "group": "Sepolia",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/sepolia/overview",
             {
@@ -936,7 +1015,8 @@
         },
         {
           "group": "zkSync",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/zksync/overview",
             {
@@ -982,7 +1062,8 @@
         },
         {
           "group": "Zora",
-          "icon": "file-check",
+          "icon": "database",
+          "iconType": "solid",
           "pages": [
             "data-catalog/evm/zora/overview",
             {
@@ -1032,6 +1113,8 @@
       "pages": [
         {
           "group": "Aptos",
+          "icon": "database",
+          "iconType": "solid",    
           "pages": [
             "data-catalog/aptos/overview",
             "data-catalog/aptos/blocks",
@@ -1046,6 +1129,8 @@
         },
         {
           "group": "Bitcoin",
+          "icon": "database",
+          "iconType": "solid",    
           "pages": [
             "data-catalog/bitcoin/overview",
             "data-catalog/bitcoin/blocks",
@@ -1056,6 +1141,8 @@
         },
         {
           "group": "Polkadot",
+          "icon": "database",
+          "iconType": "regular",
           "pages": [
             "data-catalog/substrate/overview",
             "data-catalog/substrate/balances",
@@ -1071,6 +1158,8 @@
         },
         {
           "group": "Solana",
+          "icon": "database",
+          "iconType": "solid",    
           "pages": [
             "data-catalog/solana/overview",
             "data-catalog/solana/account-activity",
@@ -1084,6 +1173,8 @@
         },
         {
           "group": "Tron",
+          "icon": "database",
+          "iconType": "solid",    
           "pages": [
             "data-catalog/tron/overview",
             {
@@ -1117,70 +1208,11 @@
       ]
     },
     {
-      "group": "Curated Data",
-      "pages": [
-        "data-catalog/curated/overview",
-        {
-          "group": "DEX",
-          "pages": [
-            "data-catalog/curated/DEX/dex-trades",
-            "data-catalog/curated/DEX/dex-aggregator-trades"
-          ]
-        },
-        {
-          "group": "NFT",
-          "pages": ["data-catalog/curated/NFT/nft-trades"]
-        },
-        "data-catalog/curated/prices",
-        {
-          "group": "Labels",
-          "pages": [
-            "data-catalog/curated/labels/overview",
-            {
-              "group": "Owner Labels",
-              "icon": "tag",
-              "pages": [
-                "data-catalog/curated/labels/owners/overview",
-                "data-catalog/curated/labels/owners/owner-addresses",
-                "data-catalog/curated/labels/owners/owner-details",
-                {
-                  "group": "Labeled Asset Flows",
-                  "icon": "right-left",
-                  "pages": [
-                    "data-catalog/curated/labels/owners/value-flows/transfer-summary",
-                    "data-catalog/curated/labels/owners/value-flows/counterparty-summary",
-                    "data-catalog/curated/labels/owners/value-flows/transfer-summary-daily"
-                  ]
-                },
-                "data-catalog/curated/labels/owners/audit"
-              ]
-            },
-            "data-catalog/curated/labels/ens-labels",
-            "data-catalog/curated/labels/address-labels"
-          ]
-        },
-        {
-          "group": "Tokens",
-          "pages": [
-            "data-catalog/curated/tokens/overview",
-            "data-catalog/curated/tokens/balances",
-            {
-              "group": "Transfers",
-              "pages": [
-                "data-catalog/curated/tokens/transfers/erc20-transfers",
-                "data-catalog/curated/tokens/transfers/erc721-transfers",
-                "data-catalog/curated/tokens/transfers/erc1155-transfers"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "group": "Community Data",
       "pages": [
         {
           "group": "Flashbots",
+          "icon" : "robot",
           "pages": [
             "data-catalog/community/flashbots/overview",
             "data-catalog/community/flashbots/mempool-dumpster"
@@ -1188,6 +1220,7 @@
         },
         {
           "group": "Farcaster",
+          "icon": "torii-gate",
           "pages": [
             "data-catalog/community/farcaster/overview",
             "data-catalog/community/farcaster/casts",
@@ -1205,10 +1238,12 @@
         },
         {
           "group": "GhostLogs",
+          "icon": "ghost",
           "pages": ["data-catalog/community/ghostlogs/overview"]
         },
         {
           "group": "Lens",
+          "icon": "cloud",
           "pages": [
             "data-catalog/community/lens/overview",
             "data-catalog/community/lens/namespace-handle",
@@ -1229,6 +1264,7 @@
         },
         {
           "group": "Reservoir",
+          "icon": "cube",
           "pages": [
             "data-catalog/community/reservoir/overview",
             "data-catalog/community/reservoir/ask-events",
@@ -1248,6 +1284,7 @@
         },
         {
           "group": "Snapshot",
+          "icon": "bolt",
           "pages": [
             "data-catalog/community/snapshot/overview",
             "data-catalog/community/snapshot/proposals",
@@ -1430,7 +1467,7 @@
         {
           "group": "Hosted",
           "icon": "database",
-          "iconType": "thin",
+          "iconType": "regular",
           "pages": [
             "catalyst/hosted/overview",
             "catalyst/hosted/insert",
