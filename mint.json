@@ -144,6 +144,7 @@
         "query-engine/Functions-and-operators/conversion",
         "query-engine/Functions-and-operators/datetime",
         "query-engine/Functions-and-operators/decimal",
+        "query-engine/Functions-and-operators/evm-decoding-functions",
         "query-engine/Functions-and-operators/hyperloglog",
         "query-engine/Functions-and-operators/json",
         "query-engine/Functions-and-operators/lambda",

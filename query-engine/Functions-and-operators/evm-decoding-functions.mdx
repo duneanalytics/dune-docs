@@ -1,0 +1,81 @@
+---
+title: EVM Decoding Functions
+description: Functions to decode raw EVM events and function calls in DuneSQL.
+---
+
+The EVM decoding functions enable users to decode raw EVM data (using the ABI) into human-readable tables within SQL queries, simplifying subsequent analysis. See the bebow example dashboard for an illustration.
+<CardGroup cols={1}>
+  <Card title="Example Dashboard" icon="chart-simple" href="https://dune.com/dune/evm-decoding-functions">
+    A dashboard with examples of EVM Decoding functions.
+  </Card>
+</CardGroup>
+
+## Functions
+
+### decode_evm_event()
+
+**`decode_evm_event(abi: varchar, input: table [, topics: descriptor [, data: descriptor [, null_on_error: boolean]]])`** → table
+
+Decodes EVM events according to the provided ABI; returns each decoded parameter as a separate column as defined in the inputs' name and type.
+
+#### Arguments
+
+- **`abi`** (required, type: varchar): This is the event specification in JSON format. The passed value must be constant at analysis time. Each input specified in the ABI results in one output column.
+- **`input`** (required, type: table): This is the table or query providing the topics and data for event decoding. The passed table or query must be preceded with the `TABLE` keyword.
+- **`topics`** (optional, type: descriptor, default: DESCRIPTOR(topic0, topic1, topic2, topic3)): Specifies which columns of the input contain the topics. Null topics are ignored by the function.
+- **`data`** (optional, type: descriptor, default: DESCRIPTOR(data)): Specifies which column of the input contains the data.
+- **`null_on_error`** (optional, type: boolean, default: true): Specifies the function behavior if a decoding error occurs. By default, the error is suppressed, and null values are produced.
+
+<Tip> 
+- For more info on what is an ABI, we recommend visiting [this resource](https://www.quicknode.com/guides/ethereum-development/smart-contracts/what-is-an-abi). 
+- If you are not a developer, generally the best way to find the ABI is by visiting a block explorer like Etherscan, input the contract address, and go to Contract --> Code --> Contract ABI and find the ABI for that specific event. 
+</Tip>
+
+#### Function Output
+
+The function produces one output column for each parameter defined in the ABI inputs. Column names are based on the parameter names in the ABI, or default to `_arg0`, `_arg1`, etc., if not named in the ABI. Columns are ordered by the `indexed` property in the ABI, with `indexed` inputs first.
+
+<Note> 
+Pass-through columns: In addition to decoded columns, the decode_evm_event function outputs all columns from the input table, i.e. the returned table will have one column for each ABI argument, followed by all columns of the INPUT table.
+</Note>
+
+#### Examples
+
+- [Basic Usage](https://dune.com/queries/3851471)
+
+```sql
+SELECT * 
+FROM TABLE (
+    decode_evm_event (
+      abi => '{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"buyer","type":"address"},{"indexed":true,"internalType":"address","name":"recipient","type":"address"},{"indexed":false,"internalType":"uint256[]","name":"tokensSoldIds","type":"uint256[]"},{"indexed":false,"internalType":"uint256[]","name":"tokensSoldAmounts","type":"uint256[]"},{"indexed":false,"internalType":"uint256[]","name":"currencyBoughtAmounts","type":"uint256[]"},{"indexed":false,"internalType":"address[]","name":"extraFeeRecipients","type":"address[]"},{"indexed":false,"internalType":"uint256[]","name":"extraFeeAmounts","type":"uint256[]"}],"name":"CurrencyPurchase","type":"event"}',
+      input => TABLE (
+        SELECT * 
+        FROM polygon.logs
+        WHERE topic0 = 0xb57378559821141c0e7ae964206b7523234d19e5783ade99b3d665eee495c997
+        LIMIT 20
+      )
+    )
+  )
+```
+
+- [Using Custom Topics and Data Columns](https://dune.com/queries/3861622)
+
+```sql
+SELECT * 
+FROM TABLE (
+    decode_evm_event (
+      abi => '{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"buyer","type":"address"},{"indexed":true,"internalType":"address","name":"recipient","type":"address"},{"indexed":false,"internalType":"uint256[]","name":"tokensSoldIds","type":"uint256[]"},{"indexed":false,"internalType":"uint256[]","name":"tokensSoldAmounts","type":"uint256[]"},{"indexed":false,"internalType":"uint256[]","name":"currencyBoughtAmounts","type":"uint256[]"},{"indexed":false,"internalType":"address[]","name":"extraFeeRecipients","type":"address[]"},{"indexed":false,"internalType":"uint256[]","name":"extraFeeAmounts","type":"uint256[]"}],"name":"CurrencyPurchase","type":"event"}',
+      input => TABLE (
+        SELECT topic0 as my_topic_0, topic1 as my_topic_1, topic2 as my_last_topic, data as my_data_column, * 
+        FROM polygon.logs
+        WHERE topic0 = 0xb57378559821141c0e7ae964206b7523234d19e5783ade99b3d665eee495c997
+        LIMIT 20
+      ),
+      topics => DESCRIPTOR(my_topic_0, my_topic_1, my_last_topic),
+      data => DESCRIPTOR(my_data_column),
+      null_on_error => false
+    )
+  )
+```
+
+
