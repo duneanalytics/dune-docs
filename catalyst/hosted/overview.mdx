@@ -27,6 +27,8 @@ The **Hosted** option allows blockchain teams to upload their blockchain data us
 
 ## Endpoints
 
+The endpoints are designed for micro-batch uploads, ensuring sub-second processing times. They support a maximum batch size of around 1.2GB, which is ideal for chains with block times between 1-2 seconds.
+
 <CardGroup cols={1}>
   <Card
     title="Insert Endpoint"
@@ -51,9 +53,12 @@ The **Hosted** option allows blockchain teams to upload their blockchain data us
   </Card>
 </CardGroup>
 
-## Limitations
+## Technical Details
 
-- Currently, these endpoints only support EVM-compatible chains.
-- These endpoints are optimized for micro-batch uploads, featuring sub-second processing times and supporting a maximum batch size of approximately 1.2GB — ideal for chains with block times of 1-2 seconds.
-- currently hosted chains don't have decoded tables
-- hosted chains cannot be used in spellbook
+- **Data Availability**: The data is stored on Dune's servers, ensuring high availability and reliability.
+- **Hosted Chains**: A hosted chain is not managed by Dune, but rather by the chain's team. This means that the team has full control over the data. Dune does not provide any guarantees or support for hosted chains. We do our best to monitor and ensure the data is up-to-date and accurate, but no guarantees can be made.
+- **EVM Compatibility**: Currently, the endpoints support only EVM-compatible chains.
+
+- **Lack of Decoded Tables**: Hosted chains currently do not have decoded tables, meaning analysts may need to manually decode certain data fields when querying.
+- **Spellbook Incompatibility**: Hosted chains cannot be used within Dune's Spellbook, thereby limiting some advanced querying and data manipulation capabilities.
+
