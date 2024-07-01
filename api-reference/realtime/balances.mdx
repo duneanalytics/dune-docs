@@ -6,11 +6,12 @@ openapi: 'GET /beta/balance/{address}'
 The Token Balances API provides accurate and fast real time balances of the native and ERC20 tokens of accounts on supported blockchains (EVM currently).
 
 <Note>
-  - As we are in beta there might be many changes. 
-  - Supply `?all_chains` to get native balances for a long tail of evm chains.
-  - Currently no spam filtering available 
-  - We are using CoinMarketCap for price information
-  - Token metadata, such as symbols and decimals, are fetched from Dune.
+  - These endpoints are authenticated with a normal Dune API key.
+  - As we are in beta there might be changes. Please reach out to realtimeAPI@dune.com if you use this API.
+  - Specify `?all_chains` to get native balances for a long tail of evm chains, where we don't support erc20 assets. See [chains endpoint](./chains).
+  - Specify `?filters=erc20` or `?filters=native` to get only erc20 tokens or native assets, respectively
+  - CoinMarketCap is used for price information
+  - Token metadata, such as symbols and decimals, are fetched from Dune's tokens.erc20 dataset which is curated by Dune users and DefinedFi
 </Note>
 
 ## Filter by blockchain
