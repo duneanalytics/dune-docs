@@ -483,6 +483,23 @@
           ]
         },
         {
+          "group": "BOB",
+          "icon": "database",
+          "iconType": "regular",
+          "pages": [
+            "data-catalog/evm/bob/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/bob/raw/blocks",
+                "data-catalog/evm/bob/raw/logs",
+                "data-catalog/evm/bob/raw/transactions",
+                "data-catalog/evm/bob/raw/traces"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Celo",
           "icon": "database",
           "iconType": "solid",
