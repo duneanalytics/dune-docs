@@ -16,7 +16,7 @@ openapi: 'GET /v1/eigenlayer/operator-stats'
 | ------------------------- | --------------------------------------------------- | ---------- |
 | operator_name             | Name of the operator                                | string    |
 | operator_contract_address | Ethereum contract address of the operator           | string  |
-| total_TVL                 | Total value locked in the operator across all strategies     | double     |
+| total_TVL                 | Total value locked in the operator across all strategies (except for EIGEN token)  | double     |
 | num_stakers               | Number of stakers currently staking to the operator   | double     |
 | cbETH_TVL                 | Total value locked in cbETH strategy in the operator         | double     |
 | stETH_TVL                 | Total value locked in stETH strategy in the operator         | double     |
@@ -31,3 +31,4 @@ openapi: 'GET /v1/eigenlayer/operator-stats'
 | lsETH_TVL                 | Total value locked in lsETH strategy in the operator         | double     |
 | mETH_TVL                  | Total value locked in mETH strategy in the operator          | double     |
 | beacon_chain_ETH_TVL      | Total value locked in Beacon Chain ETH strategy in the operator | double  |
+| EIGEN_TVL                 | Total value locked in EIGEN strategy in the AVS      | double     |
