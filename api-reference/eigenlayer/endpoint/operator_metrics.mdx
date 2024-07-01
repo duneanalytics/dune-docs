@@ -12,22 +12,25 @@ openapi: 'GET /v1/eigenlayer/operator-stats'
 
 # Column Descriptions
 
-| Column                    | Description                                         | Type       |
-| ------------------------- | --------------------------------------------------- | ---------- |
-| operator_name             | Name of the operator                                | string    |
-| operator_contract_address | Ethereum contract address of the operator           | string  |
-| total_TVL                 | Total value locked in the operator across all strategies     | double     |
-| num_stakers               | Number of stakers currently staking to the operator   | double     |
-| cbETH_TVL                 | Total value locked in cbETH strategy in the operator         | double     |
-| stETH_TVL                 | Total value locked in stETH strategy in the operator         | double     |
-| rETH_TVL                  | Total value locked in rETH strategy in the operator          | double     |
-| ETHx_TVL                  | Total value locked in ETHx strategy in the operator          | double     |
-| ankrETH_TVL               | Total value locked in ankrETH strategy in the operator       | double     |
-| OETH_TVL                  | Total value locked in OETH strategy in the operator          | double     |
-| osETH_TVL                 | Total value locked in osETH strategy in the operator         | double     |
-| swETH_TVL                 | Total value locked in swETH strategy in the operator         | double     |
-| wBETH_TVL                 | Total value locked in wBETH strategy in the operator         | double     |
-| sfrxETH_TVL               | Total value locked in sfrxETH strategy in the operator       | double     |
-| lsETH_TVL                 | Total value locked in lsETH strategy in the operator         | double     |
-| mETH_TVL                  | Total value locked in mETH strategy in the operator          | double     |
-| beacon_chain_ETH_TVL      | Total value locked in Beacon Chain ETH strategy in the operator | double  |
+| Column                    | Description                                                         | Type       |
+| ------------------------- | ------------------------------------------------------------------- | ---------- |
+| avs_name                  | Name of the Actively Validated Service (AVS)                        | string     |
+| avs_contract_address      | Ethereum contract address of the AVS                                | string     |
+| num_operators             | Number of operators resgistered to the AVS   | integer    |
+| total_TVL                 | Total value locked across all strategies (except for EIGEN token) in the AVS             | double     |
+| num_stakers               | Number of stakers currently staking to the AVS (via operators)                  | integer    |
+| cbETH_TVL                 | Total value locked in cbETH strategy in the AVS                 | double     |
+| stETH_TVL                 | Total value locked in stETH strategy in the AVS                 | double     |
+| rETH_TVL                  | Total value locked in rETH strategy in the AVS                  | double     |
+| ETHx_TVL                  | Total value locked in ETHx strategy in the AVS                  | double     |
+| ankrETH_TVL               | Total value locked in ankrETH strategy in the AVS               | double     |
+| OETH_TVL                  | Total value locked in OETH strategy in the AVS                  | double     |
+| osETH_TVL                 | Total value locked in osETH strategy in the AVS                 | double     |
+| swETH_TVL                 | Total value locked in swETH strategy in the AVS                 | double     |
+| wBETH_TVL                 | Total value locked in wBETH strategy in the AVS                 | double     |
+| sfrxETH_TVL               | Total value locked in sfrxETH strategy in the AVS               | double     |
+| lsETH_TVL                 | Total value locked in lsETH strategy in the AVS                 | double     |
+| mETH_TVL                  | Total value locked in mETH strategy in the AVS                  | double     |
+| beacon_chain_ETH_TVL      | Total value locked in Beacon Chain ETH strategy in the AVS      | double     |
+| EIGEN_TVL                 | Total value locked in EIGEN strategy in the AVS      | double     |
+
