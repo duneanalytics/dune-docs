@@ -15,9 +15,7 @@
       "get": {
         "summary": "Get ERC20 or native balance for a given address",
         "operationId": "getAccountBalances",
-        "tags": [
-          "Wallet"
-        ],
+        "tags": ["Wallet"],
         "parameters": [
           {
             "in": "header",
@@ -114,7 +112,6 @@
                           "amount": "27000000000000000000000000000"
                         }
                       ]
-
                     }
                   }
                 }
@@ -137,9 +134,7 @@
       "get": {
         "summary": "Get list of supported blockchains",
         "operationId": "getBlockchains",
-        "tags": [
-          "chains"
-        ],
+        "tags": ["chains"],
         "parameters": [
           {
             "in": "header",
@@ -164,35 +159,91 @@
                       {
                         "name": "arbitrum",
                         "id": 42161
-                    },
-                    {
+                      },
+                      {
                         "name": "avalanche_c",
                         "id": 43114
-                    },
-                    {
+                      },
+                      {
                         "name": "base",
                         "id": 8453
-                    },
-                    {
+                      },
+                      {
                         "name": "bnb",
                         "id": 56
-                    },
-                    {
+                      },
+                      {
                         "name": "ethereum",
                         "id": 1
-                    },
-                    {
+                      },
+                      {
                         "name": "polygon",
                         "id": 137
-                    },
-                    {
+                      },
+                      {
                         "name": "optimism",
                         "id": 10
-                    },
-                    {
+                      },
+                      {
+                        "name": "scroll",
+                        "id": 534352
+                      },
+                      {
                         "name": "celo",
                         "id": 42220
-                    }
+                      },
+                      {
+                        "name": "redstone",
+                        "id": 690
+                      },
+                      {
+                        "name": "mode",
+                        "id": 34443
+                      },
+                      {
+                        "name": "arbitrum_nova",
+                        "id": 42170
+                      },
+                      {
+                        "name": "linea",
+                        "id": 59144
+                      },
+                      {
+                        "name": "bob",
+                        "id": 60808
+                      },
+                      {
+                        "name": "blast",
+                        "id": 81457
+                      },
+                      {
+                        "name": "zora",
+                        "id": 7777777
+                      },
+                      {
+                        "name": "degen",
+                        "id": 666666666
+                      },
+                      {
+                        "name": "ancient8",
+                        "id": 888888888
+                      },
+                      {
+                        "name": "rari",
+                        "id": 1380012617
+                      },
+                      {
+                        "name": "gnosis",
+                        "id": 100
+                      },
+                      {
+                        "name": "zkevm",
+                        "id": 1101
+                      },
+                      {
+                        "name": "zksync",
+                        "id": 324
+                      }
                     ]
                   }
                 }
