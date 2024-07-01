@@ -1,25 +1,52 @@
 ---
-title: bob Overview
-icon: "star"
+title: BOB Overview
 sidebarTitle: "Overview"
-description: bob data on Dune
+icon: "star"
+description: BOB data on Dune
 ---
 
 import {HostedInfo} from '/snippets/hosted-info.mdx'; 
 
-<HostedInfo Blockchain="bob" />
+<HostedInfo Blockchain="BOB" />
 
-<Warning>
- Traces for this network are currently not available. We are working on it.
-</Warning>
-  
+## What is BOB?
 
-#### New overview here 
+BOB ("Build on Bitcoin") is a first-of-its-kind hybrid Layer-2 powered by Bitcoin and Ethereum. It combines the security, liquidity, and userbase of Bitcoin with the innovation capabilities of Ethereum's EVM. BOB aims to become the most secure and accessible Layer-2 for developers and users.
+
+### Why Hybrid L2?
+
+BOB leverages Bitcoin’s robustness and Ethereum’s smart contract capabilities to bridge the gap between mass adoption and innovation. It allows developers to build dapps on a network with the highest security and user base while providing Bitcoin users access to Ethereum's innovative ecosystem without leaving the Bitcoin network.
+
+### BOB Architecture
+
+#### BOB Stack 
+
+<Frame>
+  <img src="/images/bob-stack.png" />
+</Frame>
+
+**Rollup Layer**: Utilizing Bitcoin’s PoW security and native Ethereum bridge, BOB initially launches on the OP stack, aiming to settle directly on Bitcoin L1 using merged mining and optimistic rollup mechanisms.
+
+**EVM Core**: At its core, BOB leverages Ethereum's EVM, supporting Solidity smart contracts, existing developer tooling, wallets, and infrastructure components like block explorers and data analytics tools.
+
+**Rust zkVM**: Supporting Bitcoin’s Rust libraries through RISC Zero zkVM, enabling off-chain execution of Rust programs with ZK proofs verified in EVM smart contracts. This paves the way for future ZK rollups on Bitcoin.
+
+**Bitcoin Bridges**: BOB provides trustless access to Bitcoin block and transactional data via a BTC light client, supporting a range of decentralized and institutional Bitcoin bridges for seamless interaction with Ethereum assets.
+
+**BOB SDK**: A comprehensive toolkit for developers building on Bitcoin, offering Solidity contracts to interact with Bitcoin assets, improved APIs, and tools for a unified BTC and EVM wallet experience.
+
+#### BOB Rollup Design
+
+BOB’s hybrid L2 design will be launched in multiple stages: 
+
+- **Phase 1 ("Launch")**: Bootstrapping as an ETH rollup.
+- **Phase 2**: Bitcoin PoW security and economic alignment through merged mining.
+- **Phase 3**: Hybrid L2 with settlement on Bitcoin and Ethereum, leveraging BitVM for security.
 
 
 <CardGroup cols={1}>
-  <Card title="bob website" icon="link" href="https://https://www.bob.tips/">
-    The official website of bob, providing information on the project, team, and community.
+  <Card title="BOB documentation" icon="link" href="https://docs.gobob.xyz/docs/learn/introduction/stack">
+    Explore comprehensive documentation on BOB, detailing its architecture, protocol, and resources for developers.
   </Card>
 </CardGroup>
 
@@ -27,12 +54,20 @@ import {HostedInfo} from '/snippets/hosted-info.mdx';
 
 <CardGroup cols={2}>
   <Card title="Logs" icon="bolt" href="./raw/logs">
-    Detailed event logs from smart contracts, providing insights into interactions within the bob network.
+    Detailed event logs from smart contracts, providing insights into interactions within the BOB network.
   </Card>
   <Card title="Blocks" icon="cubes" href="./raw/blocks">
-    Information on blocks, illustrating the operational capacity and activity levels on bob.
+    Information on blocks, illustrating the operational capacity and activity levels on BOB.
   </Card>
   <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
-    Extensive transaction data, showcasing the efficiency and execution of operations on bob.
+    Extensive transaction data, showcasing the efficiency and execution of operations on BOB.
+  </Card>
+  <Card title="Traces" icon="file" href="./raw/traces">
+    Enhanced transaction data, including internal transactions invoked by top level transactions.
   </Card>
 </CardGroup>
+
+<Tip>
+While the white-gloved [decoded data](../ethereum/decoded/overview) is not avaialble for Hosted chains, you can decode the raw data by using decoding UDF directly in SQL. 
+Visit [this page](../../../query-engine/Functions-and-operators/evm-decoding-functions) to learn how.
+</Tip>

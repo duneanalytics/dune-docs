@@ -7,7 +7,7 @@ export const LogsSnippet = ({ blockchain }) => (
         <li>topic list: a list of 0 to 4 32-byte data topics. <code>Topic0</code> is the hash of the signature of the event (indexed), and the remaining topics are indexed parameters of the event.</li>
         <li>data: contains non-indexed data.</li>
       </ul>
-      This is the raw version of this table, for decoded event logs, see the This is the raw version of this table, for decoded event logs, see the <a href={`/data-catalog/evm/${blockchain}/decoded/event-logs`}>decoded logs</a> section.
+      This is the raw version of this table. If the chain is a <a href={`catalyst/fully-managed`}>Fully Managed</a> chain, decoded event logs will be available, see the <a href={`/data-catalog/evm/${blockchain}/decoded/event-logs`}>decoded logs</a> section. If this is a <a href={`/catalyst/hosted/overview`}>Hosted</a> chain, see <a href={`query-engine/Functions-and-operators/evm-decoding-functions`}> this page to decode logs via DuneSQL ad-hoc.</a>
     </p>
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema={blockchain} tableName="logs" />
