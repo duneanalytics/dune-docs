@@ -19,17 +19,44 @@ The EVM decoding functions enable users to decode raw EVM data (using the ABI) i
 Decodes EVM events according to the provided ABI; returns each decoded parameter as a separate column as defined in the inputs' name and type.
 
 #### Arguments
-
 - **`abi`** (required, type: varchar): This is the event specification in JSON format. The passed value must be constant at analysis time. Each input specified in the ABI results in one output column.
 - **`input`** (required, type: table): This is the table or query providing the topics and data for event decoding. The passed table or query must be preceded with the `TABLE` keyword.
 - **`topics`** (optional, type: descriptor, default: DESCRIPTOR(topic0, topic1, topic2, topic3)): Specifies which columns of the input contain the topics. Null topics are ignored by the function.
 - **`data`** (optional, type: descriptor, default: DESCRIPTOR(data)): Specifies which column of the input contains the data.
 - **`null_on_error`** (optional, type: boolean, default: true): Specifies the function behavior if a decoding error occurs. By default, the error is suppressed, and null values are produced.
 
+#### Tips on finding event
 <Tip> 
+- ABI inputted should be for only that event, not for the entire contract. 
 - For more info on what is an ABI, we recommend visiting [this resource](https://www.quicknode.com/guides/ethereum-development/smart-contracts/what-is-an-abi). 
 - If you are not a developer, generally the best way to find the ABI is by visiting a block explorer like Etherscan, input the contract address, and go to Contract --> Code --> Contract ABI and find the ABI for that specific event. 
 </Tip>
+  <div
+    style={{
+      position: "relative",
+      paddingBottom: "75%", 
+      height: 0,
+      width: "100%",
+    }}
+  >
+    <iframe
+      src="https://demo.arcade.software/L29oYm4b7H6OThEtvWFn?embed"
+      title="Parameter demo"
+      frameBorder={0}
+      loading="lazy"
+      webkitallowfullscreen=""
+      mozallowfullscreen=""
+      allowFullScreen=""
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
+    />
+  </div>
+
 
 #### Function Output
 
