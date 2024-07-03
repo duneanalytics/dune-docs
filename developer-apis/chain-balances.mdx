@@ -1,0 +1,39 @@
+---
+title: 'Chain Token Balances (Beta)'
+openapi: 'GET /beta/balance/{chain}/{address}'
+---
+
+The Token Balances API provides accurate and fast real time balances of the native and ERC20 tokens of accounts on supported blockchains (EVM currently).
+Data is typically available within 100 ms since a block was propagated to nodes.
+
+<Note>
+  - These endpoints are authenticated with a normal Dune API key.
+  - As we are in beta there might be changes. Please reach out to realtimeAPI@dune.com if you use this API.
+  - Specify `?all_chains` to get native balances for a long tail of evm chains, where we don't support erc20 assets. See [chains endpoint](./chains).
+  - Specify `?filters=erc20` or `?filters=native` to get only erc20 tokens or native assets, respectively
+  - Specify `?exclude_spam_tokens` to filter out tokens Dune believes to be spam. We use [this query](https://dune.com/queries/3804603) to determine if something is spam.
+  - Specify `?chain_ids=11,250,1` to fetch balances only for select chains. See chainlist https://chainlist.org/ for a list of chainIDs.
+  - CoinMarketCap is used for price information
+  - Token metadata, such as symbols and decimals, are fetched from Dune's tokens.erc20 dataset which is curated by Dune users and [defined.fi](https://defined.fi)
+</Note>
+
+## Filter by blockchain
+
+```bash
+https://api.dune.com/api/beta/balance/{chain}/{address}?all_chains
+```
+
+# Column Descriptions
+
+| Column                          | Description                                                   | Type          |
+|---------------------------------|---------------------------------------------------------------|---------------|
+| request_time                    | Time of request                                               | timestamp     |
+| response_time                   | Time of response                                              | timestamp     |
+| wallet_address                  | Wallet address                                                | string        |
+| chain                           | Name of blockchain of token                                   | string        |
+| address                         | ERC20 contract address or blockchain name for native token    | string        |
+| amount                          | Amount of token owned in WEI                                  | double        |
+| symbol                          | Symbol of token, if avilable                                  | string        |
+| decimals                        | Decimals of token, if available                               | double        |
+| price_usd                       | Current price of token, if available                          | double        |
+| value_usd                       | Current value of token owned, if available                    | double        |

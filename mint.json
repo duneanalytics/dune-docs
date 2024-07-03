@@ -1136,7 +1136,7 @@
         {
           "group": "Aptos",
           "icon": "database",
-          "iconType": "solid",    
+          "iconType": "solid",
           "pages": [
             "data-catalog/aptos/overview",
             "data-catalog/aptos/blocks",
@@ -1152,7 +1152,7 @@
         {
           "group": "Bitcoin",
           "icon": "database",
-          "iconType": "solid",    
+          "iconType": "solid",
           "pages": [
             "data-catalog/bitcoin/overview",
             "data-catalog/bitcoin/blocks",
@@ -1181,7 +1181,7 @@
         {
           "group": "Solana",
           "icon": "database",
-          "iconType": "solid",    
+          "iconType": "solid",
           "pages": [
             "data-catalog/solana/overview",
             "data-catalog/solana/account-activity",
@@ -1196,7 +1196,7 @@
         {
           "group": "Tron",
           "icon": "database",
-          "iconType": "solid",    
+          "iconType": "solid",
           "pages": [
             "data-catalog/tron/overview",
             {
@@ -1234,7 +1234,7 @@
       "pages": [
         {
           "group": "Flashbots",
-          "icon" : "robot",
+          "icon": "robot",
           "pages": [
             "data-catalog/community/flashbots/overview",
             "data-catalog/community/flashbots/mempool-dumpster"
@@ -1326,6 +1326,7 @@
           "group": "Account APIs",
           "pages": [
             "developer-apis/balances",
+            "developer-apis/chain-balances",
             "developer-apis/chains"
           ]
         }
