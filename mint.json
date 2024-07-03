@@ -42,8 +42,12 @@
       "url": "data-catalog"
     },
     {
-      "name": "API Reference",
+      "name": "SQL API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Developer API Reference",
+      "url": "developer-apis"
     },
     {
       "name": "Datashare",
@@ -1314,7 +1318,19 @@
         }
       ]
     },
-
+    {
+      "group": "Developer APIs",
+      "pages": [
+        "developer-apis/overview",
+        {
+          "group": "Account APIs",
+          "pages": [
+            "developer-apis/balances",
+            "developer-apis/chains"
+          ]
+        }
+      ]
+    },
     {
       "group": "",
       "pages": [
@@ -1407,19 +1423,6 @@
             "api-reference/tables/endpoint/upload",
             "api-reference/tables/endpoint/clear",
             "api-reference/tables/endpoint/delete"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Realtime Endpoints (Beta)",
-      "pages": [
-        {
-          "group": "Account APIs",
-          "pages": [
-            "api-reference/realtime/overview",
-            "api-reference/realtime/balances",
-            "api-reference/realtime/chains"
           ]
         }
       ]
