@@ -1,5 +1,5 @@
 ---
-title: 'Chains API (Beta)'
+title: 'Supported Chains'
 openapi: 'GET /beta/balance/chains'
 ---
 
@@ -14,4 +14,5 @@ The chains endpoint lists the supported blockchains for the Token Balances API.
 | Column                    | Description                                 | Type                |
 |---------------------------|---------------------------------------------|---------------------|
 | name                      | Canonical blockchain name                   | string              |
-| id                        | chainid of blockchain                            | integer             |
+| id                        | Chainid of blockchain                       | integer             |
+| supported_assets          | The supported asset types                   | []string            |
