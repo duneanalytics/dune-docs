@@ -6,7 +6,7 @@ sidebarTitle: "Hosted"
 description: Quickly take control of your blockchain data using our Hosted solution, seamlessly integrating with Dune's robust infrastructure.
 ---
 
-The **Hosted** option enables blockchain teams to easily make their data available on Dune via an **Integration Toolkit**. All the team or a RaaS provider needs to do is spin up a Docker container from this [Node Indexer](https://github.com/duneanalytics/node-indexer) with the required configuration, and the data will start flowing to Dune in batch mode.
+The **Hosted** option enables blockchain teams to easily make their data available on Dune via an **Integration Toolkit**. All the team or a RaaS provider needs to do is spin up a Docker container from this [Node Indexer](https://hub.docker.com/r/duneanalytics/node-indexer) with the required configuration, and the data will start flowing to Dune in batch mode.
 
 ## Key Features
 
@@ -31,13 +31,13 @@ The **Hosted** option enables blockchain teams to easily make their data availab
   - `debug_traceBlockByNumber`
   - `eth_getBlockByNumber`
 - Your chain is running on the OP Stack, Arbitrum Orbit, Polygon CDK, or zkSync ZK stack 
-<Warning>The Docker [Node Indexer](https://github.com/duneanalytics/node-indexer) currently only supports the OP Stack, with more support for other stacks coming soon.</Warning>
+<Warning>The Docker [Node Indexer](https://hub.docker.com/r/duneanalytics/node-indexer) currently only supports the OP Stack, with more support for other stacks coming soon.</Warning>
 
 ## Integration Toolkit
 
 There are three components in the toolkit. The blockchain team or a RaaS provider is responsible for the first two components while Dune manages the third component.
 
-<Info>Please head to the [README on the Node Indexer](https://github.com/duneanalytics/node-indexer) to learn more about how to use it.</Info>
+<Info>Please head to the [README on the Node Indexer](https://github.com/duneanalytics/node-indexer/blob/main/README.md) to learn more about how to use it.</Info>
 
 <Frame>
   <img src="/images/hosted-blockchain-integration-toolkit.png" alt="Integration Toolkit" />
@@ -60,7 +60,7 @@ There are three components in the toolkit. The blockchain team or a RaaS provide
 3. **Blockchain Endpoints**:
    - API that accepts RPC call responses, transforms the data to match Dune’s schema, and uploads it continuously to Dune
    - Creates four raw tables on Dune: `<chain>.blocks`, `<chain>.transactions`, `<chain>.traces`, `<chain>.logs`
-<Note>Blockchain teams don't need to worry about the Blockchain endpoints; the Node Indexer handles writing to the endpoints and transforming the RPC calls into the predefined raw tables with predefined schemas for EVM chains.</Note>
+<Note>Your team or a RaaS provider only needs to spin up the Node Indexer. It will handle writing to the Blockchain endpoints and transforming the RPC calls into predefined raw tables with schemas for EVM chains.</Note>
 
 ## Limitations
 
