@@ -1,0 +1,57 @@
+---
+title: SEI Overview
+sidebarTitle: "Overview"
+icon: "star"
+description: SEI data on Dune
+---
+
+## What is SEI?
+
+SEI is a Layer-1 blockchain optimized for trading and decentralized finance (DeFi). It combines the strengths of Solana and Ethereum by implementing a fast parallelized EVM chain, providing a hyper optimized execution layer that benefits from the tooling and mindshare around the EVM.
+
+### Parallelization
+
+Parallelization allows SEI to process multiple independent transactions simultaneously, leveraging modern hardware capabilities for enhanced performance.
+
+### SEI Optimizations
+
+SEI introduces four major innovations:
+
+1. **Twin Turbo Consensus**: This feature allows Sei to reach the fastest time to finality of any blockchain at 400ms, unlocking web2 like experiences for applications.
+2. **Optimistic Parallelization**: This feature allows developers to unlock parallel processing for their Ethereum applications, with no additional work.
+3. **SeiDB**: This major upgrade allows Sei to handle the much higher rate of data storage, reads and writes which become extremely important for a high performance blockchain.
+4. **Interoperable EVM**: This allows existing developers in the Ethereum ecosystem to deploy their applications, tooling and infrastructure to Sei with no changes, while benefiting from the 100x performance improvements offered by Sei.
+
+### Performance Metrics
+
+- **Time to Finality**: 400 milliseconds
+- **Transactions per Second**: 5,030 (12,500 theoretical max)
+
+### Virtual Machine Interoperability
+
+SEI supports both EVM and CosmWasm smart contracts in different execution environments. It introduces interoperability features, such as precompiled EVM contracts and Pointer Contracts, to enable smooth interactions between both environments. 
+
+For more details, visit [SEI Interoperability Documentation](https://www.docs.sei.io/dev-interoperability).
+
+<CardGroup cols={1}>
+  <Card title="SEI documentation" icon="link" href="https://www.docs.sei.io/">
+    Explore comprehensive documentation on SEI, detailing its architecture, protocol, and resources for developers.
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Access detailed event logs from smart contracts to analyze contract activity and interactions.
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Explore data on blocks processed by the SEI chain, illustrating network throughput and activity.
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Transaction details that highlight the efficiency and speed of the SEI chain.
+  </Card>
+  <Card title="decoded" icon="file" href="./decoded/overview">
+    Decoded transaction data for easier analysis and deeper understanding of contract executions.
+  </Card>
+</CardGroup>
