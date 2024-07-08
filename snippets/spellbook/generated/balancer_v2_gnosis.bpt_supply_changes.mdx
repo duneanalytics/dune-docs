@@ -1,0 +1,43 @@
+## balancer_v2_gnosis.bpt_supply_changes 
+Balancer Pool Token (BPT) supply change events.
+
+
+<ParamField path="block_date">
+UTC event block date of each DEX trade
+</ParamField>
+<ParamField path="evt_block_time">
+Block time of transfer event
+</ParamField>
+<ParamField path="evt_block_number">
+Block number of transfer event
+</ParamField>
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="evt_tx_hash">
+Transaction hash of transfer event
+</ParamField>
+<ParamField path="evt_index">
+Event index
+</ParamField>
+<ParamField path="pool_type">
+Pool attributes, determined by the pool&#x27;s factory
+</ParamField>
+<ParamField path="pool_symbol">
+Token symbols, followed by their respective weights, if applicable
+</ParamField>
+<ParamField path="version">
+Version of Balancer where the liquidity pool used in transaction is deployed
+</ParamField>
+<ParamField path="label">
+Nature of the transaction (Join/Exit via swap or Mint/Burn via transfer)
+</ParamField>
+<ParamField path="token_address">
+Contract address of the BPT
+</ParamField>
+<ParamField path="delta_amount_raw">
+Raw value of the transaction on token supply at the time of execution in the original currency
+</ParamField>
+<ParamField path="delta_amount">
+Normalized value of the transaction on token supply at the time of execution in the original currency
+</ParamField>

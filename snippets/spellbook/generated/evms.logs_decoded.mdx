@@ -1,0 +1,33 @@
+## evms.logs_decoded 
+An EVM log can be used to describe an event within a smart contract, like a token transfer or a change of ownership. Those logs are decoded based on submitted smart contracts to make them human readable.
+
+<ParamField path="blockchain">
+Name of the blockchain
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="index">
+Log index
+</ParamField>
+<ParamField path="contract_address">
+Address of the EVM smart contract generating the log
+</ParamField>
+<ParamField path="contract_name">
+Name of the EVM smart contract generating the log
+</ParamField>
+<ParamField path="event_name">
+Name of the EVM smart contract event generating the log
+</ParamField>
+<ParamField path="namespace">
+Namespace of the EVM smart contract generating the log
+</ParamField>
+<ParamField path="signature">
+Signature of the event
+</ParamField>
+<ParamField path="tx_hash">
+Primary key of the transaction
+</ParamField>

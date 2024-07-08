@@ -1,0 +1,55 @@
+## sushiswap_optimism.pool_incentives_rates 
+Sushiswap mapping of allocation points and token emissions per second by pool and rewarder
+
+
+<ParamField path="block_date">
+UTC event block date of each DEX trade
+</ParamField>
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed
+</ParamField>
+<ParamField path="evt_block_time">
+
+</ParamField>
+<ParamField path="evt_block_number">
+
+</ParamField>
+<ParamField path="contract_address">
+Address of the contract observed
+</ParamField>
+<ParamField path="rewarder_address">
+Address distributing rewards
+</ParamField>
+<ParamField path="reward_token">
+Address of the token used for rewards
+</ParamField>
+<ParamField path="pid">
+Masterchef ID of the Pool
+</ParamField>
+<ParamField path="lp_address">
+Address of the corresponding LP token
+</ParamField>
+<ParamField path="alloc_points">
+Number of points allocated per pool - This is how masterchef allocates rewards
+</ParamField>
+<ParamField path="total_alloc_points">
+Total number of points allocated across pools - This is how masterchef allocates rewards
+</ParamField>
+<ParamField path="alloc_point_share">
+alloc_points / total_alloc_points
+</ParamField>
+<ParamField path="tokens_per_second_raw">
+Total amount of token rewards allocated per second
+</ParamField>
+<ParamField path="alloc_tokens_per_second_raw">
+tokens_per_second_raw * alloc_point_share
+</ParamField>
+<ParamField path="alloc_tokens_per_second">
+Tokens rewarded per second per pool (decimal adjusted)
+</ParamField>
+<ParamField path="reward_token_symbol">
+Symbol of the reward token
+</ParamField>
+<ParamField path="reward_token_decimals">
+Decimals of the reward token
+</ParamField>

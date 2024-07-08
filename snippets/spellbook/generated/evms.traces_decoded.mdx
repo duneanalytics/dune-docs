@@ -1,0 +1,33 @@
+## evms.traces_decoded 
+An EVM trace is a small atomic action that modify the internal state of the Ethereum Virtual Machine. The three main trace types are call, create, and suicide. Decoded traces include additional information based on submitted smart contracts and their ABI
+
+<ParamField path="blockchain">
+Name of the blockchain
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="contract_name">
+Name of the EVM smart contract generating the log
+</ParamField>
+<ParamField path="function_name">
+Name of the EVM smart contract function generating the log
+</ParamField>
+<ParamField path="namespace">
+Namespace of the EVM smart contract generating the log
+</ParamField>
+<ParamField path="signature">
+Signature of the event
+</ParamField>
+<ParamField path="to">
+Wallet address that received the trace
+</ParamField>
+<ParamField path="trace_address">
+All returned traces, gives the exact location in the call trace
+</ParamField>
+<ParamField path="tx_hash">
+Primary key of the transaction
+</ParamField>

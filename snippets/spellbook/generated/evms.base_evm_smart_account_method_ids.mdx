@@ -1,0 +1,16 @@
+## evms.base_evm_smart_account_method_ids 
+A table containing mappings for method ids (function signatures) that can be considered to be non-app transactions.  There will be one row per blockchain x method_id combination.
+
+
+<ParamField path="blockchain">
+Name of the blockchain
+</ParamField>
+<ParamField path="method_id">
+Method ID (first 4 bytes of calldata), in &#x27;0x....&#x27; format
+</ParamField>
+<ParamField path="method_descriptor">
+Manual descriptor of the method ID.
+</ParamField>
+<ParamField path="contract_project">
+Project associated with the method
+</ParamField>

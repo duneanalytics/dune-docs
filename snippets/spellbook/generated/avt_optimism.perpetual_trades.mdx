@@ -1,0 +1,67 @@
+## avt_optimism.perpetual_trades 
+All avt perpetual trades on Optimism
+
+
+<ParamField path="blockchain">
+Blockchain where the perpetuals market is deployed
+</ParamField>
+<ParamField path="block_date">
+Date of the transaction
+</ParamField>
+<ParamField path="block_month">
+Month of the transaction
+</ParamField>
+<ParamField path="block_time">
+Time of the transaction
+</ParamField>
+<ParamField path="virtual_asset">
+How the protocol represents the underlying asset
+</ParamField>
+<ParamField path="underlying_asset">
+The real underlying asset that is represented in the swap
+</ParamField>
+<ParamField path="market">
+The futures market involved in the transaction
+</ParamField>
+<ParamField path="market_address">
+Contract address of the market
+</ParamField>
+<ParamField path="volume_usd">
+The size of the position taken for the swap in USD; already in absolute value and decimal normalized
+</ParamField>
+<ParamField path="fee_usd">
+The fees charged to the user for the swap in USD
+</ParamField>
+<ParamField path="margin_usd">
+The amount of collateral/margin used in a trade in USD
+</ParamField>
+<ParamField path="trade">
+Indicates the trade&#x27;s direction whether a short, long, of if a position is being closed
+</ParamField>
+<ParamField path="project">
+The underlying protocol/project where the swap took place
+</ParamField>
+<ParamField path="version">
+The version of the protocol/project
+</ParamField>
+<ParamField path="frontend">
+The frontend protocol/project where the specific swap was executed; built on top of the &#x27;project&#x27; and defaults to the &#x27;project&#x27; if no other frontend is specified
+</ParamField>
+<ParamField path="trader">
+The address which made the swap in the protocol
+</ParamField>
+<ParamField path="volume_raw">
+The size of the position in raw form
+</ParamField>
+<ParamField path="tx_hash">
+The hash of the transaction
+</ParamField>
+<ParamField path="tx_from">
+The address that originated the transaction; based on the optimism.transactions table
+</ParamField>
+<ParamField path="tx_to">
+The address receiving the transaction; based on the optimism.transactions table
+</ParamField>
+<ParamField path="evt_index">
+Event index number
+</ParamField>

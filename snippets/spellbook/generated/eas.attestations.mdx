@@ -1,0 +1,66 @@
+## eas.attestations 
+EAS attestations
+
+<ParamField path="blockchain">
+Blockchain where EAS is deployed
+</ParamField>
+<ParamField path="project">
+Project name
+</ParamField>
+<ParamField path="version">
+Version of the EAS contract
+</ParamField>
+<ParamField path="schema_uid">
+Schema unique identifier
+</ParamField>
+<ParamField path="attestation_uid">
+Attestation unique identifier
+</ParamField>
+<ParamField path="attester">
+Address that made the Attestation
+</ParamField>
+<ParamField path="recipient">
+Optional recipient of the Attestation that was made
+</ParamField>
+<ParamField path="request">
+Attestation JSON request
+</ParamField>
+<ParamField path="is_revocable">
+Is attestation against this Schema revocable?
+</ParamField>
+<ParamField path="ref_uid">
+Optional Attestation that this Attestation is referencing
+</ParamField>
+<ParamField path="raw_data">
+ABI encoded data for the Attestation
+</ParamField>
+<ParamField path="raw_value">
+uint256 value to pass to the resolver
+</ParamField>
+<ParamField path="expiration_time">
+Optional date that the Attestation will expire if provided by the attestor
+</ParamField>
+<ParamField path="revocation_time">
+Time at which the attestation was revoked (if any)
+</ParamField>
+<ParamField path="attestation_state">
+Attestation state: valid or revoked
+</ParamField>
+<ParamField path="is_revoked">
+Is this Attestation revoked?
+</ParamField>
+<ParamField path="contract_address">
+EAS deployed contract address
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="block_time">
+UTC event block time
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding transaction event
+</ParamField>
