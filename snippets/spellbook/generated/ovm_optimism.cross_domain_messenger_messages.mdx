@@ -1,0 +1,46 @@
+## ovm_optimism.cross_domain_messenger_messages 
+Table aggregating messages through Optimism&#x27;s cross-domain messenger
+
+
+<ParamField path="msg_type">
+Type of message
+</ParamField>
+<ParamField path="event">
+Event type
+</ParamField>
+<ParamField path="sender">
+Address sending the message
+</ParamField>
+<ParamField path="l2_block_date">
+Date of the block time
+</ParamField>
+<ParamField path="l2_block_time">
+block time of the transaction
+</ParamField>
+<ParamField path="l2_block_number">
+Block number of the transaction
+</ParamField>
+<ParamField path="l2_tx_hash">
+Transaction hash
+</ParamField>
+<ParamField path="contract_address">
+Address of the contract
+</ParamField>
+<ParamField path="target">
+Target address of the message
+</ParamField>
+<ParamField path="message_nonce_hash">
+Nonce or Hash of the message
+</ParamField>
+<ParamField path="evt_index">
+Index value of the transaction
+</ParamField>
+<ParamField path="version">
+OVM version
+</ParamField>
+<ParamField path="msg_index">
+Index of the message within the transaction. We use this to join messages with deposits/withdrawals since they follow the same order.
+</ParamField>
+<ParamField path="block_month">
+Month of the block time
+</ParamField>

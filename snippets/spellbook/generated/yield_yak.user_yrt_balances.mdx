@@ -1,0 +1,22 @@
+## yield_yak.user_yrt_balances 
+yield yak user-level YRT balances as a temporal table
+
+
+<ParamField path="blockchain">
+Blockchain on which the YRT contract is deployed
+</ParamField>
+<ParamField path="user_address">
+Address which holds the YRT
+</ParamField>
+<ParamField path="contract_address">
+Address of the YRT smart contract / strategy
+</ParamField>
+<ParamField path="from_time">
+UTC time from which the user held this balance of the contract_address YRT
+</ParamField>
+<ParamField path="to_time">
+UTC time until which the user held this balance of the contract_address YRT
+</ParamField>
+<ParamField path="yrt_balance">
+Balance of YRT tokens held by the user_address in the time window specified
+</ParamField>
