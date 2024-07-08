@@ -1,0 +1,67 @@
+## gmx_avalanche_c.perpetual_trades 
+gmx perpetuals trades/swaps on avalanche_c
+
+
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of each DEX trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each DEX trade
+</ParamField>
+<ParamField path="virtual_asset">
+How the protocol represents the underlying asset
+</ParamField>
+<ParamField path="underlying_asset">
+The real underlying asset that is represented in the swap
+</ParamField>
+<ParamField path="market">
+The futures market involved in the transaction
+</ParamField>
+<ParamField path="market_address">
+Contract address of the market / project contract address
+</ParamField>
+<ParamField path="volume_usd">
+The size of the position taken for the swap in USD; already in absolute value and decimal normalized
+</ParamField>
+<ParamField path="fee_usd">
+The fees charged to the user for the swap in USD
+</ParamField>
+<ParamField path="margin_usd">
+The amount of collateral/margin used in a trade in USD
+</ParamField>
+<ParamField path="trade">
+Indicates the trade&#x27;s direction whether a short, long, of if a position is being closed
+</ParamField>
+<ParamField path="project">
+Project name of the DEX
+</ParamField>
+<ParamField path="version">
+Version of the contract built and deployed by the DEX project
+</ParamField>
+<ParamField path="frontend">
+The frontend protocol/project where the specific swap was executed; built on top of the &#x27;project&#x27; and defaults to the &#x27;project&#x27; if no other frontend is specified
+</ParamField>
+<ParamField path="trader">
+The address which made the swap in the protocol
+</ParamField>
+<ParamField path="volume_raw">
+The size of the position in raw form
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the DEX
+</ParamField>
+<ParamField path="tx_from">
+Address which initiated the transaction
+</ParamField>
+<ParamField path="tx_to">
+Address which received the transaction
+</ParamField>
+<ParamField path="evt_index">
+the position of this event log within this transaction
+</ParamField>
+<ParamField path="block_month">
+UTC event block month of each DEX trade
+</ParamField>

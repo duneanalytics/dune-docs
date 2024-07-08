@@ -1,0 +1,87 @@
+## evms.transactions 
+An EVM transaction refers to an action initiated by an externally-owned account (i.e., an account managed by a human, not a contract).
+
+<ParamField path="blockchain">
+Name of the blockchain
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="value">
+Amount of native token transferred from sender to recipient
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="gas_limit">
+Maximum amount of gas units that can be consumed by the transaction
+</ParamField>
+<ParamField path="gas_price">
+Gas price denoted in gwei, which itself is a denomination of the native token - each gwei is equal to 10-9 units of the native token
+</ParamField>
+<ParamField path="gas_used">
+Number of gas units consumed by the transaction
+</ParamField>
+<ParamField path="max_fee_per_gas">
+Maximum amount of gas willing to be paid for the transaction
+</ParamField>
+<ParamField path="max_priority_fee_per_gas">
+Maximum amount of gas to be included as a tip to the miner
+</ParamField>
+<ParamField path="base_fee_per_gas">
+Market price for gas
+</ParamField>
+<ParamField path="nonce">
+Number of confirmed transactions previously sent by this account
+</ParamField>
+<ParamField path="index">
+Transaction index
+</ParamField>
+<ParamField path="success">
+Whether the transaction was completed successfully
+</ParamField>
+<ParamField path="from">
+Wallet address that initiated the transaction
+</ParamField>
+<ParamField path="to">
+Wallet address that received the transaction
+</ParamField>
+<ParamField path="block_hash">
+Primary key of the block
+</ParamField>
+<ParamField path="data">
+Any binary data payload
+</ParamField>
+<ParamField path="hash">
+Primary key of the transaction
+</ParamField>
+<ParamField path="type">
+Transaction type
+</ParamField>
+<ParamField path="access_list">
+Specifies a list of addresses and storage keys
+</ParamField>
+<ParamField path="l1_tx_origin">
+L1 transaction origin address. This is not null for L1→L2 transactions: https://optimistic.etherscan.io/txsEnqueued
+</ParamField>
+<ParamField path="l1_fee_scalar">
+This value covers the change in L1 gas price between the time the transaction is submitted and when it is published, as well as the income Optimism needs to keep the system running. Currently set at 1.0
+</ParamField>
+<ParamField path="l1_block_number">
+Block number on L1
+</ParamField>
+<ParamField path="l1_fee">
+L1 Fees that the Optimism protocol pays to submit L2 transactions to L1 (also referred to as L1 Security Fees or Security Costs)
+</ParamField>
+<ParamField path="l1_gas_price">
+Gas price on L1
+</ParamField>
+<ParamField path="l1_gas_used">
+The gas used on L1 to publish the transaction
+</ParamField>
+<ParamField path="l1_timestamp">
+The timestamp when the transaction is batched and confirmed on L1
+</ParamField>
+<ParamField path="effective_gas_price">
+
+</ParamField>

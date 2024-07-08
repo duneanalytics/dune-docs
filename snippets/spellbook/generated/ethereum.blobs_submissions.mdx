@@ -1,0 +1,48 @@
+## ethereum.blobs_submissions 
+Blob submission transactions.
+
+<ParamField path="block_number">
+Block number of the transaction
+</ParamField>
+<ParamField path="tx_hash">
+hash of the L1 transaction
+</ParamField>
+<ParamField path="beacon_slot_number">
+A slot in which a validator has the opportunity to propose a new block. Each slot represents a chance for a block to be added.
+</ParamField>
+<ParamField path="beacon_epoch">
+A specific epoch during which this block was proposed. An epoch is a division of time in Ethereum&#x27;s Proof of Stake mechanism.
+</ParamField>
+<ParamField path="tx_from">
+address of the sender
+</ParamField>
+<ParamField path="tx_to">
+address of the receiver
+</ParamField>
+<ParamField path="blob_versioned_hashes">
+array of blob hashes in the transaction
+</ParamField>
+<ParamField path="blob_indexes">
+array of blob indexes in the transaction
+</ParamField>
+<ParamField path="blob_count">
+amount of blobs submitted in the transaction
+</ParamField>
+<ParamField path="blob_gas_used">
+total blob gas used in the transaction
+</ParamField>
+<ParamField path="blob_base_fee">
+the base fee (wei) per blob gas
+</ParamField>
+<ParamField path="max_fee_per_blob_gas">
+the maximum fee (wei) per blob gas the tx is willing to pay
+</ParamField>
+<ParamField path="is_blobscription">
+boolean wether the blob was used as a blobscription
+</ParamField>
+<ParamField path="blob_submitter">
+address that submitted the blob
+</ParamField>
+<ParamField path="blob_submitter_label">
+the entity that submitted the blob
+</ParamField>

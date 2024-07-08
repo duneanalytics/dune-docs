@@ -1,0 +1,94 @@
+## hop_protocol.flows 
+Table aggregating bridge transfers through Hop Protocol.
+
+
+<ParamField path="blockchain">
+Blockchain Used to Pull Data - What chain the bridge transfers are in prespective from
+</ParamField>
+<ParamField path="project">
+Bridge protocol project
+</ParamField>
+<ParamField path="version">
+Bridge protocol project version
+</ParamField>
+<ParamField path="block_time">
+Block time of the transaction
+</ParamField>
+<ParamField path="block_date">
+Date of the block time
+</ParamField>
+<ParamField path="block_number">
+Block number of the transaction
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash
+</ParamField>
+<ParamField path="sender">
+Address of the wallet sending the transfer
+</ParamField>
+<ParamField path="receiver">
+Address of the wallet receiving the transfer
+</ParamField>
+<ParamField path="transfer_type">
+Is the transfer a Deposit, or a Withdrawal away?
+</ParamField>
+<ParamField path="token_symbol">
+Bridged Token Symbol
+</ParamField>
+<ParamField path="token_amount">
+Bridged Token Amount (Decimal adjusted)
+</ParamField>
+<ParamField path="token_amount_usd">
+Bridged Token Amount USD
+</ParamField>
+<ParamField path="token_amount_raw">
+Bridged Token Amount (Not Decimal adjusted)
+</ParamField>
+<ParamField path="fee_amount">
+Bridged Token Fee Amount (Decimal adjusted)
+</ParamField>
+<ParamField path="fee_amount_usd">
+Bridged Token Fee Amount USD
+</ParamField>
+<ParamField path="fee_amount_raw">
+Bridged Token Fee Amount (Not Decimal adjusted)
+</ParamField>
+<ParamField path="token_address">
+Bridged Token Address
+</ParamField>
+<ParamField path="bridged_fee_address">
+Bridged Token Fee Address
+</ParamField>
+<ParamField path="source_chain_id">
+Source Chain ID (EIP-155)
+</ParamField>
+<ParamField path="destination_chain_id">
+Destination Chain ID (EIP-155)
+</ParamField>
+<ParamField path="source_chain_name">
+Source Chain Name (EIP-155)
+</ParamField>
+<ParamField path="destination_chain_name">
+Destination Chain ID (EIP-155)
+</ParamField>
+<ParamField path="is_native_bridge">
+Did this use the native token bridge? 1 if true, 0 if false
+</ParamField>
+<ParamField path="tx_from">
+Transaction from address
+</ParamField>
+<ParamField path="tx_to">
+Transaction to address
+</ParamField>
+<ParamField path="transfer_id">
+Unique ID used to tie bridge events together across chains
+</ParamField>
+<ParamField path="evt_index">
+Index value of the transaction
+</ParamField>
+<ParamField path="trace_address">
+Trace address of the transaction
+</ParamField>
+<ParamField path="tx_method_id">
+4byte function signature of the transaction (with leading 0x)
+</ParamField>

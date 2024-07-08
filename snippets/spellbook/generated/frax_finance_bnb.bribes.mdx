@@ -1,0 +1,57 @@
+## frax_finance_bnb.bribes 
+This model shows the amount of bribe frax_finance is paying, at each epoch, to voters on a DEX who vote for frax pools. Since frax also partakes in voting, both for its pools and other pools, this model also tracks the bribes that it receives as reward.
+
+<ParamField path="week_start">
+The start of the voting week on the dex
+</ParamField>
+<ParamField path="week_end">
+The end of the voting week on the dex
+</ParamField>
+<ParamField path="week">
+The number of the week since the start of Frax bribing program on the dex
+</ParamField>
+<ParamField path="bribe_last_week">
+The amount of bribe, in the form of FXS token, that frax finance paid last week on its pools in the dex
+</ParamField>
+<ParamField path="bribe_last_week_USD">
+The amount of bribe, in the form of FXS token denominated in USD, that frax finance paid last week on its pools in the dex
+</ParamField>
+<ParamField path="Start_Frax">
+The TVL of FRAX pools at the start of the week on the dex
+</ParamField>
+<ParamField path="End_Frax">
+The TVL of FRAX pools at the end of the week on the dex
+</ParamField>
+<ParamField path="Start_FrxETH">
+The TVL of FrxETH pools at the start of the week on the dex
+</ParamField>
+<ParamField path="End_FrxETH">
+The TVL of FrxETH pools at the end of the week on the dex
+</ParamField>
+<ParamField path="FXS_collected">
+The amount of FXS rewards that Frax finance has collected on its pools at the end of epoch
+</ParamField>
+<ParamField path="FXS_collected_usd">
+The amount of bribe, in the form of FXS token denominated in USD, that frax finance receives at the end of each week as a result of voting on its own pools
+</ParamField>
+<ParamField path="Gross_profit">
+The amount of bribe that Frax finance paid on its pools minus the rewards it received in FXS
+</ParamField>
+<ParamField path="fee_reward_token0">
+The amount of token0 fee that Frax finance received at the end of each epoch on dex
+</ParamField>
+<ParamField path="fee_reward_token1">
+The amount of token1 fee that Frax finance received at the end of each epoch on dex
+</ParamField>
+<ParamField path="Start_frax_TVL">
+The TVL of FRAX pools, in USD, at the beginning of the epoch
+</ParamField>
+<ParamField path="End_frax_TVL">
+The TVL of FRAX pools, in USD, at the end of the epoch
+</ParamField>
+<ParamField path="Start_frxETH_TVL">
+The TVL of FrxETH pools, in USD, at the beginning of the epoch
+</ParamField>
+<ParamField path="End_frxETH_TVL">
+The TVL of FrxETH pools, in USD, at the end of the epoch
+</ParamField>
