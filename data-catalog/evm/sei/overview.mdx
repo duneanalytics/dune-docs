@@ -1,21 +1,33 @@
 ---
-title: SEI Overview
+title: Sei Overview
 sidebarTitle: "Overview"
 icon: "star"
-description: SEI data on Dune
+description: Sei data on Dune
 ---
 
-## What is SEI?
+## What is Sei?
 
-SEI is a Layer-1 blockchain optimized for trading and decentralized finance (DeFi). It combines the strengths of Solana and Ethereum by implementing a fast parallelized EVM chain, providing a hyper optimized execution layer that benefits from the tooling and mindshare around the EVM.
+Sei is a Layer-1 blockchain optimized for trading and decentralized finance (DeFi). It combines the strengths of Solana and Ethereum by implementing a fast parallelized EVM chain, providing a hyper optimized execution layer that benefits from the tooling and mindshare around the EVM.
+
+<Warning>
+Dune currently indexes only the EVM component of the Sei chain.
+</Warning>
+
+<Accordion title="What does this mean?">
+- Sei (v1) was originally a Cosmos chain. On May 20, 2024, a proposal to [upgrade Sei (v2) to include EVM support](https://www.mintscan.io/sei/proposals/55) was passed. Consequently, on May 27, 2024, Sei upgraded to [v2 with EVM support](https://github.com/sei-protocol/sei-chain/blob/main/CHANGELOG.md#v552).
+- The EVM and Cosmos components share the same consensus mechanism (i.e., they are validated by the same validators simultaneously) but operate independently with interoperability features.
+- Dune indexes only the EVM component of the Sei chain, starting from the Sei v2 upgrade ([block height 73,123,881](https://seitrace.com/block/79123881)). Therefore, Dune does **not** have data from the Cosmos component.
+- Interoperability between EVM and Cosmos relies on [EVM Precompiles](https://www.docs.sei.io/dev-interoperability/precompiles/addr) and [Pointer Contracts](https://www.docs.sei.io/dev-interoperability/pointer-contracts). If these do not emit events under certain circumstances, it may lead to gaps in the data.
+</Accordion>
+
 
 ### Parallelization
 
-Parallelization allows SEI to process multiple independent transactions simultaneously, leveraging modern hardware capabilities for enhanced performance.
+Parallelization allows Sei to process multiple independent transactions simultaneously, leveraging modern hardware capabilities for enhanced performance.
 
-### SEI Optimizations
+### Sei Optimizations
 
-SEI introduces four major innovations:
+Sei introduces four major innovations:
 
 1. **Twin Turbo Consensus**: This feature allows Sei to reach the fastest time to finality of any blockchain at 400ms, unlocking web2 like experiences for applications.
 2. **Optimistic Parallelization**: This feature allows developers to unlock parallel processing for their Ethereum applications, with no additional work.
@@ -29,13 +41,13 @@ SEI introduces four major innovations:
 
 ### Virtual Machine Interoperability
 
-SEI supports both EVM and CosmWasm smart contracts in different execution environments. It introduces interoperability features, such as precompiled EVM contracts and Pointer Contracts, to enable smooth interactions between both environments. 
+Sei supports both EVM and CosmWasm smart contracts in different execution environments. It introduces interoperability features, such as precompiled EVM contracts and Pointer Contracts, to enable smooth interactions between both environments. 
 
-For more details, visit [SEI Interoperability Documentation](https://www.docs.sei.io/dev-interoperability).
+For more details, visit [Sei Interoperability Documentation](https://www.docs.sei.io/dev-interoperability).
 
 <CardGroup cols={1}>
-  <Card title="SEI documentation" icon="link" href="https://www.docs.sei.io/">
-    Explore comprehensive documentation on SEI, detailing its architecture, protocol, and resources for developers.
+  <Card title="Sei documentation" icon="link" href="https://www.docs.sei.io/">
+    Explore comprehensive documentation on Sei, detailing its architecture, protocol, and resources for developers.
   </Card>
 </CardGroup>
 
@@ -46,10 +58,10 @@ For more details, visit [SEI Interoperability Documentation](https://www.docs.se
     Access detailed event logs from smart contracts to analyze contract activity and interactions.
   </Card>
   <Card title="Blocks" icon="cubes" href="./raw/blocks">
-    Explore data on blocks processed by the SEI chain, illustrating network throughput and activity.
+    Explore data on blocks processed by the Sei chain, illustrating network throughput and activity.
   </Card>
   <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
-    Transaction details that highlight the efficiency and speed of the SEI chain.
+    Transaction details that highlight the efficiency and speed of the Sei chain.
   </Card>
   <Card title="decoded" icon="file" href="./decoded/overview">
     Decoded transaction data for easier analysis and deeper understanding of contract executions.
