@@ -1559,6 +1559,18 @@
     {
       "source": "/api-reference/tables/blockchain/overview",
       "destination": "/catalyst/hosted"
+    },
+    {
+      "source": "/api-reference/tables/blockchain/insert",
+      "destination": "/catalyst/hosted"
+    },
+    {
+      "source": "/api-reference/tables/blockchain/clear",
+      "destination": "/catalyst/hosted"
+    },
+    {
+      "source": "/api-reference/tables/blockchain/delete",
+      "destination": "/catalyst/hosted"
     }
   ]
 }
