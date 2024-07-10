@@ -1555,6 +1555,10 @@
     {
       "source": "/data-tables/:slug*",
       "destination": "/data-catalog/:slug*"
+    },
+    {
+      "source": "/api-reference/tables/blockchain/overview",
+      "destination": "/catalyst/hosted"
     }
   ]
 }
