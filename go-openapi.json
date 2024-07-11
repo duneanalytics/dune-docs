@@ -1,345 +1,1217 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.1",
   "info": {
-    "description": "Dune API",
     "title": "DuneAPI",
+    "description": "Dune API",
     "contact": {},
     "version": "1.0"
   },
-  "host": "api.dune.com",
-  "basePath": "/api/v1",
+  "servers": [
+    {
+      "url": "https://api.dune.com/api"
+    }
+  ],
   "paths": {
-    "/execution/{execution_id}/cancel": {
+    "/v1/execution/{execution_id}/cancel": {
       "post": {
-        "description": "Cancel a triggered execution request given the execution ID",
-        "produces": ["application/json"],
         "summary": "Cancel a triggered execution request given the execution ID",
+        "description": "Cancel a triggered execution request given the execution ID",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Alternative to using the X-Dune-Api-Key header",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Execution ID",
             "name": "execution_id",
             "in": "path",
-            "required": true
+            "description": "Execution ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.CancelQueryExecutionRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.CancelQueryExecutionRequest"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/execution/{execution_id}/results": {
+    "/v1/execution/{execution_id}/results": {
       "get": {
-        "description": "Given a query ID, returns the latest executed result of a query on Dune",
-        "produces": ["application/json"],
         "summary": "Get results of a query execution in JSON format",
+        "description": "Given a query ID, returns the latest executed result of a query on Dune",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Execution ID",
             "name": "execution_id",
             "in": "path",
-            "required": true
+            "description": "Execution ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "boolean",
             "name": "allow_partial_results",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
-            "type": "string",
-            "description": "This captures whether the API key was passed as a query parameter",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "This captures whether the API key was passed as a query parameter",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Spartan queries",
             "name": "columns",
-            "in": "query"
+            "in": "query",
+            "description": "Spartan queries",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "execution_id",
             "in": "query",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "filters",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "boolean",
-            "description": "Optional parameters",
             "name": "ignore_max_datapoints_per_request",
-            "in": "query"
+            "in": "query",
+            "description": "Optional parameters",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
-            "type": "integer",
             "name": "limit",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "integer",
             "name": "offset",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "integer",
             "name": "sample_count",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "string",
             "name": "sort_by",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.GetExecutionStatusRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetExecutionStatusRequest"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/execution/{execution_id}/results/csv": {
+    "/v1/execution/{execution_id}/results/csv": {
       "get": {
-        "description": "Given a query ID, returns the latest executed result of a query on Dune in CSV format",
-        "produces": ["text/plain"],
         "summary": "Get results of a query execution in CSV format",
+        "description": "Given a query ID, returns the latest executed result of a query on Dune in CSV format",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Execution ID",
             "name": "execution_id",
             "in": "path",
-            "required": true
+            "description": "Execution ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "boolean",
             "name": "allow_partial_results",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
-            "type": "string",
-            "description": "This captures whether the API key was passed as a query parameter",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "This captures whether the API key was passed as a query parameter",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Spartan queries",
             "name": "columns",
-            "in": "query"
+            "in": "query",
+            "description": "Spartan queries",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "execution_id",
             "in": "query",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "filters",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "boolean",
-            "description": "Optional parameters",
             "name": "ignore_max_datapoints_per_request",
-            "in": "query"
+            "in": "query",
+            "description": "Optional parameters",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
-            "type": "integer",
             "name": "limit",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "integer",
             "name": "offset",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "integer",
             "name": "sample_count",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "string",
             "name": "sort_by",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.GetExecutionStatusRequest"
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetExecutionStatusRequest"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {}
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/execution/{execution_id}/status": {
+    "/v1/execution/{execution_id}/status": {
       "get": {
-        "description": "Check the status of an execution request",
-        "produces": ["application/json"],
         "summary": "Check the status of an execution request",
+        "description": "Check the status of an execution request",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Alternative to using the X-Dune-Api-Key header",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "Execution ID",
             "name": "execution_id",
             "in": "path",
-            "required": true
+            "description": "Execution ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.GetExecutionStatusRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetExecutionStatusRequest"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/execution/{query_id}/execute": {
+    "/v1/materialized-views/{name}/refresh": {
       "post": {
-        "description": "Execute, or run a query for the specified query ID",
-        "produces": ["application/json"],
-        "summary": "Execute, or run a query for the specified query ID",
+        "summary": "This refreshes a materialized view",
+        "description": "This refreshes a materialized view",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
+            "name": "name",
+            "in": "path",
+            "description": "Matview Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matviews.MatviewsRefreshResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query": {
+      "post": {
+        "summary": "Create and save a query on Dune",
+        "description": "This API allows for anyone to create a query.\nThe owner of the query will be under the context of the API key.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "CreateQueryRequest",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/models.CreateQueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/query/{queryId}": {
+      "get": {
+        "summary": "Returns the details of a query on Dune",
+        "description": "This API allows for anyone to read the sql text,\nparameters, name, tags, and state of a query.\nFor private queries, only the API key generated\nunder the context of the owner of that query will work.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "in": "path",
             "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update the details of a query on Dune",
+        "description": "This API allows for anyone to update the sql text,\nparameters, name, tags, and state of a query. Only the API key\ngenerated under the context of the owner of that query will work.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "in": "path",
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.UpdateQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{queryId}/archive": {
+      "post": {
+        "summary": "Archive Query on Dune",
+        "description": "This API allows for anyone to archive a query. Only the API key\ngenerated under the context of the owner of that query will work.\nThis does not delete the query, but will make\nit uneditable/unexecutable",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "in": "path",
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.UpdateQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{queryId}/private": {
+      "post": {
+        "summary": "Private Query on Dune",
+        "description": "This API allows for anyone to private a query. Only the API key\ngenerated under the context of the owner of that query will work.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "in": "path",
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.UpdateQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{queryId}/unarchive": {
+      "post": {
+        "summary": "Unarchive Query on Dune",
+        "description": "This API allows for anyone to unarchive a query. Only the API key\ngenerated under the context of the owner of that query will work.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "in": "path",
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.UpdateQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{queryId}/unprivate": {
+      "post": {
+        "summary": "Unprivate a query on Dune",
+        "description": "This API allows for anyone to unprivate a query. Only the API key\ngenerated under the context of the owner of that query will work.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "in": "path",
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.UpdateQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{query_id}/execute": {
+      "post": {
+        "summary": "Execute, or run a query for the specified query ID",
+        "description": "Execute, or run a query for the specified query ID",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "query_id",
             "in": "path",
-            "required": true
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "integer",
             "name": "actingUserID",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "string",
             "name": "cronJobID",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-            "type": "integer",
+            "name": "executionType",
+            "in": "query",
+            "description": "Optional internal fields",
+            "schema": {
+              "type": "integer",
+              "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+              "x-enum-comments": {
+                "ExecutionType_EXECUTION_TYPE_BATCH": "non-interactive execution, non-latency sensitive",
+                "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED": "non-interactive execution, execution through dashboard schedule",
+                "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED": "DEPRECATED: Queries run by unauthenticated users that do not benefit the broader audience (parametrized queries)",
+                "ExecutionType_EXECUTION_TYPE_INTERACTIVE": "user is waiting for this result to render",
+                "ExecutionType_EXECUTION_TYPE_MATVIEW": "materialized view creation or refresh, internally generated",
+                "ExecutionType_EXECUTION_TYPE_SCHEDULED": "non-interactive execution, scheduled execution",
+                "ExecutionType_EXECUTION_TYPE_UNSPECIFIED": "Unspecified execution type -- should not happen",
+                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE": "free user waiting for underlying query of a chart being refreshed with non-default parameters",
+                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID": "paid user waiting for underlying query of a chart being refreshed with non-default parameters"
+              },
+              "x-enum-varnames": [
+                "ExecutionType_EXECUTION_TYPE_UNSPECIFIED",
+                "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED",
+                "ExecutionType_EXECUTION_TYPE_INTERACTIVE",
+                "ExecutionType_EXECUTION_TYPE_BATCH",
+                "ExecutionType_EXECUTION_TYPE_SCHEDULED",
+                "ExecutionType_EXECUTION_TYPE_MATVIEW",
+                "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED",
+                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE",
+                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID"
+              ]
+            },
             "x-enum-comments": {
               "ExecutionType_EXECUTION_TYPE_BATCH": "non-interactive execution, non-latency sensitive",
               "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED": "non-interactive execution, execution through dashboard schedule",
@@ -361,1209 +1233,979 @@
               "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED",
               "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE",
               "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID"
-            ],
-            "description": "Optional internal fields",
-            "name": "executionType",
-            "in": "query"
+            ]
           },
           {
-            "type": "string",
             "name": "performance",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "integer",
             "name": "queryID",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "string",
             "name": "scheduledExecutionID",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.ExecuteQueryResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ExecuteQueryResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/materialized-views/{name}/refresh": {
-      "post": {
-        "description": "This refreshes a materialized view",
-        "produces": ["application/json"],
-        "summary": "This refreshes a materialized view",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Matview Name",
-            "name": "name",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
-            "name": "api_key",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/matviews.MatviewsRefreshResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
             }
           },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/query": {
+    "/v1/tables/create": {
       "post": {
-        "description": "This API allows for anyone to create a query.\nThe owner of the query will be under the context of the API key.",
-        "produces": ["application/json"],
-        "summary": "Create and save a query on Dune",
+        "summary": "Execute, or run a query for the specified query ID",
+        "description": "Execute, or run a query for the specified query ID",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "description": "CreateQueryRequest",
-            "name": "body",
-            "in": "body",
+            "description": "API Key for the service",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/models.CreateQueryRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.GetQueryResponse"
+              "type": "string"
             }
           },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/query/{queryId}": {
-      "get": {
-        "description": "This API allows for anyone to read the sql text,\nparameters, name, tags, and state of a query.\nFor private queries, only the API key generated\nunder the context of the owner of that query will work.",
-        "produces": ["application/json"],
-        "summary": "Returns the details of a query on Dune",
-        "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
+            "name": "api_key",
+            "in": "query",
             "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "Query ID",
-            "name": "queryId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.GetQueryResponse"
+              "type": "string"
             }
           },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      },
-      "patch": {
-        "description": "This API allows for anyone to update the sql text,\nparameters, name, tags, and state of a query. Only the API key\ngenerated under the context of the owner of that query will work.",
-        "produces": ["application/json"],
-        "summary": "Update the details of a query on Dune",
-        "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Alternative to using the X-Dune-Api-Key header",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "Query ID",
-            "name": "queryId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.UpdateQueryResponse"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/query/{queryId}/archive": {
-      "post": {
-        "description": "This API allows for anyone to archive a query. Only the API key\ngenerated under the context of the owner of that query will work.\nThis does not delete the query, but will make\nit uneditable/unexecutable",
-        "produces": ["application/json"],
-        "summary": "Archive Query on Dune",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Alternative to using the X-Dune-Api-Key header",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "Query ID",
-            "name": "queryId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.UpdateQueryResponse"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {}
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/query/{queryId}/private": {
-      "post": {
-        "description": "This API allows for anyone to private a query. Only the API key\ngenerated under the context of the owner of that query will work.",
-        "produces": ["application/json"],
-        "summary": "Private Query on Dune",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Alternative to using the X-Dune-Api-Key header",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "Query ID",
-            "name": "queryId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.UpdateQueryResponse"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {}
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/query/{queryId}/unarchive": {
-      "post": {
-        "description": "This API allows for anyone to unarchive a query. Only the API key\ngenerated under the context of the owner of that query will work.",
-        "produces": ["application/json"],
-        "summary": "Unarchive Query on Dune",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Alternative to using the X-Dune-Api-Key header",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "Query ID",
-            "name": "queryId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.UpdateQueryResponse"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {}
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/query/{queryId}/unprivate": {
-      "post": {
-        "description": "This API allows for anyone to unprivate a query. Only the API key\ngenerated under the context of the owner of that query will work.",
-        "produces": ["application/json"],
-        "summary": "Unprivate a query on Dune",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Alternative to using the X-Dune-Api-Key header",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "Query ID",
-            "name": "queryId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.UpdateQueryResponse"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {}
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/tables/create": {
-      "post": {
-        "description": "Execute, or run a query for the specified query ID",
-        "produces": ["application/json"],
-        "summary": "Execute, or run a query for the specified query ID",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "API Key for the service",
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
-            "name": "api_key",
-            "in": "query"
-          },
-          {
-            "type": "string",
             "name": "description",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "boolean",
             "name": "is_private",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
-            "type": "string",
             "name": "namespace",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "table_name",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.TableCreateResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableCreateResponse"
+                }
+              }
             }
           },
           "201": {
             "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/models.TableCreateResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableCreateResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/tables/upload/csv": {
+    "/v1/tables/upload/csv": {
       "post": {
-        "description": "This API allows for anyone to upload a CSV as a table in Dune. The size limit\nper upload is currently 200MB. Your storage is limited by plan, 1MB on free,\n15GB on plus, and 50GB on premium.",
-        "produces": ["application/json"],
         "summary": "Upload CSV",
+        "description": "This API allows for anyone to upload a CSV as a table in Dune. The size limit\nper upload is currently 200MB. Your storage is limited by plan, 1MB on free,\n15GB on plus, and 50GB on premium.",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "customerID",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "data",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "description",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "file_name",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "integer",
-            "description": "TODO: should be calculated",
             "name": "file_size",
-            "in": "query"
+            "in": "query",
+            "description": "TODO: should be calculated",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
-            "type": "boolean",
             "name": "is_private",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
-            "type": "string",
             "name": "namespace",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "table_name",
-            "in": "query"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.CSVUploadResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.CSVUploadResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/tables/{namespace}/{table_name}": {
+    "/v1/tables/{namespace}/{table_name}": {
       "post": {
-        "description": "TableInsert is the /v1/table/:namespace/:table_name/insert endpoint which insert into a table.",
-        "produces": ["application/json"],
         "summary": "Insert the data in a file into a table.",
+        "description": "TableInsert is the /v1/table/:namespace/:table_name/insert endpoint which insert into a table.",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "The namespace of the table to delete",
             "name": "namespace",
             "in": "path",
-            "required": true
+            "description": "The namespace of the table to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "The table name of the table to delete",
             "name": "table_name",
             "in": "path",
-            "required": true
+            "description": "The table name of the table to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "namespace",
             "in": "query",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "tableName",
             "in": "query",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.TableDeleteResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableDeleteResponse"
+                }
+              }
             }
           },
           "201": {
             "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/models.TableDeleteResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableDeleteResponse"
+                }
+              }
             }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       },
       "delete": {
-        "description": "Delete a Dune table with the specified name and namespace.",
-        "produces": ["application/json"],
         "summary": "Delete a Dune table with the specified name and namespace.",
+        "description": "Delete a Dune table with the specified name and namespace.",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "The namespace of the table to delete",
             "name": "namespace",
             "in": "path",
-            "required": true
+            "description": "The namespace of the table to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "The table name of the table to delete",
             "name": "table_name",
             "in": "path",
-            "required": true
+            "description": "The table name of the table to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.TableDeleteResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableDeleteResponse"
+                }
+              }
             }
           },
           "201": {
             "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/models.TableDeleteResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableDeleteResponse"
+                }
+              }
             }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/tables/{namespace}/{table_name}/clear": {
+    "/v1/tables/{namespace}/{table_name}/clear": {
       "post": {
-        "description": "Clear data in a table. It removes all the data in the specified table, but does not delete the table.",
-        "produces": ["application/json"],
         "summary": "Clear data in a table.",
+        "description": "Clear data in a table. It removes all the data in the specified table, but does not delete the table.",
         "parameters": [
           {
-            "type": "string",
-            "description": "API Key for the service",
             "name": "X-Dune-Api-Key",
             "in": "header",
-            "required": true
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
             "name": "api_key",
-            "in": "query"
+            "in": "query",
+            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "The namespace of the table to clear",
             "name": "namespace",
             "in": "path",
-            "required": true
+            "description": "The namespace of the table to clear",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
-            "description": "The table name of the table to clear",
             "name": "table_name",
             "in": "path",
-            "required": true
+            "description": "The table name of the table to clear",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "namespace",
             "in": "query",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "type": "string",
             "name": "tableName",
             "in": "query",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.TableClearResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableClearResponse"
+                }
+              }
             }
           },
           "404": {
             "description": "Not Found",
-            "schema": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
-            "schema": {}
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "common_v1.APISubscription": {
-      "type": "object",
-      "properties": {
-        "orb_subscription": {
-          "$ref": "#/definitions/common_v1.OrbSubscription"
-        },
-        "plan": {
-          "type": "string"
-        },
-        "query_execution_quota": {
-          "$ref": "#/definitions/common_v1.Quota"
-        },
-        "read_result_quota": {
-          "$ref": "#/definitions/common_v1.Quota"
-        }
-      }
-    },
-    "common_v1.AppSubscription": {
-      "type": "object",
-      "properties": {
-        "plan": {
-          "type": "string"
-        },
-        "service_tier": {
-          "$ref": "#/definitions/common_v1.ServiceTier"
-        }
-      }
-    },
-    "common_v1.Customer": {
-      "type": "object",
-      "properties": {
-        "active_api_subscription": {
-          "$ref": "#/definitions/common_v1.APISubscription"
-        },
-        "active_app_subscription": {
-          "$ref": "#/definitions/common_v1.AppSubscription"
-        },
-        "id": {
-          "type": "string"
-        },
-        "pricingPlan": {
-          "description": "Types that are assignable to PricingPlan:\n\n\t*Customer_PricingPlanV1\n\t*Customer_PricingPlanV2"
-        },
-        "team_ids": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        }
-      }
-    },
-    "common_v1.OrbSubscription": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "start_date": {
-          "description": "day in which Orb starts billing the subscription, usually the day in which customer subscribes to plan",
-          "allOf": [
-            {
-              "$ref": "#/definitions/timestamppb.Timestamp"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
             }
-          ]
-        }
-      }
-    },
-    "common_v1.Quota": {
-      "type": "object",
-      "properties": {
-        "quota": {
-          "type": "integer"
-        }
-      }
-    },
-    "common_v1.ServiceTier": {
-      "type": "integer",
-      "enum": [0, 1, 2, 3, 4, 5, 6, 7],
-      "x-enum-comments": {
-        "ServiceTier_SERVICE_TIER_ANALYZOOOR": "Logged in user with an analyzooor subscription plan",
-        "ServiceTier_SERVICE_TIER_ANONYMOUS": "Unauthenticated user",
-        "ServiceTier_SERVICE_TIER_COMMUNITY": "Free, logged in user",
-        "ServiceTier_SERVICE_TIER_ELITE": "Logged in user with an elite subscription plan",
-        "ServiceTier_SERVICE_TIER_ENTERPRISE": "Enterprise customer subscription plan (see enterprise_plan_name)",
-        "ServiceTier_SERVICE_TIER_PLUS": "Unused: no longer maps to a service tier",
-        "ServiceTier_SERVICE_TIER_THUG_LIFE": "Logged in user with a thug life subscription plan",
-        "ServiceTier_SERVICE_TIER_UNSPECIFIED": "Unspecified user -- should not happen"
-      },
-      "x-enum-varnames": [
-        "ServiceTier_SERVICE_TIER_UNSPECIFIED",
-        "ServiceTier_SERVICE_TIER_ANONYMOUS",
-        "ServiceTier_SERVICE_TIER_COMMUNITY",
-        "ServiceTier_SERVICE_TIER_PLUS",
-        "ServiceTier_SERVICE_TIER_ELITE",
-        "ServiceTier_SERVICE_TIER_THUG_LIFE",
-        "ServiceTier_SERVICE_TIER_ANALYZOOOR",
-        "ServiceTier_SERVICE_TIER_ENTERPRISE"
-      ]
-    },
-    "matviews.MatviewsRefreshResponse": {
-      "type": "object",
-      "properties": {
-        "execution_id": {
-          "type": "string"
-        },
-        "sql_id": {
-          "type": "string"
-        }
-      }
-    },
-    "models.CSVUploadResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean"
-        },
-        "table_name": {
-          "type": "string"
-        }
-      }
-    },
-    "models.CancelQueryExecutionRequest": {
-      "type": "object",
-      "required": ["execution_id"],
-      "properties": {
-        "customerID": {
-          "type": "string"
-        },
-        "execution_id": {
-          "type": "string"
-        }
-      }
-    },
-    "models.CreateQueryRequest": {
-      "type": "object",
-      "required": ["name", "query_sql"],
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "is_private": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        },
-        "parameters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/models.Parameter"
           }
-        },
-        "query_sql": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "models.EnumFromResults": {
-      "type": "object",
-      "properties": {
-        "columnName": {
-          "type": "string"
-        },
-        "queryId": {
-          "type": "integer"
-        }
-      }
-    },
-    "models.ExecuteQueryResponse": {
-      "type": "object",
-      "properties": {
-        "execution_id": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        }
-      }
-    },
-    "models.GetExecutionStatusRequest": {
-      "type": "object",
-      "required": ["execution_id"],
-      "properties": {
-        "actingUserID": {
-          "type": "integer"
-        },
-        "customerID": {
-          "type": "string"
-        },
-        "execution_id": {
-          "type": "string"
-        }
-      }
-    },
-    "models.GetQueryResponse": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "is_archived": {
-          "type": "boolean"
-        },
-        "is_private": {
-          "type": "boolean"
-        },
-        "is_unsaved": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        },
-        "owner": {
-          "description": "username or team handle",
-          "type": "string"
-        },
-        "parameters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/models.Parameter"
-          }
-        },
-        "query_engine": {
-          "type": "string"
-        },
-        "query_id": {
-          "type": "integer"
-        },
-        "query_sql": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "version": {
-          "type": "integer"
-        }
-      }
-    },
-    "models.Parameter": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "enumFromResults": {
-          "$ref": "#/definitions/models.EnumFromResults"
-        },
-        "enumOptions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "isFreeformAllowed": {
-          "type": "boolean"
-        },
-        "isMultiselect": {
-          "type": "boolean"
-        },
-        "key": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "models.TableClearResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "models.TableColumn": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "nullable": {
-          "type": "boolean"
-        },
-        "type": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        }
-      }
-    },
-    "models.TableCreateResponse": {
-      "type": "object",
-      "properties": {
-        "already_existed": {
-          "type": "boolean"
-        },
-        "example_query": {
-          "type": "string"
-        },
-        "full_name": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "table_name": {
-          "type": "string"
-        }
-      }
-    },
-    "models.TableDeleteResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "models.UpdateQueryResponse": {
-      "type": "object",
-      "properties": {
-        "query_id": {
-          "type": "integer"
-        }
-      }
-    },
-    "queryexecution_types_v1.ExecutionType": {
-      "type": "integer",
-      "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      "x-enum-comments": {
-        "ExecutionType_EXECUTION_TYPE_BATCH": "non-interactive execution, non-latency sensitive",
-        "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED": "non-interactive execution, execution through dashboard schedule",
-        "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED": "DEPRECATED: Queries run by unauthenticated users that do not benefit the broader audience (parametrized queries)",
-        "ExecutionType_EXECUTION_TYPE_INTERACTIVE": "user is waiting for this result to render",
-        "ExecutionType_EXECUTION_TYPE_MATVIEW": "materialized view creation or refresh, internally generated",
-        "ExecutionType_EXECUTION_TYPE_SCHEDULED": "non-interactive execution, scheduled execution",
-        "ExecutionType_EXECUTION_TYPE_UNSPECIFIED": "Unspecified execution type -- should not happen",
-        "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE": "free user waiting for underlying query of a chart being refreshed with non-default parameters",
-        "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID": "paid user waiting for underlying query of a chart being refreshed with non-default parameters"
-      },
-      "x-enum-varnames": [
-        "ExecutionType_EXECUTION_TYPE_UNSPECIFIED",
-        "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED",
-        "ExecutionType_EXECUTION_TYPE_INTERACTIVE",
-        "ExecutionType_EXECUTION_TYPE_BATCH",
-        "ExecutionType_EXECUTION_TYPE_SCHEDULED",
-        "ExecutionType_EXECUTION_TYPE_MATVIEW",
-        "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED",
-        "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE",
-        "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID"
-      ]
-    },
-    "timestamppb.Timestamp": {
-      "type": "object",
-      "properties": {
-        "nanos": {
-          "description": "Non-negative fractions of a second at nanosecond resolution. Negative\nsecond values with fractions must still have non-negative nanos values\nthat count forward in time. Must be from 0 to 999,999,999\ninclusive.",
-          "type": "integer"
-        },
-        "seconds": {
-          "description": "Represents seconds of UTC time since Unix epoch\n1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to\n9999-12-31T23:59:59Z inclusive.",
-          "type": "integer"
         }
       }
     }
   },
-  "securityDefinitions": {
-    "BasicAuth": {
-      "type": "basic"
+  "components": {
+    "schemas": {
+      "common_v1.APISubscription": {
+        "type": "object",
+        "properties": {
+          "orb_subscription": {
+            "$ref": "#/components/schemas/common_v1.OrbSubscription"
+          },
+          "plan": {
+            "type": "string"
+          },
+          "query_execution_quota": {
+            "$ref": "#/components/schemas/common_v1.Quota"
+          },
+          "read_result_quota": {
+            "$ref": "#/components/schemas/common_v1.Quota"
+          }
+        }
+      },
+      "common_v1.AppSubscription": {
+        "type": "object",
+        "properties": {
+          "plan": {
+            "type": "string"
+          },
+          "service_tier": {
+            "$ref": "#/components/schemas/common_v1.ServiceTier"
+          }
+        }
+      },
+      "common_v1.Customer": {
+        "type": "object",
+        "properties": {
+          "active_api_subscription": {
+            "$ref": "#/components/schemas/common_v1.APISubscription"
+          },
+          "active_app_subscription": {
+            "$ref": "#/components/schemas/common_v1.AppSubscription"
+          },
+          "id": {
+            "type": "string"
+          },
+          "pricingPlan": {
+            "type": "object",
+            "description": "Types that are assignable to PricingPlan:\n\n\t*Customer_PricingPlanV1\n\t*Customer_PricingPlanV2"
+          },
+          "team_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "common_v1.OrbSubscription": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "start_date": {
+            "type": "object",
+            "description": "day in which Orb starts billing the subscription, usually the day in which customer subscribes to plan",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/timestamppb.Timestamp"
+              }
+            ]
+          }
+        }
+      },
+      "common_v1.Quota": {
+        "type": "object",
+        "properties": {
+          "quota": {
+            "type": "integer"
+          }
+        }
+      },
+      "common_v1.ServiceTier": {
+        "type": "integer",
+        "enum": [0, 1, 2, 3, 4, 5, 6, 7],
+        "x-enum-comments": {
+          "ServiceTier_SERVICE_TIER_ANALYZOOOR": "Logged in user with an analyzooor subscription plan",
+          "ServiceTier_SERVICE_TIER_ANONYMOUS": "Unauthenticated user",
+          "ServiceTier_SERVICE_TIER_COMMUNITY": "Free, logged in user",
+          "ServiceTier_SERVICE_TIER_ELITE": "Logged in user with an elite subscription plan",
+          "ServiceTier_SERVICE_TIER_ENTERPRISE": "Enterprise customer subscription plan (see enterprise_plan_name)",
+          "ServiceTier_SERVICE_TIER_PLUS": "Unused: no longer maps to a service tier",
+          "ServiceTier_SERVICE_TIER_THUG_LIFE": "Logged in user with a thug life subscription plan",
+          "ServiceTier_SERVICE_TIER_UNSPECIFIED": "Unspecified user -- should not happen"
+        },
+        "x-enum-varnames": [
+          "ServiceTier_SERVICE_TIER_UNSPECIFIED",
+          "ServiceTier_SERVICE_TIER_ANONYMOUS",
+          "ServiceTier_SERVICE_TIER_COMMUNITY",
+          "ServiceTier_SERVICE_TIER_PLUS",
+          "ServiceTier_SERVICE_TIER_ELITE",
+          "ServiceTier_SERVICE_TIER_THUG_LIFE",
+          "ServiceTier_SERVICE_TIER_ANALYZOOOR",
+          "ServiceTier_SERVICE_TIER_ENTERPRISE"
+        ]
+      },
+      "matviews.MatviewsRefreshResponse": {
+        "type": "object",
+        "properties": {
+          "execution_id": {
+            "type": "string"
+          },
+          "sql_id": {
+            "type": "string"
+          }
+        }
+      },
+      "models.CSVUploadResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "table_name": {
+            "type": "string"
+          }
+        }
+      },
+      "models.CancelQueryExecutionRequest": {
+        "required": ["execution_id"],
+        "type": "object",
+        "properties": {
+          "customerID": {
+            "type": "string"
+          },
+          "execution_id": {
+            "type": "string"
+          }
+        }
+      },
+      "models.CreateQueryRequest": {
+        "required": ["name", "query_sql"],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.Parameter"
+            }
+          },
+          "query_sql": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "models.EnumFromResults": {
+        "type": "object",
+        "properties": {
+          "columnName": {
+            "type": "string"
+          },
+          "queryId": {
+            "type": "integer"
+          }
+        }
+      },
+      "models.ExecuteQueryResponse": {
+        "type": "object",
+        "properties": {
+          "execution_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        }
+      },
+      "models.GetExecutionStatusRequest": {
+        "required": ["execution_id"],
+        "type": "object",
+        "properties": {
+          "actingUserID": {
+            "type": "integer"
+          },
+          "customerID": {
+            "type": "string"
+          },
+          "execution_id": {
+            "type": "string"
+          }
+        }
+      },
+      "models.GetQueryResponse": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "is_archived": {
+            "type": "boolean"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "is_unsaved": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "description": "username or team handle"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.Parameter"
+            }
+          },
+          "query_engine": {
+            "type": "string"
+          },
+          "query_id": {
+            "type": "integer"
+          },
+          "query_sql": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "version": {
+            "type": "integer"
+          }
+        }
+      },
+      "models.Parameter": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "enumFromResults": {
+            "$ref": "#/components/schemas/models.EnumFromResults"
+          },
+          "enumOptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isFreeformAllowed": {
+            "type": "boolean"
+          },
+          "isMultiselect": {
+            "type": "boolean"
+          },
+          "key": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "models.TableClearResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "models.TableColumn": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "nullable": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "models.TableCreateResponse": {
+        "type": "object",
+        "properties": {
+          "already_existed": {
+            "type": "boolean"
+          },
+          "example_query": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "table_name": {
+            "type": "string"
+          }
+        }
+      },
+      "models.TableDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "models.UpdateQueryResponse": {
+        "type": "object",
+        "properties": {
+          "query_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "queryexecution_types_v1.ExecutionType": {
+        "type": "integer",
+        "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        "x-enum-comments": {
+          "ExecutionType_EXECUTION_TYPE_BATCH": "non-interactive execution, non-latency sensitive",
+          "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED": "non-interactive execution, execution through dashboard schedule",
+          "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED": "DEPRECATED: Queries run by unauthenticated users that do not benefit the broader audience (parametrized queries)",
+          "ExecutionType_EXECUTION_TYPE_INTERACTIVE": "user is waiting for this result to render",
+          "ExecutionType_EXECUTION_TYPE_MATVIEW": "materialized view creation or refresh, internally generated",
+          "ExecutionType_EXECUTION_TYPE_SCHEDULED": "non-interactive execution, scheduled execution",
+          "ExecutionType_EXECUTION_TYPE_UNSPECIFIED": "Unspecified execution type -- should not happen",
+          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE": "free user waiting for underlying query of a chart being refreshed with non-default parameters",
+          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID": "paid user waiting for underlying query of a chart being refreshed with non-default parameters"
+        },
+        "x-enum-varnames": [
+          "ExecutionType_EXECUTION_TYPE_UNSPECIFIED",
+          "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED",
+          "ExecutionType_EXECUTION_TYPE_INTERACTIVE",
+          "ExecutionType_EXECUTION_TYPE_BATCH",
+          "ExecutionType_EXECUTION_TYPE_SCHEDULED",
+          "ExecutionType_EXECUTION_TYPE_MATVIEW",
+          "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED",
+          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE",
+          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID"
+        ]
+      },
+      "timestamppb.Timestamp": {
+        "type": "object",
+        "properties": {
+          "nanos": {
+            "type": "integer",
+            "description": "Non-negative fractions of a second at nanosecond resolution. Negative\nsecond values with fractions must still have non-negative nanos values\nthat count forward in time. Must be from 0 to 999,999,999\ninclusive."
+          },
+          "seconds": {
+            "type": "integer",
+            "description": "Represents seconds of UTC time since Unix epoch\n1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to\n9999-12-31T23:59:59Z inclusive."
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
     }
-  }
+  },
+  "x-original-swagger-version": "2.0"
 }
