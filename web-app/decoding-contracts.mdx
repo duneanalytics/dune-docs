@@ -83,7 +83,9 @@ For example, contracts created by the [Uniswap V3 Factory](https://etherscan.io/
 
 Other special smart contracts can be decoded as well, following these conventions: 
 
-**[Proxy contract](https://info.etherscan.com/what-is-proxy-contract/):** Submit using the proxy address but with the ABI of the implementation.
+#### [Proxy contract](https://info.etherscan.com/what-is-proxy-contract/)
+
+Submit using the proxy address but with the ABI of the implementation.
 
 You can identify a proxy contract by looking for the "Read as Proxy" tab on a blockchain explorer. This tab will also show the implementation contract. Here is [an example](https://arbiscan.io/address/0x90a664846960aafa2c164605aebb8e9ac338f9a0#readProxyContract).
 
@@ -95,7 +97,9 @@ To decode:
 
 ![](/web-app/images/decoding-contracts/submit-proxy.png)
 
-**Diamond proxy contracts:** Submit all the facets using just the same name for the project and contract and upload all the relevant ABIs. This can be done with one ABI representing all facets or separate ABIs for each facet.
+#### Diamond proxy contracts 
+
+Submit all the facets using just the same name for the project and contract and upload all the relevant ABIs. This can be done with one ABI representing all facets or separate ABIs for each facet.
 
 <Note>
 **Where can I find this information?**
