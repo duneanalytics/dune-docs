@@ -10,8 +10,8 @@ The **Hosted** option enables blockchain teams to easily make their data availab
 
 ## Key Features
 
-- **Self-Serve Flexibility**: Publish and manage your data independently, supported by Dune's robust infrastructure.
-- **Quick to Market**: Accelerate your go-to-market strategy by cutting down on turnaround time.
+- **Self-Serve Flexibility**: Publish and manage your data independently, leveraging Dune's reliable and scalable infrastructure.
+- **Quick to Market**: Accelerate your go-to-market timeline and launch in as fast as 2 weeks.
 
 <CardGroup cols={1}>
   <Card
@@ -25,7 +25,7 @@ The **Hosted** option enables blockchain teams to easily make their data availab
 
 ## Technical Requirements
 
-- Your chain is EVM compatible
+- Your chain must be EVM compatible
 - Your chain has an RPC provider that supports the following three calls:
   - `eth_getBlockReceipts`
   - `debug_traceBlockByNumber`
@@ -62,9 +62,9 @@ There are three components in the toolkit. The blockchain team or a RaaS provide
    - Creates four raw tables on Dune: `<chain>.blocks`, `<chain>.transactions`, `<chain>.traces`, `<chain>.logs`
 <Note>Your team or a RaaS provider only needs to spin up the Node Indexer. It will handle writing to the Blockchain endpoints and transforming the RPC calls into predefined raw tables with schemas for EVM chains.</Note>
 
-## Limitations
+## Considerations
 
-Before we dive into the limitations, it's helpful to understand that Dune has three layers of data: Raw, [Decoded](../data-catalog/evm/ethereum/decoded/overview), and [Curated](../data-catalog/curated/overview).
+Before we dive into the considerations, it's helpful to understand that Dune has three layers of data: [Raw](https://dune.com/queries?category=canonical), [Decoded](../data-catalog/evm/ethereum/decoded/overview), and [Curated](../data-catalog/curated/overview).
 
 <Frame>
   <img src="/images/dune-data-layers.png" alt="Dune Data Layers" />
@@ -78,7 +78,7 @@ It's also useful to compare what the [Fully Managed](./fully-managed) option pro
 | **Decoded**   | Yes. Automatic.                  | Yes. Manual.                                                   |
 | **Curated**   | Yes                              | No.                                                            |
 
-Therefore, the limitations of Hosted chains are:
+Therefore, the distinctions of Hosted chains are:
 
 - No automatic decoded tables; analysts must [manually decode protocol data](../query-engine/Functions-and-operators/evm-decoding-functions) in DuneSQL, requiring advanced skills.
 - Cannot be used within Dune's Spellbook (i.e. Curated data), limiting advanced querying capabilities. For example, Uniswap on Base can be included in `dex.trades`, but KIM on Mode cannot.
