@@ -1,0 +1,49 @@
+## omen_gnosis.liquidity 
+A table containing all Omen liquidity management on Gnosis
+
+
+<ParamField path="block_time">
+Event UTC block time of each prediction market trade
+</ParamField>
+<ParamField path="block_day">
+Event UTC block day of each prediction market trade
+</ParamField>
+<ParamField path="tx_from">
+Address which initiated the transaction
+</ParamField>
+<ParamField path="tx_to">
+Address which received the transaction
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the prediction market
+</ParamField>
+<ParamField path="evt_index">
+Index of the log event in the block
+</ParamField>
+<ParamField path="fixedproductmarketmaker">
+Address of the Fixed Product Market Maker
+</ParamField>
+<ParamField path="funder">
+Address of the wallet adding or removing liquidity
+</ParamField>
+<ParamField path="shares">
+Amount of shares involved in liquidity transactions
+</ParamField>
+<ParamField path="collateralremovedfromfeepool">
+Collateral removed from the fee pool
+</ParamField>
+<ParamField path="outcomeindex">
+Index of the outcome chosen
+</ParamField>
+<ParamField path="outcometokens_amount">
+Amount of conditional tokens that were minted or burnt by the Fixed Product Market Maker
+</ParamField>
+<ParamField path="amount">
+Amount in native currency that was bought or sold
+</ParamField>
+<ParamField path="action">
+Action executed by the trader or market maker, &#x27;Buy&#x27;, &#x27;Sell&#x27;, &#x27;Add&#x27; and &#x27;Remove&#x27; 
+</ParamField>
+<ParamField path="reserves_delta">
+Change in output token reserves
+</ParamField>

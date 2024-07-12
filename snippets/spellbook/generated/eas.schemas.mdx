@@ -1,0 +1,45 @@
+## eas.schemas 
+EAS schema registry
+
+<ParamField path="blockchain">
+Blockchain where EAS is deployed
+</ParamField>
+<ParamField path="project">
+Project name
+</ParamField>
+<ParamField path="version">
+Version of the EAS contract
+</ParamField>
+<ParamField path="schema_uid">
+Schema unique identifier
+</ParamField>
+<ParamField path="registerer">
+Wallet address that created the Schema
+</ParamField>
+<ParamField path="resolver">
+Optional contract assigned to the Schema for more complex use cases
+</ParamField>
+<ParamField path="schema">
+ABI encoded Schema field types
+</ParamField>
+<ParamField path="schema_array">
+Array of 2-element arrays representing Schmea pairs: [[data_type,field_name],[...]]
+</ParamField>
+<ParamField path="is_revocable">
+Is attestation against this Schema revocable?
+</ParamField>
+<ParamField path="contract_address">
+EAS deployed contract address
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="block_time">
+UTC event block time
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding transaction event
+</ParamField>

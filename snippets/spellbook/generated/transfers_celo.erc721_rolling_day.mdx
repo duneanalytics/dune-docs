@@ -1,0 +1,30 @@
+## transfers_celo.erc721_rolling_day 
+ERC721 Token Transfers on Celo per day.
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="block_month">
+Block Month column used to partition data in this table
+</ParamField>
+<ParamField path="block_day">
+UTC event block time truncated to the day mark.
+</ParamField>
+<ParamField path="wallet_address">
+Wallet address of sender or receiver. If amount is negative, wallet address is the sender&#x27;s.
+</ParamField>
+<ParamField path="token_address">
+Contract address for token
+</ParamField>
+<ParamField path="token_id">
+ID of the ERC721 token
+</ParamField>
+<ParamField path="amount">
+Amount of ERC721 token held
+</ParamField>
+<ParamField path="recency_index">
+Index of most recent balance ascending. recency_index&#x3D;1 is the wallet/contract pair&#x27;s most recent balance
+</ParamField>
+<ParamField path="last_updated">
+UTC timestamp when table was last updated
+</ParamField>

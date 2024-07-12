@@ -1,0 +1,69 @@
+## evms.traces 
+An EVM trace is a small atomic action that modify the internal state of the Ethereum Virtual Machine. The three main trace types are call, create, and suicide.
+
+<ParamField path="blockchain">
+Name of the blockchain
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_number">
+Block number
+</ParamField>
+<ParamField path="value">
+Amount of native token transferred from sender to recipient
+</ParamField>
+<ParamField path="gas">
+Amount of gas consumed by the trace
+</ParamField>
+<ParamField path="gas_used">
+Number of gas units used by the trace
+</ParamField>
+<ParamField path="block_hash">
+Primary key of the block
+</ParamField>
+<ParamField path="success">
+Whether the trace was completed successfully
+</ParamField>
+<ParamField path="tx_index">
+Transaction index
+</ParamField>
+<ParamField path="error">
+Error log
+</ParamField>
+<ParamField path="tx_success">
+Whether the transaction was completed sucessfully
+</ParamField>
+<ParamField path="tx_hash">
+Primary key of the transaction
+</ParamField>
+<ParamField path="from">
+Wallet address that initiated the trace
+</ParamField>
+<ParamField path="to">
+Wallet address that received the trace
+</ParamField>
+<ParamField path="trace_address">
+All returned traces, gives the exact location in the call trace
+</ParamField>
+<ParamField path="type">
+Type of trace (e.g., call, create, suicide)
+</ParamField>
+<ParamField path="address">
+Address of the trace creator
+</ParamField>
+<ParamField path="code">
+Raw EVM code for the trace
+</ParamField>
+<ParamField path="call_type">
+Hexadecimal representations of the trace&#x27;s call type
+</ParamField>
+<ParamField path="input">
+Input data for the trace
+</ParamField>
+<ParamField path="output">
+Output data for the trace
+</ParamField>
+<ParamField path="refund_address">
+Refund Address
+</ParamField>

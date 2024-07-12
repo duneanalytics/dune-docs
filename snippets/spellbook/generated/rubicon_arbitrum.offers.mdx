@@ -1,0 +1,97 @@
+## rubicon_arbitrum.offers 
+A table containing all offers of rubicon on arbitrum
+
+
+<ParamField path="blockchain">
+Blockchain which the DEX is deployed
+</ParamField>
+<ParamField path="project">
+Project name of the DEX
+</ParamField>
+<ParamField path="version">
+Version of the contract built and deployed by the DEX project
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of each DEX trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each DEX trade
+</ParamField>
+<ParamField path="block_number">
+the block number of the block that the offer was created in
+</ParamField>
+<ParamField path="tx_index">
+the transaction index of the transaction that the offer was created in
+</ParamField>
+<ParamField path="evt_index">
+the position of this event log within this transaction
+</ParamField>
+<ParamField path="maker">
+Address of trader who sold a token
+</ParamField>
+<ParamField path="sell_token_symbol">
+the token the offer is selling
+</ParamField>
+<ParamField path="buy_token_symbol">
+the token the offer is buying
+</ParamField>
+<ParamField path="sell_token_address">
+the address of the token the offer is selling
+</ParamField>
+<ParamField path="buy_token_address">
+the address of the token the offer is buying
+</ParamField>
+<ParamField path="token_pair">
+Token symbol pair for each token involved in the transaction
+</ParamField>
+<ParamField path="sell_amount">
+the amount of the token that the maker is selling
+</ParamField>
+<ParamField path="buy_amount">
+the amount of the token that the maker is buying
+</ParamField>
+<ParamField path="sell_amount_raw">
+the raw amount of the token that the maker is selling
+</ParamField>
+<ParamField path="buy_amount_raw">
+the raw amount of the token that the maker is buying
+</ParamField>
+<ParamField path="sold_amount">
+the amount of the token that the offer has sold
+</ParamField>
+<ParamField path="bought_amount">
+the amount of the token that the offer has bought
+</ParamField>
+<ParamField path="sold_amount_raw">
+the raw amount of the token that the offer has sold
+</ParamField>
+<ParamField path="bought_amount_raw">
+the raw amount of the token that the offer has bought
+</ParamField>
+<ParamField path="sell_amount_usd">
+the amount of the token that the maker is selling in USD (at the time of the offer creation)
+</ParamField>
+<ParamField path="buy_amount_usd">
+the amount of the token that the maker is buying in USD (at the time of the offer creation)
+</ParamField>
+<ParamField path="sold_amount_usd">
+the amount of the token that the offer has sold in USD (summed bassed on the price at the time of each trade (if any))
+</ParamField>
+<ParamField path="bought_amount_usd">
+the amount of the token that the offer has bought in USD (summed bassed on the price at the time of each trade (if any))
+</ParamField>
+<ParamField path="txn_cost_usd">
+the cost of the transaction in USD
+</ParamField>
+<ParamField path="project_contract_address">
+Project contract address which executed the trade on the blockchain
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the DEX
+</ParamField>
+<ParamField path="tx_from">
+Address which initiated the transaction
+</ParamField>
+<ParamField path="tx_to">
+Address which received the transaction
+</ParamField>
