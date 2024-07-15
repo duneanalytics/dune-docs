@@ -37,7 +37,7 @@
           {
             "name": "execution_id",
             "in": "path",
-            "description": "Execution ID",
+            "description": "The unique identifier of the execution",
             "required": true,
             "schema": {
               "type": "string"
@@ -50,7 +50,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.CancelQueryExecutionRequest"
+                  "$ref": "#/components/schemas/models.CancelQueryExecutionResponse"
                 }
               }
             }
@@ -60,7 +60,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -70,7 +80,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -80,7 +90,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -114,6 +124,7 @@
           {
             "name": "allow_partial_results",
             "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
             }
@@ -129,7 +140,7 @@
           {
             "name": "columns",
             "in": "query",
-            "description": "Spartan queries",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
             "schema": {
               "type": "string"
             }
@@ -145,6 +156,7 @@
           {
             "name": "filters",
             "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
             "schema": {
               "type": "string"
             }
@@ -152,7 +164,7 @@
           {
             "name": "ignore_max_datapoints_per_request",
             "in": "query",
-            "description": "Optional parameters",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
             "schema": {
               "type": "boolean"
             }
@@ -160,6 +172,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
             "schema": {
               "type": "integer"
             }
@@ -167,6 +180,7 @@
           {
             "name": "offset",
             "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
             "schema": {
               "type": "integer"
             }
@@ -174,6 +188,7 @@
           {
             "name": "sample_count",
             "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
             "schema": {
               "type": "integer"
             }
@@ -181,6 +196,7 @@
           {
             "name": "sort_by",
             "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -202,7 +218,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -212,7 +238,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -222,7 +248,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -256,6 +282,7 @@
           {
             "name": "allow_partial_results",
             "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
             }
@@ -271,7 +298,7 @@
           {
             "name": "columns",
             "in": "query",
-            "description": "Spartan queries",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
             "schema": {
               "type": "string"
             }
@@ -287,6 +314,7 @@
           {
             "name": "filters",
             "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
             "schema": {
               "type": "string"
             }
@@ -294,7 +322,7 @@
           {
             "name": "ignore_max_datapoints_per_request",
             "in": "query",
-            "description": "Optional parameters",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
             "schema": {
               "type": "boolean"
             }
@@ -302,6 +330,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
             "schema": {
               "type": "integer"
             }
@@ -309,6 +338,7 @@
           {
             "name": "offset",
             "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
             "schema": {
               "type": "integer"
             }
@@ -316,6 +346,7 @@
           {
             "name": "sample_count",
             "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
             "schema": {
               "type": "integer"
             }
@@ -323,6 +354,7 @@
           {
             "name": "sort_by",
             "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -334,7 +366,7 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.GetExecutionStatusRequest"
+                  "type": "string"
                 }
               }
             }
@@ -344,7 +376,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -354,7 +396,7 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -364,7 +406,7 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -410,7 +452,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.GetExecutionStatusRequest"
+                  "$ref": "#/components/schemas/models.GetExecutionStatusResponse"
                 }
               }
             }
@@ -420,7 +462,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -430,7 +482,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -440,149 +492,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/execution/{query_id}/results": {
-      "get": {
-        "summary": "Given a query ID, returns the latest executed result of a query on Dune as CSV",
-        "description": "Given a query ID, returns the latest executed result of a query on Dune as CSV",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "query_id",
-            "in": "path",
-            "description": "Query ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "This captures whether the API key was passed as a query parameter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Spartan queries",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "Optional parameters",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -616,12 +526,23 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "description": "MatviewsRefreshRequest",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/matviews.MatviewsRefreshRequest"
+              }
+            }
+          },
+          "required": false
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -638,7 +559,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -648,7 +579,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -658,12 +589,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/query": {
@@ -683,7 +615,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -706,7 +638,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.GetQueryResponse"
+                  "$ref": "#/components/schemas/models.CreateQueryResponse"
                 }
               }
             }
@@ -716,17 +648,37 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -736,7 +688,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -762,7 +714,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -793,7 +745,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -803,7 +775,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -813,7 +785,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -867,7 +839,37 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -877,7 +879,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -887,7 +889,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -943,7 +945,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
@@ -953,7 +955,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -963,7 +965,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -973,7 +975,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -983,7 +985,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -1039,7 +1041,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
@@ -1049,7 +1051,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
                 }
               }
             }
@@ -1059,7 +1071,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -1069,7 +1081,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -1079,7 +1091,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -1135,7 +1147,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
@@ -1145,7 +1157,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -1155,7 +1167,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -1165,7 +1177,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -1175,7 +1187,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -1231,7 +1243,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
@@ -1241,7 +1253,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -1251,7 +1263,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -1261,7 +1273,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -1271,7 +1283,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -1304,96 +1316,25 @@
           {
             "name": "query_id",
             "in": "path",
-            "description": "Query ID",
+            "description": "Unique identifier of the query",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "actingUserID",
-            "in": "query",
             "schema": {
               "type": "integer"
             }
-          },
-          {
-            "name": "cronJobID",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "executionType",
-            "in": "query",
-            "description": "Optional internal fields",
-            "schema": {
-              "type": "integer",
-              "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-              "x-enum-comments": {
-                "ExecutionType_EXECUTION_TYPE_BATCH": "non-interactive execution, non-latency sensitive",
-                "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED": "non-interactive execution, execution through dashboard schedule",
-                "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED": "DEPRECATED: Queries run by unauthenticated users that do not benefit the broader audience (parametrized queries)",
-                "ExecutionType_EXECUTION_TYPE_INTERACTIVE": "user is waiting for this result to render",
-                "ExecutionType_EXECUTION_TYPE_MATVIEW": "materialized view creation or refresh, internally generated",
-                "ExecutionType_EXECUTION_TYPE_SCHEDULED": "non-interactive execution, scheduled execution",
-                "ExecutionType_EXECUTION_TYPE_UNSPECIFIED": "Unspecified execution type -- should not happen",
-                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE": "free user waiting for underlying query of a chart being refreshed with non-default parameters",
-                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID": "paid user waiting for underlying query of a chart being refreshed with non-default parameters"
-              },
-              "x-enum-varnames": [
-                "ExecutionType_EXECUTION_TYPE_UNSPECIFIED",
-                "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED",
-                "ExecutionType_EXECUTION_TYPE_INTERACTIVE",
-                "ExecutionType_EXECUTION_TYPE_BATCH",
-                "ExecutionType_EXECUTION_TYPE_SCHEDULED",
-                "ExecutionType_EXECUTION_TYPE_MATVIEW",
-                "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED",
-                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE",
-                "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID"
-              ]
-            },
-            "x-enum-comments": {
-              "ExecutionType_EXECUTION_TYPE_BATCH": "non-interactive execution, non-latency sensitive",
-              "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED": "non-interactive execution, execution through dashboard schedule",
-              "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED": "DEPRECATED: Queries run by unauthenticated users that do not benefit the broader audience (parametrized queries)",
-              "ExecutionType_EXECUTION_TYPE_INTERACTIVE": "user is waiting for this result to render",
-              "ExecutionType_EXECUTION_TYPE_MATVIEW": "materialized view creation or refresh, internally generated",
-              "ExecutionType_EXECUTION_TYPE_SCHEDULED": "non-interactive execution, scheduled execution",
-              "ExecutionType_EXECUTION_TYPE_UNSPECIFIED": "Unspecified execution type -- should not happen",
-              "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE": "free user waiting for underlying query of a chart being refreshed with non-default parameters",
-              "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID": "paid user waiting for underlying query of a chart being refreshed with non-default parameters"
-            },
-            "x-enum-varnames": [
-              "ExecutionType_EXECUTION_TYPE_UNSPECIFIED",
-              "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED",
-              "ExecutionType_EXECUTION_TYPE_INTERACTIVE",
-              "ExecutionType_EXECUTION_TYPE_BATCH",
-              "ExecutionType_EXECUTION_TYPE_SCHEDULED",
-              "ExecutionType_EXECUTION_TYPE_MATVIEW",
-              "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED",
-              "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE",
-              "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID"
-            ]
           },
           {
             "name": "performance",
             "in": "query",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": ["medium", "large"]
             }
           },
           {
-            "name": "queryID",
+            "name": "query_parameters",
             "in": "query",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "scheduledExecutionID",
-            "in": "query",
+            "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page.",
             "schema": {
               "type": "string"
             }
@@ -1415,7 +1356,37 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
                 }
               }
             }
@@ -1425,7 +1396,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -1435,7 +1406,303 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{query_id}/results": {
+      "get": {
+        "summary": "Given a query ID, returns the latest executed result of a query on Dune in JSON format",
+        "description": "Given a query ID, returns the latest executed result of a query on Dune in JSON format",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query_id",
+            "in": "path",
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "This captures whether the API key was passed as a query parameter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{query_id}/results/csv": {
+      "get": {
+        "summary": "Given a query ID, returns the latest executed result of a query on Dune as CSV",
+        "description": "Given a query ID, returns the latest executed result of a query on Dune as CSV",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query_id",
+            "in": "path",
+            "description": "Query ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "This captures whether the API key was passed as a query parameter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -1464,65 +1731,19 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "customerID",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "data",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "description",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "file_name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "file_size",
-            "in": "query",
-            "description": "TODO: should be calculated",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "is_private",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "namespace",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "table_name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
+        "requestBody": {
+          "description": "payload",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/models.CSVUploadRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -1539,7 +1760,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
@@ -1549,7 +1770,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -1559,12 +1780,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "payload"
       }
     },
     "/v1/tables/create": {
@@ -1644,7 +1866,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
@@ -1654,7 +1876,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
@@ -1664,7 +1886,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
@@ -1950,115 +2172,48 @@
   },
   "components": {
     "schemas": {
-      "common_v1.APISubscription": {
+      "matviews.MatviewsRefreshRequest": {
         "type": "object",
         "properties": {
-          "orb_subscription": {
-            "$ref": "#/components/schemas/common_v1.OrbSubscription"
-          },
-          "plan": {
-            "type": "string"
-          },
-          "query_execution_quota": {
-            "$ref": "#/components/schemas/common_v1.Quota"
-          },
-          "read_result_quota": {
-            "$ref": "#/components/schemas/common_v1.Quota"
+          "performance": {
+            "type": "string",
+            "description": "Performance level of the refresh\nAvailable options: `medium`, `large`, defaults to `medium`"
           }
         }
-      },
-      "common_v1.AppSubscription": {
-        "type": "object",
-        "properties": {
-          "plan": {
-            "type": "string"
-          },
-          "service_tier": {
-            "$ref": "#/components/schemas/common_v1.ServiceTier"
-          }
-        }
-      },
-      "common_v1.Customer": {
-        "type": "object",
-        "properties": {
-          "active_api_subscription": {
-            "$ref": "#/components/schemas/common_v1.APISubscription"
-          },
-          "active_app_subscription": {
-            "$ref": "#/components/schemas/common_v1.AppSubscription"
-          },
-          "id": {
-            "type": "string"
-          },
-          "pricingPlan": {
-            "type": "object",
-            "description": "Types that are assignable to PricingPlan:\n\n\t*Customer_PricingPlanV1\n\t*Customer_PricingPlanV2"
-          },
-          "team_ids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        }
-      },
-      "common_v1.OrbSubscription": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "start_date": {
-            "type": "object",
-            "description": "day in which Orb starts billing the subscription, usually the day in which customer subscribes to plan",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/timestamppb.Timestamp"
-              }
-            ]
-          }
-        }
-      },
-      "common_v1.Quota": {
-        "type": "object",
-        "properties": {
-          "quota": {
-            "type": "integer"
-          }
-        }
-      },
-      "common_v1.ServiceTier": {
-        "type": "integer",
-        "enum": [0, 1, 2, 3, 4, 5, 6, 7],
-        "x-enum-comments": {
-          "ServiceTier_SERVICE_TIER_ANALYZOOOR": "Logged in user with an analyzooor subscription plan",
-          "ServiceTier_SERVICE_TIER_ANONYMOUS": "Unauthenticated user",
-          "ServiceTier_SERVICE_TIER_COMMUNITY": "Free, logged in user",
-          "ServiceTier_SERVICE_TIER_ELITE": "Logged in user with an elite subscription plan",
-          "ServiceTier_SERVICE_TIER_ENTERPRISE": "Enterprise customer subscription plan (see enterprise_plan_name)",
-          "ServiceTier_SERVICE_TIER_PLUS": "Unused: no longer maps to a service tier",
-          "ServiceTier_SERVICE_TIER_THUG_LIFE": "Logged in user with a thug life subscription plan",
-          "ServiceTier_SERVICE_TIER_UNSPECIFIED": "Unspecified user -- should not happen"
-        },
-        "x-enum-varnames": [
-          "ServiceTier_SERVICE_TIER_UNSPECIFIED",
-          "ServiceTier_SERVICE_TIER_ANONYMOUS",
-          "ServiceTier_SERVICE_TIER_COMMUNITY",
-          "ServiceTier_SERVICE_TIER_PLUS",
-          "ServiceTier_SERVICE_TIER_ELITE",
-          "ServiceTier_SERVICE_TIER_THUG_LIFE",
-          "ServiceTier_SERVICE_TIER_ANALYZOOOR",
-          "ServiceTier_SERVICE_TIER_ENTERPRISE"
-        ]
       },
       "matviews.MatviewsRefreshResponse": {
         "type": "object",
         "properties": {
           "execution_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the execution triggered to refresh the materialized view",
+            "example": "01HZ065JVE23C23FM2HKWQP2RT"
           },
           "sql_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the materialized view",
+            "example": "dune.dune.result_erc_20_token_summary"
+          }
+        }
+      },
+      "models.CSVUploadRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string",
+            "description": "The data to be uploaded in CSV format."
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the upload."
+          },
+          "is_private": {
+            "type": "boolean",
+            "description": "Indicates if the upload is private."
+          },
+          "table_name": {
+            "type": "string",
+            "description": "The name of the table to store the data."
           }
         }
       },
@@ -2066,22 +2221,20 @@
         "type": "object",
         "properties": {
           "success": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicator if the request was successful"
           },
           "table_name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the table that was created"
           }
         }
       },
-      "models.CancelQueryExecutionRequest": {
-        "required": ["execution_id"],
+      "models.CancelQueryExecutionResponse": {
         "type": "object",
         "properties": {
-          "customerID": {
-            "type": "string"
-          },
-          "execution_id": {
-            "type": "string"
+          "success": {
+            "type": "boolean"
           }
         }
       },
@@ -2090,28 +2243,45 @@
         "type": "object",
         "properties": {
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "The description of the created query."
           },
           "is_private": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the query is private, meaning that only the\nteam or, in case of personal queries, the user that created it can see it.",
+            "example": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the createc query."
           },
           "parameters": {
             "type": "array",
+            "description": "The parameters that the SQL query accepts.",
             "items": {
               "$ref": "#/components/schemas/models.Parameter"
             }
           },
           "query_sql": {
-            "type": "string"
+            "type": "string",
+            "description": "The SQL of the query."
           },
           "tags": {
             "type": "array",
+            "description": "The tags of the query.",
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "models.CreateQueryResponse": {
+        "type": "object",
+        "properties": {
+          "query_id": {
+            "type": "integer",
+            "description": "The Unique ID of the created query",
+            "example": 1
           }
         }
       },
@@ -2126,14 +2296,70 @@
           }
         }
       },
+      "models.Error400": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "not allowed"
+          }
+        }
+      },
+      "models.Error401": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "invalid API Key"
+          }
+        }
+      },
+      "models.Error402": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
+          }
+        }
+      },
+      "models.Error403": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Not allowed to execute query. Query is archived, unsaved or not enough permissions"
+          }
+        }
+      },
+      "models.Error404": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "object not found"
+          }
+        }
+      },
+      "models.Error500": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "internal error"
+          }
+        }
+      },
       "models.ExecuteQueryResponse": {
         "type": "object",
         "properties": {
           "execution_id": {
-            "type": "string"
+            "type": "string",
+            "example": "01HKZJ2683PHF9Q9PHHQ8FW4Q1"
           },
           "state": {
-            "type": "string"
+            "type": "string",
+            "example": "QUERY_STATE_PENDING"
           }
         }
       },
@@ -2142,54 +2368,117 @@
         "properties": {
           "column_names": {
             "type": "array",
+            "description": "Names of the columns in the result set.",
+            "example": ["column1", "column2"],
             "items": {
               "type": "string"
             }
           },
           "column_types": {
             "type": "array",
+            "description": "Types of the columns in the result set.",
+            "example": ["value1", "value2"],
             "items": {
               "type": "string"
             }
           },
           "datapoint_count": {
             "type": "integer",
-            "description": "Results cell count is used for billing/pricing plans\nhere we expose the these values to the user, so that they can track their costs"
+            "description": "Results cell count is used for billing/pricing plans\nhere we expose the these values to the user, so that they can track their costs",
+            "example": 1000
           },
           "execution_time_millis": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Time in milliseconds that the query took to execute.",
+            "example": 1000
           },
           "pending_time_millis": {
             "type": "integer",
-            "description": "helpful metrics user experience"
+            "description": "Time in milliseconds that the query was pending before execution.",
+            "example": 1000
           },
           "result_set_bytes": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ResultSetBytes represents the raw data bytes returned by the SQL execution engine, it includes:\n + total nr of bytes used on 1 line with all the column names (the header of the result set)\n + total nr of bytes for all the row values (the result set of rows)\n\nit doesn't include overheads such as the presence of column names for every row in the JSON result type.\nit also doesn't include opmitizations such as compression",
+            "example": 1000
           },
           "row_count": {
             "type": "integer",
-            "description": "ResultSetBytes represents the raw data bytes returned by the SQL execution engine, it includes:\n + total nr of bytes used on 1 line with all the column names (the header of the result set)\n + total nr of bytes for all the row values (the result set of rows)\n\nit doesn't include overheads such as the presence of column names for every row in the JSON result type.\nit also doesn't include opmitizations such as compression"
+            "description": "Number of rows in the result set for the current page of results.",
+            "example": 10
           },
           "total_result_set_bytes": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Total number of bytes in the result set. This doesn't include the json representation overhead.",
+            "example": 10000
           },
           "total_row_count": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of rows in the result set for the entire result set.",
+            "example": 1000
           }
         }
       },
-      "models.GetExecutionStatusRequest": {
-        "required": ["execution_id"],
+      "models.GetExecutionStatusResponse": {
         "type": "object",
         "properties": {
-          "actingUserID": {
-            "type": "integer"
+          "cancelled_at": {
+            "type": "string",
+            "description": "Timestamp of when the query execution was cancelled, if applicable.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           },
-          "customerID": {
-            "type": "string"
+          "execution_ended_at": {
+            "type": "string",
+            "description": "Timestamp of when the query execution ended.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           },
           "execution_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the execution of the query and corresponding result.",
+            "example": "01HKZJ2683PHF9Q9PHHQ8FW4Q1"
+          },
+          "execution_started_at": {
+            "type": "string",
+            "description": "Timestamp of when the query execution started.",
+            "example": "2024-12-20T11:04:18.724658237Z"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "Timestamp of when the query result expires.",
+            "example": "2024-12-20T11:04:18.724658237Z"
+          },
+          "is_execution_finished": {
+            "type": "boolean",
+            "description": "Whether the state of the query execution is terminal. This can be used for polling purposes.",
+            "example": true
+          },
+          "query_id": {
+            "type": "integer",
+            "description": "Unique identifier of the query.",
+            "example": 1234
+          },
+          "queue_position": {
+            "type": "integer",
+            "example": 1
+          },
+          "result_metadata": {
+            "type": "object",
+            "description": "Metadata about the execution of the query, including details like column names, row counts, and execution times.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.ExecutionResultMetadata"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "The state of the query execution.",
+            "example": "QUERY_STATE_COMPLETED"
+          },
+          "submitted_at": {
+            "type": "string",
+            "description": "Timestamp of when the query was submitted.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           }
         }
       },
@@ -2197,47 +2486,67 @@
         "type": "object",
         "properties": {
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "The description of the query",
+            "example": "Calculate the average dex volume"
           },
           "is_archived": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the query is archived.\nArchived queries cannot be executed.",
+            "example": false
           },
           "is_private": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the query is private.",
+            "example": true
           },
           "is_unsaved": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the query is unsaved.",
+            "example": false
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the query",
+            "example": "My Query"
           },
           "owner": {
             "type": "string",
-            "description": "username or team handle"
+            "description": "username or team handle",
+            "example": "dune"
           },
           "parameters": {
             "type": "array",
+            "description": "The parameters that can modify the execution of the sql.",
             "items": {
               "$ref": "#/components/schemas/models.Parameter"
             }
           },
           "query_engine": {
-            "type": "string"
+            "type": "string",
+            "description": "The query engine used to execute the query.",
+            "example": "medium"
           },
           "query_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The unique ID of the query",
+            "example": 123
           },
           "query_sql": {
-            "type": "string"
+            "type": "string",
+            "description": "The SQL query text."
           },
           "tags": {
             "type": "array",
+            "description": "Tags associated with the query.",
             "items": {
               "type": "string"
             }
           },
           "version": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Version of the query, gets incremented every time the query is updated.",
+            "example": 1
           }
         }
       },
@@ -2283,10 +2592,17 @@
         "type": "object",
         "properties": {
           "metadata": {
-            "$ref": "#/components/schemas/models.ExecutionResultMetadata"
+            "type": "object",
+            "description": "Metadata about the execution of the query, including details like column names,\nrow counts, and execution times.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.ExecutionResultMetadata"
+              }
+            ]
           },
           "rows": {
             "type": "array",
+            "description": "A list of rows. A row is dictionary of key-value pairs returned by the query,\neach pair corresponding to a column",
             "items": {
               "$ref": "#/components/schemas/models.Row"
             }
@@ -2297,13 +2613,22 @@
         "type": "object",
         "properties": {
           "message": {
-            "type": "string"
+            "type": "string",
+            "description": "A descriptive message about the error."
           },
           "metadata": {
-            "$ref": "#/components/schemas/models.SyntaxErrorMetadata"
+            "type": "object",
+            "description": "Metadata about the syntax error that occurred, if applicable.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.SyntaxErrorMetadata"
+              }
+            ]
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "The type of error that occurred.",
+            "example": "syntax_error"
           }
         }
       },
@@ -2311,39 +2636,62 @@
         "type": "object",
         "properties": {
           "cancelled_at": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp of when the query execution was cancelled, if applicable.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           },
           "error": {
-            "$ref": "#/components/schemas/models.QueryResultError"
+            "type": "object",
+            "description": "In case the execution had an error, this object will contain the error details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.QueryResultError"
+              }
+            ]
           },
           "execution_ended_at": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp of when the query execution ended.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           },
           "execution_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the execution of the query.",
+            "example": "01HKZJ2683PHF9Q9PHHQ8FW4Q1"
           },
           "execution_started_at": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp of when the query execution started.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           },
           "expires_at": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp of when the query result expires.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           },
           "is_execution_finished": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Whether the state of the query execution is terminal. This can be used for polling purposes.",
+            "example": true
           },
           "next_offset": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Offset that can be used to retrieve the next page of results.",
+            "example": 100
           },
           "next_uri": {
             "type": "string",
-            "description": "Pagination"
+            "description": "URI that can be used to fetch the next page of results.",
+            "example": "https://api.dune.com/api/v1/execution/01HKZJ2683PHF9Q9PHHQ8FW4Q1/results?offset=100&limit=100"
           },
           "query_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Unique identifier of the query.",
+            "example": 1234
           },
           "result": {
             "type": "object",
-            "description": "Payload",
+            "description": "The object containing the results and metadata of the query execution",
             "allOf": [
               {
                 "$ref": "#/components/schemas/models.QueryResultData"
@@ -2351,11 +2699,14 @@
             ]
           },
           "state": {
-            "type": "string"
+            "type": "string",
+            "description": "The state of the query execution.",
+            "example": "QUERY_STATE_COMPLETED"
           },
           "submitted_at": {
             "type": "string",
-            "description": "Execution timing metadata"
+            "description": "Timestamp of when the query was submitted.",
+            "example": "2024-12-20T11:04:18.724658237Z"
           }
         }
       },
@@ -2369,10 +2720,12 @@
         "type": "object",
         "properties": {
           "column": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The column number at which the syntax error occurred."
           },
           "line": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The line number at which the syntax error occurred in the query."
           }
         }
       },
@@ -2436,46 +2789,8 @@
         "type": "object",
         "properties": {
           "query_id": {
-            "type": "integer"
-          }
-        }
-      },
-      "queryexecution_types_v1.ExecutionType": {
-        "type": "integer",
-        "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        "x-enum-comments": {
-          "ExecutionType_EXECUTION_TYPE_BATCH": "non-interactive execution, non-latency sensitive",
-          "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED": "non-interactive execution, execution through dashboard schedule",
-          "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED": "DEPRECATED: Queries run by unauthenticated users that do not benefit the broader audience (parametrized queries)",
-          "ExecutionType_EXECUTION_TYPE_INTERACTIVE": "user is waiting for this result to render",
-          "ExecutionType_EXECUTION_TYPE_MATVIEW": "materialized view creation or refresh, internally generated",
-          "ExecutionType_EXECUTION_TYPE_SCHEDULED": "non-interactive execution, scheduled execution",
-          "ExecutionType_EXECUTION_TYPE_UNSPECIFIED": "Unspecified execution type -- should not happen",
-          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE": "free user waiting for underlying query of a chart being refreshed with non-default parameters",
-          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID": "paid user waiting for underlying query of a chart being refreshed with non-default parameters"
-        },
-        "x-enum-varnames": [
-          "ExecutionType_EXECUTION_TYPE_UNSPECIFIED",
-          "ExecutionType_EXECUTION_TYPE_DEPRIORITIZED",
-          "ExecutionType_EXECUTION_TYPE_INTERACTIVE",
-          "ExecutionType_EXECUTION_TYPE_BATCH",
-          "ExecutionType_EXECUTION_TYPE_SCHEDULED",
-          "ExecutionType_EXECUTION_TYPE_MATVIEW",
-          "ExecutionType_EXECUTION_TYPE_DASHBOARD_SCHEDULED",
-          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_FREE",
-          "ExecutionType_EXECUTION_TYPE_VIZ_CUSTOM_PARAMS_REFRESH_PAID"
-        ]
-      },
-      "timestamppb.Timestamp": {
-        "type": "object",
-        "properties": {
-          "nanos": {
             "type": "integer",
-            "description": "Non-negative fractions of a second at nanosecond resolution. Negative\nsecond values with fractions must still have non-negative nanos values\nthat count forward in time. Must be from 0 to 999,999,999\ninclusive."
-          },
-          "seconds": {
-            "type": "integer",
-            "description": "Represents seconds of UTC time since Unix epoch\n1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to\n9999-12-31T23:59:59Z inclusive."
+            "description": "The unique ID of the query that was updated"
           }
         }
       }
