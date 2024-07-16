@@ -38,7 +38,7 @@ In most cases, the contract name will be pulled directly from a blockchain scann
 
 ### When do you need Advanced Options?
 
-#### Are there several instances of this contract?
+#### Are there several instances of this contract? (dynamic contract)
 
 Contract "instances" are contracts on the same chain with the same bytecode (and therefore the same ABI) for **the same project**. If you check this box, Dune can decode all instances of this project on the given blockchain with the same bytecode and ABI, consolidating them into the same tables under one `namespace.project` directory without multiple submissions.
 
@@ -52,7 +52,7 @@ Contracts decoded this way are referred to as dynamically decoded by Dune. These
 
 For example, [this contract](https://arbiscan.io/address/0x999946a4f40fd2c82d66a68edfefa8430f206c9c#code) is nearly identical to [this other contract](https://arbiscan.io/address/0x692e92da68f9b8445a167b985ee0cb38c3bbe594#code) in terms of bytecode, but Dune currently does not dynamically decode the first contract because we currently require a 100% bytecode match.
 
-#### Is it created by a factory contract?
+#### Is it created by a factory contract? (factory contract)
 
 A [factory contract](https://betterprogramming.pub/learn-solidity-the-factory-pattern-75d11c3e7d29) is a smart contract that creates other smart contracts. If there are multiple instances of a contract, it might be due to a factory contract. If you check this box, Dune can decode all contracts created by the same factory that use the same ABI, consolidating them into the same tables under one `namespace.project` directory (e.g., [Pair contract from Uniswap V2](https://dune.com/queries?category=decoded_project&blockchain=ethereum&namespace=uniswap_v2&contract=Pair&blockchains=ethereum)).
 
