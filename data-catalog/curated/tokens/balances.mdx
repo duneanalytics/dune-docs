@@ -1,8 +1,12 @@
 ---
-title: Daily Token Balances on EVM Networks
-sidebarTitle: "Daily Balances"
-description: "Comprehensive daily records of token balances for Ethereum Virtual Machine (EVM) addresses, covering native currencies and various token standards." 
+title: Token Balances
+sidebarTitle: "Balances"
+description: "Balances for addresses on EVM networks." 
 ---
+
+<Info>
+    This dataset is currently in open beta. We are working on adding more chains and methods to detect balance changes. We are also working on improving the query performance. We currently recommend using the `tokens_<chain>.balances` table for queries.
+</Info>
 
 The `tokens_<chain>.balances_daily` table contains all daily token balances across all addresses and on EVM-compatible networks. This dataset encompasses:
 
@@ -44,10 +48,10 @@ Balances are available for the following EVM-compatible networks:
 
 ### Balance Calculation Methodology
 
-Our approach to storing balances is the following: We calculate and store token balances for each address daily. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_<chain>.balances` table, which is updated daily. For the balance to be queried, the address must have appeared in any of the following tables:
+Our approach to storing balances is the following: We store token balances for each address. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_<chain>.balances` table, which is updated . For the balance to be queried, the address must have appeared in any of the following tables:
 
 - **For native currencies**: Transactions and traces ``to``/``from`` addresses, Ethereum-specific withdrawals, and block mining/validator activities.
-- **For ERC20**: Analysis is based on token transfer events detailed in the [tokens_ethereum_base_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/tokens/ethereum/tokens_ethereum_base_transfers.sql). The address balance is updated based on the `to`/`from` addresses in the transfer events.
+- **For ERC20**: Analysis is based on token transfer events detailed in the [tokens_ethereum_base_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/tokens/ethereum/tokens_ethereum_base_transfers.sql). The address balance is updated based on the `to`/`from` addresses in the transfer events. If the token is a non-standard ERC20 token, the balance might not be updated until we detect a standard ERC20 transfer event. Known issues currently include ERC4626 tokens and rebasing tokens like stETH or $ampleforth. We are working on improving the range of balance changes that we detect.
 - **For ERC721 and ERC1155**: Inspection of NFT transfer activities via the [nft_ethereum_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/nft/transfers/chains/nft_ethereum_transfers.sql), focusing on the `to`/`from` addresses.
 
 These dependencies on transfer and NFT event tables introduce a delay to balance updates, contingent on the latency inherent in the Spellbook's processing.
