@@ -12,6 +12,712 @@
     }
   ],
   "paths": {
+    "/v1/dex/pairs/{chain}": {
+      "get": {
+        "summary": "DEX Pair Stats",
+        "description": "Given a blockchain, retrieves essential metadata and statistical data for token pairs.\nMetadata encompasses all pool addresses associated with the token pair, the DEXs or\nprojects where they are available, and their token addresses. Key statistics provided\ninclude one-day, seven-day, and thirty-day trading volumes, USD liquidity,\nand the seven-day volume-to-liquidity ratio.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chain",
+            "in": "path",
+            "description": "The blockchain where the token pair is traded",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/eigenlayer/avs-metadata": {
+      "get": {
+        "summary": "AVS Metadata",
+        "description": "Get metadata for all registered AVSs on Eigenlayer,\nincluding `avs_name`, `avs_contract_address`, `website`, `twitter`, `logo`, `description`",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/eigenlayer/avs-stats": {
+      "get": {
+        "summary": "AVS Metrics",
+        "description": "Get metrics for AVSs, including `num_operators`, `total_TVL`, `num_stakers`,\nand TVL for each strategy like cbETH, stETH etc.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/eigenlayer/operator-metadata": {
+      "get": {
+        "summary": "Operator Metadata",
+        "description": "Get metadata for all registered operators on Eigenlayer, including\n`operator_name`, `operator_contract_address`, `website`, `twitter`, `logo`, `description` // nolint:lll",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/eigenlayer/operator-stats": {
+      "get": {
+        "summary": "Operator Metrics",
+        "description": "Get metrics for operators, including `operator_name`, `operator_contract_address`,\n`total_TVL`, `num_stakers`, and TVL for each strategy like cbETH, stETH etc.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/eigenlayer/operator-to-avs-mapping": {
+      "get": {
+        "summary": "Operator <> AVS Mapping",
+        "description": "Get a mapping of which operator is registered on which AVS, including the time of registration // nolint:lll",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/endpoints/{handle}/{endpoint_slug}/results": {
+      "get": {
+        "summary": "Custom Endpoints",
+        "description": "Create custom API endpoints from Dune queries",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "handle",
+            "in": "path",
+            "description": "Your user or team handle",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endpoint_slug",
+            "in": "path",
+            "description": "The name of the endpoint as slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/execution/{execution_id}/cancel": {
       "post": {
         "summary": "Cancel a triggered execution request given the execution ID",
@@ -29,7 +735,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "Alternative to using the X-Dune-Api-Key header",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -113,6 +819,14 @@
             }
           },
           {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "execution_id",
             "in": "path",
             "description": "Execution ID",
@@ -127,14 +841,6 @@
             "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "This captures whether the API key was passed as a query parameter",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -259,13 +965,21 @@
     "/v1/execution/{execution_id}/results/csv": {
       "get": {
         "summary": "Get results of a query execution in CSV format",
-        "description": "Given a query ID, returns the latest executed result of a query on Dune in CSV format",
+        "description": "Given a query ID, returns the latest executed result of a query on Dune in CSV format // nolint:lll",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
             "in": "header",
             "description": "API Key for the service",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
@@ -285,14 +999,6 @@
             "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "This captures whether the API key was passed as a query parameter",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -500,20 +1206,11 @@
         }
       }
     },
-    "/v1/materialized-views/{name}/refresh": {
-      "post": {
-        "summary": "This refreshes a materialized view",
-        "description": "This refreshes a materialized view",
+    "/v1/farcaster/trends/channels": {
+      "get": {
+        "summary": "Farcaster Channels",
+        "description": "Get trending farcaster channels that have had casts in the last 14 days",
         "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "description": "Matview Name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "X-Dune-Api-Key",
             "in": "header",
@@ -532,24 +1229,13 @@
             }
           }
         ],
-        "requestBody": {
-          "description": "MatviewsRefreshRequest",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/matviews.MatviewsRefreshRequest"
-              }
-            }
-          },
-          "required": false
-        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/matviews.MatviewsRefreshResponse"
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
                 }
               }
             }
@@ -574,6 +1260,26 @@
               }
             }
           },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -594,8 +1300,413 @@
               }
             }
           }
-        },
-        "x-codegen-request-body-name": "body"
+        }
+      }
+    },
+    "/v1/farcaster/trends/memecoins": {
+      "get": {
+        "summary": "Farcaster Memecoins",
+        "description": "Get trending farcaster memecoins that have been casted",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/farcaster/trends/users": {
+      "get": {
+        "summary": "Farcaster Users",
+        "description": "Get trending farcaster users who have casted in the last 14 days",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/marketshare/{market}/{chain}": {
+      "get": {
+        "summary": "Marketplace Market Share",
+        "description": "Given a chain, get the market share in terms of USD transacting\nvolume and number of trades for either `dex` or `nft` sector.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "market",
+            "in": "path",
+            "description": "Sector of the marketshare, either 'dex' or 'nft'",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chain",
+            "in": "path",
+            "description": "Chain name (use Dune namespace, i.e. ethereum, solana, bnb, polygon, optimsm, etc)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/points/linea/lxp": {
+      "get": {
+        "summary": "Linea LXP",
+        "description": "Get Linea LXP balance for wallet, along with Farcaster social stats and onchain behavior metrics",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/query": {
@@ -808,7 +1919,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "Alternative to using the X-Dune-Api-Key header",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -914,7 +2025,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "Alternative to using the X-Dune-Api-Key header",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -1010,7 +2121,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "Alternative to using the X-Dune-Api-Key header",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -1116,7 +2227,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "Alternative to using the X-Dune-Api-Key header",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -1212,7 +2323,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "Alternative to using the X-Dune-Api-Key header",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
             "schema": {
               "type": "string"
             }
@@ -1416,7 +2527,7 @@
     },
     "/v1/query/{query_id}/results": {
       "get": {
-        "summary": "Given a query ID, returns the latest executed result of a query on Dune in JSON format",
+        "summary": "Get Latest Query Result",
         "description": "Given a query ID, returns the latest executed result of a query on Dune in JSON format",
         "parameters": [
           {
@@ -1424,6 +2535,14 @@
             "in": "header",
             "description": "API Key for the service",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
@@ -1443,14 +2562,6 @@
             "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "This captures whether the API key was passed as a query parameter",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -1577,6 +2688,14 @@
             }
           },
           {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "query_id",
             "in": "path",
             "description": "Query ID",
@@ -1591,14 +2710,6 @@
             "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "This captures whether the API key was passed as a query parameter",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -1791,7 +2902,7 @@
     },
     "/v1/tables/create": {
       "post": {
-        "summary": "Execute, or run a query for the specified query ID",
+        "summary": "TableCreate is the /v1/table endpoint which creates an empty table.",
         "description": "Execute, or run a query for the specified query ID",
         "parameters": [
           {
@@ -2168,34 +3279,116 @@
           }
         }
       }
+    },
+    "/v1/trends/evm/contracts/{chain}": {
+      "get": {
+        "summary": "Trending Contracts",
+        "description": "Get trending contracts deployed on any EVM chain based on activity in last 30 days",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chain",
+            "in": "path",
+            "description": "The blockchain where the token pair is traded",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "matviews.MatviewsRefreshRequest": {
-        "type": "object",
-        "properties": {
-          "performance": {
-            "type": "string",
-            "description": "Performance level of the refresh\nAvailable options: `medium`, `large`, defaults to `medium`"
-          }
-        }
-      },
-      "matviews.MatviewsRefreshResponse": {
-        "type": "object",
-        "properties": {
-          "execution_id": {
-            "type": "string",
-            "description": "Unique identifier for the execution triggered to refresh the materialized view",
-            "example": "01HZ065JVE23C23FM2HKWQP2RT"
-          },
-          "sql_id": {
-            "type": "string",
-            "description": "Unique identifier for the materialized view",
-            "example": "dune.dune.result_erc_20_token_summary"
-          }
-        }
-      },
       "models.CSVUploadRequest": {
         "type": "object",
         "properties": {
@@ -2226,7 +3419,8 @@
           },
           "table_name": {
             "type": "string",
-            "description": "The name of the table that was created"
+            "description": "The name of the table that was created",
+            "example": "ten_year_us_interest_rates"
           }
         }
       },
@@ -2301,7 +3495,7 @@
         "properties": {
           "error": {
             "type": "string",
-            "example": "not allowed"
+            "example": "Bad Request"
           }
         }
       },
@@ -2310,7 +3504,7 @@
         "properties": {
           "error": {
             "type": "string",
-            "example": "invalid API Key"
+            "example": "Invalid API Key"
           }
         }
       },
@@ -2319,7 +3513,7 @@
         "properties": {
           "error": {
             "type": "string",
-            "example": "This api request would exceed your configured limits per billing cycle. Please visit your settings on dune.com and adjust your limits to continue usage."
+            "example": "This api request would exceed your configured limits per billing cycle."
           }
         }
       },
@@ -2337,7 +3531,7 @@
         "properties": {
           "error": {
             "type": "string",
-            "example": "object not found"
+            "example": "Object not found"
           }
         }
       },
@@ -2346,7 +3540,7 @@
         "properties": {
           "error": {
             "type": "string",
-            "example": "internal error"
+            "example": "Internal error"
           }
         }
       },
@@ -2534,7 +3728,8 @@
           },
           "query_sql": {
             "type": "string",
-            "description": "The SQL query text."
+            "description": "The SQL query text.",
+            "example": "SELECT * FROM dex.trades"
           },
           "tags": {
             "type": "array",
@@ -2793,12 +3988,6 @@
             "description": "The unique ID of the query that was updated"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "BasicAuth": {
-        "type": "http",
-        "scheme": "basic"
       }
     }
   },
