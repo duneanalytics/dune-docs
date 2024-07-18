@@ -1,0 +1,31 @@
+---
+title: starknet.events
+sidebarTitle: "Events"
+description: Description of the starknet.events table on Dune
+---
+
+## Table description
+
+This table captures the events that are emitted by smart contracts on the Starknet blockchain. Events are used to log significant actions and changes in smart contracts, such as token transfers or updates to contract states. Each event is linked to the transaction that triggered it, providing a detailed audit trail of contract interactions.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="starknet" tableName="events" />
+
+<Note>
+- Prior to [v3 transactions upgrade](https://www.starknet.io/developers/roadmap/v3-transactions/), fees are denominated in `wei` as users pay gas with ETH. For transactions v3 and later, fees are denominated in `fri` as users pay gas with STRK. Hence here you can see two gas types of gas fields, one for `wei` and one for `fri`.     
+- Starting with Starknet v0.13.1, Starknet distinguishes between blocks whose state diffs are sent to L1 as calldata and blocks whose state diffs are sent to L1 as blobs. The `l1_da_mode` property in the Starknet block header contains this information. Values possible are `BLOB` or `CALLDATA`.
+- The `block_status` has possible values `ACCEPTED_ON_L1` or `ACCEPTED_ON_L2`. Read here to learn more about [different transaction status](https://docs.starknet.io/architecture-and-concepts/network-architecture/transaction-life-cycle/#transaction_status).
+- `from_address`: The address of the L2 contract sending the message
+- `keys`: The keys associated with the event
+- `data`: The data associated with the event
+- Visit this [Starknet doc on events](https://docs.starknet.io/architecture-and-concepts/smart-contracts/starknet-events/) to learn more.
+</Note>
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="starknet" tableName="events" />

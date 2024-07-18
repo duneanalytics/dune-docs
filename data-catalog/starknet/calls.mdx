@@ -1,0 +1,30 @@
+---
+title: starknet.calls
+sidebarTitle: "Calls"
+description: Description of the starknet.calls table on Dune
+---
+
+## Table description
+
+This table documents the execution trace of the transaction designated by the input hash.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="starknet" tableName="calls" />
+
+<Note>
+- Prior to [v3 transactions upgrade](https://www.starknet.io/developers/roadmap/v3-transactions/), fees are denominated in `wei` as users pay gas with ETH. For transactions v3 and later, fees are denominated in `fri` as users pay gas with STRK. Hence here you can see two gas types of gas fields, one for `wei` and one for `fri`.     
+- Starting with Starknet v0.13.1, Starknet distinguishes between blocks whose state diffs are sent to L1 as calldata and blocks whose state diffs are sent to L1 as blobs. The `l1_da_mode` property in the Starknet block header contains this information. Values possible are `BLOB` or `CALLDATA`.
+- The `block_status` has possible values `ACCEPTED_ON_L1` or `ACCEPTED_ON_L2`. Read here to learn more about [different transaction status](https://docs.starknet.io/architecture-and-concepts/network-architecture/transaction-life-cycle/#transaction_status).
+- The `transaction_type` fields denotes [different types of transactions](https://docs.starknet.io/architecture-and-concepts/network-architecture/transactions/) supported by Starknet. Possible values are: `INVOKE`, `L1_HANDLER`, `DECLARE`, `DEPLOY_ACCOUNT`, and `DEPLOY`.
+- The `call_type` fields denotes what type of function calls was invoked. Possible values are [`LIBRARY_CALL`]((https://docs.starknet.io/architecture-and-concepts/smart-contracts/system-calls-cairo1/#library_call)), `CALL`, or `DELEGATE`
+- 'entry_point_type': The type of entry point. Possible values includes - `EXTERNAL`, `L1_HANDLER`, `CONSTRUCTOR`
+</Note>
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="starknet" tableName="calls" />
