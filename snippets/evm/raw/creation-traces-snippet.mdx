@@ -4,9 +4,9 @@ export const CreationTracesSnippet = ({ blockchain }) => (
     <p>
       The <code>{blockchain}.creation_traces</code> table contains information about the creation of smart contracts on the {blockchain} blockchain. This includes the address of the contract, the address of the creator, the block number at which the contract was created, the transaction hash, and the contract's bytecode. This table is useful for understanding the deployment of smart contracts on the {blockchain} blockchain.
     </p>
-    <p>
-      This table is a subset of the <code>traces</code> table, which contains information about all traces on the {blockchain} blockchain. The <code>creation_traces</code> table is filtered to only include traces that create new smart contracts. The filter for this is <code>type</code> = "create".
-    </p>
+    <Tip>
+      This table is a subset of the <code>traces</code> table, which contains information about all traces on the {blockchain} blockchain. The <code>creation_traces</code> table is filtered to only include traces that create new smart contracts. The filter for this is <code>type = 'create' </code>.
+    </Tip>
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema={blockchain} tableName="creation_traces" />
     <h2>Table Sample</h2>

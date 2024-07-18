@@ -5,7 +5,9 @@ export const TransactionsSnippet = ({ blockchain }) => (
       The <code>{blockchain}.transactions</code> table contains information about all transactions on the {blockchain} blockchain. Each row represents a single transaction and includes information such as block number, hash, timestamp, sender, recipient, value, gas, gas price, and more. Transactions are the fundamental unit of interaction with the {blockchain} blockchain. Transactions are created by users and are used to send value, deploy smart contracts, and interact with smart contracts.
     </p>
     <p>
-      This is the raw version of this table. If the chain is a <a href={`/catalyst/fully-managed`}>Fully Managed</a> chain, transaction calls will be available, see <a href={`/data-catalog/evm/${blockchain}/decoded/call-tables`}>call tables</a> section. If this is a <a href={`/catalyst/hosted`}>Hosted</a> chain, decoded call tables will not be available.
+    <Tip> 
+      This is the raw version of this table. If the chain is a <a href={`/catalyst/fully-managed`}>Fully Managed</a> chain, decoded transaction calls will be available, see <a href={`/data-catalog/evm/${blockchain}/decoded/call-tables`}>call tables</a> section. If this is a <a href={`/catalyst/hosted`}>Hosted</a> chain, decoded call tables will not be available.
+    </Tip>
     </p>
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema={blockchain} tableName="transactions" />
