@@ -592,7 +592,7 @@
           },
           {
             "in": "query",
-            "name": "parameters",
+            "name": "params",
             "required": false,
             "explode": true,
             "schema": {
