@@ -1,0 +1,64 @@
+## tigris_arbitrum.events_open_position 
+open position events for tigris events on v1 &amp; v2
+
+
+<ParamField path="day">
+date_trunc of block time of position opening
+</ParamField>
+<ParamField path="evt_block_time">
+blocktime of transaction
+</ParamField>
+<ParamField path="evt_index">
+event index of transaction
+</ParamField>
+<ParamField path="evt_tx_hash">
+blockchain transaction hash
+</ParamField>
+<ParamField path="position_id">
+unique nft id for position
+</ParamField>
+<ParamField path="price">
+entry price of trade
+</ParamField>
+<ParamField path="margin">
+margin added to trade
+</ParamField>
+<ParamField path="leverage">
+leverage used for trade
+</ParamField>
+<ParamField path="volume_usd">
+margin * leverage (usd)
+</ParamField>
+<ParamField path="margin_asset">
+margin asset used for trade
+</ParamField>
+<ParamField path="pair">
+name of asset added
+</ParamField>
+<ParamField path="direction">
+trade direction (long or short)
+</ParamField>
+<ParamField path="referral">
+user referring trader
+</ParamField>
+<ParamField path="trader">
+trader intiating transaction
+</ParamField>
+<ParamField path="version">
+trading contract version
+</ParamField>
+<ParamField path="project_contract_address">
+trading contract address
+</ParamField>
+<ParamField path="protocol_version">
+tigris project version 
+</ParamField>
+<ParamField path="block_month">
+date_trunc of block month of trade
+</ParamField>
+<ParamField path="open_type">
+trade open type
+</ParamField>
+<ParamField path="positions_contract">
+corresponding position contract address
+</ParamField>

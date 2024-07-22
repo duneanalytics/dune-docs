@@ -1,0 +1,28 @@
+## balances_polygon.erc20_latest 
+Latest token balances of ERC20 polygon tokens per wallet and contract address pair. Depends on erc20_polygon_transfers.
+
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="last_updated">
+UTC timestamp when data was last updated
+</ParamField>
+<ParamField path="wallet_address">
+Address of the wallet holding this ERC20 token
+</ParamField>
+<ParamField path="token_address">
+Contract address for the ERC20 token
+</ParamField>
+<ParamField path="amount_raw">
+Raw amount of ERC20 token held *before* taking into account token decimals
+</ParamField>
+<ParamField path="amount">
+Raw amount of ERC20 token held *after* taking into account token decimals
+</ParamField>
+<ParamField path="amount_usd">
+Amount of ERC20 token held in USD if we have it
+</ParamField>
+<ParamField path="symbol">
+Token symbol
+</ParamField>

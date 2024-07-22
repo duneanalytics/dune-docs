@@ -1,0 +1,24 @@
+## transfers_celo.erc1155_agg_hour 
+A helper table to construct erc1155 balances
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="block_month">
+Block Month column used to partition data in this table
+</ParamField>
+<ParamField path="block_hour">
+UTC event block time truncated to the hour mark.
+</ParamField>
+<ParamField path="wallet_address">
+Wallet address of sender or receiver. If amount is negative, wallet address is the sender&#x27;s.
+</ParamField>
+<ParamField path="token_address">
+Contract address for token
+</ParamField>
+<ParamField path="token_id">
+ID of the ERC1155 token
+</ParamField>
+<ParamField path="amount">
+Amount of ERC1155 token held
+</ParamField>

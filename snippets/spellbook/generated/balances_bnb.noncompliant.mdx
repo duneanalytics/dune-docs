@@ -1,0 +1,7 @@
+## balances_bnb.noncompliant 
+Helper model. This queries all of the token address with negative balances.  Some wiggle room is allowed for tokens with very small negative balances which could have been introduced by interger overflow due to very large ints.  It&#x27;s likely that the token contract is non-compliant if a negative balance occurs.  Therefore, we use this table to remove those contracts from our token balances tables.
+
+
+<ParamField path="token_address">
+Token Address for possibly non-compliant bep20 token
+</ParamField>

@@ -1,0 +1,39 @@
+## evms.contracts 
+A view keeping track of what contracts are decoded across EVM chains on Dune; contains information associated with the decoded contract such as namespace, name, address, ABI.
+
+<ParamField path="blockchain">
+Name of the blockchain
+</ParamField>
+<ParamField path="abi">
+ABI of the decoded contract
+</ParamField>
+<ParamField path="address">
+Address of the decoded contract
+</ParamField>
+<ParamField path="from">
+Address that created/deployed this contract
+</ParamField>
+<ParamField path="code">
+Code for contract creation
+</ParamField>
+<ParamField path="name">
+Name of the decoded contract
+</ParamField>
+<ParamField path="namespace">
+Namesapce of the decoded contract
+</ParamField>
+<ParamField path="dynamic">
+Boolean indicating whether the contract is dynamic or not
+</ParamField>
+<ParamField path="base">
+Boolean indicating whether the contract is the base contract or not
+</ParamField>
+<ParamField path="factory">
+Boolean indicating whether the contract is a factory contract or not
+</ParamField>
+<ParamField path="detection_source">
+Detection source: &#x27;factory&#x27;, &#x27;base&#x27;, or &#x27;dynamic&#x27;
+</ParamField>
+<ParamField path="created_at">
+Timestamp for contract creation
+</ParamField>

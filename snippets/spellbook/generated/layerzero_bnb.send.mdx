@@ -1,0 +1,72 @@
+## layerzero_bnb.send 
+LayerZero message send call on bnb
+
+<ParamField path="blockchain">
+Blockchain which the Endpoint is deployed
+</ParamField>
+<ParamField path="source_chain_id">
+Source chain id
+</ParamField>
+<ParamField path="source_chain_name">
+Source chain name
+</ParamField>
+<ParamField path="destination_chain_id">
+Destination chain id
+</ParamField>
+<ParamField path="destination_chain_name">
+Destination chain name
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash
+</ParamField>
+<ParamField path="block_number">
+Block number in which the transaction was executed
+</ParamField>
+<ParamField path="endpoint_contract">
+LayerZero endpoint contract address
+</ParamField>
+<ParamField path="trace_address">
+
+</ParamField>
+<ParamField path="adapter_params">
+LayerZero parameters for custom functionality
+</ParamField>
+<ParamField path="refund_address">
+Address for refund the additional amount
+</ParamField>
+<ParamField path="zro_payment_address">
+The address of the ZRO token holder who would pay for the transaction
+</ParamField>
+<ParamField path="block_time">
+UTC call block time
+</ParamField>
+<ParamField path="user_address">
+Address that initiated the transaction
+</ParamField>
+<ParamField path="transaction_contract">
+LayerZero transaction contract address
+</ParamField>
+<ParamField path="local_bridge_contract">
+LayerZero local bridge contract address
+</ParamField>
+<ParamField path="remote_bridge_contract">
+LayerZero remote bridge contract address
+</ParamField>
+<ParamField path="transfer_type">
+Transfer type, native or erc20
+</ParamField>
+<ParamField path="currency_symbol">
+Symbol of original currency used for transfer
+</ParamField>
+<ParamField path="currency_contract">
+Contract address of original token used for transfer, with ETH contract address swapped for WETH
+</ParamField>
+<ParamField path="amount_usd">
+USD value of transfer at time of execution
+</ParamField>
+<ParamField path="amount_original">
+Transferred amount in original currency
+</ParamField>
+<ParamField path="amount_raw">
+Transferred amount in original currency before decimals correction
+</ParamField>
