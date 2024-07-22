@@ -42,6 +42,78 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -136,6 +208,78 @@
             "name": "api_key",
             "in": "query",
             "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -236,6 +380,78 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -330,6 +546,78 @@
             "name": "api_key",
             "in": "query",
             "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -430,6 +718,78 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -524,6 +884,78 @@
             "name": "api_key",
             "in": "query",
             "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -639,6 +1071,78 @@
             "in": "path",
             "description": "The name of the endpoint as slug",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -1227,6 +1731,78 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1324,6 +1900,78 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1418,6 +2066,78 @@
             "name": "api_key",
             "in": "query",
             "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -1536,6 +2256,78 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1630,6 +2422,78 @@
             "name": "api_key",
             "in": "query",
             "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -3310,6 +4174,78 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allow_partial_results",
+            "in": "query",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "columns",
+            "in": "query",
+            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignore_max_datapoints_per_request",
+            "in": "query",
+            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "queryID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sample_count",
+            "in": "query",
+            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3804,29 +4740,6 @@
           }
         }
       },
-      "models.QueryResultError": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "A descriptive message about the error."
-          },
-          "metadata": {
-            "type": "object",
-            "description": "Metadata about the syntax error that occurred, if applicable.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/models.SyntaxErrorMetadata"
-              }
-            ]
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of error that occurred.",
-            "example": "syntax_error"
-          }
-        }
-      },
       "models.ReadExecutionResultResponse": {
         "type": "object",
         "properties": {
@@ -3834,15 +4747,6 @@
             "type": "string",
             "description": "Timestamp of when the query execution was cancelled, if applicable.",
             "example": "2024-12-20T11:04:18.724658237Z"
-          },
-          "error": {
-            "type": "object",
-            "description": "In case the execution had an error, this object will contain the error details",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/models.QueryResultError"
-              }
-            ]
           },
           "execution_ended_at": {
             "type": "string",
@@ -3909,19 +4813,6 @@
         "type": "object",
         "additionalProperties": {
           "type": "object"
-        }
-      },
-      "models.SyntaxErrorMetadata": {
-        "type": "object",
-        "properties": {
-          "column": {
-            "type": "integer",
-            "description": "The column number at which the syntax error occurred."
-          },
-          "line": {
-            "type": "integer",
-            "description": "The line number at which the syntax error occurred in the query."
-          }
         }
       },
       "models.TableClearResponse": {
