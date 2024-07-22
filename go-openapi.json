@@ -3303,10 +3303,7 @@
             "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
             "schema": {
               "type": "string",
-              "enum": [
-                "medium",
-                "large"
-              ]
+              "enum": ["medium", "large"]
             }
           },
           {
@@ -4372,10 +4369,7 @@
         }
       },
       "models.CreateQueryRequest": {
-        "required": [
-          "name",
-          "query_sql"
-        ],
+        "required": ["name", "query_sql"],
         "type": "object",
         "properties": {
           "description": {
@@ -4505,11 +4499,7 @@
           "column_names": {
             "type": "array",
             "description": "Names of the columns in the result set.",
-            "example": [
-              "Rank",
-              "Project",
-              "Volume"
-            ],
+            "example": ["Rank", "Project", "Volume"],
             "items": {
               "type": "string"
             }
@@ -4517,11 +4507,7 @@
           "column_types": {
             "type": "array",
             "description": "Types of the columns in the result set.",
-            "example": [
-              "double",
-              "varchar",
-              "bigint"
-            ],
+            "example": ["double", "varchar", "bigint"],
             "items": {
               "type": "string"
             }
