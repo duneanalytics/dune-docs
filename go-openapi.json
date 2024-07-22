@@ -4499,7 +4499,7 @@
           "column_names": {
             "type": "array",
             "description": "Names of the columns in the result set.",
-            "example": ["column1", "column2"],
+            "example": ["Rank", "Project", "Volume"],
             "items": {
               "type": "string"
             }
@@ -4507,7 +4507,7 @@
           "column_types": {
             "type": "array",
             "description": "Types of the columns in the result set.",
-            "example": ["value1", "value2"],
+            "example": ["double", "varchar", "bigint"],
             "items": {
               "type": "string"
             }
