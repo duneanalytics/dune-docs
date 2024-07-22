@@ -1,0 +1,21 @@
+## transfers_base.erc20 
+ERC20 Token Transfers on base. This table is updated every 30 minutes.
+
+<ParamField path="unique_transfer_id">
+Unique transfer ID (used for testing for duplicates)
+</ParamField>
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="wallet_address">
+Wallet address of sender or receiver. If amount is negative, wallet address is the sender&#x27;s.
+</ParamField>
+<ParamField path="token_address">
+Contract address for token
+</ParamField>
+<ParamField path="evt_block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="amount_raw">
+Raw amount of ERC20 token held *before* taking into account token decimals
+</ParamField>

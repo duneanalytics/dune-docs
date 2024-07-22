@@ -1,0 +1,61 @@
+## yield_yak_avalanche_c.yak_swaps 
+yield yak aggregator yak swaps on avalanche_c
+
+
+<ParamField path="blockchain">
+Blockchain on which the YRT contract is deployed
+</ParamField>
+<ParamField path="yak_router_address">
+Address of the YakRouter contract which made the swap
+</ParamField>
+<ParamField path="block_number">
+Block number of the deposit/withdraw/reinvest/swap
+</ParamField>
+<ParamField path="block_date">
+UTC event block date of the deposit/withdraw/reinvest/swap
+</ParamField>
+<ParamField path="block_time">
+UTC time of the deposit/withdraw/reinvest/swap
+</ParamField>
+<ParamField path="tx_index">
+Index of the transaction within the block
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash of the deposit/withdraw/reinvest/swap
+</ParamField>
+<ParamField path="tx_to_address">
+Address &#x27;to&#x27; which this transaction was sent (i.e. which had a function called)
+</ParamField>
+<ParamField path="tx_fee">
+Transaction / gas cost in native token for the transaction calculated using (price * gas used)
+</ParamField>
+<ParamField path="evt_index">
+The position of this event log within this transaction
+</ParamField>
+<ParamField path="number_of_swaps_in_tx">
+Count of the number of YakSwap events in this same transaction (used to divide the gas cost / tx fee)
+</ParamField>
+<ParamField path="tx_fee_per_swap">
+Transaction fee divided per each Yak Swap event
+</ParamField>
+<ParamField path="trader_address">
+Address which initiated the transaction
+</ParamField>
+<ParamField path="swap_token_in_address">
+Address of the token being sold in the YakSwap event
+</ParamField>
+<ParamField path="swap_token_out_address">
+Address of the token being bought in the YakSwap event
+</ParamField>
+<ParamField path="swap_amount_in">
+Amount of the sold token being swapped from / traded in the YakSwap event
+</ParamField>
+<ParamField path="swap_amount_out">
+Amount of the bought token being swapped to / bought in the YakSwap event
+</ParamField>
+<ParamField path="number_of_hops">
+Number of steps/hops the YakSwap has gone through in order to get the desired token at the best rate
+</ParamField>
+<ParamField path="yak_adapter_swaps">
+JSON array containing detailed information about the individual YakAdapterSwap events which make up this YakSwap
+</ParamField>
