@@ -1,0 +1,46 @@
+## balancer_v2_base.protocol_fee 
+Daily Protocol Fee collected and Revenue by pool on Balancer, an automated portfolio manager and trading platform.
+
+
+<ParamField path="day">
+Block date in UTC
+</ParamField>
+<ParamField path="pool_id">
+Unique encoded identifier that refers to each pool
+</ParamField>
+<ParamField path="pool_address">
+Pool address
+</ParamField>
+<ParamField path="pool_symbol">
+Token symbols, followed by their respective weights, if applicable
+</ParamField>
+<ParamField path="version">
+Version of the project
+</ParamField>
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="pool_type">
+Pool attributes, determined by the pool&#x27;s factory
+</ParamField>
+<ParamField path="token_address">
+Contract address of the token in which protocol fees were collected
+</ParamField>
+<ParamField path="token_symbol">
+Token symbol of the token in which protocol fees were collected&quot;
+</ParamField>
+<ParamField path="token_amount_raw">
+Raw amount of fees of the token in the pool at time of execution in the original currency
+</ParamField>
+<ParamField path="token_amount">
+Normalized amount of fees of the token in the pool at time of execution in the original currency
+</ParamField>
+<ParamField path="protocol_fee_collected_usd">
+USD value of the collected fee
+</ParamField>
+<ParamField path="treasury_share">
+Share of total fee that is directed to Balancer DAO&#x27;s treasury, as per BIPs 19, 161 and 371
+</ParamField>
+<ParamField path="treasury_revenue_usd">
+USD value of fee directed to Balancer DAO&#x27;s treasury
+</ParamField>
