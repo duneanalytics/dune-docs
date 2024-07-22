@@ -267,7 +267,6 @@
       "BalancesResponse": {
         "type": "object",
         "required": [
-          "request_time",
           "response_time",
           "wallet_address",
           "balances"
@@ -288,7 +287,8 @@
             "nullable": true
           },
           "request_time": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "response_time": {
             "type": "string"
