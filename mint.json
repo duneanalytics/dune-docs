@@ -1369,7 +1369,11 @@
         "developer-apis/overview",
         {
           "group": "Account APIs",
-          "pages": ["developer-apis/balances", "developer-apis/chains"]
+          "pages": [
+            "developer-apis/balances",
+            "developer-apis/chains",
+            "developer-apis/transactions"
+          ]
         }
       ]
     },

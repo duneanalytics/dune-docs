@@ -1,0 +1,24 @@
+---
+title: 'Transactions (Beta)'
+openapi: 'GET /beta/transactions/{address}'
+---
+
+The Transactions Endpoint provides accurate and fast lookup of transactions of an address. 
+We support native and ERC20 tokens of accounts on supported blockchains (EVM currently).
+Data is typically available within 100 ms after a block was propagated to nodes.
+
+
+# Column Descriptions
+
+| Column                          | Description                                                   | Type          |
+|---------------------------------|---------------------------------------------------------------|---------------|
+| request_time                    | Time of request                                               | timestamp     |
+| response_time                   | Time of response                                              | timestamp     |
+| wallet_address                  | Wallet address                                                | string        |
+| chain                           | Name of blockchain of token                                   | string        |
+| address                         | ERC20 contract address or blockchain name for native token    | string        |
+| amount                          | Amount of token owned in WEI                                  | double        |
+| symbol                          | Symbol of token, if avilable                                  | string        |
+| decimals                        | Decimals of token, if available                               | double        |
+| price_usd                       | Current price of token, if available                          | double        |
+| value_usd                       | Current value of token owned, if available                    | double        |
