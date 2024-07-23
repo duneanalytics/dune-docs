@@ -1371,8 +1371,8 @@
           "group": "Account APIs",
           "pages": [
             "developer-apis/balances",
-            "developer-apis/chains",
-            "developer-apis/transactions"
+            "developer-apis/transactions",
+            "developer-apis/chains"
           ]
         }
       ]
