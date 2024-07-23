@@ -12,13 +12,20 @@ Data is typically available within 100 ms after a block was propagated to nodes.
 
 | Column                          | Description                                                   | Type          |
 |---------------------------------|---------------------------------------------------------------|---------------|
-| request_time                    | Time of request                                               | timestamp     |
-| response_time                   | Time of response                                              | timestamp     |
-| wallet_address                  | Wallet address                                                | string        |
-| chain                           | Name of blockchain of token                                   | string        |
-| address                         | ERC20 contract address or blockchain name for native token    | string        |
-| amount                          | Amount of token owned in WEI                                  | double        |
-| symbol                          | Symbol of token, if avilable                                  | string        |
-| decimals                        | Decimals of token, if available                               | double        |
-| price_usd                       | Current price of token, if available                          | double        |
-| value_usd                       | Current value of token owned, if available                    | double        |
+| address                         | Wallet or ERC20 contract address                              | string        |
+| block_hash                      | Unique cryptographic block identifier.                        | string        |
+| block_number                    | Block's sequential index.                                     | string        |
+| block_time                      | Timestamp of block creation.                                  | timestamp     |
+| block_version                   | Block's protocol iteration.                                   | integer       |
+| chain                           | Name of the blockchain                                        | string        |
+| from                            | Address of sender                                             | string        |
+| to                              | Address of receiver                                           | string        |
+| data                            | Data of transaction                                           | string        |
+| gas_price                       | Gas price of transaction                                      | string        |
+| hash                            | Hash of transaction                                           | string        |
+| index                           | Index of transaction                                          | string        |
+| max_fee_per_gas                 | Max fee per gas of transaction                                | string        |
+| max_priority_fee_per_gas        | Max priority fee per gas of transaction                       | string        |
+| nonce                           | Nonce of transaction                                          | string        |
+| transaction_type                | Type of transaction                                           | string        |
+| value                           | Value of transaction                                          | double        |
