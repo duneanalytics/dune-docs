@@ -29,67 +29,24 @@
             }
           },
           {
-            "name": "block_time",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "nullable": true,
-              "minimum": 0
-            }
-          },
-          {
-            "name": "chain",
-            "in": "path",
+            "name": "index",
+            "in": "query",
+            "description": "Index of the transaction to start from",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32",
-              "nullable": true,
-              "minimum": 0
-            }
-          },
-          {
-            "name": "block_number",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "nullable": true,
-              "minimum": 0
-            }
-          },
-          {
-            "name": "block_version",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "nullable": true,
-              "minimum": 0
-            }
-          },
-          {
-            "name": "index",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "nullable": true,
               "minimum": 0
             }
           },
           {
             "name": "limit",
-            "in": "path",
+            "in": "query",
+            "description": "Maximum number of transactions to return",
             "required": true,
             "schema": {
               "type": "integer",
-              "nullable": true,
+              "format": "int32",
               "minimum": 0
             }
           }
