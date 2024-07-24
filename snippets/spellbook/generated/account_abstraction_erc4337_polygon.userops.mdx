@@ -1,0 +1,57 @@
+## account_abstraction_erc4337_polygon.userops 
+erc4337 user operation on polygon
+
+<ParamField path="blockchain">
+blockchain which EntryPoint was deployed
+</ParamField>
+<ParamField path="version">
+version of the EntryPoint contract
+</ParamField>
+<ParamField path="block_month">
+UTC event block date of each User Operation
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each User Operation
+</ParamField>
+<ParamField path="entrypoint_contract">
+the contract address of the EntryPoint
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the User Operation
+</ParamField>
+<ParamField path="sender">
+the sender(AA wallet address) that submmited the user operation
+</ParamField>
+<ParamField path="userop_hash">
+Unique user operation hash
+</ParamField>
+<ParamField path="success">
+weather the user operation is successfully execuated
+</ParamField>
+<ParamField path="paymaster">
+the address that pay for the user operation gas fees on behalf of the user
+</ParamField>
+<ParamField path="op_fee">
+The gas paid by sender or paymaster It depends on the chain gas setting
+</ParamField>
+<ParamField path="op_fee_usd">
+The user operation gas (in usd) paid by sender or paymaster. 
+</ParamField>
+<ParamField path="bundler">
+address that bundle UserOps and submit those UserOps to the final on-chain by send a EOA transaction. It is the transaction from address
+</ParamField>
+<ParamField path="tx_to">
+address where the bundler send the transaction
+</ParamField>
+<ParamField path="gas_symbol">
+the gas symbol paied for the transaction
+</ParamField>
+<ParamField path="tx_fee">
+the bundler paied gas value for the transaction
+</ParamField>
+<ParamField path="tx_fee_usd">
+the bundler paied gas (in usd) value for the transaction
+</ParamField>
+<ParamField path="beneficiary">
+the address where the bundler setting for the user operation pay for thier gas fee
+</ParamField>
