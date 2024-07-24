@@ -1,0 +1,143 @@
+---
+title: 'Websockets Endpoints'
+---
+
+
+## Why Websockets?
+Using WebSockets for a balances and transactions API enables real-time, bidirectional communication between the server and clients, 
+ensuring that updates are instantaneously pushed to users. 
+
+This is crucial for blockchain applications, where timely updates on balances 
+and transactions are essential for user experience and trust. 
+
+Unlike traditional HTTP requests, WebSockets maintain an open connection, 
+reducing latency and overhead associated with repeatedly establishing connections. 
+This efficiency and immediacy make WebSockets an ideal choice for
+ dynamic and interactive blockchain applications.
+
+## What are Websockets and how do they differ from HTTP?
+WebSockets operates as a two-way communication protocol, keeping a persistent connection between a server and a client. 
+This differs from HTTP, where clients must repeatedly send requests to receive information.
+
+With an active WebSocket connection, clients can receive real-time updates by subscribing to specific network states, 
+like new transactions or blockchain blocks being added.
+
+
+
+## Getting Started
+We prepared examples for getting websocket updates in your terminal, python or javascript to help you get started with our Developer Websockets Endpoints.
+Pick your preferred language, complete the steps below and you should be able to get your first events streamed to your client.
+
+<AccordionGroup>
+  <Accordion title="Terminal">
+    <Steps>
+      <Step title="Install the dependencies">
+        ```bash 
+        npm install -g wscat
+        ```
+      </Step>
+      <Step title="Call the webhook">
+        ```bash Terminal
+          wscat -c wss://api.dune.com/api/beta/balance/{Wallet Address}/subscribe \
+            -H "X-Dune-Api-Key: {Dune API Key}"
+        ```
+      </Step>
+      <Step title="Get balance changes in your terminal">
+        ```json 200
+        { 
+          "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
+          [
+            {
+                "chain": "polygon",
+                "chain_id": 137,
+                "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+                "amount": "1000000",
+                "symbol": "USDC",
+                "decimals": 6,
+                "price_usd": 0.9999765798076116,
+                "value_usd": 0.9999765798076116
+            }
+          ]
+        }
+        ```
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Python">
+    <Steps>
+      <Step title="Install the dependencies">
+      ```python Python dependencies
+      pip install websockets
+      ```
+      </Step>
+      <Step title="Define the python code">
+      You can copy the code below and save it as `dune_websocket.py`.
+      ```python Python
+        import asyncio
+        import websockets
+
+        DUNE_API_KEY = "YOUR_API_KEY" # Replace with your Dune API key
+        WALLET_ADDRESS = "WALLET_ADDRESS" # Replace with your wallet address
+
+        async def listen_to_events(wallet):
+            uri = f"wss://api.dune.com/api/beta/balance/{wallet}/subscribe"  
+            headers = {"X-Dune-Api-Key": DUNE_API_KEY}  
+            async with websockets.connect(uri, extra_headers=headers) as websocket:
+                print("Connected to the WebSocket server.")
+                
+                while True:
+                    try:
+                        event = await websocket.recv()
+                        print(f"Received event: {event}")
+                    except websockets.ConnectionClosed:
+                        print("Connection closed")
+                        break
+                    except Exception as e:
+                        print(f"An error occurred: {e}")
+                        break
+
+        async def main():
+            await listen_to_events(WALLET_ADDRESS) # Replace with your wallet address
+
+        if __name__ == "__main__":
+            asyncio.run(main())
+        ```
+      </Step>
+      <Step title="Run the code">
+       Now you can run the defined code to listen to balance changes in your terminal.
+        ```bash Terminal
+        python dune_websocket.py
+        ```
+      </Step>
+      <Step title="Get updates pushed to you">
+      Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
+       ```json 200
+        { 
+          "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
+          [
+            {
+                "chain": "polygon",
+                "chain_id": 137,
+                "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+                "amount": "1000000",
+                "symbol": "USDC",
+                "decimals": 6,
+                "price_usd": 0.9999765798076116,
+                "value_usd": 0.9999765798076116
+            }
+          ]
+        }
+        ```
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Javascript">
+    Check out the [Accordion](/content/components/accordions) docs for all the supported props.
+  </Accordion>
+</AccordionGroup>
+
+
+
+ 

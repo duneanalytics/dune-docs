@@ -1372,7 +1372,8 @@
           "pages": [
             "developer-apis/balances",
             "developer-apis/transactions",
-            "developer-apis/chains"
+            "developer-apis/chains",
+            "developer-apis/websockets"
           ]
         }
       ]
