@@ -1,0 +1,189 @@
+### QueryAPI 
+Query Management Interface (CRUD operations)
+https://docs.dune.com/api-reference/queries/endpoint/query-object
+
+#### new QueryAPI(apiKey: string, apiVersion: string)
+
+
+<ParamField path="apiKey" type="string">
+
+</ParamField>
+<ParamField path="apiVersion" type="string">
+
+</ParamField>
+#### _delete(route: string)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>
+#### _get(route: string, params: RequestPayload, raw: boolean)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="raw" type="boolean">
+
+</ParamField>
+#### _getByUrl(url: string, params: RequestPayload, raw: boolean)
+
+
+<ParamField path="url" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="raw" type="boolean">
+
+</ParamField>
+#### _handleResponse(responsePromise: Promise)
+
+
+<ParamField path="responsePromise" type="Promise">
+
+<Expandable title="properties">
+<Promise />
+</Expandable>
+</ParamField>
+#### _patch(route: string, params: RequestPayload)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+#### _request(method: RequestMethod, url: string, payload: RequestPayload, raw: boolean, content_type: ContentType)
+
+
+<ParamField path="method" type="RequestMethod">
+
+<Expandable title="properties">
+<RequestMethod />
+</Expandable>
+</ParamField>
+<ParamField path="url" type="string">
+
+</ParamField>
+<ParamField path="payload" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="raw" type="boolean">
+
+</ParamField>
+<ParamField path="content_type" type="ContentType">
+
+<Expandable title="properties">
+<ContentType />
+</Expandable>
+</ParamField>
+#### archiveQuery(queryId: number)
+Archive a query. Only the API key generated under the context of
+the owner of that query will work. This does not delete the query,
+but will make it uneditable/unexecutable:
+https://docs.dune.com/api-reference/queries/endpoint/archive
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+#### createQuery(params: CreateQueryParams)
+Create a query. The owner of the query will be under the context of the API key.
+https://docs.dune.com/api-reference/queries/endpoint/create
+
+<ParamField path="params" type="CreateQueryParams">
+
+<Expandable title="properties">
+<CreateQueryParams />
+</Expandable>
+</ParamField>
+#### makePrivate(queryId: number)
+Make a query private. Only the API key generated under the context of
+the owner of that query will work.
+https://docs.dune.com/api-reference/queries/endpoint/private
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+#### makePublic(queryId: number)
+Make a private query public.
+https://docs.dune.com/api-reference/queries/endpoint/unprivate
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+#### post(route: string, params: RequestPayload, content_type: ContentType)
+Allows a post to any route supported by DuneAPI.
+Meant to be low level call only used by available functions,
+but accessible if new routes become available before the SDK catches up.
+
+<ParamField path="route" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="content_type" type="ContentType">
+
+<Expandable title="properties">
+<ContentType />
+</Expandable>
+</ParamField>
+#### readQuery(queryId: number)
+Read the sql text, parameters, name, tags, and state of a query.
+For private queries, only the API key generated under the context
+of the owner of that query will work:
+https://dune.com/docs/api/api-referenhttps://docs.dune.com/api-reference/queries/endpoint/read
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+#### unarchiveQuery(queryId: number)
+Unarchive a query. Only the API key generated under the context of
+the owner of that query will work.
+https://docs.dune.com/api-reference/queries/endpoint/unarchive
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+#### updateQuery(queryId: number, params: UpdateQueryParams)
+Update the sql text, parameters, name, tags, and state of a query.
+Only the API key generated under the context of the owner of that
+query will work.
+https://docs.dune.com/api-reference/queries/endpoint/update
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+<ParamField path="params" type="UpdateQueryParams">
+
+<Expandable title="properties">
+<UpdateQueryParams />
+</Expandable>
+</ParamField>
+#### url(route: string)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>

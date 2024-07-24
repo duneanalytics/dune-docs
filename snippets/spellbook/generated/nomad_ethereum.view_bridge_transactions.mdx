@@ -1,0 +1,55 @@
+## nomad_ethereum.view_bridge_transactions 
+nomad bridge transactions on Ethereum
+
+
+<ParamField path="block_time">
+UTC event block time
+</ParamField>
+<ParamField path="block_number">
+number of the ETH block in which transaction was executed 
+</ParamField>
+<ParamField path="tx_hash">
+Transaction hash
+</ParamField>
+<ParamField path="evt_index">
+index of transaction within the block
+</ParamField>
+<ParamField path="transaction_type">
+identify whether it was a send or receive transaction
+</ParamField>
+<ParamField path="contract_address">
+contract address
+</ParamField>
+<ParamField path="token_address">
+token address
+</ParamField>
+<ParamField path="original_amount">
+the original amount original currency of the token
+</ParamField>
+<ParamField path="original_amount_raw">
+raw original amount (can have many decimals or 0s in front)
+</ParamField>
+<ParamField path="original_currency">
+symbol of original token used in payment
+</ParamField>
+<ParamField path="usd_amount">
+use the prices table to convert the original amount to amount in USD at the minute of the transaction
+</ParamField>
+<ParamField path="sender">
+sender wallet address
+</ParamField>
+<ParamField path="recipient">
+recipient wallet address
+</ParamField>
+<ParamField path="domain_id">
+domain id the transaction is sent to or received from
+</ParamField>
+<ParamField path="domain_name">
+domain name
+</ParamField>
+<ParamField path="fast_liquidity_enabled">
+whether or not fast ligidity is enabled
+</ParamField>
+<ParamField path="liquidity_provider">
+liquidity provider address
+</ParamField>

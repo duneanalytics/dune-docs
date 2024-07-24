@@ -1,0 +1,49 @@
+## hashflow_ethereum.crosschain_trades 
+Table of Hashflow cross chain trades on ethereum. Includes unique data for cross chain trades such as source and destination chains for further analysis of Hashflow&#x27;s cross chain activity.
+
+
+<ParamField path="block_date">
+UTC event block date of each trade
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each trade
+</ParamField>
+<ParamField path="token_bought_symbol">
+Token symbol for token bought in the transaction
+</ParamField>
+<ParamField path="token_sold_symbol">
+Token symbol for token sold in the transaction
+</ParamField>
+<ParamField path="token_bought_amount">
+Value of the token bought at time of execution in the original currency
+</ParamField>
+<ParamField path="token_sold_amount">
+Value of the token sold at time of execution in the original currency
+</ParamField>
+<ParamField path="token_bought_amount_raw">
+Raw value of the token bought at time of execution in the original currency
+</ParamField>
+<ParamField path="token_sold_amount_raw">
+Raw value of the token sold at time of execution in the original currency
+</ParamField>
+<ParamField path="amount_usd">
+USD value of the trade at time of execution
+</ParamField>
+<ParamField path="token_bought_address">
+Contract address of the token bought
+</ParamField>
+<ParamField path="token_sold_address">
+Contract address of the token sold
+</ParamField>
+<ParamField path="trader">
+Address of trader who sold a token
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction
+</ParamField>
+<ParamField path="source_chain">
+Chain where the trade originated.
+</ParamField>
+<ParamField path="destination_chain">
+Ending chain where swapped token balance will be received.
+</ParamField>
