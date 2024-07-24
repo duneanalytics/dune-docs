@@ -1,0 +1,81 @@
+## alm.trades 
+
+
+<ParamField path="blockchain">
+Blockchain where the ALM is deployed
+</ParamField>
+<ParamField path="project">
+Project name
+</ParamField>
+<ParamField path="version">
+Version of the contract built and deployed by the project
+</ParamField>
+<ParamField path="dex">
+DEX name
+</ParamField>
+<ParamField path="dex_version">
+Version of the liquidity pool contract
+</ParamField>
+<ParamField path="block_month">
+Month of the event block time
+</ParamField>
+<ParamField path="block_time">
+UTC event block time of each DEX trade
+</ParamField>
+<ParamField path="block_number">
+Block number of each DEX trade
+</ParamField>
+<ParamField path="pool_address">
+Project contract address which executed the trade on the blockchain
+</ParamField>
+<ParamField path="vault_address">
+Address of the vault (liquidity provider)
+</ParamField>
+<ParamField path="token_pair">
+Token symbol pair for the pool tokens
+</ParamField>
+<ParamField path="token0_address">
+Contract address of the token bought
+</ParamField>
+<ParamField path="token1_address">
+Contract address of the token sold
+</ParamField>
+<ParamField path="volume_usd">
+USD volume provided by the ALM
+</ParamField>
+<ParamField path="swap_volume_usd">
+Full USD volume traded in the DEX pool
+</ParamField>
+<ParamField path="volume_share">
+Share of the traded volume provided by the ALM
+</ParamField>
+<ParamField path="volume0">
+Amount of token0 provided by the ALM (with parsed decimals)
+</ParamField>
+<ParamField path="swap_volume0">
+Full amount of token0 traded in the DEX pool
+</ParamField>
+<ParamField path="token0_symbol">
+Token symbol for token0 of the pool
+</ParamField>
+<ParamField path="volume1">
+Amount of token1 provided by the ALM (with parsed decimals)
+</ParamField>
+<ParamField path="swap_volume1">
+Full amount of token1 traded in the DEX pool
+</ParamField>
+<ParamField path="token1_symbol">
+Token symbol for token1 of the pool
+</ParamField>
+<ParamField path="volume0_raw">
+Raw amount of token0 provided by the ALM
+</ParamField>
+<ParamField path="volume1_raw">
+Raw amount of token1 provided by the ALM
+</ParamField>
+<ParamField path="tx_hash">
+Unique transaction hash value tied to each transaction on the DEX
+</ParamField>
+<ParamField path="evt_index">
+Index of the corresponding trade event
+</ParamField>

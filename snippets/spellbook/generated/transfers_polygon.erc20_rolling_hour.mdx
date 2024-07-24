@@ -1,0 +1,30 @@
+## transfers_polygon.erc20_rolling_hour 
+ERC20 Token Transfers on polygon per hour.
+
+<ParamField path="blockchain">
+Blockchain
+</ParamField>
+<ParamField path="block_hour">
+UTC event block time truncated to the hour mark.
+</ParamField>
+<ParamField path="wallet_address">
+Wallet address of sender or receiver. If amount is negative, wallet address is the sender&#x27;s.
+</ParamField>
+<ParamField path="token_address">
+Contract address for token
+</ParamField>
+<ParamField path="symbol">
+ERC20 token symbol
+</ParamField>
+<ParamField path="amount_raw">
+Raw amount of ERC20 token held *before* taking into account token decimals
+</ParamField>
+<ParamField path="amount">
+Raw amount of ERC20 token held *after* taking into account token decimals
+</ParamField>
+<ParamField path="updated_at">
+UTC timestamp when table was last updated
+</ParamField>
+<ParamField path="recency_index">
+Index of most recent balance ascending. recency_index&#x3D;1 is the wallet/contract pair&#x27;s most recent balance
+</ParamField>

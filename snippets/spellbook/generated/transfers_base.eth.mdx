@@ -1,0 +1,42 @@
+## transfers_base.eth 
+Events of native ETH transfers on Base.
+
+<ParamField path="from">
+Wallet address that initiated the transaction
+</ParamField>
+<ParamField path="to">
+Wallet address that received the transaction
+</ParamField>
+<ParamField path="contract_address">
+Using the ETH deposit placeholder address to match with prices tables
+</ParamField>
+<ParamField path="value">
+Amount of ETH transferred from sender to recipient
+</ParamField>
+<ParamField path="value_decimal">
+Amount of ETH transferred in decimals from sender to recipient
+</ParamField>
+<ParamField path="tx_hash">
+Primary key of the transaction
+</ParamField>
+<ParamField path="trace_address">
+All returned traces, gives the exact location in the call trace
+</ParamField>
+<ParamField path="tx_block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="tx_block_number">
+Block number
+</ParamField>
+<ParamField path="tx_method_id">
+Function calls specified by the first four bytes of data sent with a transaction
+</ParamField>
+<ParamField path="unique_transfer_id">
+Unique transfer ID (used for testing for duplicates), made up with tx_hash and trace_address
+</ParamField>
+<ParamField path="tx_to">
+To Address for the Transaction
+</ParamField>
+<ParamField path="tx_from">
+From Address for the Transaction
+</ParamField>
