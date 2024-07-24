@@ -22,8 +22,6 @@ This differs from HTTP, where clients must repeatedly send requests to receive i
 With an active WebSocket connection, clients can receive real-time updates by subscribing to specific network states, 
 like new transactions or blockchain blocks being added.
 
-
-
 ## Getting Started
 We prepared examples for getting websocket updates in your terminal, python or javascript to help you get started with our Developer Websockets Endpoints.
 Pick your preferred language, complete the steps below and you should be able to get your first events streamed to your client.
@@ -134,7 +132,78 @@ Pick your preferred language, complete the steps below and you should be able to
   </Accordion>
 
   <Accordion title="Javascript">
-    Check out the [Accordion](/content/components/accordions) docs for all the supported props.
+    <Steps>
+      <Step title="Install the dependencies">
+      ```bash
+      npm install ws
+      npm install @types/ws
+      ```
+      </Step>
+      <Step title="Define your typescript code">
+      ```javascript TypeScript
+      import WebSocket from "ws";
+
+      const walletAddress = "YOUR_WALLET_ADDRESS"; // Replace with your wallet address
+      const duneAPIKey = "YOUR_API_KEY"; // Replace with your Dune API key
+
+      // Define the WebSocket URL
+      const wsUrl = `wss://api.dune.com/api/beta/balance/${walletAddress}/subscribe`;
+
+      // Create a new WebSocket connection
+      const socket = new WebSocket(wsUrl, undefined, {
+        headers: {
+          "X-Dune-Api-Key": duneAPIKey,
+        },
+      });
+
+      // Event listener for connection open
+      socket.on("open", () => {
+        console.log("WebSocket connection opened");
+      });
+
+      // Event listener for receiving messages
+      socket.on("message", (data: any) => {
+        console.log("Received message:", data.toString("utf-8"));
+      });
+
+      // Event listener for connection close
+      socket.on("close", () => {
+        console.log("WebSocket connection closed");
+      });
+
+      // Event listener for errors
+      socket.on("error", (error: any) => {
+        console.error("WebSocket error:", error);
+      });
+
+      ```
+      </Step>
+      <Step title="Run the code">
+      ```
+      npx ts-node index.ts
+      ```
+      </Step>
+      <Step title="Get the results">
+       Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
+       ```json 200
+        { 
+          "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
+          [
+            {
+                "chain": "polygon",
+                "chain_id": 137,
+                "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+                "amount": "1000000",
+                "symbol": "USDC",
+                "decimals": 6,
+                "price_usd": 0.9999765798076116,
+                "value_usd": 0.9999765798076116
+            }
+          ]
+        }
+        ```
+      </Step>
+    </Steps>
   </Accordion>
 </AccordionGroup>
 
