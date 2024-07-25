@@ -58,7 +58,7 @@
                   "$ref": "#/components/schemas/TransactionsResponse"
                 },
                 "example": {
-                  "next_offset": "uey8f",
+                  "next_offset": "AAYddF1M88AAAAAGAAAAAAE2LKQAAAAAAAAAAAAAAAAAAABK",
                   "transactions": [
                     {
                       "address": "0x7893015832ea33bbe5ca7e4e3045ec2d6a749c8e",
