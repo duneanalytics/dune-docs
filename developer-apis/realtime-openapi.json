@@ -16,9 +16,7 @@
   "paths": {
     "/beta/balance/chains": {
       "get": {
-        "tags": [
-          "crate::handlers::chains_handler"
-        ],
+        "tags": ["crate::handlers::chains_handler"],
         "operationId": "chains_handler",
         "parameters": [
           {
@@ -44,18 +42,12 @@
                     {
                       "id": 1,
                       "name": "ethereum",
-                      "supported_assets": [
-                        "native",
-                        "erc20"
-                      ]
+                      "supported_assets": ["native", "erc20"]
                     },
                     {
                       "id": 42161,
                       "name": "arbitrum",
-                      "supported_assets": [
-                        "native",
-                        "erc20"
-                      ]
+                      "supported_assets": ["native", "erc20"]
                     }
                   ]
                 }
@@ -76,9 +68,7 @@
     },
     "/beta/balance/{address}": {
       "get": {
-        "tags": [
-          "crate::handlers::balances::balances_handler"
-        ],
+        "tags": ["crate::handlers::balances::balances_handler"],
         "operationId": "balances_handler",
         "parameters": [
           {
@@ -184,12 +174,7 @@
     "schemas": {
       "BalanceData": {
         "type": "object",
-        "required": [
-          "chain",
-          "chain_id",
-          "address",
-          "amount"
-        ],
+        "required": ["chain", "chain_id", "address", "amount"],
         "properties": {
           "address": {
             "type": "string"
@@ -228,11 +213,7 @@
       },
       "BalanceErrorInformation": {
         "type": "object",
-        "required": [
-          "chain",
-          "chain_id",
-          "address"
-        ],
+        "required": ["chain", "chain_id", "address"],
         "properties": {
           "address": {
             "type": "string"
@@ -252,9 +233,7 @@
       },
       "BalanceErrors": {
         "type": "object",
-        "required": [
-          "token_errors"
-        ],
+        "required": ["token_errors"],
         "properties": {
           "token_errors": {
             "type": "array",
@@ -266,11 +245,7 @@
       },
       "BalancesResponse": {
         "type": "object",
-        "required": [
-          "response_time",
-          "wallet_address",
-          "balances"
-        ],
+        "required": ["response_time", "wallet_address", "balances"],
         "properties": {
           "balances": {
             "type": "array",
@@ -301,11 +276,7 @@
       },
       "ChainEntry": {
         "type": "object",
-        "required": [
-          "name",
-          "id",
-          "supported_assets"
-        ],
+        "required": ["name", "id", "supported_assets"],
         "properties": {
           "id": {
             "type": "integer",
@@ -325,9 +296,7 @@
       },
       "ChainsResponse": {
         "type": "object",
-        "required": [
-          "chains"
-        ],
+        "required": ["chains"],
         "properties": {
           "chains": {
             "type": "array",
