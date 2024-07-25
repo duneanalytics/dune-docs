@@ -33,7 +33,7 @@ Data is typically available within 100 ms after a block has been propagated to n
 
 # Pagination
 
-The response of this endpoint is paginated using a cursor-based pagination. You can use the `limit` parameter to define the maximum page size.
+This endpoint is using cursor based pagination. You can use the `limit` parameter to define the maximum page size. 
 Results might at times be less than the maximum page size. 
 The `next_offset` value is included in the initial response and can be utilized to fetch the next page of results by passing it as the `offset` query parameter in the next request.
 
