@@ -29,21 +29,19 @@
             }
           },
           {
-            "name": "index",
+            "name": "offset",
             "in": "query",
-            "description": "Index of the transaction to start from",
-            "required": true,
+            "description": "Use the return value `next_offset` for this parameter to fetch the next page of transactions",
+            "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0
+              "type": "string"
             }
           },
           {
             "name": "limit",
             "in": "query",
             "description": "Maximum number of transactions to return",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -60,7 +58,7 @@
                   "$ref": "#/components/schemas/TransactionsResponse"
                 },
                 "example": {
-                  "next_uri": "https://api.dune.com/beta/transactions/0x7893015832ea33bbe5ca7e4e3045ec2d6a749c8e?block_time=1646055994000000&chain=2&block_number=11506437&index=14&limit=1000",
+                  "next_offset": "uey8f",
                   "transactions": [
                     {
                       "address": "0x7893015832ea33bbe5ca7e4e3045ec2d6a749c8e",

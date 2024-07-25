@@ -1,46 +1,31 @@
 ---
-title: 'Websockets Endpoints'
+title: 'Balances Subscription'
 ---
 
+The [Token Balances API](../balances) provides accurate and fast real time balances of the native and ERC20 tokens of accounts on supported blockchains (EVM currently).
+The websocket complement that by allowing you to subscribe to balance changes in real-time, without the need to poll the API.
 
-## Why Websockets?
-Using WebSockets for a balances and transactions API enables real-time, bidirectional communication between the server and clients, 
-ensuring that updates are instantaneously pushed to users. 
+<Warning>Native tokens are currently not supported. This means that balance changes to them will not trigger an websocket push</Warning>
 
-This is crucial for blockchain applications, where timely updates on balances 
-and transactions are essential for user experience and trust. 
 
-Unlike traditional HTTP requests, WebSockets maintain an open connection, 
-reducing latency and overhead associated with repeatedly establishing connections. 
-This efficiency and immediacy make WebSockets an ideal choice for
- dynamic and interactive blockchain applications.
-
-## What are Websockets and how do they differ from HTTP?
-WebSockets operates as a two-way communication protocol, keeping a persistent connection between a server and a client. 
-This differs from HTTP, where clients must repeatedly send requests to receive information.
-
-With an active WebSocket connection, clients can receive real-time updates by subscribing to specific network states, 
-like new transactions or blockchain blocks being added.
-
-## Getting Started
-We prepared examples for getting websocket updates in your terminal, python or javascript to help you get started with our Developer Websockets Endpoints.
-Pick your preferred language, complete the steps below and you should be able to get your first events streamed to your client.
-
-<AccordionGroup>
-  <Accordion title="Terminal">
+<Tabs>
+  <Tab title="Terminal">
     <Steps>
       <Step title="Install the dependencies">
+        Wscat is a popular WebSocket utility for creating WebSocket connections. It allows you to send and receive messages interactively via the command line.
         ```bash 
         npm install -g wscat
         ```
       </Step>
       <Step title="Call the webhook">
+        Just replace the Wallet Address and Dune API Key with your own values.
         ```bash Terminal
           wscat -c wss://api.dune.com/api/beta/balance/{Wallet Address}/subscribe \
             -H "X-Dune-Api-Key: {Dune API Key}"
         ```
       </Step>
       <Step title="Get balance changes in your terminal">
+        Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
         ```json 200
         { 
           "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
@@ -60,9 +45,9 @@ Pick your preferred language, complete the steps below and you should be able to
         ```
       </Step>
     </Steps>
-  </Accordion>
+  </Tab>
 
-  <Accordion title="Python">
+  <Tab title="Python">
     <Steps>
       <Step title="Install the dependencies">
       ```python Python dependencies
@@ -108,7 +93,7 @@ Pick your preferred language, complete the steps below and you should be able to
         python dune_websocket.py
         ```
       </Step>
-      <Step title="Get updates pushed to you">
+      <Step title="Get balance changes pushed to you">
       Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
        ```json 200
         { 
@@ -129,9 +114,9 @@ Pick your preferred language, complete the steps below and you should be able to
         ```
       </Step>
     </Steps>
-  </Accordion>
+  </Tab>
 
-  <Accordion title="Javascript">
+  <Tab title="Javascript">
     <Steps>
       <Step title="Install the dependencies">
       ```bash
@@ -140,50 +125,52 @@ Pick your preferred language, complete the steps below and you should be able to
       ```
       </Step>
       <Step title="Define your typescript code">
-      ```javascript TypeScript
-      import WebSocket from "ws";
+        <Warning>Do not expose your API key on the client side!</Warning>
 
-      const walletAddress = "YOUR_WALLET_ADDRESS"; // Replace with your wallet address
-      const duneAPIKey = "YOUR_API_KEY"; // Replace with your Dune API key
+        ```javascript TypeScript
+        import WebSocket from "ws";
 
-      // Define the WebSocket URL
-      const wsUrl = `wss://api.dune.com/api/beta/balance/${walletAddress}/subscribe`;
+        const walletAddress = "YOUR_WALLET_ADDRESS"; // Replace with your wallet address
+        const duneAPIKey = "YOUR_API_KEY"; // Replace with your Dune API key
 
-      // Create a new WebSocket connection
-      const socket = new WebSocket(wsUrl, undefined, {
-        headers: {
-          "X-Dune-Api-Key": duneAPIKey,
-        },
-      });
+        // Define the WebSocket URL
+        const wsUrl = `wss://api.dune.com/api/beta/balance/${walletAddress}/subscribe`;
 
-      // Event listener for connection open
-      socket.on("open", () => {
-        console.log("WebSocket connection opened");
-      });
+        // Create a new WebSocket connection
+        const socket = new WebSocket(wsUrl, undefined, {
+          headers: {
+            "X-Dune-Api-Key": duneAPIKey,
+          },
+        });
 
-      // Event listener for receiving messages
-      socket.on("message", (data: any) => {
-        console.log("Received message:", data.toString("utf-8"));
-      });
+        // Event listener for connection open
+        socket.on("open", () => {
+          console.log("WebSocket connection opened");
+        });
 
-      // Event listener for connection close
-      socket.on("close", () => {
-        console.log("WebSocket connection closed");
-      });
+        // Event listener for receiving messages
+        socket.on("message", (data: any) => {
+          console.log("Received message:", data.toString("utf-8"));
+        });
 
-      // Event listener for errors
-      socket.on("error", (error: any) => {
-        console.error("WebSocket error:", error);
-      });
+        // Event listener for connection close
+        socket.on("close", () => {
+          console.log("WebSocket connection closed");
+        });
 
-      ```
+        // Event listener for errors
+        socket.on("error", (error: any) => {
+          console.error("WebSocket error:", error);
+        });
+
+        ```
       </Step>
       <Step title="Run the code">
-      ```
+      ```bash
       npx ts-node index.ts
       ```
       </Step>
-      <Step title="Get the results">
+      <Step title="Get balance changes pushed to you">
        Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
        ```json 200
         { 
@@ -204,9 +191,6 @@ Pick your preferred language, complete the steps below and you should be able to
         ```
       </Step>
     </Steps>
-  </Accordion>
-</AccordionGroup>
+  </Tab>
+</Tabs>
 
-
-
- 

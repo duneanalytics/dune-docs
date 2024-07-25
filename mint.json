@@ -1368,12 +1368,19 @@
       "pages": [
         "developer-apis/overview",
         {
-          "group": "Account APIs",
+          "group": "Account APIs (Beta)",
           "pages": [
             "developer-apis/balances",
             "developer-apis/transactions",
             "developer-apis/chains",
-            "developer-apis/websockets"
+            {
+              "group": "Websockets",
+              "pages": [
+                "developer-apis/websockets/overview",
+                "developer-apis/websockets/balances"
+              ],
+              "icon": "plug"
+            }
           ]
         }
       ]

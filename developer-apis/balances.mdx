@@ -1,5 +1,5 @@
 ---
-title: 'Token Balances (Beta)'
+title: 'Token Balances'
 openapi: 'GET /beta/balance/{address}'
 ---
 
@@ -37,3 +37,11 @@ https://api.dune.com/api/beta/balance/{chain}/{address}?all_chains
 | decimals                        | Decimals of token, if available                               | double        |
 | price_usd                       | Current price of token, if available                          | double        |
 | value_usd                       | Current value of token owned, if available                    | double        |
+
+
+# Pagination
+
+The response of this endpoint is paginated using a cursor based pagination. You can use the `limit` parameter to define the page size. 
+The `next_offset` value is passed back by the initial response and can be used to fetch the next page of results, by passing it as the `offets` query parameter in the next request.
+
+<Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>

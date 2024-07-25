@@ -1,5 +1,5 @@
 ---
-title: 'Transactions (Beta)'
+title: 'Transactions'
 openapi: 'GET /beta/transactions/{address}'
 ---
 
@@ -8,7 +8,7 @@ We support native and ERC20 tokens of accounts on supported blockchains (EVM cur
 Data is typically available within 100 ms after a block was propagated to nodes.
 
 
-# Column Descriptions
+# Column Descriptions of the Transaction object
 
 | Column                          | Description                                                   | Type          |
 |---------------------------------|---------------------------------------------------------------|---------------|
@@ -21,11 +21,19 @@ Data is typically available within 100 ms after a block was propagated to nodes.
 | from                            | Address of sender                                             | string        |
 | to                              | Address of receiver                                           | string        |
 | data                            | Data of transaction                                           | string        |
-| gas_price                       | Gas price of transaction                                      | string        |
+| gas_price                       | Gas price of transaction as hexadecimal string                | string        |
 | hash                            | Hash of transaction                                           | string        |
 | index                           | Index of transaction                                          | string        |
-| max_fee_per_gas                 | Max fee per gas of transaction                                | string        |
-| max_priority_fee_per_gas        | Max priority fee per gas of transaction                       | string        |
-| nonce                           | Nonce of transaction                                          | string        |
+| max_fee_per_gas                 | Max fee per gas of transaction as hexadecimal string          | string        |
+| max_priority_fee_per_gas        | Max priority fee per gas of transaction as hexadecimal string | string        |
+| nonce                           | Nonce of transaction as hexadecimal string                    | string        |
 | transaction_type                | Type of transaction                                           | string        |
-| value                           | Value of transaction                                          | double        |
+| value                           | Value of transaction as hexadecimal string                    | string        |
+
+
+# Pagination
+
+The response of this endpoint is paginated using a cursor based pagination. You can use the `limit` parameter to define the page size. 
+The `next_offset` value is passed back by the initial response and can be used to fetch the next page of results, by passing it as the `offets` query parameter in the next request.
+
+<Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>
