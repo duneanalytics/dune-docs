@@ -1,0 +1,27 @@
+---
+title: starknet.blocks
+sidebarTitle: "Blocks"
+description: Description of the starknet.blocks table on Dune
+---
+
+## Table description
+
+This table represents the blocks in the Starknet blockchain. A block is a collection of transactions, and is identified by a unique block identifier. Each block contains a timestamp and a reference to the previous block hash, forming a chain of blocks. The block structure is crucial for the blockchain's integrity and security, ensuring a verifiable and tamper-evident ledger.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="starknet" tableName="blocks" />
+
+<Note>
+- Prior to [v3 transactions upgrade](https://www.starknet.io/developers/roadmap/v3-transactions/), fees are denominated in `wei` as users pay gas with ETH. For transactions v3 and later, fees are denominated in `fri` as users pay gas with STRK. Hence here you can see two gas types of gas fields, one for `wei` and one for `fri`.     
+- Starting with Starknet v0.13.1, Starknet distinguishes between blocks whose state diffs are sent to L1 as calldata and blocks whose state diffs are sent to L1 as blobs. The `l1_da_mode` property in the Starknet block header contains this information. Values possible are `BLOB` or `CALLDATA`.
+- Visit this [Starknet doc on block structure](https://docs.starknet.io/architecture-and-concepts/network-architecture/block-structure/) to learn more.
+</Note>
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="starknet" tableName="blocks" />

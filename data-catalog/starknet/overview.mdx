@@ -1,0 +1,86 @@
+---
+title: Starknet data
+sidebarTitle: "Overview"
+icon: "star"
+description: Starknet data on Dune
+---
+
+## What is Starknet?
+
+Starknet is a permissionless Validity-Rollup, also known as a zero-knowledge rollup (ZK rollup) for Ethereum. As a Layer 2 (L2) blockchain, Starknet enables any dApp to achieve massive computation scale without compromising on Ethereum’s composability and security.
+
+Starknet aims to achieve secure, low-cost transactions and high performance by using the STARK cryptographic proof system. Starknet contracts and the Starknet OS are written in [Cairo](https://github.com/starkware-libs/cairo), a custom-built and specialized programming language.
+
+### Why Starknet?
+
+Starknet addresses the scalability issues of Ethereum by offloading computation and state storage from the Ethereum mainnet. It uses STARK (Scalable Transparent Argument of Knowledge) proofs to ensure that transactions are both scalable and secure, enabling a wide range of applications from DeFi to NFTs without compromising on security or decentralization.
+
+### Starknet Architecture
+
+Starknet's architecture is composed of several key components that work together to achieve high scalability and security:
+
+#### STARK Proofs
+
+At the core of Starknet's technology are STARK proofs, which are zero-knowledge proofs that enable scalable and transparent computation. These proofs ensure the integrity and validity of off-chain computations, which are then verified on-chain.
+
+#### Sequencer and Prover
+
+Starknet employs a sequencer to order transactions and a prover to generate STARK proofs. The sequencer ensures that transactions are processed in a fair and orderly manner, while the prover generates cryptographic proofs that validate these transactions.
+
+#### Cairo Language
+
+Starknet uses Cairo, a Turing-complete language designed for writing provable programs. Developers can write smart contracts and off-chain logic in Cairo, leveraging its efficiency and security features.
+
+#### Accounts and Contracts
+
+Starknet introduces a novel account model where each user interacts with the network through their account contracts. This model enhances security and flexibility, allowing for features like account abstraction and multi-sig wallets. Unlike the traditional EVM model, where accounts are either externally owned accounts (EOAs) or smart contracts, Starknet uses account contracts for both user accounts and smart contracts, allowing for more advanced features and customizability.
+
+See Starknet's documention on [Accounts](https://docs.starknet.io/architecture-and-concepts/accounts/introduction/) and [Contracts](https://docs.starknet.io/architecture-and-concepts/smart-contracts/contract-classes/) for more information
+
+### Starknet Transaction Lifecycle
+
+Transactions on Starknet follow a well-defined lifecycle:
+
+1. **Submission**: Users submit transactions through their account contracts.
+2. **Sequencing**: Transactions are ordered by the sequencer.
+3. **Proof Generation**: The prover generates STARK proofs for the ordered transactions.
+4. **Verification**: Proofs are verified on the Ethereum mainnet, finalizing the state transitions.
+
+For more information on the transaction flow, see [Starknet's doc](https://docs.starknet.io/architecture-and-concepts/network-architecture/transaction-life-cycle/).
+
+<img src="/images/starknet_txn_life.png" />
+
+Key Components:
+- **Sequencer**: Receives transactions, orders them, and produces blocks, operating similarly to validators in Ethereum or Bitcoin.
+- **Prover**: Generates proofs using the Cairo Virtual Machine (Cairo VM) to create execution traces necessary for generating STARK proofs.
+- **Verifier**: L1 smart contract, designed to verify STARK proofs and update Starknet’s state root on L1 if valid.
+- **Layer 1 (L1)**: Ethereum hosts a smart contract that verifies STARK proofs and updates Starknet’s state root on L1 if valid.
+
+<CardGroup cols={1}>
+  <Card title="Starknet documentation" icon="link" href="https://docs.starknet.io/">
+    Explore comprehensive documentation on Starknet, detailing its architecture, protocol, and resources for developers.
+  </Card>
+</CardGroup>
+
+## Starknet Data on Dune
+
+Starknet provides comprehensive data on various aspects of its network, enabling developers and users to analyze and interact with the blockchain effectively.
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/starknet/blocks">
+    Represents the collection of transactions in a single block within the Starknet
+    blockchain.
+  </Card>
+  
+  <Card title="Transactions" icon="message-arrow-up" href="/data-catalog/starknet/transactions">
+    Includes all user and system transactions processed by the Starknet network.
+  </Card>
+  
+  <Card title="Events" icon="bolt" href="/data-catalog/starknet/events">
+    TODO Captures events emitted by smart contracts, logging significant actions and changes.
+  </Card>
+
+  <Card title="Calls" icon="terminal" href="/data-catalog/starknet/calls">
+    TODO
+  </Card>
+</CardGroup>
