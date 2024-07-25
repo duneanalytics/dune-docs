@@ -41,7 +41,7 @@ https://api.dune.com/api/beta/balance/{chain}/{address}?all_chains
 
 # Pagination
 
-The response of this endpoint is paginated using a cursor based pagination. You can use the `limit` parameter to define the maximum page size. 
+This endpoint is using cursor based pagination. You can use the `limit` parameter to define the maximum page size. 
 The `next_offset` value is passed back by the initial response and can be used to fetch the next page of results, by passing it as the `offet` query parameter in the next request.
 
 <Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>
