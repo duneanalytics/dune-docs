@@ -1371,6 +1371,7 @@
           "group": "Account APIs (Beta)",
           "pages": [
             "developer-apis/balances",
+            "developer-apis/transactions",
             "developer-apis/chains",
             {
               "group": "Websockets",
