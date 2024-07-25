@@ -3,9 +3,9 @@ title: 'Transactions'
 openapi: 'GET /beta/transactions/{address}'
 ---
 
-The Transactions Endpoint provides accurate and fast lookup of transactions of an address. 
-We support native and ERC20 tokens of accounts on supported blockchains (EVM currently).
-Data is typically available within 100 ms after a block was propagated to nodes.
+The Transactions Endpoint allows for quick and accurate lookup of transactions associated with an address.
+It supports native and ERC20 tokens of accounts on supported blockchains, specifically EVM at the moment. 
+Data is typically available within 100 ms after a block has been propagated to nodes.
 
 
 # Column Descriptions of the Transaction object
@@ -33,7 +33,8 @@ Data is typically available within 100 ms after a block was propagated to nodes.
 
 # Pagination
 
-The response of this endpoint is paginated using a cursor based pagination. You can use the `limit` parameter to define the page size. 
-The `next_offset` value is passed back by the initial response and can be used to fetch the next page of results, by passing it as the `offets` query parameter in the next request.
+The response of this endpoint is paginated using a cursor-based pagination. You can use the `limit` parameter to define the maximum page size.
+Results might at times be less than the maximum page size. 
+The `next_offset` value is included in the initial response and can be utilized to fetch the next page of results by passing it as the `offset` query parameter in the next request.
 
 <Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>
