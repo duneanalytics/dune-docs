@@ -18,7 +18,7 @@ The websocket complement that by allowing you to subscribe to balance changes in
         ```
       </Step>
       <Step title="Call the webhook">
-        Just replace the Wallet Address and Dune API Key with your own values.
+        Just replace `Wallet Address` and `Dune API Key` with your own values.
         ```bash Terminal
           wscat -c wss://api.dune.com/api/beta/balance/{Wallet Address}/subscribe \
             -H "X-Dune-Api-Key: {Dune API Key}"
