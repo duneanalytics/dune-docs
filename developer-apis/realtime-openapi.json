@@ -128,6 +128,26 @@
               "type": "string",
               "nullable": true
             }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Use the return value `next_offset` for this parameter to fetch the next page of transactions",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of transactions to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
           }
         ],
         "responses": {
@@ -152,7 +172,8 @@
                   ],
                   "request_time": "2023-11-07T05:31:56Z",
                   "response_time": "2023-11-07T05:31:56Z",
-                  "wallet_address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+                  "wallet_address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                  "next_offset": "2Npr8mlkr51-7Z4D5TQV03qpYEUAAAAGIaTZoDegaw3-fWBn7b4QtkeV3uY"
                 }
               }
             }
