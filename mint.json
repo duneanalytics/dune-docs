@@ -1239,6 +1239,18 @@
           ]
         },
         {
+          "group": "Starknet",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/starknet/overview",
+            "data-catalog/starknet/blocks",
+            "data-catalog/starknet/transactions",
+            "data-catalog/starknet/events",
+            "data-catalog/starknet/calls"
+          ]
+        },
+        {
           "group": "Tron",
           "icon": "database",
           "iconType": "solid",
