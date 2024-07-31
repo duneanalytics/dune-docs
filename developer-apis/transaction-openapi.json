@@ -31,10 +31,11 @@
           {
             "name": "offset",
             "in": "query",
-            "description": "Use the return value `next_offset` for this parameter to fetch the next page of transactions",
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -44,7 +45,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
+              "nullable": true,
               "minimum": 0
             }
           }
@@ -58,7 +60,7 @@
                   "$ref": "#/components/schemas/TransactionsResponse"
                 },
                 "example": {
-                  "next_offset": "AAYddF1M88AAAAAGAAAAAAE2LKQAAAAAAAAAAAAAAAAAAABK",
+                  "next_offset": "AAYd_b6aoIAAAAABAAAAAA4KZhIAAAAAAAAAAAAAAAAAAAAE",
                   "transactions": [
                     {
                       "address": "0x7893015832ea33bbe5ca7e4e3045ec2d6a749c8e",
@@ -99,96 +101,107 @@
   },
   "components": {
     "schemas": {
-      "TransactionsResponse": {
-        "type": "object",
-        "properties": {
-          "next_uri": {
-            "type": "string",
-            "nullable": true
-          },
-          "transactions": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Transaction"
-              }
-            ],
-            "nullable": true
-          }
-        }
-      },
       "Transaction": {
         "type": "object",
+        "required": [
+          "address",
+          "chain",
+          "block_time",
+          "block_number",
+          "block_version",
+          "index",
+          "hash",
+          "block_hash",
+          "value",
+          "transaction_type",
+          "from",
+          "to",
+          "nonce",
+          "gas_price",
+          "max_fee_per_gas",
+          "max_priority_fee_per_gas",
+          "data"
+        ],
         "properties": {
           "address": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "block_hash": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "block_number": {
             "type": "integer",
             "format": "int64",
-            "nullable": true
+            "minimum": 0
           },
           "block_time": {
-            "type": "string",
-            "nullable": true
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
           },
           "block_version": {
             "type": "integer",
             "format": "int64",
-            "nullable": true
+            "minimum": 0
           },
           "chain": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "data": {
             "type": "string",
-            "nullable": true
+            "format": "binary"
           },
           "from": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "gas_price": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "hash": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "index": {
             "type": "integer",
             "format": "int64",
-            "nullable": true
+            "minimum": 0
           },
           "max_fee_per_gas": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "max_priority_fee_per_gas": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "nonce": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "to": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "transaction_type": {
+            "$ref": "#/components/schemas/TransactionType"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "TransactionType": {
+        "type": "string",
+        "enum": ["Sender", "Receiver"]
+      },
+      "TransactionsResponse": {
+        "type": "object",
+        "required": ["transactions"],
+        "properties": {
+          "next_offset": {
             "type": "string",
             "nullable": true
           },
-          "value": {
-            "type": "string",
-            "nullable": true
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
           }
         }
       }
