@@ -16,7 +16,9 @@
   "paths": {
     "/beta/balance/chains": {
       "get": {
-        "tags": ["crate::handlers::chains_handler"],
+        "tags": [
+          "crate::handlers::chains_handler"
+        ],
         "operationId": "chains_handler",
         "parameters": [
           {
@@ -42,12 +44,18 @@
                     {
                       "id": 1,
                       "name": "ethereum",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "id": 42161,
                       "name": "arbitrum",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     }
                   ]
                 }
@@ -68,7 +76,9 @@
     },
     "/beta/balance/{address}": {
       "get": {
-        "tags": ["crate::handlers::balances::balances_handler"],
+        "tags": [
+          "crate::handlers::balances::balances_handler"
+        ],
         "operationId": "balances_handler",
         "parameters": [
           {
@@ -132,8 +142,8 @@
           {
             "name": "offset",
             "in": "query",
-            "description": "Use the return value `next_offset` for this parameter to fetch the next page of transactions",
-            "required": false,
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -142,10 +152,10 @@
             "name": "limit",
             "in": "query",
             "description": "Maximum number of transactions to return",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0
             }
           }
@@ -170,10 +180,10 @@
                       "value_usd": 1842034.6622198338
                     }
                   ],
+                  "next_offset": "dKMBWDLqM7vlyn5OMEXsLWp0nI4AAAABA5JLazNO7x4poVGqUwsgxgqvvIg",
                   "request_time": "2023-11-07T05:31:56Z",
                   "response_time": "2023-11-07T05:31:56Z",
-                  "wallet_address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
-                  "next_offset": "2Npr8mlkr51-7Z4D5TQV03qpYEUAAAAGIaTZoDegaw3-fWBn7b4QtkeV3uY"
+                  "wallet_address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
                 }
               }
             }
@@ -195,7 +205,12 @@
     "schemas": {
       "BalanceData": {
         "type": "object",
-        "required": ["chain", "chain_id", "address", "amount"],
+        "required": [
+          "chain",
+          "chain_id",
+          "address",
+          "amount"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -234,7 +249,11 @@
       },
       "BalanceErrorInformation": {
         "type": "object",
-        "required": ["chain", "chain_id", "address"],
+        "required": [
+          "chain",
+          "chain_id",
+          "address"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -254,7 +273,9 @@
       },
       "BalanceErrors": {
         "type": "object",
-        "required": ["token_errors"],
+        "required": [
+          "token_errors"
+        ],
         "properties": {
           "token_errors": {
             "type": "array",
@@ -266,7 +287,11 @@
       },
       "BalancesResponse": {
         "type": "object",
-        "required": ["response_time", "wallet_address", "balances"],
+        "required": [
+          "response_time",
+          "wallet_address",
+          "balances"
+        ],
         "properties": {
           "balances": {
             "type": "array",
@@ -280,6 +305,10 @@
                 "$ref": "#/components/schemas/BalanceErrors"
               }
             ],
+            "nullable": true
+          },
+          "next_offset": {
+            "type": "string",
             "nullable": true
           },
           "request_time": {
@@ -297,7 +326,11 @@
       },
       "ChainEntry": {
         "type": "object",
-        "required": ["name", "id", "supported_assets"],
+        "required": [
+          "name",
+          "id",
+          "supported_assets"
+        ],
         "properties": {
           "id": {
             "type": "integer",
@@ -317,7 +350,9 @@
       },
       "ChainsResponse": {
         "type": "object",
-        "required": ["chains"],
+        "required": [
+          "chains"
+        ],
         "properties": {
           "chains": {
             "type": "array",
