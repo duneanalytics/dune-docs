@@ -16,7 +16,9 @@
   "paths": {
     "/beta/transactions/{address}": {
       "get": {
-        "tags": ["crate"],
+        "tags": [
+          "crate"
+        ],
         "operationId": "endpoint",
         "parameters": [
           {
@@ -31,8 +33,8 @@
           {
             "name": "offset",
             "in": "query",
-            "description": "Use the return value `next_offset` for this parameter to fetch the next page of transactions",
-            "required": false,
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -41,10 +43,10 @@
             "name": "limit",
             "in": "query",
             "description": "Maximum number of transactions to return",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0
             }
           }
@@ -58,7 +60,7 @@
                   "$ref": "#/components/schemas/TransactionsResponse"
                 },
                 "example": {
-                  "next_offset": "AAYddF1M88AAAAAGAAAAAAE2LKQAAAAAAAAAAAAAAAAAAABK",
+                  "next_offset": "AAYd_b6aoIAAAAABAAAAAA4KZhIAAAAAAAAAAAAAAAAAAAAE",
                   "transactions": [
                     {
                       "address": "0x7893015832ea33bbe5ca7e4e3045ec2d6a749c8e",
@@ -101,94 +103,19 @@
     "schemas": {
       "TransactionsResponse": {
         "type": "object",
+        "required": [
+          "transactions"
+        ],
         "properties": {
-          "next_uri": {
+          "next_offset": {
             "type": "string",
             "nullable": true
           },
           "transactions": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Transaction"
-              }
-            ],
-            "nullable": true
-          }
-        }
-      },
-      "Transaction": {
-        "type": "object",
-        "properties": {
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "block_hash": {
-            "type": "string",
-            "nullable": true
-          },
-          "block_number": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
-          },
-          "block_time": {
-            "type": "string",
-            "nullable": true
-          },
-          "block_version": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
-          },
-          "chain": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "type": "string",
-            "nullable": true
-          },
-          "from": {
-            "type": "string",
-            "nullable": true
-          },
-          "gas_price": {
-            "type": "string",
-            "nullable": true
-          },
-          "hash": {
-            "type": "string",
-            "nullable": true
-          },
-          "index": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
-          },
-          "max_fee_per_gas": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_priority_fee_per_gas": {
-            "type": "string",
-            "nullable": true
-          },
-          "nonce": {
-            "type": "string",
-            "nullable": true
-          },
-          "to": {
-            "type": "string",
-            "nullable": true
-          },
-          "transaction_type": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "string",
-            "nullable": true
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
           }
         }
       }
