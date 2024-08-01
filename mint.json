@@ -1380,11 +1380,11 @@
       "pages": [
         "developer-apis/overview",
         {
-          "group": "Account APIs (Beta)",
+          "group": "Token Balances (Beta)",
           "pages": [
             "developer-apis/balances",
-            "developer-apis/transactions",
             "developer-apis/chains",
+            "developer-apis/subscribe",
             {
               "group": "Websockets",
               "pages": [
@@ -1393,6 +1393,12 @@
               ],
               "icon": "plug"
             }
+          ]
+        },
+        {
+          "group": "Transactions (Beta)",
+          "pages": [
+            "developer-apis/transactions"
           ]
         }
       ]

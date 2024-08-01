@@ -66,6 +66,8 @@
         }
       }
     },
+    "/beta/balance/{address}/subscribe": {
+    }
     "/beta/balance/{address}": {
       "get": {
         "tags": ["crate::handlers::balances::balances_handler"],
