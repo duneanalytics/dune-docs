@@ -16,7 +16,9 @@
   "paths": {
     "/beta/transactions/{address}": {
       "get": {
-        "tags": ["crate"],
+        "tags": [
+          "crate"
+        ],
         "operationId": "endpoint",
         "parameters": [
           {
@@ -32,21 +34,19 @@
             "name": "offset",
             "in": "query",
             "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
-            "required": false,
+            "required": true,
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "limit",
             "in": "query",
             "description": "Maximum number of transactions to return",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int64",
-              "nullable": true,
               "minimum": 0
             }
           }
@@ -101,97 +101,11 @@
   },
   "components": {
     "schemas": {
-      "Transaction": {
-        "type": "object",
-        "required": [
-          "address",
-          "chain",
-          "block_time",
-          "block_number",
-          "block_version",
-          "index",
-          "hash",
-          "block_hash",
-          "value",
-          "transaction_type",
-          "from",
-          "to",
-          "nonce",
-          "gas_price",
-          "max_fee_per_gas",
-          "max_priority_fee_per_gas",
-          "data"
-        ],
-        "properties": {
-          "address": {
-            "type": "string"
-          },
-          "block_hash": {
-            "type": "string"
-          },
-          "block_number": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
-          },
-          "block_time": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
-          },
-          "block_version": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
-          },
-          "chain": {
-            "type": "string"
-          },
-          "data": {
-            "type": "string",
-            "format": "binary"
-          },
-          "from": {
-            "type": "string"
-          },
-          "gas_price": {
-            "type": "string"
-          },
-          "hash": {
-            "type": "string"
-          },
-          "index": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
-          },
-          "max_fee_per_gas": {
-            "type": "string"
-          },
-          "max_priority_fee_per_gas": {
-            "type": "string"
-          },
-          "nonce": {
-            "type": "string"
-          },
-          "to": {
-            "type": "string"
-          },
-          "transaction_type": {
-            "$ref": "#/components/schemas/TransactionType"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "TransactionType": {
-        "type": "string",
-        "enum": ["Sender", "Receiver"]
-      },
       "TransactionsResponse": {
         "type": "object",
-        "required": ["transactions"],
+        "required": [
+          "transactions"
+        ],
         "properties": {
           "next_offset": {
             "type": "string",
