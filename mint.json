@@ -1384,15 +1384,7 @@
           "pages": [
             "developer-apis/balances",
             "developer-apis/chains",
-            "developer-apis/subscribe",
-            {
-              "group": "Websockets",
-              "pages": [
-                "developer-apis/websockets/overview",
-                "developer-apis/websockets/balances"
-              ],
-              "icon": "plug"
-            }
+            "developer-apis/subscribe"
           ]
         },
         {

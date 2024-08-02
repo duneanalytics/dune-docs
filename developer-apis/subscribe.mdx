@@ -1,4 +1,204 @@
 ---
 title: 'Subscribe'
-openapi: 'GET /beta/balance/{address}'
+openapi: 'GET /beta/balance/{address}/subscribe'
 ---
+The [Token Balances API](../balances) provides accurate and fast real time balances of the native and ERC20 tokens of accounts on supported blockchains (EVM currently).
+The websocket complement that by allowing you to subscribe to balance changes in real-time, whenever a token is transferred to or from `address`, without the need to poll the API.
+<Info>Native tokens are currently not supported. This means that balance changes to them will not trigger a websocket push</Info>
+
+<Warning>This is a sebsocket endpoint, not an HTTP GET endpoint</Warning>
+
+<RequestExample>
+
+```bash Request
+  wscat -c wss://api.dune.com/api/beta/balance/{address}/subscribe
+```
+</RequestExample>
+
+
+<Tabs>
+  <Tab title="Terminal">
+    <Steps>
+      <Step title="Install the dependencies">
+        Wscat is a popular WebSocket utility for creating WebSocket connections. It allows you to send and receive messages interactively via the command line.
+        ```bash 
+        npm install -g wscat
+        ```
+      </Step>
+      <Step title="Call the webhook">
+        Just replace `Wallet Address` and `Dune API Key` with your own values.
+        ```bash Terminal
+          wscat -c wss://api.dune.com/api/beta/balance/{Wallet Address}/subscribe \
+            -H "X-Dune-Api-Key: {Dune API Key}"
+        ```
+      </Step>
+      <Step title="Get balance changes in your terminal">
+        Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
+        ```json 200
+        { 
+          "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
+          [
+            {
+                "chain": "polygon",
+                "chain_id": 137,
+                "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+                "amount": "1000000",
+                "symbol": "USDC",
+                "decimals": 6,
+                "price_usd": 0.9999765798076116,
+                "value_usd": 0.9999765798076116
+            }
+          ]
+        }
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Python">
+    <Steps>
+      <Step title="Install the dependencies">
+      ```python Python dependencies
+      pip install websockets
+      ```
+      </Step>
+      <Step title="Define the python code">
+      You can copy the code below and save it as `dune_websocket.py`.
+      ```python Python
+        import asyncio
+        import websockets
+
+        DUNE_API_KEY = "YOUR_API_KEY" # Replace with your Dune API key
+        WALLET_ADDRESS = "WALLET_ADDRESS" # Replace with your wallet address
+
+        async def listen_to_events(wallet):
+            uri = f"wss://api.dune.com/api/beta/balance/{wallet}/subscribe"  
+            headers = {"X-Dune-Api-Key": DUNE_API_KEY}  
+            async with websockets.connect(uri, extra_headers=headers) as websocket:
+                print("Connected to the WebSocket server.")
+                
+                while True:
+                    try:
+                        event = await websocket.recv()
+                        print(f"Received event: {event}")
+                    except websockets.ConnectionClosed:
+                        print("Connection closed")
+                        break
+                    except Exception as e:
+                        print(f"An error occurred: {e}")
+                        break
+
+        async def main():
+            await listen_to_events(WALLET_ADDRESS) # Replace with your wallet address
+
+        if __name__ == "__main__":
+            asyncio.run(main())
+        ```
+      </Step>
+      <Step title="Run the code">
+       Now you can run the defined code to listen to balance changes in your terminal.
+        ```bash Terminal
+        python dune_websocket.py
+        ```
+      </Step>
+      <Step title="Get balance changes pushed to you">
+      Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
+       ```json 200
+        { 
+          "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
+          [
+            {
+                "chain": "polygon",
+                "chain_id": 137,
+                "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+                "amount": "1000000",
+                "symbol": "USDC",
+                "decimals": 6,
+                "price_usd": 0.9999765798076116,
+                "value_usd": 0.9999765798076116
+            }
+          ]
+        }
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Javascript">
+    <Steps>
+      <Step title="Install the dependencies">
+      ```bash
+      npm install ws
+      npm install @types/ws
+      ```
+      </Step>
+      <Step title="Define your typescript code">
+        <Warning>Do not expose your API key on the client side!</Warning>
+
+        ```javascript TypeScript
+        import WebSocket from "ws";
+
+        const walletAddress = "YOUR_WALLET_ADDRESS"; // Replace with your wallet address
+        const duneAPIKey = "YOUR_API_KEY"; // Replace with your Dune API key
+
+        // Define the WebSocket URL
+        const wsUrl = `wss://api.dune.com/api/beta/balance/${walletAddress}/subscribe`;
+
+        // Create a new WebSocket connection
+        const socket = new WebSocket(wsUrl, undefined, {
+          headers: {
+            "X-Dune-Api-Key": duneAPIKey,
+          },
+        });
+
+        // Event listener for connection open
+        socket.on("open", () => {
+          console.log("WebSocket connection opened");
+        });
+
+        // Event listener for receiving messages
+        socket.on("message", (data: any) => {
+          console.log("Received message:", data.toString("utf-8"));
+        });
+
+        // Event listener for connection close
+        socket.on("close", () => {
+          console.log("WebSocket connection closed");
+        });
+
+        // Event listener for errors
+        socket.on("error", (error: any) => {
+          console.error("WebSocket error:", error);
+        });
+
+        ```
+      </Step>
+      <Step title="Run the code">
+      ```bash
+      npx ts-node index.ts
+      ```
+      </Step>
+      <Step title="Get balance changes pushed to you">
+       Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
+       ```json 200
+        { 
+          "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
+          [
+            {
+                "chain": "polygon",
+                "chain_id": 137,
+                "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+                "amount": "1000000",
+                "symbol": "USDC",
+                "decimals": 6,
+                "price_usd": 0.9999765798076116,
+                "value_usd": 0.9999765798076116
+            }
+          ]
+        }
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
