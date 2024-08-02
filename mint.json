@@ -256,7 +256,7 @@
       "pages": [
         "data-catalog/evm/overview",
         {
-          "group": "Arbitrum",
+          "group": "Arbitrum One",
           "icon": "database",
           "iconType": "solid",
           "pages": [
@@ -296,6 +296,53 @@
                   "group": "NFT",
                   "pages": [
                     "data-catalog/evm/arbitrum/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Arbitrum Nova",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/arbitrum-nova/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/arbitrum-nova/raw/blocks",
+                "data-catalog/evm/arbitrum-nova/raw/creation-traces",
+                "data-catalog/evm/arbitrum-nova/raw/logs",
+                "data-catalog/evm/arbitrum-nova/raw/transactions",
+                "data-catalog/evm/arbitrum-nova/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/arbitrum-nova/decoded/overview",
+                "data-catalog/evm/arbitrum-nova/decoded/call-tables",
+                "data-catalog/evm/arbitrum-nova/decoded/event-logs",
+                "data-catalog/evm/arbitrum-nova/decoded/contracts",
+                "data-catalog/evm/arbitrum-nova/decoded/logs-decoded",
+                "data-catalog/evm/arbitrum-nova/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/arbitrum-nova/curated-data/dex/dex-trades",
+                    "data-catalog/evm/arbitrum-nova/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/arbitrum-nova/curated-data/nft/nft-trades"
                   ]
                 }
               ]
@@ -1389,9 +1436,7 @@
         },
         {
           "group": "Transactions (Beta)",
-          "pages": [
-            "developer-apis/transactions"
-          ]
+          "pages": ["developer-apis/transactions"]
         }
       ]
     },
