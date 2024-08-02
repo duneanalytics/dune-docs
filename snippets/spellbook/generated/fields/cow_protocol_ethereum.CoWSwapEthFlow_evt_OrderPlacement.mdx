@@ -1,0 +1,27 @@
+<ParamField path="contract_address">
+Ethereum address of contract emitting the event
+</ParamField>
+<ParamField path="evt_block_number">
+Block number which processed the unique transaction hash
+</ParamField>
+<ParamField path="evt_block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="evt_index">
+Index of the event within transaction
+</ParamField>
+<ParamField path="evt_tx_hash">
+Primary key of the transaction
+</ParamField>
+<ParamField path="order">
+Contains json encoded data for an EthFlowOrder: https://github.com/cowprotocol/ethflowcontract/blob/main/src/libraries/EthFlowOrder.sol#L19-L45
+</ParamField>
+<ParamField path="data">
+Hex Encoded data containing quoteId and validTo: https://github.com/cowprotocol/ethflowcontract/blob/9c74c8ba36ff9ff3e255172b02454f831c066865/src/CoWSwapEthFlow.sol#L110-L113
+</ParamField>
+<ParamField path="sender">
+User who placed the order
+</ParamField>
+<ParamField path="signature">
+Onchain EIP1271 signature
+</ParamField>

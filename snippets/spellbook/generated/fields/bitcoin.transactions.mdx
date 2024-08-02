@@ -1,0 +1,57 @@
+<ParamField path="block_time">
+The block time
+</ParamField>
+<ParamField path="block_date">
+The block date
+</ParamField>
+<ParamField path="block_height">
+The block number
+</ParamField>
+<ParamField path="block_hash">
+The hash of the block that contains this transaction
+</ParamField>
+<ParamField path="index">
+The number of the transaction in the block.
+</ParamField>
+<ParamField path="id">
+The id (hash) of this transaction
+</ParamField>
+<ParamField path="input_value">
+Total value of inputs in the transaction
+</ParamField>
+<ParamField path="output_value">
+Total value of outputs in the transaction
+</ParamField>
+<ParamField path="fee">
+The transaction fee paid to the miner. &#x3D; output_value - input_value
+</ParamField>
+<ParamField path="input_count">
+The number of inputs in the transaction
+</ParamField>
+<ParamField path="output_count">
+The number of outputs in the transaction
+</ParamField>
+<ParamField path="size">
+The size of this transaction in bytes
+</ParamField>
+<ParamField path="virtual_size">
+The virtual transaction size (differs from size for witness transactions)
+</ParamField>
+<ParamField path="is_coinbase">
+The transaction is a coinbase transaction, which is the first transaction in a block
+</ParamField>
+<ParamField path="coinbase">
+If the transaction is a coinbase transaction, contains the coinbase data. Otherwise, null.
+</ParamField>
+<ParamField path="input">
+Transaction inputs
+</ParamField>
+<ParamField path="output">
+Transaction outputs. See outputs table.
+</ParamField>
+<ParamField path="lock_time">
+Earliest time that miners can include the transaction in their hashing of the Merkle root to attach it in the latest block of the blockchain
+</ParamField>
+<ParamField path="hex">
+The transaction encoded as hexadecimal
+</ParamField>

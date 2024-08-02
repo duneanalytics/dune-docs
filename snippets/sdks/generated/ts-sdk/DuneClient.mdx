@@ -1,0 +1,74 @@
+### DuneClient 
+The primary interface for devs to utilize
+full functionality of the Dune API.
+
+#### new DuneClient(apiKey: string)
+Constructor for the DuneClient.
+
+<ParamField path="apiKey" type="string">
+
+</ParamField>
+#### downloadCSV(args: RunQueryArgs, outFile: string)
+Get the lastest execution results in CSV format and saves to disk.
+
+<ParamField path="args" type="RunQueryArgs">
+
+<Expandable title="properties">
+<RunQueryArgs />
+</Expandable>
+</ParamField>
+<ParamField path="outFile" type="string">
+
+</ParamField>
+#### getLatestResult(args: RunQueryArgs)
+Goes a bit beyond the internal call which returns that last execution results.
+Here contains additional logic to refresh the results if they are too old.
+
+<ParamField path="args" type="RunQueryArgs">
+
+<Expandable title="properties">
+<RunQueryArgs />
+</Expandable>
+</ParamField>
+#### refresh(queryID: number, parameters: , pingFrequency: number)
+
+
+<ParamField path="queryID" type="number">
+
+</ParamField>
+<ParamField path="parameters" type="">
+
+</ParamField>
+<ParamField path="pingFrequency" type="number">
+
+</ParamField>
+#### runQuery(args: RunQueryArgs)
+Runs an existing query by ID via execute, await, return results.
+
+<ParamField path="args" type="RunQueryArgs">
+
+<Expandable title="properties">
+<RunQueryArgs />
+</Expandable>
+</ParamField>
+#### runQueryCSV(args: RunQueryArgs)
+Runs an existing query by ID via execute, await, return Result CSV.
+
+<ParamField path="args" type="RunQueryArgs">
+
+<Expandable title="properties">
+<RunQueryArgs />
+</Expandable>
+</ParamField>
+#### runSql(args: RunSqlArgs)
+Allows user to provide execute raw_sql via the CRUD interface
+- create, run, get results with optional archive/delete.
+- Query is by default made private and archived after execution.
+Requires Plus subscription!
+
+<ParamField path="args" type="RunSqlArgs">
+
+<Expandable title="properties">
+<RunSqlArgs />
+</Expandable>
+</ParamField>

@@ -1,0 +1,57 @@
+<ParamField path="block_slot">
+Block slot
+</ParamField>
+<ParamField path="block_hash">
+Block hash
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_date">
+Block event date in UTC
+</ParamField>
+<ParamField path="index">
+the order of the instruction in the original instructions of the transaction
+</ParamField>
+<ParamField path="tx_index">
+The index of this transaction in the block
+</ParamField>
+<ParamField path="outer_instruction_index">
+Index of the instruction in instructions. Starts from 1
+</ParamField>
+<ParamField path="inner_instruction_index">
+Index of the instruction in inner_instructions. Starts from 1
+</ParamField>
+<ParamField path="outer_executing_account">
+The account key of the program that executed this instruction at the outer level
+</ParamField>
+<ParamField path="inner_executing_account">
+The account key of the program that executed this instruction at the inner level
+</ParamField>
+<ParamField path="executing_account">
+The account key of the program that executed this instruction
+</ParamField>
+<ParamField path="data">
+Program input data in a base-58 string
+</ParamField>
+<ParamField path="is_inner">
+Marks if a row is an inner instruction or not
+</ParamField>
+<ParamField path="account_arguments">
+Ordered list of accounts to pass to the program
+</ParamField>
+<ParamField path="inner_instructions">
+Inner instructions
+</ParamField>
+<ParamField path="tx_signer">
+The address that initiates the transaction and pays the transaction fee
+</ParamField>
+<ParamField path="tx_id">
+The first signature in the transaction
+</ParamField>
+<ParamField path="tx_success">
+The transaction was valid and thus committed.
+</ParamField>
+<ParamField path="log_messages">
+The log messages emitted by the transaction
+</ParamField>

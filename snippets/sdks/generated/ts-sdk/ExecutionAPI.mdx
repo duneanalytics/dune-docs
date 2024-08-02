@@ -1,0 +1,224 @@
+### ExecutionAPI 
+This class implements all the routes defined in the Dune API Docs:
+https://docs.dune.com/api-reference/executions/execution-object
+
+#### new ExecutionAPI(apiKey: string, apiVersion: string)
+
+
+<ParamField path="apiKey" type="string">
+
+</ParamField>
+<ParamField path="apiVersion" type="string">
+
+</ParamField>
+#### _delete(route: string)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>
+#### _get(route: string, params: RequestPayload, raw: boolean)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="raw" type="boolean">
+
+</ParamField>
+#### _getByUrl(url: string, params: RequestPayload, raw: boolean)
+
+
+<ParamField path="url" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="raw" type="boolean">
+
+</ParamField>
+#### _handleResponse(responsePromise: Promise)
+
+
+<ParamField path="responsePromise" type="Promise">
+
+<Expandable title="properties">
+<Promise />
+</Expandable>
+</ParamField>
+#### _patch(route: string, params: RequestPayload)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+#### _request(method: RequestMethod, url: string, payload: RequestPayload, raw: boolean, content_type: ContentType)
+
+
+<ParamField path="method" type="RequestMethod">
+
+<Expandable title="properties">
+<RequestMethod />
+</Expandable>
+</ParamField>
+<ParamField path="url" type="string">
+
+</ParamField>
+<ParamField path="payload" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="raw" type="boolean">
+
+</ParamField>
+<ParamField path="content_type" type="ContentType">
+
+<Expandable title="properties">
+<ContentType />
+</Expandable>
+</ParamField>
+#### cancelExecution(executionId: string)
+Cancels an execution according to:
+https://docs.dune.com/api-reference/executions/endpoint/cancel-execution
+
+<ParamField path="executionId" type="string">
+
+</ParamField>
+#### execute(queryID: number, parameters: )
+
+
+<ParamField path="queryID" type="number">
+
+</ParamField>
+<ParamField path="parameters" type="">
+
+</ParamField>
+#### executeQuery(queryID: number, params: ExecutionParams)
+Executes query by ID according to:
+https://docs.dune.com/api-reference/executions/endpoint/execute-query
+
+<ParamField path="queryID" type="number">
+
+</ParamField>
+<ParamField path="params" type="ExecutionParams">
+
+<Expandable title="properties">
+<ExecutionParams />
+</Expandable>
+</ParamField>
+#### getExecutionResults(executionId: string, params: GetResultParams)
+Retrieve results of a query execution by executionID:
+https://docs.dune.com/api-reference/executions/endpoint/get-execution-result
+
+<ParamField path="executionId" type="string">
+
+</ParamField>
+<ParamField path="params" type="GetResultParams">
+
+<Expandable title="properties">
+<GetResultParams />
+</Expandable>
+</ParamField>
+#### getExecutionStatus(executionId: string)
+Retrieve the status of a query execution by executionID:
+https://docs.dune.com/api-reference/executions/endpoint/get-execution-status
+
+<ParamField path="executionId" type="string">
+
+</ParamField>
+#### getLastExecutionResults(queryId: number, params: GetResultParams, expiryAgeHours: number)
+Retrieves results from query's last execution
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+<ParamField path="params" type="GetResultParams">
+
+<Expandable title="properties">
+<GetResultParams />
+</Expandable>
+</ParamField>
+<ParamField path="expiryAgeHours" type="number">
+
+</ParamField>
+#### getLastResultCSV(queryId: number, params: GetResultParams)
+Retrieves results from query's last execution (in CSV format)
+
+<ParamField path="queryId" type="number">
+
+</ParamField>
+<ParamField path="params" type="GetResultParams">
+
+<Expandable title="properties">
+<GetResultParams />
+</Expandable>
+</ParamField>
+#### getResult(jobID: string)
+
+
+<ParamField path="jobID" type="string">
+
+</ParamField>
+#### getResultCSV(executionId: string, params: GetResultParams)
+Retrieve results of a query execution (in CSV format) by executionID:
+https://docs.dune.com/api-reference/executions/endpoint/get-execution-result-csv
+
+<ParamField path="executionId" type="string">
+
+</ParamField>
+<ParamField path="params" type="GetResultParams">
+
+<Expandable title="properties">
+<GetResultParams />
+</Expandable>
+</ParamField>
+#### getStatus(jobID: string)
+
+
+<ParamField path="jobID" type="string">
+
+</ParamField>
+#### post(route: string, params: RequestPayload, content_type: ContentType)
+Allows a post to any route supported by DuneAPI.
+Meant to be low level call only used by available functions,
+but accessible if new routes become available before the SDK catches up.
+
+<ParamField path="route" type="string">
+
+</ParamField>
+<ParamField path="params" type="RequestPayload">
+
+<Expandable title="properties">
+<RequestPayload />
+</Expandable>
+</ParamField>
+<ParamField path="content_type" type="ContentType">
+
+<Expandable title="properties">
+<ContentType />
+</Expandable>
+</ParamField>
+#### url(route: string)
+
+
+<ParamField path="route" type="string">
+
+</ParamField>
