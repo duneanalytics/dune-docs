@@ -1,10 +1,9 @@
 ---
 title: 'Transactions'
-openapi: 'GET /beta/transactions/{address}'
+openapi: 'transaction-openapi GET /beta/transactions/{address}'
 ---
 
 The Transactions Endpoint allows for quick and accurate lookup of transactions associated with an address.
-It supports native and ERC20 tokens of accounts on supported blockchains, specifically EVM at the moment. 
 Data is typically available within 100 ms after a block has been propagated to nodes.
 
 
@@ -29,6 +28,10 @@ Data is typically available within 100 ms after a block has been propagated to n
 | nonce                           | Nonce of transaction as hexadecimal string                    | string        |
 | transaction_type                | Type of transaction                                           | string        |
 | value                           | Value of transaction as hexadecimal string                    | string        |
+
+# Ordering
+
+The data is ordered by descending block time, so that new transactions will always be delivered first.
 
 
 # Pagination
