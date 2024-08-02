@@ -1,0 +1,42 @@
+<ParamField path="block_date">
+Block event date in UTC
+</ParamField>
+<ParamField path="block_time">
+Timestamp for block event time in UTC
+</ParamField>
+<ParamField path="block_epoch">
+A specific epoch during which this block was proposed. An epoch is a division of time in Ethereum&#x27;s Proof of Stake mechanism.
+</ParamField>
+<ParamField path="block_slot">
+A slot in which a validator has the opportunity to propose a new block. Each slot represents a chance for a block to be added.
+</ParamField>
+<ParamField path="index">
+Index of the blob in the block slot
+</ParamField>
+<ParamField path="proposer_index">
+Identifier for the validator that proposed the specific block.
+</ParamField>
+<ParamField path="kzg_commitment">
+A cryptographic commitment used to ensure data integrity within blob transactions. KZG commitments are a form of cryptographic proof used to represent blob data within blocks.
+</ParamField>
+<ParamField path="kzg_commitment_inclusion_proof">
+A cryptographic proof that verifies the inclusion of the KZG commitment within the block.
+</ParamField>
+<ParamField path="kzg_proof">
+A cryptographic proof associated with the KZG commitment, used to validate the data within blob transactions.
+</ParamField>
+<ParamField path="body_root">
+A cryptographic hash representing the aggregated transactions (including blob transactions) within the block.
+</ParamField>
+<ParamField path="parent_root">
+A hash of the parent block, linking the current block to the previous one in the blockchain.
+</ParamField>
+<ParamField path="state_root">
+A cryptographic hash representing the entire state of the system after the block&#x27;s transactions have been applied.
+</ParamField>
+<ParamField path="signature">
+A digital signature of the block proposer, verifying the authenticity and integrity of the block.
+</ParamField>
+<ParamField path="blob">
+Content of the blob, large data packets used in blob-carrying transactions.
+</ParamField>

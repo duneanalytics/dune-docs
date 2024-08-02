@@ -1,0 +1,24 @@
+<ParamField path="call_block_number">
+Block number on which the method was called
+</ParamField>
+<ParamField path="call_block_time">
+UTC timestamp at which the method was called
+</ParamField>
+<ParamField path="call_success">
+Whether or not the call resulted in a successful transaction
+</ParamField>
+<ParamField path="call_trace_address">
+Trace address of the call
+</ParamField>
+<ParamField path="call_tx_hash">
+Transaction hash of call (if successful, will result in a real transaction hash).
+</ParamField>
+<ParamField path="contract_address">
+Ethereum address of contract emitting the event
+</ParamField>
+<ParamField path="order">
+Contains json encoded data for an EthFlowOrder: https://github.com/cowprotocol/ethflowcontract/blob/main/src/libraries/EthFlowOrder.sol#L19-L45
+</ParamField>
+<ParamField path="output_orderHash">
+ETH Flow Order Hash corresponds directly to a GPv2 Order Uid by concatenation with owner &#x3D; contract_address and validTo &#x3D; &#x60;ffffffff&#x60;
+</ParamField>
