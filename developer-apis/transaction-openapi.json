@@ -33,7 +33,7 @@
           {
             "name": "offset",
             "in": "query",
-            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend has returned on previous responses.",
             "required": false,
             "schema": {
               "type": "string",
@@ -48,6 +48,18 @@
             "schema": {
               "type": "integer",
               "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "chain_id",
+            "in": "query",
+            "description": "The chain ID to filter transactions by",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
               "nullable": true,
               "minimum": 0
             }
