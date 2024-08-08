@@ -16,9 +16,7 @@
   "paths": {
     "/beta/transactions/{address}": {
       "get": {
-        "tags": [
-          "crate"
-        ],
+        "tags": ["crate"],
         "operationId": "endpoint",
         "parameters": [
           {
@@ -53,15 +51,23 @@
             }
           },
           {
-            "name": "chain_id",
+            "name": "chain_ids",
             "in": "query",
-            "description": "The chain ID to filter transactions by",
+            "description": "Comma separated list of chain ids to get transactions for",
             "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true,
-              "minimum": 0
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "filter transactions to a given address",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -108,6 +114,40 @@
           },
           "500": {
             "description": "Internal Server Error - A generic error occurred on the server"
+          }
+        }
+      }
+    },
+    "/beta/transactions/{address}/subscribe": {
+      "get": {
+        "tags": [],
+        "operationId": "endpoint_subscribe",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Wallet to get transactions for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "101": {
+            "description": "Successful Response, Connection: Upgrade to WebSocket"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
           }
         }
       }
@@ -201,16 +241,11 @@
       },
       "TransactionType": {
         "type": "string",
-        "enum": [
-          "Sender",
-          "Receiver"
-        ]
+        "enum": ["Sender", "Receiver"]
       },
       "TransactionsResponse": {
         "type": "object",
-        "required": [
-          "transactions"
-        ],
+        "required": ["transactions"],
         "properties": {
           "next_offset": {
             "type": "string",
