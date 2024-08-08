@@ -2,7 +2,7 @@
 title: 'Subscribe'
 openapi: 'GET /beta/balance/{address}/subscribe'
 ---
-The [Token Balances API](../balances) provides accurate and fast real time balances of the native and ERC20 tokens of accounts on supported blockchains (EVM currently).
+The [Token Balances API](./balances) provides accurate and fast real time balances of the native and ERC20 tokens of accounts on supported blockchains (EVM currently).
 The websocket complement that by allowing you to subscribe to balance changes in real-time, whenever a token is transferred to or from `address`, without the need to poll the API.
 <Info>Native tokens are currently not supported. This means that balance changes to them will not trigger a websocket push</Info>
 
@@ -21,7 +21,7 @@ The websocket complement that by allowing you to subscribe to balance changes in
     <Steps>
       <Step title="Install the dependencies">
         Wscat is a popular WebSocket utility for creating WebSocket connections. It allows you to send and receive messages interactively via the command line.
-        ```bash 
+        ```bash
         npm install -g wscat
         ```
       </Step>
@@ -35,7 +35,7 @@ The websocket complement that by allowing you to subscribe to balance changes in
       <Step title="Get balance changes in your terminal">
         Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
         ```json 200
-        { 
+        {
           "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
           [
             {
@@ -72,11 +72,11 @@ The websocket complement that by allowing you to subscribe to balance changes in
         WALLET_ADDRESS = "WALLET_ADDRESS" # Replace with your wallet address
 
         async def listen_to_events(wallet):
-            uri = f"wss://api.dune.com/api/beta/balance/{wallet}/subscribe"  
-            headers = {"X-Dune-Api-Key": DUNE_API_KEY}  
+            uri = f"wss://api.dune.com/api/beta/balance/{wallet}/subscribe"
+            headers = {"X-Dune-Api-Key": DUNE_API_KEY}
             async with websockets.connect(uri, extra_headers=headers) as websocket:
                 print("Connected to the WebSocket server.")
-                
+
                 while True:
                     try:
                         event = await websocket.recv()
@@ -104,7 +104,7 @@ The websocket complement that by allowing you to subscribe to balance changes in
       <Step title="Get balance changes pushed to you">
       Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
        ```json 200
-        { 
+        {
           "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
           [
             {
@@ -181,7 +181,7 @@ The websocket complement that by allowing you to subscribe to balance changes in
       <Step title="Get balance changes pushed to you">
        Whenever there is a balance change, you will receive the updates in your terminal. Here an example:
        ```json 200
-        { 
+        {
           "response_time":"2024-07-24T14:36:46.086ZZ","wallet_address":"0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad","balances":
           [
             {
@@ -201,4 +201,3 @@ The websocket complement that by allowing you to subscribe to balance changes in
     </Steps>
   </Tab>
 </Tabs>
-

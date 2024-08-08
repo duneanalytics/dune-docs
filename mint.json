@@ -1431,12 +1431,15 @@
           "pages": [
             "developer-apis/balances",
             "developer-apis/chains",
-            "developer-apis/subscribe"
+            "developer-apis/balances-subscribe"
           ]
         },
         {
           "group": "Transactions (Beta)",
-          "pages": ["developer-apis/transactions"]
+          "pages": [
+            "developer-apis/transactions",
+            "developer-apis/transactions-subscribe"
+          ]
         }
       ]
     },
