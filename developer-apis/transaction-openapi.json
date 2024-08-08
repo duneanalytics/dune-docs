@@ -53,15 +53,23 @@
             }
           },
           {
-            "name": "chain_id",
+            "name": "chain_ids",
             "in": "query",
-            "description": "The chain ID to filter transactions by",
+            "description": "Comma separated list of chain ids to get transactions for",
             "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true,
-              "minimum": 0
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "filter transactions to a given address",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
             }
           }
         ],
