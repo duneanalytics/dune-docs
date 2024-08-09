@@ -1429,16 +1429,17 @@
         {
           "group": "Token Balances (Beta)",
           "pages": [
-            "developer-apis/balances",
-            "developer-apis/chains",
-            "developer-apis/balances-subscribe"
+            "developer-apis/balance",
+            "developer-apis/balance-subscribe",
+            "developer-apis/balance-chains"
           ]
         },
         {
           "group": "Transactions (Beta)",
           "pages": [
             "developer-apis/transactions",
-            "developer-apis/transactions-subscribe"
+            "developer-apis/transactions-subscribe",
+            "developer-apis/transactions-chains"
           ]
         }
       ]
