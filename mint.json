@@ -113,7 +113,8 @@
         "web-app/upload-data",
         "web-app/embeds",
         "web-app/search",
-        "web-app/alerts"
+        "web-app/alerts",
+        "web-app/bug-bounty"
       ]
     },
     {
