@@ -77,7 +77,7 @@
     "/beta/balance/{address}": {
       "get": {
         "tags": [
-          "crate::handlers::balances::balances_handler"
+          "balance"
         ],
         "operationId": "balances_handler",
         "parameters": [
@@ -411,5 +411,15 @@
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "balance",
+      "description": "Balances API"
+    },
+    {
+      "name": "chains",
+      "description": "Chains API"
+    }
+  ]
 }
