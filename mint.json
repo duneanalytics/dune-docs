@@ -107,6 +107,7 @@
           ]
         },
         "web-app/dashboards",
+        "web-app/dashboard-minting",
         "web-app/decoding-contracts",
         "web-app/teams",
         "web-app/dune-ai",
