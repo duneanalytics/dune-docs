@@ -1,0 +1,138 @@
+---
+title: Token Transfers
+sidebarTitle: "Transfers"
+description: "Token transfer events across EVM networks."
+---
+
+The `tokens.transfers` table contains all token transfer events across ERC20 tokens and native tokens for all EVM-compatible networks indexed on Dune. This dataset encompasses:
+
+- Transfer events for ERC20 tokens
+- WETH deposits and withdrawals 
+- Native currency transfers
+  - Transaction value transfers
+  - Trace value transfers
+  - Gas used transfers
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens" tableName="transfers" />
+
+### Utility
+
+The transfers table provides a comprehensive view of token movement across networks, enabling you to:
+
+- Track token flows between addresses
+- Analyze transaction volumes and patterns
+- Identify significant token movements
+- Monitor exchange and DeFi protocol activity
+
+### Network Coverage
+
+Transfer data is available for the following EVM-compatible networks:
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3695907/6218008/"
+    width="100%"
+    height="600px"
+  ></iframe>
+</div>
+
+
+### Data Sources
+
+Transfer data is collected from multiple sources:
+
+- ERC20 Transfer events
+- Native currency movements in transactions and traces
+- WETH deposit and withdrawal events
+
+### Table Sample
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3503489/5892307/"
+    width="100%"
+    height="300px"
+  ></iframe>
+</div>
+
+## Sample Queries
+
+#### Query recent token transfers for a specific address
+
+This query returns the most recent token transfers (both incoming and outgoing) for a specified address:
+
+```sql
+SELECT
+    block_time,
+    symbol,
+    CASE 
+        WHEN "from" = {{address}} THEN 'Outgoing'
+        WHEN "to" = {{address}} THEN 'Incoming'
+    END AS direction,
+    amount,
+    amount_usd
+FROM tokens.transfers
+WHERE ("from" = 0x5DD596C901987A2b28C38A9C1DfBf86fFFc15d77 OR "to" = 0x5DD596C901987A2b28C38A9C1DfBf86fFFc15d77)
+    AND block_time > now() - interval '30' day
+ORDER BY block_time DESC
+LIMIT 100
+```
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3999506/6732340/"
+    width="100%"
+    height="300px"
+  ></iframe>
+</div>
+
+#### Calculate daily transfer volume for a specific token
+
+This query calculates the daily transfer volume for a specific ERC20 token. 
+
+Please be aware that token volumes are not necessarily indicative of anything. These metric can be misleading if the token is not well-known or if there are a lot of small transfers. Token transfers can be mints, burns, transfers, flashloans and anything in between, trying to read into the data can lead to misleading results.
+
+```sql
+SELECT
+    block_date,
+    COUNT(*) AS num_transfers,
+    SUM(amount) AS total_amount,
+    SUM(amount_usd) AS total_amount_usd
+FROM tokens.transfers
+WHERE contract_address = {{token_address}}
+    AND block_time > now() - interval '30' day
+    and blockchain = 'ethereum'
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3999595/6732454/"
+    width="100%"
+    height="300px"
+  ></iframe>
+</div>
+
+#### Identify largest transfers in the last 24 hours
+
+This query finds the largest token transfers by USD value in the last 24 hours:
+
+```sql
+SELECT
+    block_time,
+    token_symbol,
+    "from",
+    "to",
+    amount,
+    amount_usd
+FROM tokens.transfers
+WHERE block_time > now() - interval '1' day
+    AND amount_usd IS NOT NULL
+ORDER BY amount_usd DESC
+LIMIT 50
+```

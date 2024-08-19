@@ -236,17 +236,17 @@
           ]
         },
         {
-          "group": "Tokens",
+          "group": "Asset Tracking",
           "icon": "coins",
           "pages": [
-            "data-catalog/curated/tokens/overview",
-            "data-catalog/curated/tokens/balances",
+            "data-catalog/curated/asset-tracking/overview",
+            "data-catalog/curated/asset-tracking/balances",
             {
               "group": "Transfers",
               "pages": [
-                "data-catalog/curated/tokens/transfers/erc20-transfers",
-                "data-catalog/curated/tokens/transfers/erc721-transfers",
-                "data-catalog/curated/tokens/transfers/erc1155-transfers"
+                "data-catalog/curated/asset-tracking/transfers/erc20-transfers",
+                "data-catalog/curated/asset-tracking/transfers/erc721-transfers",
+                "data-catalog/curated/asset-tracking/transfers/erc1155-transfers"
               ]
             }
           ]
