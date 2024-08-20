@@ -1,0 +1,53 @@
+---
+title: Solana Token Accounts
+sidebarTitle: "Token Accounts"
+description: "Information about token accounts on the Solana blockchain."
+icon: "piggy-bank"
+---
+
+The `solana_utils.token_accounts` table contains information about token accounts on the Solana blockchain. Token accounts are used to hold balances of specific tokens for Solana wallets.
+
+This table provides essential data about token accounts, including:
+
+- The token account address
+- The owner of the token balance
+- The mint address of the token
+- The type of account (e.g., associated token account or regular token account)
+
+### Utility
+
+The Solana token accounts table is useful for:
+
+- Tracking token balances for specific wallets
+- Analyzing the distribution of token holdings
+- Identifying associated token accounts for wallets
+- Understanding the relationship between token mints and token accounts
+
+This table can be joined with other Solana tables to provide rich insights into token ownership and transfers on the Solana blockchain.
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="solana_utils" tableName="token_accounts" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="solana_utils" tableName="token_accounts" />
+
+## Sample Query
+
+**Query token accounts for a specific wallet**
+
+This query returns all token accounts associated with a specific wallet address:
+
+```sql
+SELECT
+    address AS token_account_address,
+    token_balance_owner AS wallet_address,
+    token_mint_address,
+    account_type
+FROM solana_utils.token_accounts
+WHERE token_balance_owner = 'FG4Y3yX4AAchp1HvNZ7LfzFTewF2f6nDoMDCohTFrdpk'
+LIMIT 10
+```
+
+This query will show you the token accounts owned by the specified wallet, including the specific token mint addresses and account types.

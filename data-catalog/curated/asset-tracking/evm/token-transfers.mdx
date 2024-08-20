@@ -1,23 +1,23 @@
 ---
 title: Token Transfers
-sidebarTitle: "Transfers"
+sidebarTitle: "Token Transfers"
 description: "Token transfer events across EVM networks."
+icon: "arrow-right"
 ---
 
-The `tokens.transfers` table contains all token transfer events across ERC20 tokens and native tokens for all EVM-compatible networks indexed on Dune. This dataset encompasses:
+The `tokens.transfers` table contains token transfer events across ERC20 tokens and native tokens for all EVM-compatible networks indexed on Dune. This dataset encompasses:
 
 - Transfer events for ERC20 tokens
-- WETH deposits and withdrawals 
+- WETH deposits and withdrawals
 - Native currency transfers
   - Transaction value transfers
   - Trace value transfers
   - Gas used transfers
 
-The table contains the following columns:
-
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
-
-<ColumnDescriptions tableSchema="tokens" tableName="transfers" />
+<Info>
+ Some erc20 tokens and native currencies have non-standard ways of being transferred and might not be included in the transfers table.
+ You can check the logic for the transfers table [here](https://github.com/duneanalytics/spellbook/tree/main/dbt_subprojects/tokens/models/transfers_and_balances). The level of detail of the transfers table will vary by chain.
+</Info>
 
 ### Utility
 
@@ -27,6 +27,17 @@ The transfers table provides a comprehensive view of token movement across netwo
 - Analyze transaction volumes and patterns
 - Identify significant token movements
 - Monitor exchange and DeFi protocol activity
+
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens" tableName="transfers" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tokens" tableName="transfers" />
 
 ### Network Coverage
 
@@ -40,28 +51,9 @@ Transfer data is available for the following EVM-compatible networks:
   ></iframe>
 </div>
 
-
-### Data Sources
-
-Transfer data is collected from multiple sources:
-
-- ERC20 Transfer events
-- Native currency movements in transactions and traces
-- WETH deposit and withdrawal events
-
-### Table Sample
-
-<div>
-  <iframe
-    src="https://dune.com/embeds/3503489/5892307/"
-    width="100%"
-    height="300px"
-  ></iframe>
-</div>
-
 ## Sample Queries
 
-#### Query recent token transfers for a specific address
+**Query recent token transfers for a specific address**
 
 This query returns the most recent token transfers (both incoming and outgoing) for a specified address:
 
@@ -70,8 +62,8 @@ SELECT
     block_time,
     symbol,
     CASE 
-        WHEN "from" = {{address}} THEN 'Outgoing'
-        WHEN "to" = {{address}} THEN 'Incoming'
+        WHEN "from" = 0x5DD596C901987A2b28C38A9C1DfBf86fFFc15d77 THEN 'Outgoing'
+        WHEN "to" = 0x5DD596C901987A2b28C38A9C1DfBf86fFFc15d77 THEN 'Incoming'
     END AS direction,
     amount,
     amount_usd
@@ -90,7 +82,7 @@ LIMIT 100
   ></iframe>
 </div>
 
-#### Calculate daily transfer volume for a specific token
+**Calculate daily transfer volume for a specific token**
 
 This query calculates the daily transfer volume for a specific ERC20 token. 
 
@@ -103,7 +95,7 @@ SELECT
     SUM(amount) AS total_amount,
     SUM(amount_usd) AS total_amount_usd
 FROM tokens.transfers
-WHERE contract_address = {{token_address}}
+WHERE contract_address = 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984
     AND block_time > now() - interval '30' day
     and blockchain = 'ethereum'
 GROUP BY 1
@@ -118,7 +110,7 @@ ORDER BY 1 DESC
   ></iframe>
 </div>
 
-#### Identify largest transfers in the last 24 hours
+**Identify largest transfers in the last 24 hours**
 
 This query finds the largest token transfers by USD value in the last 24 hours:
 

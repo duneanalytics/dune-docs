@@ -1,12 +1,14 @@
 ---
 title: Token Balances
-sidebarTitle: "Balances"
+sidebarTitle: "Token & NFT Balances"
+icon: "scale-balanced"
 description: "Balances for addresses on EVM networks." 
 ---
 
-<Info>
+<Warning>
     This dataset is currently in open beta. We are working on adding more chains and methods to detect balance changes. We are also working on improving the query performance. We currently recommend using the `tokens_<chain>.balances` table for queries.
-</Info>
+    Mirroring the approach of [this query](https://dune.com/queries/3702725) is currently the fastest way to get started with the token balances dataset. 
+</Warning>
 
 The `tokens_<chain>.balances_daily` table contains all daily token balances across all addresses and on EVM-compatible networks. This dataset encompasses:
 
@@ -74,8 +76,6 @@ The `tokens_<chain>.balances` table adds a new row every time a balance changes 
     src="https://dune.com/embeds/3503489/5892307/"
     width="100%"
     height="300px"
-    frameBorder="0"
-    scrolling="no"
   ></iframe>
 </div>
 
@@ -104,8 +104,6 @@ order by balance_usd desc
     src="https://dune.com/embeds/3459600/5814175/"
     width="100%"
     height="300px"
-    frameBorder="0"
-    scrolling="no"
   ></iframe>
 </div>
 
@@ -133,8 +131,6 @@ order by day desc, balance_usd desc
     src="https://dune.com/embeds/3456704/5814342/"
     width="100%"
     height="300px"
-    frameBorder="0"
-    scrolling="no"
 ></iframe>
 </div>
 

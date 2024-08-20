@@ -1,0 +1,42 @@
+---
+title: Latest Prices
+icon: money-bill
+description: Latest price data for tokens in USD
+---
+
+The `prices.usd_latest` table is a simplified version of `prices.usd`, providing the most recent price data for tokens across various blockchains. This table is designed to enable simpler and faster queries when only the latest price information is needed.
+
+### Key Features
+
+- Contains only the most recent price for each token
+- Enables less complex and faster queries compared to `prices.usd`
+- Covers the same range of assets as `prices.usd` (EVM networks, Solana, and other L1 blockchains)
+
+### Usage
+
+When you need only the current price of a token, use `prices.usd_latest` instead of `prices.usd`. This eliminates the need for subqueries or complex time-based filters, resulting in simpler and more efficient queries.
+
+Example query:
+
+```sql
+SELECT symbol, price 
+FROM prices.usd_latest
+WHERE blockchain = 'ethereum'
+  AND symbol = 'WETH'
+```
+
+### Column Descriptions
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | The unique identifier of the token (same as in `prices.usd`) |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`            | _double_    | The latest price of the asset in USD          |
+| `blockchain`       | _varchar_   | The blockchain on which the asset exists      |
+
+For more detailed information on coverage, adding prices, and unique identifiers, please refer to the documentation for [prices.usd](/data-catalog/curated/asset-tracking/prices/prices).
+
+<Note>
+  The `prices.usd_latest` table shares the same data source and update frequency as `prices.usd`, but only stores the most recent price for each token.
+</Note> 
+

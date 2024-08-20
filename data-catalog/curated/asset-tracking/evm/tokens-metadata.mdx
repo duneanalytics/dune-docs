@@ -1,0 +1,81 @@
+---
+title: ERC20 Token Metadata
+sidebarTitle: "ERC20 Token Metadata"
+description: "Metadata for ERC20 tokens across EVM networks."
+icon: "info"
+---
+
+The `tokens.erc20` table contains metadata for ERC20 tokens across all EVM-compatible networks indexed on Dune. This dataset provides essential information about ERC20 tokens, including:
+
+- The blockchain on which the token exists
+- The contract address of the token
+- The token symbol
+- The number of decimals used by the token
+
+### Utility
+
+The ERC20 metadata table offers valuable information for token analysis and integration, allowing you to:
+
+- Identify tokens across different blockchains
+- Retrieve essential token information for calculations and display
+- Cross-reference token data with other tables like `tokens.transfers`
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens" tableName="erc20" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tokens" tableName="erc20" />
+
+### Network Coverage
+
+ERC20 token metadata is available for all EVM-compatible networks indexed by Dune.
+
+## Sample Queries
+
+**Query ERC20 tokens on a specific blockchain**
+
+This query returns ERC20 tokens on the Ethereum blockchain:
+
+```sql
+SELECT
+    contract_address,
+    symbol,
+    decimals
+FROM tokens.erc20
+WHERE blockchain = 'ethereum'
+LIMIT 100
+```
+
+**Find tokens with a specific symbol across blockchains**
+
+This query finds all tokens with the symbol "USDC" across different blockchains:
+
+```sql
+SELECT
+    blockchain,
+    contract_address,
+    symbol,
+    decimals
+FROM tokens.erc20
+WHERE symbol = 'USDC'
+```
+
+**List tokens with non-standard decimal places**
+
+This query lists tokens that don't use the standard 18 decimal places:
+
+```sql
+SELECT
+    blockchain,
+    contract_address,
+    symbol,
+    decimals
+FROM tokens.erc20
+WHERE decimals != 18
+ORDER BY decimals DESC
+LIMIT 50
+```

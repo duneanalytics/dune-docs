@@ -193,6 +193,47 @@
       "pages": [
         "data-catalog/curated/overview",
         {
+          "group": "Asset Tracking",
+          "icon": "coins",
+          "pages": [
+            "data-catalog/curated/asset-tracking/overview",
+            {
+              "group": "Prices",
+              "icon": "square-dollar",
+              "iconType": "duotone",
+              "pages": [
+                "data-catalog/curated/asset-tracking/prices/prices",
+                "data-catalog/curated/asset-tracking/prices/prices_daily",
+                "data-catalog/curated/asset-tracking/prices/prices_latest"
+              ]
+            },
+            {
+              "group": "EVM Networks",
+              "icon": "e",
+              "iconType": "sharp-regular",
+              "pages": [
+                "data-catalog/curated/asset-tracking/evm/token-transfers",
+                "data-catalog/curated/asset-tracking/evm/tokens-metadata",
+                "data-catalog/curated/asset-tracking/evm/balances",
+                "data-catalog/curated/asset-tracking/evm/nft-transfers",
+                "data-catalog/curated/asset-tracking/evm/nft-metadata"
+              ]
+            },
+            {
+              "group": "Solana",
+              "icon": "s",
+              "iconType": "sharp-regular",
+              "pages": [
+                "data-catalog/curated/asset-tracking/solana/solana-token-transfers",
+                "data-catalog/curated/asset-tracking/solana/solana-token-accounts",
+                "data-catalog/curated/asset-tracking/solana/solana-token-metadata",
+                "data-catalog/curated/asset-tracking/solana/solana-nft-transfers",
+                "data-catalog/curated/asset-tracking/solana/solana-nft-metadata"
+              ]
+            }
+          ]
+        },
+        {
           "group": "DEX",
           "icon": "arrow-right-arrow-left",
           "iconType": "solid",
@@ -206,7 +247,6 @@
           "icon": "monkey",
           "pages": ["data-catalog/curated/NFT/nft-trades"]
         },
-        "data-catalog/curated/prices",
         {
           "group": "Labels",
           "icon": "tag",
@@ -233,22 +273,6 @@
             },
             "data-catalog/curated/labels/ens-labels",
             "data-catalog/curated/labels/address-labels"
-          ]
-        },
-        {
-          "group": "Asset Tracking",
-          "icon": "coins",
-          "pages": [
-            "data-catalog/curated/asset-tracking/overview",
-            "data-catalog/curated/asset-tracking/balances",
-            {
-              "group": "Transfers",
-              "pages": [
-                "data-catalog/curated/asset-tracking/transfers/erc20-transfers",
-                "data-catalog/curated/asset-tracking/transfers/erc721-transfers",
-                "data-catalog/curated/asset-tracking/transfers/erc1155-transfers"
-              ]
-            }
           ]
         }
       ]

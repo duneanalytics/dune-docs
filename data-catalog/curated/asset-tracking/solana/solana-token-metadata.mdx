@@ -1,0 +1,82 @@
+---
+title: Solana Fungible Token Metadata
+sidebarTitle: "Token Metadata"
+description: "Metadata for fungible tokens on the Solana blockchain."
+icon: "info"
+---
+
+The `tokens_solana.fungible` table contains metadata for fungible tokens on the Solana blockchain indexed on Dune. This dataset provides essential information about Solana tokens, including:
+
+- The token mint address
+- The token name and symbol
+- The number of decimals used by the token
+- Additional metadata such as token URI and creation details
+
+### Utility
+
+The Solana fungible token metadata table offers valuable information for token analysis and integration, allowing you to:
+
+- Identify tokens on the Solana blockchain
+- Retrieve essential token information for calculations and display
+- Access additional metadata for more comprehensive token analysis
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens_solana" tableName="fungible" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tokens_solana" tableName="fungible" />
+
+### Network Coverage
+
+This table covers fungible token metadata for the Solana blockchain.
+
+## Sample Queries
+
+**Query Solana fungible tokens**
+
+This query returns fungible tokens on the Solana blockchain:
+
+```sql
+SELECT
+    token_mint_address,
+    symbol,
+    name,
+    decimals
+FROM tokens_solana.fungible
+LIMIT 100
+```
+
+**Find tokens with a specific symbol**
+
+This query finds all tokens with the symbol "USDC" on Solana:
+
+```sql
+SELECT
+    token_mint_address,
+    symbol,
+    name,
+    decimals,
+    created_at
+FROM tokens_solana.fungible
+WHERE symbol = 'USDC'
+```
+
+**List tokens with non-standard decimal places**
+
+This query lists tokens that don't use the standard 9 decimal places on Solana:
+
+```sql
+SELECT
+    token_mint_address,
+    symbol,
+    name,
+    decimals
+FROM tokens_solana.fungible
+WHERE decimals != 9
+ORDER BY decimals DESC
+LIMIT 50
+```
