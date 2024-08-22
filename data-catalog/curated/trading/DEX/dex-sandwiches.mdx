@@ -1,87 +1,57 @@
 ---
-title: dex.trades
-sidebarTitle: "DEX Trades"
-description: "The `dex.trades` table captures detailed data on decentralized exchange (DEX) trades, recording all raw trade events across various  protocols and blockchains."
+title: dex.sandwiches
+sidebarTitle: "Sandwich Attacks"
+icon: "sandwich"
+description: "The `dex.sandwiches` table captures detailed data on the outer trades of sandwich attacks in decentralized exchanges (DEXs), recording front-running and back-running trades across various EVM networks."
 ---
-
-<Frame caption="This table stores data on dex trades across protocols...">
-  <iframe src="https://dune.com/embeds/4319/8411/" width="100%" height="300px"></iframe>
-</Frame>
-
-<Frame caption="... and chains">
-  <iframe src="https://dune.com/embeds/2180075/3571504/" width="100%" height="300px"></iframe>
-</Frame>
 
 ## Table Description
 
-The `dex.trades` table captures detailed data on trades executed via decentralized exchanges (DEXs). This table captures all raw trade events that happen across all liqudity pools. It provides a comprehensive view of the entire trade execution process, detailing the specific paths and liquidity sources utilized.
-
-
+The `dex.sandwiches` table captures detailed data on the outer trades of sandwich attacks executed via decentralized exchanges (DEXs). This table records the trades that constitute the "bread" of the sandwich attack, which can include both front-running and back-running trades, as well as more complex patterns. It provides a comprehensive view of sandwich attack patterns across various EVM networks.
 
 ## Functional Overview
 
-The `dex.trades` table provides an in-depth view of trades on decentralized exchanges like uniswap or curve. This table includes entries for each segment of a trade that passes through different liquidity pools, as well as single-step trades. For example, a user may initiate a trade to swap USDC for PEPE. If this trade is executed through multiple liquidity pools, such as USDC-WETH and WETH-PEPE, the `dex.trades` table will record each segment of the trade as a separate entry. Conversely, a single-step trade, such as directly swapping USDC for ETH, will be recorded as a single entry.
+The `dex.sandwiches` table provides an in-depth view of the outer trades in sandwich attacks on decentralized exchanges. A sandwich attack typically occurs when a searcher spots a pending transaction in the mempool, quickly executes a trade before it (front-running), and then immediately after it (back-running) to profit from the price movement caused by the victim's trade.
 
-This detailed approach allows for granular analysis of trade execution paths, enabling users to:
+However, this table also captures more complex sandwich attack patterns. For example:
 
-- **Analyze Liquidity Sources**: Understand which liquidity pools are used and how they interact in both single-step and multi-step trades.
-- **Track Trade Execution Paths**: Follow the exact route a trade takes across different DEXs and liquidity pools.
-- **Assess Slippage and Execution Quality**: Evaluate the impact of each step on the overall trade execution, including slippage and price changes.
-- **Monitor Market Dynamics**: Gain insights into the behavior and dynamics of different liquidity pools and DEXs over time.
+bot1: ETH>USDC
+victim1: USDC>ETH
+bot1: USDC>ETH
+victim2: ETH>USDC
+bot1: ETH>USDC
 
-By providing comprehensive trade details, the `dex.trades` table supports advanced analytics and research into DEX trading behavior and liquidity management.
+In this scenario, the bot executes trades on both sides of the liquidity pool, sandwiching multiple victim trades in a single sequence.
 
-Complimentary tables include `dex_aggregator.trades`, in which trade-intents that are routed through aggregators are recorded. The volume routed through aggregators is also recorded in the dex.trades table, one row in dex_aggregator trades corresponds to one or more rows in dex.trades.
+This table includes entries for all bot trades involved in these attack patterns.
 
-## Coverage
+Note that the victim trades sandwiched between these outer trades are captured in a separate table, `dex.sandwiched`.
 
-The table covers the following decentralized exchanges and their versions:
+This detailed approach allows for granular analysis of sandwich attack patterns, enabling users to:
 
-<div>
-  <iframe
-    src="https://dune.com/embeds/3453733/5803844/"
-    width="100%"
-    height="600px"
-  ></iframe>
-</div>
+- **Identify Sandwich Attacks**: Easily spot instances of sandwich attacks across different DEXs and networks, including complex multi-trade patterns.
+- **Analyze Attack Patterns**: Understand the frequency, size, and potential profitability of sandwich attacks, including sophisticated strategies that target multiple victims in a single sequence.
+- **Monitor Market Manipulation**: Gain insights into various forms of market manipulation across different DEXs and EVM networks.
+
+By providing comprehensive details of the trades involved in sandwich attacks, the `dex.sandwiches` table supports advanced analytics and research into DEX trading behavior, market manipulation, and potential areas for improved trade execution or protocol design.
 
 ## Column Descriptions
 
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 
-<ColumnDescriptions tableSchema="dex" tableName="trades" />
+<ColumnDescriptions tableSchema="dex" tableName="sandwiches" />
 
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
-<TableSample tableSchema="dex" tableName="trades" />
+<TableSample tableSchema="dex" tableName="sandwiches" />
 
 ## Examples
 
-The following query demonstrates how to use the dex.trades table to calculate the total volume of trades on a weekly basis.
+The following query demonstrates how to use the dex.sandwiches table to calculate the total volume of sandwich attack trades on a weekly basis.
 
-```sql
-SELECT
-  blockchain,
-  DATE_TRUNC('week', block_time),
-  SUM(CAST(amount_usd AS DOUBLE)) AS usd_volume
-FROM
-  dex."trades" AS t
-WHERE
- block_time > NOW() - INTERVAL '365' day
-GROUP BY 1,2
-```
-<div>
-  <iframe
-    src="https://dune.com/embeds/2180075/3571504/"
-    width="100%"
-    height="500px"
-  ></iframe>
-</div>
+## Related Tables
 
-<CardGroup cols={1}>
-  <Card title="Dex Dashboard" icon="chart-waterfall" href="https://dune.com/dune/dex-metrics">
-    For more examples of how to use the `dex.trades` table, check out this dashboard.
-  </Card>
-</CardGroup>
+- `dex.sandwiched`: This complementary table captures the victim trades that are sandwiched between the trades recorded in `dex.sandwiches`.
+- `dex.trades`: This table captures all trades and is the basis for the `dex.sandwiches` table.

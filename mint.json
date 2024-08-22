@@ -234,21 +234,24 @@
           ]
         },
         {
-          "group": "trading",
+          "group": "Trading",
           "icon": "arrow-right-arrow-left",
           "iconType": "solid",
           "pages": [
             {
               "group": "DEX",
+              "icon": "rotate",
+              "iconType": "solid",
               "pages": [
-                "data-catalog/curated/asset-tracking/trading/DEX/dex-trades",
-                "data-catalog/curated/asset-tracking/trading/DEX/dex-aggregator-trades",
-                "data-catalog/curated/asset-tracking/trading/DEX/dex-pools",
-                "data-catalog/curated/asset-tracking/trading/DEX/dex-sandwiches"
+                "data-catalog/curated/trading/DEX/dex-trades",
+                "data-catalog/curated/trading/DEX/dex-aggregator-trades",
+                "data-catalog/curated/trading/DEX/dex-sandwiches",
+                "data-catalog/curated/trading/DEX/dex-sandwiched"
               ]
             },
             {
               "group": "NFT",
+              "icon": "monkey",
               "pages": [
                 "data-catalog/curated/asset-tracking/trading/NFT/nft-trades",
                 "data-catalog/curated/asset-tracking/trading/NFT/nft-mints",
@@ -257,6 +260,7 @@
             },
             {
               "group": "Solana",
+              "icon": "sunglasses",
               "pages": [
                 "data-catalog/curated/asset-tracking/trading/Solana/dex-solana-trades",
                 "data-catalog/curated/asset-tracking/trading/Solana/jupiter-solana-aggregator-swaps"
