@@ -1,0 +1,57 @@
+---
+title: nft.wash_trades
+sidebarTitle: "NFT Wash Trades"
+icon: "washing-machine"
+description: Description of the nft.wash_trades table on Dune
+---
+
+## Table Description
+
+The nft.wash_trades table on Dune is crucial for identifying and analyzing potential wash trading activities in Non-Fungible Token (NFT) transactions across various marketplaces. It provides insights into the authenticity of NFT trades and helps in understanding market manipulation within the NFT space.
+
+## Usage
+
+The nft.wash_trades table serves as an essential tool for analyzing the integrity of NFT market activities. It offers a detailed view of each NFT transaction, including data points such as blockchain, project, buyer and seller addresses, and various filters to detect potential wash trades. This table allows analysts to identify suspicious trading patterns, assess the prevalence of wash trading in different NFT projects, and gain insights into the overall health and authenticity of the NFT market.
+
+## Coverage 
+
+The `nft.wash_trades` table is maintained by Dune and its community of contributors. We strive to ensure the data is as accurate and up-to-date as possible. However, Dune does not guarantee the accuracy or completeness of the data provided. The table covers various blockchains and NFT projects, with a focus on identifying potential wash trading activities.
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3457808/5810746/"
+    width="100%"
+    height="300px"
+  ></iframe>
+</div>
+
+## Mechanism
+
+The nft.wash_trades table employs a multi-faceted approach to identify potential wash trades:
+
+1. Basic Trade Information: Each entry includes details such as blockchain, project, NFT contract address, token ID, buyer, seller, and transaction specifics.
+
+2. Funding Source Analysis: The table tracks the first funding sources for both buyers and sellers (buyer_first_funded_by, seller_first_funded_by) to identify potential connections between trading parties.
+
+3. Wash Trade Filters: Several filters are applied to flag suspicious activities:
+   - filter_1_same_buyer_seller: Identifies trades where the buyer and seller are the same.
+   - filter_2_back_and_forth_trade: Detects repetitive trading between the same parties.
+   - filter_3_bought_or_sold_3x: Flags NFTs that have been traded frequently in a short period.
+   - filter_4_first_funded_by_same_wallet: Identifies trades where both parties were initially funded by the same wallet.
+   - filter_5_flashloan: Detects trades potentially facilitated by flash loans.
+
+4. Wash Trade Classification: The is_wash_trade column provides a final verdict on whether a trade is considered a wash trade based on the applied filters.
+
+This mechanism allows for a comprehensive analysis of NFT trades, helping to distinguish genuine market activity from potential manipulation.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="nft" tableName="wash_trades" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="nft" tableName="wash_trades" />

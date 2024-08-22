@@ -253,17 +253,17 @@
               "group": "NFT",
               "icon": "monkey",
               "pages": [
-                "data-catalog/curated/asset-tracking/trading/NFT/nft-trades",
-                "data-catalog/curated/asset-tracking/trading/NFT/nft-mints",
-                "data-catalog/curated/asset-tracking/trading/NFT/nft-wash-trades"
+                "data-catalog/curated/trading/NFT/nft-trades",
+                "data-catalog/curated/trading/NFT/nft-mints",
+                "data-catalog/curated/trading/NFT/nft-wash-trades"
               ]
             },
             {
               "group": "Solana",
               "icon": "sunglasses",
               "pages": [
-                "data-catalog/curated/asset-tracking/trading/Solana/dex-solana-trades",
-                "data-catalog/curated/asset-tracking/trading/Solana/jupiter-solana-aggregator-swaps"
+                "data-catalog/curated/trading/Solana/dex-solana-trades",
+                "data-catalog/curated/trading/Solana/jupiter-aggregator-trades"
               ]
             }
           ]
