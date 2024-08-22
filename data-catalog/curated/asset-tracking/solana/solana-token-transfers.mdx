@@ -1,0 +1,58 @@
+---
+title: Solana Token Transfers
+sidebarTitle: "Token Transfers"
+description: "Token transfer events on the Solana blockchain."
+icon: "arrow-right"
+---
+
+The `tokens_solana.transfers` table contains token transfer events for tokens on the Solana blockchain indexed by Dune. This dataset encompasses:
+
+- Transfer events for Solana tokens
+- Mints and burns
+- Associated token account creations and closures
+
+<Info>
+ The transfers table aims to capture standard Solana token transfers. Some tokens may use non-standard transfer methods that might not be included.
+</Info>
+
+### Utility
+
+The Solana transfers table provides a comprehensive view of token movement on Solana, enabling you to:
+
+- Track token flows between addresses
+- Analyze transaction volumes and patterns
+- Identify significant token movements
+- Monitor exchange and DeFi protocol activity on Solana
+
+The table contains columns for block information, transfer details, token addresses, account addresses, and transaction metadata.
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens_solana" tableName="transfers" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tokens_solana" tableName="transfers" />
+
+## Sample Queries
+
+**Query recent token transfers for a specific address**
+
+This query returns the most recent token transfers (both incoming and outgoing) for a specified address:
+
+```sql
+SELECT
+    block_time,
+    action,
+    CASE 
+        WHEN from_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' THEN 'Outgoing'
+        WHEN to_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' THEN 'Incoming'
+    END AS direction,
+    amount,
+    token_mint_address
+FROM tokens_solana.transfers
+WHERE (from_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' OR to_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ')
+    AND block_time > now() - interval '30' day
+ORDER BY block_time DESC
+LIMIT 100
+```

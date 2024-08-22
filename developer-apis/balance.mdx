@@ -9,7 +9,7 @@ Data is typically available within 100 ms since a block was propagated to nodes.
 <Note>
   - These endpoints are authenticated with a normal Dune API key.
   - As we are in beta there might be changes. Please reach out to realtimeAPI@dune.com if you use this API.
-  - Specify `?all_chains` to get native balances for a long tail of evm chains, where we don't support erc20 assets. See [chains endpoint](./chains).
+  - Specify `?all_chains` to get native balances for a long tail of evm chains, where we don't support erc20 assets. See [chains endpoint](./balance-chains).
   - Specify `?filters=erc20` or `?filters=native` to get only erc20 tokens or native assets, respectively
   - Specify `?exclude_spam_tokens` to filter out tokens Dune believes to be spam. We use [this query](https://dune.com/queries/3804603) to determine if something is spam.
   - Specify `?chain_ids=11,250,1` to fetch balances only for select chains. See chainlist https://chainlist.org/ for a list of chainIDs.

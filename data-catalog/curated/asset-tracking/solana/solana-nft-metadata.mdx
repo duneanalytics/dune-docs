@@ -1,0 +1,83 @@
+---
+title: Solana NFT Metadata
+sidebarTitle: "NFT Metadata"
+description: "Metadata for non-fungible tokens (NFTs) on the Solana blockchain."
+icon: "info"
+---
+
+The `tokens_solana.nft` table contains metadata for non-fungible tokens (NFTs) on the Solana blockchain indexed on Dune. This dataset provides essential information about Solana NFTs, including:
+
+- The NFT mint address and associated accounts
+- Token details such as name, symbol, and URI
+- Creator and collection information
+- Transaction details of the NFT creation
+
+### Utility
+
+The Solana NFT metadata table offers valuable information for NFT analysis and integration, allowing you to:
+
+- Identify and track NFTs on the Solana blockchain
+- Retrieve essential NFT information for display and analysis
+- Access creator and collection data for comprehensive NFT insights
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens_solana" tableName="nft" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tokens_solana" tableName="nft" />
+
+### Network Coverage
+
+This table covers NFT metadata for the Solana blockchain.
+
+## Sample Queries
+
+**Query Solana NFTs**
+
+This query returns NFTs on the Solana blockchain:
+
+```sql
+SELECT
+    account_mint,
+    token_name,
+    token_symbol,
+    token_uri
+FROM tokens_solana.nft
+LIMIT 100
+```
+
+**Find NFTs from a specific collection**
+
+This query finds all NFTs from a specific collection on Solana:
+
+```sql
+SELECT
+    account_mint,
+    token_name,
+    token_symbol,
+    token_uri
+FROM tokens_solana.nft
+WHERE collection_mint = 'your_collection_mint_address_here'
+LIMIT 50
+```
+
+**List NFTs by a specific creator**
+
+This query lists NFTs created by a specific verified creator on Solana:
+
+```sql
+SELECT
+    account_mint,
+    token_name,
+    token_symbol,
+    token_uri,
+    call_block_time
+FROM tokens_solana.nft
+WHERE verified_creator = 'your_creator_address_here'
+ORDER BY call_block_time DESC
+LIMIT 50
+```

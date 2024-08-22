@@ -1,0 +1,84 @@
+---
+title: NFT Metadata
+sidebarTitle: "NFT Metadata"
+description: "Metadata for NFTs across EVM networks."
+icon: "info"
+---
+
+The `tokens.nft` table contains metadata for NFTs across all EVM-compatible networks indexed on Dune. This dataset provides essential information about NFTs, including:
+
+- The blockchain on which the NFT exists
+- The contract address of the NFT
+- The name of the NFT collection
+- The symbol of the NFT collection
+- The standard used by the NFT (e.g., ERC721, ERC1155)
+
+### Utility
+
+The NFT metadata table offers valuable information for NFT analysis and integration, allowing you to:
+
+- Identify NFT collections across different blockchains
+- Retrieve essential NFT information for calculations and display
+- Cross-reference NFT data with other tables like `tokens.nft_transfers`
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="tokens" tableName="nft" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="tokens" tableName="nft" />
+
+### Network Coverage
+
+NFT metadata is available for all EVM-compatible networks indexed by Dune.
+
+## Sample Queries
+
+**Query NFT collections on a specific blockchain**
+
+This query returns NFT collections on the Ethereum blockchain:
+
+```sql
+SELECT
+    contract_address,
+    name,
+    symbol,
+    standard
+FROM tokens.nft
+WHERE blockchain = 'ethereum'
+LIMIT 100
+```
+
+**Find NFTs with a specific standard across blockchains**
+
+This query finds all NFTs using the ERC721 standard across different blockchains:
+
+```sql
+SELECT
+    blockchain,
+    contract_address,
+    name,
+    symbol
+FROM tokens.nft
+WHERE standard = 'erc721'
+```
+
+**List NFT collections with a specific keyword in their name**
+
+This query lists NFT collections that have "Punk" in their name:
+
+```sql
+SELECT
+    blockchain,
+    contract_address,
+    name,
+    symbol,
+    standard
+FROM tokens.nft
+WHERE name LIKE '%Punk%'
+ORDER BY blockchain, name
+LIMIT 50
+```

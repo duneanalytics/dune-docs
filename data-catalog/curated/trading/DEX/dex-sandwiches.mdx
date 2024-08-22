@@ -1,0 +1,57 @@
+---
+title: dex.sandwiches
+sidebarTitle: "Sandwich Attacks"
+icon: "sandwich"
+description: "The `dex.sandwiches` table captures detailed data on the outer trades of sandwich attacks in decentralized exchanges (DEXs), recording front-running and back-running trades across various EVM networks."
+---
+
+## Table Description
+
+The `dex.sandwiches` table captures detailed data on the outer trades of sandwich attacks executed via decentralized exchanges (DEXs). This table records the trades that constitute the "bread" of the sandwich attack, which can include both front-running and back-running trades, as well as more complex patterns. It provides a comprehensive view of sandwich attack patterns across various EVM networks.
+
+## Functional Overview
+
+The `dex.sandwiches` table provides an in-depth view of the outer trades in sandwich attacks on decentralized exchanges. A sandwich attack typically occurs when a searcher spots a pending transaction in the mempool, quickly executes a trade before it (front-running), and then immediately after it (back-running) to profit from the price movement caused by the victim's trade.
+
+However, this table also captures more complex sandwich attack patterns. For example:
+
+bot1: ETH>USDC
+victim1: USDC>ETH
+bot1: USDC>ETH
+victim2: ETH>USDC
+bot1: ETH>USDC
+
+In this scenario, the bot executes trades on both sides of the liquidity pool, sandwiching multiple victim trades in a single sequence.
+
+This table includes entries for all bot trades involved in these attack patterns.
+
+Note that the victim trades sandwiched between these outer trades are captured in a separate table, `dex.sandwiched`.
+
+This detailed approach allows for granular analysis of sandwich attack patterns, enabling users to:
+
+- **Identify Sandwich Attacks**: Easily spot instances of sandwich attacks across different DEXs and networks, including complex multi-trade patterns.
+- **Analyze Attack Patterns**: Understand the frequency, size, and potential profitability of sandwich attacks, including sophisticated strategies that target multiple victims in a single sequence.
+- **Monitor Market Manipulation**: Gain insights into various forms of market manipulation across different DEXs and EVM networks.
+
+By providing comprehensive details of the trades involved in sandwich attacks, the `dex.sandwiches` table supports advanced analytics and research into DEX trading behavior, market manipulation, and potential areas for improved trade execution or protocol design.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="dex" tableName="sandwiches" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="dex" tableName="sandwiches" />
+
+## Examples
+
+The following query demonstrates how to use the dex.sandwiches table to calculate the total volume of sandwich attack trades on a weekly basis.
+
+## Related Tables
+
+- `dex.sandwiched`: This complementary table captures the victim trades that are sandwiched between the trades recorded in `dex.sandwiches`.
+- `dex.trades`: This table captures all trades and is the basis for the `dex.sandwiches` table.

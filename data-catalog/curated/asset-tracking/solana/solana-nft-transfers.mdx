@@ -1,0 +1,44 @@
+---
+title: Solana NFT Transfers
+sidebarTitle: "Solana NFT Transfers"
+description: "NFT transfer events on the Solana blockchain."
+icon: "hexagon-vertical-nft"
+---
+
+The `tokens_solana.nft` table contains NFT transfer events for tokens on the Solana blockchain indexed on Dune. This dataset encompasses transfer events for various Solana NFT standards.
+
+<Info>
+ Some Solana NFTs may have non-standard transfer mechanisms and might not be included in the transfers table.
+ You can check the logic for the transfers table [here](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/solana/models/tokens/solana/tokens_solana_nft.sql).
+</Info>
+
+### Utility
+
+The Solana NFT transfers table provides a comprehensive view of NFT movement on the Solana network, enabling you to:
+
+- Track NFT flows between accounts
+- Analyze NFT transaction volumes and patterns
+- Identify significant NFT movements
+- Monitor NFT marketplace and protocol activity on Solana
+
+
+## Sample Queries
+
+**Query recent NFT transfers for a specific account**
+
+This query returns the most recent NFT transfers for a specified account:
+
+```sql
+SELECT
+    call_block_time,
+    token_standard,
+    account_mint,
+    token_name,
+    token_symbol,
+    call_tx_signer
+FROM tokens_solana.nft
+WHERE call_tx_signer = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ'
+    AND call_block_time > now() - interval '30' day
+ORDER BY call_block_time DESC
+LIMIT 100
+```

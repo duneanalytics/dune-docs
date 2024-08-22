@@ -1,0 +1,44 @@
+---
+title: dex.sandwiched
+sidebarTitle: "Sandwich Victims"
+icon: "crosshairs"
+description: "The `dex.sandwiched` table captures detailed data on the victim trades of sandwich attacks in decentralized exchanges (DEXs), recording transactions that have been sandwiched across various EVM networks."
+---
+
+## Table Description
+
+The `dex.sandwiched` table captures detailed data on the victim trades of sandwich attacks executed via decentralized exchanges (DEXs). This table records the transactions that have been sandwiched between front-running and back-running trades. It provides a comprehensive view of sandwich attack victims across various EVM networks.
+
+## Functional Overview
+
+The `dex.sandwiched` table provides an in-depth view of the victim trades in sandwich attacks on decentralized exchanges. A sandwich attack occurs when a trader (usually a bot) spots a pending transaction in the mempool, quickly executes a trade before it (front-running), and then immediately after it (back-running) to profit from the price movement caused by the victim's trade.
+
+This table includes entries for:
+1. The victim trade that has been sandwiched
+
+Note that the front-running and back-running trades that sandwich these victim trades are captured in a separate table, `dex.sandwiches`.
+
+This detailed approach allows for granular analysis of sandwich attack patterns, enabling users to:
+
+- **Identify Sandwich Attack Victims**: Easily spot instances of trades that have been sandwiched across different DEXs and networks.
+- **Analyze Attack Impacts**: Understand the frequency, size, and potential losses of sandwiched trades.
+- **Monitor Market Vulnerability**: Gain insights into which trades are most susceptible to sandwich attacks across different DEXs and EVM networks.
+
+By providing comprehensive details of the victim trades in sandwich attacks, the `dex.sandwiched` table supports advanced analytics and research into DEX trading behavior, market manipulation, and potential areas for improved trade execution or protocol design to protect users from sandwich attacks.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="dex" tableName="sandwiched" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="dex" tableName="sandwiched" />
+
+## Related Tables
+
+- `dex.sandwiches`: This complementary table captures the front-running and back-running trades that sandwich the victim trades recorded in `dex.sandwiched`.
+- `dex.trades`: This table captures all trades and is the basis for the `dex.sandwiched` table.

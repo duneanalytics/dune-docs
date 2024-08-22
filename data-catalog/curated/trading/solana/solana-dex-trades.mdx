@@ -1,0 +1,67 @@
+---
+title: dex_solana.trades
+sidebarTitle: "Solana DEX Trades"
+icon: "handshake"
+description: "The `dex_solana.trades` table captures detailed data on decentralized exchange (DEX) trades on the Solana blockchain, recording all raw trade events across various protocols."
+---
+
+## Table Description
+
+The `dex_solana.trades` table captures detailed data on trades executed via decentralized exchanges (DEXs) on the Solana blockchain. This table records all raw trade events that occur across all liquidity pools on Solana DEXs, providing a comprehensive view of the entire trade execution process and detailing the specific paths and liquidity sources utilized.
+
+## Functional Overview
+
+The `dex_solana.trades` table provides an in-depth view of trades on Solana-based decentralized exchanges like Raydium, Orca, or Serum. This table includes entries for each segment of a trade that passes through different liquidity pools, as well as single-step trades. For example, a user may initiate a trade to swap USDC for RAY. If this trade is executed through multiple liquidity pools, such as USDC-SOL and SOL-RAY, the `dex_solana.trades` table will record each segment of the trade as a separate entry. Conversely, a single-step trade, such as directly swapping USDC for SOL, will be recorded as a single entry.
+
+This detailed approach allows for granular analysis of trade execution paths on Solana, enabling users to:
+
+- **Analyze Liquidity Sources**: Understand which liquidity pools are used and how they interact in both single-step and multi-step trades on Solana DEXs.
+- **Track Trade Execution Paths**: Follow the exact route a trade takes across different Solana DEXs and liquidity pools.
+- **Assess Slippage and Execution Quality**: Evaluate the impact of each step on the overall trade execution, including slippage and price changes in the Solana ecosystem.
+- **Monitor Market Dynamics**: Gain insights into the behavior and dynamics of different liquidity pools and DEXs over time on the Solana blockchain.
+
+By providing comprehensive trade details, the `dex_solana.trades` table supports advanced analytics and research into DEX trading behavior and liquidity management specific to the Solana ecosystem.
+
+## Coverage
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/4009956/6750980/" 
+    width="100%"
+    height="300px"
+  ></iframe>
+
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="dex_solana" tableName="trades" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="dex_solana" tableName="trades" />
+
+## Examples
+
+The following query demonstrates how to use the dex_solana.trades table to calculate the total volume of trades on a weekly basis for Solana DEXs.
+
+```sql
+SELECT
+  DATE_TRUNC('week', block_time) AS week,
+  SUM(CAST(amount_usd AS DOUBLE)) AS usd_volume
+FROM
+  dex_solana.trades
+WHERE
+  block_time > NOW() - INTERVAL '365' day
+GROUP BY 1
+ORDER BY 1
+```
+
+<CardGroup cols={1}>
+  <Card title="DEX Dashboard" icon="chart-waterfall" href="https://dune.com/hagaetc/dex-metrics">
+    For more examples of how to use the `dex_solana.trades` table, check out this dashboard.
+  </Card>
+</CardGroup>

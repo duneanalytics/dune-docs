@@ -1,0 +1,46 @@
+---
+title: Daily Prices
+icon: calendar-day
+description: Daily price data for tokens in USD
+---
+
+The `prices.usd_daily` table is an aggregated version of `prices.usd`, providing daily price data for tokens across various blockchains. This table is designed to enable simpler and faster queries when daily price information is needed.
+
+### Key Features
+
+- Contains daily price data for each token
+- Enables less complex and faster queries for daily analyses compared to `prices.usd`
+- Covers the same range of assets as `prices.usd` (EVM networks, Solana, and other L1 blockchains)
+
+### Usage
+
+When you need daily price data for tokens, use `prices.usd_daily` instead of `prices.usd`. This eliminates the need for complex time-based aggregations, resulting in simpler and more efficient queries for daily price analysis.
+
+Example query:
+
+```sql
+SELECT day, symbol, price
+FROM prices.usd_daily
+WHERE blockchain = 'ethereum'
+  AND symbol = 'WETH'
+  AND day >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1' MONTH
+ORDER BY day DESC
+```
+
+### Column Descriptions
+
+| Column name        | Data type   | Description                                                  |
+| ------------------ | ----------- | ------------------------------------------------------------ |
+| `contract_address` | _varbinary_ | The unique identifier of the token (same as in `prices.usd`) |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag)                |
+| `price`            | _double_    | The closing price of the asset in USD for the day            |
+| `blockchain`       | _varchar_   | The blockchain on which the asset exists                     |
+| `day`              | _date_      | The day for which the price is reported                      |
+
+For more detailed information on coverage, adding prices, and unique identifiers, please refer to the documentation for [prices.usd](/data-catalog/curated/asset-tracking/prices/prices).
+
+<Note>
+  The `prices.usd_daily` table shares the same data source as `prices.usd`, but
+  aggregates the data to a daily level, providing the closing price for each
+  day.
+</Note>

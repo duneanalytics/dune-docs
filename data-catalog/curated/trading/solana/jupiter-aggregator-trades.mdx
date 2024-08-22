@@ -1,0 +1,32 @@
+---
+title: jupiter_solana.aggregator_swaps
+sidebarTitle: "Jupiter Aggregator Swaps"
+icon : "layer-group"
+description: "The `jupiter_solana.aggregator_swaps` table captures data on trades executed through the Jupiter aggregator on Solana."
+---
+
+## Table Description
+
+The `jupiter_solana.aggregator_swaps` table captures high-level trade data executed via the Jupiter decentralized exchange (DEX) aggregator on Solana. Jupiter is the most important and only relevant aggregator on Solana, providing users with the best possible trade execution by aggregating liquidity from multiple DEXs.
+
+## Functional Overview
+
+Users can expect the `jupiter_solana.aggregator_swaps` table to provide a comprehensive view of DEX trades facilitated by Jupiter on Solana. This table records each trade as a single entry, showing the user's intended swap from input token to output token.
+
+For instance, a user might initiate a trade to swap USDC for SOL via Jupiter. The aggregator might route this trade through several liquidity pools, but `jupiter_solana.aggregator_swaps` will record it as a single USDC -> SOL trade, including details such as the amounts, USD values, and the specific AMM used for the swap.
+
+## Coverage
+
+This table covers all trades executed through the Jupiter aggregator on Solana, which includes liquidity from various Solana-based DEXs and AMMs.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="jupiter_solana" tableName="aggregator_swaps" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="jupiter_solana" tableName="aggregator_swaps" />

@@ -1,0 +1,105 @@
+---
+title: NFT Transfers
+sidebarTitle: "NFT Transfers"
+description: "NFT transfer events across EVM networks."
+icon: "hexagon-vertical-nft"
+---
+
+The `nft.transfers` table contains NFT transfer events across ERC721 and ERC1155 tokens for all EVM-compatible networks indexed on Dune. This dataset encompasses:
+
+- Transfer events for ERC721 tokens
+- Transfer events for ERC1155 tokens
+
+<Info>
+ Some NFTs may have non-standard transfer mechanisms and might not be included in the transfers table.
+ You can check the logic for the transfers table [here](https://github.com/duneanalytics/spellbook/tree/main/dbt_subprojects/nft/models/_sector/transfers). The level of detail of the transfers table will vary by chain.
+</Info>
+
+### Utility
+
+The NFT transfers table provides a comprehensive view of NFT movement across networks, enabling you to:
+
+- Track NFT flows between addresses
+- Analyze NFT transaction volumes and patterns
+- Identify significant NFT movements
+- Monitor NFT marketplace and protocol activity
+
+The table contains the following columns:
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="nft" tableName="transfers" />
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="nft" tableName="transfers" />
+
+### Network Coverage
+
+NFT transfer data is available for the following EVM-compatible networks:
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/3695907/6218008/"
+    width="100%"
+    height="600px"
+  ></iframe>
+</div>
+
+## Sample Queries
+
+**Query recent NFT transfers for a specific address**
+
+This query returns the most recent NFT transfers (both incoming and outgoing) for a specified address:
+
+```sql
+SELECT
+    block_time,
+    token_standard,
+    CASE 
+        WHEN "from" = {{address}} THEN 'Outgoing'
+        WHEN "to" = {{address}} THEN 'Incoming'
+    END AS direction,
+    contract_address,
+    token_id,
+    amount
+FROM nft.transfers
+WHERE ("from" = {{address}} OR "to" = {{address}})
+    AND block_time > now() - interval '30' day
+ORDER BY block_time DESC
+LIMIT 100
+```
+
+**Calculate daily transfer volume for a specific NFT contract**
+
+This query calculates the daily transfer volume for a specific NFT contract:
+
+```sql
+SELECT
+    block_date,
+    COUNT(*) AS num_transfers,
+    SUM(amount) AS total_amount
+FROM nft.transfers
+WHERE contract_address = {{contract_address}}
+    AND block_time > now() - interval '30' day
+    AND blockchain = 'ethereum'
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
+**Identify most active NFT contracts in the last 24 hours**
+
+This query finds the most active NFT contracts by transfer count in the last 24 hours:
+
+```sql
+SELECT
+    blockchain,
+    contract_address,
+    token_standard,
+    COUNT(*) AS transfer_count
+FROM nft.transfers
+WHERE block_time > now() - interval '1' day
+GROUP BY 1, 2, 3
+ORDER BY transfer_count DESC
+LIMIT 50
+```
