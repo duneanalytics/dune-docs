@@ -262,8 +262,8 @@
               "group": "Solana",
               "icon": "sunglasses",
               "pages": [
-                "data-catalog/curated/trading/Solana/dex-solana-trades",
-                "data-catalog/curated/trading/Solana/jupiter-aggregator-trades"
+                "data-catalog/curated/trading/solana/solana-dex-trades",
+                "data-catalog/curated/trading/solana/jupiter-aggregator-trades"
               ]
             }
           ]
