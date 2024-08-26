@@ -194,6 +194,45 @@
           }
         }
       }
+    },
+    "/beta/transactions/{address}/subscribe": {
+      "get": {
+        "tags": [
+          "transactions"
+        ],
+        "operationId": "endpoint_subscribe",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Wallet to get transactions for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "101": {
+            "description": "Successful Response, Connection: Upgrade to WebSocket"
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
     }
   },
   "components": {
