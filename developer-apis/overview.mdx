@@ -1,17 +1,23 @@
 ---
-title: 'Dune Developer APIs (Beta)'
+title: 'Dune Developer APIs'
 ---
-
-Dune’s realtime developer APIs makes building multi-chain application seemless. 
-
-The APIs available today are:
-
-1. [Token Balances API](./balance): Access accurate and fast real time balances of the native and ERC20 tokens of accounts on EVM blockchains.
-2. [Transactions API](./transactions): Access transactions for accounts in real time across EVM blockchains.
-
 <Note> 
-- These endpoints are in beta and accessible on a free-trial basis, please contact realtimeAPI@dune.com to inquire about our roadmap and support questions;
+These endpoints are in beta and accessible on a free-trial basis.
 </Note>
-<Tip>
-    - Currently, the token balances supports 22 EVM-compatible chains. See the [chains Endpoint](./balance-chains) for a list of the supported blockchains.
-</Tip>
+
+Dune’s realtime APIs makes building multi-chain application seemless. We've worked hard to offer incredible multichain support (25+ networks in a single call)
+with one the industry's lowest latencies. While these APIs are in beta they power several of the best teams building crypto.
+
+The available APIs are:
+
+1. [Token Balances](./balance): Access accurate and fast real time balances of the native and ERC20 tokens of accounts on EVM blockchains.
+2. [Transactions](./transactions): Access transactions for accounts in real time across EVM blockchains.
+
+
+## Getting started
+In order to get started, all you need is an API key. See [here](/api-reference/overview/authentication#generate-an-api-key) how to generate one.
+The API key should always be sent in the header `x-dune-api-key`.
+
+
+## Getting in touch
+Please reach out to at realtimeapi@dune.com for support, custom rate limits or feature requests. We'd be more than happy to help.
