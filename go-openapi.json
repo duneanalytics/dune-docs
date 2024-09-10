@@ -531,7 +531,7 @@
     "/v1/eigenlayer/operator-metadata": {
       "get": {
         "summary": "Operator Metadata",
-        "description": "Get metadata for all registered operators on Eigenlayer, including\n`operator_name`, `operator_contract_address`, `website`, `twitter`, `logo`, `description` // nolint:lll",
+        "description": "Get metadata for all registered operators on Eigenlayer, including\n`operator_name`, `operator_contract_address`, `website`, `twitter`, `logo`, `description`",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -869,7 +869,7 @@
     "/v1/eigenlayer/operator-to-avs-mapping": {
       "get": {
         "summary": "Operator <> AVS Mapping",
-        "description": "Get a mapping of which operator is registered on which AVS, including the time of registration // nolint:lll",
+        "description": "Get a mapping of which operator is registered on which AVS, including the time of registration",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -1469,7 +1469,7 @@
     "/v1/execution/{execution_id}/results/csv": {
       "get": {
         "summary": "Get results of a query execution in CSV format",
-        "description": "Given a query ID, returns the latest executed result of a query on Dune in CSV format // nolint:lll",
+        "description": "Given a query ID, returns the latest executed result of a query on Dune in CSV format",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -2251,7 +2251,7 @@
           {
             "name": "chain",
             "in": "path",
-            "description": "Chain name (use Dune namespace, i.e. ethereum, solana, bnb, polygon, optimsm, etc)",
+            "description": "Chain name (use Dune namespace, e.g. ethereum, solana, bnb, polygon, etc)",
             "required": true,
             "schema": {
               "type": "string"
@@ -3283,7 +3283,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
@@ -3705,7 +3705,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
@@ -3784,7 +3784,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
@@ -3889,7 +3889,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
@@ -3988,7 +3988,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
@@ -4073,7 +4073,7 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key for the service, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
