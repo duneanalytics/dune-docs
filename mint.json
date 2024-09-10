@@ -1301,6 +1301,22 @@
           ]
         },
         {
+          "group": "NEAR",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/near/overview",
+            "data-catalog/near/actions",
+            "data-catalog/near/block_chunks",
+            "data-catalog/near/circulating_supply",
+            "data-catalog/near/ft_transfers",
+            "data-catalog/near/function_calls",
+            "data-catalog/near/balances",
+            "data-catalog/near/nft_transfers",
+            "data-catalog/near/logs"
+          ]
+        },
+        {
           "group": "Polkadot",
           "icon": "database",
           "iconType": "regular",
