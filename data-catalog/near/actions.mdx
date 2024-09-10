@@ -1,0 +1,29 @@
+---
+title: near.actions
+sidebarTitle: "Actions"
+description: Description of the near.actions table on Dune
+---
+
+## Table Description
+
+The `near.actions` table contains comprehensive data related to transactions on the NEAR blockchain, including transaction metadata like `block_date` and `tx_hash`, execution statuses, receipts, and detailed action information when applicable.
+
+In NEAR, a transaction can consist of one or more actions, signed by the sender's account and executed by the network. These actions may involve token transfers, smart contract invocations, staking, and more. 
+
+NEAR employs a unique transaction lifecycle where transactions are validated on the sender's shard, converted into receipts, and processed on the receiver's shard. This approach ensures efficient handling of cross-shard communication and data flow.
+
+To gain a clearer understanding of how NEAR data flows, watch this quick video. For a detailed text version, visit the [NEAR Data Flow documentation](https://docs.near.org/concepts/data-flow/near-data-flow).
+  
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VSBJ-A69Km4?si=_LgBFWoJvBuHCebz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="near" tableName="actions" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="near" tableName="actions" />

@@ -1,0 +1,97 @@
+---
+title: NEAR Data
+sidebarTitle: "Overview"
+icon: "star"
+description: NEAR blockchain data on Dune
+---
+
+## What is NEAR?
+
+NEAR is a public, sharded, proof-of-stake blockchain designed to provide scalability, security, and user-friendliness for decentralized applications (dApps). With its unique account model, sharding mechanism, and developer-friendly environment, NEAR enables fast transactions at low costs while maintaining decentralization. It shares design goals with Ethereum 2.0 but includes optimizations for ease of use and performance.
+
+NEAR’s sharding system, Nightshade, enables horizontal scaling, meaning the network’s capacity grows as the number of validators and nodes increases. This architecture, combined with a focus on developer tools and user experience, makes NEAR an ideal platform for building scalable Web3 applications.
+
+## Key Concepts of NEAR
+
+NEAR’s infrastructure is built on several key components that ensure its scalability, performance, and ease of use. These components work together to enable developers to build on-chain applications while providing a smooth experience for users.
+
+### **Sharding with Nightshade**
+Nightshade is NEAR’s solution to scaling the blockchain by splitting the network into multiple shards, each processing its own set of transactions. This sharding allows the blockchain to handle more transactions as the network grows, enabling high throughput and low-latency finality.
+
+### **Proof-of-Stake Consensus**
+NEAR uses a proof-of-stake consensus mechanism. Validators are chosen through an auction process based on the amount of NEAR tokens they stake. This system incentivizes honest behavior while ensuring decentralization, as anyone can become a validator if they meet the staking requirements.
+
+### **NEAR Accounts and Access Keys**
+NEAR introduces a human-readable [account system (e.g., `alice.near`)](https://docs.near.org/concepts/protocol/account-id) that simplifies interaction with the blockchain. Each account can have [multiple keys with different levels of access (Full-Access and Function-Call Keys)](https://docs.near.org/concepts/protocol/access-keys), allowing for more granular permission controls and better user experience. This flexibility makes it easier for developers to manage dApp permissions and onboard users.
+
+### **Gas (Execution Fees)**
+
+Gas is an essential part of NEAR's network, used to cover the cost of transactions and prevent network abuse. Each transaction or action executed on the NEAR blockchain requires gas, which is measured in gas units. The cost is based on network demand, and gas fees are paid in NEAR tokens. To learn more, [visit here.](https://docs.near.org/concepts/protocol/gas#gas-units--gas-price)
+
+### **Transaction Lifecycle & Data Flow 🌊**
+NEAR employs a unique transaction lifecycle where transactions are first validated on the sender’s shard, turned into receipts, and then processed on the receiver’s shard. This process ensures efficient transaction routing, even in cross-shard communication. After transaction execution, any remaining gas is refunded to the sender, ensuring efficient use of resources.
+
+Watch this quick video to understand how NEAR data flows. For a text version, visit [this page](https://docs.near.org/concepts/data-flow/near-data-flow).
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VSBJ-A69Km4?si=_LgBFWoJvBuHCebz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+### **Anatomy of a Transaction 🔎**
+A transaction in NEAR consists of one or more actions that are signed by the sender’s account and executed by the network. These actions could include transferring tokens, invoking smart contracts, or staking.
+
+#### Key Components of a Transaction
+- **Signer**: The account that signs the transaction.
+- **Receiver**: The account that will execute the actions.
+- **Actions**: Operations like `FunctionCall`, `Transfer`, `DeployContract`, etc. A transaction can include multiple actions, but all are executed on the same receiver.
+- **PublicKey**: The public key used to sign the transaction (so the network can verify the signature).
+- **Nonce**: A number that is incremented for each transaction sent by the Signer.
+- **BlockHash**: The hash of a recent block, to limit the time-validity of the transaction.
+
+#### Types of Actions
+- **FunctionCall**: Invoke a function on a contract (optionally attaching NEAR to the call).
+- **Transfer**: Move NEAR tokens between accounts.
+- **DeployContract**: Deploy a new contract to an account.
+- **CreateAccount**: Create a new sub-account under an existing account.
+- **DeleteAccount**: Remove an account and transfer its remaining balance to a beneficiary.
+- **AddKey / DeleteKey**: Add or remove public keys associated with an account.
+- **Stake**: Stake NEAR tokens to become a validator or delegate stake to one.
+- **DelegateActions**: Execute a meta-transaction on behalf of another account.
+
+<CardGroup cols={1}>
+  <Card title="NEAR documentation" icon="link" href="https://docs.near.org/">
+    Explore comprehensive documentation on NEAR, detailing its architecture, protocol, and resources for developers.
+  </Card>
+</CardGroup>
+
+## NEAR Data on Dune
+
+NEAR blockchain data is partitioned and categorized to provide developers and users with an easily accessible dataset to interact with and analyze the network’s on-chain activity. The primary data tables in Dune for NEAR include the following:
+
+<CardGroup cols={2}>
+  <Card title="Actions" icon="message-arrow-up" href="/data-catalog/near/actions">
+    Records actions such as transfers, contract deployments, and function calls performed within the NEAR network.
+  </Card>
+
+  <Card title="Block Chunks" icon="cube" href="/data-catalog/near/block_chunks">
+    Stores chunk-level data, with each block consisting of multiple chunks from different shards.
+  </Card>
+
+  <Card title="Circulating Supply" icon="money-bill" href="/data-catalog/near/circulating_supply">
+    Provides details about the circulating and total token supply at various block heights.
+  </Card>
+
+  <Card title="FT Transfers" icon="swap" href="/data-catalog/near/ft_transfers">
+    Tracks fungible token (FT) transfers across the NEAR network.
+  </Card>
+
+  <Card title="NFT Transfers" icon="right-left-large" href="/data-catalog/near/nft_transfers">
+    Captures non-fungible token (NFT) transfers, including token ID and sender/receiver details.
+  </Card>
+
+  <Card title="Balances" icon="notebook" href="/data-catalog/near/balances">
+    Stores account balance data, including liquid, staked, and locked balances.
+  </Card>
+
+  <Card title="Logs" icon="bolt" href="/data-catalog/near/logs">
+    Records logs emitted during the execution of smart contracts, essential for debugging and event tracking.
+  </Card>
+</CardGroup>
