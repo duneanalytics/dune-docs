@@ -2404,6 +2404,473 @@
         }
       }
     },
+    "/v1/materialized-views": {
+      "get": {
+        "summary": "This lists all materialized view owned by the account tied to the API key",
+        "description": "This lists all materialized view owned by the account tied to the API key",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of materialized views to return on a page. Default and max 10000",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset used for pagination. Use the value provided on a previous response under next_offset",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matviews.MatviewsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "This upserts (create or replace) a materialized view from an existing query",
+        "description": "This upserts a materialized view from an existing query. If the materialized view with the given name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Matview Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "MatviewsUpsertRequest",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/matviews.MatviewsUpsertRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matviews.MatviewsUpsertResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/materialized-views/{name}": {
+      "get": {
+        "summary": "This fetches a materialized view given a name",
+        "description": "This fetches a materialized view given a name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Matview Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matviews.MatviewsGetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "This deletes a materialized view given a full name",
+        "description": "This deletes a materialized view given a full name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Matview Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matviews.MatviewsDeleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/materialized-views/{name}/refresh": {
+      "post": {
+        "summary": "This refreshes a materialized view",
+        "description": "This refreshes a materialized view",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Matview Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "MatviewsRefreshRequest",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/matviews.MatviewsRefreshRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matviews.MatviewsRefreshResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/points/linea/lxp": {
       "get": {
         "summary": "Linea LXP",
@@ -4328,6 +4795,143 @@
   },
   "components": {
     "schemas": {
+      "matviews.MatviewListElement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "query_id": {
+            "type": "integer"
+          },
+          "sql_id": {
+            "type": "string"
+          },
+          "table_size_bytes": {
+            "type": "integer"
+          }
+        }
+      },
+      "matviews.MatviewsDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "matviews.MatviewsGetResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "last_execution_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "owner_team_id": {
+            "type": "integer"
+          },
+          "owner_user_id": {
+            "type": "integer"
+          },
+          "query_id": {
+            "type": "integer"
+          },
+          "s3_url": {
+            "type": "string"
+          },
+          "sql_id": {
+            "type": "string"
+          },
+          "table_size_bytes": {
+            "type": "integer"
+          }
+        }
+      },
+      "matviews.MatviewsListResponse": {
+        "type": "object",
+        "properties": {
+          "materialized_views": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/matviews.MatviewListElement"
+            }
+          },
+          "next_offset": {
+            "type": "integer"
+          }
+        }
+      },
+      "matviews.MatviewsRefreshRequest": {
+        "type": "object",
+        "properties": {
+          "performance": {
+            "type": "string",
+            "description": "Performance level of the refresh\nAvailable options: `medium`, `large`, defaults to `medium`"
+          }
+        }
+      },
+      "matviews.MatviewsRefreshResponse": {
+        "type": "object",
+        "properties": {
+          "execution_id": {
+            "type": "string",
+            "description": "Unique identifier for the execution triggered to refresh the materialized view",
+            "example": "01HZ065JVE23C23FM2HKWQP2RT"
+          },
+          "sql_id": {
+            "type": "string",
+            "description": "Unique identifier for the materialized view",
+            "example": "dune.dune.result_erc_20_token_summary"
+          }
+        }
+      },
+      "matviews.MatviewsUpsertRequest": {
+        "type": "object",
+        "properties": {
+          "cron_expression": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "performance": {
+            "type": "string",
+            "description": "Performance level of the refresh. Available options: `medium`, `large`"
+          },
+          "query_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "matviews.MatviewsUpsertResponse": {
+        "type": "object",
+        "properties": {
+          "execution_id": {
+            "type": "string",
+            "description": "Unique identifier for the execution triggered to refresh the materialized view",
+            "example": "01HZ065JVE23C23FM2HKWQP2RT"
+          },
+          "name": {
+            "type": "string",
+            "description": "Unique identifier for the materialized view",
+            "example": "dune.dune.result_erc_20_token_summary"
+          }
+        }
+      },
       "models.CSVUploadRequest": {
         "type": "object",
         "properties": {
