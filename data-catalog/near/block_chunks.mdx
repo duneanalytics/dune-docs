@@ -6,13 +6,30 @@ description: Description of the near.block_chunks table on Dune
 
 ## Table description
 
-This table contains block chunk data on NEAR. Chunk of a block is a part of a Block from a Shard. The collection of chunks of the block forms the NEAR Protocol Block.
+This table contains block chunk data on NEAR. Chunk of a block is a part of a block from a shard. The collection of chunks of the block forms the NEAR Protocol block.
 
 ## Column Descriptions
 
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
-
-<ColumnDescriptions tableSchema="near" tableName="block_chunks" />
+| Column                    | Description                                                      | Type                              |
+| ------------------------- | ---------------------------------------------------------------- | --------------------------------- |
+| date                      | The date of the block where the chunk is included.               | date                              |
+| height                    | The block height at which the chunk was produced.                | bigint                            |
+| time                      | The timestamp of when the chunk was produced.                    | timestamp(3) with time zone       |
+| hash                      | The hash of the chunk.                                           | varchar                           |
+| prev_hash                 | The hash of the previous chunk in the chain.                     | varchar                           |
+| total_supply              |                                                                  | uint256                           |
+| gas_price                 | Gas price paid for executing the chunk.                          | bigint                            |
+| author_account_id         | The account that produced the chunk.                             | varchar                           |
+| epoch_id                  | The ID of the epoch in which the chunk was produced.             | varchar                           |
+| shard_id                  | The shard ID that contains the chunk.                            | bigint                            |
+| chunk_hash                | Hash of the chunk.                                               | varchar                           |
+| chunk_signature           | The cryptographic signature validating the chunk.                | varchar                           |
+| chunk_gas_limit           | Maximum gas limit for this chunk.                                | bigint                            |
+| chunk_gas_used            | Gas actually used in the chunk.                                  | bigint                            |
+| chunk_author_account_id   | The account that produced this chunk.                            | varchar                           |
+| processed_time            | Timestamp when the chunk was processed into Dune.                | timestamp(3) with time zone       |
+| updated_at                | Timestamp when this chunk was last updated.                      | timestamp(3) with time zone       |
+| ingested_at               | Timestamp when this chunk data was ingested into Dune.           | timestamp(3) with time zone       |
 
 ## Table Sample
 

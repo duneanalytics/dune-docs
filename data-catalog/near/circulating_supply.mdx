@@ -6,13 +6,22 @@ description: Description of the near.circulating_supply table on Dune
 
 ## Table description
 
-This is a curated table that computes the circulating supplies of NEAR token. 
+Table holding daily circulating and total supply of tokens in NEAR.
 
 ## Column Descriptions
 
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+| Column                         | Description                                                      | Type                              |
+| ------------------------------ | ---------------------------------------------------------------- | --------------------------------- |
+| block_date                     | The date of the block when the supply was recorded.              | date                              |
+| computed_at_block_timestamp     | Timestamp of the block when the supply was computed.             | timestamp(3) with time zone       |
+| computed_at_block_hash          | Hash of the block at the time of supply computation.             | varchar                           |
+| computed_at_block_height        | Block height at which the supply was computed.                   | bigint                            |
+| circulating_tokens_supply       | The circulating supply of tokens at the time of computation.     | double                            |
+| total_tokens_supply             | The total supply of tokens at the time of computation.           | double                            |
+| processed_time                  | The timestamp when the supply data was processed.                | timestamp(3) with time zone       |
+| updated_at                      | Timestamp of the last update to this record.                     | timestamp(3) with time zone       |
+| ingested_at                     | Timestamp when this data was ingested into Dune.                 | timestamp(3) with time zone       |
 
-<ColumnDescriptions tableSchema="near" tableName="circulating_supply" />
 
 
 ## Table Sample

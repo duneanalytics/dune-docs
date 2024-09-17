@@ -18,9 +18,59 @@ To gain a clearer understanding of how NEAR data flows, watch this quick video. 
 
 ## Column Descriptions
 
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+| Column                                | Description                                                                                                      | Type                              |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| block_date                            | The date of the block when the action occurred.                                                                  | date                              |
+| block_height                          | The height of the block in which the action was executed.                                                        | bigint                            |
+| block_time                            | The timestamp of when the block containing the action was produced.                                               | timestamp(3) with time zone       |
+| block_hash                            | The unique hash of the block containing the action.                                                              | varchar                           |
+| chunk_hash                            | The hash of the chunk within the block where the action is recorded.                                              | varchar                           |
+| shard_id                              | The shard ID in which the action was executed, relating to NEAR’s sharded architecture.                           | bigint                            |
+| index_in_action_receipt               | The index of the action within its corresponding receipt, indicating ordering of the action.                      | integer                           |
+| receipt_id                            | The unique identifier of the receipt associated with this action.                                                | varchar                           |
+| gas_price                             | The gas price paid for executing the action, in yoctoNEAR (1 NEAR = 10^24 yoctoNEAR).                             | bigint                            |
+| receipt_predecessor_account_id        | The account that sent the receipt containing the action.                                                         | varchar                           |
+| receipt_receiver_account_id           | The account that receives the action.                                                                            | varchar                           |
+| receipt_conversion_gas_burnt          | The amount of gas burnt during the conversion of the receipt.                                                     | bigint                            |
+| receipt_conversion_tokens_burnt       | The amount of gas burnt during the conversion of the receipt, divided by 10^8.                                    | uint256                           |
+| tx_hash                               | The unique hash identifying the transaction containing the action.                                               | varchar                           |
+| tx_from                               | The account that initiated the transaction.                                                                      | varchar                           |
+| tx_to                                 | The account that is the recipient of the transaction.                                                            | varchar                           |
+| tx_signer_public_key                  | The public key of the account that signed the transaction.                                                       | varchar                           |
+| tx_nonce                              | The nonce used by the account to ensure the transaction is unique.                                               | bigint                            |
+| tx_signature                          | The cryptographic signature that verifies the authenticity of the transaction.                                   | varchar                           |
+| tx_status                             | The status of the transaction, indicating success or failure.                                                    | varchar                           |
+| is_delegate_action                    | Boolean flag indicating whether the action is a delegated action.                                                | boolean                           |
+| execution_gas_burnt                   | The amount of gas burnt during the execution of the action.                                                      | bigint                            |
+| execution_tokens_burnt                | The amount of raw NEAR token burnt during the execution of the action.                                            | uint256                           |
+| execution_status                      | The status of the execution of the action.                                                                       | varchar                           |
+| execution_outcome_receipt_ids         | Array of receipt IDs created as a result of the execution.                                                       | array(varchar)                    |
+| action_kind                           | The type of action, such as FUNCTION_CALL, DELEGATE_ACTION, TRANSFER, STAKE, etc.                                | varchar                           |
+| processed_time                        | The timestamp of when the action was processed by Dune.                                                          | timestamp(3) with time zone       |
+| action_function_call_args_parsed      | Parsed (decoded) arguments of the function call action.                                                          | varchar                           |
+| action_function_call_call_gas         | The amount of gas attached to the function call action.                                                          | bigint                            |
+| action_function_call_call_deposit     | The amount of NEAR tokens attached to the function call action.                                                  | varchar                           |
+| action_function_call_call_args_base64 | Base64 encoded arguments of the function call action.                                                            | varchar                           |
+| action_function_call_call_method_name | The name of the method being called in the function call action.                                                 | varchar                           |
+| action_delegate_signature             | Signature of the delegation action.                                                                              | varchar                           |
+| action_delegate_delegate_action_actions | List of actions being delegated to another account.                                                              | array(row("functioncall"))        |
+| action_delegate_delegate_action_max_block_height | The maximum block height at which the delegated action can be executed.                                          | varchar                           |
+| action_delegate_delegate_action_nonce | Nonce of the delegated action for uniqueness.                                                                    | varchar                           |
+| action_delegate_delegate_action_public_key | Public key of the delegate executing the action.                                                                | varchar                           |
+| action_delegate_delegate_action_receiver_id | Account receiving the delegated action.                                                                         | varchar                           |
+| action_delegate_delegate_action_sender_id | Account sending the delegated action.                                                                           | varchar                           |
+| action_delete_account_beneficiary_id  | Account of the beneficiary receiving remaining balance upon account deletion.                                    | varchar                           |
+| action_delete_key_public_key          | Public key being deleted from the account.                                                                      | varchar                           |
+| action_add_key_public_key             | Public key being added to the account.                                                                          | varchar                           |
+| action_add_key_access_key_nonce       | Nonce of the access key being added.                                                                            | varchar                           |
+| action_add_key_access_key_permission  | Permissions granted to the newly added access key.                                                              | varchar                           |
+| action_stake_public_key               | Public key used for staking by the account.                                                                     | varchar                           |
+| action_stake_stake                    | Amount of NEAR tokens staked by the account.                                                                    | varchar                           |
+| action_transfer_deposit               | Amount of NEAR tokens being transferred between accounts.                                                       | varchar                           |
+| action_deploy_contract_code_sha256    | SHA256 hash of the code being deployed in the contract.                                                         | varchar                           |
+| updated_at                            | Timestamp of when the record was last updated.                                                                  | timestamp(3) with time zone       |
+| ingested_at                           | Timestamp of when the record was ingested into Dune.                                                            | timestamp(3) with time zone       |
 
-<ColumnDescriptions tableSchema="near" tableName="actions" />
 
 ## Table Sample
 

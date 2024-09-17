@@ -10,12 +10,24 @@ This table captures the output generated during the execution of smart contracts
 
 ## Column Descriptions
 
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+| Column                               | Description                                                              | Type                              |
+| ------------------------------------ | ------------------------------------------------------------------------ | --------------------------------- |
+| block_date                           | The date of the block where the log entry was generated.                  | date                              |
+| block_height                         | The block height at which the log entry was generated.                    | bigint                            |
+| block_time                           | The time when the block containing the log entry was produced.            | timestamp(3) with time zone       |
+| execution_status                     | The status of the execution outcome associated with the log.              | varchar                           |
+| executor_account_id                  | The account that executed the transaction resulting in the log.           | varchar                           |
+| receipt_id                           | The receipt ID associated with the log.                                   | varchar                           |
+| index_in_execution_outcome_logs      | Index of the log entry within the execution outcome, indicating ordering. | integer                           |
+| log                                  | The actual log message from the execution outcome.                        | varchar                           |
+| event                                | Event description generated during execution.                             | varchar                           |
+| processed_time                       | The time when the log data was processed.                                 | timestamp(3) with time zone       |
+| updated_at                           | The time when the log record was last updated.                            | timestamp(3) with time zone       |
+| ingested_at                          | The time when the log data was ingested.                                  | timestamp(3) with time zone       |
 
-<ColumnDescriptions tableSchema="logs" tableName="transactions" />
 
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
-<TableSample tableSchema="logs" tableName="transactions" />
+<TableSample tableSchema="near" tableName="logs" />
