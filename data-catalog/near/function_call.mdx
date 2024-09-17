@@ -1,0 +1,50 @@
+---
+title: near.function_call
+sidebarTitle: "Function Call"
+description: Description of the near.function_call table on Dune
+---
+
+## Table description
+
+This table contains flattened out details for records in the `actions` table of the `FUNCTION_CALL` type.
+
+## Column Descriptions
+
+| Column                               | Description                                                              | Type                              |
+| ------------------------------------ | ------------------------------------------------------------------------ | --------------------------------- |
+| block_date                           | The date of the block where the function call occurred.                   | date                              |
+| block_time                           | The time when the block containing the function call was produced.        | timestamp(3) with time zone       |
+| block_height                         | The block height at the time of the function call.                        | bigint                            |
+| block_hash                           | The unique hash of the block containing the function call.                | varchar                           |
+| chunk_hash                           | The hash of the chunk where the function call is recorded.                | varchar                           |
+| shard_id                             | Shard ID where the function call was executed.                            | bigint                            |
+| tx_hash                              | The transaction hash containing the function call.                        | varchar                           |
+| tx_from                              | The account that initiated the function call.                             | varchar                           |
+| tx_to                                | The account receiving the function call.                                  | varchar                           |
+| tx_status                            | Status of the function call (success or failure).                         | varchar                           |
+| action_function_call_call_method_name | The method being called in the function call.                             | varchar                           |
+| action_function_call_args_parsed      | Parsed (decoded) arguments for the function call.                         | varchar                           |
+| action_function_call_call_gas         | Gas attached to the function call.                                        | bigint                            |
+| action_function_call_call_deposit     | Amount of NEAR tokens attached to the function call.                      | varchar                           |
+| action_function_call_call_args_base64 | Base64 encoded arguments of the function call.                            | varchar                           |
+| index_in_action_receipt               | The index of the function call within the receipt.                        | integer                           |
+| receipt_id                           | The receipt ID associated with the function call.                         | varchar                           |
+| gas_price                            | The gas price paid for executing the function call.                       | bigint                            |
+| receipt_predecessor_account_id        | The ID of the predecessor account for the receipt.                        | varchar                           |
+| receipt_receiver_account_id           | The ID of the receiver account for the receipt.                           | varchar                           |
+| receipt_conversion_gas_burnt          | The gas burnt during the conversion of the receipt.                       | bigint                            |
+| receipt_conversion_tokens_burnt       | The amount of raw NEAR burnt during the conversion of the receipt.        | uint256                           |
+| execution_gas_burnt                   | Amount of gas burnt during the execution of the function call.            | bigint                            |
+| execution_tokens_burnt                | Amount of raw NEAR token burnt during the execution of the function call. | uint256                           |
+| execution_status                      | The status of the execution outcome of the function call.                 | varchar                           |
+| execution_outcome_receipt_ids         | Array of receipt IDs created as a result of the function call.            | array(varchar)                    |
+| updated_at                            | The time when this function call record was last updated.                 | timestamp(3) with time zone       |
+| ingested_at                           | The time when this function call data was ingested into Dune.             | timestamp(3) with time zone       |
+| processed_time                        | The time when the function call was processed.                            | timestamp(3) with time zone       |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="near" tableName="function_call" />

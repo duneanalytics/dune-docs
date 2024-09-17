@@ -9,9 +9,25 @@ This table tracks account balance details on NEAR, including the liquid balance,
 
 ## Column Descriptions
 
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+| Column                     | Description                                                              | Type                              |
+| -------------------------- | ------------------------------------------------------------------------ | --------------------------------- |
+| epoch_date                 | The date of the epoch when the balance was recorded.                      | date                              |
+| epoch_block_height         | The block height of the epoch when the balance was recorded.              | bigint                            |
+| account_id                 | The account whose balance is being tracked.                              | varchar                           |
+| liquid                     | Amount of liquid NEAR tokens in the account.                             | double                            |
+| storage_usage              | The amount of storage usage associated with the account.                 | bigint                            |
+| unstaked_not_liquid        | The amount of unstaked but not liquid NEAR tokens in the account.        | double                            |
+| staked                     | The amount of staked NEAR tokens in the account.                         | double                            |
+| reward                     | Reward tokens accumulated by the account from staking.                   | double                            |
+| lockup_account_id          | The ID of the lockup account associated with the account.                | varchar                           |
+| lockup_liquid              | Amount of liquid NEAR tokens in the lockup account.                      | double                            |
+| lockup_unstaked_not_liquid | The amount of unstaked but not liquid tokens in the lockup account.      | double                            |
+| lockup_staked              | The amount of staked NEAR tokens in the lockup account.                  | double                            |
+| lockup_reward              | Reward tokens accumulated in the lockup account from staking.            | double                            |
+| processed_time             | The time when the balance was processed.                                 | date                              |
+| updated_at                 | The time when this balance record was last updated.                      | timestamp(3) with time zone       |
+| ingested_at                | The time when this balance record was ingested into Dune.                | timestamp(3) with time zone       |
 
-<ColumnDescriptions tableSchema="near" tableName="balances" />
 
 ## Table Sample
 

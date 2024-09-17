@@ -6,13 +6,33 @@ description: Description of the near.nft_transfers table on Dune
 
 ## Table description
 
-This table contains information about NFT transfers on NEAR. 
+Table tracking all Non-Fungible Token (NFT) transfers in NEAR.
 
 ## Column Descriptions
 
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+| Column                  | Description                                                              | Type                              |
+| ----------------------- | ------------------------------------------------------------------------ | --------------------------------- |
+| block_date              | The date when the NFT transfer occurred.                                  | date                              |
+| block_height            | The block height at the time of the NFT transfer.                         | bigint                            |
+| block_time              | Timestamp when the block containing the NFT transfer was produced.        | timestamp(3) with time zone       |
+| block_hash              | The unique hash of the block containing the NFT transfer.                 | varchar                           |
+| chunk_hash              | The hash of the chunk within the block containing the NFT transfer.       | varchar                           |
+| shard_id                | Shard ID where the NFT transfer was executed.                             | bigint                            |
+| standard                | The NFT standard associated with the transfer (e.g., "nep171").           | varchar                           |
+| token_id                | ID of the Non-Fungible Token being transferred.                           | varchar                           |
+| receipt_id              | The receipt ID associated with the NFT transfer.                          | varchar                           |
+| contract_account_id     | The contract account handling the NFT transfer.                           | varchar                           |
+| cause                   | The function name invoked to cause the NFT transfer.                     | varchar                           |
+| status                  | The status of the NFT transfer (e.g., "SUCCESS_VALUE", "SUCCESS_RECEIPT_ID"). | varchar                        |
+| event_memo              | Memo attached to the NFT transfer event.                                  | varchar                           |
+| event_index             | Event index of the NFT transfer event.                                    | uint256                           |
+| old_owner_account_id    | Old owner account of the NFT, i.e. the "from" account.                    | varchar                           |
+| new_owner_account_id    | New owner account of the NFT, i.e. the "to" account.                      | varchar                           |
+| authorized_account_id   | Account authorized to perform the NFT transfer.                           | varchar                           |
+| processed_time          | Timestamp when the NFT transfer data was processed.                       | timestamp(3) with time zone       |
+| updated_at              | Timestamp when the NFT transfer record was last updated.                  | timestamp(3) with time zone       |
+| ingested_at             | Timestamp when the NFT transfer data was ingested into Dune.              | timestamp(3) with time zone       |
 
-<ColumnDescriptions tableSchema="near" tableName="nft_transfers" />
 
 ## Table Sample
 
