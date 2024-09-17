@@ -77,3 +77,104 @@ To gain a clearer understanding of how NEAR data flows, watch this quick video. 
 import { TableSample } from "/snippets/table-sample.mdx";
 
 <TableSample tableSchema="near" tableName="actions" />
+
+## Data Manipulation Tips 
+
+The `actions` data in NEAR can be complicated and nested, causing it hard to analyze sometimes. So here we give two examples on how to work array and json data to make it easier to analyze.
+
+### Explode array of rows into separate rows with defined fields 
+
+When the action type is "DELEGATE_ACTION", the `action_delegate_delegate_action_actions` becomes an array of size n with rows of fields. We can utilize `CROSS JOIN UNNEST` to first explode the array, then use `.` directly to access the fields in the row.
+
+Reference query [can be found here](https://dune.com/queries/4078275?sidebar=none).
+
+```sql
+with exploded as (
+    select block_date
+        , block_height as block_height_executed
+        , tx_hash
+        , receipt_id -- receipt for this action (there are many actions included in one txn)
+        , execution_status
+        
+        , cardinality(action_delegate_delegate_action_actions) as delegated_action_size -- how many function calls are being delegated
+        
+        , action_delegate_delegate_action_sender_id as action_from 
+        , action_delegate_delegate_action_receiver_id as action_to 
+        
+    
+        -- Explode the array into rows
+        , actions.value as action_data
+        , actions.index as delegated_action_index
+        , action_delegate_delegate_action_actions as raw_delegated_actions -- raw nested list of delegated actions
+        
+    /* explode by doing cross join unnest here*/    
+    from near.actions CROSS JOIN UNNEST(action_delegate_delegate_action_actions) WITH ORDINALITY as actions(value, index)
+    where action_kind = 'DELEGATE_ACTION'
+        and cardinality(action_delegate_delegate_action_actions) >= 2
+        and receipt_id = '6DB2AzkLXzoU9CMj9GKSZi7y8dGxVrqrbtBsfpLVQCQ8'
+        and block_date = date('2024-09-17')
+        and block_height = 128251854
+)
+
+select block_date
+    , block_height_executed
+    , tx_hash
+    , receipt_id 
+    , execution_status
+    , delegated_action_size -- how many function calls are being delegated
+    
+    , action_from 
+    , action_to 
+    
+    -- , typeof(action_data) -- row(args varchar, deposit varchar, gas bigint, method_name varchar)
+    
+    /* below is how you can access the delegated function call info */
+    , action_data.args as function_call_args
+    , action_data.deposit as function_call_deposit
+    , action_data.gas as function_call_gas
+    , action_data.method_name as function_call_method_name
+    , delegated_action_index
+    
+    , raw_delegated_actions -- raw nested list of delegated actions
+from exploded 
+
+```
+
+### Extract fields from JSON string
+
+When the action type is "FUNCTION_CALL", the `action_function_call_args_parsed` becomes a JSON string. We can utilize `json_extract` with `$.<field_name>` syntax to extract the fields from the JSON string.
+
+Reference query [can be found here](https://dune.com/queries/4078309?sidebar=none).
+
+```sql
+select block_date
+    , block_height as block_height_executed
+    , tx_hash
+    , receipt_id -- receipt for this action (there are many actions included in one txn)
+    , execution_status
+    
+    , receipt_predecessor_account_id as action_from
+    , receipt_receiver_account_id as action_to
+    
+    -- , typeof(args_parsed) as data_type 
+    /* This is how you can get fields within each parsed function call args 
+        - first examine the fields in the args_parsed for the tye of method `call_method_name`
+        - then parse accordingly
+    */
+    , json_extract(args_parsed, '$.receiver_id') AS receiver_id
+    , json_extract(args_parsed, '$.amount') AS amount
+    , json_extract(args_parsed, '$.memo') AS memo
+    
+    , call_method_name as call_method_name
+    , args_parsed as raw_call_args
+    , call_gas as call_gas
+    , call_deposit as call_deposit
+    , call_args_base64
+    
+    , *
+from near.function_call -- near.actions
+where 1=1
+    and block_date = date('2023-09-15')
+    and call_method_name = 'ft_transfer'
+limit 10
+```
