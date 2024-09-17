@@ -1,58 +1,140 @@
 ---
 title: 'Dune Catalyst'
-icon: "diamond"
+icon: "person-fairy"
 iconType: ""
-description: Bring your chain to the largest crypto data community.
+description: Empower Your Blockchain with the Leading Data Platform.
 ---
-
 ## Why Your Blockchain Should Be on Dune
 
-Join the largest crypto data community and unlock unparalleled benefits for your blockchain project:
+Join the **largest crypto data community** and unlock unmatched benefits for your project. Dune is the **source of truth** for blockchain data, providing essential tools and community engagement.
 
-- **Community**: Engage with over 500k active data analysts dedicated to crypto insights.
-- **Exposure**: Gain visibility among 1M+ unique visitors, enhancing your project's reach.
-- **Trust and Transparency**: Build credibility by sharing your crypto story with a vast audience.
-- **Growth**: Attract projects and developers, expanding your ecosystem with Dune's support.
-- **Industry Leadership**: Leverage Dune's leading infrastructure for delivering top-tier crypto data.
-
-
+- **Community**: Connect with over **550k active analysts**, fostering collaboration and driving insights.
+- **Exposure**: Gain visibility with over **1M unique visitors**, boosting your project's reach and credibility.
+- **Trusted Data**: Access data from **[60+ chains](../../data-catalog/overview)**, **1.5M datasets**, and **750K queries**—transparent, accurate, and composable.
+- **Growth**: Scale your ecosystem, attracting **top protocols, developers, and community members**.
+- **Industry Leadership**: Leverage Dune’s leading infrastructure and build **trust and transparency** within the crypto world.
 
 
 
 ## Integration Options
 
+Dune offers flexible integration routes for both EVM and non-EVM chains, allowing you to easily integrate your blockchain data into the platform. Here are the three primary routes for integration:
+
 <CardGroup cols={2}>
   <Card
-    title="Fully Managed"
-    icon="database"
+    title="EVM Chains"
+    icon="cube"
     iconType="solid"
-    href="./fully-managed"
+    href="#1-evm-chains"
   >
-    - **White-Glove Service**: Comprehensive management of your data.
-    - **End-to-End Support**: From setup to ongoing maintenance.
-    - **Maximize Impact**: Amplify your data through Dune's channels.
+    - **White-Glove Service** for EVM-data-compatible chains  
+    - **Integrate** from a node provider  
+    - Gain access to fully **decoded (protocol) and curated datasets**  
   </Card>
   
   <Card
-    title="Hosted"
-    icon="database"
-    iconType="regular"
-    href="./hosted"
+    title="Non-EVM Chains (RPC Route)"
+    icon="network-wired"
+    iconType="solid"
+    href="#2-non-evm-chains-rpc-route"
   >
-    - **Flexible & Fast**: Rapid deployment with self-serve tools.
-    - **Robust Infrastructure**: Utilize Dune's reliable support.
+    - **Index from nodes**  
+    - Dune **builds custom tables** for chain analytics  
+  </Card>
+  
+  <Card
+    title="Non-EVM Chains (Database Route)"
+    icon="server"
+    iconType="solid"
+    href="#3-non-evm-chains-database-route"
+  >
+    - **Index and maintain transformed data** from AWS or GCS  
+    - **Syncs hourly** from AWS S3 or GCS to Dune  
   </Card>
 </CardGroup>
 
 
-## Discover the Benefits
+
+### 1. EVM Chains
+
+**What it is:**  
+For EVM-based chains, Dune provides a fully-managed, white-glove service approach to integrate blockchain data. This involves ingesting raw data, decoding smart contracts, and curating datasets for deeper analytics. 
+
+**Technical Requirements:**
+
+- **Node Provider**:  
+  Your chain will need a reliable node provider, such as QuickNode, Alchemy, Infura, Chainstack, or Tatum.
+
+- **RPC Node Calls**:  
+  The RPC node must support the following methods to so Dune can transform raw data into Dune’s standard EVM schema for **transactions, logs, traces, and blocks**:
+  - `eth_getBlockByNumber` (for blocks/transactions)
+  - `eth_getBlockReceipts` (for logs)
+  - `debug_traceBlockByNumber` (for traces)
+  - `eth_getTransactionReceipt` (alternative for logs)
+  - `trace_block` (alternative for traces)
+
+- **Standardized ABIs**:  
+  Your chain should support smart contract definitions with standardized ABIs. This typically includes an API endpoint like `[contract_getsourcecode](https://docs.etherscan.io/api-endpoints/contracts#get-contract-source-code-for-verified-contract-source-codes)`, allowing Dune to pull ABIs for contract addresses. The endpoint should provide:
+  - Is it a verified contract?
+  - ABI: JSON format (potentially stringified)
+  - ContractName: string
+  - Proxy: boolean
+  - Implementation: address of proxy contract (if proxy)
+
+**Example Chains**  
+To get a feel of how data on Dune looks for this integration route, check out examples like [Ethereum](../../data-catalog/evm/ethereum/overview), [Base](../../data-catalog/evm/base/overview), or [Polygon](../../data-catalog/evm/polygon/overview).
+
+---
+
+### 2. Non-EVM Chains: RPC Route
+
+**What it is:**  
+For non-EVM chains supporting RPC calls, Dune provides an integration method via node indexing. This setup allows data to flow directly from the blockchain nodes to Dune, transforming it into raw datasets that can be used in analysis and dashboards.
+
+**Technical Requirements:**
+
+- **Node Indexing**: The chain should have a node provider capable of making relevant RPC calls (e.g., `getBlock`, `getTransaction`, or chain-specific alternatives).
+
+**Example Chains**  
+To get a feel of how data on Dune looks for this integration route, check out [Solana](../../data-catalog/solana/overview), [Bitcoin](../../data-catalog/bitcoin/overview), or [Aptos](../../data-catalog/aptos/overview).
+
+---
+
+### 3. Non-EVM Chains: Database Route
+
+**What it is:**  
+For chains where an RPC approach isn’t applicable, Dune can integrate data through a database route. This method involves indexing chain data into Dune from datasets that are already transformed and stored in cloud solutions such as AWS S3 or Google Cloud Storage (GCS).
+
+**Technical Requirements:**
+
+- **Data Format**: Data must be available as AVRO (preferred) or Parquet format.
+- **Table Management**: You’ll need to manage the number, size, and growth rate of tables.
+- **Refresh Rate**: The data will be updated on an hourly append-only basis (no row-level updates or deletes).
+
+**Example Chains**  
+To get a feel of how data on Dune looks for this integration route, check out [Polkadot](../../data-catalog/substrate/overview) or [Near](../../data-catalog/near/overview).
+
+---
+
+### Data Latency
+
+Data latency is important to consider when integrating your chain with Dune. The platform ensures fast data availability, but latency varies based on the integration route:
+
+- **EVM Chains & Non-EVM RPC Chains**: These chains aim to stay synchronized with the latest block, minimizing delays to a few seconds or minutes. Dune’s infrastructure ensures minimal latency, allowing you to access real-time data quickly.
+
+- **Non-EVM Database Route**: Data flows from your cloud database into Dune on an hourly basis. This introduces a bit more delay compared to RPC-based integrations, but the data remains highly reliable.
+
+For more detailed information on data freshness and latency, refer to [Dune’s data freshness documentation](../../data-catalog/data-freshness).
+
+
+## Ready to Integrate?
 
 <CardGroup cols={1}>
   <Card
-    title="Reach out to us"
+    title="Have Questions? Ready to Get Started?"
     icon="phone"
     href="https://dune.com/enterprise"
   >
-    Contact our partnership team today to learn more about the benefits of our Catalyst integrations.
+    Contact our partnership team today to get started with Dune Catalyst integration or to learn more about how we can help power your blockchain data journey.
   </Card>
 </CardGroup>
