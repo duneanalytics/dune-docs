@@ -1,0 +1,16 @@
+---
+title: 'Upsert Materialized View'
+openapi: 'POST /v1/materialized-views'
+---
+
+
+<Note>
+- This endpoint will create a new matview if none exists for the gven query ID, or update an existing one if the query ID matches.
+- It will fail to create a matview with the same name as an existing one, but for a different query ID
+- The name of the matview is just the last part of the matview, not including `dune.<your_team>.` and must be prefixed with `result_`
+- The `cron_expression` parameter must be passed in as a valid 5 section cron expression. [See here](https://crontab.guru/) for how to write them.
+</Note>
+
+<Tip>
+- The cron expression interval must be at least 15 minutes and at most weekly
+</Tip>
