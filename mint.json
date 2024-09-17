@@ -1301,22 +1301,6 @@
           ]
         },
         {
-          "group": "NEAR",
-          "icon": "database",
-          "iconType": "solid",
-          "pages": [
-            "data-catalog/near/overview",
-            "data-catalog/near/actions",
-            "data-catalog/near/block_chunks",
-            "data-catalog/near/circulating_supply",
-            "data-catalog/near/ft_transfers",
-            "data-catalog/near/function_call",
-            "data-catalog/near/balances",
-            "data-catalog/near/nft_transfers",
-            "data-catalog/near/logs"
-          ]
-        },
-        {
           "group": "Polkadot",
           "icon": "database",
           "iconType": "regular",
@@ -1568,8 +1552,17 @@
             "api-reference/queries/endpoint/archive",
             "api-reference/queries/endpoint/unarchive",
             "api-reference/queries/endpoint/private",
-            "api-reference/queries/endpoint/unprivate",
-            "api-reference/queries/endpoint/refresh-matview"
+            "api-reference/queries/endpoint/unprivate"
+          ]
+        },
+        {
+          "group": "Materialized Views",
+          "pages": [
+            "api-reference/materialized-views/get",
+            "api-reference/materialized-views/create",
+            "api-reference/materialized-views/delete",
+            "api-reference/materialized-views/list",
+            "api-reference/materialized-views/refresh"
           ]
         },
         {
