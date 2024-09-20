@@ -32,16 +32,16 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
         , filters="overtip_amount > 0"
         , columns=["donor_fname","overtip_amount","days_overtipped","overall_tip_given_amount","overall_avg_tip_amount"]
         , sort_by=["overall_tip_given_amount desc"]
-    ) 
+    )
 
     print(query_result)
 
     ```
     </Tab>
-    
+
     <Tab title="cURL">
     ```bash
-    curl -X GET 'https://api.dune.com/api/v1/query/{{query_id}}/results?limit=100&filters=chain%20in%20(%27base%27%2C%20%27optimism%27)%20and%20token_pair%20like%20%27%USDC%%27&sort_by=thirty_day_volume%20desc' \
+    curl -X GET 'https://api.dune.com/api/v1/query/{{query_id}}/results?limit=10&filters=block_time%3E%272024-03-01%27&columns=tx_from%2Ctx_to%2Ctx_hash%2Camount_usd&sort_by=amount_usd%20desc%2Cblock_time' \
 -H 'x-dune-api-key:{{api_key}}’
     ```
     </Tab>
@@ -96,7 +96,7 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
     </Tab>
 
     <Tab title="Go">
-    ```go 
+    ```go
 
     package main
 
