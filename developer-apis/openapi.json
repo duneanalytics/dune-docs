@@ -17,11 +17,11 @@
     "/beta/balance/chains": {
       "get": {
         "tags": [
-          "crate::handlers::chains_handler"
+          "balance"
         ],
         "summary": "Get a list of supported chains for the balances endpoint",
         "description": "The balances endpoint supports a wide range of chains, but not all chains are supported by all backends.\nThis endpoint returns a list of chains that are supported by the balances endpoint.",
-        "operationId": "balances::chains",
+        "operationId": "balance::chains",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -44,6 +44,7 @@
                 "example": {
                   "chains": [
                     {
+                      "default": true,
                       "id": 42161,
                       "name": "arbitrum",
                       "supported_assets": [
@@ -52,6 +53,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 43114,
                       "name": "avalanche_c",
                       "supported_assets": [
@@ -60,6 +62,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 8453,
                       "name": "base",
                       "supported_assets": [
@@ -68,6 +71,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 56,
                       "name": "bnb",
                       "supported_assets": [
@@ -76,6 +80,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 1,
                       "name": "ethereum",
                       "supported_assets": [
@@ -84,6 +89,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 137,
                       "name": "polygon",
                       "supported_assets": [
@@ -92,6 +98,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 10,
                       "name": "optimism",
                       "supported_assets": [
@@ -100,6 +107,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 534352,
                       "name": "scroll",
                       "supported_assets": [
@@ -108,6 +116,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 42220,
                       "name": "celo",
                       "supported_assets": [
@@ -116,6 +125,7 @@
                       ]
                     },
                     {
+                      "defaul t": true,
                       "id": 690,
                       "name": "redstone",
                       "supported_assets": [
@@ -123,6 +133,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 34443,
                       "name": "mode",
                       "supported_assets": [
@@ -131,6 +142,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 42170,
                       "name": "arbitrum_nova",
                       "supported_assets": [
@@ -139,6 +151,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 59144,
                       "name": "linea",
                       "supported_assets": [
@@ -147,6 +160,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 60808,
                       "name": "bob",
                       "supported_assets": [
@@ -155,6 +169,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 81457,
                       "name": "blast",
                       "supported_assets": [
@@ -163,6 +178,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 7777777,
                       "name": "zora",
                       "supported_assets": [
@@ -171,6 +187,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 666666666,
                       "name": "degen",
                       "supported_assets": [
@@ -179,6 +196,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 888888888,
                       "name": "ancient8",
                       "supported_assets": [
@@ -187,6 +205,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 1380012617,
                       "name": "rari",
                       "supported_assets": [
@@ -195,6 +214,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 100,
                       "name": "gnosis",
                       "supported_assets": [
@@ -203,13 +223,16 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 1101,
                       "name": "zkevm",
                       "supported_assets": [
-                        "native"
+                        "native",
+                        "erc20"
                       ]
                     },
                     {
+                      "default": true,
                       "id": 324,
                       "name": "zksync",
                       "supported_assets": [
@@ -218,6 +241,7 @@
                       ]
                     },
                     {
+                      "default": false,
                       "id": 70700,
                       "name": "proof_of_play",
                       "supported_assets": [
@@ -226,6 +250,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 250,
                       "name": "fantom",
                       "supported_assets": [
@@ -234,6 +259,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 11155111,
                       "name": "sepolia",
                       "supported_assets": [
@@ -242,6 +268,7 @@
                       ]
                     },
                     {
+                      "default": true,
                       "id": 1329,
                       "name": "sei",
                       "supported_assets": [
@@ -273,7 +300,7 @@
         ],
         "summary": "Get token balances for a given address",
         "description": "This endpoint returns token balances for an address for any token that the address has interacted with",
-        "operationId": "balances::get",
+        "operationId": "balance::get",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -298,6 +325,7 @@
             "in": "query",
             "description": "Specify this to get native balances for a long tail of EVM chains, where we don’t support ERC20 assets",
             "required": false,
+            "deprecated": true,
             "schema": {
               "type": "string",
               "nullable": true
@@ -306,7 +334,7 @@
           {
             "name": "chain_ids",
             "in": "query",
-            "description": "Comma separated list of chain ids to get balances for",
+            "description": "Either 'all' or a comma separated list of chain ids to get balances for",
             "required": false,
             "schema": {
               "type": "string",
@@ -399,11 +427,11 @@
     "/beta/balance/{address}/subscribe": {
       "get": {
         "tags": [
-          "crate::handlers::balances::balances_subscribe_handler"
+          "balance"
         ],
         "summary": "Subscribe to balances for a given address",
         "description": "This endpoint returns a websocket that can be used to subscribe to balances for a given address\nEvery time the API detects a token transfer to or from this address, an update will be sent.",
-        "operationId": "balances::subscribe",
+        "operationId": "balance::subscribe",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -447,7 +475,7 @@
     "/beta/transactions/chains": {
       "get": {
         "tags": [
-          "crate::chains_handler"
+          "transactions"
         ],
         "summary": "Get a list of supported chains for the transactions endpoint",
         "description": "This endpoint returns a list of chains that are supported by the transactions endpoint.\nThe number of supported chains is currently limited, but we are working on extending support.",
@@ -735,7 +763,6 @@
         "type": "object",
         "required": [
           "chain",
-          "chain_id",
           "address",
           "amount"
         ],
@@ -752,6 +779,7 @@
           "chain_id": {
             "type": "integer",
             "format": "int32",
+            "nullable": true,
             "minimum": 0
           },
           "decimals": {
@@ -857,9 +885,13 @@
         "required": [
           "name",
           "id",
-          "supported_assets"
+          "supported_assets",
+          "default"
         ],
         "properties": {
+          "default": {
+            "type": "boolean"
+          },
           "id": {
             "type": "integer",
             "format": "int32",
@@ -916,7 +948,10 @@
         ],
         "properties": {
           "inputs": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Input"
+            }
           },
           "name": {
             "type": "string"
@@ -1014,22 +1049,7 @@
         ]
       },
       "Token": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "array"
-          }
-        ],
-        "title": "Token",
-        "description": "Token"
+        "type": "object"
       },
       "TransactionBase": {
         "type": "object",
