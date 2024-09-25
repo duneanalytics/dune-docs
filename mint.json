@@ -1102,12 +1102,12 @@
         },
         {
           "group": "Sei",
-          "icon": "database",
+          "icon": "circles-overlap",
           "iconType": "solid",
           "pages": [
             "data-catalog/evm/sei/overview",
             {
-              "group": "Raw",
+              "group": "Raw (EVM)",
               "pages": [
                 "data-catalog/evm/sei/raw/blocks",
                 "data-catalog/evm/sei/raw/creation-traces",
@@ -1117,7 +1117,7 @@
               ]
             },
             {
-              "group": "Decoded",
+              "group": "Decoded (EVM)",
               "pages": [
                 "data-catalog/evm/sei/decoded/overview",
                 "data-catalog/evm/sei/decoded/call-tables",
@@ -1128,7 +1128,7 @@
               ]
             },
             {
-              "group": "Curated",
+              "group": "Curated (EVM)",
               "pages": [
                 {
                   "group": "DEX",
@@ -1141,6 +1141,17 @@
                   "group": "NFT",
                   "pages": ["data-catalog/evm/sei/curated-data/nft/nft-trades"]
                 }
+              ]
+            },
+            {
+              "group": "Cosmos Data",
+              "pages": [
+                "data-catalog/evm/sei/cosmos/cosmos_blocks",
+                "data-catalog/evm/sei/cosmos/cosmos_block_events",
+                "data-catalog/evm/sei/cosmos/cosmos_message_events",
+                "data-catalog/evm/sei/cosmos/cosmos_tx_messages",
+                "data-catalog/evm/sei/cosmos/cosmos_transactions",
+                "data-catalog/evm/sei/cosmos/cosmos_validators"
               ]
             }
           ]

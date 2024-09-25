@@ -1,0 +1,43 @@
+---
+title: sei.cosmos_validators
+sidebarTitle: "Transaction Message Events"
+description: Description of the sei.cosmos_validators table on Dune
+---
+
+## Table description
+
+Maps validator addresses to monikers (human-readable description) and other metadata.
+
+## Column Descriptions
+
+| Column                   | Description                                                   | Type                              |
+| ------------------------ | ------------------------------------------------------------- | --------------------------------- |
+| operator_address          | The operator address of the validator.                        | varchar                           |
+| account_address           | The account address of the validator.                         | varchar                           |
+| consensus_pubkey          | The consensus public key of the validator.                    | varchar                           |
+| jailed                    | Indicates whether the validator is jailed.                    | boolean                           |
+| status                    | The status of the validator (e.g., active, inactive).         | varchar                           |
+| tokens                    | The number of tokens held by the validator.                   | varchar                           |
+| moniker                   | The moniker or name of the validator.                         | varchar                           |
+| identity                  | The identity information of the validator.                    | varchar                           |
+| website                   | The website of the validator.                                 | varchar                           |
+| security_contact          | The security contact information for the validator.           | varchar                           |
+| details                   | Additional details about the validator.                       | varchar                           |
+| unbonding_height          | The block height at which the validator started unbonding.    | bigint                            |
+| unbonding_time            | The time when the validator will complete unbonding.          | varchar                           |
+| commission_rate           | The commission rate charged by the validator.                 | double                            |
+| commission_max_rate       | The maximum commission rate allowed for the validator.        | double                            |
+| commission_max_change_rate| The maximum rate at which the validator can change its commission. | double                        |
+| commission_update_time    | The time when the validator last updated its commission.      | varchar                           |
+| min_self_delegation       | The minimum self-delegation required for the validator.       | varchar                           |
+| snapshot_height           | The block height at which the snapshot was taken.             | bigint                            |
+| snapshot_time             | The time when the snapshot was taken.                         | varchar                           |
+| updated_at                | Timestamp of when the record was last updated.                | timestamp(3) with time zone       |
+| ingested_at               | Timestamp of when the record was ingested into Dune.          | timestamp(3) with time zone       |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sei" tableName="cosmos_validators" />

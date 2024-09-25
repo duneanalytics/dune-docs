@@ -1,0 +1,42 @@
+---
+title: sei.cosmos_transactions
+sidebarTitle: "Transactions"
+description: Description of the sei.cosmos_transactions table on Dune
+---
+
+## Table description
+
+Contains relevant data associated with each transaction.
+
+## Column Descriptions
+
+| Column           | Description                                                   | Type                              |
+| ---------------- | ------------------------------------------------------------- | --------------------------------- |
+| block_height     | The height of the block where the transaction occurred.        | bigint                            |
+| chain_id         | The ID of the chain where the transaction occurred.            | varchar                           |
+| tx_id            | The unique ID of the transaction.                              | varchar                           |
+| tx_info          | Information related to the transaction.                        | varchar                           |
+| tx_log_message   | The log message associated with the transaction.               | varchar                           |
+| memo             | A memo associated with the transaction.                        | varchar                           |
+| fee              | The fee associated with the transaction.                       | varchar                           |
+| tx_code          | The result code of the transaction.                            | bigint                            |
+| tx_index         | The index of the transaction within the block.                 | bigint                            |
+| gas_used         | The amount of gas used by the transaction.                     | bigint                            |
+| gas_wanted       | The amount of gas requested by the transaction.                | bigint                            |
+| schema_version   | The schema version for the transaction data.                   | bigint                            |
+| fee_coins        | The coins used to pay the transaction fee.                     | varchar                           |
+| fee_granter      | The address granting the fee for the transaction.              | varchar                           |
+| fee_payer        | The address paying the fee for the transaction.                | varchar                           |
+| gas_limit        | The gas limit set for the transaction.                         | bigint                            |
+| single_sign_mode | The signing mode for single-signature transactions.            | bigint                            |
+| multi_sign_json  | JSON structure for multi-signature transactions.               | varchar                           |
+| timeout_height   | The timeout height set for the transaction.                    | varchar                           |
+| updated_at       | Timestamp of when the record was last updated.                 | timestamp(3) with time zone       |
+| ingested_at      | Timestamp of when the record was ingested into Dune.           | timestamp(3) with time zone       |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sei" tableName="cosmos_transactions" />
