@@ -1,0 +1,33 @@
+---
+title: sei.cosmos_block_events
+sidebarTitle: "Block Events"
+description: Description of the sei.cosmos_block_events table on Dune
+---
+
+## Table description
+
+Contains all block-level events and attributes in the chain, partitioned by `event_index`.
+
+## Column Descriptions
+
+| Column           | Description                                                   | Type                              |
+| ---------------- | ------------------------------------------------------------- | --------------------------------- |
+| block_date       | The date of the block.                                         | date                              |
+| block_height     | The height of the block where the event occurred.              | bigint                            |
+| block_timestamp  | Timestamp when the block was validated.                        | timestamp(3) with time zone       |
+| chain_id         | The ID of the chain where the block belongs.                   | varchar                           |
+| event_index      | A unique index for events within the block.                    | bigint                            |
+| event_type       | The type of event that was triggered.                          | varchar                           |
+| event_source     | The source of the event.                                       | varchar                           |
+| attribute_key    | The key of the event attribute.                                | varchar                           |
+| attribute_value  | The value of the event attribute.                              | varchar                           |
+| attribute_index  | A unique index for attributes within the event.                | bigint                            |
+| updated_at       | Timestamp of when the record was last updated.                 | timestamp(3) with time zone       |
+| ingested_at      | Timestamp of when the record was ingested into Dune.           | timestamp(3) with time zone       |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sei" tableName="cosmos_block_events" />

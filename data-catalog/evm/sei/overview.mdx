@@ -10,15 +10,17 @@ description: Sei data on Dune
 Sei is a Layer-1 blockchain optimized for trading and decentralized finance (DeFi). It combines the strengths of Solana and Ethereum by implementing a fast parallelized EVM chain, providing a hyper optimized execution layer that benefits from the tooling and mindshare around the EVM.
 
 <Warning>
-Dune currently indexes only the EVM component of the Sei chain.
+Sei is a Cosmos chain with EVM modules added in the [v2 upgrade]((https://www.mintscan.io/sei/proposals/55)). Dune indexes the EVM data separately from the Cosmos data. As such, data latency between the two can be expected.
 </Warning>
 
-<Accordion title="What does this mean?">
+<Tip>
 - Sei (v1) was originally a Cosmos chain. On May 20, 2024, a proposal to [upgrade Sei (v2) to include EVM support](https://www.mintscan.io/sei/proposals/55) was passed. Consequently, on May 27, 2024, Sei upgraded to [v2 with EVM support](https://github.com/sei-protocol/sei-chain/blob/main/CHANGELOG.md#v552).
-- The EVM and Cosmos components share the same consensus mechanism (i.e., they are validated by the same validators simultaneously) but operate independently with interoperability features.
-- Dune indexes only the EVM component of the Sei chain, starting from the Sei v2 upgrade ([block height 73,123,881](https://seitrace.com/block/79123881)). Therefore, Dune does **not** have data from the Cosmos component.
-- Interoperability between EVM and Cosmos relies on [EVM Precompiles](https://www.docs.sei.io/dev-interoperability/precompiles/addr) and [Pointer Contracts](https://www.docs.sei.io/dev-interoperability/pointer-contracts). If these do not emit events under certain circumstances, it may lead to gaps in the data.
-</Accordion>
+- Dune indexes the EVM component of Sei directly from RPC providers, supporting standard EVM chain decoding capabilities.
+- For Cosmos data, Dune partners with a data provider, and these tables and schemas can be found in the [Cosmos Data](#cosmos-data) section.
+- The EVM and Cosmos components share the same consensus mechanism, validated by the same validators, but they operate independently with interoperability features.
+- Interoperability between EVM and Cosmos relies on [EVM Precompiles](https://www.docs.sei.io/dev-interoperability/precompiles/addr) and [Pointer Contracts](https://www.docs.sei.io/dev-interoperability/pointer-contracts). If these do not emit events, it may result in data gaps.
+- Dune's EVM data for Sei starts from the v2 upgrade at [block height 73,123,881](https://seitrace.com/block/79123881).
+</Tip>
 
 
 ### Parallelization
@@ -53,6 +55,8 @@ For more details, visit [Sei Interoperability Documentation](https://www.docs.se
 
 ## Data Catalog
 
+### EVM Data
+
 <CardGroup cols={2}>
   <Card title="Logs" icon="bolt" href="./raw/logs">
     Access detailed event logs from smart contracts to analyze contract activity and interactions.
@@ -65,5 +69,37 @@ For more details, visit [Sei Interoperability Documentation](https://www.docs.se
   </Card>
   <Card title="decoded" icon="file" href="./decoded/overview">
     Decoded transaction data for easier analysis and deeper understanding of contract executions.
+  </Card>
+</CardGroup>
+
+### Cosmos Data
+
+<Tip>
+Timestamp is only available on block level tables (e.g. `sei.cosmos_blocks`) with field `block_timestamp`, so you need to do an inner join on `block_height` to get timestamp to other tables.
+</Tip>
+
+<CardGroup cols={3}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/evm/sei/cosmos/cosmos_blocks">
+    Contains each validated block in the chain.
+  </Card>
+
+  <Card title="Block Events" icon="note-sticky" href="/data-catalog/evm/sei/cosmos/cosmos_block_events">
+    Contains all block-level events and attributes in the chain, partitioned by event_index.
+  </Card>
+
+  <Card title="Transactions" icon="message-arrow-up" href="/data-catalog/evm/sei/cosmos/cosmos_transactions">
+    Contains relevant data associated with each transaction.
+  </Card>
+
+  <Card title="Transaction Message Events" icon="notes" href="/data-catalog/evm/sei/cosmos/cosmos_message_events">
+    Contains all events and their corresponding attributes partitioned by message_index.
+  </Card>
+
+  <Card title="Transaction Messages" icon="note" href="/data-catalog/evm/sei/cosmos/cosmos_tx_messages">
+    Contains all messages submitted to the blockchain.
+  </Card>
+
+  <Card title="Validators" icon="badge-check" href="/data-catalog/evm/sei/cosmos/cosmos_validators">
+    Maps validator addresses to monikers (human-readable description) and other metadata.
   </Card>
 </CardGroup>

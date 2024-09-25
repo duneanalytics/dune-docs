@@ -1,0 +1,40 @@
+---
+title: sei.cosmos_tx_messages
+sidebarTitle: "Transaction Message Events"
+description: Description of the sei.cosmos_tx_messages table on Dune
+---
+
+## Table description
+
+Contains all messages submitted to the blockchain. Each row represents one message, so there may be repeated `tx_id` if the transaction contains multiple messages.
+
+<Tip>
+On execution, transactions from Cosmos emit data in two formats:
+- Messages (`sei.cosmos_tx_messages`): These provide a high-level, readable summary of actions, such as "send money" or "execute contract." They are easier to understand and track transaction types.
+- Events (`sei.cosmos_message_events`): These capture detailed, low-level changes at the chain level, including underlying blockchain modifications that may not always be directly related to state changes.
+- Use Messages for a general overview and Events when you need detailed insights. The two tables are complementary.
+</Tip>
+
+## Column Descriptions
+
+| Column           | Description                                                   | Type                              |
+| ---------------- | ------------------------------------------------------------- | --------------------------------- |
+| block_date       | The date of the block.                                         | date                              |
+| block_height     | The height of the block where the message occurred.            | bigint                            |
+| block_timestamp  | Timestamp when the block was validated.                        | timestamp(3) with time zone       |
+| chain_id         | The ID of the chain where the message occurred.                | varchar                           |
+| tx_id            | The unique ID of the transaction containing the message.       | varchar                           |
+| tx_index         | The index of the transaction within the block.                 | bigint                            |
+| message_index    | The index of the message within the transaction.               | varchar                           |
+| message_type     | The type of message sent in the transaction (e.g., send, execute contract). | varchar                |
+| message          | The message content as a string.                               | varchar                           |
+| schema_version   | The schema version for the message data.                       | bigint                            |
+| updated_at       | Timestamp of when the record was last updated.                 | timestamp(3) with time zone       |
+| ingested_at      | Timestamp of when the record was ingested into Dune.           | timestamp(3) with time zone       |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sei" tableName="cosmos_tx_messages" />
