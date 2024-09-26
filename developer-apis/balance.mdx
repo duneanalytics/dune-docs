@@ -4,14 +4,15 @@ openapi: 'GET /beta/balance/{address}'
 ---
 
 The Token Balances API provides accurate and fast real time balances of the native and ERC20 tokens of accounts on supported blockchains (EVM currently).
-Data is typically available within 100 ms since a block was propagated to nodes.
+Data is typically available within 100 ms since a block was propagated to nodes. The endpoint only returns balances for certain low latency chains by default.
+See [Supported Chains](./balance-chains.md) for more details.
 
 <Note>
   - These endpoints are authenticated with a normal Dune API key.
   - As we are in beta there might be changes. Please reach out to realtimeAPI@dune.com if you use this API.
-  - Specify `?all_chains` to get native balances for a long tail of evm chains, where we don't support erc20 assets. See [chains endpoint](./balance-chains).
   - Specify `?filters=erc20` or `?filters=native` to get only erc20 tokens or native assets, respectively
   - Specify `?exclude_spam_tokens` to filter out tokens Dune believes to be spam. We use [this query](https://dune.com/queries/3804603) to determine if something is spam.
+  - Specify `?chain_ids=all` to fetch balances for all supported chains.
   - Specify `?chain_ids=11,250,1` to fetch balances only for select chains. See chainlist https://chainlist.org/ for a list of chainIDs.
   - CoinMarketCap is used for price information
   - Token metadata, such as symbols and decimals, are fetched from Dune's tokens.erc20 dataset which is curated by Dune users and [defined.fi](https://defined.fi)
@@ -36,8 +37,8 @@ Data is typically available within 100 ms since a block was propagated to nodes.
 
 # Pagination
 
-This endpoint is using cursor based pagination. You can use the `limit` parameter to define the maximum page size. 
-Results might at times be less than the maximum page size. 
+This endpoint is using cursor based pagination. You can use the `limit` parameter to define the maximum page size.
+Results might at times be less than the maximum page size.
 The `next_offset` value is passed back by the initial response and can be used to fetch the next page of results, by passing it as the `offet` query parameter in the next request.
 
 <Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>
