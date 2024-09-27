@@ -107,12 +107,16 @@ For chains where an RPC approach isn’t applicable, Dune can integrate data thr
 
 **Technical Requirements:**
 
-- **Data Format**: Data must be available as AVRO (preferred) or Parquet format.
-- **Table Management**: You’ll need to manage the number, size, and growth rate of tables.
-- **Refresh Rate**: The data will be updated on an hourly append-only basis (no row-level updates or deletes).
+- **Data Format**: AVRO (preferred) or Parquet format.
+- **Folder Structure**: Data should follow the structure `bucket-name/chain/table-name/yyyy-mm-dd/hh-mm-ss-XXX...XXX.avro`.
+- **S3 Bucket**: Must have "requester pays" disabled and be located in the EU.
+- **Table Management**: Provide a list of tables, their size, and growth rate (daily or monthly).
+- **Data Updates**: Tables are indexed and refreshed hourly (append-only, no row-level updates or deletes).
+- **Backfills**: Full table replacements can be requested on a case-by-case basis.
+- **Storage Costs**: All Dune storage costs are fully covered.
 
 **Example Chains**  
-To get a feel of how data on Dune looks for this integration route, check out [Polkadot](../../data-catalog/substrate/overview) or [Near](../../data-catalog/near/overview).
+To explore examples of this integration, check out the data for [Polkadot](../../data-catalog/substrate/overview) or [Near](../../data-catalog/near/overview).
 
 ---
 
