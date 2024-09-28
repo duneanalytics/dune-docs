@@ -53,7 +53,7 @@ Replace `new-page` with the name of the file you created.
 
 
 
-Minflify provides additional functionality to help maintain your documentation.
+Mintlify provides additional functionality to help maintain your documentation.
 
 ### Broken links
 
