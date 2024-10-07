@@ -1,30 +1,90 @@
 ---
 title: Prices
 icon: circle-dollar
-description: Price data for erc20 tokens in USD
+description: Price data for tokens across multiple blockchains
 ---
 
-We pull price data from the [coinpaprika](https://coinpaprika.com) API.
+# Dune Price Feed
 
-The Price is the volume-weighted price based on real-time market data, translated to USD.
+Dune provides comprehensive price data for tokens across multiple blockchains through three main tables:
 
-### Coverage
+- `prices.day`
+- `prices.hour`
+- `prices.minute`
 
-This table supports a range of prices for assets on EVM networks and Solana. The table includes prices for the following assets:
+## Coverage
 
-- ERC20 tokens
-- Native currencies
-- Solana tokens 
-- other L1 and blockchains with `blockchain = null`
+The price feed offers extensive coverage across EVM networks:
 
+- Over 180,000 tokens
+- More than 700,000 contract addresses
+- Support for 37+ blockchains
+- Transparent methodology leveraging Dune's comprehensive DEX trades data set
+- Automatic token addition once a $10,000 transfer volume threshold is reached
 
-### Adding Prices
+## Methodology
 
-If the token you desire is not listed in here, please follow the instructions [here](https://github.com/duneanalytics/spellbook/tree/main/models/prices#adding-a-token-to-price-tracking) to add it.
+The price feed combines two main data sources:
 
-### Unique Identifier
+1. Token prices for major assets from Coin Paprika
+2. Prices derived from Dune's `dex.trades` data for other assets
 
-Since the different blockchains have different standards for identifying tokens, we use the following identifiers:
+The process includes several steps to ensure data quality and reduce outliers:
+
+1. Tokens with less than $10,000 USD volume overall are filtered out
+2. Token trades are aggregated to the block level, using the median 50th percentile price per block
+3. Volume Weighted Average Price (VWAP) is calculated for each time aggregation (minute, day, hour)
+4. VWAP values exceeding the prior period by more than 1000% are filtered out to avoid outliers
+5. Prices are forward-filled until another trade is found, ensuring consistent pricing across time periods
+
+## Important Notes
+
+1. Prices are calculated on a per-chain basis. Tokens not in the [trusted token list](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/tokens/models/prices/prices_trusted_tokens.sql) may have different prices across chains.
+2. Prices are calculated at the `contract_address` and `blockchain` level.
+3. Token `symbol` is not a unique identifier, as different tokens may share the same symbol.
+
+## Table Structure
+
+The `prices.day`, `prices.hour`, and `prices.minute` tables share the following structure:
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | Unique identifier of the token (contract address for ERC20, mint address for Solana, null for native currencies) |
+| `blockchain`       | _varchar_   | The blockchain on which the token exists      |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`            | _double_    | The price of the asset in USD                 |
+| `timestamp`        | _timestamp_ | The timestamp for which this price is reported |
+
+## Legacy Price Tables
+
+Dune maintains older price tables for historical context: `prices.usd`, `prices.usd_daily`, and `prices.usd_latest`. These tables have lower coverage and are no longer updated. Users are encouraged to use the newer `prices.day`, `prices.hour`, and `prices.minute` tables for better coverage and ongoing support.
+
+### Legacy Coverage
+
+- Approximately 2,800 tokens
+- Around 3,600 contract addresses
+- 63% of transfers with price coverage
+- Support for 22 blockchains
+- Manual token addition process
+
+### Legacy Data Source
+
+Price data for legacy tables is pulled from the [coinpaprika](https://coinpaprika.com) API. The price is the volume-weighted price based on real-time market data, translated to USD.
+
+### Legacy Table Structure
+
+The `prices.usd` table structure:
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | Unique identifier of the token (contract address for ERC20, mint address for Solana in `from_base58` format, null for native currencies) |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`            | _bigint_    | The price of the asset in any given minute    |
+| `minute`           | _timestamp_ | The timestamp for which minute this price is reported |
+
+### Legacy Unique Identifier
+
+Different blockchains use different standards for identifying tokens:
 
 | Blockchain | Identifier |
 | ---------- | ---------- |
@@ -32,36 +92,25 @@ Since the different blockchains have different standards for identifying tokens,
 | Solana     | mint address in `from_base58` format |
 | other L1   | null |
 
-That means if you are querying to solana tokens you need to use the mint address in `from_base58` format.
+For querying Solana tokens, use the mint address in `from_base58` format:
 
 ```sql
-Select * from prices.usd 
-where blockchain = 'solana'
-and contract_address = from_base58('NeonTjSjsuo3rexg9o6vHuMXw62f9V7zvmu8M8Zut44')
-limit 100
-
---this will convert the mint address to how we store it in the table
+SELECT * FROM prices.usd 
+WHERE blockchain = 'solana'
+AND contract_address = from_base58('NeonTjSjsuo3rexg9o6vHuMXw62f9V7zvmu8M8Zut44')
+LIMIT 100
 ```
 
+For other L1 blockchains:
 
 ```sql
-Select * from prices.usd 
-where blockchain is null
-and contract_address = '6h6vVc42moDmRs7KahQpFs8YWL5GfWBrxT9UrsUvpApn'
-limit 100
+SELECT * FROM prices.usd 
+WHERE blockchain IS NULL
+AND contract_address = '6h6vVc42moDmRs7KahQpFs8YWL5GfWBrxT9UrsUvpApn'
+LIMIT 100
 ```
-
-
-### Column Descriptions
-
-| Column name        | Data type   | Description                                   |
-| ------------------ | ----------- | --------------------------------------------- |
-| `contract_address` | _varbinary_ | the unique identifier of the token. For ERC20 tokens, this is the contract address. For solana tokens, this is the mint address in `from_base58` format. Since there is no standard for identifying native currencies, this is null. |
-| `symbol`           | _varchar_   | the identifier of the asset (ticker, cashtag) |
-| `price`            | _bigint_    | The price of the asset in any given minute    |
-| `minute`           | _timestamp_ | The timestamp for which minute this price is reported |
 
 <Note>
-  Note that `WETH` has to be used for the ETH price as ETH is not an erc20 token.    
+  Note that `WETH` has to be used for the ETH price as ETH is not an ERC20 token.    
 </Note> 
 
