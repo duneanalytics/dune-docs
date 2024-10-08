@@ -1464,6 +1464,25 @@
           ]
         },
         {
+          "group": "Stellar",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/stellar/overview",
+            "data-catalog/stellar/evm_v_stellar",
+            "data-catalog/stellar/accounts",
+            "data-catalog/stellar/history_contract_events",
+            "data-catalog/stellar/history_effects.mdx",
+            "data-catalog/stellar/history_ledgers.mdx",
+            "data-catalog/stellar/history_operations.mdx",
+            "data-catalog/stellar/history_trades.mdx",
+            "data-catalog/stellar/history_transactions.mdx",
+            "data-catalog/stellar/liquidity_pools.mdx",
+            "data-catalog/stellar/trust_lines.mdx",
+            "data-catalog/stellar/ttl.mdx"
+          ]
+        },
+        {
           "group": "Tron",
           "icon": "database",
           "iconType": "solid",
