@@ -1471,15 +1471,16 @@
             "data-catalog/stellar/overview",
             "data-catalog/stellar/evm_v_stellar",
             "data-catalog/stellar/accounts",
-            "data-catalog/stellar/history_contract_events",
-            "data-catalog/stellar/history_effects",
-            "data-catalog/stellar/history_ledgers",
-            "data-catalog/stellar/history_operations",
-            "data-catalog/stellar/history_trades",
-            "data-catalog/stellar/history_transactions",
-            "data-catalog/stellar/liquidity_pools",
             "data-catalog/stellar/trust_lines",
-            "data-catalog/stellar/ttl"
+            "data-catalog/stellar/ttl",
+            "data-catalog/stellar/contract_data",
+            "data-catalog/stellar/history_ledgers",
+            "data-catalog/stellar/history_transactions",
+            "data-catalog/stellar/history_operations",
+            "data-catalog/stellar/history_effects",
+            "data-catalog/stellar/history_trades",
+            "data-catalog/stellar/liquidity_pools",
+            "data-catalog/stellar/history_contract_events"
           ]
         },
         {

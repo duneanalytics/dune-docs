@@ -1,2 +1,43 @@
-Liquidity Pools provide a simple, non-interactive way to trade large amounts of capital and enable high volumes of trading.
+---
+title: stellar.liquidity_pools
+sidebarTitle: "Liquidty Pools"
+description: Description of the liquidity_pools table on Dune
+---
 
+## Table description
+Stores data on Stellar’s liquidity pools, such as the type, fee, assets involved etc. Liquidity Pools provide a simple, non-interactive way to trade large amounts of capital and enable high volumes of trading.
+
+## Column Descriptions
+
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                    | The date when the liquidity pool entry was closed.                           | date                                 |
+| **liquidity_pool_id**                 | The unique identifier for the liquidity pool.                                | varchar                              |
+| **type**                              | The type of liquidity pool (e.g., constant product, stable).                 | varchar                              |
+| **fee**                               | The fee rate, in basis points, for trading within the liquidity pool.        | bigint                               |
+| **trustline_count**                   | The number of trustlines associated with the liquidity pool.                 | bigint                               |
+| **pool_share_count**                  | The total number of pool shares outstanding, representing ownership in the pool. | double                           |
+| **asset_a_type**                      | The type of the first asset in the liquidity pool.                           | varchar                              |
+| **asset_a_code**                      | The code of the first asset in the liquidity pool.                           | varchar                              |
+| **asset_a_issuer**                    | The issuer of the first asset in the liquidity pool.                         | varchar                              |
+| **asset_a_id**                        | The unique identifier for the first asset in the liquidity pool.             | bigint                               |
+| **asset_a_amount**                    | The total amount of the first asset held in the liquidity pool.              | double                               |
+| **asset_b_type**                      | The type of the second asset in the liquidity pool.                          | varchar                              |
+| **asset_b_code**                      | The code of the second asset in the liquidity pool.                          | varchar                              |
+| **asset_b_issuer**                    | The issuer of the second asset in the liquidity pool.                        | varchar                              |
+| **asset_b_id**                        | The unique identifier for the second asset in the liquidity pool.            | bigint                               |
+| **asset_b_amount**                    | The total amount of the second asset held in the liquidity pool.             | double                               |
+| **last_modified_ledger**              | The sequence number of the ledger where the liquidity pool entry was last modified. | bigint                          |
+| **ledger_entry_change**               | Indicates the type of change made to the ledger entry (insert, update, delete). | bigint                            |
+| **deleted**                           | A boolean indicating whether the liquidity pool entry has been deleted from the ledger. | boolean                       |
+| **closed_at**                         | The timestamp when the liquidity pool entry was closed.                      | timestamp(3) with time zone          |
+| **ledger_sequence**                   | The sequence number of the ledger in which the liquidity pool entry is included. | bigint                           |
+| **updated_at**                        | The time when the liquidity pool record was last updated.                    | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the liquidity pool data was ingested into the system.          | timestamp(3) with time zone          |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="stellar" tableName="liquidity_pools" />
