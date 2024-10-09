@@ -1,0 +1,44 @@
+---
+title: stellar.history_ledgers
+sidebarTitle: "History Ledgers"
+description: Description of the history_ledgers table on Dune
+---
+
+## Table description
+Tracks ledgers info (equivalent of blocks on other blockchain), including metadata such as sequence numbers, transactions included, and fees.
+
+## Column Descriptions
+
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                    | The date when the ledger was closed.                                         | date                                 |
+| **sequence**                          | The sequence number of the ledger.                                           | bigint                               |
+| **ledger_hash**                       | The hash of the current ledger, in binary format.                            | varbinary                            |
+| **previous_ledger_hash**              | The hash of the previous ledger, in binary format.                           | varbinary                            |
+| **transaction_count**                 | The number of transactions included in the ledger.                           | bigint                               |
+| **operation_count**                   | The number of operations executed within the transactions in the ledger.     | bigint                               |
+| **closed_at**                         | The timestamp when the ledger was closed.                                    | timestamp(3) with time zone          |
+| **id**                                | The unique identifier for the ledger entry.                                  | bigint                               |
+| **total_coins**                       | The total number of lumens (XLM) in circulation at the time the ledger was closed. | bigint                          |
+| **fee_pool**                          | The sum of all transaction fees accumulated in the ledger.                   | bigint                               |
+| **base_fee**                          | The minimum fee, in lumens (XLM), charged per operation included in the ledger. | bigint                          |
+| **base_reserve**                      | The minimum XLM balance required to maintain an account, as defined in the ledger. | bigint                          |
+| **max_tx_set_size**                   | The maximum number of transactions that can be included in a ledger.         | bigint                               |
+| **protocol_version**                  | The protocol version used by the ledger.                                     | bigint                               |
+| **ledger_header**                     | The raw binary (XDR) representation of the ledger header.                    | varbinary                            |
+| **successful_transaction_count**      | The number of successful transactions in the ledger.                         | bigint                               |
+| **failed_transaction_count**          | The number of failed transactions in the ledger.                             | bigint                               |
+| **tx_set_operation_count**            | The total number of operations in the transaction set of the ledger.         | bigint                               |
+| **soroban_fee_write_1kb**             | The fee in lumens (XLM) for writing 1KB of data related to Soroban smart contracts. | bigint                          |
+| **node_id**                           | The identifier of the node that signed and validated the ledger.             | varchar                              |
+| **signature**                         | The digital signature applied to the ledger by the validating node.          | varchar                              |
+| **total_byte_size_of_bucket_list**     | The total byte size of the ledger's bucket list, which tracks state changes. | bigint                               |
+| **updated_at**                        | The time when the ledger record was last updated.                            | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the ledger data was ingested into the system.                  | timestamp(3) with time zone          |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="stellar" tableName="history_ledgers" />
