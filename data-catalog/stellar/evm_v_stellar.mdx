@@ -1,3 +1,198 @@
+---
+title: EVM vs Stellar Comparison  
+sidebarTitle: "EVM vs Stellar"  
+icon: "code-compare"  
+description: A comparison between EVM-based blockchains and Stellar
+---
 
-TODO
-https://docs.google.com/document/d/1g06VwhfB06XxGy9jPV8yDDSDh5s-EfOmV_o2sNjN9Do/edit
+## EVM vs Stellar Comparison
+
+This document provides a generalized overview of the differences between Ethereum Virtual Machine (EVM) chains and the Stellar Network. It's meant to help EVM data analysts to understand Stellar chain data better by mapping the concepts.
+
+<Check>A special thanks to [Sydney Wiseman](https://www.linkedin.com/in/syd-wiseman/) from the Stellar Development Foundation for making this available to the community! </Check>
+
+
+## Blockchain Purpose and Design
+
+### Stellar
+The Stellar Network is designed to create digital asset products and services that improve access to the global financial system. With a focus on **simplicity, speed, and cost-effectiveness** in transferring assets, Stellar connects financial institutions, payment systems, and individuals.
+
+Due to its financial-centric design, Stellar includes built-in primitives for asset management, making it more secure and efficient for financial applications. However, Stellar's original design was less flexible and had limited the types of financial applications buit on Stellar. Since February 2024, Stellar has supported **smart contracts** written in Rust and compiled as WebAssembly (wasm).
+
+### EVM
+EVM blockchains such as Ethereum allow developers to build decentralized applications (dApps) and deploy **smart contracts**. Unlike Stellar, EVM chains emphasize flexible programming at the cost of speed, leading to the need for layer-2 (L2) solutions to improve transaction throughput and cost efficiency. Smart contracts on EVM are written in Solidity.
+
+### Stellar Native Primitives
+- **Asset Issuance**
+- **Claimable Balances (Airdrops)**
+- **Orderbook (Built-in DEX)**
+- **Automated Market Makers (AMMs)**
+
+### Tokenization
+Stellar allows native **asset tokenization**, where user balances are represented through [trustlines](https://developers.stellar.org/docs/learn/fundamentals/stellar-data-structures/accounts#trustlines). Standards for tokenization similar to ERC-20 and ERC-721 are available under [SEP-41](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0041.md), implemented via the [Stellar Asset Contract](https://developers.stellar.org/docs/smart-contracts/tokens/stellar-asset-contract).
+
+### Consensus Mechanism
+
+Stellar uses **Stellar Consensus Protocol (SCP)**, a Proof of Agreement (PoA) mechanism derived from **Federated Byzantine Agreement (FBA)**. Transactions are confirmed when overlapping quorums of nodes agree on validity. Stellar closes ledgers every **5 seconds**.
+
+EVM chains like Ethereum use **Proof of Stake (PoS)** for consensus.
+
+### Time to Finality
+- **Stellar**: Deterministic finality, with ledgers closing every **5-6 seconds**.
+- **Ethereum**: Probabilistic finality, requiring ~13 minutes (2 epochs) for finality.
+
+### Submitting Transactions
+
+Stellar supports bundling up to **100 operations** in a single transaction, improving developer experience. However, smart contract transactions (via **Soroban**) are capped at **1 operation per transaction**, similar to EVM.
+
+Stellar allows [**fee bump transactions**](https://developers.stellar.org/docs/learn/encyclopedia/fee-bump-transactions), where an account can pay fees on behalf of another account. Additionally, [**26 operation types**](https://developers.stellar.org/docs/learn/fundamentals/list-of-operations) are natively supported on Stellar, in contrast to EVM's 3 core transaction types (regular, contract deployment, execute contract).
+
+
+### Ledger State Comparison
+
+Both Stellar and EVM use an **account-based model**. In Stellar, however, there are additional ledger state types:
+- **Contracts**: Persistent data and expiration details for smart contracts
+- **Accounts**: Externally owned accounts with lumen (XLM) balances
+- **Trustlines**: Balances of non-native tokens
+- **Claimable Balances**: Built-in airdrop feature
+- **Liquidity Pools**: AMM built-in mechanisms
+- **Orderbook Offers**: Stellar’s built-in decentralized exchange
+
+| EVM's Accounts    | Stellar's Ledger Entry |
+|-------------------|------------------|
+| nonce             | _No equivalent_ |
+| balance           |[accounts](https://developers.stellar.org/docs/learn/fundamentals/stellar-data-structures/accounts)   |
+| storageRoot       |[trustLines](https://developers.stellar.org/docs/learn/fundamentals/stellar-data-structures/accounts#trustlines) |
+| codeHash          |[data](https://developers.stellar.org/docs/learn/fundamentals/stellar-data-structures/accounts#subentries), [contractData](https://developers.stellar.org/docs/learn/fundamentals/stellar-data-structures/contracts#contract-storage) |
+| *No native equivalent* |[contractCode](https://developers.stellar.org/docs/learn/fundamentals/stellar-data-structures/contracts#wasm) |
+| *No native equivalent* | [claimableBalances](https://developers.stellar.org/docs/learn/encyclopedia/claimable-balances) |
+| *No native equivalent* | [liquidityPools](https://developers.stellar.org/docs/learn/encyclopedia/liquidity-on-stellar-sdex-liquidity-pools#liquidity-pools) |
+| *No native equivalent* | [offers](https://developers.stellar.org/docs/learn/encyclopedia/liquidity-on-stellar-sdex-liquidity-pools#order-books) |
+| *No native equivalent* | [configSetting](https://developers.stellar.org/network/core-node/admin-guide/soroban-settings) |
+| *No native equivalent* | [ttl](https://developers.stellar.org/docs/learn/smart-contract-internals/state-archival#ttl) (State Archival) |
+
+### Data Concept Mapping
+
+Stellar's data model is more complex than EVM due to its built-in primitives. 
+
+The table below outlines equivalent data structures between EVM chains and Stellar, which serves to map the concepts between the two networks:
+
+| EVM's Data Model    | Stellar Data On Dune |
+|-------------------|------------------|
+| blocks | [history_ledgers](./history_ledgers) |
+| transactions | [history_transactions](./history_transactions) |
+| logs | [history_contract_events](./history_contract_events) |
+| traces | [history_operations](./history_operations), [history_effects](./history_effects) |
+| contracts | [contract_data](./contract_data) |
+| balances | [accounts](./accounts), [trustlines](./trust_lines), [contract_data](./contract_data) |
+| token_transfers | [history_operations](./history_operations) |
+
+
+## Data Model Details
+
+### Blocks 
+
+Stellar calls blocks, ledgers. A ledger represents the state of the Stellar network at a given point in time. EVM blockchains refer to state as a point in time as blocks, and the entire blockchain is “the ledger”. Ledgers on Stellar can refer to individual blocks or the full network history.
+
+#### Size Limits
+A transaction set within a ledger contains two transaction types: native and smart contracts. The ledger size has separate limits for each transaction type:
+- **Native** - the Stellar Network can apply up to 1,000 operations in a ledger. Transactions can bundle up to 100 operations in a single transaction.
+- **Smart contracts** - the Stellar Network dynamically limits the number of smart contract transactions based on network resources consumed (read/write bytes, CPU instructions, etc). See [Smart Contract Settings](https://developers.stellar.org/network/core-node/admin-guide/soroban-settings#examine-current-settings) for more details.
+See [Fees and Metering](https://developers.stellar.org/docs/learn/fundamentals/fees-resource-limits-metering) for more information.
+
+Ethereum limits block size by total gas spent.
+
+#### Schema Mapping
+| **Stellar Name**          | **EVM Equivalent**      | **Description**                                                                                              |
+|---------------------------|-------------------------|--------------------------------------------------------------------------------------------------------------|
+| **sequence**              | number                  | The sequence number of the ledger                                                                             |
+| **ledger_hash**           | hash                    | The hash of this ledger                                                                                       |
+| **previous_ledger_hash**  | parent_hash             | The hash of the previous ledger                                                                               |
+| **closed_at**             | time                    | The timestamp when the ledger was written to the chain                                                        |
+| **protocol_version**      | version                 | Protocol version specified in the block header                                                                |
+| **total_coins**           |                         | The total number of lumens in circulation                                                                     |
+| **fee_pool**              | gas_used                | The sum of all transaction fees                                                                               |
+| **inflation_seq**         |                         | *Deprecated*                                                                                                  |
+| **base_fee**              | base_fee_per_gas        | The minimum fee charged, per operation, to be included in the ledger                                          |
+| **base_reserve**          |                         | The minimum XLM balance to be held in an account to be considered valid                                       |
+| **max_tx_set_size**       | gas_limit               | The maximum number of non-Soroban operations allowed in a ledger. **Note**: Soroban transactions have a separate mechanism to limit resources utilization per ledger |
+| **ledger_header**         |                         | The raw XDR representation of all the data stored in the [Ledger Header](https://pkg.go.dev/github.com/stellar/go/xdr#LedgerHeader)                      |
+| **transaction_count**     | transaction_count       | Number of transactions in the ledger                                                                          |
+| **operation_count**       |                         | The number of operations in the ledger. **Note**: Up to 100 operations can be bundled in a single transaction |
+
+### Transactions 
+Actions are performed on the Stellar network through operations. Operations are bundled into transactions, with each account able to perform up to 100 operations in a single transaction. Accounts are limited to submitting one transaction per ledger.
+
+EVM networks do not have the concept of operations, the lowest level of action is a transaction. This limits accounts to one action per transaction in EVM L1 Layers, which is why L2 solutions and rollups are popular.
+
+#### Transaction Types
+Operation types on Stellar are analog to transaction types on EVM networks.
+
+The Stellar network natively supports [26 operation types](https://developers.stellar.org/docs/learn/fundamentals/list-of-operations), ranging from payments to orderbook offer management to smart contract invocation. 
+
+EVM natively supports 3 transaction types: payment (regular), contract deployment, and execute contract, and does not support natively for Orderbook or AMMs.
+
+#### Schema Mapping
+
+**Transactions**
+| **Stellar Name**          | **EVM Equivalent**      | **Description**                                                                                              |
+|---------------------------|-------------------------|--------------------------------------------------------------------------------------------------------------|
+| **transaction_hash**       | hash                    | A hex-encoded SHA-256 hash of this transaction's XDR-encoded form                                             |
+| **ledger_sequence**        | block_number            | The sequence number of the ledger                                                                             |
+| **closed_at**              | block_time              | The timestamp when the ledger was written to the chain                                                        |
+| **inner_transaction_hash** |                         | A transaction hash of a transaction wrapped with its signatures for fee-bump transactions                      |
+| **account**                | from                    | The account address that originates the transaction                                                           |
+| **account_sequence**       | nonce                   | The source account's sequence number that this transaction consumed. Sequence numbers can only be used once and help maintain atomicity and idempotency on the network |
+| **max_fee**                | max_fee_per_gas         | The maximum fee (in stroops) that the account is willing to pay for the transaction to be included in a ledger |
+| **operation_count**        | Fixed at 1              | The number of operations contained within this transaction                                                    |
+| **memo_type**              |                         | Memos can be text, ids, or hashes                                                                             |
+| **memo**                   |                         | Optional unstructured data field that can be used to differentiate between accounts (for pooled accounts)      |
+| **time_bounds**            |                         | Optional UNIX timestamp of a lower and upper bound of when a transaction will be valid                        |
+| **successful**             | success                 | Indicates if the transaction succeeded                                                                        |
+| **fee_charged**            | gas_used                |                                                                                                              |
+| **fee_account**            |                         | An account that is not the originating source account for a transaction is allowed to pay transaction fees on behalf of the source account. These accounts are called fee accounts and incur all transaction costs for the source account |
+| **new_max_fee**            |                         | The maximum fee (in stroops) an account is willing to pay for this account’s fees                              |
+| **account_muxed**          |                         | If the user has defined multiplexed (muxed) accounts, the account exists "virtually" under a traditional Stellar account address. This address distinguishes between the virtual accounts |
+| **fee_account_muxed**      |                         | If the fee account that sponsors fee is a multiplexed account, the virtual address will be listed here         |
+| **preconditions**          |                         | Validity checks the account can add when submitting a transaction to the network. If the conditions are not met, the transaction fails |
+| **transaction_envelope**   | input_data              | The raw XDR that was submitted to the Stellar Network                                                         |
+| **transaction_result**     | receipt_root            | The raw XDR that is returned from the network after applying the transaction                                  |
+| **transaction_meta**       | input_data              | Raw XDR of ledger state changes based on the application of the transaction                                    |
+| **transaction_fee_meta**   | input_data              |                                                                                                              |
+| **soroban_transaction_data**| traces                 | Host env resource consumption by smart contract transactions                                                  |
+| **transaction_result_code**| traces.error            | Result code that includes error codes for failed transactions                                                 |
+| **inclusion_fee_charged**  | gas_price               | The fee charged for the transaction to be included in the ledger. This is a fixed fee for the entire ledger and starts at a minimum of 100 stroops. The fee increases based on demand |
+| **signatures**             | signature               |                                                                                                              |
+
+**Operations**
+| **Stellar Name**         | **EVM Equivalent**       | **Description**                                                                                              |
+|--------------------------|--------------------------|--------------------------------------------------------------------------------------------------------------|
+| **id**                   |                          | Unique id for the operation                                                                                   |
+| **source_account**        | transaction.from         | The account address that originates the transaction                                                           |
+| **transaction_id**        |                          | Unique ID for the transaction. Bundled operation IDs will share the same Transaction ID                        |
+| **type**                 | transaction.type         | Operation type                                                                                               |
+| **details**              | Mix of input data and traces | Unstructured JSON that contains details based on the type of operation executed. Each operation will return its own relevant details |
+| **operation_result_code** | traces                   |                                                                                                              |
+| **operation_trace_code**  | traces                   |                                                                                                              |
+
+
+### Logs and Traces 
+Events are the mechanism that applications off-chain can use to monitor changes and events in contracts on-chain. Events are an amalgamation of both EVM logs and traces.
+
+Stellar has three types of smart contract events:
+- **contract** - events emitted by contracts to convey state changes
+- **system** - events emitted by the host environment itself
+- **diagnostic** - details transaction traces intended for debugging purposes 
+
+#### Schema Mapping
+| **Stellar Name**               | **EVM Equivalent**      | **Description**                                                                                  |
+|--------------------------------|-------------------------|--------------------------------------------------------------------------------------------------|
+| **type**                       | trace.type              | The type of event emission                                                                       |
+| **ledger**                     | block_number            | The sequence number of the ledger                                                                |
+| **closed_at**                  | block_time              | The timestamp when the ledger was written to the chain                                            |
+| **contract_id**                | contract_address        | String key representation of the contract address                                                |
+| **id**                         | transaction_index       | Unique ID for the event                                                                          |
+| **in_successful_contract_call**| trace.tx_success        | Whether the event was emitted from a successful contract call                                    |
+| **topic**                      | logs.topic_list         | Topic list of events                                                                             |
+| **value**                      | logs.data              | The body values of the topic list                                                                |
+| **transaction_hash**           | trace.tx_hash           | The transaction which triggered this event                                                       |
