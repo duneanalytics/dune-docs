@@ -11,7 +11,138 @@ Operations are objects that represent a desired change to the ledger: payments, 
 
 ## Column Descriptions
 
-COMING SOON
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                    | The date when the operation was closed.                                      | date                                 |
+| **id**                                | The unique identifier for the operation.                                     | bigint                               |
+| **source_account**                    | The account that initiated the operation.                                    | varchar                              |
+| **source_account_muxed**              | The multiplexed source account address, if applicable.                       | varchar                              |
+| **transaction_id**                    | The unique identifier for the transaction that includes the operation.       | bigint                               |
+| **type**                              | The numeric representation of the operation type.                            | bigint                               |
+| **type_string**                       | The string description of the operation type.                                | varchar                              |
+| **closed_at**                         | The timestamp when the operation was closed.                                 | timestamp(3) with time zone          |
+| **operation_result_code**             | The result code indicating the outcome of the operation.                     | varchar                              |
+| **operation_trace_code**              | The trace code detailing the operation's execution.                          | varchar                              |
+| **ledger_sequence**                   | The sequence number of the ledger in which the operation is included.        | bigint                               |
+| **account**                           | The account address associated with the operation.                           | varchar                              |
+| **account_muxed**                     | The multiplexed account address, if applicable.                              | varchar                              |
+| **account_muxed_id**                  | The ID of the multiplexed account, if applicable.                            | varchar                              |
+| **account_id**                        | The unique identifier for the account involved in the operation.             | varchar                              |
+| **amount**                            | The amount of the asset transferred or affected by the operation.            | double                               |
+| **asset**                             | The asset involved in the operation.                                         | varchar                              |
+| **asset_code**                        | The code of the asset involved in the operation.                             | varchar                              |
+| **asset_issuer**                      | The issuer of the asset involved in the operation.                           | varchar                              |
+| **asset_id**                          | The unique identifier for the asset.                                         | bigint                               |
+| **asset_type**                        | The type of asset involved in the operation.                                 | varchar                              |
+| **authorize**                         | A boolean indicating whether authorization was given for the operation.      | boolean                              |
+| **balance_id**                        | The ID of the balance affected by the operation.                             | varchar                              |
+| **buying_asset_code**                 | The code of the asset being bought in the operation.                         | varchar                              |
+| **buying_asset_issuer**               | The issuer of the asset being bought in the operation.                       | varchar                              |
+| **buying_asset_id**                   | The unique identifier for the asset being bought.                            | bigint                               |
+| **buying_asset_type**                 | The type of asset being bought in the operation.                             | varchar                              |
+| **claimable_balance_id**              | The ID of the claimable balance involved in the operation.                   | varchar                              |
+| **claimant**                          | The account address of the claimant.                                         | varchar                              |
+| **claimant_muxed**                    | The multiplexed account of the claimant, if applicable.                      | varchar                              |
+| **claimant_muxed_id**                 | The ID of the multiplexed claimant account, if applicable.                   | varchar                              |
+| **data_account_id**                   | The account ID for the account where data is being modified.                 | varchar                              |
+| **data_name**                         | The name of the data being modified in the operation.                        | varchar                              |
+| **from**                              | The account address sending the asset in the operation.                      | varchar                              |
+| **from_muxed**                        | The multiplexed sender account, if applicable.                               | varchar                              |
+| **from_muxed_id**                     | The ID of the multiplexed sender account, if applicable.                     | varchar                              |
+| **funder**                            | The account funding the operation.                                           | varchar                              |
+| **funder_muxed**                      | The multiplexed funder account, if applicable.                               | varchar                              |
+| **funder_muxed_id**                   | The ID of the multiplexed funder account, if applicable.                     | varchar                              |
+| **high_threshold**                    | The high threshold required for the operation.                               | bigint                               |
+| **home_domain**                       | The home domain associated with the account.                                 | varchar                              |
+| **inflation_dest**                    | The destination account for inflation pools.                                 | varchar                              |
+| **into**                              | The account receiving the asset in the operation.                            | varchar                              |
+| **into_muxed**                        | The multiplexed account receiving the asset, if applicable.                  | varchar                              |
+| **into_muxed_id**                     | The ID of the multiplexed recipient account, if applicable.                  | varchar                              |
+| **limit**                             | The limit of the trustline or balance change.                                | double                               |
+| **low_threshold**                     | The low threshold required for the operation.                                | bigint                               |
+| **master_key_weight**                 | The weight of the master key for signing transactions.                       | bigint                               |
+| **med_threshold**                     | The medium threshold required for the operation.                             | bigint                               |
+| **name**                              | The name associated with the operation or account.                           | varchar                              |
+| **offer_id**                          | The ID of the offer related to the operation.                                | bigint                               |
+| **path**                              | The payment path used in the operation.                                      | array(row("asset_code" varchar,"asset_issuer" varchar,"asset_type" varchar)) |
+| **price**                             | The price of the asset involved in the operation.                            | double                               |
+| **price_r**                           | The rational price of the asset (fraction of numerator and denominator).      | row("d" bigint,"n" bigint)           |
+| **selling_asset_code**                | The code of the asset being sold in the operation.                           | varchar                              |
+| **selling_asset_issuer**              | The issuer of the asset being sold in the operation.                         | varchar                              |
+| **selling_asset_id**                  | The unique identifier for the asset being sold.                              | bigint                               |
+| **selling_asset_type**                | The type of asset being sold in the operation.                               | varchar                              |
+| **set_flags**                         | An array of flags being set by the operation.                                | array(bigint)                        |
+| **set_flags_s**                       | An array of string descriptions for the flags being set.                     | array(varchar)                       |
+| **signer_account_id**                 | The account ID of the signer.                                                | varchar                              |
+| **signer_key**                        | The key of the signer being modified.                                        | varchar                              |
+| **signer_weight**                     | The weight assigned to the signer.                                           | bigint                               |
+| **source_amount**                     | The source amount for the operation.                                         | double                               |
+| **source_asset_code**                 | The code of the source asset in the operation.                               | varchar                              |
+| **source_asset_issuer**               | The issuer of the source asset in the operation.                             | varchar                              |
+| **source_asset_id**                   | The unique identifier for the source asset.                                  | bigint                               |
+| **source_asset_type**                 | The type of source asset in the operation.                                   | varchar                              |
+| **source_max**                        | The maximum amount of the source asset allowed in the operation.             | double                               |
+| **starting_balance**                  | The starting balance for the account in the operation.                       | double                               |
+| **to**                                | The account receiving the asset.                                             | varchar                              |
+| **to_muxed**                          | The multiplexed account receiving the asset, if applicable.                  | varchar                              |
+| **to_muxed_id**                       | The ID of the multiplexed recipient account, if applicable.                  | varchar                              |
+| **trustee**                           | The trustee account involved in the operation.                               | varchar                              |
+| **trustee_muxed**                     | The multiplexed trustee account, if applicable.                              | varchar                              |
+| **trustee_muxed_id**                  | The ID of the multiplexed trustee account, if applicable.                    | varchar                              |
+| **trustline_account_id**              | The account ID associated with the trustline in the operation.               | varchar                              |
+| **trustline_asset**                   | The asset involved in the trustline operation.                               | varchar                              |
+| **trustor**                           | The trustor account in the operation.                                        | varchar                              |
+| **trustor_muxed**                     | The multiplexed trustor account, if applicable.                              | varchar                              |
+| **trustor_muxed_id**                  | The ID of the multiplexed trustor account, if applicable.                    | varchar                              |
+| **value**                             | The value associated with the operation.                                     | varchar                              |
+| **clear_flags**                       | An array of flags being cleared by the operation.                            | array(bigint)                        |
+| **clear_flags_s**                     | An array of string descriptions for the flags being cleared.                 | array(varchar)                       |
+| **destination_min**                   | The minimum destination amount in the operation.                             | varchar                              |
+| **bump_to**                           | The sequence number to which the operation bumps.                            | varchar                              |
+| **authorize_to_maintain_liabilities** | A boolean indicating whether authorization is granted to maintain liabilities. | boolean                            |
+| **clawback_enabled**                  | A boolean indicating whether clawback is enabled for the operation.          | boolean                              |
+| **sponsor**                           | The account sponsoring the operation.                                        | varchar                              |
+| **sponsored_id**                      | The ID of the sponsored account.                                             | varchar                              |
+| **begin_sponsor**                     | The sponsor that initiated the operation.                                    | varchar                              |
+| **begin_sponsor_muxed**               | The multiplexed sponsor account, if applicable.                              | varchar                              |
+| **begin_sponsor_muxed_id**            | The ID of the multiplexed sponsor account, if applicable.                    | varchar                              |
+| **liquidity_pool_id**                 | The liquidity pool ID associated with the operation.                         | varchar                              |
+| **reserve_a_asset_type**              | The type of the first reserve asset in the liquidity pool operation.          | varchar                              |
+| **reserve_a_asset_code**              | The code of the first reserve asset in the liquidity pool operation.          | varchar                              |
+| **reserve_a_asset_issuer**            | The issuer of the first reserve asset in the liquidity pool operation.        | varchar                              |
+| **reserve_a_asset_id**                | The unique identifier for the first reserve asset.                           | bigint                               |
+| **reserve_a_max_amount**              | The maximum amount of the first reserve asset in the operation.              | double                               |
+| **reserve_a_deposit_amount**          | The amount of the first reserve asset deposited in the operation.            | double                               |
+| **reserve_b_asset_type**              | The type of the second reserve asset in the liquidity pool operation.          | varchar                              |
+| **reserve_b_asset_code**              | The code of the second reserve asset in the liquidity pool operation.          | varchar                              |
+| **reserve_b_asset_issuer**            | The issuer of the second reserve asset in the liquidity pool operation.        | varchar                              |
+| **reserve_b_asset_id**                | The unique identifier for the second reserve asset.                          | bigint                               |
+| **reserve_b_max_amount**              | The maximum amount of the second reserve asset in the operation.             | double                               |
+| **reserve_b_deposit_amount**          | The amount of the second reserve asset deposited in the operation.           | double                               |
+| **min_price**                         | The minimum price of the asset in the operation.                             | double                               |
+| **min_price_r**                       | The rational minimum price of the asset (fraction of numerator and denominator). | array(row("d" bigint,"n" bigint))  |
+| **max_price**                         | The maximum price of the asset in the operation.                             | double                               |
+| **max_price_r**                       | The rational maximum price of the asset (fraction of numerator and denominator). | array(row("d" bigint,"n" bigint))  |
+| **shares_received**                   | The number of shares received in the liquidity pool operation.               | double                               |
+| **reserve_a_min_amount**              | The minimum amount of the first reserve asset in the operation.              | double                               |
+| **reserve_a_withdraw_amount**         | The amount of the first reserve asset withdrawn in the operation.            | double                               |
+| **reserve_b_min_amount**              | The minimum amount of the second reserve asset in the operation.             | double                               |
+| **reserve_b_withdraw_amount**         | The amount of the second reserve asset withdrawn in the operation.           | double                               |
+| **shares**                            | The number of shares involved in the liquidity pool operation.               | double                               |
+| **asset_balance_changes**             | An array of asset balance changes related to the operation.                  | array(row("amount" double,"asset_code" varchar,"asset_issuer" varchar,"asset_type" varchar,"from" varchar,"to" varchar,"type" varchar)) |
+| **parameters**                        | An array of parameters associated with the operation.                        | array(row("type" varchar,"value" varchar)) |
+| **parameters_decoded**                | An array of decoded parameters associated with the operation.                | array(row("type" varchar,"value" varchar)) |
+| **function**                          | The function executed in the operation.                                      | varchar                              |
+| **address**                           | The address associated with the operation.                                   | varchar                              |
+| **extend_to**                         | The sequence number to which the operation extends.                          | bigint                               |
+| **contract_id**                       | The contract ID associated with the operation.                               | varchar                              |
+| **contract_code_hash**                | The hash of the contract code associated with the operation.                 | varchar                              |
+| **ledger_key_hash**                   | An array of hashes for the ledger keys associated with the operation.        | array(varchar)                       |
+| **ledgers_to_expire**                 | The number of ledgers until the operation expires.                           | bigint                               |
+| **soroban_operation_type**            | The type of operation for Soroban smart contracts.                           | varchar                              |
+| **updated_at**                        | The time when the operation record was last updated.                         | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the operation data was ingested into the system.               | timestamp(3) with time zone          |
+
 
 ## Table Sample
 

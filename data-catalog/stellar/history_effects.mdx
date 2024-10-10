@@ -11,7 +11,80 @@ Operations are objects that represent a desired change to the ledger: payments, 
 
 ## Column Descriptions
 
-COMING SOON
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                    | The date when the effect was closed.                                         | date                                 |
+| **address**                           | The account address associated with the effect.                              | varchar                              |
+| **address_muxed**                     | The multiplexed address, if applicable.                                      | varchar                              |
+| **operation_id**                      | The unique identifier for the operation that produced the effect.            | bigint                               |
+| **type**                              | The numeric representation of the effect type.                               | bigint                               |
+| **type_string**                       | The string description of the effect type.                                   | varchar                              |
+| **closed_at**                         | The timestamp when the effect was closed.                                    | timestamp(3) with time zone          |
+| **ledger_sequence**                   | The sequence number of the ledger in which the effect is included.           | bigint                               |
+| **index**                             | The index of the effect within the operation.                                | bigint                               |
+| **id**                                | The unique identifier for the effect.                                        | varchar                              |
+| **liquidity_pool**                    | Information about the liquidity pool related to the effect, including fee, ID, reserves, and type. | row("fee_bp" bigint,"id" varchar,"total_shares" decimal(38,9),"total_trustlines" bigint,"type" varchar,"reserves" array(row("asset" varchar,"amount" decimal(38,9)))) |
+| **reserves_received**                 | An array of reserves received in the liquidity pool operation.               | array(row("asset" varchar,"amount" decimal(38,9))) |
+| **reserves_deposited**                | An array of reserves deposited in the liquidity pool operation.              | array(row("asset" varchar,"amount" decimal(38,9))) |
+| **reserves_revoked**                  | An array of revoked reserves in the liquidity pool, including claimable balance IDs. | array(row("asset" varchar,"amount" decimal(38,9),"claimable_balance_id" varchar)) |
+| **bought**                            | An array of assets bought during the operation.                              | array(row("asset" varchar,"amount" decimal(38,9))) |
+| **sold**                              | An array of assets sold during the operation.                                | array(row("asset" varchar,"amount" decimal(38,9))) |
+| **shares_revoked**                    | The number of shares revoked in the liquidity pool.                          | decimal(38,9)                        |
+| **shares_received**                   | The number of shares received in the liquidity pool.                         | decimal(38,9)                        |
+| **shares_redeemed**                   | The number of shares redeemed in the liquidity pool.                         | decimal(38,9)                        |
+| **liquidity_pool_id**                 | The ID of the liquidity pool related to the effect.                          | varchar                              |
+| **balance_id**                        | The ID of the balance affected by the effect.                                | varchar                              |
+| **new_seq**                           | The new sequence number for the account.                                     | bigint                               |
+| **name**                              | The name associated with the effect.                                         | varchar                              |
+| **value**                             | The value associated with the effect.                                        | varchar                              |
+| **trustor**                           | The account ID of the trustor involved in the effect.                        | varchar                              |
+| **limit**                             | The limit associated with the trustline in the effect.                       | decimal(38,9)                        |
+| **inflation_destination**             | The destination account for inflation in the effect.                         | varchar                              |
+| **authorized_flag**                   | A boolean indicating whether the asset was authorized.                       | boolean                              |
+| **auth_immutable_flag**               | A boolean indicating whether the asset is immutable.                         | boolean                              |
+| **authorized_to_maintain_liabilities**| A boolean indicating whether authorization to maintain liabilities was granted. | boolean                            |
+| **auth_revocable_flag**               | A boolean indicating whether the authorization is revocable.                 | boolean                              |
+| **auth_required_flag**                | A boolean indicating whether authorization is required.                      | boolean                              |
+| **auth_clawback_enabled_flag**        | A boolean indicating whether clawback is enabled for the effect.             | boolean                              |
+| **claimable_balance_clawback_enabled_flag** | A boolean indicating whether clawback is enabled for claimable balances.     | boolean                              |
+| **clawback_enabled_flag**             | A boolean indicating whether clawback is enabled for the asset.              | boolean                              |
+| **high_threshold**                    | The high threshold for account signatures.                                   | bigint                               |
+| **med_threshold**                     | The medium threshold for account signatures.                                 | bigint                               |
+| **low_threshold**                     | The low threshold for account signatures.                                    | bigint                               |
+| **home_domain**                       | The home domain associated with the account.                                 | varchar                              |
+| **asset_issuer**                      | The issuer of the asset involved in the effect.                              | varchar                              |
+| **asset**                             | The asset involved in the effect.                                            | varchar                              |
+| **asset_code**                        | The code of the asset involved in the effect.                                | varchar                              |
+| **signer**                            | The signer involved in the effect.                                           | varchar                              |
+| **sponsor**                           | The sponsor of the account or effect.                                        | varchar                              |
+| **new_sponsor**                       | The new sponsor of the account or effect.                                    | varchar                              |
+| **former_sponsor**                    | The former sponsor of the account or effect.                                 | varchar                              |
+| **weight**                            | The weight assigned to the signer.                                           | bigint                               |
+| **public_key**                        | The public key associated with the effect.                                   | varchar                              |
+| **asset_type**                        | The type of asset involved in the effect.                                    | varchar                              |
+| **amount**                            | The amount involved in the effect.                                           | decimal(38,9)                        |
+| **starting_balance**                  | The starting balance of the account in the effect.                           | decimal(38,9)                        |
+| **seller**                            | The account ID of the seller in the effect.                                  | varchar                              |
+| **seller_muxed**                      | The multiplexed account ID of the seller, if applicable.                     | varchar                              |
+| **seller_muxed_id**                   | The ID of the multiplexed seller account.                                    | bigint                               |
+| **offer_id**                          | The ID of the offer involved in the effect.                                  | bigint                               |
+| **sold_amount**                       | The amount of the asset sold in the effect.                                  | decimal(38,9)                        |
+| **sold_asset_type**                   | The type of asset sold in the effect.                                        | varchar                              |
+| **sold_asset_code**                   | The code of the asset sold in the effect.                                    | varchar                              |
+| **sold_asset_issuer**                 | The issuer of the asset sold in the effect.                                  | varchar                              |
+| **bought_amount**                     | The amount of the asset bought in the effect.                                | decimal(38,9)                        |
+| **bought_asset_type**                 | The type of asset bought in the effect.                                      | varchar                              |
+| **bought_asset_code**                 | The code of the asset bought in the effect.                                  | varchar                              |
+| **data_name**                         | The name of the data involved in the effect.                                 | varchar                              |
+| **bought_asset_issuer**               | The issuer of the asset bought in the effect.                                | varchar                              |
+| **entries**                           | An array of entries involved in the effect.                                  | array(varchar)                       |
+| **extend_to**                         | The ledger sequence number to which the effect extends.                      | bigint                               |
+| **contract**                          | The contract associated with the effect.                                     | varchar                              |
+| **contract_event_type**               | The type of contract event associated with the effect.                       | varchar                              |
+| **ledgers_to_expire**                 | The number of ledgers until the effect expires.                              | bigint                               |
+| **updated_at**                        | The time when the effect record was last updated.                            | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the effect data was ingested into the system.                  | timestamp(3) with time zone          |
+
 
 ## Table Sample
 
