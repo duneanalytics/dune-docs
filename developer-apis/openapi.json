@@ -321,17 +321,6 @@
             }
           },
           {
-            "name": "all_chains",
-            "in": "query",
-            "description": "Specify this to get native balances for a long tail of EVM chains, where we don’t support ERC20 assets",
-            "required": false,
-            "deprecated": true,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
             "name": "chain_ids",
             "in": "query",
             "description": "Either 'all' or a comma separated list of chain ids to get balances for",
