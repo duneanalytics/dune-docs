@@ -1,0 +1,96 @@
+---
+title: KAIA Chain Overview  
+icon: "star"  
+sidebarTitle: "Overview"  
+description: KAIA blockchain data on Dune  
+---
+
+## What is KAIA?
+
+KAIA is a highly optimized, BFT-based public blockchain designed to meet the performance and reliability needs of enterprises. With features like immediate finality, high transaction throughput, and EVM compatibility, KAIA provides a robust infrastructure for blockchain applications across industries. 
+
+KAIA’s network architecture and consensus mechanism prioritize security and scalability, making it a preferred choice for businesses looking to deploy fast, cost-effective, and scalable blockchain solutions.
+
+## Key Features of KAIA
+
+KAIA’s infrastructure is built around a few core design goals, ensuring its suitability for enterprise and real-world use cases. These goals drive the performance and flexibility of the blockchain.
+
+### **Immediate Finality and High Throughput**
+KAIA enables 1-second block generation, confirming transactions with immediate finality. The network supports up to **4,000 transactions per second (TPS)**, providing the speed and reliability needed for real-time applications.
+
+### **Low-Cost Transactions**
+KAIA offers transaction costs at approximately 1/10th the price of Ethereum, making it more accessible for businesses and developers looking to scale operations without high gas fees.
+
+### **EVM Compatibility**
+KAIA is fully compatible with the Ethereum Virtual Machine (EVM), supporting Solidity contracts. This makes it easy for Ethereum developers to migrate their applications to KAIA with minimal changes, leveraging familiar tools like Remix, Hardhat, and Foundry.
+
+## Network Architecture
+
+KAIA’s network architecture is divided into three logical subnetworks that work together to ensure high performance, scalability, and efficient resource utilization.
+
+- **Core Cell Network (CCN):** Responsible for transaction verification, block creation, and execution.
+- **Endpoint Node Network (ENN):** Handles API requests and processes data for auxiliary service chains.
+- **Service Chain Network (SCN):** Operates independently while connected to the main chain, enabling scalable dApp development.
+
+### **Node Types in KAIA**
+KAIA employs a tiered architecture with several types of nodes, each serving specific roles:
+
+- **Consensus Node (CN):** Generates blocks and participates in the consensus process.
+- **Proxy Node (PN):** Handles transaction requests and network communication.
+- **Endpoint Node (EN):** Processes API requests and ensures data flow for service chains.
+
+## Consensus Mechanism
+
+KAIA utilizes an optimized version of Istanbul BFT (Practical Byzantine Fault Tolerance) for its consensus. This ensures:
+
+- **Fast Block Finality:** No forks or transaction reversals, providing certainty for real-time applications.
+- **Verifiable Random Function (VRF):** Used for selecting block proposers, adding randomness to enhance security and decentralization.
+
+## Security and Interoperability
+
+KAIA incorporates several security measures to protect the integrity of its network:
+
+- **Validator Key Separation:** Ensures that keys used for validation are kept separate from reward keys, reducing the risk of key theft.
+- **Cross-Chain Compatibility:** EVM compatibility allows KAIA to interoperate with other EVM-based chains, supporting cross-chain transactions and smart contract execution.
+
+## Token Economy
+
+KAIA’s native token, **KAIA**, plays a central role in its economy:
+
+- **Block Rewards:** Distributed to validators and stakers to incentivize network participation.
+- **Inflation Rate:** Initially set at 5.2% annually, with block rewards allocated between creators, stakers, and ecosystem funds to support development and infrastructure.
+
+## Governance and Transparency
+
+KAIA operates with an on-chain governance system where voting power is based on staked KAIA tokens. Governance ensures:
+
+- **Fair Representation:** Voting rights are capped to prevent dominance by large stakeholders.
+- **Delegation Allowed:** Token holders can delegate voting power to trusted representatives.
+- **Transparency:** All governance proposals and transactions are recorded on-chain, ensuring full auditability.
+
+## Why KAIA?
+
+KAIA is built to lead Web3 adoption in Asia by offering high-performance, low-cost infrastructure for businesses of all sizes. It provides real-world asset (RWA) linkage, abundant liquidity support, and convenient development tools, making it an attractive platform for decentralized applications across various sectors.
+
+<CardGroup cols={1}>
+  <Card title="KAIA documentation" icon="link" href="https://docs.kaia.io/learn/">
+    Access comprehensive documentation for KAIA, providing detailed insights into its zk-Rollup technology, platform architecture, and how to build on it.
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Detailed event logs from smart contracts, offering insights into contract interactions and the dynamics of kaia's zk-Rollup operations.
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on blocks processed through kaia’s zk-Rollups, illustrating the network's enhanced throughput and scalability.
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Extensive transaction data, highlighting the efficiency and reduced costs of operations on kaia.
+  </Card>
+  <Card title="decoded" icon="file" href="./decoded/overview">
+    Decoded transaction data for easier analysis and deeper understanding of smart contract executions on the kaia network.
+  </Card>
+</CardGroup>

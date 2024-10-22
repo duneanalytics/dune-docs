@@ -847,6 +847,48 @@
           ]
         },
         {
+          "group": "KAIA",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/kaia/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/kaia/raw/blocks",
+                "data-catalog/evm/kaia/raw/creation-traces",
+                "data-catalog/evm/kaia/raw/logs",
+                "data-catalog/evm/kaia/raw/transactions",
+                "data-catalog/evm/kaia/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/kaia/decoded/overview",
+                "data-catalog/evm/kaia/decoded/call-tables",
+                "data-catalog/evm/kaia/decoded/event-logs",
+                "data-catalog/evm/kaia/decoded/contracts",
+                "data-catalog/evm/kaia/decoded/logs-decoded",
+                "data-catalog/evm/kaia/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": ["data-catalog/evm/kaia/curated-data/dex/dex-trades"]
+                },
+                {
+                  "group": "NFT",
+                  "pages": ["data-catalog/evm/kaia/curated-data/nft/nft-trades"]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Linea",
           "icon": "database",
           "iconType": "solid",
