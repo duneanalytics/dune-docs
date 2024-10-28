@@ -1141,6 +1141,52 @@
           ]
         },
         {
+          "group": "Ronin",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/ronin/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/ronin/raw/blocks",
+                "data-catalog/evm/ronin/raw/creation-traces",
+                "data-catalog/evm/ronin/raw/logs",
+                "data-catalog/evm/ronin/raw/transactions",
+                "data-catalog/evm/ronin/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/ronin/decoded/overview",
+                "data-catalog/evm/ronin/decoded/call-tables",
+                "data-catalog/evm/ronin/decoded/event-logs",
+                "data-catalog/evm/ronin/decoded/contracts",
+                "data-catalog/evm/ronin/decoded/logs-decoded",
+                "data-catalog/evm/ronin/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/ronin/curated-data/dex/dex-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/ronin/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Scroll",
           "icon": "database",
           "iconType": "solid",
