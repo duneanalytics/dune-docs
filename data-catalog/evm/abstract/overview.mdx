@@ -1,0 +1,69 @@
+---
+title: Abstract Chain Overview  
+icon: "star"  
+sidebarTitle: "Overview"  
+description: Abstract blockchain data on Dune  
+---
+
+## What is Abstract?
+
+Abstract is a Layer 2 (L2) network built on top of Ethereum, designed to securely support consumer-facing blockchain applications at scale. Utilizing zero-knowledge (ZK) rollup technology, Abstract achieves low fees and fast transaction speeds by processing transactions off-chain, then batching and verifying them on Ethereum using ZK proofs.
+
+With EVM compatibility, Abstract allows developers to port existing Ethereum applications with minimal adjustments, providing an Ethereum-like environment but with optimized scalability and reduced costs.
+
+## Key Features of Abstract
+
+Abstract's infrastructure is built with a focus on scalability, security, and developer accessibility, offering several powerful features:
+
+### **Layer 2 ZK Rollup Architecture**
+Abstract batches transactions off-chain and posts them to Ethereum for security, inheriting Ethereum’s security properties while enabling faster, more cost-effective transactions. This ZK rollup structure ensures that all state transitions are verified without executing transactions on Ethereum.
+
+### **EVM Compatibility with Optimized VM**
+Abstract maintains compatibility with the Ethereum ecosystem, allowing developers to use familiar tools. However, Abstract's ZKsync VM utilizes optimized bytecode and opcodes to facilitate efficient ZK proof generation, offering unique ways for developers to build scalable applications.
+
+### **Lower Gas Fees and Higher Throughput**
+Gas fees on Abstract are significantly lower than on Ethereum, thanks to batch processing and ZK proofing. This reduction in transaction costs, coupled with high throughput, makes Abstract ideal for high-demand applications.
+
+## Transaction Lifecycle
+
+Each transaction on Abstract undergoes a lifecycle that includes four key stages:
+
+1. **Processing on Abstract**: Transactions are executed on Abstract, and soft confirmation is provided to the user.
+2. **Batch Submission to Ethereum**: Transactions are batched and committed to Ethereum in optimized submissions.
+3. **Proof Validation**: A ZK proof validating the batch is generated off-chain and verified by Ethereum.
+4. **State Finalization**: Once verified, the state is finalized, ensuring transaction accuracy on Ethereum.
+
+## EVM Differences
+
+While compatible with Ethereum’s development environment, Abstract’s ZKsync VM introduces specific changes for optimized performance:
+
+- **Opcode Adjustments**: Certain opcodes are modified or supplemented by system contracts.
+- **Gas Fee Management**: Fees and refunds are handled differently via Abstract’s bootloader.
+- **Nonces and Libraries**: Nonces are stored within smart contract accounts, and library handling is adapted for efficiency.
+
+## Why Abstract?
+
+Abstract combines Ethereum’s security with the scalability of ZK rollups, making it ideal for applications requiring high throughput and low transaction costs. This enables developers to build consumer-ready dApps without sacrificing speed, cost-efficiency, or security.
+
+<CardGroup cols={1}>
+  <Card title="Abstract documentation" icon="link" href="https://docs.abs.xyz/overview">
+    Access full documentation for Abstract, including architecture, EVM differences, and best practices.
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Smart contract event logs with insights into Abstract’s ZK rollup dynamics.
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on processed blocks, highlighting Abstract’s throughput.
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Data on transactions, illustrating Abstract's cost-effective operation.
+  </Card>
+  <Card title="Decoded" icon="file" href="./decoded/overview">
+    Decoded transaction data for in-depth analysis of contract executions.
+  </Card>
+</CardGroup>
