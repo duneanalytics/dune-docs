@@ -1319,6 +1319,52 @@
           ]
         },
         {
+          "group": "Viction",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/viction/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/viction/raw/blocks",
+                "data-catalog/evm/viction/raw/creation-traces",
+                "data-catalog/evm/viction/raw/logs",
+                "data-catalog/evm/viction/raw/transactions",
+                "data-catalog/evm/viction/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/viction/decoded/overview",
+                "data-catalog/evm/viction/decoded/call-tables",
+                "data-catalog/evm/viction/decoded/event-logs",
+                "data-catalog/evm/viction/decoded/contracts",
+                "data-catalog/evm/viction/decoded/logs-decoded",
+                "data-catalog/evm/viction/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/viction/curated-data/dex/dex-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/viction/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "World Chain",
           "icon": "database",
           "iconType": "solid",
