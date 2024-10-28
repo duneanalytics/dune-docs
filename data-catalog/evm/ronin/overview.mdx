@@ -1,0 +1,74 @@
+---
+title: Ronin Chain Overview  
+icon: "star"  
+sidebarTitle: "Overview"  
+description: Ronin blockchain data on Dune  
+---
+
+## What is Ronin?
+
+Ronin is an EVM-based blockchain purpose-built for gaming, created by Sky Mavis, the team behind Axie Infinity. As one of the few blockchains capable of scaling a single game to millions of daily active users, Ronin powers the vibrant Axie Infinity ecosystem and has processed over $4 billion in NFT volumes. With near-instant transactions and minimal fees, Ronin is optimized to support the high demand of Web3 gaming experiences.
+
+## Key Features of Ronin
+
+Ronin’s infrastructure focuses on performance, scalability, and seamless user experience for in-game transactions, making it the top choice for Web3 games.
+
+### **Scalability and Gaming Optimization**
+Ronin has demonstrated its ability to scale, processing 15% of the global NFT trading volume at its peak and handling millions of daily users in the Axie Infinity ecosystem. It prioritizes only high-quality applications and maintains high uptime, ensuring a spam-free, optimized gaming environment.
+
+### **Low-Cost Transactions**
+With negligible transaction fees, Ronin makes it feasible for users to perform frequent in-game transactions, eliminating cost barriers for players and developers alike.
+
+### **EVM Compatibility**
+As an EVM-compatible chain, Ronin allows developers familiar with Ethereum to migrate applications easily, benefiting from tools like Remix, Hardhat, and Foundry.
+
+## Network Architecture
+
+Ronin’s architecture is designed to support high-performance gaming applications with an emphasis on minimal latency and cost-effectiveness. It also supports selective onboarding of apps, preserving quality across the ecosystem.
+
+- **Gaming-Focused Environment:** Allows only high-quality applications to join, reducing bloat and increasing uptime.
+- **Security Measures:** Incorporates advanced security measures following past challenges, including zero-trust architecture and rigorous internal security practices.
+
+## Consensus Mechanism
+
+Ronin initially adopted a **Proof of Authority (PoA)** consensus, relying on a trusted validator set selected by Sky Mavis and the community. To increase decentralization, Ronin transitioned in 2023 to **Delegated Proof of Stake (DPoS)**, allowing any RON token holder to participate in validator selection, creating a more community-driven governance model.
+
+- **Block Production and Finality Voting:** Validators are selected to produce blocks and vote for finality, with weighted voting based on staked RON.
+- **Rotating Validators:** Introduced in July 2024, ensuring all validators have block production opportunities and receive rewards, fostering greater inclusivity.
+
+## Security and Slashing Mechanism
+
+Ronin has implemented robust security measures, including slashing penalties for validators who act maliciously or are frequently unavailable. The credit score and bailout system enables validators to recover from unexpected downtime, while tiered penalties discourage continuous underperformance.
+
+- **Double Signing Penalties:** Validators involved in double-signing or publishing contradictory votes are permanently jailed and face RON slashing.
+- **Validator Credit Score:** A unique system allows validators to earn credits daily, which can be used to bail out of jail in case of unexpected downtime.
+
+## Token Economy
+
+The native token, **RON**, is central to Ronin's economy, supporting validator incentives and governance:
+
+- **Staking and Rewards:** Validators and delegators earn rewards through block production and finality voting.
+- **Governance Participation:** Token holders can delegate stake to preferred validators, enhancing decentralization.
+
+<CardGroup cols={1}>
+  <Card title="Ronin documentation" icon="link" href="https://docs.roninchain.com/">
+    Access comprehensive documentation for Ronin, covering details on its consensus mechanisms, security features, and how to build on the network.
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Access logs of in-game transactions and other activities on Ronin, providing insight into the chain’s high transaction volume.
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on block production and finality, illustrating Ronin's ability to handle gaming-scale operations.
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Transaction data with a focus on minimal fees, showing how Ronin enables smooth in-game interactions.
+  </Card>
+  <Card title="decoded" icon="file" href="./decoded/overview">
+    Decoded transaction data, making it easier to analyze in-game economies and smart contract interactions.
+  </Card>
+</CardGroup>
