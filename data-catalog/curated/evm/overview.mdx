@@ -1,0 +1,101 @@
+---
+title: EVM Curated Data
+sidebarTitle: Overview
+icon: "star"
+description: Curated EVM data tables providing simplified access to blockchain data across all EVM networks
+---
+
+## Overview
+
+Dune provides curated data tables for EVM networks that make it easier to analyze and understand blockchain activity. These tables are built and maintained by Dune and the community to provide clean, standardized data that's ready for analysis across multiple EVM-compatible networks.
+
+## Available Datasets
+
+<CardGroup cols={2}>
+  <Card title="Asset Tracking" icon="piggy-bank" href="/data-catalog/curated/evm/asset-tracking/overview">
+    Track native tokens andERC20, ERC721 and ERC1155 tokens and NFTs
+  </Card>
+  <Card title="DEX" icon="chart-line" href="/data-catalog/curated/evm/DEX/overview">
+    Analyze decentralized exchange activity including DEX trades across protocols, aggregator trades, and sandwich attacks
+  </Card>
+  <Card title="NFT" icon="image" href="/data-catalog/curated/evm/NFT/overview">
+    Track NFT market activity including NFT trades, NFT mints, and wash trading detection
+  </Card>
+</CardGroup>
+
+## Asset Tracking Tables
+
+The asset tracking tables provide comprehensive data about tokens and NFTs:
+
+| Table | Description |
+|-------|-------------|
+| `tokens.transfers` | Transfer events for ERC20 tokens and native currencies |
+| `tokens.erc20` | Metadata for ERC20 tokens including name, symbol, decimals |
+| `tokens_<chain>.balances` | Current token balances by address |
+| `nft.transfers` | Transfer events for ERC721 and ERC1155 tokens |
+
+## DEX Tables
+
+The DEX tables capture decentralized exchange activity:
+
+| Table | Description |
+|-------|-------------|
+| `dex.trades` | Individual trades across DEX protocols |
+| `dex_aggregator.trades` | Trades routed through aggregators |
+| `dex.sandwiches` | Detected sandwich attack trades |
+| `dex.sandwiched` | Victims of sandwich attacks |
+
+## NFT Market Tables
+
+The NFT tables track NFT market activity:
+
+| Table | Description |
+|-------|-------------|
+| `nft.trades` | NFT sales across marketplaces |
+| `nft.mints` | NFT minting events |
+| `nft.wash_trades` | Detected wash trading activity |
+
+## Example Query
+
+Here's a simple query to analyze daily DEX trading volume:
+
+```sql
+SELECT 
+    blockchain,
+    date_trunc('day', block_time) as date,
+    COUNT(*) as num_trades,
+    SUM(amount_usd) as volume_usd
+FROM dex.trades
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1, 2
+ORDER BY 2 DESC, 1
+```
+
+import { QueryContainer } from "/snippets/query-container.mdx";
+
+<QueryContainer queryText="SELECT blockchain, date_trunc('day', block_time) as date, COUNT(*) as num_trades, SUM(amount_usd) as volume_usd FROM dex.trades WHERE block_time >= NOW() - INTERVAL '30' day GROUP BY 1, 2 ORDER BY 2 DESC, 1" />
+
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card
+    title="Spellbook Models"
+    icon="github"
+    href="https://github.com/duneanalytics/spellbook/"
+  >
+    View the source code for EVM curated data models
+  </Card>
+</CardGroup>
+
+## Coverage and Limitations
+
+The EVM curated tables aim to provide comprehensive coverage of on-chain activity, but there are some limitations to be aware of:
+
+- Token transfers are captured through standard ERC20/721/1155 events
+- Some non-standard token implementations may not be fully captured
+- DEX coverage includes major protocols but may not capture all DEX activity
+- Data is typically available with a short delay after on-chain finality
+- Coverage may vary by chain and protocol
+
+For the most up-to-date coverage information, please check the documentation for each specific table. 

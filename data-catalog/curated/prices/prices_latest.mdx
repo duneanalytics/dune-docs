@@ -1,0 +1,47 @@
+---
+title: Latest Prices
+icon: money-bill
+description: Deprecated table for latest token prices - use prices.minute for current data
+---
+
+# Prices USD Latest (Legacy)
+
+<Warning>
+    While this table remains functional for existing tokens, no new tokens will be added. For complete coverage including new tokens, please use `prices.minute`, `prices.hour`, or `prices.day` tables instead.
+</Warning>
+
+The `prices.usd_latest` table is a legacy table that was previously used for latest price data. While still accessible for historical purposes, new queries should use the modern price tables.
+
+## Modern Alternatives
+
+For current price data, use:
+- `prices.minute` for real-time prices
+- `prices.hour` for hourly aggregates
+- `prices.day` for daily prices
+
+Example query using modern tables:
+
+```sql
+-- For latest prices, use prices.minute with recent timestamp
+SELECT 
+    symbol, 
+    price 
+FROM prices.minute
+WHERE blockchain = 'ethereum'
+    AND symbol = 'WETH'
+    AND timestamp >= NOW() - INTERVAL '5' MINUTE
+ORDER BY timestamp DESC
+LIMIT 1
+```
+
+## Legacy Table Structure
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | The unique identifier of the token |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`           | _double_    | The latest price of the asset in USD          |
+| `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
+
+For more information about the current price feed, please refer to the [Prices Overview](/data-catalog/curated/prices/overview).
+

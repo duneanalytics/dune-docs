@@ -1,0 +1,41 @@
+---
+title: Hourly Prices
+icon: clock
+description: Historical hourly price data for tokens across all supported blockchains
+---
+
+# Prices.hour
+
+The `prices.hour` table provides hourly price data for tokens across multiple blockchains.
+
+## Table Structure
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | Unique identifier of the token (contract address for ERC20, mint address for Solana, null for native currencies) |
+| `blockchain`       | _varchar_   | The blockchain on which the token exists      |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`            | _double_    | The hourly price of the asset in USD          |
+| `timestamp`        | _timestamp_ | The timestamp for which this price is reported |
+
+## Usage
+
+This table is useful for intraday analysis and tracking price movements with higher granularity than daily data. It's suitable for examining price patterns within a day or across multiple days.
+
+## Example Query
+
+```sql
+SELECT 
+    contract_address,
+    blockchain,
+    symbol,
+    price,
+    timestamp
+FROM prices.hour
+```
+
+## Notes
+
+- Hourly data provides a good balance between granularity and query performance for short to medium-term analyses.
+- As with all price tables, always use `contract_address` and `blockchain` for precise token identification.
+- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).

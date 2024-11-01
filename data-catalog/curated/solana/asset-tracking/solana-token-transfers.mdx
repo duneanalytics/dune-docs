@@ -49,6 +49,7 @@ SELECT
         WHEN to_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' THEN 'Incoming'
     END AS direction,
     amount,
+    amount_usd,
     token_mint_address
 FROM tokens_solana.transfers
 WHERE (from_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' OR to_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ')

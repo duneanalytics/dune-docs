@@ -1,0 +1,88 @@
+---
+title: Prices
+icon: circle-dollar
+description: Token price data across multiple blockchains
+---
+
+# Price Tables
+
+Dune provides price data at multiple time resolutions to balance query performance and data granularity. Choose the appropriate table based on your needs:
+
+- Use `prices.minute` for real-time analysis and examining short-term price movements
+- Use `prices.hour` for intraday patterns and medium-term trends
+- Use `prices.day` for long-term analysis and optimal query performance
+
+For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be resource-intensive.
+
+## Available Tables
+
+| Table | Granularity | Update Frequency | Aggregation Time |
+|-------|-------------|------------------|------------------|
+| `prices.minute` | 1 minute | Real-time | Current minute |
+| `prices.hour` | 1 hour | Hourly | Start of hour |
+| `prices.day` | 1 day | Daily | 00:00 UTC |
+
+## Schema
+
+All price tables share the following schema:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `contract_address` | _varbinary_ | Token identifier (ERC20 contract address, Solana mint address, null for natives) |
+| `blockchain` | _varchar_ | Network identifier |
+| `symbol` | _varchar_ | Token symbol |
+| `price` | _double_ | USD price |
+| `timestamp` | _timestamp_ | Price timestamp |
+
+## Data Sources & Processing
+
+### Step 1: Trusted Token Prices
+1. Source: Coin Paprika API
+2. Covers major tokens defined in `prices.trusted_tokens`
+3. Used as base prices for DEX pair calculations
+
+### Step 2: DEX-Derived Prices
+1. Raw trade data from `dex.trades`
+2. Token pairs priced against trusted tokens
+3. Processing pipeline:
+   - Filter trades with < $10,000 USD total volume
+   - Calculate median price per block (50th percentile)
+   - Derive USD prices using trusted token prices as base
+   - Compute VWAP (Volume Weighted Average Price) per interval
+   - Remove outliers (>1000% change from previous period)
+   - Forward-fill gaps until next valid trade
+
+### Example
+For a USDC/TOKEN pair:
+1. Get USDC price from trusted tokens
+2. Use DEX trade `amount_usd` = amount_token * trusted_token_price
+3. Apply processing pipeline to calculate final TOKEN price
+
+## Coverage
+
+- 180,000+ unique tokens
+- 700,000+ contract addresses
+- 20+ blockchains
+- Automatic inclusion of new tokens exceeding $10k volume threshold
+- Coverage relies on `dex.trades` integration
+
+## Technical Notes
+
+- Prices are calculated independently per blockchain
+- Prices are aggregated across all liquidity pools per blockchain
+- Token identification requires both `contract_address` AND `blockchain`
+- `symbol` is not unique - do not use for token identification
+
+
+
+
+
+## Legacy Tables
+
+The following tables are maintained for historical compatibility but are no longer updated:
+- `prices.usd`
+- `prices.usd_daily`
+- `prices.usd_latest`
+
+Legacy coverage: ~2,800 tokens, ~3,600 contract addresses, 22 blockchains
+

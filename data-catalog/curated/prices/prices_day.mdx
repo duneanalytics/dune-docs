@@ -1,0 +1,47 @@
+---
+title: Daily Prices
+icon: calendar-day
+description: Historical daily price data for tokens across all supported blockchains, aggregated at 00:00 UTC
+---
+
+# Prices.day
+
+The `prices.day` table provides daily price data for tokens across multiple blockchains, aggregated at 00:00 UTC.
+
+## Table Structure
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | Unique identifier of the token (contract address for ERC20, mint address for Solana, null for native currencies) |
+| `blockchain`       | _varchar_   | The blockchain on which the token exists      |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`            | _double_    | The daily price of the asset in USD           |
+| `timestamp`        | _timestamp_ | The timestamp for which this price is reported (00:00 UTC) |
+
+## Usage
+
+This table is ideal for analyzing daily price trends and performing day-over-day comparisons. It provides a good balance between data granularity and query performance for longer-term analyses.
+
+## Example Query
+
+```sql
+SELECT 
+    contract_address,
+    blockchain,
+    symbol,
+    price,
+    timestamp
+FROM prices.day
+WHERE 
+    blockchain = 'ethereum' 
+    AND symbol = 'WETH'
+    AND timestamp >= DATE '2023-01-01'
+ORDER BY timestamp asc
+```
+
+## Notes
+
+- Prices are calculated on a per-chain basis.
+- For tokens not in the trusted token list, prices may differ across chains.
+- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique.
+- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).
