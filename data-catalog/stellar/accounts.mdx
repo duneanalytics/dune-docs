@@ -1,0 +1,48 @@
+---
+title: stellar.accounts
+sidebarTitle: "Accounts"
+description: Description of the accounts table on Dune
+---
+
+## Table description
+This table tracks the native token (Lumens) balances held by accounts. 
+
+Accounts are the central data structure in Stellar- they hold balances, sign transactions, and issue assets. Accounts can only exist with a valid keypair and the required minimum balance of XLM.
+
+## Column Descriptions
+
+| **Column**                                | **Description**                                                              | **Type**                              |
+| ------------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                        | The date when the account's ledger entry was closed.                         | date                                 |
+| **account_id**                            | The unique identifier for the Stellar account.                               | varchar                              |
+| **balance**                               | The current balance of lumens (XLM) in the account.                          | double                               |
+| **buying_liabilities**                    | The total liabilities for buying offers on the account.                      | double                               |
+| **selling_liabilities**                   | The total liabilities for selling offers on the account.                     | double                               |
+| **sequence_number**                       | The current sequence number of the account, incremented with each transaction. | bigint                              |
+| **num_subentries**                        | The number of subentries, such as trustlines or offers, associated with the account. | bigint                              |
+| **inflation_destination**                 | The destination account for inflation pools (deprecated feature).            | varchar                              |
+| **flags**                                 | A set of flags representing various account properties like authorization.   | bigint                               |
+| **home_domain**                           | The home domain associated with the account, used for federation or verifying asset issuers. | varchar                        |
+| **master_weight**                         | The weight of the account's master key used for signing transactions.        | bigint                               |
+| **threshold_low**                         | The threshold level required for low-priority operations (e.g., payments).   | bigint                               |
+| **threshold_medium**                      | The threshold level required for medium-priority operations (e.g., trustlines). | bigint                            |
+| **threshold_high**                        | The threshold level required for high-priority operations (e.g., multisig transactions). | bigint                          |
+| **last_modified_ledger**                  | The ledger sequence number where the account was last modified.              | bigint                               |
+| **ledger_entry_change**                   | Indicates the type of change made to the ledger entry (insert, update, delete). | bigint                            |
+| **deleted**                               | A boolean indicating whether the account has been deleted from the ledger.   | boolean                              |
+| **sponsor**                               | The account that is sponsoring this account’s resources.                     | varchar                              |
+| **num_sponsored**                         | The number of subentries sponsored by this account.                          | bigint                               |
+| **num_sponsoring**                        | The number of subentries this account is sponsoring.                         | bigint                               |
+| **sequence_time**                         | The time when the sequence number was last updated.                          | timestamp(3) with time zone          |
+| **closed_at**                             | The timestamp when the account was last closed.                              | timestamp(3) with time zone          |
+| **ledger_sequence**                       | The sequence number of the ledger in which the account is included.          | bigint                               |
+| **account_sequence_last_modified_ledger** | The last ledger sequence where the account's sequence number was modified.   | bigint                               |
+| **updated_at**                            | The time when the account record was last updated.                           | timestamp(3) with time zone          |
+| **ingested_at**                           | The time when the account data was ingested into the system.                 | timestamp(3) with time zone          |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="stellar" tableName="accounts" />

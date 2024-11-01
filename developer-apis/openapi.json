@@ -321,17 +321,6 @@
             }
           },
           {
-            "name": "all_chains",
-            "in": "query",
-            "description": "Specify this to get native balances for a long tail of EVM chains, where we don’t support ERC20 assets",
-            "required": false,
-            "deprecated": true,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
             "name": "chain_ids",
             "in": "query",
             "description": "Either 'all' or a comma separated list of chain ids to get balances for",
@@ -355,6 +344,16 @@
             "name": "filters",
             "in": "query",
             "description": "Specify `ERC20` or `NATIVE` to get only ERC20 tokens or native assets, respectively",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "metadata",
+            "in": "query",
+            "description": "A comma separated list of additional metadata fields to include for each token. Supported values: `logo`, `url`",
             "required": false,
             "schema": {
               "type": "string",
@@ -796,6 +795,14 @@
             "type": "string",
             "nullable": true
           },
+          "token_metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenMetadata"
+              }
+            ],
+            "nullable": true
+          },
           "value_usd": {
             "type": "number",
             "format": "double",
@@ -1050,6 +1057,19 @@
       },
       "Token": {
         "type": "object"
+      },
+      "TokenMetadata": {
+        "type": "object",
+        "properties": {
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
       },
       "TransactionBase": {
         "type": "object",

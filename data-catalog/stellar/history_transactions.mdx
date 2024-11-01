@@ -1,0 +1,64 @@
+---
+title: stellar.history_transactions
+sidebarTitle: "History Transactions"
+description: Description of the history_transactions table on Dune
+---
+
+## Table description
+Contains transaction details, linking to multiple operations within a transaction.
+
+## Column Descriptions
+
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                    | The date when the transaction was closed.                                    | date                                 |
+| **id**                                | The unique identifier for the transaction.                                   | bigint                               |
+| **transaction_hash**                  | The hash of the transaction, in binary format.                               | varbinary                            |
+| **ledger_sequence**                   | The sequence number of the ledger in which the transaction is included.      | bigint                               |
+| **account**                           | The account address that originated the transaction.                         | varchar                              |
+| **account_sequence**                  | The source account's sequence number that this transaction consumed.         | bigint                               |
+| **max_fee**                           | The maximum fee that the account was willing to pay for the transaction.      | bigint                               |
+| **operation_count**                   | The number of operations contained within this transaction.                  | bigint                               |
+| **created_at**                        | The timestamp when the transaction was created.                              | timestamp(3) with time zone          |
+| **memo_type**                         | The type of memo attached to the transaction (e.g., text, id, hash).         | varchar                              |
+| **memo**                              | The optional unstructured memo data attached to the transaction.             | varchar                              |
+| **time_bounds**                       | The optional UNIX timestamp of the lower and upper bounds for when the transaction will be valid. | varchar       |
+| **successful**                        | Indicates if the transaction succeeded.                                      | boolean                              |
+| **fee_charged**                       | The fee charged for executing the transaction.                               | bigint                               |
+| **inner_transaction_hash**            | The hash of a transaction wrapped with its signatures for fee-bump transactions. | varbinary                        |
+| **fee_account**                       | The account that paid for the transaction fees, which may differ from the originating account. | varchar       |
+| **new_max_fee**                       | The maximum fee that the fee-payer is willing to pay for the transaction's fees. | bigint                           |
+| **account_muxed**                     | The virtual account address under a traditional Stellar account (multiplexed account). | varchar                     |
+| **fee_account_muxed**                 | The virtual address of the fee-paying account if it is a multiplexed account. | varchar                              |
+| **ledger_bounds**                     | Optional restrictions on the ledger range within which the transaction is valid. | varchar                          |
+| **min_account_sequence**              | The minimum account sequence number required for this transaction to be valid. | bigint                           |
+| **min_account_sequence_age**          | The minimum age (in seconds) of the sequence number.                         | bigint                               |
+| **min_account_sequence_ledger_gap**   | The minimum number of ledgers between this transaction and the account's last transaction. | bigint                         |
+| **tx_envelope**                       | The raw XDR of the transaction that was submitted.                           | varchar                              |
+| **tx_result**                         | The raw XDR of the transaction result after execution.                       | varchar                              |
+| **tx_meta**                           | The raw XDR of the ledger state changes based on the transaction.            | varchar                              |
+| **tx_fee_meta**                       | The raw XDR of the fee changes associated with the transaction.              | varchar                              |
+| **extra_signers**                     | Any additional signers attached to the transaction (array of addresses).     | array(varchar)                       |
+| **resource_fee**                      | The resource fee charged for executing the transaction.                      | bigint                               |
+| **soroban_resources_instructions**    | The number of instructions used in Soroban smart contracts during the transaction. | bigint                         |
+| **soroban_resources_read_bytes**      | The number of bytes read during Soroban smart contract execution.            | bigint                               |
+| **soroban_resources_write_bytes**     | The number of bytes written during Soroban smart contract execution.         | bigint                               |
+| **closed_at**                         | The timestamp when the transaction was closed.                               | timestamp(3) with time zone          |
+| **transaction_result_code**           | The result code that includes error codes for failed transactions.           | varchar                              |
+| **inclusion_fee_bid**                 | The fee bid by the account to include the transaction in the ledger.          | bigint                              |
+| **inclusion_fee_charged**             | The actual fee charged for the transaction to be included in the ledger.     | bigint                               |
+| **resource_fee_refund**               | The refunded portion of the resource fee.                                    | bigint                               |
+| **non_refundable_resource_fee_charged**| The portion of the resource fee that is non-refundable.                      | bigint                               |
+| **refundable_resource_fee_charged**   | The portion of the resource fee that can be refunded.                        | bigint                               |
+| **rent_fee_charged**                  | The fee charged for rent of contract storage or data resources.              | bigint                               |
+| **tx_signers**                        | The array of signers involved in signing the transaction.                    | array(varchar)                       |
+| **refundable_fee**                    | The fee that can be refunded to the account based on transaction execution.  | bigint                               |
+| **updated_at**                        | The time when the transaction record was last updated.                       | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the transaction data was ingested into the system.             | timestamp(3) with time zone          |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="stellar" tableName="history_transactions" />

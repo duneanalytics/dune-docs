@@ -1,0 +1,47 @@
+---
+title: stellar.trust_lines
+sidebarTitle: "Trustlines"
+description: Description of the trust_lines table on Dune
+---
+
+## Table description
+
+Tracks balances of accounts for non-native tokens (such as USDC or USDT).
+
+Trustlines are an explicit opt-in for an account to hold and trade a particular asset. To hold a specific asset, an account must establish a trustline with the issuing account using the change_trust operation. Trustlines track the balance of an asset and can also limit the amount of an asset that an account can hold.
+
+A trustline must be established for an account to receive any asset except lumens (XLM). You can create a claimable balance to send assets to an account without a trustline, but the recipient has to create a trustline to claim that balance. Learn more here: Claimable Balances Encyclopedia Entry
+
+A trustline also tracks liabilities. Buying liabilities equal the total amount of the asset offered to buy aggregated over all offers owned by an account, and selling liabilities equal the total amount of the asset offered to sell aggregated over all offers owned by an account. A trustline must always have a balance sufficiently large to satisfy its selling liabilities and a balance sufficiently below its limit to accommodate its buying liabilities.
+
+## Column Descriptions
+
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **ledger_key**                        | The unique identifier for the trustline entry in the ledger.                 | varchar                              |
+| **account_id**                        | The account address associated with the trustline.                           | varchar                              |
+| **asset_type**                        | The type of asset for which the trustline is established (e.g., native, issued). | varchar                          |
+| **asset_issuer**                      | The issuer of the asset for which the trustline is established.              | varchar                              |
+| **asset_code**                        | The code of the asset for which the trustline is established.                | varchar                              |
+| **asset_id**                          | The unique identifier for the asset in the trustline.                        | bigint                               |
+| **liquidity_pool_id**                 | The identifier of the liquidity pool related to the trustline, if applicable. | varchar                              |
+| **balance**                           | The balance of the asset held by the account in the trustline.               | double                               |
+| **trust_line_limit**                  | The maximum balance of the asset that the account is willing to hold via the trustline. | bigint                         |
+| **buying_liabilities**                | The total liabilities for buying offers on the account for this trustline.   | double                               |
+| **selling_liabilities**               | The total liabilities for selling offers on the account for this trustline.  | double                               |
+| **flags**                             | A set of flags representing various properties of the trustline, such as authorization requirements. | bigint                      |
+| **last_modified_ledger**              | The ledger sequence number where the trustline entry was last modified.      | bigint                               |
+| **ledger_entry_change**               | Indicates the type of change made to the ledger entry (insert, update, delete). | bigint                            |
+| **deleted**                           | A boolean indicating whether the trustline entry has been deleted from the ledger. | boolean                       |
+| **sponsor**                           | The account that is sponsoring this trustline's resources.                   | varchar                              |
+| **closed_at**                         | The timestamp when the trustline entry was closed.                           | timestamp(3) with time zone          |
+| **ledger_sequence**                   | The sequence number of the ledger in which the trustline entry is included.  | bigint                               |
+| **updated_at**                        | The time when the trustline record was last updated.                         | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the trustline data was ingested into the system.               | timestamp(3) with time zone          |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="stellar" tableName="trust_lines" />

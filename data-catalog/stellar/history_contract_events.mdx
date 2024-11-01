@@ -1,0 +1,36 @@
+---
+title: stellar.history_contract_events
+sidebarTitle: "History Contract Events"
+description: Description of the history_contract_events table on Dune
+---
+
+## Table description
+Captures all smart contract events and traces, with details on contract execution.
+
+## Column Descriptions
+
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                    | The date when the contract event entry was closed.                           | date                                 |
+| **transaction_hash**                  | The hash of the transaction associated with the contract event, in binary format. | varbinary                         |
+| **transaction_id**                    | The unique identifier for the transaction related to the contract event.      | bigint                               |
+| **successful**                        | Indicates whether the transaction associated with the contract event was successful. | boolean                         |
+| **in_successful_contract_call**       | Indicates whether the event occurred during a successful contract call.       | boolean                              |
+| **contract_id**                       | The unique identifier for the smart contract that emitted the event.          | varchar                              |
+| **type**                              | The numeric representation of the event type.                                 | bigint                               |
+| **type_string**                       | The string description of the event type.                                     | varchar                              |
+| **topics**                            | Encoded topics related to the contract event, typically used for filtering and categorizing events. | varchar                      |
+| **topics_decoded**                    | Human-readable or decoded topics related to the contract event.               | varchar                              |
+| **data**                              | The data associated with the contract event, often related to the state changes or values in the contract. | varchar                    |
+| **data_decoded**                      | A human-readable or decoded version of the event data.                        | varchar                              |
+| **contract_event_xdr**                | The raw XDR (External Data Representation) format of the contract event.      | varchar                              |
+| **closed_at**                         | The timestamp when the contract event entry was closed.                       | timestamp(3) with time zone          |
+| **ledger_sequence**                   | The sequence number of the ledger in which the contract event is included.    | bigint                               |
+| **updated_at**                        | The time when the contract event record was last updated.                     | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the contract event data was ingested into the system.           | timestamp(3) with time zone          |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="stellar" tableName="history_contract_events" />

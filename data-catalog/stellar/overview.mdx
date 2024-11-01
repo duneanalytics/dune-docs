@@ -1,0 +1,95 @@
+---
+title: Stellar Data  
+sidebarTitle: "Overview"  
+icon: "star"  
+description: Stellar blockchain data on Dune  
+---
+
+## What is Stellar?
+
+Stellar is an open-source, decentralized blockchain designed for fast, low-cost financial transactions. Built around the Stellar Consensus Protocol (SCP), a unique proof-of-agreement (PoA) mechanism, Stellar focuses on facilitating cross-border payments, asset issuance, and decentralized finance (DeFi) applications. Stellar’s network prioritizes energy efficiency and speed, with transactions confirmed within 5 seconds and the network capable of processing up to 1,000 operations per ledger.
+
+Stellar's native token, the lumen (XLM), plays a key role in maintaining the network’s health by ensuring account activity and discouraging spam through a small transaction fee and minimum balance requirement.
+
+## Key Concepts of Stellar
+
+Stellar’s blockchain architecture and mechanisms are designed for high-speed financial transactions and asset transfers, underpinned by a few critical components that set it apart from other blockchain platforms.
+
+### **Ledger Structure**
+Stellar’s blockchain operates using ledgers, similar to blocks on other blockchains. A ledger records the state of accounts, balances, smart contracts, and other relevant data. Each ledger contains a ledger header, summarizing essential metadata such as the sequence number, transaction fees, and validator signatures.
+
+
+### **Proof-of-Agreement Consensus**
+Stellar uses the Stellar Consensus Protocol (SCP), a proof-of-agreement consensus that enables rapid transaction processing while ensuring decentralization. Unlike proof-of-work (PoW) or proof-of-stake (PoS) models, SCP relies on trusted nodes reaching a consensus through agreement, making Stellar energy-efficient and fast.
+
+### **Accounts and Trustlines**
+Stellar accounts hold **lumen (XLM)** and other token balances via **trustlines**. A trustline is an established link between a user account and a token issuer, allowing the user to hold, send, or receive tokens other than lumens. While **accounts** store native lumens, **trustlines** track the balances of other tokens, including popular assets like USDC and USDT.
+
+### **Token Issuance**
+One of Stellar’s most powerful features is its support for **asset issuance**. Developers can create tokenized assets that represent fiat currencies, commodities, or other real-world value. These assets can be traded on Stellar’s native decentralized exchange (DEX), making Stellar an ideal platform for borderless payments and asset transfers.
+
+### **Transaction Lifecycle & Fees**
+Each Stellar transaction is an atomic operation that can involve multiple **operations**, such as payments, creating accounts, or managing offers on the DEX. Fees are minimal, with the current minimum per-transaction fee being 0.00001 XLM. Stellar’s architecture ensures efficient cross-border transactions with a finality time of around 5 seconds.
+
+### **Smart Contracts**
+Stellar supports smart contracts through a combination of **operations** and **contract data** stored on the ledger. Smart contracts can define various on-chain actions, such as token management or enforcing custom rules for transactions. Stellar's smart contract execution is energy-efficient, focusing on lightweight operations for scalability.
+
+<CardGroup cols={2}>
+  <Card title="Stellar documentation" icon="link" href="https://developers.stellar.org/docs/learn/fundamentals">
+    Explore comprehensive documentation of Stellar, detailing its architecture, protocol, and resources for developers.
+  </Card>
+  <Card title="Stellar data model diagram" icon="wifi" href="https://developers.stellar.org/docs/data/hubble/data-catalog/data-model-diagram">
+    See the relationship between history and state tables in Stellar's data model.
+  </Card>
+</CardGroup>
+
+## Stellar Data on Dune
+
+Stellar blockchain data is categorized into traditional time series tables (e.g., **history_** tables for actions affecting the state of the ledger) and **ledger state** tables (e.g., **accounts**, representing the current state). This division allows users to explore historical actions and current ledger state for deeper analysis. Here are the Stellar tables available on Dune:
+
+<CardGroup cols={2}>
+  <Card title="Accounts" icon="notebook" href="/data-catalog/stellar/accounts">
+    Tracks the native token (Lumens) balances held by accounts. 
+  </Card>
+
+  <Card title="Contract Data" icon="file" href="/data-catalog/stellar/contract_data">
+    Stores state data for smart contracts, including supported tokens and storage costs.
+  </Card>
+
+  <Card title="Trust Lines" icon="right-left-large" href="/data-catalog/stellar/trust_lines">
+    Tracks balances of accounts for non-native tokens (such as USDC or USDT).
+  </Card>
+
+  <Card title="Liquidity Pools" icon="money-bill" href="/data-catalog/stellar/liquidity_pools">
+    Stores data on Stellar’s liquidity pools, such as the type, fee, assets involved etc.
+  </Card>
+
+  <Card title="TTL (Time to Live)" icon="clock" href="/data-catalog/stellar/ttl">
+    Records time limits for smart contract data, enforcing storage expiry rules.
+  </Card>
+
+  <Card title="History Contract Events" icon="bolt" href="/data-catalog/stellar/history_contract_events">
+    Captures all smart contract events and traces, with details on contract execution.
+  </Card>
+
+  <Card title="History Ledgers" icon="cube" href="/data-catalog/stellar/history_ledgers">
+    Tracks ledgers info (equivalent of blocks on other blockchain), including metadata such as sequence numbers, transactions included, and fees.
+  </Card>
+
+  <Card title="History Operations" icon="reflect-horizontal" href="/data-catalog/stellar/history_operations">
+    Tracks operational details of transaction in ledgers/blocks. 
+  </Card>
+
+  <Card title="History Trades" icon="swap" href="/data-catalog/stellar/history_trades">
+    Records trades performed on Stellar's decentralized exchange.
+  </Card>
+
+  <Card title="History Transactions" icon="message-arrow-up" href="/data-catalog/stellar/history_transactions">
+    Contains transaction details, linking to multiple operations within a transaction.
+  </Card>
+
+  <Card title="History Effects" icon="reflect-vertical" href="/data-catalog/stellar/history_effects">
+    Records specific changes that occur in the ledger as a result of success operations, but are not necessarily directly reflected in the ledger or history, as transactions and operations are.
+  </Card>
+
+</CardGroup>

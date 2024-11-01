@@ -1,0 +1,42 @@
+---
+title: stellar.contract_data
+sidebarTitle: "Contract Data"
+description: Description of the contract_data table on Dune
+---
+
+## Table description
+Stores state data for smart contracts, including supported tokens and storage costs.
+
+## Column Descriptions
+
+| **Column**                            | **Description**                                                              | **Type**                              |
+| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **closed_at_date**                    | The date when the contract data entry was closed.                            | date                                 |
+| **contract_id**                       | The unique identifier for the smart contract on the Stellar network.          | varchar                              |
+| **contract_key_type**                 | The type of key used for the contract data (e.g., a hash or other identifier). | varchar                              |
+| **contract_durability**               | Indicates whether the contract data is durable across contract executions.    | varchar                              |
+| **asset_code**                        | The code of the asset associated with the contract (if applicable).           | varchar                              |
+| **asset_issuer**                      | The issuer of the asset associated with the contract (if applicable).         | varchar                              |
+| **asset_type**                        | The type of asset associated with the contract (e.g., native, issued).        | varchar                              |
+| **balance_holder**                    | The account or entity that holds the balance associated with the contract.    | varchar                              |
+| **balance**                           | The balance associated with the contract, in lumens or other tokens.          | varchar                              |
+| **last_modified_ledger**              | The ledger sequence number where the contract data was last modified.         | bigint                               |
+| **ledger_entry_change**               | Indicates the type of change made to the ledger entry (insert, update, delete). | bigint                            |
+| **deleted**                           | A boolean indicating whether the contract data entry has been deleted.        | boolean                              |
+| **closed_at**                         | The timestamp when the contract data was closed.                              | timestamp(3) with time zone          |
+| **ledger_sequence**                   | The sequence number of the ledger in which the contract data is included.     | bigint                               |
+| **ledger_key_hash**                   | The hashed key associated with the contract's ledger entry.                   | varbinary                            |
+| **key**                               | The key used in the contract data entry.                                      | varchar                              |
+| **key_decoded**                       | A human-readable or decoded version of the contract key.                      | varchar                              |
+| **val**                               | The value stored in the contract data entry.                                  | varchar                              |
+| **val_decoded**                       | A human-readable or decoded version of the value stored in the contract.      | varchar                              |
+| **contract_data_xdr**                 | The raw XDR (External Data Representation) format of the contract data.       | varchar                              |
+| **updated_at**                        | The time when the contract data record was last updated.                      | timestamp(3) with time zone          |
+| **ingested_at**                       | The time when the contract data was ingested into the system.                 | timestamp(3) with time zone          |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="stellar" tableName="contract_data" />
