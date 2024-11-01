@@ -1,7 +1,7 @@
 ---
-title: Prices (Daily)
+title: Daily Prices
 icon: calendar-day
-description: Daily price data for tokens across multiple blockchains
+description: Historical daily price data for tokens across all supported blockchains, aggregated at 00:00 UTC
 ---
 
 # Prices.day
@@ -26,21 +26,22 @@ This table is ideal for analyzing daily price trends and performing day-over-day
 
 ```sql
 SELECT 
-    date_trunc('month', timestamp) AS month,
-    AVG(price) AS average_monthly_price
+    contract_address,
+    blockchain,
+    symbol,
+    price,
+    timestamp
 FROM prices.day
 WHERE 
     blockchain = 'ethereum' 
     AND symbol = 'WETH'
     AND timestamp >= DATE '2023-01-01'
-GROUP BY 1
-ORDER BY 1
+ORDER BY timestamp asc
 ```
-
-This query calculates the average monthly price for WETH on Ethereum for each month since the start of 2023.
 
 ## Notes
 
 - Prices are calculated on a per-chain basis.
 - For tokens not in the trusted token list, prices may differ across chains.
-- Always use `contract_address` and `blockchain` for precise token identification, as `symbol` is not unique.
+- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique.
+- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).

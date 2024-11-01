@@ -1,0 +1,48 @@
+---
+title: USD Prices (Legacy)
+icon: money-bill
+description: Historical price table - still functional but no new tokens will be added
+---
+
+# Prices USD (Legacy)
+
+
+<Warning>
+    While this table remains functional for existing tokens, no new tokens will be added. For complete coverage including new tokens, please use `prices.minute`, `prices.hour`, or `prices.day` tables instead.
+</Warning>
+
+The `prices.usd` table provides historical price data for a fixed set of tokens. While the table continues to update for existing tokens, new tokens will only be added to the modern price tables.
+
+## Modern Alternatives
+
+For complete token coverage, use:
+- `prices.day` for daily historical prices
+- `prices.hour` for hourly historical data
+- `prices.minute` for granular historical data
+
+Example query using modern tables:
+
+```sql
+-- For historical prices, use prices.day
+SELECT 
+    timestamp,
+    symbol, 
+    price 
+FROM prices.day
+WHERE blockchain = 'ethereum'
+    AND symbol = 'WETH'
+    AND timestamp >= DATE '2023-01-01'
+ORDER BY timestamp ASC
+```
+
+## Legacy Table Structure
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | The unique identifier of the token |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`           | _double_    | The price of the asset in USD                |
+| `timestamp`       | _timestamp_ | The timestamp for which this price is reported |
+| `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
+
+For more information about the current price feed, please refer to the [Prices Overview](/data-catalog/curated/prices/overview). 

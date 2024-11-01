@@ -1,7 +1,7 @@
 ---
-title: Prices (Minute)
+title: Minute Prices
 icon: stopwatch
-description: Minute-by-minute price data for tokens across multiple blockchains
+description: Real-time minute-by-minute price data for tokens across all supported blockchains
 ---
 
 # Prices.minute
@@ -43,3 +43,4 @@ This query retrieves minute-by-minute prices for WETH on Ethereum for the past h
 - Due to its high granularity, queries on this table may be more resource-intensive. Consider using `prices.hour` or `prices.day` for longer time ranges or if minute-level precision is not required.
 - As with all price tables, always use `contract_address` and `blockchain` for precise token identification.
 - The minute-level data is particularly useful for analyzing price impacts of specific transactions or events with high temporal precision.
+- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).

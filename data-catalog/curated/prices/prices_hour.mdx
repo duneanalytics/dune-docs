@@ -1,7 +1,7 @@
 ---
-title: Prices (Hourly)
+title: Hourly Prices
 icon: clock
-description: Hourly price data for tokens across multiple blockchains
+description: Historical hourly price data for tokens across all supported blockchains
 ---
 
 # Prices.hour
@@ -26,20 +26,16 @@ This table is useful for intraday analysis and tracking price movements with hig
 
 ```sql
 SELECT 
-    date_trunc('hour', timestamp) AS hour,
-    AVG(price) AS average_hourly_price
+    contract_address,
+    blockchain,
+    symbol,
+    price,
+    timestamp
 FROM prices.hour
-WHERE 
-    blockchain = 'ethereum' 
-    AND symbol = 'USDC'
-    AND timestamp >= NOW() - INTERVAL '7' DAY
-GROUP BY 1
-ORDER BY 1
 ```
-
-This query calculates the average hourly price for USDC on Ethereum for the past 7 days.
 
 ## Notes
 
 - Hourly data provides a good balance between granularity and query performance for short to medium-term analyses.
 - As with all price tables, always use `contract_address` and `blockchain` for precise token identification.
+- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).

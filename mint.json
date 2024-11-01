@@ -181,89 +181,73 @@
     },
 
     {
-      "group": "",
-      "pages": [
-        "data-catalog/overview",
-        "data-catalog/data-freshness",
-        "data-catalog/bring-your-own-data"
-      ]
-    },
-    {
       "group": "Curated Data",
       "pages": [
         "data-catalog/curated/overview",
         {
-          "group": "Asset Tracking",
-          "icon": "coins",
+          "group": "EVM",
+          "icon": "e",
           "pages": [
-            "data-catalog/curated/asset-tracking/overview",
+            "data-catalog/curated/evm/overview",
             {
-              "group": "Prices",
-              "icon": "square-dollar",
-              "iconType": "duotone",
+              "group": "Asset Tracking",
+              "icon": "coins",
               "pages": [
-                "data-catalog/curated/asset-tracking/prices/prices",
-                "data-catalog/curated/asset-tracking/prices/prices_daily",
-                "data-catalog/curated/asset-tracking/prices/prices_latest"
+                "data-catalog/curated/evm/asset-tracking/overview",
+                "data-catalog/curated/evm/asset-tracking/balances",
+                "data-catalog/curated/evm/asset-tracking/nft-metadata",
+                "data-catalog/curated/evm/asset-tracking/nft-transfers",
+                "data-catalog/curated/evm/asset-tracking/token-transfers",
+                "data-catalog/curated/evm/asset-tracking/tokens-metadata"
               ]
             },
             {
-              "group": "EVM Networks",
-              "icon": "e",
-              "iconType": "sharp-regular",
+              "group": "DEX",
+              "icon": "shuffle",
               "pages": [
-                "data-catalog/curated/asset-tracking/evm/token-transfers",
-                "data-catalog/curated/asset-tracking/evm/tokens-metadata",
-                "data-catalog/curated/asset-tracking/evm/balances",
-                "data-catalog/curated/asset-tracking/evm/nft-transfers",
-                "data-catalog/curated/asset-tracking/evm/nft-metadata"
+                "data-catalog/curated/evm/DEX/overview",
+                "data-catalog/curated/evm/DEX/dex-trades",
+                "data-catalog/curated/evm/DEX/dex-aggregator-trades",
+                "data-catalog/curated/evm/DEX/dex-sandwiched",
+                "data-catalog/curated/evm/DEX/dex-sandwiches"
               ]
             },
             {
-              "group": "Solana",
-              "icon": "s",
-              "iconType": "sharp-regular",
+              "group": "NFT",
+              "icon": "image",
               "pages": [
-                "data-catalog/curated/asset-tracking/solana/solana-token-transfers",
-                "data-catalog/curated/asset-tracking/solana/solana-token-accounts",
-                "data-catalog/curated/asset-tracking/solana/solana-token-metadata",
-                "data-catalog/curated/asset-tracking/solana/solana-nft-transfers",
-                "data-catalog/curated/asset-tracking/solana/solana-nft-metadata"
+                "data-catalog/curated/evm/NFT/overview",
+                "data-catalog/curated/evm/NFT/nft-trades",
+                "data-catalog/curated/evm/NFT/nft-mints",
+                "data-catalog/curated/evm/NFT/nft-wash-trades"
               ]
             }
           ]
         },
         {
-          "group": "Trading",
-          "icon": "arrow-right-arrow-left",
-          "iconType": "solid",
+          "group": "Solana",
+          "icon": "s",
           "pages": [
+            "data-catalog/curated/solana/overview",
             {
-              "group": "DEX",
-              "icon": "rotate",
-              "iconType": "solid",
+              "group": "Asset Tracking",
+              "icon": "coins",
               "pages": [
-                "data-catalog/curated/trading/DEX/dex-trades",
-                "data-catalog/curated/trading/DEX/dex-aggregator-trades",
-                "data-catalog/curated/trading/DEX/dex-sandwiches",
-                "data-catalog/curated/trading/DEX/dex-sandwiched"
+                "data-catalog/curated/solana/asset-tracking/overview",
+                "data-catalog/curated/solana/asset-tracking/solana-nft-metadata",
+                "data-catalog/curated/solana/asset-tracking/solana-nft-transfers",
+                "data-catalog/curated/solana/asset-tracking/solana-token-accounts",
+                "data-catalog/curated/solana/asset-tracking/solana-token-metadata",
+                "data-catalog/curated/solana/asset-tracking/solana-token-transfers"
               ]
             },
             {
-              "group": "NFT",
-              "icon": "monkey",
+              "group": "Trading",
+              "icon": "shuffle",
               "pages": [
-                "data-catalog/curated/trading/NFT/nft-trades",
-                "data-catalog/curated/trading/NFT/nft-mints",
-                "data-catalog/curated/trading/NFT/nft-wash-trades"
-              ]
-            },
-            {
-              "group": "Solana",
-              "icon": "sunglasses",
-              "pages": [
-                "data-catalog/curated/trading/solana/solana-dex-trades",
-                "data-catalog/curated/trading/solana/jupiter-aggregator-trades"
+                "data-catalog/curated/solana/trading/overview",
+                "data-catalog/curated/solana/trading/jupiter-aggregator-trades",
+                "data-catalog/curated/solana/trading/solana-dex-trades"
               ]
             }
           ]
@@ -271,33 +255,29 @@
         {
           "group": "Labels",
           "icon": "tag",
-          "pages": [
-            "data-catalog/curated/labels/overview",
-            {
-              "group": "Owner Labels",
-              "icon": "tag",
               "pages": [
-                "data-catalog/curated/labels/owners/overview",
-                "data-catalog/curated/labels/owners/owner-addresses",
-                "data-catalog/curated/labels/owners/owner-details",
-                {
-                  "group": "Labeled Asset Flows",
-                  "icon": "right-left",
-                  "pages": [
-                    "data-catalog/curated/labels/owners/value-flows/transfer-summary",
-                    "data-catalog/curated/labels/owners/value-flows/counterparty-summary",
-                    "data-catalog/curated/labels/owners/value-flows/transfer-summary-daily"
-                  ]
-                },
-                "data-catalog/curated/labels/owners/audit"
-              ]
-            },
-            "data-catalog/curated/labels/ens-labels",
-            "data-catalog/curated/labels/address-labels"
+                "data-catalog/curated/labels/overview",
+                "data-catalog/curated/labels/address-labels", 
+                "data-catalog/curated/labels/ens-labels",
+                "data-catalog/curated/labels/owner-addresses",
+                "data-catalog/curated/labels/owner-details"
           ]
+        },
+        {
+          "group": "Prices",
+          "icon": "dollar-sign",
+              "pages": [
+                "data-catalog/curated/prices/overview",
+                "data-catalog/curated/prices/prices_minute",
+                "data-catalog/curated/prices/prices_hour",
+                "data-catalog/curated/prices/prices_day",
+                "data-catalog/curated/prices/prices_usd",
+                "data-catalog/curated/prices/prices_latest"
+            ]
         }
+        
       ]
-    },
+    },  
     {
       "group": "EVM Networks",
       "pages": [
