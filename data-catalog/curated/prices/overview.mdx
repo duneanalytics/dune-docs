@@ -12,7 +12,7 @@ Dune provides price data at multiple time resolutions to balance query performan
 - Use `prices.hour` for intraday patterns and medium-term trends
 - Use `prices.day` for long-term analysis and optimal query performance
 
-For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be resource-intensive.
+For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be very resource-intensive.
 
 ## Available Tables
 
@@ -28,7 +28,7 @@ For best performance, use the table with the coarsest granularity that meets you
 - 700,000+ contract addresses
 - 20+ blockchains
 - Automatic inclusion of new tokens exceeding $10k volume threshold
-- Coverage relies on [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades) entries for respective blockchain
+- Coverage relies on [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades) entries for respective blockchains
 
 <iframe
   src="https://dune.com/embeds/4239607/7131816/"
@@ -37,7 +37,10 @@ For best performance, use the table with the coarsest granularity that meets you
 />
 
 For anything not covered in the `prices.day`, `prices.hour` or `prices.minute` tables, you can use the legacy tables: `prices.usd`, `prices.usd_daily`, and `prices.usd_latest`. There we keep a historical record of prices for ~2,800 tokens that extends beyond our current dex.trades coverage.
-You can test the coverage of prices.day, prices.hour, and prices.minute tables [here](https://dune.com/dune/does-dune-have-price-for-token).
+
+<Card title="Check Price Coverage" href="https://dune.com/dune/does-dune-have-price-for-token" icon="dashboard">
+  You can test the coverage of prices.day, prices.hour, and prices.minute tables here.
+</Card>
 
 ## Schema
 
@@ -96,10 +99,8 @@ For a USDC/TOKEN pair:
 
 ## Legacy Tables
 
-The following tables are maintained for historical compatibility but are no longer updated:
+The following tables are maintained for historical compatibility but we no longer add tokens to them.
 
 - `prices.usd`
 - `prices.usd_daily`
 - `prices.usd_latest`
-
-Legacy coverage: ~2,800 tokens, ~3,600 contract addresses, 22 blockchains
