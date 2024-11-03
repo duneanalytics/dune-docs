@@ -16,47 +16,28 @@ For best performance, use the table with the coarsest granularity that meets you
 
 ## Available Tables
 
-| Table | Granularity | Update Frequency | Aggregation Time |
-|-------|-------------|------------------|------------------|
-| `prices.minute` | 1 minute | Real-time | Current minute |
-| `prices.hour` | 1 hour | Hourly | Start of hour |
-| `prices.day` | 1 day | Daily | 00:00 UTC |
+| Table           | Granularity | Update Frequency | Aggregation Time |
+| --------------- | ----------- | ---------------- | ---------------- |
+| `prices.minute` | 1 minute    | Real-time        | Current minute   |
+| `prices.hour`   | 1 hour      | Hourly           | Start of hour    |
+| `prices.day`    | 1 day       | Daily            | 00:00 UTC        |
 
 ## Schema
 
 All price tables share the following schema:
 
-| Column | Type | Description |
-|--------|------|-------------|
+| Column             | Type        | Description                                                                      |
+| ------------------ | ----------- | -------------------------------------------------------------------------------- |
 | `contract_address` | _varbinary_ | Token identifier (ERC20 contract address, Solana mint address, null for natives) |
-| `blockchain` | _varchar_ | Network identifier |
-| `symbol` | _varchar_ | Token symbol |
-| `price` | _double_ | USD price |
-| `timestamp` | _timestamp_ | Price timestamp |
+| `blockchain`       | _varchar_   | Network identifier                                                               |
+| `symbol`           | _varchar_   | Token symbol                                                                     |
+| `price`            | _double_    | USD price                                                                        |
+| `timestamp`        | _timestamp_ | Price timestamp                                                                  |
 
-## Data Sources & Processing
+## Methodology
 
-### Step 1: Trusted Token Prices
-1. Source: Coin Paprika API
-2. Covers major tokens defined in `prices.trusted_tokens`
-3. Used as base prices for DEX pair calculations
-
-### Step 2: DEX-Derived Prices
-1. Raw trade data from `dex.trades`
-2. Token pairs priced against trusted tokens
-3. Processing pipeline:
-   - Filter trades with < $10,000 USD total volume
-   - Calculate median price per block (50th percentile)
-   - Derive USD prices using trusted token prices as base
-   - Compute VWAP (Volume Weighted Average Price) per interval
-   - Remove outliers (>1000% change from previous period)
-   - Forward-fill gaps until next valid trade
-
-### Example
-For a USDC/TOKEN pair:
-1. Get USDC price from trusted tokens
-2. Use DEX trade `amount_usd` = amount_token * trusted_token_price
-3. Apply processing pipeline to calculate final TOKEN price
+Dune's price data is derived primarily from DEX trading activity captured in [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades), providing broad coverage across 180,000+ tokens and 20+ blockchains. The data undergoes rigorous processing including volume filtering, outlier removal, and VWAP calculations to ensure accuracy and reliability. This methodology enables automatic price tracking for any token that achieves meaningful trading volume (>$10k), while maintaining data quality through statistical controls.  
+Despite comprehensive internal testing and measures to prevent data errors, it's possible for prices to be inaccurate due to outlier trades (arbitrage, hacks etc.) to skew the data. If you happen to notice a price error, please open an issue on [GitHub](https://github.com/duneanalytics/spellbook/issues).
 
 ## Coverage
 
@@ -66,23 +47,57 @@ For a USDC/TOKEN pair:
 - Automatic inclusion of new tokens exceeding $10k volume threshold
 - Coverage relies on `dex.trades` integration
 
+<iframe
+  src="https://dune.com/embeds/4239607/7131816/"
+  width="100%"
+  height="500px"
+/>
+
+For anything not covered in the `prices.day`, `prices.hour` or `prices.minute` tables, you can use the legacy tables: `prices.usd`, `prices.usd_daily`, and `prices.usd_latest`. There we keep a historical record of prices for ~2,800 tokens that extends beyond our current dex.trades coverage. 
+
+### Step 1: Importing Trusted Token Prices
+
+Dune sources trusted token prices from [Coin Paprika](https://coinpaprika.com/). These prices:
+
+- Cover major tokens that are defined in the `prices.trusted_tokens` table
+- Serve as base prices for calculating prices of other tokens traded against them in DEX pairs
+
+### Step 2: DEX-Derived Prices
+
+For details on how Dune processes DEX trade data to derive accurate token prices, see the [DEX Trade Processing](/data-catalog/curated/evm/DEX/dex-trades):
+
+- We start by collecting raw trading data from the `dex.trades` table
+- We calculate prices for trading pairs where one token is from our trusted token list
+- The data then goes through our processing pipeline which:
+  - Excludes trades with less than $10,000 USD in total volume
+  - Takes the median price from each block to reduce outlier impact
+  - Calculates USD prices using our trusted token prices as reference
+  - Applies volume-weighted averaging (VWAP) for each time interval
+  - Filters out extreme price movements exceeding 1000% from previous period
+  - Uses forward-filling to handle periods without valid trades
+
+### Example
+
+For a USDC/TOKEN pair:
+
+1. Get USDC price from trusted tokens
+2. Use DEX trade `amount_usd` = amount_token \* trusted_token_price
+3. Apply processing pipeline to calculate final TOKEN price
+
 ## Technical Notes
 
 - Prices are calculated independently per blockchain
 - Prices are aggregated across all liquidity pools per blockchain
 - Token identification requires both `contract_address` AND `blockchain`
 - `symbol` is not unique - do not use for token identification
-
-
-
-
+- if there is no trades for a token, we use the last available price and carry it forward until there is new trade data
 
 ## Legacy Tables
 
 The following tables are maintained for historical compatibility but are no longer updated:
+
 - `prices.usd`
 - `prices.usd_daily`
 - `prices.usd_latest`
 
 Legacy coverage: ~2,800 tokens, ~3,600 contract addresses, 22 blockchains
-
