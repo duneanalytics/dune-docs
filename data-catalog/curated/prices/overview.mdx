@@ -12,15 +12,42 @@ Dune provides price data at multiple time resolutions to balance query performan
 - Use `prices.hour` for intraday patterns and medium-term trends
 - Use `prices.day` for long-term analysis and optimal query performance
 
-For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be resource-intensive.
+For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be very resource-intensive.
 
 ## Available Tables
 
 | Table           | Granularity | Update Frequency | Aggregation Time |
 | --------------- | ----------- | ---------------- | ---------------- |
-| `prices.minute` | 1 minute    | Real-time        | Current minute   |
-| `prices.hour`   | 1 hour      | Hourly           | Start of hour    |
-| `prices.day`    | 1 day       | Daily            | 00:00 UTC        |
+| `prices.minute` | 1 minute    | hourly           | start of minute  |
+| `prices.hour`   | 1 hour      | hourly           | start of hour    |
+| `prices.day`    | 1 day       | daily            | 00:00 UTC        |
+
+## Coverage
+
+- 180,000+ unique tokens
+- 700,000+ contract addresses
+- 20+ blockchains
+- Automatic inclusion of new tokens exceeding $10k volume threshold
+- Coverage relies on [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades) entries for respective blockchains
+
+<iframe
+  src="https://dune.com/embeds/4239607/7131816/"
+  width="100%"
+  height="500px"
+/>
+
+For anything not covered in the `prices.day`, `prices.hour` or `prices.minute` tables, you can use the legacy tables: `prices.usd`, `prices.usd_daily`, and `prices.usd_latest`. There we keep a historical record of prices for ~2,800 tokens that extends beyond our current dex.trades coverage.
+
+<CardGroup cols={1}>
+  <Card
+    title="Check Price Coverage"
+    href="https://dune.com/dune/does-dune-have-price-for-token"
+    icon="magnifying-glass"
+  >
+    You can test the coverage of prices.day, prices.hour, and prices.minute
+    tables on this dashboard.
+  </Card>
+</CardGroup>
 
 ## Schema
 
@@ -32,28 +59,20 @@ All price tables share the following schema:
 | `blockchain`       | _varchar_   | Network identifier                                                               |
 | `symbol`           | _varchar_   | Token symbol                                                                     |
 | `price`            | _double_    | USD price                                                                        |
-| `timestamp`        | _timestamp_ | Price timestamp                                                                  |
+| `timestamp`        | _timestamp_ | timestamp (start of minute, hour, or day)                                        |
+
+## Technical Notes
+
+- Prices are calculated independently per blockchain
+- Prices are aggregated across all liquidity pools per blockchain
+- Token identification requires both `contract_address` AND `blockchain`
+- `symbol` is not unique - do not use for token identification
+- if there is no trades for a token, we use the last available price and carry it forward until there is new trade data
 
 ## Methodology
 
 Dune's price data is derived primarily from DEX trading activity captured in [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades), providing broad coverage across 180,000+ tokens and 20+ blockchains. The data undergoes rigorous processing including volume filtering, outlier removal, and VWAP calculations to ensure accuracy and reliability. This methodology enables automatic price tracking for any token that achieves meaningful trading volume (>$10k), while maintaining data quality through statistical controls.  
-Despite comprehensive internal testing and measures to prevent data errors, it's possible for prices to be inaccurate due to outlier trades (arbitrage, hacks etc.) to skew the data. If you happen to notice a price error, please open an issue on [GitHub](https://github.com/duneanalytics/spellbook/issues).
-
-## Coverage
-
-- 180,000+ unique tokens
-- 700,000+ contract addresses
-- 20+ blockchains
-- Automatic inclusion of new tokens exceeding $10k volume threshold
-- Coverage relies on `dex.trades` integration
-
-<iframe
-  src="https://dune.com/embeds/4239607/7131816/"
-  width="100%"
-  height="500px"
-/>
-
-For anything not covered in the `prices.day`, `prices.hour` or `prices.minute` tables, you can use the legacy tables: `prices.usd`, `prices.usd_daily`, and `prices.usd_latest`. There we keep a historical record of prices for ~2,800 tokens that extends beyond our current dex.trades coverage. 
+Despite comprehensive internal testing and measures to prevent data errors, it's possible for prices to be inaccurate due to outlier trades (arbitrage, hacks etc.) which can skew the data. If you happen to notice a price error, please open an issue on [GitHub](https://github.com/duneanalytics/spellbook/issues).
 
 ### Step 1: Importing Trusted Token Prices
 
@@ -84,20 +103,10 @@ For a USDC/TOKEN pair:
 2. Use DEX trade `amount_usd` = amount_token \* trusted_token_price
 3. Apply processing pipeline to calculate final TOKEN price
 
-## Technical Notes
-
-- Prices are calculated independently per blockchain
-- Prices are aggregated across all liquidity pools per blockchain
-- Token identification requires both `contract_address` AND `blockchain`
-- `symbol` is not unique - do not use for token identification
-- if there is no trades for a token, we use the last available price and carry it forward until there is new trade data
-
 ## Legacy Tables
 
-The following tables are maintained for historical compatibility but are no longer updated:
+The following tables are maintained for historical compatibility but we no longer add tokens to them.
 
 - `prices.usd`
 - `prices.usd_daily`
 - `prices.usd_latest`
-
-Legacy coverage: ~2,800 tokens, ~3,600 contract addresses, 22 blockchains
