@@ -1,0 +1,57 @@
+---
+title: Trading
+sidebarTitle: Overview
+description: Analyzing trading activity across Solana's decentralized exchanges.
+icon: "chart-line"
+---
+
+The Solana blockchain hosts various decentralized exchanges (DEXs) and trading protocols that facilitate token swaps and trading activities. Dune provides comprehensive trading data through prepared tables that capture trades across different DEX protocols and aggregators on the Solana network.
+
+## Tables
+
+<CardGroup cols={2}>
+  <Card title="DEX Trades" icon="handshake" href="/data-catalog/curated/solana/trading/solana-dex-trades">
+    Detailed trade data across Solana DEX protocols
+  </Card>
+
+  <Card title="Jupiter Aggregator" icon="layer-group" href="/data-catalog/curated/solana/trading/jupiter-aggregator-trades">
+    Trades executed through the Jupiter aggregator
+  </Card>
+</CardGroup>
+
+## Key Features
+
+The trading tables provide essential data for analyzing Solana's DEX ecosystem:
+
+- Comprehensive coverage of major DEX protocols
+- Detailed trade execution data including amounts, prices, and USD values
+- Aggregator-specific data for Jupiter trades
+- Transaction and block details for each trade
+
+## Common Use Cases
+
+These datasets enable various types of trading analysis:
+
+- Track trading volume across different DEX protocols
+- Monitor market activity for specific token pairs
+- Analyze price impact and slippage in trades
+- Compare performance between different DEXs and aggregators
+- Identify trading patterns and trends
+
+## Sample Query
+
+Here's a simple query to get started analyzing DEX trading volume:
+
+```sql
+SELECT 
+    DATE_TRUNC('day', block_time) as date,
+    project,
+    COUNT(*) as num_trades,
+    SUM(amount_usd) as volume_usd
+FROM dex_solana.trades
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1, 2
+ORDER BY 1 DESC, 4 DESC
+```
+
+These datasets provide valuable insights into trading activity across the Solana ecosystem, enabling users to understand market dynamics and analyze trading patterns on the network. 
