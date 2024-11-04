@@ -179,7 +179,14 @@
         "query-engine/Functions-and-operators/window"
       ]
     },
-
+    {
+      "group": "",
+      "pages": [
+        "data-catalog/overview",
+        "data-catalog/data-freshness",
+        "data-catalog/bring-your-own-data"
+      ]
+    },
     {
       "group": "Curated Data",
       "pages": [
@@ -255,29 +262,28 @@
         {
           "group": "Labels",
           "icon": "tag",
-              "pages": [
-                "data-catalog/curated/labels/overview",
-                "data-catalog/curated/labels/address-labels", 
-                "data-catalog/curated/labels/ens-labels",
-                "data-catalog/curated/labels/owner-addresses",
-                "data-catalog/curated/labels/owner-details"
+          "pages": [
+            "data-catalog/curated/labels/overview",
+            "data-catalog/curated/labels/address-labels",
+            "data-catalog/curated/labels/ens-labels",
+            "data-catalog/curated/labels/owner-addresses",
+            "data-catalog/curated/labels/owner-details"
           ]
         },
         {
           "group": "Prices",
           "icon": "dollar-sign",
-              "pages": [
-                "data-catalog/curated/prices/overview",
-                "data-catalog/curated/prices/prices_minute",
-                "data-catalog/curated/prices/prices_hour",
-                "data-catalog/curated/prices/prices_day",
-                "data-catalog/curated/prices/prices_usd",
-                "data-catalog/curated/prices/prices_latest"
-            ]
+          "pages": [
+            "data-catalog/curated/prices/overview",
+            "data-catalog/curated/prices/prices_minute",
+            "data-catalog/curated/prices/prices_hour",
+            "data-catalog/curated/prices/prices_day",
+            "data-catalog/curated/prices/prices_usd",
+            "data-catalog/curated/prices/prices_latest"
+          ]
         }
-        
       ]
-    },  
+    },
     {
       "group": "EVM Networks",
       "pages": [
