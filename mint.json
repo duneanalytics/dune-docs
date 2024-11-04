@@ -106,9 +106,15 @@
             "web-app/visualizations/tables"
           ]
         },
+        {
+          "group": "Decoding Contracts",
+          "pages": [
+            "web-app/decoding/decoding-contracts",
+            "web-app/decoding/multichain-decoding"
+          ]
+        },
         "web-app/dashboards",
         "web-app/dashboard-minting",
-        "web-app/decoding-contracts",
         "web-app/teams",
         "web-app/dune-ai",
         "web-app/upload-data",
