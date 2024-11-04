@@ -1,0 +1,111 @@
+---
+title: Multichain Decoding
+description: How decoding contracts works in a multichain universe.
+---
+
+## What is Multichain Decoding?
+
+Multichain Decoding enables seamless analysis of smart contract data across multiple blockchains. With a single contract submission, users can automatically generate protocol tables across all supported EVM chains, simplifying cross-chain data access on Dune.
+
+This feature unifies contract data views, streamlining the analysis of protocols deployed across various chains and making cross-chain insights more accessible.
+
+<Tip>Multichain decoding offers data freshness and latency comparable to regular decoding. For details on data freshness, see our [data freshness page](../../data-catalog/data-freshness).</Tip>
+
+<CardGroup cols={1}>
+  <Card title="Get In Touch" icon="hand" href="mailto:multichain_decoding@dune.com">
+    Currently in closed alpha. If you're interested in setting up multichain decoded views for your protocol, contact us at **multichain_decoding@dune.com**. We'd be happy to collaborate with you!
+  </Card>
+</CardGroup>
+
+## Currently Available Protocols
+
+<Note>
+- As this feature is currently in closed alpha, here is a list of protocols with multichain decoded contract views available for immediate use. [Contact us](mailto:multichain_decoding@dune.com) for any feedback you have.
+- To view and explore these multichain decoded contract views, visit the linked protocol namespaces on Dune's Data Explorer.
+</Note>
+
+### Uniswap
+
+| Protocol        | Chains Available                                   | Contract                    | Type       | Event/Call            | Table Name                                          |
+|-----------------|----------------------------------------------------|-----------------------------|------------|------------------------|-----------------------------------------------------|
+| **[uniswap_v2](https://dune.com/queries?category=decoded_project&namespace=uniswap_v2)** | arbitrum, avalanche_c, base, bnb, ethereum, optimism, polygon, zora | UniswapV2Factory          | Event      | PairCreated            | `uniswap_v2_multichain.uniswapv2factory_evt_paircreated` |
+|                 |                                                    | UniswapV2Pair               | Event      | Swap                   | `uniswap_v2_multichain.uniswapv2pair_evt_swap`       |
+| **[uniswap_v3](https://dune.com/queries?category=decoded_project&namespace=uniswap_v3)** | arbitrum, avalanche_c, base, blast, bnb, celo, ethereum, linea, mantle, polygon, scroll, worldchain, zksync, zora | NonfungiblePositionManager | Call       | Collect                | `uniswap_v3_multichain.nonfungiblepositionmanager_call_collect` |
+|                 |                                                    |                             | Event      | Collect                | `uniswap_v3_multichain.nonfungiblepositionmanager_evt_collect` |
+|                 |                                                    |                             | Call       | increaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_call_increaseliquidity` |
+|                 |                                                    |                             | Event      | increaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_evt_increaseliquidity` |
+|                 |                                                    |                             | Call       | decreaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_call_decreaseliquidity` |
+|                 |                                                    |                             | Event      | decreaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_evt_decreaseliquidity` |
+|                 |                                                    | UniswapV3Factory            | Event      | PoolCreated            | `uniswap_v3_multichain.uniswapv3factory_evt_poolcreated` |
+|                 |                                                    | UniswapV3Pool               | Event      | Swap                   | `uniswap_v3_multichain.uniswapv3pool_evt_swap`       |
+|                 |                                                    |                             | Event      | Mint                   | `uniswap_v3_multichain.uniswapv3pool_evt_mint`       |
+|                 |                                                    |                             | Event      | Burn                   | `uniswap_v3_multichain.uniswapv3pool_evt_burn`       |
+
+> **In Pipeline:**  
+> - `uniswap_v3_optimism.UniswapV3Pool`  
+> - `uniswap_v2_blast.UniswapV2Pair`  
+> _These contracts are still pending processing in our pipeline._
+
+### Safe
+
+| Protocol       | Chains Available                                   | Contract                    | Type   | Event/Call                  | View Table                                                  |
+|----------------|----------------------------------------------------|-----------------------------|--------|------------------------------|-------------------------------------------------------------|
+| **[gnosis_safe](https://dune.com/queries?category=decoded_project&namespace=gnosis_safe)** | arbitrum, avalanche_c, base, blast, bnb, celo, ethereum, gnosis, optimism, polygon | Safe_v1_4_1                 | Call   | execTransaction             | `gnosis_safe_multichain.safe_v1_4_1_call_exectransaction`   |
+|                |                                                    |                             | Call   | execTransactionFromModule    | `gnosis_safe_multichain.safe_v1_4_1_call_exectransactionfrommodule` |
+|                | arbitrum, base, blast, optimism, polygon           | SafeL2_v1_4_1              | Call   | execTransaction              | `gnosis_safe_multichain.safel2_v1_4_1_call_exectransaction` |
+|                |                                                    |                             | Call   | execTransactionFromModule    | `gnosis_safe_multichain.safel2_v1_4_1_call_exectransactionfrommodule` |
+|                | arbitrum, avalanche_c, base, bnb, celo, ethereum, fantom, linea, mantle, optimism, polygon, scroll, worldchain, zkevm | SafeProxyFactory_v1_4_1     | Event  | ProxyCreation                | `gnosis_safe_multichain.safeproxyfactory_v1_4_1_evt_proxycreation` |
+
+### Zora
+
+| Protocol       | Chains Available                                   | Contract                    | Type   | Event/Call            | View Table                                          |
+|----------------|----------------------------------------------------|-----------------------------|--------|------------------------|-----------------------------------------------------|
+| **[zora](https://dune.com/queries?category=decoded_project&namespace=zora)** | arbitrum, base, blast, ethereum, optimism, zora | ZoraTimedSaleStrategy     | Event   | SaleSet               | `zora_multichain.zoratimedsalestrategy_evt_saleset` |
+|                |                                                    | ZoraCreator1155FactoryImpl  | Event   | SetupNewContract       | `zora_multichain.zoracreator1155factoryimpl_evt_setupnewcontract` |
+
+
+## How It Works
+
+### Requirements for Multichain View Construction ⚠️
+
+To create a multichain decoded view, the following criteria must be met:
+- Contracts must have the **same ABI** across chains.
+- Contracts must be organized under the **same project namespace and contract name** (e.g., `uniswap_v3`, `UniswapV3Pool`).
+
+This standardized labeling enables Dune to merge data from different chains into a single, unified view.
+
+### Submitting Multichain Contracts
+
+<div
+  style={{
+    position: "relative",
+    paddingBottom: "calc(54.166666666666664% + 41px)",
+    height: 0,
+    width: "100%"
+  }}
+> 
+  <iframe
+    src="https://demo.arcade.software/NUJtmJbcml1Nrp8HhHPr?embed"
+    frameBorder={0}
+    loading="lazy"
+    webkitallowfullscreen=""
+    mozallowfullscreen=""
+    allowFullScreen=""
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      colorScheme: "light"
+    }}
+    title="Submit Multichain Contracts"
+  />
+</div>
+
+When contracts with the same ABI are submitted across multiple chains, they are combined into a single cross-chain table, enabling consistent, streamlined data access and queries across chains.
+
+### Accessing and Navigating Tables
+
+Multichain decoded contract tables are accessible in the Data Explorer, just like regular decoded contract tables. These multichain entries feature a distinct symbol and display the list of supported chains, clearly indicating they span multiple chains.
+![](/web-app/images/decoding-contracts/multichain_object_in_de.png)
