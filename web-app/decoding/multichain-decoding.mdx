@@ -63,6 +63,162 @@ This feature unifies contract data views, streamlining the analysis of protocols
 | **[zora](https://dune.com/queries?category=decoded_project&namespace=zora)** | arbitrum, base, blast, ethereum, optimism, zora | ZoraTimedSaleStrategy     | Event   | SaleSet               | `zora_multichain.zoratimedsalestrategy_evt_saleset` |
 |                |                                                    | ZoraCreator1155FactoryImpl  | Event   | SetupNewContract       | `zora_multichain.zoracreator1155factoryimpl_evt_setupnewcontract` |
 
+## Example Usage
+
+Here are a few examples showing how you can use multichain decoded table views to simplify your analysis. Each example includes "before" and "after" queries to demonstrate how multichain views streamline cross-chain analytics.
+
+### Finding Zora Uniswap Collections
+<Tabs>
+  <Tab title="Using multichain decoded tables">
+  ```sql 
+    SELECT * 
+    FROM (
+        SELECT 
+            --this event is emitted on sale set updates too so we take distinct
+            distinct
+            l.blockchain
+            , l.collection as nft_address
+            , l.erc20zAddress as erc20_address
+            , l.tokenId as token_id
+            , nft.name as nft_collection_name
+            , nft.defaultAdmin as creator
+            , json_value(salesConfig, 'strict $.name') as nft_name
+            , json_value(salesConfig, 'strict $.symbol') as nft_symbol
+            , COALESCE(try(from_unixtime(cast(json_value(salesConfig, 'strict $.saleStart') as bigint))),timestamp '1970-01-01') as start_time
+            , COALESCE(try(from_unixtime(cast(json_value(salesConfig, 'strict $.saleEnd') as bigint))),timestamp '2050-01-01') as end_time
+            , l.poolAddress as uni_pool
+            , l.evt_block_time
+            , row_number() over (partition by collection, erc20zAddress, tokenId order by evt_block_time desc) as last_sale_set
+        FROM ( SELECT collection, erc20zAddress, tokenId, salesConfig, evt_block_time, poolAddress, chain AS blockchain
+              FROM zora_multichain.ZoraTimedSaleStrategy_evt_SaleSet ) l 
+        LEFT JOIN ( SELECT name, defaultAdmin, newContract, chain AS blockchain
+                    FROM zora_multichain.ZoraCreator1155FactoryImpl_evt_SetupNewContract ) nft 
+              ON l.collection = nft.newContract AND l.blockchain = nft.blockchain
+    ) 
+    WHERE last_sale_set = 1
+  ```
+  </Tab>
+  <Tab title="Unioning single chain decoded tables">
+  ```sql 
+    SELECT 
+    * 
+    FROM (
+        SELECT 
+            --this event is emitted on sale set updates too so we take distinct
+            distinct
+            l.blockchain
+            , l.collection as nft_address
+            , l.erc20zAddress as erc20_address
+            , l.tokenId as token_id
+            , nft.name as nft_collection_name
+            , nft.defaultAdmin as creator
+            , json_value(salesConfig, 'strict $.name') as nft_name
+            , json_value(salesConfig, 'strict $.symbol') as nft_symbol
+            , COALESCE(try(from_unixtime(cast(json_value(salesConfig, 'strict $.saleStart') as bigint))),timestamp '1970-01-01') as start_time
+            , COALESCE(try(from_unixtime(cast(json_value(salesConfig, 'strict $.saleEnd') as bigint))),timestamp '2050-01-01') as end_time
+            , l.poolAddress as uni_pool
+            , l.evt_block_time
+            , row_number() over (partition by collection, erc20zAddress, tokenId order by evt_block_time desc) as last_sale_set
+        FROM (
+            SELECT collection, erc20zAddress, tokenId, salesConfig, evt_block_time, poolAddress, 'zora' as blockchain FROM zora_zora.ZoraTimedSaleStrategy_evt_SaleSet
+            UNION ALL
+            SELECT collection, erc20zAddress, tokenId, salesConfig, evt_block_time, poolAddress, 'base' as blockchain FROM zora_base.ZoraTimedSaleStrategy_evt_SaleSet
+            UNION ALL
+            SELECT collection, erc20zAddress, tokenId, salesConfig, evt_block_time, poolAddress, 'optimism' as blockchain FROM zora_optimism.ZoraTimedSaleStrategy_evt_SaleSet
+            UNION ALL
+            SELECT collection, erc20zAddress, tokenId, salesConfig, evt_block_time, poolAddress, 'arbitrum' as blockchain FROM zora_arbitrum.ZoraTimedSaleStrategy_evt_SaleSet
+            UNION ALL
+            SELECT collection, erc20zAddress, tokenId, salesConfig, evt_block_time, poolAddress, 'blast' as blockchain FROM zora_blast.ZoraTimedSaleStrategy_evt_SaleSet
+        ) l 
+        LEFT JOIN (
+            SELECT name, defaultAdmin, newContract, 'zora' as blockchain FROM zora_zora.ZoraCreator1155_evt_SetupNewContract 
+            UNION ALL 
+            SELECT name, defaultAdmin, newContract, 'base' as blockchain FROM zora_base.ZoraCreator1155FactoryImpl_evt_SetupNewContract --different name?
+            UNION ALL  
+            SELECT name, defaultAdmin, newContract, 'optimism' as blockchain FROM zora_optimism.ZoraCreator1155FactoryImpl_evt_SetupNewContract --different name?
+            UNION ALL 
+            SELECT name, defaultAdmin, newContract, 'arbitrum' as blockchain FROM zora_arbitrum.ZoraCreator1155Factory_evt_SetupNewContract --lmao another different name
+            UNION ALL 
+            SELECT name, defaultAdmin, newContract, 'blast' as blockchain FROM zora_blast.ZoraCreator1155FactoryImpl_evt_SetupNewContract --missing? submitted
+        ) nft ON l.collection = nft.newContract AND l.blockchain = nft.blockchain
+        -- WHERE try(cast(json_value(salesConfig, 'strict $.saleStart') as bigint)) is null 
+        -- or try(cast(json_value(salesConfig, 'strict $.saleEnd') as bigint)) is null
+    ) 
+    WHERE last_sale_set = 1
+  ```
+  </Tab>
+</Tabs>
+
+### Gnosis Safe `execTransaction` Calls
+<Tabs>
+  <Tab title="Using multichain decoded tables">
+  ```sql 
+    select chain, date_trunc('day', call_block_time) AS block_date, count(*) as cnt
+    from gnosis_safe_multichain.Safe_v1_4_1_call_execTransaction
+    group by 1, 2
+  ```
+  </Tab>
+  <Tab title="Unioning single chain decoded tables">
+  ```sql 
+    select chain, date_trunc('day', call_block_time) AS block_date, count(*) as cnt
+    from (
+    SELECT 'arbitrum' AS chain, call_block_time
+    FROM gnosis_safe_arbitrum.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'avalanche_c' AS chain, call_block_time
+    FROM gnosis_safe_avalanche_c.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'blast' AS chain, call_block_time
+    FROM gnosis_safe_blast.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'base' AS chain, call_block_time
+    FROM gnosis_safe_base.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'bnb' AS chain, call_block_time
+    FROM gnosis_safe_bnb.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'celo' AS chain, call_block_time
+    FROM gnosis_safe_celo.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'ethereum' AS chain, call_block_time
+    FROM gnosis_safe_ethereum.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'gnosis' AS chain, call_block_time
+    FROM gnosis_safe_gnosis.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'linea' AS chain, call_block_time
+    FROM gnosis_safe_linea.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'optimism' AS chain, call_block_time
+    FROM gnosis_safe_optimism.Safe_v1_4_1_call_execTransaction
+
+    UNION ALL
+
+    SELECT 'polygon' AS chain, call_block_time
+    FROM gnosis_safe_polygon.Safe_v1_4_1_call_execTransaction
+    )
+    group by 1,2
+  ```
+  </Tab>
+</Tabs>
 
 ## How It Works
 
