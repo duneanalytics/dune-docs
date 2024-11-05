@@ -1,0 +1,156 @@
+---
+title: Survivor's Kit for Contract Submission
+description: New kid (chain) on the block (Dune)? Here’s what you need to know to submit your chain's protocol contracts to Dune.
+---
+
+## Why Submit Contracts for Decoding?
+
+Decoding enables you to create dedicated, easy-to-use datasets for your protocol on Dune, making it easier to build insightful dashboards.
+
+## How to Submit Contracts
+
+### Submit via UI (Recommended)
+Use the Dune UI for a guided submission process: [https://dune.com/contracts/new](https://dune.com/contracts/new).  
+For more details on decoding and submission, watch the [Decoding Tutorial](https://youtu.be/s3eKEeu9At8?si=zs0b5Q0iz5yx3L2d).
+
+### Batch Submission via CSV (Advanced)
+If you are looking to submit dozens of protocol contracts, you may submit via CSV. Work with us through Slack or Telegram, ensuring the CSV is formatted correctly for batch submission.
+
+<Warning>
+Batch submission bypasses UI safeguards, so make sure all flags are accurate, the ABI is formatted correctly, and naming follows Dune standards. Using the UI is preferred, as it includes checks that reduce errors and debugging time.
+</Warning>
+
+Follow [this Google Sheet template](https://docs.google.com/spreadsheets/d/1yxJqlmSE2yYgXgSIXcPRr5xxP9ck9JZB8_sGOITtYEM/edit?gid=0#gid=0) for exact format, and refer to [Dune’s documentation](./decoding-contracts) for guidance on fields like:
+- **`has_multiple_instances`** is flag for for [dynamic contracts](./decoding-contracts#are-there-several-instances-of-this-contract-dynamic-contract)
+- **`is_created_by_factory`** is flag for [factory contracts](./decoding-contracts#is-it-created-by-a-factory-contract-factory-contract)
+
+## Submission Strategy
+
+- **For Chains:** Encourage top protocols to submit their key contracts.
+- **For Protocols:** Collaborate with your developers or data analysts to identify which contracts include the main logic and events.
+
+## Special Instructions by Contract Type
+
+### Proxy Contracts
+If using a proxy pattern, submit the **implementation contract's ABI**.
+<Note> Dune’s pipeline cannot handle dynamic proxies or complex patterns automatically yet. </Note>
+
+### ERC20, ERC721, ERC1155 Tokens
+These contracts typically don’t need submission, as Dune already covers standard approvals and transfers. Submit only if custom events are needed.
+
+### DEX Contracts
+Look for below sets of contracts:
+- **Factory Contract**: should emit pool creation events.
+- **Pair/Pool Contract**: should emit swap events.
+
+If decoding is required for additional contracts like routers or position managers, please submit those as well.
+
+### NFT Marketplace Contracts
+Submit the main marketplace contract with key events, such as:
+- `ERC721BuyOrderFilled`
+- `ERC721SellOrderFilled`
+- `ERC1155BuyOrderFilled`
+- `ERC1155SellOrderFilled`
+
+### Unverified Contracts
+If the contract isn’t verified on the block explorer, contact the protocol developers to obtain the ABI. 
+
+
+{/* ---
+title: Survivor's Kit for Contract Submission
+description: New kid (chain) on the block (Dune)? Here’s what you need to know to submit your chain's protocol contracts to Dune.
+---
+
+**Why Submit Contracts for Decoding?**
+
+Decoding enables you to create a dedicated, easy-to-use dataset for your protocol on Dune, making it easier to build insightful dashboards.
+
+## Different Ways to Submit
+
+### Submit via UI (recommended)
+
+Use the Dune UI to submit contracts directly: [https://dune.com/contracts/new](https://dune.com/contracts/new). 
+
+For an overview of how decoding works and submission instructions, watch this video tutorial: [Decoding Tutorial](https://youtu.be/s3eKEeu9At8?si=zs0b5Q0iz5yx3L2d).
+
+### Batch Submit via CSV through Backend
+
+In the event that you are collecting dozens protocol contracts, and would like to batch submit contracts via a CSV. Please work with use (via the Slack or TG channel we have) with a correctly formatted CSV and batch submit contracts for decodoing. 
+<Warning>
+This is the less recommended route to go because for this to work, one needs to be super sure about the advanced flags are correctly marked and the ABI is correct and formatted well and the naming of the protocol and contract conforms with our standard. Submitting with UI has the benefit of the UI having many safe guard and checks and hint, and doing a manaul backedn batch submission means you will lose that guidance and sometimes result in longer debugging /turn around time. So use this option at you caution.
+</Warning>
+
+For multiple contracts, submit in bulk using [this Google Sheet template](https://docs.google.com/spreadsheets/d/1yxJqlmSE2yYgXgSIXcPRr5xxP9ck9JZB8_sGOITtYEM/edit?gid=0#gid=0). Be sure to:
+- Follow the format precisely.
+- Provide the ABI directly 
+- Refer to [Dune’s documentation](https://docs.dune.com/web-app/decoding/decoding-contracts) if you’re unsure about fields like `has_multiple_instances` or `is_created_by_factory`. `has_multiple_instances` coresponds to dynamic contract and `is_created_by_factory` corresponds to factory contract in Dune's decoding pipeline.
+
+## Submission Strategy
+
+- **For Chains:** Engage top protocols on your chain to ensure they submit relevant contracts.
+- **For Protocols:** Collaborate with your developers or data analysts to identify which contracts contain key logic and events to track.
+   
+
+### Proxy Contracts
+- If your contract uses a proxy pattern, you **must submit the implementation contract's ABI**.
+- Note: Dune’s automatic pipeline may not handle dynamic proxies or complex contract patterns.
+
+### Standard Tokens (ERC20, ERC721, ERC1155)
+
+Generally, these don’t need submission unless you want custom events beyond approvals and transfers, which are already covered.
+
+### DEX Contracts
+Look for below sets of contracts:
+- **Factory Contract** which should emit pool creation events, also useful for dex.trades spellbook creation 
+- **Pair/Pool Contract** which shoud emit swap events, also useful for dex.trades spellbook creation
+
+And ofc if you want to also decode other contracts for routers or position manager, please also submit those contracts. 
+
+### NFT Marketplace Contracts
+Look for the main marketplace contract with events like:
+    - `ERC721BuyOrderFilled`
+    - `ERC721SellOrderFilled`
+    - `ERC1155BuyOrderFilled`
+    - `ERC1155SellOrderFilled`
+
+### Unverified Contracts
+
+If the contract isn’t verified on the block explorer, contact the protocol developers to obtain the ABI. */}
+
+
+
+{/* ---
+title: Survivor's Kit for Contract Submission
+description: New kid (chain) on the block (Dune)? What and how to submit your chain's protocol contracts to Dune.
+---
+
+General guideline on what to submit, how to submit 
+
+To submit via UI, please go to https://dune.com/contracts/new. 
+Also please watch the video tutorial on how decoding generally works and how to submit a contract https://youtu.be/s3eKEeu9At8?si=zs0b5Q0iz5yx3L2d.
+
+If you are a chain, engage with the top protocols on your chain to submit their relevant contracts
+If you are a protocol, talk to your devs or data analyst to see which protocol contracts contain the main logic so you can track relevant events and functions calls. 
+
+If you want to do a batch submission, follow the format of this google sheet exactly https://docs.google.com/spreadsheets/d/1yxJqlmSE2yYgXgSIXcPRr5xxP9ck9JZB8_sGOITtYEM/edit?gid=0#gid=0
+Please note you must give the ABI properly and not just proide a ULR link.
+Also, for questions on what "has_multiple_instances" and "is_created_by_factory" means, please visit this page (link). has_multiple_instances correspond to https://docs.dune.com/web-app/decoding/decoding-contracts#are-there-several-instances-of-this-contract-dynamic-contract and is_created_by_factory corresponds to https://docs.dune.com/web-app/decoding/decoding-contracts#is-it-created-by-a-factory-contract-factory-contract.
+
+Please also note if your contract is a proxy contract, you MUST submit the implementation contract's ABI. Please also note that our current automatic pipeline is not able to handle dynamic proxy pattern or other more exotic contract patterns. 
+
+Tips
+- No need to submit ERC20, ERC721, ERC1155 token contracts to be decoded because we have the corresponding approval and transfers table.. unless you want to incorporate more/specialized events from that contract 
+- if DEX, what to submit 
+For DEX
+Factory contract: this will emit the events for pool creation 
+Pair/pool contract: this will emit the swaps events 
+
+- if you have NFT platform, what to submit 
+For NFT: typically one contract facilitating marketplace transactions, typically has 4 events 
+ERC721BuyOrderFilled 
+ERC721SellOrderFilled 
+ERC1155BuyOrderFilled 
+ERC1155SellOrderFilled
+
+
+If the contract is not verified on the block explorer, contact the protocol devs to obtain the ABI.   */}
