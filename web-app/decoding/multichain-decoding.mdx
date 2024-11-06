@@ -41,11 +41,6 @@ This feature unifies contract data views, streamlining the analysis of protocols
 |                 |                                                    |                             | Event      | Mint                   | `uniswap_v3_multichain.uniswapv3pool_evt_mint`       |
 |                 |                                                    |                             | Event      | Burn                   | `uniswap_v3_multichain.uniswapv3pool_evt_burn`       |
 
-> **In Pipeline:**  
-> - `uniswap_v3_optimism.UniswapV3Pool`  
-> - `uniswap_v2_blast.UniswapV2Pair`  
-> _These contracts are still pending processing in our pipeline._
-
 ### Safe
 
 | Protocol       | Chains Available                                   | Contract                    | Type   | Event/Call                  | View Table                                                  |
@@ -63,11 +58,19 @@ This feature unifies contract data views, streamlining the analysis of protocols
 | **[zora](https://dune.com/queries?category=decoded_project&namespace=zora)** | arbitrum, base, blast, ethereum, optimism, zora | ZoraTimedSaleStrategy     | Event   | SaleSet               | `zora_multichain.zoratimedsalestrategy_evt_saleset` |
 |                |                                                    | ZoraCreator1155FactoryImpl  | Event   | SetupNewContract       | `zora_multichain.zoracreator1155factoryimpl_evt_setupnewcontract` |
 
+### Lido
+
+| Protocol       | Chains Available                                   | Contract                    | Type   | Event/Call            | View Table                                          |
+|----------------|----------------------------------------------------|-----------------------------|--------|------------------------|-----------------------------------------------------|
+| **[lido](https://dune.com/queries?category=decoded_project&namespace=lido)** | arbitrum, bnb, mantle, optimism, polygon, scroll | wstETH                       | Event   | Transfer               | `lido_multichain.wstETH_evt_Transfer`               |
+|                |                                                    |                             | Event   | Approval               | `lido_multichain.wstETH_evt_Approval`               |
+
+
 ## Example Usage
 
 Here are a few examples showing how you can use multichain decoded table views to simplify your analysis. Each example includes "before" and "after" queries to demonstrate how multichain views streamline cross-chain analytics.
 
-### Finding Zora Uniswap Collections
+<Accordion title = "Finding Zora Uniswap Collections">
 <Tabs>
   <Tab title="Using multichain decoded tables">
   ```sql 
@@ -149,7 +152,9 @@ Here are a few examples showing how you can use multichain decoded table views t
   </Tab>
 </Tabs>
 
-### Gnosis Safe `execTransaction` Calls
+</Accordion>
+
+<Accordion title = "Gnosis Safe `execTransaction` Calls">
 <Tabs>
   <Tab title="Using multichain decoded tables">
   ```sql 
@@ -219,6 +224,7 @@ Here are a few examples showing how you can use multichain decoded table views t
   ```
   </Tab>
 </Tabs>
+</Accordion>
 
 ## How It Works
 
