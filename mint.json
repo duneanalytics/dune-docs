@@ -296,6 +296,52 @@
       "pages": [
         "data-catalog/evm/overview",
         {
+          "group": "Abstract",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/abstract/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/abstract/raw/blocks",
+                "data-catalog/evm/abstract/raw/creation-traces",
+                "data-catalog/evm/abstract/raw/logs",
+                "data-catalog/evm/abstract/raw/transactions",
+                "data-catalog/evm/abstract/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/abstract/decoded/overview",
+                "data-catalog/evm/abstract/decoded/call-tables",
+                "data-catalog/evm/abstract/decoded/event-logs",
+                "data-catalog/evm/abstract/decoded/contracts",
+                "data-catalog/evm/abstract/decoded/logs-decoded",
+                "data-catalog/evm/abstract/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/abstract/curated-data/dex/dex-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/abstract/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Arbitrum One",
           "icon": "database",
           "iconType": "solid",
