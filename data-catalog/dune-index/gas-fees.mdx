@@ -1,0 +1,318 @@
+---
+title: Transactions Fees
+sidebarTitle: "Transactions Fees"
+icon: "gas-pump"
+description: Understanding transaction fees and their relationship to transaction costs in blockchain networks
+---
+
+## Overview
+
+Transaction fees represent the dollar costs of executing operations on blockchain networks. By measuring transaction fees, we can understand the demand for resources on the network and the incentives that drive user behavior.
+Gas fee calculations are more complex than they may seem at first glance. This is because different networks have different fee structures, and some even have multiple components to their fees. We are aggregating the data from multiple sources to provide a comprehensive view of the fees paid for each network.
+
+You can explore the daily gas fee data via `metrics.gas_fees_daily`
+
+
+<div>
+  <iframe
+    src="https://dune.com/embeds/4096073/7114131/"
+    width="100%"
+    height="500px"
+  ></iframe>
+</div>
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="metrics" tableName="gas_fees_daily" />
+
+
+### EVM Networks
+
+For EVM networks, we have developed a unified model to calculate transaction fees consistently across different types of chains. The data is accessible through the `gas.fees` table, which standardizes the fee components into `l1_fee`, `base_fee`, and `priority_fee`. This model elegantly unifies the fee structures of rollups, L1s, and L2s, providing a coherent view of gas costs across the EVM ecosystem. However, it's important to note that the specific fee components and their calculations may vary depending on the unique characteristics and design choices of each network. You can find the fee components for each network below.
+
+<Tabs>
+  <Tab title="Arbitrum">
+    Arbitrum uses a custom L1/L2 fee model that ignores priority fees (tips) in calculations and uses effective_gas_price instead of standard gas_price. This helps account for the actual costs of posting data to the L1 chain.
+
+    ```sql
+    -- Two component fee structure
+    l1_fee = gas_used_for_l1 * effective_gas_price
+    base_fee = (gas_used - gas_used_for_l1) * effective_gas_price
+    ```
+
+  </Tab>
+
+  <Tab title="Avalanche C-Chain">
+    Avalanche C-Chain uses a standard fee structure with a base fee and an optional priority fee. This allows users to tip validators for faster transaction inclusion.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Base">
+    Base employs a custom L1/L2 fee model with additional L1 data fields. This helps track the costs associated with posting data to the L1 chain for security.
+
+    ```sql
+    -- Three component fee structure
+    l1_fee = l1_fee
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Two component fee structure (if no priority fee)
+    l1_fee = l1_fee
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Blast">
+    Blast uses a custom L1/L2 fee model with additional L1 data fields. This allows tracking the L1 data posting costs separately from the L2 execution fees.
+
+    ```sql
+    -- Three component fee structure
+    l1_fee = l1_fee
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Two component fee structure (if no priority fee)
+    l1_fee = l1_fee
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="BNB Chain">
+    BNB Chain uses a standard fee structure with a base fee and an optional priority fee. This allows users to incentivize faster transaction processing through tips.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+{" "}
+<Tab title="Celo">
+  Celo is excluded due to incorrect raw data. If included, it would use a
+  standard fee structure with a base fee and an optional priority fee.
+</Tab>
+
+{" "}
+<Tab title="Ethereum">
+  Ethereum uses a custom fee model with additional blob fee data. This helps
+  account for the costs associated with storing large data blobs on the network.
+  Fee components: ```sql -- Four component fee structure blob_fee =
+  blob_base_fee * blob_gas_used base_fee = base_fee_per_gas * gas_used
+  priority_fee = priority_fee_per_gas * gas_used -- Three component fee
+  structure (if no priority fee) blob_fee = blob_base_fee * blob_gas_used
+  base_fee = gas_price * gas_used ```
+</Tab>
+
+  <Tab title="Fantom">
+    Fantom uses a standard fee structure with a base fee and an optional priority fee. This allows users to tip validators for faster transaction inclusion.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Gnosis">
+    Gnosis uses a standard fee structure with a base fee and an optional priority fee. This allows users to incentivize faster transaction processing through tips.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Linea">
+    Linea uses a standard fee structure with a base fee and an optional priority fee. This allows users to tip validators for faster transaction inclusion.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Mantle">
+    Mantle employs a custom L1/L2 fee model with additional L1 data fields. This helps track the costs associated with posting data to the L1 chain for security.
+
+    ```sql
+    -- Three component fee structure
+    l1_fee = l1_fee
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Two component fee structure (if no priority fee)
+    l1_fee = l1_fee
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Optimism">
+    Optimism uses a custom L1/L2 fee model with additional L1 data fields. This allows tracking the L1 data posting costs separately from the L2 execution fees.
+
+    ```sql
+    -- Three component fee structure
+    l1_fee = l1_fee
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Two component fee structure (if no priority fee)
+    l1_fee = l1_fee
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Polygon">
+    Polygon uses a standard fee structure with a base fee and an optional priority fee. This allows users to incentivize faster transaction processing through tips.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Scroll">
+    Scroll uses a custom L1/L2 fee model with additional L1 data fields. This helps track the costs associated with posting data to the L1 chain for security.
+
+    ```sql
+    -- Three component fee structure
+    l1_fee = l1_fee
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Two component fee structure (if no priority fee)
+    l1_fee = l1_fee
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Sei">
+    Sei uses a standard fee structure with a base fee and an optional priority fee. This allows users to tip validators for faster transaction inclusion.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+{" "}
+<Tab title="Tron">
+  Tron uses a simplified fee structure using only gas price and gas used. This
+  provides a straightforward way to calculate transaction fees. Tron also
+  subsidizes the fees for transactions, so the fee paid is not necessarily the
+  actual cost of the transaction. We are correcting for this in the
+  `metrics.gas_fees_daily` table, but not in gas.fees yet. ```sql tx_fee_raw =
+  gas_used * gas_price ```
+</Tab>
+
+  <Tab title="zkEVM">
+    zkEVM uses a standard fee structure with a base fee and an optional priority fee. This allows users to incentivize faster transaction processing through tips.
+
+    ```sql
+    -- Two component fee structure (if priority fee exists)
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Single component fee structure (if no priority fee)
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="zkSync">
+    zkSync uses a simplified fee structure using only gas price and gas used. This provides a straightforward way to calculate transaction fees on the zkSync network.
+
+    ```sql
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+
+  <Tab title="Zora">
+    Zora uses a custom L1/L2 fee model with additional L1 data fields. This helps track the costs associated with posting data to the L1 chain for security.
+
+    ```sql
+    -- Three component fee structure
+    l1_fee = l1_fee
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Two component fee structure (if no priority fee)
+    l1_fee = l1_fee
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
+</Tabs>
+
+### Non-EVM Networks
+
+For non-EVM networks we haven't yet found a consistent way to model the fee structure, so we are not yet able to provide a unified model for non-EVM networks. However all the data is included in the `metrics.gas_fees_daily` table.
+
+#### Solana
+
+Solana has two "types" of transactions: _transactions_ and _votes_. We track the fees for each type separately in `gas_solana.tx_fees` and `gas_solana.vote_fees`.
+
+<Tabs>
+  <Tab title="Solana Transactions">
+    Solana uses a custom fee structure with a base fee and an optional prioritization fee for transactions. The base fee is calculated based on the number of signatures required for the transaction, while the prioritization fee depends on the compute unit price and compute budget limit.
+
+    ```sql
+    -- Two component fee structure
+    base_fee = # of signatures * 0.000005
+    priority_fee = compute_unit_price * compute_budget_limit
+    ```
+
+    This data is standardized in `gas_solana.tx_fees`.
+
+  </Tab>
+  
+  <Tab title="Solana Votes">  
+    In Solana, votes that help the network reach consensus are also considered transactions. The fees are always 0.000005 SOL per vote, which is the base fee for a transaction with one signature.
+    
+    ```sql
+    -- single component fee structure
+    fee = 0.000005
+    ```
+    Vote fees are not included in `gas_solana.tx_fees` and are instead included in `gas_solana.vote_fees`.
+  </Tab>
+</Tabs>
+
+We consider both `gas_solana.tx_fees` and `gas_solana.vote_fees` when calculating the total transaction fees for solana in `metrics.gas_fees_daily`.
+
+#### Bitcoin
+
+Bitcoin uses a simple fee structure where each transaction has a fee paid to the miner. Miners pick the transactions with the highest fees to include in the next block.
+
+```sql
+-- Single component fee structure
+fee = fee
+```

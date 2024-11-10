@@ -1,0 +1,53 @@
+---
+title: Net USD Transferred
+sidebarTitle: "Net Transfers"
+icon: "money-bill-transfer"
+description: Understanding net USD transferred as a component of the Dune Index
+---
+
+## Overview
+
+Net USD transferred provides a measure of genuine economic activity across blockchain networks by tracking the actual movement of value between distinct entities. This metric implements sophisticated filtering mechanisms to distinguish meaningful transfers from artificial activity, offering insight into real economic impact.
+
+## Technical Significance
+
+Net transfers serve as a crucial indicator of blockchain utility by measuring actual value movement while filtering out noise. Unlike gross transfer volumes, which can be inflated through wash trading or circular transactions, net transfers focus on the ultimate economic impact of blockchain activity.
+
+The metric is particularly valuable because it requires significant economic resources to manipulate, making it a more reliable indicator of genuine activity compared to metrics like transaction count or total volume.
+
+## Calculation Methodology
+
+The computation of net transfers follows a rigorous process:
+
+1. Address-Level Aggregation
+   - Track all value movements between addresses
+   - Calculate daily net position changes per address (inflows minus outflows)
+
+2. Filtering Criteria
+   - Minimum threshold of $1 to exclude dust transactions
+   - Removal of internal transactions from known contracts and protocols
+   - Exclusion of identified wash trading patterns
+   - Filtering of exploit-related transfers and known scam addresses
+
+3. Standardization
+   - Conversion to USD equivalent values using time-weighted average prices
+   - Normalization against baseline metrics for cross-chain comparison
+
+## Analytical Framework
+
+When interpreting net transfer data, consider several key aspects:
+
+1. Volume Patterns
+   - Analyze sustained periods of high net transfer volume
+   - Identify unusual spikes that may indicate large-scale events or anomalies
+
+2. Comparative Analysis
+   - Compare net transfers against gross transfer volume to detect wash trading
+   - Evaluate relationships with transaction counts and fee levels
+   - Monitor distribution patterns across different blockchain networks
+
+3. Network Effects
+   - Consider how network upgrades or protocol changes impact transfer patterns
+   - Analyze the impact of new DeFi protocols or applications on transfer volumes
+
+This metric provides valuable insight into blockchain adoption when analyzed alongside other components of the Dune Index, offering a more complete picture of meaningful network usage.
