@@ -1,32 +1,73 @@
 ---
 title: Transactions
 sidebarTitle: "Transactions"
-description: Understanding transactions as a component of the Dune Index
+icon: "arrow-right-arrow-left"
+description: Understanding transactions as a foundational component of the Dune Index
 ---
 
 ## Overview
 
-Transaction count is the simplest and most straightforward component of the Dune Index. It represents the raw number of transactions processed by blockchain networks, providing a clear measure of overall network activity.
+The transaction component of the Dune Index measures blockchain activity by counting transactions that transfer at least 1 USD in value. This filtered approach helps focus on meaningful economic activity while maintaining a simple, verifiable methodology.
 
-## Why Raw Transaction Count?
+## Methodology
 
-Using the total transaction count without filtering provides several benefits:
-- Simple and transparent methodology
-- Easy to verify and reproduce
-- Consistent across different chains
-- Direct measure of network usage
+The transaction metric employs a straightforward filtering approach:
 
-## Context with Other Metrics
+1. Base Criteria
+   - Count only transactions with transfers of $1 or more
+   - Convert all token transfers to USD value at time of transaction
+   - Include both native token and token contract transfers
 
-Raw transaction count provides important context when combined with:
-- Transaction Fees: High fees with few transactions indicates congestion
-- Net Transfers: High transfers with few transactions suggests large value movements
-- Both: Helps identify whether activity is broad-based or concentrated
+2. Rationale
+   - $1 threshold excludes dust transactions and spam
+   - Low threshold maintains inclusivity of meaningful activity
+   - Simple criteria enables consistent cross-chain comparison
 
-## Interpretation
+3. Implementation
+   - Track successful transfers only
+   - Calculate USD value at transaction time
+   - Aggregate across all supported token types
 
-When analyzing transaction count:
-- Look for sustained growth in transaction volume
-- Consider the relationship with other metrics
-- Compare across different time periods
-- Monitor for unusual spikes or drops in activity
+## Technical Considerations
+
+Several factors influence transaction counting:
+
+1. Value Calculation
+   - Use time-weighted token prices
+   - Account for token decimals and precision
+   - Handle cases of missing price data
+
+2. Cross-Chain Standardization
+   - Apply consistent $1 threshold across networks
+   - Account for different token value representations
+   - Handle multi-token transactions appropriately
+
+## Limitations
+
+Understanding the metric's limitations is crucial:
+
+1. Threshold Effects
+   - May exclude some meaningful sub-$1 activity
+   - Still includes some non-meaningful activity above $1
+   - Value threshold is nominal, not inflation-adjusted
+
+2. Technical Constraints
+   - Requires reliable price data for all tokens
+   - Must handle complex transaction types consistently
+   - Network upgrades may affect transaction classification
+
+## Usage Guidelines
+
+When analyzing transaction data:
+
+1. Trend Analysis
+   - Focus on directional changes over time
+   - Compare across similar time periods
+   - Consider seasonal and cyclical patterns
+
+2. Context
+   - Use alongside other Dune Index components
+   - Consider network-specific factors
+   - Account for major protocol changes
+
+The transaction count provides a foundational measure of blockchain adoption while the $1 threshold helps filter out noise, making it a valuable component of the Dune Index despite its inherent limitations.
