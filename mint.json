@@ -95,6 +95,7 @@
             "web-app/query-editor/data-explorer",
             "web-app/query-editor/parameters",
             "web-app/query-editor/query-scheduler",
+            "web-app/query-editor/query-lineage",
             "web-app/query-editor/version-history"
           ]
         },
