@@ -98,22 +98,27 @@ For EVM networks, we have developed a unified model to calculate transaction fee
 
   </Tab>
 
-{" "}
 <Tab title="Celo">
   Celo is excluded due to incorrect raw data. If included, it would use a
   standard fee structure with a base fee and an optional priority fee.
 </Tab>
 
-{" "}
-<Tab title="Ethereum">
-  Ethereum uses a custom fee model with additional blob fee data. This helps
-  account for the costs associated with storing large data blobs on the network.
-  Fee components: ```sql -- Four component fee structure blob_fee =
-  blob_base_fee * blob_gas_used base_fee = base_fee_per_gas * gas_used
-  priority_fee = priority_fee_per_gas * gas_used -- Three component fee
-  structure (if no priority fee) blob_fee = blob_base_fee * blob_gas_used
-  base_fee = gas_price * gas_used ```
-</Tab>
+  <Tab title="Ethereum">
+    Ethereum uses a custom fee model with additional blob fee data. This helps
+    account for the costs associated with storing large data blobs on the network.
+    Fee components:
+
+    ```sql
+    -- Four component fee structure
+    blob_fee = blob_base_fee * blob_gas_used
+    base_fee = base_fee_per_gas * gas_used
+    priority_fee = priority_fee_per_gas * gas_used
+    -- Three component fee structure (if no priority fee)
+    blob_fee = blob_base_fee * blob_gas_used
+    base_fee = gas_price * gas_used
+    ```
+
+  </Tab>
 
   <Tab title="Fantom">
     Fantom uses a standard fee structure with a base fee and an optional priority fee. This allows users to tip validators for faster transaction inclusion.
