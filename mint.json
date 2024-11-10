@@ -1786,19 +1786,19 @@
       "pages": [
         "developer-apis/overview",
         {
-          "group": "Token Balances (Beta)",
+          "group": "EVM",
           "pages": [
-            "developer-apis/balance",
-            "developer-apis/balance-subscribe",
-            "developer-apis/balance-chains"
+            "developer-apis/evm/balances",
+            "developer-apis/evm/balances-chains",
+            "developer-apis/evm/transactions",
+            "developer-apis/evm/transactions-chains"
           ]
         },
         {
-          "group": "Transactions (Beta)",
+          "group": "SVM",
           "pages": [
-            "developer-apis/transactions",
-            "developer-apis/transactions-subscribe",
-            "developer-apis/transactions-chains"
+            "developer-apis/svm/balances",
+            "developer-apis/svm/transactions"
           ]
         }
       ]
