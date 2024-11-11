@@ -1,6 +1,6 @@
 ---
 title: 'Transactions'
-openapi: 'GET /beta/transactions/{address}'
+openapi: 'GET /v1/transactions/evm/{address}'
 ---
 
 The Transactions Endpoint allows for quick and accurate lookup of transactions associated with an address.
@@ -36,8 +36,8 @@ The data is ordered by descending block time, so that new transactions will alwa
 
 # Pagination
 
-This endpoint is using cursor based pagination. You can use the `limit` parameter to define the maximum page size. 
-Results might at times be less than the maximum page size. 
+This endpoint is using cursor based pagination. You can use the `limit` parameter to define the maximum page size.
+Results might at times be less than the maximum page size.
 The `next_offset` value is included in the initial response and can be utilized to fetch the next page of results by passing it as the `offset` query parameter in the next request.
 
 <Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>
