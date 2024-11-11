@@ -14,7 +14,7 @@
     }
   ],
   "paths": {
-    "/v1/balances/evm/chains": {
+    "/echo/v1/balances/evm/chains": {
       "get": {
         "tags": ["balance"],
         "summary": "Get a list of supported chains for the balances endpoint",
@@ -214,7 +214,7 @@
         }
       }
     },
-    "/v1/balances/evm/{address}": {
+    "/echo/v1/balances/evm/{address}": {
       "get": {
         "tags": ["balance"],
         "summary": "Get token balances for a given address",
@@ -342,7 +342,7 @@
         }
       }
     },
-    "/v1/transactions/evm/chains": {
+    "/echo/v1/transactions/evm/chains": {
       "get": {
         "tags": ["transactions"],
         "summary": "Get a list of supported chains for the transactions endpoint",
@@ -448,7 +448,7 @@
         }
       }
     },
-    "/v1/transactions/evm/{address}": {
+    "/echo/v1/transactions/evm/{address}": {
       "get": {
         "tags": ["transactions"],
         "summary": "Get transactions for a given address",
