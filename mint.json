@@ -46,8 +46,8 @@
       "url": "api-reference"
     },
     {
-      "name": "Developer API Reference",
-      "url": "developer-apis"
+      "name": "Echo",
+      "url": "echo"
     },
     {
       "name": "Datashare",
@@ -1793,24 +1793,21 @@
       ]
     },
     {
-      "group": "Developer APIs",
+      "group": "Dune Echo",
       "pages": [
-        "developer-apis/overview",
+        "echo/overview",
         {
           "group": "EVM",
           "pages": [
-            "developer-apis/evm/balances",
-            "developer-apis/evm/balances-chains",
-            "developer-apis/evm/transactions",
-            "developer-apis/evm/transactions-chains"
+            "echo/evm/balances",
+            "echo/evm/balances-chains",
+            "echo/evm/transactions",
+            "echo/evm/transactions-chains"
           ]
         },
         {
           "group": "SVM",
-          "pages": [
-            "developer-apis/svm/balances",
-            "developer-apis/svm/transactions"
-          ]
+          "pages": ["echo/svm/balances", "echo/svm/transactions"]
         }
       ]
     },
