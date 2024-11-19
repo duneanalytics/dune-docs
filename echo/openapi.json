@@ -14,12 +14,170 @@
     }
   ],
   "paths": {
+    "/echo/beta/balances/svm/{address}": {
+      "get": {
+        "tags": [
+          "balances"
+        ],
+        "summary": "Get SVM token balances for a given address",
+        "description": "This endpoint returns SVM token balances for an address for any token that the address has interacted with",
+        "operationId": "getSvmBalances",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Wallet to get balances for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chains",
+            "in": "query",
+            "description": "Either 'all' or a comma separated list of chains to get balances for. Currently supports 'solana' and 'eclipse'",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of transactions to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalancesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    },
+    "/echo/beta/transactions/svm/{address}": {
+      "get": {
+        "tags": [
+          "transactions"
+        ],
+        "summary": "Get SVM transactions for a given address",
+        "description": "This endpoint returns transactions for a given address across several SVM chains.",
+        "operationId": "getSvmTransactions",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Wallet to get transactions for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend has returned on previous responses.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of transactions to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server"
+          }
+        }
+      }
+    },
     "/echo/v1/balances/evm/chains": {
       "get": {
-        "tags": ["balance"],
+        "tags": [
+          "balances"
+        ],
         "summary": "Get a list of supported chains for the balances endpoint",
         "description": "The balances endpoint supports a wide range of chains, but not all chains are supported by all backends.\nThis endpoint returns a list of chains that are supported by the balances endpoint.",
-        "operationId": "balance::chains",
+        "operationId": "getEvmBalancesChains",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -45,157 +203,234 @@
                       "default": true,
                       "id": 42161,
                       "name": "arbitrum",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 43114,
                       "name": "avalanche_c",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 8453,
                       "name": "base",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 56,
                       "name": "bnb",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 1,
                       "name": "ethereum",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 137,
                       "name": "polygon",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 10,
                       "name": "optimism",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 534352,
                       "name": "scroll",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 42220,
                       "name": "celo",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "defaul t": true,
                       "id": 690,
                       "name": "redstone",
-                      "supported_assets": ["native"]
+                      "supported_assets": [
+                        "native"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 34443,
                       "name": "mode",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 42170,
                       "name": "arbitrum_nova",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 59144,
                       "name": "linea",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 60808,
                       "name": "bob",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 81457,
                       "name": "blast",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 7777777,
                       "name": "zora",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 666666666,
                       "name": "degen",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 888888888,
                       "name": "ancient8",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 1380012617,
                       "name": "rari",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 100,
                       "name": "gnosis",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 1101,
                       "name": "zkevm",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 324,
                       "name": "zksync",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": false,
                       "id": 70700,
                       "name": "proof_of_play",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 250,
                       "name": "fantom",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 11155111,
                       "name": "sepolia",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     },
                     {
                       "default": true,
                       "id": 1329,
                       "name": "sei",
-                      "supported_assets": ["native", "erc20"]
+                      "supported_assets": [
+                        "native",
+                        "erc20"
+                      ]
                     }
                   ]
                 }
@@ -216,10 +451,12 @@
     },
     "/echo/v1/balances/evm/{address}": {
       "get": {
-        "tags": ["balance"],
-        "summary": "Get token balances for a given address",
-        "description": "This endpoint returns token balances for an address for any token that the address has interacted with",
-        "operationId": "balance::get",
+        "tags": [
+          "balances"
+        ],
+        "summary": "Get EVM token balances for a given address",
+        "description": "This endpoint returns EVM token balances for an address for any token that the address has interacted with",
+        "operationId": "getEvmBalances",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -342,12 +579,62 @@
         }
       }
     },
+    "/echo/v1/balances/evm/{address}/subscribe": {
+      "get": {
+        "tags": [
+          "balances"
+        ],
+        "summary": "Subscribe to balances for a given address",
+        "description": "This endpoint returns a websocket that can be used to subscribe to balances for a given address\nEvery time the API detects a token transfer to or from this address, an update will be sent.",
+        "operationId": "subscribeEvmBalances",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Wallet to get balances for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chain_ids",
+            "in": "query",
+            "description": "Comma separated list of chain ids to filter by",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "101": {
+            "description": "Successful Response, Connection: Upgrade to WebSocket"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    },
     "/echo/v1/transactions/evm/chains": {
       "get": {
-        "tags": ["transactions"],
+        "tags": [
+          "transactions"
+        ],
         "summary": "Get a list of supported chains for the transactions endpoint",
         "description": "This endpoint returns a list of chains that are supported by the transactions endpoint.\nThe number of supported chains is currently limited, but we are working on extending support.",
-        "operationId": "transactions::chains",
+        "operationId": "getEvmTransactionsChains",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -450,10 +737,12 @@
     },
     "/echo/v1/transactions/evm/{address}": {
       "get": {
-        "tags": ["transactions"],
-        "summary": "Get transactions for a given address",
+        "tags": [
+          "transactions"
+        ],
+        "summary": "Get EVM transactions for a given address",
         "description": "This endpoint returns transactions for a given address across several EVM chains.\nBy setting the ?decode parameter you can optionally choose to get both function calls and logs decoded.",
-        "operationId": "transactions::get",
+        "operationId": "getEvmTransactions",
         "parameters": [
           {
             "name": "address",
@@ -582,13 +871,56 @@
           }
         }
       }
+    },
+    "/echo/v1/transactions/evm/{address}/subscribe": {
+      "get": {
+        "tags": [
+          "transactions"
+        ],
+        "operationId": "subscribeEvmTransactions",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Wallet to get transactions for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "101": {
+            "description": "Successful Response, Connection: Upgrade to WebSocket"
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
       "BalanceData": {
         "type": "object",
-        "required": ["chain", "address", "amount"],
+        "required": [
+          "chain",
+          "address",
+          "amount"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -636,7 +968,11 @@
       },
       "BalanceErrorInformation": {
         "type": "object",
-        "required": ["chain", "chain_id", "address"],
+        "required": [
+          "chain",
+          "chain_id",
+          "address"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -656,7 +992,9 @@
       },
       "BalanceErrors": {
         "type": "object",
-        "required": ["token_errors"],
+        "required": [
+          "token_errors"
+        ],
         "properties": {
           "token_errors": {
             "type": "array",
@@ -668,7 +1006,11 @@
       },
       "BalancesResponse": {
         "type": "object",
-        "required": ["response_time", "wallet_address", "balances"],
+        "required": [
+          "response_time",
+          "wallet_address",
+          "balances"
+        ],
         "properties": {
           "balances": {
             "type": "array",
@@ -701,9 +1043,21 @@
           }
         }
       },
+      "Chain": {
+        "type": "string",
+        "enum": [
+          "solana",
+          "eclipse"
+        ]
+      },
       "ChainEntry": {
         "type": "object",
-        "required": ["name", "id", "supported_assets", "default"],
+        "required": [
+          "name",
+          "id",
+          "supported_assets",
+          "default"
+        ],
         "properties": {
           "default": {
             "type": "boolean"
@@ -726,7 +1080,9 @@
       },
       "ChainsResponse": {
         "type": "object",
-        "required": ["chains"],
+        "required": [
+          "chains"
+        ],
         "properties": {
           "chains": {
             "type": "array",
@@ -738,7 +1094,10 @@
       },
       "DecodedEvent": {
         "type": "object",
-        "required": ["name", "inputs"],
+        "required": [
+          "name",
+          "inputs"
+        ],
         "properties": {
           "inputs": {
             "type": "array",
@@ -753,7 +1112,10 @@
       },
       "DecodedFunction": {
         "type": "object",
-        "required": ["name", "inputs"],
+        "required": [
+          "name",
+          "inputs"
+        ],
         "properties": {
           "inputs": {
             "type": "array",
@@ -768,7 +1130,11 @@
       },
       "Input": {
         "type": "object",
-        "required": ["name", "type", "value"],
+        "required": [
+          "name",
+          "type",
+          "value"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -783,7 +1149,11 @@
       },
       "Log": {
         "type": "object",
-        "required": ["address", "data", "topics"],
+        "required": [
+          "address",
+          "data",
+          "topics"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -795,6 +1165,28 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "Microseconds": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "Response": {
+        "type": "object",
+        "required": [
+          "transactions"
+        ],
+        "properties": {
+          "next_offset": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
             }
           }
         }
@@ -826,7 +1218,9 @@
           },
           {
             "type": "object",
-            "required": ["logs"],
+            "required": [
+              "logs"
+            ],
             "properties": {
               "decoded": {
                 "allOf": [
@@ -862,6 +1256,39 @@
           }
         }
       },
+      "Transaction": {
+        "type": "object",
+        "required": [
+          "address",
+          "chain",
+          "block_slot",
+          "raw_transaction"
+        ],
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "block_slot": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "block_time": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Microseconds"
+              }
+            ],
+            "nullable": true
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "raw_transaction": {
+            "type": "object"
+          }
+        }
+      },
       "TransactionBase": {
         "type": "object",
         "required": [
@@ -870,7 +1297,6 @@
           "chain_id",
           "block_time",
           "block_number",
-          "block_version",
           "index",
           "hash",
           "block_hash",
@@ -880,7 +1306,6 @@
           "to",
           "nonce",
           "gas_price",
-          "success",
           "data"
         ],
         "properties": {
@@ -896,14 +1321,7 @@
             "minimum": 0
           },
           "block_time": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
-          },
-          "block_version": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
+            "type": "string"
           },
           "chain": {
             "type": "string"
@@ -935,7 +1353,8 @@
             "type": "string"
           },
           "success": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "to": {
             "type": "string"
@@ -950,11 +1369,16 @@
       },
       "TransactionType": {
         "type": "string",
-        "enum": ["Sender", "Receiver"]
+        "enum": [
+          "Sender",
+          "Receiver"
+        ]
       },
       "TransactionsResponse": {
         "type": "object",
-        "required": ["transactions"],
+        "required": [
+          "transactions"
+        ],
         "properties": {
           "next_offset": {
             "type": "string",
