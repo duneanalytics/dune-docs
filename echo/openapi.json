@@ -153,7 +153,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TransactionsResponse"
+                  "$ref": "#/components/schemas/TransactionsSvmResponse"
                 }
               }
             }
@@ -1173,24 +1173,6 @@
         "type": "integer",
         "format": "int64"
       },
-      "Response": {
-        "type": "object",
-        "required": [
-          "transactions"
-        ],
-        "properties": {
-          "next_offset": {
-            "type": "string",
-            "nullable": true
-          },
-          "transactions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Transaction"
-            }
-          }
-        }
-      },
       "ResponseLog": {
         "allOf": [
           {
@@ -1388,6 +1370,24 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ResponseTransaction"
+            }
+          }
+        }
+      },
+      "TransactionsSvmResponse": {
+        "type": "object",
+        "required": [
+          "transactions"
+        ],
+        "properties": {
+          "next_offset": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
             }
           }
         }
