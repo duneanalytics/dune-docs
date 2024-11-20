@@ -22,6 +22,10 @@ For details on price calculation methodology, including VWAP calculations and ou
 
 This table is ideal for high-frequency analysis and examining short-term price movements. It's particularly useful for studying price impacts of specific events or transactions.
 
+## Latency and Update Frequency
+
+The `prices.minute` table is updated hourly based on the upstream `dex.trades` data pipeline. As a result, prices typically have a latency of approximately 1 hour from real-time.
+
 ## Example Query
 
 ```sql
