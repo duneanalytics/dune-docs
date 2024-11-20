@@ -23,6 +23,10 @@ For details on price calculation methodology, including VWAP calculations and ou
 
 This table is useful for intraday analysis and tracking price movements with higher granularity than daily data. It's suitable for examining price patterns within a day or across multiple days.
 
+## Latency and Update Frequency
+
+The `prices.hour` table is updated hourly based on the upstream `dex.trades` data pipeline. As a result, prices typically have a latency of approximately 1 hour from real-time.
+
 ## Example Query
 
 ```sql

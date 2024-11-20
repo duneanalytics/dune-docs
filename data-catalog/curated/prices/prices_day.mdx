@@ -23,6 +23,10 @@ For details on price calculation methodology, including VWAP calculations and ou
 
 This table is ideal for analyzing daily price trends and performing day-over-day comparisons. It provides a good balance between data granularity and query performance for longer-term analyses.
 
+## Latency and Update Frequency
+
+The `prices.day` table is updated daily at 00:00 UTC, providing the closing price for the previous day. Data is typically available within 30 minutes of the daily close.
+
 ## Example Query
 
 ```sql
