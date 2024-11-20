@@ -30,13 +30,18 @@ The `prices.hour` table is updated hourly based on the upstream `dex.trades` dat
 ## Example Query
 
 ```sql
-SELECT 
+SELECT
     contract_address,
     blockchain,
     symbol,
     price,
     timestamp
 FROM prices.hour
+WHERE
+    blockchain = 'ethereum'
+    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+    AND timestamp >= NOW() - INTERVAL '7' DAY
+ORDER BY timestamp asc
 ```
 
 ## Notes

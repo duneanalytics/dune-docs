@@ -30,16 +30,16 @@ The `prices.day` table is updated daily at 00:00 UTC, providing the closing pric
 ## Example Query
 
 ```sql
-SELECT 
+SELECT
     contract_address,
     blockchain,
     symbol,
     price,
     timestamp
 FROM prices.day
-WHERE 
-    blockchain = 'ethereum' 
-    AND symbol = 'WETH'
+WHERE
+    blockchain = 'ethereum'
+    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
     AND timestamp >= DATE '2023-01-01'
 ORDER BY timestamp asc
 ```

@@ -23,13 +23,13 @@ Example query using modern tables:
 
 ```sql
 -- For latest prices, use prices.minute with recent timestamp
-SELECT 
-    symbol, 
-    price 
+SELECT
+    symbol,
+    price
 FROM prices.minute
 WHERE blockchain = 'ethereum'
-    AND symbol = 'WETH'
-    AND timestamp >= NOW() - INTERVAL '5' MINUTE
+    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+    AND timestamp >= NOW() - INTERVAL '1' HOUR
 ORDER BY timestamp DESC
 LIMIT 1
 ```

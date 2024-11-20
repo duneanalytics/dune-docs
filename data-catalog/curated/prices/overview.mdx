@@ -55,7 +55,7 @@ All price tables share the following schema:
 
 | Column             | Type        | Description                                                                      |
 | ------------------ | ----------- | -------------------------------------------------------------------------------- |
-| `contract_address` | _varbinary_ | Token identifier (ERC20 contract address, Solana mint address, null for natives) |
+| `contract_address` | _varbinary_ | Token identifier (ERC20 contract address, Solana mint address, 0x00..00 for natives) |
 | `blockchain`       | _varchar_   | Network identifier                                                               |
 | `symbol`           | _varchar_   | Token symbol                                                                     |
 | `price`            | _double_    | USD price                                                                        |
@@ -71,7 +71,7 @@ All price tables share the following schema:
 
 ## Methodology
 
-Dune's price data is derived primarily from DEX trading activity captured in [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades), providing broad coverage across 180,000+ tokens and 20+ blockchains. The data undergoes rigorous processing including volume filtering, outlier removal, and VWAP calculations to ensure accuracy and reliability. This methodology enables automatic price tracking for any token that achieves meaningful trading volume (>$10k), while maintaining data quality through statistical controls.  
+Dune's price data is derived primarily from DEX trading activity captured in [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades), providing broad coverage across 180,000+ tokens and 20+ blockchains. The data undergoes rigorous processing including volume filtering, outlier removal, and VWAP calculations to ensure accuracy and reliability. This methodology enables automatic price tracking for any token that achieves meaningful trading volume (>$10k), while maintaining data quality through statistical controls.
 Despite comprehensive internal testing and measures to prevent data errors, it's possible for prices to be inaccurate due to outlier trades (arbitrage, hacks etc.) which can skew the data. If you happen to notice a price error, please open an issue on [GitHub](https://github.com/duneanalytics/spellbook/issues).
 
 ### Step 1: Importing Trusted Token Prices

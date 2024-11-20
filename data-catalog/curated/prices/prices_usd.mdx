@@ -24,15 +24,18 @@ Example query using modern tables:
 
 ```sql
 -- For historical prices, use prices.day
-SELECT 
-    timestamp,
-    symbol, 
-    price 
+SELECT
+    contract_address,
+    blockchain,
+    symbol,
+    price,
+    timestamp
 FROM prices.day
-WHERE blockchain = 'ethereum'
-    AND symbol = 'WETH'
+WHERE
+    blockchain = 'ethereum'
+    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
     AND timestamp >= DATE '2023-01-01'
-ORDER BY timestamp ASC
+ORDER BY timestamp asc
 ```
 
 ## Legacy Table Structure
@@ -45,4 +48,4 @@ ORDER BY timestamp ASC
 | `timestamp`       | _timestamp_ | The timestamp for which this price is reported |
 | `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
 
-For more information about the current price feed, please refer to the [Prices Overview](/data-catalog/curated/prices/overview). 
+For more information about the current price feed, please refer to the [Prices Overview](/data-catalog/curated/prices/overview).
