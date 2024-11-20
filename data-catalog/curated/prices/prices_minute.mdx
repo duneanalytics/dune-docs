@@ -25,13 +25,13 @@ This table is ideal for high-frequency analysis and examining short-term price m
 ## Example Query
 
 ```sql
-SELECT 
+SELECT
     timestamp,
     price
 FROM prices.minute
-WHERE 
-    blockchain = 'ethereum' 
-    AND symbol = 'WETH'
+WHERE
+    blockchain = 'ethereum'
+    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
     AND timestamp >= NOW() - INTERVAL '1' HOUR
 ORDER BY timestamp
 ```
