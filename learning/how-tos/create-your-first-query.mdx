@@ -33,7 +33,7 @@ GROUP BY
 
 ## Crafting Your Query
 
-1. **Identify Your Columns**: Once you've zeroed in on the right table, pinpoint the `tx_fee_usd` column to track USD gas expenditures. To specify the wallet you're examining, use the `tx_sender` field. For demonstration purposes, we'll be using Vitalik's wallet (0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045).
+1. **Identify Your Columns**: Once you've zeroed in on the right table, pinpoint the `tx_fee_usd` column to track USD gas expenditures. To specify the wallet you're examining, use the `tx_from` field. For demonstration purposes, we'll be using Vitalik's wallet (0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045).
 
 2. **Aggregation & Time Period**: Our goal is to get monthly gas spendings, so we need to truncate the `block_date` to month and applying the `SUM()` function, then group by each month go derive the results.
 
@@ -46,7 +46,7 @@ SELECT
   SUM(SUM(tx_fee_usd)) OVER (ORDER BY DATE_TRUNC('month', block_date)) AS cumulative_gas_spent
 FROM gas.fees
 WHERE
-  tx_sender = 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 -- vitalik.eth 
+  tx_from = 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 -- vitalik.eth
 GROUP BY
   1
 ORDER BY
@@ -58,7 +58,7 @@ Here is the [link to demo query](https://dune.com/queries/3100875).
 
 ## Boost Flexibility with Parameters
 
-In the example, you'll see `tx_sender = \{\{Your Wallet Address}} -- default is vitalik.eth`. This denotes the use of the parameter feature, enhancing the query's flexibility. To mark a field as a parameter, wrap it in "". Alternatively, activate the "Add Parameter" button.
+In the example, you'll see `tx_from = \{\{Your Wallet Address}} -- default is vitalik.eth`. This denotes the use of the parameter feature, enhancing the query's flexibility. To mark a field as a parameter, wrap it in "". Alternatively, activate the "Add Parameter" button.
 
 <div
   style={{
@@ -92,7 +92,7 @@ SELECT
   SUM(SUM(tx_fee_usd)) OVER (ORDER BY DATE_TRUNC('month', block_date)) AS cumulative_gas_spent
 FROM gas.fees
 WHERE
-  tx_sender = {{Your Wallet Address}} -- default is vitalik.eth
+  tx_from = {{Your Wallet Address}} -- default is vitalik.eth
 GROUP BY
   DATE_TRUNC('month', block_date)
 ORDER BY
