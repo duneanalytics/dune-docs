@@ -230,15 +230,17 @@ For EVM networks, we have developed a unified model to calculate transaction fee
 
   </Tab>
 
-{" "}
-<Tab title="Tron">
-  Tron uses a simplified fee structure using only gas price and gas used. This
+  <Tab title="Tron">
+    Tron uses a simplified fee structure using only gas price and gas used. This
   provides a straightforward way to calculate transaction fees. Tron also
   subsidizes the fees for transactions, so the fee paid is not necessarily the
   actual cost of the transaction. We are correcting for this in the
-  `metrics.gas_fees_daily` table, but not in gas.fees yet. ```sql tx_fee_raw =
-  gas_used * gas_price ```
-</Tab>
+    `metrics.gas_fees_daily` table, but not in gas.fees yet.
+
+    ```sql
+    tx_fee_raw = gas_used * gas_price
+    ```
+  </Tab>
 
   <Tab title="zkEVM">
     zkEVM uses a standard fee structure with a base fee and an optional priority fee. This allows users to incentivize faster transaction processing through tips.
