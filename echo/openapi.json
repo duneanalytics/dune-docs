@@ -754,6 +754,15 @@
             }
           },
           {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "offset",
             "in": "query",
             "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend has returned on previous responses.",
@@ -767,6 +776,17 @@
             "name": "limit",
             "in": "query",
             "description": "Maximum number of transactions to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "block_time",
+            "in": "query",
+            "description": "Return only transactions before this block time",
             "required": false,
             "schema": {
               "type": "integer",
@@ -786,7 +806,7 @@
             }
           },
           {
-            "name": "method_id",
+            "name": "to",
             "in": "query",
             "description": "Return only transactions with this method id",
             "required": false,
@@ -796,9 +816,9 @@
             }
           },
           {
-            "name": "to",
+            "name": "method_id",
             "in": "query",
-            "description": "filter transactions to a given address",
+            "description": "Filter transactions to a given address",
             "required": false,
             "schema": {
               "type": "string",
@@ -816,12 +836,13 @@
             }
           },
           {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API key to access the service",
-            "required": true,
+            "name": "topic0",
+            "in": "query",
+            "description": "Return only transactions with this topic0",
+            "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
