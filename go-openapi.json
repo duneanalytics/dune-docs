@@ -5200,6 +5200,16 @@
             "description": "Whether the state of the query execution is terminal. This can be used for polling purposes.",
             "example": true
           },
+          "max_inflight_interactive_executions": {
+            "type": "integer",
+            "description": "Number of interactive executions this customer can have running in parallel",
+            "example": 3
+          },
+          "max_inflight_interactive_reached": {
+            "type": "integer",
+            "description": "Total number of interactive executions this user has submitted which are still in progress\nonly set to > 0 if the user has reached the limit of concurrent interactive executions",
+            "example": 5
+          },
           "query_id": {
             "type": "integer",
             "description": "Unique identifier of the query.",
