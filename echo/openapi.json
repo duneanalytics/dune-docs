@@ -741,7 +741,7 @@
           "transactions"
         ],
         "summary": "Get EVM transactions for a given address",
-        "description": "This endpoint returns transactions for a given address across several EVM chains.\nBy setting the ?decode parameter you can optionally choose to get both function calls and logs decoded.",
+        "description": "This endpoint returns transactions for a given address across several EVM chains.\nBy setting the decode parameter you can optionally choose to get both function calls and logs decoded.",
         "operationId": "getEvmTransactions",
         "parameters": [
           {
@@ -808,7 +808,7 @@
           {
             "name": "to",
             "in": "query",
-            "description": "Return only transactions with this method id",
+            "description": "Filter transactions to a given address",
             "required": false,
             "schema": {
               "type": "string",
@@ -818,7 +818,7 @@
           {
             "name": "method_id",
             "in": "query",
-            "description": "Filter transactions to a given address",
+            "description": "Return only transactions with this method id",
             "required": false,
             "schema": {
               "type": "string",
