@@ -836,9 +836,19 @@
             }
           },
           {
+            "name": "log_address",
+            "in": "query",
+            "description": "Return only transactions with this address in logs",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
             "name": "topic0",
             "in": "query",
-            "description": "Return only transactions with this topic0",
+            "description": "Return only transactions with this topic0 in logs",
             "required": false,
             "schema": {
               "type": "string",
