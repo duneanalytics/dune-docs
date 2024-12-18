@@ -854,6 +854,18 @@
               "type": "string",
               "nullable": true
             }
+          },
+          {
+            "name": "min_block_number",
+            "in": "query",
+            "description": "Return only transactions from blocks with block number equal to or greater than this value",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
           }
         ],
         "responses": {
@@ -964,9 +976,7 @@
           },
           "chain_id": {
             "type": "integer",
-            "format": "int32",
-            "nullable": true,
-            "minimum": 0
+            "format": "int64"
           },
           "decimals": {
             "type": "integer",
@@ -1000,7 +1010,6 @@
       "BalanceErrorInformation": {
         "type": "object",
         "required": [
-          "chain",
           "chain_id",
           "address"
         ],
@@ -1008,13 +1017,9 @@
           "address": {
             "type": "string"
           },
-          "chain": {
-            "type": "string"
-          },
           "chain_id": {
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64"
           },
           "description": {
             "type": "string"
@@ -1095,8 +1100,7 @@
           },
           "id": {
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64"
           },
           "name": {
             "type": "string"
@@ -1232,9 +1236,13 @@
           {
             "type": "object",
             "required": [
+              "chain",
               "logs"
             ],
             "properties": {
+              "chain": {
+                "type": "string"
+              },
               "decoded": {
                 "allOf": [
                   {
@@ -1295,7 +1303,7 @@
             "nullable": true
           },
           "chain": {
-            "$ref": "#/components/schemas/Chain"
+            "type": "string"
           },
           "raw_transaction": {
             "type": "object"
@@ -1305,9 +1313,8 @@
       "TransactionBase": {
         "type": "object",
         "required": [
-          "address",
-          "chain",
           "chain_id",
+          "address",
           "block_time",
           "block_number",
           "index",
@@ -1336,22 +1343,24 @@
           "block_time": {
             "type": "string"
           },
-          "chain": {
-            "type": "string"
-          },
           "chain_id": {
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64"
           },
           "data": {
             "type": "string",
             "format": "binary"
           },
+          "effective_gas_price": {
+            "type": "string"
+          },
           "from": {
             "type": "string"
           },
           "gas_price": {
+            "type": "string"
+          },
+          "gas_used": {
             "type": "string"
           },
           "hash": {
