@@ -8,35 +8,35 @@ description: Description of the ton.messages table on Dune
 Stores message data that is exchanged between smart contracts and users on the TON network. This table is partitioned by block_date.
 
 ## Column Descriptions
-| Column | Type | Description |
-|--------|------|-------------|
-| block_time | timestamp | Timestamp of when the block containing the message was created |
-| block_date | date | Date of when the block containing the message was created |
-| tx_hash | string | Transaction hash associated with the message |
-| tx_lt | bigint | Transaction logical time |
-| tx_now | int | Transaction timestamp |
-| msg_hash | string | Unique hash of the message |
-| direction | string | Direction of the message flow |
-| trace_id | string | Trace identifier for message tracking |
-| source | string | Source address of the message |
-| destination | string | Destination address of the message |
-| value | bigint | Value transferred in the message |
-| fwd_fee | bigint | Forward fee for the message |
-| ihr_fee | bigint | IHR (Instant Hypercube Routing) fee |
-| created_lt | bigint | Logical time when message was created |
-| created_at | bigint | Unix timestamp when message was created |
-| opcode | int | Operation code of the message |
-| ihr_disabled | boolean | Whether IHR is disabled for this message |
-| bounce | boolean | Whether the message can bounce |
-| bounced | boolean | Whether the message was bounced |
-| import_fee | bigint | Import fee for the message |
-| body_hash | string | Hash of the message body |
-| body_boc | binary | Binary data of the message body |
-| comment | string | Human-readable comment attached to the message |
-| init_state_hash | string | Hash of the initial state |
-| init_state_boc | binary | Binary data of the initial state |
-| updated_at | timestamp | Last time the record was updated |
-| ingested_at | timestamp | Time when the record was ingested |
+| **Column** | **Type** | **Description** |
+| --------|------|-------------|
+| **block_time** | timestamp | Timestamp of when the block containing the message was created |
+| **block_date** | date | Date of when the block containing the message was created |
+| **tx_hash** | string | Transaction hash associated with the message |
+| **tx_lt** | bigint | Transaction logical time |
+| **tx_now** | int | Transaction timestamp |
+| **msg_hash** | string | Unique hash of the message |
+| **direction** | string | Direction of the message flow |
+| **trace_id** | string | Trace identifier for message tracking |
+| **source** | string | Source address of the message |
+| **destination** | string | Destination address of the message |
+| **value** | bigint | Value transferred in the message |
+| **fwd_fee** | bigint | Forward fee for the message |
+| **ihr_fee** | bigint | IHR (Instant Hypercube Routing) fee |
+| **created_lt** | bigint | Logical time when message was created |
+| **created_at** | bigint | Unix timestamp when message was created |
+| **opcode** | int | Operation code of the message |
+| **ihr_disabled** | boolean | Whether IHR is disabled for this message |
+| **bounce** | boolean | Whether the message can bounce |
+| **bounced** | boolean | Whether the message was bounced |
+| **import_fee** | bigint | Import fee for the message |
+| **body_hash** | string | Hash of the message body |
+| **body_boc** | binary | Binary data of the message body |
+| **comment** | string | Human-readable comment attached to the message |
+| **init_state_hash** | string | Hash of the initial state |
+| **init_state_boc** | binary | Binary data of the initial state |
+| **updated_at** | timestamp | Last time the record was updated |
+| **ingested_at** | timestamp | Time when the record was ingested |
 
 ## Table Sample
 import { TableSample } from "/snippets/table-sample.mdx";
