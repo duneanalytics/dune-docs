@@ -1,0 +1,91 @@
+---
+title: ton.transactions
+sidebarTitle: "Transactions"
+description: Description of the ton.transactions table on Dune
+---
+
+## Table Description
+Records all transactions processed on the TON network, including transfers and smart contract interactions. This table is partitioned by block_date.
+
+## Column Descriptions
+| Column | Type | Description |
+|--------|------|-------------|
+| block_time | timestamp | Timestamp of when the block containing the transaction was created |
+| block_date | date | Date of when the block containing the transaction was created |
+| account | string | Account address involved in the transaction |
+| hash | string | Transaction hash |
+| lt | bigint | Logical time of the transaction |
+| block_workchain | int | Workchain identifier of the block |
+| block_shard | bigint | Shard identifier of the block |
+| block_seqno | int | Sequence number of the block |
+| mc_block_seqno | int | Masterchain block sequence number |
+| trace_id | string | Trace identifier for transaction tracking |
+| prev_trans_hash | string | Hash of the previous transaction |
+| prev_trans_lt | bigint | Logical time of the previous transaction |
+| now | int | Unix timestamp of the transaction |
+| orig_status | string | Original status of the transaction |
+| end_status | string | Final status of the transaction |
+| total_fees | bigint | Total fees paid for the transaction |
+| account_state_hash_before | string | Hash of account state before transaction |
+| account_state_hash_after | string | Hash of account state after transaction |
+| account_state_code_hash_before | string | Hash of account state code before transaction |
+| account_state_code_hash_after | string | Hash of account state code after transaction |
+| account_state_balance_before | bigint | Account balance before transaction |
+| account_state_balance_after | bigint | Account balance after transaction |
+| descr | string | Description of the transaction |
+| aborted | boolean | Whether the transaction was aborted |
+| destroyed | boolean | Whether the account was destroyed |
+| credit_first | boolean | Whether credit was processed first |
+| is_tock | boolean | Whether the transaction is a tock |
+| installed | boolean | Whether contract was installed |
+| storage_fees_collected | bigint | Storage fees collected |
+| storage_fees_due | bigint | Storage fees due |
+| storage_status_change | string | Change in storage status |
+| credit_due_fees_collected | bigint | Credit fees collected |
+| credit | bigint | Credit amount |
+| compute_skipped | boolean | Whether computation was skipped |
+| skipped_reason | string | Reason for skipping computation |
+| compute_success | boolean | Whether computation was successful |
+| compute_msg_state_used | boolean | Whether message state was used in computation |
+| compute_account_activated | boolean | Whether account was activated during computation |
+| compute_gas_fees | bigint | Gas fees for computation |
+| compute_gas_used | bigint | Amount of gas used in computation |
+| compute_gas_limit | bigint | Gas limit for computation |
+| compute_gas_credit | bigint | Gas credit for computation |
+| compute_mode | int | Computation mode |
+| compute_exit_code | int | Exit code of computation |
+| compute_exit_arg | int | Exit argument of computation |
+| compute_vm_steps | bigint | Number of VM steps in computation |
+| compute_vm_init_state_hash | string | Hash of VM initial state |
+| compute_vm_final_state_hash | string | Hash of VM final state |
+| action_success | boolean | Whether action was successful |
+| action_valid | boolean | Whether action was valid |
+| action_no_funds | boolean | Whether action failed due to insufficient funds |
+| action_status_change | string | Change in action status |
+| action_total_fwd_fees | bigint | Total forward fees for actions |
+| action_total_action_fees | bigint | Total fees for actions |
+| action_result_code | int | Result code of action |
+| action_result_arg | int | Result argument of action |
+| action_tot_actions | int | Total number of actions |
+| action_spec_actions | int | Number of special actions |
+| action_skipped_actions | int | Number of skipped actions |
+| action_msgs_created | int | Number of messages created by action |
+| action_action_list_hash | string | Hash of action list |
+| action_tot_msg_size_cells | bigint | Total message size in cells |
+| action_tot_msg_size_bits | bigint | Total message size in bits |
+| bounce | string | Whether the transaction bounced |
+| bounce_msg_size_cells | bigint | Bounce message size in cells |
+| bounce_msg_size_bits | bigint | Bounce message size in bits |
+| bounce_req_fwd_fees | bigint | Required forward fees for bounce |
+| bounce_msg_fees | bigint | Message fees for bounce |
+| bounce_fwd_fees | bigint | Forward fees for bounce |
+| split_info_cur_shard_pfx_len | int | Current shard prefix length for split |
+| split_info_acc_split_depth | int | Account split depth |
+| split_info_this_addr | string | This address in split |
+| split_info_sibling_addr | string | Sibling address in split |
+| updated_at | timestamp | Last time the record was updated |
+| ingested_at | timestamp | Time when the record was ingested |
+
+## Table Sample
+import { TableSample } from "/snippets/table-sample.mdx";
+<TableSample tableSchema="ton" tableName="transactions" /> 

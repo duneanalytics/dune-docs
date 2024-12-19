@@ -1,0 +1,36 @@
+---
+title: ton.jetton_metadata
+sidebarTitle: "Jetton Metadata"
+description: Description of the ton.jetton_metadata table on Dune
+---
+
+## Table Description
+Contains metadata information for Jettons (TON's equivalent of fungible tokens), including name, symbol, decimals, and other token-specific details. This table has no partitioning.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+| --------|------|-------------|
+| **address** | string | Contract address of the Jetton |
+| **update_time_onchain** | int | Last update time recorded on-chain |
+| **update_time_metadata** | int | Last update time of the metadata |
+| **mintable** | boolean | Whether the Jetton can be minted |
+| **admin_address** | string | Address of the Jetton administrator |
+| **jetton_content_onchain** | string | On-chain content of the Jetton |
+| **jetton_wallet_code_hash** | string | Hash of the Jetton wallet code |
+| **code_hash** | string | Hash of the Jetton contract code |
+| **metadata_status** | int | Status of the metadata |
+| **symbol** | string | Symbol/ticker of the Jetton |
+| **name** | string | Name of the Jetton |
+| **description** | string | Description of the Jetton |
+| **image** | string | Image URL of the Jetton |
+| **image_data** | string | Raw image data of the Jetton |
+| **decimals** | int | Number of decimal places for the Jetton |
+| **sources** | struct<symbol:string,name:string,description:string,image:string,image_data:string,decimals:string> | Raw metadata sources |
+| **tonapi_image_url** | string | TON API image URL for the Jetton |
+| **adding_date** | int | Date when the Jetton was added |
+| **updated_at** | timestamp | Last time the record was updated |
+| **ingested_at** | timestamp | Time when the record was ingested |
+
+## Table Sample
+import { TableSample } from "/snippets/table-sample.mdx";
+<TableSample tableSchema="ton" tableName="jetton_metadata" /> 

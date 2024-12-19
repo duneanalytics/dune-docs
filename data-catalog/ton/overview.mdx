@@ -1,0 +1,49 @@
+---
+title: TON Data
+sidebarTitle: "Overview"
+icon: "star"
+description: TON blockchain data on Dune
+---
+
+## What is TON?
+
+The Open Network (TON) is a fast, secure, and scalable blockchain platform designed to handle millions of transactions per second. Originally developed by Telegram, TON features a unique architecture including:
+
+- **Infinite Sharding**: Dynamic sharding mechanism that allows the network to automatically split and merge blockchains to adapt to load.
+- **Proof-of-Stake**: Secure and energy-efficient consensus mechanism.
+- **TON Virtual Machine (TVM)**: Handles smart contract execution with support for multiple programming languages.
+- **Jettons**: TON's implementation of fungible tokens (similar to ERC-20).
+
+## TON Data on Dune
+
+TON blockchain data is organized into several key tables that capture different aspects of on-chain activity:
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/ton/blocks">
+    Core block data including block headers, validators, and block statistics.
+  </Card>
+
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/ton/transactions">
+    Detailed transaction data including computation, actions, and state changes.
+  </Card>
+
+  <Card title="Messages" icon="envelope" href="/data-catalog/ton/messages">
+    Inter-contract messages and value transfers between accounts.
+  </Card>
+
+  <Card title="DEX Pools" icon="water" href="/data-catalog/ton/dex_pools">
+    Liquidity pool configurations and statistics from decentralized exchanges.
+  </Card>
+
+  <Card title="DEX Trades" icon="arrows-rotate" href="/data-catalog/ton/dex_trades">
+    Trading activity across TON's decentralized exchanges.
+  </Card>
+
+  <Card title="Jetton Events" icon="token" href="/data-catalog/ton/jetton_events">
+    Events related to TON's native token standard (Jettons).
+  </Card>
+
+  <Card title="Jetton Metadata" icon="circle-info" href="/data-catalog/ton/jetton_metadata">
+    Metadata for Jettons including name, symbol, and decimals.
+  </Card>
+</CardGroup>
