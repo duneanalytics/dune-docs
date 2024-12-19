@@ -8,27 +8,29 @@ description: Description of the ton.dex_pools table on Dune
 Information about decentralized exchange liquidity pools and their configurations on TON. This table is partitioned by block_date.
 
 ## Column Descriptions
-| **Column** | **Type** | **Description** |
-| --------|------|-------------|
-| **block_time** | timestamp | Timestamp of when the block containing the pool data was created |
-| **block_date** | date | Date of when the block containing the pool data was created |
-| **pool** | string | Address of the liquidity pool |
-| **project** | string | Name of the DEX project |
-| **version** | int | Version of the DEX protocol |
-| **discovered_at** | int | Unix timestamp when the pool was first discovered |
-| **jetton_left** | string | Address of the first token in the pair |
-| **jetton_right** | string | Address of the second token in the pair |
-| **reserves_left** | decimal(38,0) | Reserve amount of the first token |
-| **reserves_right** | decimal(38,0) | Reserve amount of the second token |
-| **total_supply** | decimal(38,0) | Total supply of LP tokens |
-| **tvl_usd** | decimal(20,6) | Total value locked in USD |
-| **tvl_ton** | decimal(20,9) | Total value locked in TON |
-| **last_updated** | int | Unix timestamp of last update |
-| **is_liquid** | boolean | Whether the pool has sufficient liquidity |
-| **lp_fee** | decimal(12,10) | Fee paid to liquidity providers |
-| **protocol_fee** | decimal(12,10) | Fee paid to the protocol |
-| **referral_fee** | decimal(12,10) | Fee paid to referrers |
+| **Column**         | **Type**       | **Description**                                                  |
+|--------------------|----------------|------------------------------------------------------------------|
+| **block_time**     | timestamp      | Timestamp of when the block containing the pool data was created |
+| **block_date**     | date           | Date of when the block containing the pool data was created      |
+| **pool**           | string         | Address of the liquidity pool                                    |
+| **project**        | string         | Name of the DEX project                                          |
+| **version**        | int            | Version of the DEX protocol                                      |
+| **discovered_at**  | int            | Unix timestamp when the pool was first discovered                |
+| **jetton_left**    | string         | Address of the first token in the pair                           |
+| **jetton_right**   | string         | Address of the second token in the pair                          |
+| **reserves_left**  | decimal(38,0)  | Reserve amount of the first token                                |
+| **reserves_right** | decimal(38,0)  | Reserve amount of the second token                               |
+| **total_supply**   | decimal(38,0)  | Total supply of LP tokens                                        |
+| **tvl_usd**        | decimal(20,6)  | Total value locked in USD                                        |
+| **tvl_ton**        | decimal(20,9)  | Total value locked in TON                                        |
+| **last_updated**   | int            | Unix timestamp of last update                                    |
+| **is_liquid**      | boolean        | Whether the pool has sufficient liquidity                        |
+| **lp_fee**         | decimal(12,10) | Fee paid to liquidity providers                                  |
+| **protocol_fee**   | decimal(12,10) | Fee paid to the protocol                                         |
+| **referral_fee**   | decimal(12,10) | Fee paid to referrers                                            |
 
 ## Table Sample
+
 import { TableSample } from "/snippets/table-sample.mdx";
-<TableSample tableSchema="ton" tableName="dex_pools" /> 
+
+<TableSample tableSchema="ton" tableName="dex_pools" />
