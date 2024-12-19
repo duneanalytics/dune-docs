@@ -9,43 +9,45 @@ Contains block-level data from the TON blockchain including block header informa
 
 ## Column Descriptions
 
-| **Column** | **Type** | **Description** |
-| --------|------|-------------|
-| **block_time** | timestamp | Timestamp of when the block was created |
-| **block_date** | date | Date of when the block was created |
-| **workchain** | int | Workchain identifier |
-| **shard** | bigint | Shard identifier |
-| **seqno** | int | Sequence number |
-| **root_hash** | string | Hash of the block root |
-| **file_hash** | string | Hash of the block file |
-| **mc_block_workchain** | int | Masterchain block workchain identifier |
-| **mc_block_shard** | bigint | Masterchain block shard identifier |
-| **mc_block_seqno** | int | Masterchain block sequence number |
-| **global_id** | int | Global identifier |
-| **version** | int | Block version |
-| **after_merge** | boolean | Flag indicating if block was created after merge |
-| **before_split** | boolean | Flag indicating if block was created before split |
-| **after_split** | boolean | Flag indicating if block was created after split |
-| **want_merge** | boolean | Flag indicating if block wants to merge |
-| **want_split** | boolean | Flag indicating if block wants to split |
-| **key_block** | boolean | Flag indicating if this is a key block |
-| **vert_seqno_incr** | boolean | Vertical sequence number increment flag |
-| **flags** | int | Block flags |
-| **gen_utime** | bigint | Generation unix time |
-| **start_lt** | bigint | Start logical time |
-| **end_lt** | bigint | End logical time |
-| **validator_list_hash_short** | int | Short hash of validator list |
-| **gen_catchain_seqno** | int | Generation catchain sequence number |
-| **min_ref_mc_seqno** | int | Minimum reference masterchain sequence number |
-| **prev_key_block_seqno** | int | Previous key block sequence number |
-| **vert_seqno** | int | Vertical sequence number |
-| **master_ref_seqno** | int | Master reference sequence number |
-| **rand_seed** | string | Random seed |
-| **created_by** | string | Creator of the block |
-| **tx_count** | int | Number of transactions in the block |
-| **updated_at** | timestamp | Last time the record was updated |
-| **ingested_at** | timestamp | Time when the record was ingested |
+| **Column**                    | **Type**  | **Description**                                   |
+|-------------------------------|-----------|---------------------------------------------------|
+| **block_time**                | timestamp | Timestamp of when the block was created           |
+| **block_date**                | date      | Date of when the block was created                |
+| **workchain**                 | int       | Workchain identifier                              |
+| **shard**                     | bigint    | Shard identifier                                  |
+| **seqno**                     | int       | Sequence number                                   |
+| **root_hash**                 | string    | Hash of the block root                            |
+| **file_hash**                 | string    | Hash of the block file                            |
+| **mc_block_workchain**        | int       | Masterchain block workchain identifier            |
+| **mc_block_shard**            | bigint    | Masterchain block shard identifier                |
+| **mc_block_seqno**            | int       | Masterchain block sequence number                 |
+| **global_id**                 | int       | Global identifier                                 |
+| **version**                   | int       | Block version                                     |
+| **after_merge**               | boolean   | Flag indicating if block was created after merge  |
+| **before_split**              | boolean   | Flag indicating if block was created before split |
+| **after_split**               | boolean   | Flag indicating if block was created after split  |
+| **want_merge**                | boolean   | Flag indicating if block wants to merge           |
+| **want_split**                | boolean   | Flag indicating if block wants to split           |
+| **key_block**                 | boolean   | Flag indicating if this is a key block            |
+| **vert_seqno_incr**           | boolean   | Vertical sequence number increment flag           |
+| **flags**                     | int       | Block flags                                       |
+| **gen_utime**                 | bigint    | Generation unix time                              |
+| **start_lt**                  | bigint    | Start logical time                                |
+| **end_lt**                    | bigint    | End logical time                                  |
+| **validator_list_hash_short** | int       | Short hash of validator list                      |
+| **gen_catchain_seqno**        | int       | Generation catchain sequence number               |
+| **min_ref_mc_seqno**          | int       | Minimum reference masterchain sequence number     |
+| **prev_key_block_seqno**      | int       | Previous key block sequence number                |
+| **vert_seqno**                | int       | Vertical sequence number                          |
+| **master_ref_seqno**          | int       | Master reference sequence number                  |
+| **rand_seed**                 | string    | Random seed                                       |
+| **created_by**                | string    | Creator of the block                              |
+| **tx_count**                  | int       | Number of transactions in the block               |
+| **updated_at**                | timestamp | Last time the record was updated                  |
+| **ingested_at**               | timestamp | Time when the record was ingested                 |
 
 ## Table Sample
+
 import { TableSample } from "/snippets/table-sample.mdx";
+
 <TableSample tableSchema="ton" tableName="blocks" />

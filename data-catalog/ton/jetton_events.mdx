@@ -8,30 +8,32 @@ description: Description of the ton.jetton_events table on Dune
 Tracks events related to Jettons (TON's equivalent of fungible tokens), including transfers, mints, and burns. This table is partitioned by block_date.
 
 ## Column Descriptions
-| **Column** | **Type** | **Description** |
-| --------|------|-------------|
-| **block_time** | timestamp | Timestamp of when the block containing the event was created |
-| **block_date** | date | Date of when the block containing the event was created |
-| **type** | string | Type of the Jetton event |
-| **tx_hash** | string | Transaction hash of the event |
-| **tx_lt** | bigint | Logical time of the transaction |
-| **utime** | int | Unix timestamp of the event |
-| **trace_id** | string | Trace identifier for event tracking |
-| **tx_aborted** | boolean | Whether the transaction was aborted |
-| **query_id** | decimal(20,0) | Query identifier |
-| **amount** | decimal(38,0) | Amount of Jettons involved in the event |
-| **source** | string | Source address of the event |
-| **destination** | string | Destination address of the event |
-| **jetton_wallet** | string | Address of the Jetton wallet |
-| **jetton_master** | string | Address of the Jetton master contract |
-| **response_destination** | string | Destination address for the response |
-| **custom_payload** | binary | Custom payload data |
-| **forward_ton_amount** | decimal(38,0) | Amount of TON to forward |
-| **forward_payload** | binary | Payload to forward |
-| **comment** | string | Comment attached to the event |
-| **updated_at** | timestamp | Last time the record was updated |
-| **ingested_at** | timestamp | Time when the record was ingested |
+| **Column**               | **Type**      | **Description**                                              |
+|--------------------------|---------------|--------------------------------------------------------------|
+| **block_time**           | timestamp     | Timestamp of when the block containing the event was created |
+| **block_date**           | date          | Date of when the block containing the event was created      |
+| **type**                 | string        | Type of the Jetton event                                     |
+| **tx_hash**              | string        | Transaction hash of the event                                |
+| **tx_lt**                | bigint        | Logical time of the transaction                              |
+| **utime**                | int           | Unix timestamp of the event                                  |
+| **trace_id**             | string        | Trace identifier for event tracking                          |
+| **tx_aborted**           | boolean       | Whether the transaction was aborted                          |
+| **query_id**             | decimal(20,0) | Query identifier                                             |
+| **amount**               | decimal(38,0) | Amount of Jettons involved in the event                      |
+| **source**               | string        | Source address of the event                                  |
+| **destination**          | string        | Destination address of the event                             |
+| **jetton_wallet**        | string        | Address of the Jetton wallet                                 |
+| **jetton_master**        | string        | Address of the Jetton master contract                        |
+| **response_destination** | string        | Destination address for the response                         |
+| **custom_payload**       | binary        | Custom payload data                                          |
+| **forward_ton_amount**   | decimal(38,0) | Amount of TON to forward                                     |
+| **forward_payload**      | binary        | Payload to forward                                           |
+| **comment**              | string        | Comment attached to the event                                |
+| **updated_at**           | timestamp     | Last time the record was updated                             |
+| **ingested_at**          | timestamp     | Time when the record was ingested                            |
 
 ## Table Sample
+
 import { TableSample } from "/snippets/table-sample.mdx";
+
 <TableSample tableSchema="ton" tableName="jetton_events" />
