@@ -175,6 +175,7 @@
         "query-engine/Functions-and-operators/regexp",
         "query-engine/Functions-and-operators/setdigest",
         "query-engine/Functions-and-operators/ss58",
+        "query-engine/Functions-and-operators/tonaddress",
         "query-engine/Functions-and-operators/tronaddress",
         "query-engine/Functions-and-operators/string",
         "query-engine/Functions-and-operators/system",
