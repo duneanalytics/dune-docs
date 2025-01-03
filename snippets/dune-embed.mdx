@@ -1,0 +1,16 @@
+export const DuneEmbed = ({ embedId, vizId, height = '500px' }) => (
+  <>
+    <div className="hidden dark:block">
+      <iframe
+        src={`https://dune.com/embeds/${embedId}/${vizId}?darkMode=true`}
+        style={{ width: '100%', height, border: 'none', marginTop: '10px' }}
+      ></iframe>
+    </div>
+    <div className="dark:hidden">
+      <iframe
+        src={`https://dune.com/embeds/${embedId}/${vizId}`}
+        style={{ width: '100%', height, border: 'none', marginTop: '10px' }}
+      ></iframe>
+    </div>
+  </>
+);
