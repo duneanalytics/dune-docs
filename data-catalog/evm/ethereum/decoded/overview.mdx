@@ -4,6 +4,8 @@ description: Simplifying smart contract analysis through human-readable tables.
 icon: "star"
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
+
 ### Overview of Dune's Decoded Data Approach
 
 Dune uses the ABI (Application Binary Interface) of smart contracts to decode blockchain transactions into structured tables. Each event log and function call from the ABI are parsed into their own tables. This decoding process transforms the raw, encoded data on the blockchain into human-readable tables, simplifying the analysis of smart contract data.
@@ -87,13 +89,7 @@ WHERE tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761b
 ```
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3455255/5806543/"
-    width="100%"
-    height="200px"
-    frameBorder="0"
-    scrolling="no"
-  ></iframe>
+  <DuneEmbed qID="3455255" vID="5806543" height="200px" />
 </div>
 
 We could make short work of this encoded bytecode by using [DuneSQL Varbinary functions](/query-engine/Functions-and-operators/varbinary) to decode it, but having the contract's ABI at hand makes this process much easier. This contract is decoded in Dune, so we can use the `pickle_finance_ethereum.PickleToken_evt_Transfer` table to access the decoded event log.
@@ -105,11 +101,7 @@ WHERE evt_tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0
 ```
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3455274/5806581/"
-    width="100%"
-    height="200px"
-  ></iframe>
+  <DuneEmbed qID="3455274" vID="5806581" height="200px" />
 </div>
 
 **Now this is actually useful for analyzing this transaction!**

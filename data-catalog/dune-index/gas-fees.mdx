@@ -5,6 +5,9 @@ icon: "gas-pump"
 description: Understanding transaction fees and their relationship to transaction costs in blockchain networks
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx';
+import { TableSample } from "/snippets/table-sample.mdx";
+
 ## Overview
 
 Transaction fees represent the dollar costs of executing operations on blockchain networks. By measuring transaction fees, we can understand the demand for resources on the network and the incentives that drive user behavior.
@@ -12,19 +15,11 @@ Gas fee calculations are more complex than they may seem at first glance. This i
 
 You can explore the daily gas fee data via `metrics.gas_fees_daily`
 
-
 <div>
-  <iframe
-    src="https://dune.com/embeds/4096073/7114131/"
-    width="100%"
-    height="500px"
-  ></iframe>
+  <DuneEmbed qID={4096073} vID={7114131} height={500} />
 </div>
 
-import { TableSample } from "/snippets/table-sample.mdx";
-
 <TableSample tableSchema="metrics" tableName="gas_fees_daily" />
-
 
 ### EVM Networks
 

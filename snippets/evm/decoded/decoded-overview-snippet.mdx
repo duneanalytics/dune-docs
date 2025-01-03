@@ -79,13 +79,9 @@ FROM ethereum.logs
 WHERE tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5
 `}</code></pre>
 
-<div>
-  <iframe
-    src="https://dune.com/embeds/3455255/5806543/"
-    width="100%"
-    height="200px"
-  ></iframe>
-</div>
+    <div>
+      <DuneEmbed queryId="3455255" vizId="5806543" height="200px" />
+    </div>
 
     <p>
       We could make short work of this encoded bytecode by using <a href="/query-engine/Functions-and-operators/varbinary">DuneSQL Varbinary functions</a> to decode it, but having the contract's ABI at hand makes this process much easier. <br />
@@ -95,13 +91,9 @@ WHERE tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761b
 FROM pickle_finance_ethereum.PickleToken_evt_Transfer
 WHERE evt_tx_hash = 0x2bb7c8283b782355875fa37d05e4bd962519ea294678a3dcf2fdffbbd0761bc5`}</code></pre>
 
-<div>
-  <iframe
-    src="https://dune.com/embeds/3455274/5806581/"
-    width="100%"
-    height="200px"
-  ></iframe>
-</div>
+    <div>
+      <DuneEmbed queryId="3455274" vizId="5806581" height="200px" />
+    </div>
 
     <p><strong>Now this is actually useful for analyzing this transaction!</strong></p>
     <p> This data is much more readable and understandable than the encoded bytecode. We can see the sender, receiver, and the amount of tokens transferred in this event log.</p>

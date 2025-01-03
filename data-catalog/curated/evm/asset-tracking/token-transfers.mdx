@@ -5,6 +5,8 @@ description: "Curated and enriched token transfer events across all EVM networks
 icon: "arrow-right"
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx';
+
 The `tokens.transfers` table contains token transfer events across ERC20 tokens and native tokens for all EVM-compatible networks indexed on Dune. This dataset encompasses:
 
 - Transfer events for ERC20 tokens
@@ -44,11 +46,7 @@ import { TableSample } from "/snippets/table-sample.mdx";
 Transfer data is available for the following EVM-compatible networks:
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3695907/6218008/"
-    width="100%"
-    height="600px"
-  ></iframe>
+  <DuneEmbed height="600" qID="3695907" vID="6218008" />
 </div>
 
 
@@ -76,11 +74,7 @@ LIMIT 100
 ```
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3999506/6732340/"
-    width="100%"
-    height="300px"
-  ></iframe>
+  <DuneEmbed height="300" qID="3999506" vID="6732340" />
 </div>
 
 **Calculate daily transfer volume for a specific token**
@@ -104,11 +98,7 @@ ORDER BY 1 DESC
 ```
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3999595/6732454/"
-    width="100%"
-    height="300px"
-  ></iframe>
+  <DuneEmbed height="300" qID="3999595" vID="6732454" />
 </div>
 
 **Identify largest transfers in the last 24 hours**

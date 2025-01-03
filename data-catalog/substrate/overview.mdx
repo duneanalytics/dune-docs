@@ -5,6 +5,8 @@ icon: "star"
 description: Substrate chains (e.g. Polkadot and its parachains) are on Dune.
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx';
+
 The Polkadot Relay Chain is a proof-of-stake blockchain that provides shared security and secure interoperability to other blockchains, known as parachains. Parachain's transactions are processed in parallel by Polkadot. Kusama is a sister relay chain, designed as a canary blockchain, largely to test new Polkadot functionality before being deployed on Polkadot.
 
 Both relay chains and all their parachains are built with Substrate. Substrate is the primary blockchain SDK used by developers to create parachains that make up the Polkadot and Kusama networks. There also is a growing number of chains built with Substrate that are outside of Polkadot's shared security infrastructure.
@@ -22,15 +24,7 @@ In Dune, Substrate tables model the activity of Substrate chains and are ingeste
 Both Polkadot and Kusama relay chains and several leading parachains have been onboarded as of March 2024. All Polkadot system chains and Polkadot parachains (as of early 2024) are being onboarded in early Q2 2024. Modeling EVM Activity within Substrate is planned in mid to late Q2 2024.
 
 <div>
-  <iframe
-    src={`https://dune.com/embeds/3523887/5925917`}
-    style={{
-      width: "100%",
-      height: "500px",
-      border: "none",
-      marginTop: "10px",
-    }}
-  />
+  <DuneEmbed qID="3523887" vID="5925917" height={500} />
 </div>
 
 ## Substrate Tables

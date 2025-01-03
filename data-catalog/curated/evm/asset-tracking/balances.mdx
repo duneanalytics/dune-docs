@@ -5,6 +5,8 @@ icon: "scale-balanced"
 description: "Balances for addresses on EVM networks." 
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx';
+
 <Warning>
     This dataset is currently in open beta. We are working on adding more chains and methods to detect balance changes. We are also working on improving the query performance. We currently recommend using the `tokens_<chain>.balances` table for queries.
     Mirroring the approach of [this query](https://dune.com/queries/3702725) is currently the fastest way to get started with the token balances dataset. 
@@ -72,11 +74,7 @@ The `tokens_<chain>.balances` table adds a new row every time a balance changes 
 ## Table Sample
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3503489/5892307/"
-    width="100%"
-    height="300px"
-  ></iframe>
+  <DuneEmbed qID={3503489} vID={5892307} height={300} />
 </div>
 
 ## Sample Queries
@@ -100,11 +98,7 @@ order by balance_usd desc
 ```
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3459600/5814175/"
-    width="100%"
-    height="300px"
-  ></iframe>
+  <DuneEmbed qID={3459600} vID={5814175} height={300} />
 </div>
 
 #### Querying for daily fungible Token Balances for a specific Address
@@ -127,11 +121,7 @@ order by day desc, balance_usd desc
 ```
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3456704/5814342/"
-    width="100%"
-    height="300px"
-></iframe>
+  <DuneEmbed qID={3456704} vID={5814342} height={300} />
 </div>
 
 #### Find the top 50 token holders for a specific token
@@ -155,14 +145,6 @@ FROM RankedBalances
 WHERE rank <= 50;
 ``` 
 
-https://dune.com/embeds/3503852/5892563/
-
 <div>
-  <iframe
-    src="https://dune.com/embeds/3503852/5892563/"
-    width="100%"
-    height="300px"
-    frameBorder="0"
-    scrolling="no"
-></iframe>
+  <DuneEmbed qID={3503852} vID={5892563} height={300} />
 </div>

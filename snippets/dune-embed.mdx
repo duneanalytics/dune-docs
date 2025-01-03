@@ -1,14 +1,14 @@
-export const DuneEmbed = ({ embedId, vizId, height = '500px' }) => (
+export const DuneEmbed = ({ qID, vID, height = '500px' }) => (
   <>
     <div className="hidden dark:block">
       <iframe
-        src={`https://dune.com/embeds/${embedId}/${vizId}?darkMode=true`}
+        src={`https://dune.com/embeds/${qID}/${vID}?darkMode=true`}
         style={{ width: '100%', height, border: 'none', marginTop: '10px' }}
       ></iframe>
     </div>
     <div className="dark:hidden">
       <iframe
-        src={`https://dune.com/embeds/${embedId}/${vizId}`}
+        src={`https://dune.com/embeds/${qID}/${vID}`}
         style={{ width: '100%', height, border: 'none', marginTop: '10px' }}
       ></iframe>
     </div>
