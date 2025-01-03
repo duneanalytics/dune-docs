@@ -741,13 +741,22 @@
           "transactions"
         ],
         "summary": "Get EVM transactions for a given address",
-        "description": "This endpoint returns transactions for a given address across several EVM chains.\nBy setting the ?decode parameter you can optionally choose to get both function calls and logs decoded.",
+        "description": "This endpoint returns transactions for a given address across several EVM chains.\nBy setting the decode parameter you can optionally choose to get both function calls and logs decoded.",
         "operationId": "getEvmTransactions",
         "parameters": [
           {
             "name": "address",
             "in": "path",
             "description": "Wallet to get transactions for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
             "required": true,
             "schema": {
               "type": "string"
@@ -770,6 +779,17 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "block_time",
+            "in": "query",
+            "description": "Return only transactions before this block time",
+            "required": false,
+            "schema": {
+              "type": "integer",
               "format": "int64",
               "nullable": true,
               "minimum": 0
@@ -779,6 +799,16 @@
             "name": "chain_ids",
             "in": "query",
             "description": "Comma separated list of chain ids to get transactions for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Filter transactions to a given address",
             "required": false,
             "schema": {
               "type": "string",
@@ -796,16 +826,6 @@
             }
           },
           {
-            "name": "to",
-            "in": "query",
-            "description": "filter transactions to a given address",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
             "name": "decode",
             "in": "query",
             "description": "Return abi decoded transactions and logs",
@@ -816,12 +836,35 @@
             }
           },
           {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API key to access the service",
-            "required": true,
+            "name": "log_address",
+            "in": "query",
+            "description": "Return only transactions with this address in logs",
+            "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "topic0",
+            "in": "query",
+            "description": "Return only transactions with this topic0 in logs",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "min_block_number",
+            "in": "query",
+            "description": "Return only transactions from blocks with block number equal to or greater than this value",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
             }
           }
         ],
@@ -933,9 +976,7 @@
           },
           "chain_id": {
             "type": "integer",
-            "format": "int32",
-            "nullable": true,
-            "minimum": 0
+            "format": "int64"
           },
           "decimals": {
             "type": "integer",
@@ -969,7 +1010,6 @@
       "BalanceErrorInformation": {
         "type": "object",
         "required": [
-          "chain",
           "chain_id",
           "address"
         ],
@@ -977,13 +1017,9 @@
           "address": {
             "type": "string"
           },
-          "chain": {
-            "type": "string"
-          },
           "chain_id": {
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64"
           },
           "description": {
             "type": "string"
@@ -1064,8 +1100,7 @@
           },
           "id": {
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64"
           },
           "name": {
             "type": "string"
@@ -1201,9 +1236,13 @@
           {
             "type": "object",
             "required": [
+              "chain",
               "logs"
             ],
             "properties": {
+              "chain": {
+                "type": "string"
+              },
               "decoded": {
                 "allOf": [
                   {
@@ -1264,7 +1303,7 @@
             "nullable": true
           },
           "chain": {
-            "$ref": "#/components/schemas/Chain"
+            "type": "string"
           },
           "raw_transaction": {
             "type": "object"
@@ -1274,9 +1313,8 @@
       "TransactionBase": {
         "type": "object",
         "required": [
-          "address",
-          "chain",
           "chain_id",
+          "address",
           "block_time",
           "block_number",
           "index",
@@ -1305,22 +1343,24 @@
           "block_time": {
             "type": "string"
           },
-          "chain": {
-            "type": "string"
-          },
           "chain_id": {
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64"
           },
           "data": {
             "type": "string",
             "format": "binary"
           },
+          "effective_gas_price": {
+            "type": "string"
+          },
           "from": {
             "type": "string"
           },
           "gas_price": {
+            "type": "string"
+          },
+          "gas_used": {
             "type": "string"
           },
           "hash": {

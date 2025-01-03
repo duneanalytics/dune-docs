@@ -1,0 +1,41 @@
+---
+title: ton.dex_trades
+sidebarTitle: "DEX Trades"
+description: Description of the ton.dex_trades table on Dune
+---
+
+## Table Description
+Records of all trades executed on decentralized exchanges within the TON ecosystem. This table is partitioned by block_date.
+
+## Column Descriptions
+| **Column**               | **Type**      | **Description**                                              |
+|--------------------------|---------------|--------------------------------------------------------------|
+| **block_time**           | timestamp     | Timestamp of when the block containing the trade was created |
+| **block_date**           | date          | Date of when the block containing the trade was created      |
+| **tx_hash**              | string        | Transaction hash of the trade                                |
+| **trace_id**             | string        | Trace identifier for trade tracking                          |
+| **project_type**         | string        | Type of DEX project                                          |
+| **project**              | string        | Name of the DEX project                                      |
+| **version**              | int           | Version of the DEX protocol                                  |
+| **event_time**           | int           | Unix timestamp of the trade event                            |
+| **event_type**           | string        | Type of the trade event                                      |
+| **trader_address**       | string        | Address of the trader                                        |
+| **pool_address**         | string        | Address of the liquidity pool                                |
+| **router_address**       | string        | Address of the DEX router                                    |
+| **token_sold_address**   | string        | Address of the token sold                                    |
+| **token_bought_address** | string        | Address of the token bought                                  |
+| **amount_sold_raw**      | decimal(38,0) | Raw amount of tokens sold                                    |
+| **amount_bought_raw**    | decimal(38,0) | Raw amount of tokens bought                                  |
+| **referral_address**     | string        | Address of the referral                                      |
+| **platform_tag**         | string        | Tag identifying the platform                                 |
+| **query_id**             | decimal(20,0) | Query identifier                                             |
+| **volume_usd**           | decimal(20,6) | Trade volume in USD                                          |
+| **volume_ton**           | decimal(20,9) | Trade volume in TON                                          |
+| **updated_at**           | timestamp     | Last time the record was updated                             |
+| **ingested_at**          | timestamp     | Time when the record was ingested                            |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="ton" tableName="dex_trades" />
