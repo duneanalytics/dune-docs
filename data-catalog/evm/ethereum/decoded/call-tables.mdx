@@ -3,6 +3,8 @@ title: Call Tables
 description: On Dune, we parse all message calls and transactions made to smart contracts in their own tables.
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
+
 ## Overview
 
 On Dune, we parse all message calls and transactions made to smart contracts in their own tables. This allows us to isolate the logic of a specific smart contract and analyze how it interacts with other smart contracts.
@@ -25,13 +27,11 @@ For example, when a transaction is sent to the [Uniswap v3 factory](https://ethe
 `uniswap_v3_ethereum.Factory_call_createPool`
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3456944/5809273/"
-    width="100%"
-    height="300px"
-    frameBorder="0"
-    scrolling="no"
-  ></iframe>
+  <DuneEmbed 
+    qID={3456944}
+    vID={5809273}
+    height={300}
+  />
 </div>
 
 ## Multiple Instances
@@ -39,13 +39,11 @@ For example, when a transaction is sent to the [Uniswap v3 factory](https://ethe
 For a contract where multiple instances exist, we will decode all calls to all instances of this smart contract into one table. If there are transactions calling the `swap` function of any instance of the [Uniswap v3 pair](https://etherscan.io/address/0x8f8ef111b67c04eb1641f5ff19ee54cda062f163#writeContract) contract, we will decode this data into the table `uniswap_v3_ethereum.Pair_call_swap`. The `pair` contract is a template contract and there are many instances of it, each with its own address. The column `contract_address` will indicate the address of the instance of the pair contract that was called.
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3456960/5809303/"
-    width="100%"
-    height="300px"
-    frameBorder="0"
-    scrolling="no"
-  ></iframe>
+  <DuneEmbed 
+    qID={3456960}
+    vID={5809303}
+    height={300}
+  />
 </div>
 
 ## Common misconceptions

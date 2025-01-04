@@ -2,6 +2,7 @@
 title: LiveFetch functions
 description: LiveFetch functions send HTTP requests to a specified URL.
 ---
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
 
 The LiveFetch functions send HTTP requests to a specified URL.
 Using the LiveFetch functions, you can interact with HTTP servers directly in SQL queries.
@@ -16,13 +17,7 @@ SELECT * FROM UNNEST(
     AS array(json))) t(coin_data)
 ```
 
-<div>
-  <iframe
-    src="https://dune.com/embeds/3478053/5845623/"
-    width="100%"
-    height="300px"
-  ></iframe>
-</div>
+<DuneEmbed qID={3478053} vID={5845623} height={300} />
 
 <CardGroup cols={1}>
   <Card title="Example Dashboard" icon="chart-simple" href="https://dune.com/dune/dunesql-live-fetch-functions">

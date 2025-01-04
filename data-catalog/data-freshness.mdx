@@ -4,6 +4,8 @@ description: Understand the frequency of updates for various data types on Dune.
 icon: "clock"
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
+
 At Dune, data is continually refreshed through a multi-stage process to ensure accuracy and reliability. The three main stages of data updates are: **Raw Data**, **Decoded Data**, and **Curated Data**. The update frequency for each type of data varies based on several factors.
 
 ## Raw Data
@@ -17,14 +19,7 @@ Raw data consists of tables such as `ethereum.blocks` or `ethereum.transactions`
 
 We do our best to ensure that the data is as fresh as possible while maintaining the integrity of the data. You can find the data freshness of the raw data in the table below.
 
-<div>
-  <iframe
-    src="https://dune.com/embeds/3674011/6192854/"
-    width="100%"
-    height="800px"
-  ></iframe>
-</div>
-
+<DuneEmbed qID="3674011" vID="6192854" height="800px" />
 
 ## Decoded Data
 
@@ -37,14 +32,7 @@ The decoding of data is performed in real-time and is contingent on the volume o
 
 You can find the data freshness of the decoded data in the table below.
 
-
-<div>
-  <iframe
-    src="https://dune.com/embeds/3674011/6191881/"
-    width="100%"
-    height="800px"
-  ></iframe>
-</div>
+<DuneEmbed qID="3674011" vID="6191881" height="800px" />
 
 # Curated Data
 Curated data tables on Dune are tables like `dex.trades` or `nft.trades` that are derived from raw and decoded data. They take away the complexity of working with raw or even decoded data and are ready to be used for analysis.
@@ -52,22 +40,12 @@ The data pipelines are defined and documented in this [GitHub repo](https://gith
 
 Curated tables are usually scheduled to run once every hour. The runtime of the data models can vary depending on the volume of transactions on any given day, therefore curated datasets are sometimes slower than the usual 1-hour target to update.
 
-<div>
-  <iframe
-    src="https://dune.com/embeds/3675008/6180554/" 
-    width="100%"
-    height="400px"
-  ></iframe>
-</div>
+<DuneEmbed qID="3675008" vID="6180554" height="400px" />
+
+
 
 # Community Data
 
 Several notable 3rd party data providers are uploading their data into Dune. These data providers have their own update schedules and are not controlled by Dune. The data freshness of these providers can be found in the table below.
 
-<div>
-  <iframe
-    src="https://dune.com/embeds/3675124/6180730/"
-    width="100%"
-    height="400px"
-  ></iframe>
-</div>
+<DuneEmbed qID="3675124" vID="6180730" height="400px" />

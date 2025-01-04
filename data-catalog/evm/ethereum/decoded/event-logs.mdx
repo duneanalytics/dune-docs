@@ -3,6 +3,8 @@ title: Event Logs
 description: Smart Contracts emit event logs when certain predefined actions are completed.
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
+
 ## Overview
 
 Smart contracts emit event logs when certain predefined actions are completed. The emitted event logs are stored on the blockchain and are publicly accessible. Event logs are an important tool for smart contract developers to communicate with the outside world, as well as for data analysts to keep track of what happens inside of a smart contract.   
@@ -34,13 +36,11 @@ Let's take the [uniswap v3 factory](https://etherscan.io/address/0x1f98431c8ad98
 `uniswap_v3_ethereum.Factory_evt_PoolCreated`
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3456741/5808942/"
-    width="100%"
+  <DuneEmbed 
+    qID="3456741"
+    vID="5808942"
     height="300px"
-    frameBorder="0"
-    scrolling="no"
-  ></iframe>
+  />
 </div>
 
 
@@ -52,13 +52,11 @@ If there is multiple instances of a contract we will collect all event logs acro
 The column `contract_address` indicates as to which smart contract emitted this event.
 
 <div>
-  <iframe
-    src="https://dune.com/embeds/3456754/5808958/"
-    width="100%"
+  <DuneEmbed 
+    qID="3456754"
+    vID="5808958"
     height="300px"
-    frameBorder="0"
-    scrolling="no"
-  ></iframe>
+  />
 </div>
 
 
