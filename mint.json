@@ -2133,6 +2133,9 @@
     "youtube": "https://www.youtube.com/@dunecom"
   },
   "analytics": {
+    "amplitude": {
+      "apiKey": "e76ce253e6eaa36e3be8e6872101e33a"
+    },
     "ga4": {
       "measurementId": "G-H1G057R0KN"
     },
