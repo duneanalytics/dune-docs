@@ -1,0 +1,24 @@
+export const Chains = ({ url }) => {
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  setTimeout(async () => {
+    const response = await fetch(
+      url,
+      {
+        method: "GET",
+        headers: {
+          "x-dune-api-key": "IyWrONau4kh1XUSASWgTalruhwvY0z2L"
+        },
+      }
+    );
+
+    const data = await response.json();
+    const chains = data.chains.map((chain) => `<tr><td>${chain.name}</td><td>${chain.id}</td></tr>`).join("");
+    const table = `<table><thead><tr><th>Name</th><th>ID</th></tr></thead><tbody>${chains}</tbody></table>`;
+    document.getElementById("client-component").innerHTML = table;
+  }, 1);
+
+  return <div id="client-component"></div>
+};
