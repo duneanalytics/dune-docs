@@ -1,0 +1,43 @@
+---
+title: beacon.epoch_summaries
+sidebarTitle: "Epoch Summaries"
+description: Description of the beacon.epoch_summaries table on Dune.
+---
+
+## Table Description
+This table is indexed from Lido. Stores summary data for each epoch on the Beacon Chain, including the number of validators, attestations, and other key metrics. This table is partitioned by block_date.
+
+## Column Descriptions
+| **Column**                       | **Type**    | **Description**                                                                                   |
+|----------------------------------|-------------|---------------------------------------------------------------------------------------------------|
+| **block_date**                   | date        | Date corresponding to the epoch.                                                                  |
+| **epoch**                        | bigint      | Epoch number representing a specific period in the Beacon Chain.                                  |
+| **activation_queue_length**      | bigint      | Number of validators awaiting activation.                                                         |
+| **activating_validators**        | bigint      | Number of validators activated during the epoch.                                                  |
+| **active_validators**            | bigint      | Total number of active validators during the epoch.                                               |
+| **active_real_balance**          | bigint      | Total effective balance of active validators, measured in Gwei.                                   |
+| **active_balance**               | bigint      | Total balance of active validators, measured in Gwei.                                             |
+| **attesting_validators**         | bigint      | Number of validators who submitted attestations during the epoch.                                 |
+| **attesting_balance**            | bigint      | Total balance of attesting validators, measured in Gwei.                                          |
+| **target_correct_validators**    | bigint      | Number of validators whose attestations correctly identified the target block.                    |
+| **target_correct_balance**       | bigint      | Total balance of target-correct validators, measured in Gwei.                                     |
+| **head_correct_validators**      | bigint      | Number of validators whose attestations correctly identified the head block.                      |
+| **head_correct_balance**         | bigint      | Total balance of head-correct validators, measured in Gwei.                                       |
+| **attestations_for_epoch**       | bigint      | Number of attestations included in the epoch.                                                     |
+| **attestations_in_epoch**        | bigint      | Number of attestations referencing the epoch.                                                     |
+| **duplicate_attestations_for_epoch** | bigint  | Number of duplicate attestations included in the epoch.                                           |
+| **proposer_slashings**           | bigint      | Number of proposer slashing events during the epoch.                                              |
+| **attester_slashings**           | bigint      | Number of attester slashing events during the epoch.                                              |
+| **deposits**                     | bigint      | Number of deposits processed during the epoch.                                                    |
+| **exiting_validators**           | bigint      | Number of validators exiting during the epoch.                                                    |
+| **canonical_blocks**             | bigint      | Number of canonical blocks in the epoch.                                                          |
+| **withdrawals**                  | bigint      | Number of withdrawals processed during the epoch.                                                 |
+| **updated_at**                   | timestamp   | Timestamp when the epoch summary was last updated.                                                |
+| **ingested_at**                  | timestamp   | Timestamp when the epoch summary was ingested into the database.                                  |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="epoch_summaries" />
