@@ -10,19 +10,19 @@ Stores attestation data that is exchanged between validators and users on the Be
 ## Column Descriptions
 | **Column**           | **Type**    | **Description**                                                                                   |
 |----------------------|-------------|---------------------------------------------------------------------------------------------------|
-| `block_epoch`        | `long`      | Epoch number when the block containing the attestation was proposed.                              |
-| `block_slot`         | `long`      | Slot number within the epoch when the block containing the attestation was proposed.              |
-| `block_time`         | `timestamp` | Timestamp when the block containing the attestation was included in the chain.                    |
-| `block_date`         | `date`      | Date corresponding to the `block_time`.                                                           |
-| `signature`          | `binary`    | BLS signature verifying the attestation's authenticity.                                           |
-| `aggregation_bits`   | `binary`    | Bitlist indicating participating validators in the committee.                                     |
-| `beacon_block_root`  | `binary`    | Root hash of the Beacon Chain block that the attestation votes for.                               |
-| `index`              | `long`      | Committee index at the assigned slot for the attestation.                                         |
-| `slot`               | `long`      | Slot number to which the attestation pertains.                                                    |
-| `source_epoch`       | `long`      | Epoch of the last justified checkpoint referred to as the source in the FFG vote.                 |
-| `source_root`        | `binary`    | Root hash of the Beacon Chain block at the source checkpoint epoch.                               |
-| `target_epoch`       | `long`      | Epoch that the attestation targets in its FFG vote.                                               |
-| `target_root`        | `binary`    | Root hash of the Beacon Chain block at the target checkpoint epoch.                               |
+| **block_epoch**       | long        | Epoch number when the block containing the attestation was proposed.                              |
+| **block_slot**        | long        | Slot number within the epoch when the block containing the attestation was proposed.              |
+| **block_time**        | timestamp   | Timestamp when the block containing the attestation was included in the chain.                    |
+| **block_date**        | date        | Date corresponding to the block_time.                                                             |
+| **signature**         | binary      | BLS signature verifying the attestation's authenticity.                                           |
+| **aggregation_bits**  | binary      | Bitlist indicating participating validators in the committee.                                     |
+| **beacon_block_root** | binary      | Root hash of the Beacon Chain block that the attestation votes for.                               |
+| **index**             | long        | Committee index at the assigned slot for the attestation.                                         |
+| **slot**              | long        | Slot number to which the attestation pertains.                                                    |
+| **source_epoch**      | long        | Epoch of the last justified checkpoint referred to as the source in the FFG vote.                 |
+| **source_root**       | binary      | Root hash of the Beacon Chain block at the source checkpoint epoch.                               |
+| **target_epoch**      | long        | Epoch that the attestation targets in its FFG vote.                                               |
+| **target_root**       | binary      | Root hash of the Beacon Chain block at the target checkpoint epoch.                               |
 
 
 ## Table Sample

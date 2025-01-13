@@ -10,28 +10,28 @@ Stores attester slashing data that is exchanged between validators and users on 
 ## Column Descriptions
 | **Column**                          | **Type**    | **Description**                                                                                   |
 |-------------------------------------|-------------|---------------------------------------------------------------------------------------------------|
-| `block_epoch`                       | `long`      | Epoch number when the block containing the attester slashing was proposed.                        |
-| `block_slot`                        | `long`      | Slot number within the epoch when the block containing the attester slashing was proposed.        |
-| `block_time`                        | `timestamp` | Timestamp when the block containing the attester slashing was included in the chain.              |
-| `block_date`                        | `date`      | Date corresponding to the `block_time`.                                                           |
-| `attestation_1_attesting_indices`   | `array`     | List of validator indices involved in the first conflicting attestation.                          |
-| `attestation_1_beacon_block_root`   | `binary`    | Root hash of the Beacon Chain block that the first attestation votes for.                         |
-| `attestation_1_index`               | `long`      | Committee index for the first attestation.                                                        |
-| `attestation_1_slot`                | `long`      | Slot number to which the first attestation pertains.                                              |
-| `attestation_1_source_epoch`        | `long`      | Epoch of the last justified checkpoint referred to as the source in the first attestation.        |
-| `attestation_1_source_root`         | `binary`    | Root hash of the Beacon Chain block at the source checkpoint epoch in the first attestation.      |
-| `attestation_1_target_epoch`        | `long`      | Epoch that the first attestation targets in its FFG vote.                                         |
-| `attestation_1_target_root`         | `binary`    | Root hash of the Beacon Chain block at the target checkpoint epoch in the first attestation.      |
-| `attestation_1_signature`           | `binary`    | BLS signature associated with the first attestation.                                              |
-| `attestation_2_attesting_indices`   | `array`     | List of validator indices involved in the second conflicting attestation.                         |
-| `attestation_2_beacon_block_root`   | `binary`    | Root hash of the Beacon Chain block that the second attestation votes for.                        |
-| `attestation_2_index`               | `long`      | Committee index for the second attestation.                                                       |
-| `attestation_2_slot`                | `long`      | Slot number to which the second attestation pertains.                                             |
-| `attestation_2_source_epoch`        | `long`      | Epoch of the last justified checkpoint referred to as the source in the second attestation.       |
-| `attestation_2_source_root`         | `binary`    | Root hash of the Beacon Chain block at the source checkpoint epoch in the second attestation.     |
-| `attestation_2_target_epoch`        | `long`      | Epoch that the second attestation targets in its FFG vote.                                        |
-| `attestation_2_target_root`         | `binary`    | Root hash of the Beacon Chain block at the target checkpoint epoch in the second attestation.     |
-| `attestation_2_signature`           | `binary`    | BLS signature associated with the second attestation.                                             |
+| **block_epoch**                     | long        | Epoch number when the block containing the attester slashing was proposed.                        |
+| **block_slot**                      | long        | Slot number within the epoch when the block containing the attester slashing was proposed.        |
+| **block_time**                      | timestamp   | Timestamp when the block containing the attester slashing was included in the chain.              |
+| **block_date**                      | date        | Date corresponding to the block_time.                                                             |
+| **attestation_1_attesting_indices** | array       | List of validator indices involved in the first conflicting attestation.                          |
+| **attestation_1_beacon_block_root** | binary      | Root hash of the Beacon Chain block that the first attestation votes for.                         |
+| **attestation_1_index**             | long        | Committee index for the first attestation.                                                        |
+| **attestation_1_slot**              | long        | Slot number to which the first attestation pertains.                                              |
+| **attestation_1_source_epoch**      | long        | Epoch of the last justified checkpoint referred to as the source in the first attestation.        |
+| **attestation_1_source_root**       | binary      | Root hash of the Beacon Chain block at the source checkpoint epoch in the first attestation.      |
+| **attestation_1_target_epoch**      | long        | Epoch that the first attestation targets in its FFG vote.                                         |
+| **attestation_1_target_root**       | binary      | Root hash of the Beacon Chain block at the target checkpoint epoch in the first attestation.      |
+| **attestation_1_signature**         | binary      | BLS signature associated with the first attestation.                                              |
+| **attestation_2_attesting_indices** | array       | List of validator indices involved in the second conflicting attestation.                         |
+| **attestation_2_beacon_block_root** | binary      | Root hash of the Beacon Chain block that the second attestation votes for.                        |
+| **attestation_2_index**             | long        | Committee index for the second attestation.                                                       |
+| **attestation_2_slot**              | long        | Slot number to which the second attestation pertains.                                             |
+| **attestation_2_source_epoch**      | long        | Epoch of the last justified checkpoint referred to as the source in the second attestation.       |
+| **attestation_2_source_root**       | binary      | Root hash of the Beacon Chain block at the source checkpoint epoch in the second attestation.     |
+| **attestation_2_target_epoch**      | long        | Epoch that the second attestation targets in its FFG vote.                                        |
+| **attestation_2_target_root**       | binary      | Root hash of the Beacon Chain block at the target checkpoint epoch in the second attestation.     |
+| **attestation_2_signature**         | binary      | BLS signature associated with the second attestation.                                             |
 
 ## Table Sample
 
