@@ -1,0 +1,35 @@
+---
+title: beacon.proposer_slashings
+sidebarTitle: "Proposer Slashings"
+description: Description of the beacon.proposer_slashings table on Dune.
+---
+
+## Table Description
+Stores information about proposer slashings on the Beacon Chain. A proposer slashing occurs when a validator proposes two conflicting blocks at the same slot. This table contains information about the conflicting blocks and the proposer responsible for the slashing.
+
+| **Column**                       | **Type**    | **Description**                                                                                   |
+|----------------------------------|-------------|---------------------------------------------------------------------------------------------------|
+| **block_epoch**                  | long        | Epoch number when the block containing the proposer slashing was proposed.                        |
+| **block_slot**                   | long        | Slot number within the epoch when the block containing the proposer slashing was proposed.        |
+| **block_time**                   | timestamp   | Timestamp when the block containing the proposer slashing was included in the chain.              |
+| **block_date**                   | date        | Date corresponding to the block_time.                                                            |
+| **signed_header_1_body_root**    | binary      | Root hash of the body of the first conflicting block header.                                      |
+| **signed_header_1_parent_root**  | binary      | Root hash of the parent block referenced by the first conflicting block header.                   |
+| **signed_header_1_proposer_index** | long      | Validator index of the proposer for the first conflicting block.                                  |
+| **signed_header_1_slot**         | long        | Slot number for which the first conflicting block was proposed.                                   |
+| **signed_header_1_state_root**   | binary      | Root hash of the state after processing the first conflicting block.                              |
+| **signed_header_1_signature**    | binary      | BLS signature of the proposer for the first conflicting block.                                    |
+| **signed_header_2_body_root**    | binary      | Root hash of the body of the second conflicting block header.                                     |
+| **signed_header_2_parent_root**  | binary      | Root hash of the parent block referenced by the second conflicting block header.                  |
+| **signed_header_2_proposer_index** | long      | Validator index of the proposer for the second conflicting block.                                 |
+| **signed_header_2_slot**         | long        | Slot number for which the second conflicting block was proposed.                                  |
+| **signed_header_2_state_root**   | binary      | Root hash of the state after processing the second conflicting block.                             |
+| **signed_header_2_signature**    | binary      | BLS signature of the proposer for the second conflicting block.                                   |
+
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="proposer_slashings" />
