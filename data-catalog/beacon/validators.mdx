@@ -1,0 +1,30 @@
+---
+title: beacon.validators
+sidebarTitle: "Validators"
+description: Description of the beacon.validators table on Dune
+---
+
+## Table Description
+Stores data about withdrawals initiated by validators on the Beacon network. This table is partitioned by block_date.
+
+## Column Descriptions
+| **Column**                     | **Type**   | **Description**                                                                                   |
+|--------------------------------|------------|---------------------------------------------------------------------------------------------------|
+| **index**                      | bigint     | Unique identifier assigned to the validator upon registration.                                    |
+| **slashed**                    | boolean    | Indicates whether the validator has been slashed for misbehavior (`true` if slashed, `false` otherwise). |
+| **public_key**                 | varbinary  | Validator's BLS public key used for signing messages.                                             |
+| **activation_eligibility_epoch** | bigint   | Epoch when the validator became eligible for activation after meeting the minimum balance requirement. |
+| **activation_epoch**           | bigint     | Epoch when the validator was activated and began participating in the consensus process.           |
+| **exit_epoch**                 | bigint     | Epoch when the validator exited the active validator set.                                          |
+| **withdrawable_epoch**         | bigint     | Epoch when the validator's funds become withdrawable after exiting.                                |
+| **effective_balance**          | bigint     | Validator's balance used for reward calculations, capped at a maximum value, measured in Gwei.     |
+| **withdrawal_credentials**     | varbinary  | Credentials used to specify the destination for withdrawn funds.                                   |
+| **updated_at**                 | timestamp  | Timestamp indicating the last update to the operator's information.                                |
+| **ingested_at**                | timestamp  | Time when the record was ingested                                                                  |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="withdrawals" />
