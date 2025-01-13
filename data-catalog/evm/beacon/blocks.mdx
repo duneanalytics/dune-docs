@@ -1,0 +1,52 @@
+---
+title: beacon.blocks
+sidebarTitle: "Blocks"
+description: Description of the beacon.blocks table on Dune
+---
+
+## Table Description
+Stores information about blocks in the Ethereum 2.0 Beacon Chain, including the block proposer, block metadata, and the blob sidecar associated with the block.
+
+## Column Descriptions
+| **Column**                               | **Type**    | **Description**                                                                                   |
+|------------------------------------------|-------------|---------------------------------------------------------------------------------------------------|
+| **epoch**                                | long        | Epoch number when the block was proposed.                                                         |
+| **slot**                                 | long        | Slot number within the epoch when the block was proposed.                                         |
+| **time**                                 | timestamp   | Timestamp when the block was included in the chain.                                               |
+| **date**                                 | date        | Date corresponding to the time.                                                                   |
+| **parent_root**                          | binary      | Root hash of the parent block, linking to the previous block in the chain.                        |
+| **proposer_index**                       | long        | Validator index of the block proposer.                                                            |
+| **state_root**                           | binary      | Root hash of the state after processing the block, reflecting the system's state.                 |
+| **execution_optimistic**                 | boolean     | Indicates if the block is considered optimistic in terms of execution.                            |
+| **finalized**                            | boolean     | Indicates if the block has been finalized.                                                        |
+| **version**                              | string      | Version of the block structure or protocol.                                                       |
+| **signature**                            | binary      | BLS signature of the block proposer, ensuring authenticity.                                       |
+| **graffiti**                             | binary      | Arbitrary data included by the proposer, often used for identification or messages.               |
+| **randao_reveal**                        | binary      | Revealed RANDAO value used for randomness in validator selection.                                 |
+| **eth1_block_hash**                      | binary      | Hash of the latest Ethereum 1.0 block observed by the proposer.                                   |
+| **eth1_deposit_count**                   | long        | Number of deposits from Ethereum 1.0 included up to this block.                                   |
+| **eth1_deposit_root**                    | binary      | Root hash of the deposit tree containing Ethereum 1.0 deposits.                                   |
+| **execution_payload_timestamp**          | long        | Timestamp of the execution payload within the block.                                              |
+| **execution_payload_base_fee_per_gas**   | long        | Base fee per gas for transactions in the execution payload.                                       |
+| **execution_payload_block_hash**         | binary      | Hash of the execution payload block.                                                              |
+| **execution_payload_block_number**       | long        | Block number of the execution payload.                                                            |
+| **execution_payload_extra_data**         | binary      | Extra data field in the execution payload, containing arbitrary data.                             |
+| **execution_payload_fee_recipient**      | binary      | Address of the fee recipient for transaction fees in the execution payload.                       |
+| **execution_payload_gas_limit**          | long        | Gas limit for the execution payload block.                                                        |
+| **execution_payload_gas_used**           | long        | Amount of gas used in the execution payload block.                                                |
+| **execution_payload_logs_bloom**         | binary      | Bloom filter for logs in the execution payload, used for quick log searches.                      |
+| **execution_payload_parent_hash**        | binary      | Hash of the parent execution payload block.                                                       |
+| **execution_payload_prev_randao**        | binary      | Previous RANDAO value in the execution payload, used for randomness.                              |
+| **execution_payload_receipts_root**      | binary      | Root hash of the receipts trie for transactions in the execution payload.                         |
+| **execution_payload_state_root**         | binary      | Root hash of the state trie after applying the execution payload.                                 |
+| **execution_payload_transactions**       | array       | List of transactions included in the execution payload.                                           |
+| **sync_committee_bits**                  | binary      | Bitfield indicating which sync committee members have signed off on the block.                    |
+| **sync_committee_signature**             | binary      | Aggregate signature from the sync committee members for the block.                                |
+
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="blocks" />

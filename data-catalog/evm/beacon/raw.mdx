@@ -1,0 +1,24 @@
+---
+title: beacon.raw
+sidebarTitle: "Raw"
+description: Description of the beacon.raw table on Dune
+---
+
+## Table Description
+Stores raw data about blocks proposed on the Beacon network. This table is partitioned by block_date.
+
+## Column Descriptions
+| **Column**     | **Type**    | **Description**                                                                                   |
+|----------------|-------------|---------------------------------------------------------------------------------------------------|
+| **epoch**      | long        | Epoch number during which the block was proposed.                                                 |
+| **block_slot** | long        | Slot number within the epoch when the block was proposed.                                         |
+| **block_time** | timestamp   | Timestamp indicating when the block was included in the chain.                                    |
+| **block_date** | date        | Date corresponding to the block_time.                                                             |
+
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="raw" />

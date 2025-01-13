@@ -585,6 +585,28 @@
           ]
         },
         {
+          "group": "Beacon",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/beacon/overview",
+            "data-catalog/evm/beacon/attestations",
+            "data-catalog/evm/beacon/attester-slashings",
+            "data-catalog/evm/beacon/blobs",
+            "data-catalog/evm/beacon/blocks",
+            "data-catalog/evm/beacon/bls-to-execution-changes",
+            "data-catalog/evm/beacon/deposits",
+            "data-catalog/evm/beacon/epoch-summaries",
+            "data-catalog/evm/beacon/operators",
+            "data-catalog/evm/beacon/proposer-slashings",
+            "data-catalog/evm/beacon/raw",
+            "data-catalog/evm/beacon/validator-day-summaries",
+            "data-catalog/evm/beacon/validators",
+            "data-catalog/evm/beacon/voluntary-exits",
+            "data-catalog/evm/beacon/withdrawals"
+          ]
+        },
+        {
           "group": "Blast",
           "icon": "database",
           "iconType": "solid",

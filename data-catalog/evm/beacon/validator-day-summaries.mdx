@@ -1,0 +1,43 @@
+---
+title: beacon.validator_day_summaries
+sidebarTitle: "Validator Day Summaries"
+description: Description of the beacon.validator_day_summaries table on Dune
+---
+
+## Table Description
+This table is indexed from Lido. Stores daily summaries of validator activity on the Beacon Chain, including balance changes, rewards, attestations, and sync committee messages.
+
+## Column Descriptions
+| **Column**                          | **Type**    | **Description**                                                                                   |
+|-------------------------------------|-------------|---------------------------------------------------------------------------------------------------|
+| **block_date**                      | date        | Date corresponding to the summary period.                                                         |
+| **validator_index**                 | bigint      | Unique identifier for the validator.                                                              |
+| **start_timestamp**                 | timestamp   | Timestamp marking the beginning of the summary period.                                            |
+| **start_balance**                   | bigint      | Validator's balance at the start of the period, measured in Gwei.                                 |
+| **start_effective_balance**         | bigint      | Validator's effective balance at the start of the period, used for reward calculations, measured in Gwei. |
+| **capital_change**                  | bigint      | Net change in the validator's balance due to deposits or withdrawals during the period, measured in Gwei. |
+| **reward_change**                   | bigint      | Net rewards earned by the validator during the period, measured in Gwei.                          |
+| **effective_balance_change**        | bigint      | Change in the validator's effective balance during the period, measured in Gwei.                  |
+| **proposals**                       | bigint      | Number of block proposals assigned to the validator during the period.                            |
+| **proposals_included**              | bigint      | Number of the validator's proposed blocks that were included in the chain during the period.      |
+| **attestations**                    | bigint      | Number of attestations made by the validator during the period.                                   |
+| **attestations_included**           | bigint      | Number of the validator's attestations that were included in the chain during the period.         |
+| **attestations_source_timely**      | bigint      | Number of the validator's attestations that were timely for the source checkpoint during the period. |
+| **attestations_target_correct**     | bigint      | Number of the validator's attestations that correctly identified the target checkpoint during the period. |
+| **attestations_target_timely**      | bigint      | Number of the validator's attestations that were timely for the target checkpoint during the period. |
+| **attestations_head_correct**       | bigint      | Number of the validator's attestations that correctly identified the head block during the period. |
+| **attestations_head_timely**        | bigint      | Number of the validator's attestations that were timely for the head block during the period.     |
+| **attestations_inclusion_delay**    | double      | Average delay (in slots) between the validator's attestation and its inclusion in the chain during the period. |
+| **sync_committee_messages**         | bigint      | Number of sync committee messages signed by the validator during the period.                      |
+| **sync_committee_messages_included**| bigint      | Number of the validator's sync committee messages that were included in the chain during the period. |
+| **withdrawals**                     | bigint      | Number of withdrawals made by the validator during the period.                                    |
+| **updated_at**                      | timestamp   | Last time the record was updated                                                                  |
+| **ingested_at**                     | timestamp   | Time when the record was ingested                                                                 |
+
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="validator_day_summaries" />

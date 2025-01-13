@@ -1,0 +1,27 @@
+---
+title: beacon.bls_to_execution_changes
+sidebarTitle: "BLS To Execution Changes"
+description: Description of the beacon.bls_to_execution_changes table on Dune
+---
+
+## Table Description
+Stores information about changes in the Beacon Chain from BLS to execution, including block metadata and execution payload details.
+
+## Column Descriptions
+| **Column**               | **Type**    | **Description**                                                                                   |
+|--------------------------|-------------|---------------------------------------------------------------------------------------------------|
+| **block_epoch**          | long        | Epoch number when the block containing the BLS to execution change was proposed.                  |
+| **block_slot**           | long        | Slot number within the epoch when the block containing the BLS to execution change was proposed.  |
+| **block_time**           | timestamp   | Timestamp when the block containing the BLS to execution change was included in the chain.        |
+| **block_date**           | date        | Date corresponding to the block_time.                                                             |
+| **from_bls_pubkey**      | binary      | BLS public key associated with the validator's original withdrawal credentials.                   |
+| **to_execution_address** | binary      | Execution layer (Eth1) address to which the withdrawal credentials are being updated.             |
+| **validator_index**      | long        | Index of the validator requesting the change.                                                     |
+| **signature**            | binary      | BLS signature authorizing the change from BLS to execution withdrawal credentials.                |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="bls_to_execution_changes" />

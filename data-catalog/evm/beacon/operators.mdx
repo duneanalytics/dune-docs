@@ -1,0 +1,26 @@
+---
+title: beacon.operators
+sidebarTitle: "Operators"
+description: Description of the beacon.operators table on Dune.
+---
+
+## Table Description
+This table is indexed from Lido. Stores information about staking operators on the Beacon Chain, including their public keys and associated staking modules or services.
+
+## Column Descriptions
+| **Column**        | **Type**   | **Description**                                                                                   |
+|-------------------|------------|---------------------------------------------------------------------------------------------------|
+| **index**         | bigint     | Unique identifier for the operator.                                                               |
+| **operator_name** | varchar    | Name of the staking operator.                                                                     |
+| **module_id**     | bigint     | Identifier linking the operator to a specific staking module or service.                          |
+| **public_key**    | varbinary  | Operator's public key used for cryptographic operations.                                          |
+| **updated_at**    | timestamp  | Last time the record was updated                                                                  |
+| **ingested_at**   | timestamp  | Time when the record was ingested                                                                 |
+
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="operators" />

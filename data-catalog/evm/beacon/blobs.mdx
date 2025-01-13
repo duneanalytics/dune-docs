@@ -1,0 +1,33 @@
+---
+title: beacon.blobs
+sidebarTitle: "Blobs"
+description: Description of the beacon.blobs table on Dune
+---
+
+## Table Description
+Stores blob sidecar data that is exchanged between validators and users on the Beacon network. This table is partitioned by block_date.
+
+## Column Descriptions
+| **Column**                        | **Type**    | **Description**                                                                                   |
+|-----------------------------------|-------------|---------------------------------------------------------------------------------------------------|
+| **block_epoch**                   | long        | Epoch number when the block containing the blob sidecar was proposed.                             |
+| **block_slot**                    | long        | Slot number within the epoch when the block containing the blob sidecar was proposed.             |
+| **block_time**                    | timestamp   | Timestamp when the block containing the blob sidecar was included in the chain.                   |
+| **block_date**                    | date        | Date corresponding to the block_time.                                                             |
+| **index**                         | long        | Index of the blob sidecar within the block.                                                       |
+| **proposer_index**                | long        | Validator index of the block proposer.                                                            |
+| **kzg_commitment**                | binary      | KZG commitment for the blob, ensuring data availability and integrity.                            |
+| **kzg_commitment_inclusion_proof**| binary      | Proof that the KZG commitment is included in the block, verifying its validity.                   |
+| **kzg_proof**                     | binary      | KZG proof associated with the blob, used for data verification.                                   |
+| **body_root**                     | binary      | Root hash of the block body, representing its contents.                                           |
+| **parent_root**                   | binary      | Root hash of the parent block, linking to the previous block in the chain.                        |
+| **state_root**                    | binary      | Root hash of the state after processing the block, reflecting the system's state.                 |
+| **signature**                     | binary      | BLS signature of the block proposer, ensuring authenticity.                                       |
+| **blob**                          | binary      | The actual blob data associated with the sidecar, containing arbitrary data stored temporarily.   |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="blobs" />
