@@ -1,0 +1,25 @@
+---
+title: beacon.voluntary_exits
+sidebarTitle: "Voluntary Exits"
+description: Description of the beacon.voluntary_exits table on Dune
+---
+
+## Table Description
+Stores data about voluntary exits initiated by validators on the Beacon network. This table is partitioned by block_date.
+
+## Column Descriptions
+| **Column**           | **Type**    | **Description**                                                                                   |
+|----------------------|-------------|---------------------------------------------------------------------------------------------------|
+| **block_epoch**      | long        | Epoch number when the block containing the voluntary exit was proposed.                           |
+| **block_slot**       | long        | Slot number within the epoch when the block containing the voluntary exit was proposed.           |
+| **block_time**       | timestamp   | Timestamp when the block containing the voluntary exit was included in the chain.                 |
+| **block_date**       | date        | Date corresponding to the block_time.                                                            |
+| **validator_index**  | long        | Unique identifier of the validator initiating the voluntary exit.                                 |
+| **signature**        | binary      | BLS signature authorizing the voluntary exit, ensuring its authenticity.                          |
+
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="beacon" tableName="voluntary_exits" />
