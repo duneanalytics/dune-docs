@@ -31,8 +31,8 @@ This table is indexed from Lido. Stores daily summaries of validator activity on
 | **sync_committee_messages**         | bigint      | Number of sync committee messages signed by the validator during the period.                      |
 | **sync_committee_messages_included**| bigint      | Number of the validator's sync committee messages that were included in the chain during the period. |
 | **withdrawals**                     | bigint      | Number of withdrawals made by the validator during the period.                                    |
-| **updated_at**                      | timestamp   | Timestamp when the summary data was last updated.                                                 |
-| **ingested_at**                     | timestamp   | Timestamp when the summary data was ingested into the database.                                   |
+| **updated_at**                      | timestamp   | Last time the record was updated                                                                  |
+| **ingested_at**                     | timestamp   | Time when the record was ingested                                                                 |
 
 
 
