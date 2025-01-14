@@ -7,9 +7,10 @@ icon: "arrow-right"
 
 The `tokens_solana.transfers` table contains token transfer events for tokens on the Solana blockchain indexed by Dune. This dataset encompasses:
 
-- Transfer events for Solana tokens
-- Mints and burns
-- Associated token account creations and closures
+- SPL token transfers
+- token2022 token transfers
+- native SOL transfers (excluding staking related transfers)
+
 
 <Info>
  The transfers table aims to capture standard Solana token transfers. Some tokens may use non-standard transfer methods that might not be included.
@@ -50,10 +51,31 @@ SELECT
     END AS direction,
     amount,
     amount_usd,
-    token_mint_address
+    token_mint_address,
+    token_version
 FROM tokens_solana.transfers
 WHERE (from_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' OR to_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ')
     AND block_time > now() - interval '30' day
 ORDER BY block_time DESC
 LIMIT 100
 ```
+
+import { QueryContainer } from "/snippets/query-container.mdx";
+
+<QueryContainer queryText="SELECT
+    block_time,
+    action,
+    CASE 
+        WHEN from_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' THEN 'Outgoing'
+        WHEN to_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' THEN 'Incoming'
+    END AS direction,
+    amount,
+    amount_usd,
+    token_mint_address,
+    token_version
+FROM tokens_solana.transfers
+WHERE (from_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ' OR to_owner = '7F9KJm6rcW2PAgUkRmqXhzMmUpxWcQcLFjarE4bwniqZ')
+    AND block_time > now() - interval '30' day
+ORDER BY block_time DESC
+LIMIT 100" 
+/>
