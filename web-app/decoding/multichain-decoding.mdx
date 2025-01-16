@@ -11,61 +11,6 @@ This feature unifies contract data views, streamlining the analysis of protocols
 
 <Tip>Multichain decoding offers data freshness and latency comparable to regular decoding. For details on data freshness, see our [data freshness page](../../data-catalog/data-freshness).</Tip>
 
-<CardGroup cols={1}>
-  <Card title="Get In Touch" icon="hand" href="mailto:multichain_decoding@dune.com">
-    Currently in closed alpha. If you're interested in setting up multichain decoded views for your protocol, contact us at **multichain_decoding@dune.com**. We'd be happy to collaborate with you!
-  </Card>
-</CardGroup>
-
-## Currently Available Protocols
-
-<Note>
-- As this feature is currently in closed alpha, here is a list of protocols with multichain decoded contract views available for immediate use. [Contact us](mailto:multichain_decoding@dune.com) for any feedback you have.
-- To view and explore these multichain decoded contract views, visit the linked protocol namespaces on Dune's Data Explorer.
-</Note>
-
-### Uniswap
-
-| Protocol        | Chains Available                                   | Contract                    | Type       | Event/Call            | Table Name                                          |
-|-----------------|----------------------------------------------------|-----------------------------|------------|------------------------|-----------------------------------------------------|
-| **[uniswap_v2](https://dune.com/queries?category=decoded_project&namespace=uniswap_v2)** | arbitrum, avalanche_c, base, bnb, ethereum, optimism, polygon, zora | UniswapV2Factory          | Event      | PairCreated            | `uniswap_v2_multichain.uniswapv2factory_evt_paircreated` |
-|                 |                                                    | UniswapV2Pair               | Event      | Swap                   | `uniswap_v2_multichain.uniswapv2pair_evt_swap`       |
-| **[uniswap_v3](https://dune.com/queries?category=decoded_project&namespace=uniswap_v3)** | arbitrum, avalanche_c, base, blast, bnb, celo, ethereum, linea, mantle, polygon, scroll, worldchain, zksync, zora | NonfungiblePositionManager | Call       | Collect                | `uniswap_v3_multichain.nonfungiblepositionmanager_call_collect` |
-|                 |                                                    |                             | Event      | Collect                | `uniswap_v3_multichain.nonfungiblepositionmanager_evt_collect` |
-|                 |                                                    |                             | Call       | increaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_call_increaseliquidity` |
-|                 |                                                    |                             | Event      | increaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_evt_increaseliquidity` |
-|                 |                                                    |                             | Call       | decreaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_call_decreaseliquidity` |
-|                 |                                                    |                             | Event      | decreaseLiquidity      | `uniswap_v3_multichain.nonfungiblepositionmanager_evt_decreaseliquidity` |
-|                 |                                                    | UniswapV3Factory            | Event      | PoolCreated            | `uniswap_v3_multichain.uniswapv3factory_evt_poolcreated` |
-|                 |                                                    | UniswapV3Pool               | Event      | Swap                   | `uniswap_v3_multichain.uniswapv3pool_evt_swap`       |
-|                 |                                                    |                             | Event      | Mint                   | `uniswap_v3_multichain.uniswapv3pool_evt_mint`       |
-|                 |                                                    |                             | Event      | Burn                   | `uniswap_v3_multichain.uniswapv3pool_evt_burn`       |
-
-### Safe
-
-| Protocol       | Chains Available                                   | Contract                    | Type   | Event/Call                  | View Table                                                  |
-|----------------|----------------------------------------------------|-----------------------------|--------|------------------------------|-------------------------------------------------------------|
-| **[gnosis_safe](https://dune.com/queries?category=decoded_project&namespace=gnosis_safe)** | arbitrum, avalanche_c, base, blast, bnb, celo, ethereum, gnosis, optimism, polygon | Safe_v1_4_1                 | Call   | execTransaction             | `gnosis_safe_multichain.safe_v1_4_1_call_exectransaction`   |
-|                |                                                    |                             | Call   | execTransactionFromModule    | `gnosis_safe_multichain.safe_v1_4_1_call_exectransactionfrommodule` |
-|                | arbitrum, base, blast, optimism, polygon           | SafeL2_v1_4_1              | Call   | execTransaction              | `gnosis_safe_multichain.safel2_v1_4_1_call_exectransaction` |
-|                |                                                    |                             | Call   | execTransactionFromModule    | `gnosis_safe_multichain.safel2_v1_4_1_call_exectransactionfrommodule` |
-|                | arbitrum, avalanche_c, base, bnb, celo, ethereum, fantom, linea, mantle, optimism, polygon, scroll, worldchain, zkevm | SafeProxyFactory_v1_4_1     | Event  | ProxyCreation                | `gnosis_safe_multichain.safeproxyfactory_v1_4_1_evt_proxycreation` |
-
-### Zora
-
-| Protocol       | Chains Available                                   | Contract                    | Type   | Event/Call            | View Table                                          |
-|----------------|----------------------------------------------------|-----------------------------|--------|------------------------|-----------------------------------------------------|
-| **[zora](https://dune.com/queries?category=decoded_project&namespace=zora)** | arbitrum, base, blast, ethereum, optimism, zora | ZoraTimedSaleStrategy     | Event   | SaleSet               | `zora_multichain.zoratimedsalestrategy_evt_saleset` |
-|                |                                                    | ZoraCreator1155FactoryImpl  | Event   | SetupNewContract       | `zora_multichain.zoracreator1155factoryimpl_evt_setupnewcontract` |
-
-### Lido
-
-| Protocol       | Chains Available                                   | Contract                    | Type   | Event/Call            | View Table                                          |
-|----------------|----------------------------------------------------|-----------------------------|--------|------------------------|-----------------------------------------------------|
-| **[lido](https://dune.com/queries?category=decoded_project&namespace=lido)** | arbitrum, bnb, mantle, optimism, polygon, scroll | wstETH                       | Event   | Transfer               | `lido_multichain.wstETH_evt_Transfer`               |
-|                |                                                    |                             | Event   | Approval               | `lido_multichain.wstETH_evt_Approval`               |
-
-
 ## Example Usage
 
 Here are a few examples showing how you can use multichain decoded table views to simplify your analysis. Each example includes "before" and "after" queries to demonstrate how multichain views streamline cross-chain analytics.
