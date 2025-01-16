@@ -806,6 +806,53 @@
           ]
         },
         {
+          "group": "Corn",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/corn/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/corn/raw/blocks",
+                "data-catalog/evm/corn/raw/creation-traces",
+                "data-catalog/evm/corn/raw/logs",
+                "data-catalog/evm/corn/raw/transactions",
+                "data-catalog/evm/corn/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/corn/decoded/overview",
+                "data-catalog/evm/corn/decoded/call-tables",
+                "data-catalog/evm/corn/decoded/event-logs",
+                "data-catalog/evm/corn/decoded/contracts",
+                "data-catalog/evm/corn/decoded/logs-decoded",
+                "data-catalog/evm/corn/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/corn/curated-data/dex/dex-trades",
+                    "data-catalog/evm/corn/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/corn/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Degen",
           "icon": "database",
           "iconType": "regular",
@@ -1004,6 +1051,53 @@
                   "group": "NFT",
                   "pages": [
                     "data-catalog/evm/gnosis/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Ink",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/ink/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/ink/raw/blocks",
+                "data-catalog/evm/ink/raw/creation-traces",
+                "data-catalog/evm/ink/raw/logs",
+                "data-catalog/evm/ink/raw/transactions",
+                "data-catalog/evm/ink/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/ink/decoded/overview",
+                "data-catalog/evm/ink/decoded/call-tables",
+                "data-catalog/evm/ink/decoded/event-logs",
+                "data-catalog/evm/ink/decoded/contracts",
+                "data-catalog/evm/ink/decoded/logs-decoded",
+                "data-catalog/evm/ink/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/ink/curated-data/dex/dex-trades",
+                    "data-catalog/evm/ink/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/ink/curated-data/nft/nft-trades"
                   ]
                 }
               ]
@@ -1709,6 +1803,53 @@
                 {
                   "group": "NFT",
                   "pages": ["data-catalog/evm/zora/curated-data/nft/nft-trades"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Ink",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/ink/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/ink/raw/blocks",
+                "data-catalog/evm/ink/raw/creation-traces",
+                "data-catalog/evm/ink/raw/logs",
+                "data-catalog/evm/ink/raw/transactions",
+                "data-catalog/evm/ink/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/ink/decoded/overview",
+                "data-catalog/evm/ink/decoded/call-tables",
+                "data-catalog/evm/ink/decoded/event-logs",
+                "data-catalog/evm/ink/decoded/contracts",
+                "data-catalog/evm/ink/decoded/logs-decoded",
+                "data-catalog/evm/ink/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/ink/curated-data/dex/dex-trades",
+                    "data-catalog/evm/ink/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/ink/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
