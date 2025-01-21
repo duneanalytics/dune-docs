@@ -46,7 +46,7 @@ SELECT
   SUM(SUM(tx_fee_usd)) OVER (ORDER BY DATE_TRUNC('month', block_date)) AS cumulative_gas_spent
 FROM gas.fees
 WHERE
-  tx_sender = 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 -- vitalik.eth 
+  tx_from = 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 -- vitalik.eth 
 GROUP BY
   1
 ORDER BY
