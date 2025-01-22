@@ -1,3 +1,12 @@
+### Table of Contents
+- [Getting started](#getting-started)
+- [Making Changes](#making-changes)
+- [Publishing Changes](#publishing-changes)
+- [Adding New Pages](#adding-new-pages)
+- [Troubleshooting](#troubleshooting)
+- [Broken links](#broken-links)
+- [Renaming files](#renaming-files)
+
 ### Getting started
 
 Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
