@@ -2122,7 +2122,8 @@
           "group": "SVM",
           "pages": ["echo/svm/balances", "echo/svm/transactions"]
         },
-        "echo/hooks"
+        "echo/hooks",
+        "echo/proxy"
       ]
     },
     {
