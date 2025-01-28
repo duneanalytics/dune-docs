@@ -10,7 +10,7 @@ To fetch balances for all supported chains please pass the `chain_ids=all` param
 <Note>
   - These endpoints are authenticated with a normal Dune API key.
   - Specify `?filters=erc20` or `?filters=native` to get only erc20 tokens or native assets, respectively
-  - Specify `?exclude_spam_tokens` to filter out tokens Dune believes to be spam. We use [this query](https://dune.com/queries/3804603) to determine if something is spam.
+  - Specify `?exclude_spam_tokens` to filter out tokens Dune believes to be spam. 
   - Specify `?chain_ids=all` to fetch balances for all supported chains.
   - Specify `?chain_ids=11,250,1` to fetch balances only for select chains. See chainlist https://chainlist.org/ for a list of chainIDs.
   - Specify `?metadata=url,logo` to get url and logo for tokens.
@@ -33,7 +33,17 @@ To fetch balances for all supported chains please pass the `chain_ids=all` param
 | decimals                        | Decimals of token, if available                               | double        |
 | price_usd                       | Current price of token, if available                          | double        |
 | value_usd                       | Current value of token owned, if available                    | double        |
+| pool_size                       | Current size of pool used to price token                      | double        |
+| low_liquidity                   | If the size of the pool is less than $10k                     | boolean        |
 
+
+
+# Token prices
+Echo looks up prices onchain. We use the most liquid onchain pair to determine a usd price. We return the available liquidity in `pool_size` as part of the response, and show a warning `low_liquidity:	true` if this value is less than $10k.
+
+# Spam tokens
+By default the API filters out any token with `symbol = ''`, `name = ''`, `decimals = 0`.
+When the `?exclude_spam_tokens` is specified we use [this query](https://dune.com/queries/3804603) to determine if something is spam. Additionally, we remove any token with less than $100 of onchain liquidity.
 
 # Pagination
 
