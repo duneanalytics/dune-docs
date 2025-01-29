@@ -97,6 +97,98 @@
         }
       }
     },
+    "/echo/beta/prices/evm/{contract_address}": {
+      "get": {
+        "tags": [
+          "prices"
+        ],
+        "summary": "Get EVM token prices for a specified contract address (or the native token), on any chain.",
+        "operationId": "getEvmPrices",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contract_address",
+            "in": "path",
+            "description": "The contract address of the token or 'native' for the native token of the chain",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chain_ids",
+            "in": "query",
+            "description": "Either 'all' or a comma separated list of chain ids to get balances for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The offset to paginate through result sets; this is a cursor being passed from the previous response, only use what the backend returns here",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Maximum number of prices to return",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricesResponse"
+                },
+                "example": {
+                  "contract_address": "native",
+                  "prices": [
+                    {
+                      "chain": "ethereum",
+                      "chain_id": 1,
+                      "price_usd": 12.34,
+                      "symbol": "ETH"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    },
     "/echo/beta/transactions/svm/{address}": {
       "get": {
         "tags": [
@@ -983,6 +1075,18 @@
             "format": "int64",
             "nullable": true
           },
+          "low_liquidity": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "pool_size": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
           "price_usd": {
             "type": "number",
             "format": "double",
@@ -995,7 +1099,7 @@
           "token_metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/TokenMetadata"
+                "$ref": "#/components/schemas/ResponseTokenMetadata"
               }
             ],
             "nullable": true
@@ -1043,7 +1147,6 @@
       "BalancesResponse": {
         "type": "object",
         "required": [
-          "response_time",
           "wallet_address",
           "balances"
         ],
@@ -1071,7 +1174,8 @@
             "nullable": true
           },
           "response_time": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "wallet_address": {
             "type": "string",
@@ -1091,7 +1195,6 @@
         "required": [
           "name",
           "id",
-          "supported_assets",
           "default"
         ],
         "properties": {
@@ -1104,12 +1207,6 @@
           },
           "name": {
             "type": "string"
-          },
-          "supported_assets": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         }
       },
@@ -1208,6 +1305,54 @@
         "type": "integer",
         "format": "int64"
       },
+      "PriceData": {
+        "type": "object",
+        "required": [
+          "chain_id",
+          "chain",
+          "price_usd"
+        ],
+        "properties": {
+          "chain": {
+            "type": "string"
+          },
+          "chain_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "price_usd": {
+            "type": "number",
+            "format": "double"
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PricesResponse": {
+        "type": "object",
+        "description": "Response type for both price endpoints.",
+        "required": [
+          "contract_address",
+          "prices"
+        ],
+        "properties": {
+          "contract_address": {
+            "type": "string"
+          },
+          "next_offset": {
+            "type": "string",
+            "nullable": true
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceData"
+            }
+          }
+        }
+      },
       "ResponseLog": {
         "allOf": [
           {
@@ -1227,6 +1372,19 @@
             }
           }
         ]
+      },
+      "ResponseTokenMetadata": {
+        "type": "object",
+        "properties": {
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
       },
       "ResponseTransaction": {
         "allOf": [
@@ -1263,19 +1421,6 @@
       },
       "Token": {
         "type": "object"
-      },
-      "TokenMetadata": {
-        "type": "object",
-        "properties": {
-          "logo": {
-            "type": "string",
-            "nullable": true
-          },
-          "url": {
-            "type": "string",
-            "nullable": true
-          }
-        }
       },
       "Transaction": {
         "type": "object",
@@ -1321,7 +1466,6 @@
           "hash",
           "block_hash",
           "value",
-          "transaction_type",
           "from",
           "to",
           "nonce",
@@ -1382,7 +1526,12 @@
             "type": "string"
           },
           "transaction_type": {
-            "$ref": "#/components/schemas/TransactionType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionType"
+              }
+            ],
+            "nullable": true
           },
           "value": {
             "type": "string"
