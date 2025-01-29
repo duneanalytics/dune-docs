@@ -41,7 +41,7 @@ To fetch balances for all supported chains please pass the `chain_ids=all` param
 Echo looks up prices onchain. We use the most liquid onchain pair to determine a usd price. We return the available liquidity in `pool_size` as part of the response, and show a warning `low_liquidity:	true` if this value is less than $10k.
 
 # Spam tokens
-By default the API filters out any token with `symbol = ''`, `name = ''`, `decimals = 0`.
+By default the API filters out any token with `symbol = ''`, `symbol.length > 15`, `name = ''` or `decimals = 0`.
 When the `?exclude_spam_tokens` is specified we use [this query](https://dune.com/queries/3804603) to determine if something is spam. Additionally, we remove any token with less than $100 of onchain liquidity.
 
 # Pagination
