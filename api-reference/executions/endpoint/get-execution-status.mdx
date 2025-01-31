@@ -15,7 +15,7 @@ Once an execution is triggered, it can be in one of the following states:
 - `QUERY_STATE_EXECUTING`: The query is currently executing.
 - `QUERY_STATE_FAILED`: The query execution failed. This is a terminal state.
 - `QUERY_STATE_COMPLETED`: The query execution completed successfully. You can retrieve the query result for this execution_id.
-- `QUERY_STATE_CANCELLED`: The query execution was cancelled by the user.
+- `QUERY_STATE_CANCELED`: The query execution was canceled by the user.
 - `QUERY_STATE_EXPIRED`: The query execution expired, and the result is no longer available.
 - `QUERY_STATE_COMPLETED_PARTIAL`: The query execution was successful, but the result was truncated because it was too large. To receive the truncated result, set the `allow_partial_results` flag to `true` in the API request to fetch result.
 
