@@ -43,7 +43,8 @@ GROUP BY
 ORDER BY
   1 DESC, 4 DESC
 ```
-import { DuneEmbed } from '/snippets/dune-embed.mdx'
+
+import { DuneEmbed } from "/snippets/dune-embed.mdx";
 
 <DuneEmbed qID="4601471" vID="7669409" height="400px" />
 
@@ -73,14 +74,12 @@ SELECT
 FROM dex.trades
 WHERE
   block_date >= NOW() - INTERVAL '30' day
-  AND project = {{Project Name}} -- Try 'uniswap' or 'curve'
+  AND project = '{{Project Name}}' -- Try 'uniswap' or 'curve'
 GROUP BY
   1, 2, 3
 ORDER BY
   1 DESC, 5 DESC
 ```
-
-
 
 To add the parameter:
 
@@ -107,18 +106,21 @@ This will create a stacked bar chart showing daily trading volumes by blockchain
 <DuneEmbed qID="4601471" vID="7669323" height="400px" />
 
 <Note>
-Want to explore more? Try:
-- Removing the project filter to see all DEXes
-- Changing the time period to 7 days or 90 days
+  Want to explore more? Try: 
+- Removing the project filter to see all DEXes 
+- Changing the time period to 7 days or 90 days 
 - Adding token filters to focus on specific cryptocurrencies
 </Note>
 
 ## Next Steps
 
-Congratulations on creating your first DEX analysis query! 🎉 
+Congratulations on creating your first DEX analysis query! 🎉
 
 You can find many more queries related to DEX trading activity in this dashboard: [DEX Trading Activity](https://dune.com/hagaetc/dex-metrics)
 
 Save your query by clicking **Save** in the upper right corner. You can revisit and modify it anytime to explore different aspects of DEX trading activity.
 
-<Note>Ready to create more advanced queries? Check out our other guides to learn more about Dune</Note>
+<Note>
+  Ready to create more advanced queries? Check out our other guides to learn
+  more about Dune
+</Note>
