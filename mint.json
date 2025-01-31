@@ -2115,7 +2115,8 @@
             "echo/evm/balances",
             "echo/evm/balances-chains",
             "echo/evm/transactions",
-            "echo/evm/transactions-chains"
+            "echo/evm/transactions-chains",
+            "echo/evm/prices"
           ]
         },
         {

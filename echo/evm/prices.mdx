@@ -1,0 +1,36 @@
+---
+title: 'Token Prices (Beta)'
+openapi: 'GET /echo/beta/prices/evm/{address}'
+---
+
+This endpoint returns current USD prices for any ERC20 token contract address. It also prices native tokens--put `native` rather than an address.
+
+Specify `?chain_ids=all` to fetch balances for all supported chains or `?chain_ids=11,250,1` to fetch balances only for select chains. 
+
+<Note>
+As we are in beta there might be changes. Please reach out to us using [this form](https://forms.gle/8qmnUZ6ZwzRFC2VY6) if you use this API. This endpoint is authenticated with a normal Dune API key.
+</Note>
+
+# Response Fields
+
+| Field | Description | Type |
+|--------|-------------|------|
+| contract_address | The ERC20 token contract address or "native" | string |
+| prices | Array of price information across chains | array |
+
+## Price Item Fields
+
+| Field | Description | Type |
+|--------|-------------|------|
+| chain_id | ID of the blockchain | integer |
+| chain | Name of the blockchain | string |
+| price_usd | Current USD price of the token | number |
+| symbol | Token symbol | string |
+
+# Pagination
+
+This endpoint is using cursor-based pagination. You can use the `limit` parameter to define the maximum page size.
+Results might at times be less than the maximum page size.
+The `next_offset` value is passed back by the initial response and can be used to fetch the next page of results, by passing it as the `offet` query parameter in the next request.
+
+<Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>

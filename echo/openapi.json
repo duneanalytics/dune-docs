@@ -14,6 +14,68 @@
     }
   ],
   "paths": {
+    "/echo/beta/prices/evm/{address}": {
+      "get": {
+        "tags": [
+          "prices"
+        ],
+        "summary": "Get ERC20 token prices",
+        "description": "This endpoint provides real-time price information for ERC20 tokens across different EVM chains.",
+        "operationId": "getEvmPrices",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "ERC20 token contract address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricesResponse"
+                },
+                "example": {
+                  "contract_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                  "prices": [
+                    {
+                      "chain_id": 1,
+                      "chain": "ethereum",
+                      "price_usd": 1.00000107728200,
+                      "symbol": "USDC"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    },
     "/echo/alpha/activity/{address}": {
       "get": {
         "tags": [
@@ -1030,6 +1092,49 @@
   },
   "components": {
     "schemas": {
+      "PriceItem": {
+        "type": "object",
+        "required": [
+          "chain_id",
+          "chain",
+          "price_usd",
+          "symbol"
+        ],
+        "properties": {
+          "chain_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "chain": {
+            "type": "string"
+          },
+          "price_usd": {
+            "type": "number",
+            "format": "double"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        }
+      },
+      "PricesResponse": {
+        "type": "object",
+        "required": [
+          "contract_address",
+          "prices"
+        ],
+        "properties": {
+          "contract_address": {
+            "type": "string"
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceItem"
+            }
+          }
+        }
+      },
       "ActivityItem": {
         "type": "object",
         "required": [
@@ -1618,6 +1723,10 @@
     {
       "name": "chains",
       "description": "Chains API"
+    },
+    {
+      "name": "prices",
+      "description": "Prices API"
     },
     {
       "name": "transactions",
