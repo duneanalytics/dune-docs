@@ -1,0 +1,21 @@
+---
+title: berachain.blocks
+sidebarTitle: "Blocks"
+description: Description of the berachain.blocks table on Dune
+---
+
+## Table Description
+
+The `berachain.blocks` table contains information about blocks in the Berachain blockchain. Each block contains a collection of transactions that are hashed and added to the blockchain. Berachain uses CometBFT consensus through BeaconKit, providing single slot finality (SSF) for faster and more secure block confirmations.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="berachain" tableName="blocks" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="berachain" tableName="blocks" /> 

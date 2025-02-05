@@ -1,0 +1,23 @@
+---
+title: berachain.traces_decoded
+sidebarTitle: "Decoded Traces"
+description: Description of the berachain.traces_decoded table on Dune
+---
+
+## Table Description
+
+The `traces_decoded` table contains decoded traces from Berachain transactions. The table matches `MethodID`, which consists of the first 4 bytes of any eth call to the trace signature and the corresponding Method name. The table does not contain the full trace data and is not suitable for analysis of smart contract level data. For that, use the specific event tables as described in [Call-tables](/data-catalog/evm/berachain/decoded/traces-decoded). 
+
+This table is great for gaining a high level understanding of the types of events that are being emitted by a smart contract or smart contracts of a certain protocol.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="berachain" tableName="traces_decoded" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="berachain" tableName="traces_decoded" /> 

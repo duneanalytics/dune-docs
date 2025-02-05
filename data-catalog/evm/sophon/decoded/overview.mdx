@@ -1,0 +1,14 @@
+---
+title: Overview
+description: Simplifying smart contract analysis through human-readable tables.
+icon: "star"
+---
+
+import { OverviewDecodedDataApproach } from "/snippets/evm/decoded/decoded-overview-snippet.mdx"
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
+
+<Warning>
+Due to bugs in the Sophon client, some contract creation traces are missing, and data in the code field is incomplete for certain blocks. Consequently, we cannot support factory and bytecode matching for this chain. Once the bugs are addressed, we will work to restore this functionality. We apologize for the inconvenience.
+</Warning>
+
+<OverviewDecodedDataApproach blockchain="sophon"/>

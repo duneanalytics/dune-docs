@@ -1,0 +1,23 @@
+---
+title: berachain.creation_traces
+sidebarTitle: "Creation Traces"
+description: Description of the berachain.creation_traces table on Dune
+---
+
+## Table Description
+
+The `creation_traces` table contains information about the creation of smart contracts on the Berachain blockchain. This includes the address of the contract, the address of the creator, the block number at which the contract was created, the transaction hash, and the contract's bytecode. This table is useful for understanding the deployment of smart contracts on the Berachain blockchain.
+
+This table is a subset of the `traces` table, which contains information about all traces on the Berachain blockchain. The `creation_traces` table is filtered to only include traces that create new smart contracts. The filter for this is `type` = `create`.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="berachain" tableName="creation_traces" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="berachain" tableName="creation_traces" /> 

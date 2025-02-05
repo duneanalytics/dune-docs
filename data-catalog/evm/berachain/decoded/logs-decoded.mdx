@@ -1,0 +1,23 @@
+---
+title: berachain.logs_decoded
+sidebarTitle: "logs_decoded"
+description: Description of the berachain.logs_decoded table on Dune
+---
+
+## Table Description
+
+The `logs_decoded` table contains decoded logs from Berachain transactions. The table matches `topic0` to the event signature and the corresponding event name. The table does not contain the full event data and is not suitable for analysis of smart contract level data. For that, use the specific event tables as described in [Event Logs](/data-catalog/evm/berachain/decoded/event-logs). 
+
+This table is great for gaining a high level understanding of the types of events that are being emitted by a smart contract or smart contracts of a certain protocol.
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="berachain" tableName="logs_decoded" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="berachain" tableName="logs_decoded" /> 
