@@ -1,0 +1,15 @@
+---
+title: sophon.traces
+sidebarTitle: "Traces"
+description: Description of the sophon.traces table on Dune
+---
+
+import { TracesSnippet } from '/snippets/evm/raw/traces-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<Warning> 
+You may see duplicate records in the `traces` table for the Sophon chain. This is not a bug, but a result of trace calls appearing twice within the same transaction. These consecutive calls—an outer and an inner call—are identical except for their gas values. They share the same `from`, `to`, `input`, `output`, `success`, and `value` fields.
+</Warning>
+
+<TracesSnippet blockchain="sophon" />

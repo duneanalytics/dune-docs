@@ -1850,6 +1850,53 @@
               ]
             }
           ]
+        },
+        {
+          "group": "Sophon",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/sophon/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/sophon/raw/blocks",
+                "data-catalog/evm/sophon/raw/creation-traces",
+                "data-catalog/evm/sophon/raw/logs",
+                "data-catalog/evm/sophon/raw/transactions",
+                "data-catalog/evm/sophon/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/sophon/decoded/overview",
+                "data-catalog/evm/sophon/decoded/call-tables",
+                "data-catalog/evm/sophon/decoded/event-logs",
+                "data-catalog/evm/sophon/decoded/contracts",
+                "data-catalog/evm/sophon/decoded/logs-decoded",
+                "data-catalog/evm/sophon/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/sophon/curated-data/dex/dex-trades",
+                    "data-catalog/evm/sophon/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/sophon/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
