@@ -1,0 +1,44 @@
+---
+title: Berachain Overview
+icon: "star"
+sidebarTitle: "Overview"
+description: Berachain data on Dune
+---
+
+Berachain is a high-performance EVM-Identical Layer 1 blockchain utilizing Proof-of-Liquidity (PoL), and built on top of the modular EVM-focused consensus client framework BeaconKit. It combines the security and decentralization of traditional blockchains with innovative tokenomics and liquidity mechanisms.
+
+**EVM Identical Architecture:**
+Berachain's execution layer is identical to the Ethereum Virtual Machine (EVM) runtime environment seen on Ethereum Mainnet. This means it uses existing unmodified execution clients like Geth, Reth, Erigon, Nethermind, and more to handle executing smart contracts, and supports all the tooling that comes native with the EVM.
+
+**Proof-of-Liquidity (PoL):**
+Berachain introduces a novel consensus mechanism that radically changes L1 economics, prioritizing users and applications over validator rewards. Network incentives go towards enriching ecosystem liquidity, contributing to:
+- Efficient trading
+- Price stability 
+- Chain security
+- Network/user growth
+
+**BeaconKit Framework:**
+Built on BeaconKit, a modular framework for building EVM consensus clients, Berachain integrates the benefits of CometBFT consensus, including increased composability and single slot finality (SSF).
+
+<CardGroup cols={1}>
+  <Card title="Berachain documentation" icon="link" href="https://docs.berachain.com/learn/">
+    Access the official documentation for Berachain, providing comprehensive information about its architecture, features, and development resources.
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Event logs from smart contracts, providing insights into interactions and activities on the Berachain network.
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on blocks processed using Berachain's PoL technology, reflecting the network's capacity for high transaction throughput.
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Detailed transaction data, showcasing the operational efficiency and cost-effectiveness of Berachain's solution.
+  </Card>
+  <Card title="decoded" icon="file" href="./decoded/overview">
+    Decoded transaction data for easier analysis and better understanding of smart contract executions on Berachain.
+  </Card>
+</CardGroup> 

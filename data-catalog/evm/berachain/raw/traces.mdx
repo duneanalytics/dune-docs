@@ -1,0 +1,23 @@
+---
+title: berachain.traces
+sidebarTitle: "Traces"
+description: Description of the berachain.traces table on Dune
+---
+
+## Table Description
+
+The `traces` table contains the traces of the transactions executed on the Ethereum Virtual Machine (EVM). It includes the traces of the transaction and the traces of the internal transactions. Traces are the result of the execution of the transaction and are used to debug and understand the execution of the transaction. They are also known as `internal transactions` and can be used to understand the execution of a transaction.
+
+This is the raw version of this table, for decoded transaction calls, see the [call tables](/data-catalog/evm/berachain/decoded/call-tables) section. 
+
+## Column Descriptions
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+
+<ColumnDescriptions tableSchema="berachain" tableName="traces" />
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="berachain" tableName="traces" /> 
