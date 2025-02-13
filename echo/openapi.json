@@ -14,6 +14,79 @@
     }
   ],
   "paths": {
+    "/echo/alpha/activity/{address}": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "summary": "Get EVM activity for a given address",
+        "description": "This endpoint provides a real-time feed of on-chain activity for any EVM address, including token transfers (native, ERC20, ERC721), contract interactions, and transaction details.",
+        "operationId": "getEvmActivity",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Address to get activity for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of activity items to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    },
     "/echo/beta/balances/svm/{address}": {
       "get": {
         "tags": [
@@ -957,6 +1030,105 @@
   },
   "components": {
     "schemas": {
+      "ActivityItem": {
+        "type": "object",
+        "required": [
+          "chain_id",
+          "block_number",
+          "block_time",
+          "transaction_hash",
+          "type",
+          "from",
+          "to",
+          "value"
+        ],
+        "properties": {
+          "chain_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "block_number": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "block_time": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "transaction_hash": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["transfer", "call", "mint"]
+          },
+          "asset_type": {
+            "type": "string",
+            "enum": ["native", "erc20", "erc721"]
+          },
+          "token_address": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string"
+              },
+              "decimals": {
+                "type": "integer"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          "function": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ActivityResponse": {
+        "type": "object",
+        "required": [
+          "activity"
+        ],
+        "properties": {
+          "activity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityItem"
+            }
+          },
+          "next_offset": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "BalanceData": {
         "type": "object",
         "required": [
@@ -1435,6 +1607,10 @@
     }
   },
   "tags": [
+    {
+      "name": "activity",
+      "description": "Activity API"
+    },
     {
       "name": "balance",
       "description": "Balances API"
