@@ -4847,9 +4847,6 @@
           "query_id": {
             "type": "integer"
           },
-          "s3_url": {
-            "type": "string"
-          },
           "sql_id": {
             "type": "string"
           },
