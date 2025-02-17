@@ -16,7 +16,7 @@ For working with uploads, keep in mind that:
 - File has to be < 200 MB
 - Column names in the table can't start with a special character or digits.
 - Private uploads require a Premium subscription.
-- If you upload to an existing table name, it will delete the old data and overwite it with your new data. There is no append feature at the moment.
+- If you upload to an existing table name, it will delete the old data and overwite it with your new data. Appends are only supported for the `/create`, `/insert` endpoints.
 - To delete an upload table, you must go to `user settings (dune.com) -> data -> delete`.
 
 If you have larger datasets you want to upload, please [contact us here](https://docs.google.com/forms/d/e/1FAIpQLSekx61WzIh-MII18zRj1G98aJeLM7U0VEBqaa6pVk_DQ7lq6Q/viewform)
@@ -179,3 +179,63 @@ HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/table/
 ```
 
 </RequestExample>
+
+
+### Upload via google sheet
+
+To automate the upload of a Google Sheet's contents to Dune via API, use the following Google Apps Script:
+
+```javascript
+function uploadToDune() {
+  var apiKey = "YOUR_DUNE_API_KEY"; // Replace with your actual Dune API key, keep the quotes
+  var tableName = "example_table"; // Update with your desired table name
+  var description = "Example table description";
+
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var range = sheet.getDataRange();
+  var values = range.getValues();
+
+  // Convert data to CSV format
+  var csvData = "";
+  for (var i = 0; i < values.length; i++) {
+    csvData += values[i].join(",") + "\n";
+  }
+
+  var payload = {
+    data: csvData.trim(),
+    description: description,
+    table_name: tableName,
+    is_private: false
+  };
+
+  var options = {
+    method: "post",
+    contentType: "application/json",
+    headers: {
+      "X-DUNE-API-KEY": apiKey
+    },
+    payload: JSON.stringify(payload)
+  };
+
+  var response = UrlFetchApp.fetch("https://api.dune.com/api/v1/table/upload/csv", options);
+  Logger.log(response.getContentText());
+}
+```
+
+Steps to Use:
+
+1. Open your Google Sheet
+2. Navigate to Extensions → Apps Script
+3. Replace the script with the code above
+4. Save and run uploadToDune
+5. (Optional) For easier execution, you can assign this script to a button in your Google Sheet:
+   - Click "Insert" in the Google Sheets menu
+   - Select "Drawing" 
+   - Create a button shape and add text like "Upload to Dune"
+   - Click "Save and Close"
+   - Right-click the button and select "Assign script"
+   - Enter "uploadToDune" as the function name
+6. Clicking the button will now upload your active sheet's data to Dune!
+
+
+
