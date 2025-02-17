@@ -187,19 +187,22 @@ To automate the upload of a Google Sheet's contents to Dune via API, use the fol
 
 ```javascript
 function uploadToDune() {
-  var apiKey = "YOUR_DUNE_API_KEY"; // Replace with your actual Dune API key
-  var tableName = "ten_year_us_interest_rates"; // Update with your desired table name
-  var description = "10 year daily interest rates, sourced from https://fred.stlouisfed.org/series/DGS10";
+  var apiKey = "YOUR_DUNE_API_KEY"; // Replace with your actual Dune API key 
+  var tableName = "example_table"; // Update with your desired table name
+  var description = "Example table description";
 
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var range = sheet.getDataRange();
   var values = range.getValues();
 
   // Convert data to CSV format
-  var csvData = values.map(row => row.join(",")).join("\n");
+  var csvData = "";
+  for (var i = 0; i < values.length; i++) {
+    csvData += values[i].join(",") + "\n";
+  }
 
   var payload = {
-    data: csvData,
+    data: csvData.trim(),
     description: description,
     table_name: tableName,
     is_private: false
