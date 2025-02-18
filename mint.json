@@ -119,7 +119,8 @@
         "web-app/embeds",
         "web-app/search",
         "web-app/alerts",
-        "web-app/bug-bounty"
+        "web-app/bug-bounty",
+        "web-app/user-activity"
       ]
     },
     {
@@ -784,24 +785,24 @@
                 "data-catalog/evm/boba/decoded/logs-decoded",
                 "data-catalog/evm/boba/decoded/traces-decoded"
               ]
-              },
-              {
-                "group": "Curated",
-                "pages": [
-                  {
-                    "group": "DEX",
-                    "pages": [
-                      "data-catalog/evm/boba/curated-data/dex/dex-trades",
-                      "data-catalog/evm/boba/curated-data/dex/dex-aggregator-trades"
-                    ]
-                  },
-                  {
-                    "group": "NFT",
-                    "pages": ["data-catalog/evm/boba/curated-data/nft/nft-trades"]
-                  }
-                ]
-              }
-            ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/boba/curated-data/dex/dex-trades",
+                    "data-catalog/evm/boba/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": ["data-catalog/evm/boba/curated-data/nft/nft-trades"]
+                }
+              ]
+            }
+          ]
         },
         {
           "group": "Celo",
@@ -887,9 +888,7 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": [
-                    "data-catalog/evm/corn/curated-data/nft/nft-trades"
-                  ]
+                  "pages": ["data-catalog/evm/corn/curated-data/nft/nft-trades"]
                 }
               ]
             }
@@ -1139,9 +1138,7 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": [
-                    "data-catalog/evm/ink/curated-data/nft/nft-trades"
-                  ]
+                  "pages": ["data-catalog/evm/ink/curated-data/nft/nft-trades"]
                 }
               ]
             }
