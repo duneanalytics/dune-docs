@@ -77,13 +77,13 @@ For an overview of how decoding works and submission instructions, watch this vi
 
 In the event that you are collecting dozens protocol contracts, and would like to batch submit contracts via a CSV. Please work with use (via the Slack or TG channel we have) with a correctly formatted CSV and batch submit contracts for decodoing. 
 <Warning>
-This is the less recommended route to go because for this to work, one needs to be super sure about the advanced flags are correctly marked and the ABI is correct and formatted well and the naming of the protocol and contract conforms with our standard. Submitting with UI has the benefit of the UI having many safe guard and checks and hint, and doing a manaul backedn batch submission means you will lose that guidance and sometimes result in longer debugging /turn around time. So use this option at you caution.
+This is the less recommended route to go because for this to work, one needs to be super sure about the advanced flags are correctly marked and the ABI is correct and formatted well and the naming of the protocol and contract conforms with our standard. Submitting with UI has the benefit of the UI having many safe guard and checks and hint, and doing a manual backend batch submission means you will lose that guidance and sometimes result in longer debugging /turn around time. So use this option at you caution.
 </Warning>
 
 For multiple contracts, submit in bulk using [this Google Sheet template](https://docs.google.com/spreadsheets/d/1yxJqlmSE2yYgXgSIXcPRr5xxP9ck9JZB8_sGOITtYEM/edit?gid=0#gid=0). Be sure to:
 - Follow the format precisely.
 - Provide the ABI directly 
-- Refer to [Dune’s documentation](https://docs.dune.com/web-app/decoding/decoding-contracts) if you’re unsure about fields like `has_multiple_instances` or `is_created_by_factory`. `has_multiple_instances` coresponds to dynamic contract and `is_created_by_factory` corresponds to factory contract in Dune's decoding pipeline.
+- Refer to [Dune’s documentation](https://docs.dune.com/web-app/decoding/decoding-contracts) if you’re unsure about fields like `has_multiple_instances` or `is_created_by_factory`. `has_multiple_instances` corresponds to dynamic contract and `is_created_by_factory` corresponds to factory contract in Dune's decoding pipeline.
 
 ## Submission Strategy
 
@@ -102,7 +102,7 @@ Generally, these don’t need submission unless you want custom events beyond ap
 ### DEX Contracts
 Look for below sets of contracts:
 - **Factory Contract** which should emit pool creation events, also useful for dex.trades spellbook creation 
-- **Pair/Pool Contract** which shoud emit swap events, also useful for dex.trades spellbook creation
+- **Pair/Pool Contract** which should emit swap events, also useful for dex.trades spellbook creation
 
 And ofc if you want to also decode other contracts for routers or position manager, please also submit those contracts. 
 
