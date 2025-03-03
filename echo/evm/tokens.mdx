@@ -1,22 +1,23 @@
 ---
-title: 'Tokens'
+title: 'Tokens (Beta)'
 openapi: 'GET /echo/beta/tokens/evm/{address}'
 ---
 
-The Tokens API provides metadata and real-time pricing information for native and ERC20 tokens on supported EVM blockchains.
-To fetch balances for all supported chains please pass the `chain_ids=all` parameter. See [EVM Supported Chains](./balance-chains) for more details.
-
 <Note>
-  - The `chain_ids` query parameter is mandatory.
-  - These endpoints are authenticated with a normal Dune API key.
-  - Specify `?chain_ids=all` to fetch balances for all supported chains.
-  - Specify `?chain_ids=11,250,1` to fetch balances only for select chains.
+This endpoint is currently in beta and requires authentication using a normal Dune API key. The `chain_ids` query parameter is mandatory.
 </Note>
 
+The Tokens API provides metadata and real-time pricing information for native and ERC20 tokens on supported EVM blockchains. The API returns:
+- Token metadata (symbol, name, decimals)
+- Current USD pricing information
+- Supply information
+- Logo URLs when available
 
-# Column Descriptions
+To fetch tokens for all supported chains, pass the `chain_ids=all` parameter. See [EVM Supported Chains](./balance-chains) for more details. You can also specify specific chains with `?chain_ids=11,250,1`.
 
-| Column                     | Description                                                       | Type          |
+# Response Fields
+
+| Field                      | Description                                                       | Type          |
 |----------------------------|-------------------------------------------------------------------|---------------|
 | contract_address           | Contract address for an ERC20 token or `native`                   | string        |
 | chain_id                   | The ID of the blockchain                                          | integer       |
@@ -31,13 +32,13 @@ To fetch balances for all supported chains please pass the `chain_ids=all` param
 | decimals                   | Decimals of token, if available                                   | integer       |
 
 
-# Token prices
+# Token Prices
 Echo looks up prices onchain. We use the most liquid onchain pair to determine a usd price. We return the available liquidity in `pool_size` as part of the response.
 
 # Pagination
 
-This endpoint is using cursor based pagination. You can use the `limit` parameter to define the maximum page size.
+This endpoint uses cursor-based pagination. You can use the `limit` parameter to define the maximum page size.
 Results might at times be less than the maximum page size.
-The `next_offset` value is passed back by the initial response and can be used to fetch the next page of results, by passing it as the `offset` query parameter in the next request.
+The `next_offset` value is included in the initial response and can be utilized to fetch the next page of results by passing it as the `offset` query parameter in the next request.
 
 <Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>
