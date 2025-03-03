@@ -2250,8 +2250,10 @@
         {
           "group": "EVM",
           "pages": [
+            "echo/evm/activity",
             "echo/evm/balances",
             "echo/evm/balances-chains",
+            "echo/evm/tokens",
             "echo/evm/transactions",
             "echo/evm/transactions-chains"
           ]
