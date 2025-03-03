@@ -14,79 +14,6 @@
     }
   ],
   "paths": {
-    "/echo/alpha/activity/{address}": {
-      "get": {
-        "tags": [
-          "activity"
-        ],
-        "summary": "Get EVM activity for a given address",
-        "description": "This endpoint provides a real-time feed of on-chain activity for any EVM address, including token transfers (native, ERC20, ERC721), contract interactions, and transaction details.",
-        "operationId": "getEvmActivity",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API key to access the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "address",
-            "in": "path",
-            "description": "Address to get activity for",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of activity items to return",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "nullable": true,
-              "minimum": 0
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request - The request could not be understood by the server due to malformed data"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error - A generic error occurred on the server."
-          }
-        }
-      }
-    },
     "/echo/beta/balances/svm/{address}": {
       "get": {
         "tags": [
@@ -154,6 +81,98 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BalancesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    },
+    "/echo/beta/tokens/evm/{contract_address}": {
+      "get": {
+        "tags": [
+          "prices"
+        ],
+        "summary": "Get EVM token prices for a specified contract address (or the native token), on any chain.",
+        "operationId": "getEvmTokenData",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contract_address",
+            "in": "path",
+            "description": "The contract address of the token or 'native' for the native token of the chain",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chain_ids",
+            "in": "query",
+            "description": "Either 'all' or a comma separated list of chain ids to get balances for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The offset to paginate through result sets; this is a cursor being passed from the previous response, only use what the backend returns here",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Maximum number of prices to return",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokensResponse"
+                },
+                "example": {
+                  "contract_address": "native",
+                  "prices": [
+                    {
+                      "chain": "ethereum",
+                      "chain_id": 1,
+                      "price_usd": 12.34,
+                      "symbol": "ETH"
+                    }
+                  ]
                 }
               }
             }
@@ -273,236 +292,300 @@
                 "example": {
                   "chains": [
                     {
-                      "default": true,
                       "id": 42161,
                       "name": "arbitrum",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 43114,
                       "name": "avalanche_c",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 8453,
                       "name": "base",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 56,
                       "name": "bnb",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 1,
                       "name": "ethereum",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 137,
                       "name": "polygon",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 10,
                       "name": "optimism",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 534352,
                       "name": "scroll",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 42220,
                       "name": "celo",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "defaul t": true,
                       "id": 690,
                       "name": "redstone",
                       "supported_assets": [
                         "native"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 34443,
                       "name": "mode",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 42170,
                       "name": "arbitrum_nova",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 59144,
                       "name": "linea",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 60808,
                       "name": "bob",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 81457,
                       "name": "blast",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 7777777,
                       "name": "zora",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 666666666,
                       "name": "degen",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 888888888,
                       "name": "ancient8",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 1380012617,
                       "name": "rari",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 100,
                       "name": "gnosis",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 1101,
                       "name": "zkevm",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 324,
                       "name": "zksync",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "default",
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": false,
                       "id": 70700,
                       "name": "proof_of_play",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 250,
                       "name": "fantom",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 11155111,
                       "name": "sepolia",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     },
                     {
-                      "default": true,
                       "id": 1329,
                       "name": "sei",
                       "supported_assets": [
                         "native",
                         "erc20"
+                      ],
+                      "tags": [
+                        "mainnet"
                       ]
                     }
                   ]
@@ -1030,105 +1113,6 @@
   },
   "components": {
     "schemas": {
-      "ActivityItem": {
-        "type": "object",
-        "required": [
-          "chain_id",
-          "block_number",
-          "block_time",
-          "transaction_hash",
-          "type",
-          "from",
-          "to",
-          "value"
-        ],
-        "properties": {
-          "chain_id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "block_number": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "block_time": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "transaction_hash": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["transfer", "call", "mint"]
-          },
-          "asset_type": {
-            "type": "string",
-            "enum": ["native", "erc20", "erc721"]
-          },
-          "token_address": {
-            "type": "string"
-          },
-          "from": {
-            "type": "string"
-          },
-          "to": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "metadata": {
-            "type": "object",
-            "properties": {
-              "symbol": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "description": {
-                "type": "string"
-              }
-            }
-          },
-          "function": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "inputs": {
-                "type": "array",
-                "items": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      },
-      "ActivityResponse": {
-        "type": "object",
-        "required": [
-          "activity"
-        ],
-        "properties": {
-          "activity": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ActivityItem"
-            }
-          },
-          "next_offset": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
       "BalanceData": {
         "type": "object",
         "required": [
@@ -1155,6 +1139,18 @@
             "format": "int64",
             "nullable": true
           },
+          "low_liquidity": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "pool_size": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
           "price_usd": {
             "type": "number",
             "format": "double",
@@ -1167,7 +1163,7 @@
           "token_metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/TokenMetadata"
+                "$ref": "#/components/schemas/ResponseTokenMetadata"
               }
             ],
             "nullable": true
@@ -1200,10 +1196,11 @@
       },
       "BalanceErrors": {
         "type": "object",
-        "required": [
-          "token_errors"
-        ],
         "properties": {
+          "error_message": {
+            "type": "string",
+            "nullable": true
+          },
           "token_errors": {
             "type": "array",
             "items": {
@@ -1215,7 +1212,6 @@
       "BalancesResponse": {
         "type": "object",
         "required": [
-          "response_time",
           "wallet_address",
           "balances"
         ],
@@ -1243,7 +1239,8 @@
             "nullable": true
           },
           "response_time": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "wallet_address": {
             "type": "string",
@@ -1263,13 +1260,9 @@
         "required": [
           "name",
           "id",
-          "supported_assets",
-          "default"
+          "tags"
         ],
         "properties": {
-          "default": {
-            "type": "boolean"
-          },
           "id": {
             "type": "integer",
             "format": "int64"
@@ -1277,7 +1270,7 @@
           "name": {
             "type": "string"
           },
-          "supported_assets": {
+          "tags": {
             "type": "array",
             "items": {
               "type": "string"
@@ -1400,6 +1393,19 @@
           }
         ]
       },
+      "ResponseTokenMetadata": {
+        "type": "object",
+        "properties": {
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "ResponseTransaction": {
         "allOf": [
           {
@@ -1436,16 +1442,79 @@
       "Token": {
         "type": "object"
       },
-      "TokenMetadata": {
+      "TokenData": {
         "type": "object",
+        "required": [
+          "chain_id",
+          "chain"
+        ],
         "properties": {
+          "chain": {
+            "type": "string"
+          },
+          "chain_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "decimals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "minimum": 0
+          },
+          "fully_diluted_value": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
           "logo": {
             "type": "string",
             "nullable": true
           },
-          "url": {
+          "name": {
             "type": "string",
             "nullable": true
+          },
+          "pool_size": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price_usd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "total_supply": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TokensResponse": {
+        "type": "object",
+        "description": "Response type for both price endpoints.",
+        "required": [
+          "contract_address",
+          "tokens"
+        ],
+        "properties": {
+          "contract_address": {
+            "type": "string"
+          },
+          "next_offset": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokens": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenData"
+            }
           }
         }
       },
@@ -1493,7 +1562,6 @@
           "hash",
           "block_hash",
           "value",
-          "transaction_type",
           "from",
           "to",
           "nonce",
@@ -1554,7 +1622,12 @@
             "type": "string"
           },
           "transaction_type": {
-            "$ref": "#/components/schemas/TransactionType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionType"
+              }
+            ],
+            "nullable": true
           },
           "value": {
             "type": "string"
@@ -1607,10 +1680,6 @@
     }
   },
   "tags": [
-    {
-      "name": "activity",
-      "description": "Activity API"
-    },
     {
       "name": "balance",
       "description": "Balances API"
