@@ -1,0 +1,56 @@
+---
+title: 'Activity (Alpha)'
+openapi: 'GET /echo/alpha/activity/{address}'
+---
+
+<Note>
+This endpoint is currently in alpha and available only for testing purposes. Authentication is required using a normal Dune API key.
+</Note>
+
+The Activity endpoint provides a real-time feed of on-chain activity for any EVM address. Activity is returned in chronological order (newest first) and includes:
+- Native token transfers
+- ERC20 token transfers with metadata (symbol, decimals)
+- ERC721 (NFT) transfers with token IDs
+- Contract interactions with decoded function calls
+
+# Response Fields
+
+| Field | Description | Type |
+|--------|-------------|------|
+| activity | Array of activity items | array |
+| next_offset | Pagination cursor for next page | string |
+
+## Activity Item Fields
+
+| Field | Description | Type |
+|--------|-------------|------|
+| chain_id | ID of the blockchain where activity occurred | integer |
+| block_number | Block number where activity occurred | integer |
+| block_time | Unix timestamp of the block | integer |
+| transaction_hash | Hash of the transaction | string |
+| type | Activity type: 'transfer', 'call', or 'mint' | string |
+| asset_type | Asset type: 'native', 'erc20', or 'erc721' | string |
+| token_address | Contract address of token (for ERC20/ERC721) | string |
+| from | Address initiating the activity | string |
+| to | Recipient address | string |
+| value | Amount transferred (in WEI) or contract call value | string |
+| id | Token ID (for ERC721 transfers) | string |
+| metadata | Additional context about the activity | object |
+| metadata.symbol | Token symbol (for ERC20) | string |
+| metadata.decimals | Token decimals (for ERC20) | integer |
+| metadata.description | Human-readable description of the activity | string |
+| function | Decoded function information (for contract calls) | object |
+| function.name | Name of the called function | string |
+| function.inputs | Array of decoded function parameters | array |
+
+# Ordering
+
+Activities are ordered by block time (descending) and then by transaction index within each block, so that newer activities appear first.
+
+# Pagination
+
+This endpoint uses cursor-based pagination. You can use the `limit` parameter to define the maximum page size.
+Results might at times be less than the maximum page size.
+The `next_offset` value is included in the initial response and can be utilized to fetch the next page of results by passing it as the `offset` query parameter in the next request.
+
+<Warning>You can only use the value from `next_offset` to set the `offset` parameter of the next page of results. Using your own `offset` value will not have any effect.</Warning>
