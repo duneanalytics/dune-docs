@@ -635,7 +635,7 @@
           {
             "name": "chain_ids",
             "in": "query",
-            "description": "Either 'all' or a comma separated list of chain ids to get balances for",
+            "description": "A comma separated list of chain_ids or tags for blockchains to get balances for. Examples: chain_ids=1,8453,10, chain_ids=mainnet,testnet.  Only balances for blockchains tagged with all the specified tags are returned. Please see the response of the /chains endpoint for the tags on each blockchain.",
             "required": false,
             "schema": {
               "type": "string",
