@@ -10,7 +10,7 @@ In Dune context, delete action is replaced by archive as deletion of queries is 
 <RequestExample>
 
 ```bash cURL
-curl --request GET \
+curl --request POST \
   --url https://api.dune.com/api/v1/query/{queryId}/archive \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>'
 ```
@@ -33,14 +33,14 @@ url = "https://api.dune.com/api/v1/query/{queryId}/archive"
 
 headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
 
-response = requests.request("GET", url, headers=headers)
+response = requests.request("POST", url, headers=headers)
 
 print(response.text)
 
 ```
 
 ```javascript JavaScript
-const options = {method: 'GET', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
+const options = {method: 'POST', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
 
 fetch('https://api.dune.com/api/v1/query/{queryId}/archive', options)
   .then(response => response.json())
@@ -61,7 +61,7 @@ func main() {
 
 	url := "https://api.dune.com/api/v1/query/{queryId}/archive"
 
-	req, _ := http.NewRequest("GET", url, nil)
+	req, _ := http.NewRequest("POST", url, nil)
 
 	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
 
@@ -88,7 +88,7 @@ curl_setopt_array($curl, [
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_HTTPHEADER => [
     "X-DUNE-API-KEY: <x-dune-api-key>"
   ],
@@ -107,7 +107,7 @@ if ($err) {
 ```
 
 ```java Java
-HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/query/{queryId}/archive")
+HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/query/{queryId}/archive")
   .header("X-DUNE-API-KEY", "<x-dune-api-key>")
   .asString();
 ```
