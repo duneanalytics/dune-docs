@@ -73,3 +73,50 @@ Examples of real dashboards:
 *   [Project metrics](https://dune.com/whale_hunter/unibot-revenue)
 *   [DAO Accounting (Maker)](https://dune.com/steakhouse/makerdao)
 *   [Base Chain Metrics](https://dune.com/optimismfnd/Optimism)
+
+### Examples and Tutorials
+
+Welcome to the Examples and Tutorials section! Here, you'll find a collection of code examples and step-by-step tutorials to help you get started with Dune and make the most out of its features.
+
+#### Code Examples
+
+Here are a few code examples demonstrating common use cases:
+
+**Example 1: Fetching Data from the API**
+
+```python
+import requests
+
+url = "https://api.dune.com/api/v1/query/{query_id}/results"
+headers = {"X-DUNE-API-KEY": "<your_api_key>"}
+
+response = requests.get(url, headers=headers)
+data = response.json()
+
+print(data)
+```
+
+**Example 2: Executing a Query**
+
+```python
+import requests
+
+url = "https://api.dune.com/api/v1/query/{query_id}/execute"
+headers = {"X-DUNE-API-KEY": "<your_api_key>"}
+payload = {"query_parameters": {"param1": 24}, "performance": "large"}
+
+response = requests.post(url, json=payload, headers=headers)
+execution_id = response.json().get("execution_id")
+
+print(execution_id)
+```
+
+#### Tutorials
+
+Explore our tutorials to learn how to perform common tasks and use Dune's features effectively:
+
+* [Canceling an Execution](api-reference/executions/endpoint/cancel-execution)
+* [Executing a Query](api-reference/executions/endpoint/execute-query)
+* [Retrieving Execution Results in CSV](api-reference/executions/endpoint/get-execution-result-csv)
+* [Getting Execution Results](api-reference/executions/endpoint/get-execution-result)
+* [Checking Execution Status](api-reference/executions/endpoint/get-execution-status)
