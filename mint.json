@@ -1664,6 +1664,53 @@
           ]
         },
         {
+          "group": "Shape",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/shape/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/shape/raw/blocks",
+                "data-catalog/evm/shape/raw/creation-traces",
+                "data-catalog/evm/shape/raw/logs",
+                "data-catalog/evm/shape/raw/transactions",
+                "data-catalog/evm/shape/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/shape/decoded/overview",
+                "data-catalog/evm/shape/decoded/call-tables",
+                "data-catalog/evm/shape/decoded/event-logs",
+                "data-catalog/evm/shape/decoded/contracts",
+                "data-catalog/evm/shape/decoded/logs-decoded",
+                "data-catalog/evm/shape/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/shape/curated-data/dex/dex-trades",
+                    "data-catalog/evm/shape/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": [
+                    "data-catalog/evm/shape/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Sonic",
           "icon": "database",
           "iconType": "solid",
