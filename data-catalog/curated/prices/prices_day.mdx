@@ -4,20 +4,34 @@ icon: calendar-day
 description: Historical daily price data for tokens across all supported blockchains, aggregated at 00:00 UTC
 ---
 
-# Prices.day
+# prices.day
 
-The `prices.day` table provides daily price data for tokens across multiple blockchains, aggregated at 00:00 UTC.
-For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).
+## Overview
 
-## Table Structure
+The `prices.day` table provides daily token price data across all supported blockchains. It contains the last known price for each day, ensuring a continuous time series for price analysis.
 
-| Column name        | Data type   | Description                                   |
-| ------------------ | ----------- | --------------------------------------------- |
-| `contract_address` | _varbinary_ | Unique identifier of the token (contract address for ERC20, mint address for Solana, null for native currencies) |
-| `blockchain`       | _varchar_   | The blockchain on which the token exists      |
-| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
-| `price`            | _double_    | The daily price of the asset in USD           |
-| `timestamp`        | _timestamp_ | The timestamp for which this price is reported (00:00 UTC) |
+## Table Schema
+
+| Column | Type | Description |
+|--------|------|-------------|
+| blockchain | varchar | Blockchain identifier (e.g., 'ethereum', 'arbitrum') |
+| contract_address | varbinary | Token contract address (fixed address for native tokens) |
+| symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
+| timestamp | timestamp | Date timestamp (00:00 UTC of each day) |
+| price | double | Token price in USD |
+| decimals | int | Token decimals |
+| volume | double | Trading volume in USD (from price source) |
+| source | varchar | Data source ('coinpaprika' or 'dex.trades') |
+| source_timestamp | timestamp | Exact timestamp of the source data point |
+
+## Implementation Details
+
+The daily prices are built through these steps:
+
+1. Collect sparse price observations from different sources
+2. Group by day, taking the most recent price observation per day
+3. Fill missing days with the previous day's price (forward filling)
+4. Set a 30-day expiration for forward filling to avoid stale data
 
 ## Usage
 
@@ -27,26 +41,38 @@ This table is ideal for analyzing daily price trends and performing day-over-day
 
 The `prices.day` table is updated daily at 00:00 UTC, providing the closing price for the previous day. Data is typically available within 30 minutes of the daily close.
 
-## Example Query
+## Usage Examples
 
+Get ETH price history for the last month:
 ```sql
 SELECT
-    contract_address,
-    blockchain,
-    symbol,
-    price,
-    timestamp
+  timestamp,
+  price
 FROM prices.day
-WHERE
-    blockchain = 'ethereum'
-    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
-    AND timestamp >= DATE '2023-01-01'
-ORDER BY timestamp asc
+WHERE blockchain = 'ethereum'
+AND symbol = 'ETH'
+AND timestamp >= NOW() - INTERVAL '30' DAY
+ORDER BY timestamp
 ```
 
-## Notes
+Calculate monthly average price for multiple tokens:
+```sql
+SELECT
+  blockchain,
+  symbol,
+  date_trunc('month', timestamp) as month,
+  avg(price) as avg_price
+FROM prices.day
+WHERE blockchain = 'ethereum'
+AND symbol IN ('ETH', 'USDC', 'WBTC')
+AND timestamp >= '2023-01-01'
+GROUP BY 1,2,3
+ORDER BY 1,2,3
+```
 
-- Prices are calculated on a per-chain basis.
-- For tokens not in the trusted token list, prices may differ across chains.
-- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique.
-- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).
+## Data Quality Notes
+
+- Prices older than 30 days will not be forward-filled to avoid using stale data
+- Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
+- The same token may have different prices on different blockchains due to bridging inefficiencies
+- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique 

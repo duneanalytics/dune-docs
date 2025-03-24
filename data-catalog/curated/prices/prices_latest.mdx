@@ -1,47 +1,84 @@
 ---
 title: Latest Prices
-icon: money-bill
-description: Deprecated table for latest token prices - use prices.minute for current data
+icon: bolt
+description: Most recent price data for tokens across all supported blockchains
 ---
 
-# Prices USD Latest (Legacy)
+# prices.latest
 
-<Warning>
-    While this table remains functional for existing tokens, no new tokens will be added. For complete coverage including new tokens, please use `prices.minute`, `prices.hour`, or `prices.day` tables instead.
-</Warning>
+## Overview
 
-The `prices.usd_latest` table is a legacy table that was previously used for latest price data. While still accessible for historical purposes, new queries should use the modern price tables.
+The `prices.latest` table provides the most recently available price for each token across all supported blockchains. This table is ideal for calculating current token values or displaying up-to-date prices.
 
-## Modern Alternatives
+## Table Schema
 
-For current price data, use:
-- `prices.minute` for real-time prices
-- `prices.hour` for hourly aggregates
-- `prices.day` for daily prices
+| Column | Type | Description |
+|--------|------|-------------|
+| blockchain | varchar | Blockchain identifier (e.g., 'ethereum', 'arbitrum') |
+| contract_address | varbinary | Token contract address (fixed address for native tokens) |
+| symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
+| price | double | Most recent token price in USD |
+| decimals | int | Token decimals |
+| timestamp | timestamp | Timestamp when this price was recorded |
+| volume | double | Trading volume in USD (from price source) |
+| source | varchar | Data source ('coinpaprika' or 'dex.trades') |
+| source_timestamp | timestamp | Exact timestamp of the source data point |
 
-Example query using modern tables:
+## Implementation Details
 
+The latest prices are built by:
+
+1. Taking the most recent price observation from each data source
+2. Selecting the latest observation per token across all sources
+3. Refreshed hourly to ensure prices stay current
+
+## Usage
+
+This table is perfect for querying the current price of tokens without needing to filter by timestamp or perform additional aggregations. It's designed for efficiency when you just need the most recent price.
+
+## Usage Examples
+
+Get current prices for major tokens:
 ```sql
--- For latest prices, use prices.minute with recent timestamp
 SELECT
-    symbol,
-    price
-FROM prices.minute
-WHERE blockchain = 'ethereum'
-    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
-    AND timestamp >= NOW() - INTERVAL '1' HOUR
-ORDER BY timestamp DESC
-LIMIT 1
+  blockchain,
+  symbol,
+  price,
+  timestamp
+FROM prices.latest
+WHERE (blockchain, symbol) IN (
+  ('ethereum', 'ETH'),
+  ('ethereum', 'USDC'),
+  ('ethereum', 'WBTC'),
+  ('arbitrum', 'ETH'),
+  ('optimism', 'ETH')
+)
 ```
 
-## Legacy Table Structure
+Calculate total USD value of token holdings:
+```sql
+WITH token_balances AS (
+  SELECT
+    token_address,
+    sum(amount) as total_tokens
+  FROM my_token_balance_table
+  GROUP BY 1
+)
 
-| Column name        | Data type   | Description                                   |
-| ------------------ | ----------- | --------------------------------------------- |
-| `contract_address` | _varbinary_ | The unique identifier of the token |
-| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
-| `price`           | _double_    | The latest price of the asset in USD          |
-| `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
+SELECT
+  b.token_address,
+  p.symbol,
+  b.total_tokens,
+  b.total_tokens * p.price as usd_value
+FROM token_balances b
+JOIN prices.latest p
+  ON p.blockchain = 'ethereum'
+  AND p.contract_address = b.token_address
+```
 
-For more information about the current price feed, please refer to the [Prices Overview](/data-catalog/curated/prices/overview).
+## Data Quality Notes
 
+- Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
+- The timestamp column shows when the price was last updated, useful for determining freshness
+- For historical analysis, use `prices.day`, `prices.hour`, or `prices.minute` instead
+- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique 

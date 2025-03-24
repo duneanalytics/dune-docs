@@ -1,21 +1,29 @@
 ---
 title: USD Prices (Legacy)
 icon: money-bill
-description: Historical price table - still functional but no new tokens will be added
+description: Historical price tables - still functional but no new tokens will be added
 ---
 
-# Prices USD (Legacy)
-
+# Legacy Price Tables
 
 <Warning>
-    While this table remains functional for existing tokens, no new tokens will be added. For complete coverage including new tokens, please use `prices.minute`, `prices.hour`, or `prices.day` tables instead.
+    While these tables remain functional for existing tokens, no new tokens will be added. For complete coverage including new tokens, please use `prices.latest`, `prices.day`, `prices.hour`, or `prices.minute` tables instead.
 </Warning>
 
-The `prices.usd` table provides historical price data for a fixed set of tokens. While the table continues to update for existing tokens, new tokens will only be added to the modern price tables.
+The following legacy tables provide historical price data for a fixed set of tokens (~2,800 tokens). While these tables continue to update for existing tokens, new tokens will only be added to the modern price tables.
+
+## Legacy Tables
+
+| Table | Description |
+|-------|-------------|
+| `prices.usd` | Historical prices with timestamps |
+| `prices.usd_daily` | Daily historical prices |
+| `prices.usd_latest` | Latest available price per token |
 
 ## Modern Alternatives
 
 For complete token coverage, use:
+- `prices.latest` for the most recent price
 - `prices.day` for daily historical prices
 - `prices.hour` for hourly historical data
 - `prices.minute` for granular historical data
@@ -40,6 +48,8 @@ ORDER BY timestamp asc
 
 ## Legacy Table Structure
 
+### prices.usd / prices.usd_daily
+
 | Column name        | Data type   | Description                                   |
 | ------------------ | ----------- | --------------------------------------------- |
 | `contract_address` | _varbinary_ | The unique identifier of the token |
@@ -48,4 +58,15 @@ ORDER BY timestamp asc
 | `timestamp`       | _timestamp_ | The timestamp for which this price is reported |
 | `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
 
+### prices.usd_latest
+
+| Column name        | Data type   | Description                                   |
+| ------------------ | ----------- | --------------------------------------------- |
+| `contract_address` | _varbinary_ | The unique identifier of the token |
+| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
+| `price`           | _double_    | The latest price of the asset in USD          |
+| `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
+
 For more information about the current price feed, please refer to the [Prices Overview](/data-catalog/curated/prices/overview).
+
+# Check the current content
