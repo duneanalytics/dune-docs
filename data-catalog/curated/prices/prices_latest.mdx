@@ -80,15 +80,15 @@ Get prices for native tokens across multiple blockchains:
 ```sql
 -- Join with dune.blockchains to get native token prices
 SELECT
-  b.blockchain,
-  b.native_token_symbol,
+  b.name as blockchain,
+  b.token_symbol as native_token_symbol,
   p.price as native_token_price,
   p.timestamp
 FROM dune.blockchains b
 JOIN prices.latest p
-  ON p.blockchain = b.blockchain
-  AND p.contract_address = b.native_token_address
-WHERE b.blockchain IN ('ethereum', 'arbitrum', 'optimism', 'polygon','gnosis','solana')
+  ON p.blockchain = b.name
+  AND p.contract_address = b.token_address
+WHERE b.name IN ('ethereum', 'arbitrum', 'optimism', 'polygon','gnosis','solana')
 ```
 
 ## Data Quality Notes

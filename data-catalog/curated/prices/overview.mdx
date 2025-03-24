@@ -6,11 +6,11 @@ description: Token price data across multiple blockchains
 
 # Prices (Token Price Data)
 
-Dune provides reliable token price data for use in your queries across 40+ blockchains, both EVM and non-EVM. This implementation is a complete rewrite of the price aggregation system with significant improvements.
+Dune provides reliable token price data for use in your queries across 40+ blockchains. This implementation is a complete rewrite of the price aggregation system with significant improvements.
 
 ## Key Features
 
-- **Multi-blockchain support**: Prices for tokens across 40+ blockchains, both EVM and non-EVM
+- **Multi-blockchain support**: Prices for tokens across 40+ blockchains
 - **Standardized native token addresses**: Native tokens (like ETH, BNB) have fixed contract addresses for consistency
 - **Multiple time granularities**: Minute, hourly, daily, and latest price data
 - **Source transparency**: Each price point includes its data source
@@ -153,12 +153,11 @@ Finding the right native token address:
 ```sql
 -- Query to get the native token address for a specific blockchain
 SELECT 
-  blockchain,
-  native_token_address,
-  native_token_symbol,
-  native_token_name
+  name,
+  token_address,
+  token_symbol
 FROM dune.blockchains
-WHERE blockchain = 'arbitrum'
+WHERE name = 'arbitrum'
 ```
 
 ## Legacy Tables

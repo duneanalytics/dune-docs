@@ -69,7 +69,7 @@ AND contract_address IN (
   0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48, -- USDC
   0x2260fac5e5542a773aa44fbcfedf7c193bc2c599  -- WBTC
 )
-AND timestamp >= '2023-01-01'
+AND timestamp >= NOW() - INTERVAL '90' DAY
 GROUP BY 1,2,3
 ORDER BY 1,2,3
 ```
@@ -78,9 +78,9 @@ Get native token price using dune.blockchains:
 ```sql
 -- First get the native token address
 WITH native_token AS (
-  SELECT native_token_address
+  SELECT token_address
   FROM dune.blockchains
-  WHERE blockchain = 'ethereum'
+  WHERE name = 'ethereum'
 )
 -- Then use it to query the price
 SELECT
@@ -88,7 +88,7 @@ SELECT
   price
 FROM prices.day, native_token
 WHERE blockchain = 'ethereum'
-AND contract_address = native_token_address
+AND contract_address = token_address
 AND timestamp >= NOW() - INTERVAL '30' DAY
 ORDER BY timestamp
 ```
@@ -99,4 +99,4 @@ ORDER BY timestamp
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
 - For native tokens, use `dune.blockchains` table to get the standardized address for each blockchain
 - The same token may have different prices on different blockchains due to bridging inefficiencies
-- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
