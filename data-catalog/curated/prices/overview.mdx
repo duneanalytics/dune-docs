@@ -44,6 +44,7 @@ The price system works in multiple layers:
 
 3. **Token handling**:
    - Native tokens are assigned fixed addresses instead of NULL or 0xeeee...
+   - You can find the correct native token address for each blockchain in the `dune.blockchains` table
    - Trusted tokens (major stablecoins, wrapped assets) serve as price anchors
    - Non-trusted tokens derive prices through DEX trades against trusted tokens
 
@@ -88,7 +89,8 @@ All price tables share the following schema (with slight variations):
 
 - Prices are calculated independently per blockchain
 - Token identification requires both `contract_address` AND `blockchain`
-- `symbol` is not unique - do not use for token identification
+- `symbol` is not unique - do not use for token identification or joins
+- For native tokens, use the standardized addresses from `dune.blockchains` table
 - If there are no trades for a token, we use the last available price and carry it forward for a limited time period:
   - 30 days for daily prices
   - 7 days for hourly prices
@@ -110,10 +112,8 @@ For details on how Dune processes DEX trade data to derive accurate token prices
 - We calculate prices for trading pairs where one token is from our trusted token list
 - The data then goes through our processing pipeline which:
   - Excludes trades with less than $10,000 USD in total volume
-  - Takes the median price from each block to reduce outlier impact
+  - Takes the median price from each minute to reduce outlier impact
   - Calculates USD prices using our trusted token prices as reference
-  - Applies volume-weighted averaging (VWAP) for each time interval
-  - Filters out extreme price movements exceeding 1000% from previous period
   - Uses forward-filling to handle periods without valid trades, with time limits
 
 ## Usage Examples
@@ -123,7 +123,7 @@ Basic query to get the latest ETH price:
 SELECT price
 FROM prices.latest
 WHERE blockchain = 'ethereum' 
-AND symbol = 'ETH'
+AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
 ```
 
 Getting historical price data:
@@ -133,7 +133,7 @@ SELECT
   price
 FROM prices.day
 WHERE blockchain = 'ethereum'
-AND symbol = 'USDC'
+AND contract_address = 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 -- USDC
 AND timestamp >= NOW() - INTERVAL '30' DAY
 ```
 
@@ -147,6 +147,18 @@ INNER JOIN prices.latest p
   ON p.blockchain = 'ethereum'
   AND p.contract_address = t.contract_address
 WHERE t.evt_block_time >= NOW() - INTERVAL '1' DAY
+```
+
+Finding the right native token address:
+```sql
+-- Query to get the native token address for a specific blockchain
+SELECT 
+  blockchain,
+  native_token_address,
+  native_token_symbol,
+  native_token_name
+FROM dune.blockchains
+WHERE blockchain = 'arbitrum'
 ```
 
 ## Legacy Tables

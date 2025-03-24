@@ -42,16 +42,16 @@ Get current prices for major tokens:
 ```sql
 SELECT
   blockchain,
-  symbol,
+  symbol, -- Symbol included for readable output only
   price,
   timestamp
 FROM prices.latest
-WHERE (blockchain, symbol) IN (
-  ('ethereum', 'ETH'),
-  ('ethereum', 'USDC'),
-  ('ethereum', 'WBTC'),
-  ('arbitrum', 'ETH'),
-  ('optimism', 'ETH')
+WHERE (blockchain, contract_address) IN (
+  ('ethereum', 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2), -- WETH
+  ('ethereum', 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48), -- USDC
+  ('ethereum', 0x2260fac5e5542a773aa44fbcfedf7c193bc2c599), -- WBTC
+  ('arbitrum', 0x82af49447d8a07e3bd95bd0d56f35241523fbab1), -- WETH on Arbitrum
+  ('optimism', 0x4200000000000000000000000000000000000006)  -- WETH on Optimism
 )
 ```
 
@@ -67,7 +67,7 @@ WITH token_balances AS (
 
 SELECT
   b.token_address,
-  p.symbol,
+  p.symbol, -- Symbol included for readable output only
   b.total_tokens,
   b.total_tokens * p.price as usd_value
 FROM token_balances b
@@ -76,9 +76,25 @@ JOIN prices.latest p
   AND p.contract_address = b.token_address
 ```
 
+Get prices for native tokens across multiple blockchains:
+```sql
+-- Join with dune.blockchains to get native token prices
+SELECT
+  b.blockchain,
+  b.native_token_symbol,
+  p.price as native_token_price,
+  p.timestamp
+FROM dune.blockchains b
+JOIN prices.latest p
+  ON p.blockchain = b.blockchain
+  AND p.contract_address = b.native_token_address
+WHERE b.blockchain IN ('ethereum', 'arbitrum', 'optimism', 'polygon','gnosis','solana')
+```
+
 ## Data Quality Notes
 
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
+- For native tokens, use `dune.blockchains` table to get the standardized address for each blockchain
 - The timestamp column shows when the price was last updated, useful for determining freshness
 - For historical analysis, use `prices.day`, `prices.hour`, or `prices.minute` instead
-- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 

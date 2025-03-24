@@ -50,7 +50,7 @@ SELECT
   price
 FROM prices.hour
 WHERE blockchain = 'ethereum'
-AND symbol = 'ETH'
+AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
 AND timestamp >= NOW() - INTERVAL '1' DAY
 ORDER BY timestamp
 ```
@@ -63,7 +63,7 @@ SELECT
       / lag(price) OVER (PARTITION BY blockchain, contract_address ORDER BY timestamp)) as avg_hourly_change
 FROM prices.hour
 WHERE blockchain = 'ethereum'
-AND symbol = 'ETH'
+AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
 AND timestamp >= NOW() - INTERVAL '30' DAY
 GROUP BY 1
 ORDER BY 1
@@ -74,4 +74,4 @@ ORDER BY 1
 - Prices older than 7 days (168 hours) will not be forward-filled to avoid using stale data
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
 - Hourly data is useful for analyzing intraday patterns and short-term price movements
-- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 

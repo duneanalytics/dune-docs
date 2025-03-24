@@ -50,7 +50,7 @@ SELECT
   price
 FROM prices.day
 WHERE blockchain = 'ethereum'
-AND symbol = 'ETH'
+AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
 AND timestamp >= NOW() - INTERVAL '30' DAY
 ORDER BY timestamp
 ```
@@ -59,20 +59,44 @@ Calculate monthly average price for multiple tokens:
 ```sql
 SELECT
   blockchain,
-  symbol,
+  symbol, -- Symbol included for readable output only
   date_trunc('month', timestamp) as month,
   avg(price) as avg_price
 FROM prices.day
 WHERE blockchain = 'ethereum'
-AND symbol IN ('ETH', 'USDC', 'WBTC')
+AND contract_address IN (
+  0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2, -- WETH
+  0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48, -- USDC
+  0x2260fac5e5542a773aa44fbcfedf7c193bc2c599  -- WBTC
+)
 AND timestamp >= '2023-01-01'
 GROUP BY 1,2,3
 ORDER BY 1,2,3
+```
+
+Get native token price using dune.blockchains:
+```sql
+-- First get the native token address
+WITH native_token AS (
+  SELECT native_token_address
+  FROM dune.blockchains
+  WHERE blockchain = 'ethereum'
+)
+-- Then use it to query the price
+SELECT
+  timestamp,
+  price
+FROM prices.day, native_token
+WHERE blockchain = 'ethereum'
+AND contract_address = native_token_address
+AND timestamp >= NOW() - INTERVAL '30' DAY
+ORDER BY timestamp
 ```
 
 ## Data Quality Notes
 
 - Prices older than 30 days will not be forward-filled to avoid using stale data
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
+- For native tokens, use `dune.blockchains` table to get the standardized address for each blockchain
 - The same token may have different prices on different blockchains due to bridging inefficiencies
-- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 

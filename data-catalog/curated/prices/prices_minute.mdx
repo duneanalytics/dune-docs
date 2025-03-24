@@ -31,7 +31,7 @@ The minute prices are built through these steps:
 1. Collect sparse price observations from different sources
 2. Take the most recent price observation per minute
 3. Fill missing minutes with the previous minute's price (forward filling)
-4. Set an expiration time for forward filling to avoid stale data
+4. Set an expiration time of 48h for forward filling to avoid stale data
 
 ## Usage
 
@@ -51,7 +51,7 @@ SELECT
 FROM prices.minute
 WHERE
   blockchain = 'ethereum'
-  AND symbol = 'ETH'
+  AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
   AND timestamp BETWEEN '2023-03-10 12:00:00' AND '2023-03-10 13:00:00'
 ORDER BY timestamp
 ```
@@ -65,7 +65,7 @@ SELECT
 FROM prices.minute
 WHERE
   blockchain = 'ethereum'
-  AND symbol = 'ETH'
+  AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
   AND timestamp >= NOW() - INTERVAL '1' DAY
 GROUP BY 1
 ORDER BY 1
@@ -76,4 +76,4 @@ ORDER BY 1
 - Due to its high granularity, queries on this table may be more resource-intensive
 - Consider using `prices.hour` or `prices.day` for longer time ranges if minute-level precision is not required
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
-- Always use `contract_address` and `blockchain` for precise token identification, `symbol` is not unique 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 
