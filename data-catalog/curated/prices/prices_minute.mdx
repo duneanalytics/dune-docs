@@ -4,47 +4,79 @@ icon: stopwatch
 description: Real-time minute-by-minute price data for tokens across all supported blockchains
 ---
 
-# Prices.minute
+# prices.minute
 
-The `prices.minute` table provides the most granular price data for tokens across multiple blockchains, updated every minute.
-For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).
-## Table Structure
+## Overview
 
-| Column name        | Data type   | Description                                   |
-| ------------------ | ----------- | --------------------------------------------- |
-| `contract_address` | _varbinary_ | Unique identifier of the token (contract address for ERC20, mint address for Solana, null for native currencies) |
-| `blockchain`       | _varchar_   | The blockchain on which the token exists      |
-| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
-| `price`            | _double_    | The price of the asset in USD for each minute |
-| `timestamp`        | _timestamp_ | The timestamp for which this price is reported |
+The `prices.minute` table provides the most granular price data for tokens across multiple blockchains, with minute-level precision. This is the highest resolution price data available in the Dune platform.
+
+## Table Schema
+
+| Column | Type | Description |
+|--------|------|-------------|
+| blockchain | varchar | Blockchain identifier (e.g., 'ethereum', 'arbitrum') |
+| contract_address | varbinary | Token contract address (fixed address for native tokens) |
+| symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
+| timestamp | timestamp | Minute timestamp |
+| price | double | Token price in USD |
+| decimals | int | Token decimals |
+| volume | double | Trading volume in USD (from price source) |
+| source | varchar | Data source ('coinpaprika' or 'dex.trades') |
+| source_timestamp | timestamp | Exact timestamp of the source data point |
+
+## Implementation Details
+
+The minute prices are built through these steps:
+
+1. Collect sparse price observations from different sources
+2. Take the most recent price observation per minute
+3. Fill missing minutes with the previous minute's price (forward filling)
+4. Set an expiration time of 48h for forward filling to avoid stale data
 
 ## Usage
 
-This table is ideal for high-frequency analysis and examining short-term price movements. It's particularly useful for studying price impacts of specific events or transactions.
+This table is ideal for high-frequency analysis and examining short-term price movements. It's particularly useful for studying price impacts of specific events or transactions with high temporal precision.
 
 ## Latency and Update Frequency
 
-The `prices.minute` table is updated hourly based on the upstream `dex.trades` data pipeline. As a result, prices typically have a latency of approximately 1 hour from real-time.
+The `prices.minute` table is updated hourly based on the upstream data pipeline. As a result, prices typically have a latency of approximately 1 hour from real-time.
 
-## Example Query
+## Usage Examples
 
+Here are some examples of how to use the prices tables.
+
+### Get minute-by-minute ETH prices during a specific event:
 ```sql
 SELECT
-    timestamp,
-    price
+  timestamp,
+  price
 FROM prices.minute
 WHERE
-    blockchain = 'ethereum'
-    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
-    AND timestamp >= NOW() - INTERVAL '1' HOUR
+  blockchain = 'ethereum'
+  AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+  AND timestamp >= NOW() - INTERVAL '2' HOUR
+  AND timestamp <= NOW() - INTERVAL '1' HOUR
 ORDER BY timestamp
 ```
 
-This query retrieves minute-by-minute prices for WETH on Ethereum for the past hour.
+### Analyze price volatility within short time frames:
+```sql
+SELECT
+  date_trunc('hour', timestamp) as hour,
+  max(price) - min(price) as price_range,
+  (max(price) - min(price)) / min(price) * 100 as volatility_pct
+FROM prices.minute
+WHERE
+  blockchain = 'ethereum'
+  AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+  AND timestamp >= NOW() - INTERVAL '1' DAY
+GROUP BY 1
+ORDER BY 1
+```
 
-## Notes
+## Data Quality Notes
 
-- Due to its high granularity, queries on this table may be more resource-intensive. Consider using `prices.hour` or `prices.day` for longer time ranges or if minute-level precision is not required.
-- As with all price tables, always use `contract_address` and `blockchain` for precise token identification.
-- The minute-level data is particularly useful for analyzing price impacts of specific transactions or events with high temporal precision.
-- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).
+- Due to its high granularity, queries on this table may be more resource-intensive
+- Consider using `prices.hour` or `prices.day` for longer time ranges if minute-level precision is not required
+- Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters

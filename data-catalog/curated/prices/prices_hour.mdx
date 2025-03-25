@@ -4,20 +4,34 @@ icon: clock
 description: Historical hourly price data for tokens across all supported blockchains
 ---
 
-# Prices.hour
+# prices.hour
 
-The `prices.hour` table provides hourly price data for tokens across multiple blockchains.
-For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).
+## Overview
 
-## Table Structure
+The `prices.hour` table provides hourly token price data across all supported blockchains. It contains the last known price for each hour, ensuring a continuous time series for more granular price analysis than daily data.
 
-| Column name        | Data type   | Description                                   |
-| ------------------ | ----------- | --------------------------------------------- |
-| `contract_address` | _varbinary_ | Unique identifier of the token (contract address for ERC20, mint address for Solana, null for native currencies) |
-| `blockchain`       | _varchar_   | The blockchain on which the token exists      |
-| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
-| `price`            | _double_    | The hourly price of the asset in USD          |
-| `timestamp`        | _timestamp_ | The timestamp for which this price is reported |
+## Table Schema
+
+| Column | Type | Description |
+|--------|------|-------------|
+| blockchain | varchar | Blockchain identifier (e.g., 'ethereum', 'arbitrum') |
+| contract_address | varbinary | Token contract address (fixed address for native tokens) |
+| symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
+| timestamp | timestamp | Hour timestamp (00:00, 01:00, etc. UTC of each hour) |
+| price | double | Token price in USD |
+| decimals | int | Token decimals |
+| volume | double | Trading volume in USD (from price source) |
+| source | varchar | Data source ('coinpaprika' or 'dex.trades') |
+| source_timestamp | timestamp | Exact timestamp of the source data point |
+
+## Implementation Details
+
+The hourly prices are built through these steps:
+
+1. Collect sparse price observations from different sources
+2. Group by hour, taking the most recent price observation per hour
+3. Fill missing hours with the previous hour's price (forward filling)
+4. Set a 7-day (168 hour) expiration for forward filling to avoid stale data
 
 ## Usage
 
@@ -25,27 +39,41 @@ This table is useful for intraday analysis and tracking price movements with hig
 
 ## Latency and Update Frequency
 
-The `prices.hour` table is updated hourly based on the upstream `dex.trades` data pipeline. As a result, prices typically have a latency of approximately 1 hour from real-time.
+The `prices.hour` table is updated hourly based on the upstream data pipeline. As a result, prices typically have a latency of approximately 1 hour from real-time.
 
-## Example Query
+## Usage Examples
 
+Here are some examples of how to use the prices tables.
+
+### Get hourly ETH prices for the last day:
 ```sql
 SELECT
-    contract_address,
-    blockchain,
-    symbol,
-    price,
-    timestamp
+  timestamp,
+  price
 FROM prices.hour
-WHERE
-    blockchain = 'ethereum'
-    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
-    AND timestamp >= NOW() - INTERVAL '7' DAY
-ORDER BY timestamp asc
+WHERE blockchain = 'ethereum'
+AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+AND timestamp >= NOW() - INTERVAL '1' DAY
+ORDER BY timestamp
 ```
 
-## Notes
+### Calculate volatility by hour of day:
+```sql
+SELECT
+  extract(hour from timestamp) as hour_of_day,
+  avg(abs(price - lag(price) OVER (PARTITION BY blockchain, contract_address ORDER BY timestamp))
+      / lag(price) OVER (PARTITION BY blockchain, contract_address ORDER BY timestamp)) as avg_hourly_change
+FROM prices.hour
+WHERE blockchain = 'ethereum'
+AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+AND timestamp >= NOW() - INTERVAL '30' DAY
+GROUP BY 1
+ORDER BY 1
+```
 
-- Hourly data provides a good balance between granularity and query performance for short to medium-term analyses.
-- As with all price tables, always use `contract_address` and `blockchain` for precise token identification.
-- For details on price calculation methodology, including VWAP calculations and outlier filtering, see the [Prices Overview](/data-catalog/curated/prices/overview#methodology).
+## Data Quality Notes
+
+- Prices older than 7 days (168 hours) will not be forward-filled to avoid using stale data
+- Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
+- Hourly data is useful for analyzing intraday patterns and short-term price movements
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 

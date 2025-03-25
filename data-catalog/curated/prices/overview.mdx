@@ -4,37 +4,60 @@ icon: circle-dollar
 description: Token price data across multiple blockchains
 ---
 
-# Price Tables
+# Prices (Token Price Data)
 
-import { DuneEmbed } from '/snippets/dune-embed.mdx'
+Dune provides reliable token price data for use in your queries across 40+ blockchains. This implementation is a complete rewrite of the price aggregation system with significant improvements.
 
-Dune provides price data at multiple time resolutions to balance query performance and data granularity. Choose the appropriate table based on your needs:
+## Key Features
 
-- Use `prices.minute` for real-time analysis and examining short-term price movements
-- Use `prices.hour` for intraday patterns and medium-term trends
-- Use `prices.day` for long-term analysis and optimal query performance
-
-For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be very resource-intensive.
+- **Multi-blockchain support**: Prices for tokens across 40+ blockchains
+- **Standardized native token addresses**: Native tokens (like ETH, BNB) have fixed contract addresses for consistency
+- **Multiple time granularities**: hourly, daily, and latest price data
+- **Source transparency**: Each price point includes its data source
+- **Data quality**: Comprehensive filters to ensure price reliability
 
 ## Available Tables
 
-| Table           | Granularity | Update Frequency | Aggregation Time |
-| --------------- | ----------- | ---------------- | ---------------- |
-| `prices.minute` | 1 minute    | hourly           | start of minute  |
-| `prices.hour`   | 1 hour      | hourly           | start of hour    |
-| `prices.day`    | 1 day       | daily            | 00:00 UTC        |
+The `prices` schema exposes these main tables:
+
+| Table | Description |
+|-------|-------------|
+| `prices.latest` | The most recent price for each token |
+| `prices.day` | Daily token prices (most recent price of each day) |
+| `prices.hour` | Hourly token prices |
+| `prices.minute` | Minute-by-minute token prices |
+
+For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be very resource-intensive.
+
+## Implementation Details
+
+The price system works in multiple layers:
+
+1. **Base data sources**:
+   - External price feeds (Coinpaprika)
+   - DEX trading data (from `dex.trades`)
+
+2. **Data processing pipeline**:
+   - Sparse minute data collected from both sources
+   - Aggregated to hourly and daily sparse records
+   - Filled into continuous time series for steady time intervals
+
+3. **Token handling**:
+   - Native tokens are assigned fixed addresses instead of NULL or 0xeeee...
+   - You can find the correct native token address for each blockchain in the `dune.blockchains` table
+   - Trusted tokens (major stablecoins, wrapped assets) serve as price anchors
+   - Non-trusted tokens derive prices through DEX trades against trusted tokens
+   - Simply put: We use prices from trusted tokens to calculate prices of other tokens based on the data from DEX trades
 
 ## Coverage
 
-- 180,000+ unique tokens
-- 700,000+ contract addresses
-- 20+ blockchains
-- Automatic inclusion of new tokens exceeding $10k volume threshold
-- Coverage relies on [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades) entries for respective blockchains
+- 900,000 unique tokens
+- 40+ blockchains
+- new tokens are automatically added when they exceed a $10k volume threshold
+
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
 
 <DuneEmbed qID="4239607" vID="7131816" height={500} />
-
-For anything not covered in the `prices.day`, `prices.hour` or `prices.minute` tables, you can use the legacy tables: `prices.usd`, `prices.usd_daily`, and `prices.usd_latest`. There we keep a historical record of prices for ~2,800 tokens that extends beyond our current dex.trades coverage.
 
 <CardGroup cols={1}>
   <Card
@@ -42,35 +65,40 @@ For anything not covered in the `prices.day`, `prices.hour` or `prices.minute` t
     href="https://dune.com/dune/does-dune-have-price-for-token"
     icon="magnifying-glass"
   >
-    You can test the coverage of prices.day, prices.hour, and prices.minute
-    tables on this dashboard.
+    You can test the coverage of the prices tables on this dashboard.
   </Card>
 </CardGroup>
 
 ## Schema
 
-All price tables share the following schema:
+All price tables share the following schema (with slight variations):
 
 | Column             | Type        | Description                                                                      |
 | ------------------ | ----------- | -------------------------------------------------------------------------------- |
-| `contract_address` | _varbinary_ | Token identifier (ERC20 contract address, Solana mint address, 0x00..00 for natives) |
-| `blockchain`       | _varchar_   | Network identifier                                                               |
-| `symbol`           | _varchar_   | Token symbol                                                                     |
+| `blockchain`       | _varchar_   | Blockchain identifier (e.g., 'ethereum', 'arbitrum')                             |
+| `contract_address` | _varbinary_ | Token contract address (fixed address for native tokens)                         |
+| `symbol`           | _varchar_   | Token symbol (e.g., 'ETH', 'USDC')                                               |
 | `price`            | _double_    | USD price                                                                        |
-| `timestamp`        | _timestamp_ | timestamp (start of minute, hour, or day)                                        |
+| `timestamp`        | _timestamp_ | Timestamp (start of minute, hour, or day)                                        |
+| `decimals`         | _int_       | Token decimals                                                                   |
+| `volume`           | _double_    | Trading volume in USD (from price source)                                        |
+| `source`           | _varchar_   | Data source ('coinpaprika' or 'dex.trades')                                      |
+| `source_timestamp` | _timestamp_ | Exact timestamp of the source data point                                         |
 
 ## Technical Notes
 
 - Prices are calculated independently per blockchain
-- Prices are aggregated across all liquidity pools per blockchain
 - Token identification requires both `contract_address` AND `blockchain`
-- `symbol` is not unique - do not use for token identification
-- if there is no trades for a token, we use the last available price and carry it forward until there is new trade data
+- `symbol` is not unique - do not use for token identification or joins
+- For native tokens, use the standardized addresses from `dune.blockchains` table
+- If there are no trades for a token, we use the last available price and carry it forward for a limited time period:
+  - 30 days for daily prices
+  - 7 days for hourly prices
+  - 2 days for minute prices
+
+
 
 ## Methodology
-
-Dune's price data is derived primarily from DEX trading activity captured in [`dex.trades`](/data-catalog/curated/evm/DEX/dex-trades), providing broad coverage across 180,000+ tokens and 20+ blockchains. The data undergoes rigorous processing including volume filtering, outlier removal, and VWAP calculations to ensure accuracy and reliability. This methodology enables automatic price tracking for any token that achieves meaningful trading volume (>$10k), while maintaining data quality through statistical controls.
-Despite comprehensive internal testing and measures to prevent data errors, it's possible for prices to be inaccurate due to outlier trades (arbitrage, hacks etc.) which can skew the data. If you happen to notice a price error, please open an issue on [GitHub](https://github.com/duneanalytics/spellbook/issues).
 
 ### Step 1: Importing Trusted Token Prices
 
@@ -87,23 +115,50 @@ For details on how Dune processes DEX trade data to derive accurate token prices
 - We calculate prices for trading pairs where one token is from our trusted token list
 - The data then goes through our processing pipeline which:
   - Excludes trades with less than $10,000 USD in total volume
-  - Takes the median price from each block to reduce outlier impact
+  - Takes the median price from each minute to reduce outlier impact
   - Calculates USD prices using our trusted token prices as reference
-  - Applies volume-weighted averaging (VWAP) for each time interval
-  - Filters out extreme price movements exceeding 1000% from previous period
-  - Uses forward-filling to handle periods without valid trades
+  - Uses forward-filling to handle periods without valid trades, with time limits
+   - 30 days for daily prices
+   - 7 days for hourly prices
+   - 2 days for minute prices 
 
-### Example
+## Usage Examples
 
-For a USDC/TOKEN pair:
+Here are some examples of how to use the prices tables.
+ 
+### Basic query to get the latest ETH price:
+```sql
+SELECT price
+FROM prices.latest
+WHERE blockchain = 'ethereum' 
+AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+```
 
-1. Get USDC price from trusted tokens
-2. Use DEX trade `amount_usd` = amount_token \* trusted_token_price
-3. Apply processing pipeline to calculate final TOKEN price
+### Getting historical price data:
+```sql
+SELECT
+  timestamp,
+  price
+FROM prices.day
+WHERE blockchain = 'ethereum'
+AND contract_address = 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984 -- UNI
+AND timestamp >= NOW() - INTERVAL '30' DAY
+```
+
+### Finding the right native token address:
+```sql
+-- Query to get the native token address for a specific blockchain
+SELECT 
+  name,
+  token_address,
+  token_symbol
+FROM dune.blockchains
+WHERE name = 'arbitrum'
+```
 
 ## Legacy Tables
 
-The following tables are maintained for historical compatibility but we no longer add tokens to them.
+The following tables are maintained for historical compatibility but we no longer add tokens to them:
 
 - `prices.usd`
 - `prices.usd_daily`
