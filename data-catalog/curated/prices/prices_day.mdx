@@ -43,7 +43,7 @@ The `prices.day` table is updated daily at 00:00 UTC, providing the closing pric
 
 ## Usage Examples
 
-Get ETH price history for the last month:
+### Get ETH price history for the last month:
 ```sql
 SELECT
   timestamp,
@@ -55,7 +55,7 @@ AND timestamp >= NOW() - INTERVAL '30' DAY
 ORDER BY timestamp
 ```
 
-Calculate monthly average price for multiple tokens:
+### Calculate monthly average price for multiple tokens:
 ```sql
 SELECT
   blockchain,
@@ -74,7 +74,7 @@ GROUP BY 1,2,3
 ORDER BY 1,2,3
 ```
 
-Get native token price using dune.blockchains:
+### Get native token price using dune.blockchains:
 ```sql
 -- First get the native token address
 WITH native_token AS (

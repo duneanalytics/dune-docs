@@ -43,7 +43,9 @@ The `prices.minute` table is updated hourly based on the upstream data pipeline.
 
 ## Usage Examples
 
-Get minute-by-minute ETH prices during a specific event:
+Here are some examples of how to use the prices tables.
+
+### Get minute-by-minute ETH prices during a specific event:
 ```sql
 SELECT
   timestamp,
@@ -57,7 +59,7 @@ WHERE
 ORDER BY timestamp
 ```
 
-Analyze price volatility within short time frames:
+### Analyze price volatility within short time frames:
 ```sql
 SELECT
   date_trunc('hour', timestamp) as hour,

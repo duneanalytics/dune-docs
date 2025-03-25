@@ -38,7 +38,9 @@ This table is perfect for querying the current price of tokens without needing t
 
 ## Usage Examples
 
-Get current prices for major tokens:
+Here are some examples of how to use the prices tables.
+
+### Get current prices for major tokens:
 ```sql
 SELECT
   blockchain,
@@ -55,7 +57,7 @@ WHERE (blockchain, contract_address) IN (
 )
 ```
 
-Calculate total USD value of token holdings:
+### Calculate total USD value of token holdings:
 ```sql
 WITH token_balances AS (
   SELECT
@@ -76,7 +78,7 @@ JOIN prices.latest p
   AND p.contract_address = b.token_address
 ```
 
-Get prices for native tokens across multiple blockchains:
+### Get prices for native tokens across multiple blockchains:
 ```sql
 -- Join with dune.blockchains to get native token prices
 SELECT

@@ -12,7 +12,7 @@ Dune provides reliable token price data for use in your queries across 40+ block
 
 - **Multi-blockchain support**: Prices for tokens across 40+ blockchains
 - **Standardized native token addresses**: Native tokens (like ETH, BNB) have fixed contract addresses for consistency
-- **Multiple time granularities**: Minute, hourly, daily, and latest price data
+- **Multiple time granularities**: hourly, daily, and latest price data
 - **Source transparency**: Each price point includes its data source
 - **Data quality**: Comprehensive filters to ensure price reliability
 
@@ -47,13 +47,13 @@ The price system works in multiple layers:
    - You can find the correct native token address for each blockchain in the `dune.blockchains` table
    - Trusted tokens (major stablecoins, wrapped assets) serve as price anchors
    - Non-trusted tokens derive prices through DEX trades against trusted tokens
+   - Simply put: We use prices from trusted tokens to calculate prices of other tokens based on the data from DEX trades
 
 ## Coverage
 
-- 180,000+ unique tokens
-- 700,000+ contract addresses
-- 40+ blockchains (EVM and non-EVM)
-- Automatic inclusion of new tokens exceeding $10k volume threshold
+- 900,000 unique tokens
+- 40+ blockchains
+- new tokens are automatically added when they exceed a $10k volume threshold
 
 import { DuneEmbed } from '/snippets/dune-embed.mdx'
 
@@ -94,6 +94,9 @@ All price tables share the following schema (with slight variations):
 - If there are no trades for a token, we use the last available price and carry it forward for a limited time period:
   - 30 days for daily prices
   - 7 days for hourly prices
+  - 2 days for minute prices
+
+
 
 ## Methodology
 
@@ -115,10 +118,15 @@ For details on how Dune processes DEX trade data to derive accurate token prices
   - Takes the median price from each minute to reduce outlier impact
   - Calculates USD prices using our trusted token prices as reference
   - Uses forward-filling to handle periods without valid trades, with time limits
+   - 30 days for daily prices
+   - 7 days for hourly prices
+   - 2 days for minute prices 
 
 ## Usage Examples
 
-Basic query to get the latest ETH price:
+Here are some examples of how to use the prices tables.
+ 
+### Basic query to get the latest ETH price:
 ```sql
 SELECT price
 FROM prices.latest
@@ -126,30 +134,18 @@ WHERE blockchain = 'ethereum'
 AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
 ```
 
-Getting historical price data:
+### Getting historical price data:
 ```sql
 SELECT
   timestamp,
   price
 FROM prices.day
 WHERE blockchain = 'ethereum'
-AND contract_address = 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 -- USDC
+AND contract_address = 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984 -- UNI
 AND timestamp >= NOW() - INTERVAL '30' DAY
 ```
 
-Calculating USD value of token transfers:
-```sql
-SELECT
-  evt_block_time,
-  value/POWER(10, decimals) * price AS amount_usd
-FROM erc20_ethereum.evt_Transfer t
-INNER JOIN prices.latest p
-  ON p.blockchain = 'ethereum'
-  AND p.contract_address = t.contract_address
-WHERE t.evt_block_time >= NOW() - INTERVAL '1' DAY
-```
-
-Finding the right native token address:
+### Finding the right native token address:
 ```sql
 -- Query to get the native token address for a specific blockchain
 SELECT 

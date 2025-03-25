@@ -43,7 +43,9 @@ The `prices.hour` table is updated hourly based on the upstream data pipeline. A
 
 ## Usage Examples
 
-Get hourly ETH prices for the last day:
+Here are some examples of how to use the prices tables.
+
+### Get hourly ETH prices for the last day:
 ```sql
 SELECT
   timestamp,
@@ -55,7 +57,7 @@ AND timestamp >= NOW() - INTERVAL '1' DAY
 ORDER BY timestamp
 ```
 
-Calculate volatility by hour of day:
+### Calculate volatility by hour of day:
 ```sql
 SELECT
   extract(hour from timestamp) as hour_of_day,
