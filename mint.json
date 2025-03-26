@@ -61,7 +61,11 @@
   "navigation": [
     {
       "group": "",
-      "pages": ["home", "quickstart", "learning-resources"]
+      "pages": [
+        "home",
+        "quickstart",
+        "learning-resources"
+      ]
     },
     {
       "group": "Jump right in",
@@ -125,7 +129,9 @@
     },
     {
       "group": "",
-      "pages": ["query-engine/overview"]
+      "pages": [
+        "query-engine/overview"
+      ]
     },
     {
       "group": "Functionality",
@@ -143,7 +149,6 @@
         "query-engine/reserved-keywords"
       ]
     },
-
     {
       "group": "Functions and Operators",
       "pages": [
@@ -577,7 +582,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/b3/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/b3/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -622,7 +629,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/base/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/base/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -783,7 +792,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/bnb/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/bnb/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -845,7 +856,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/boba/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/boba/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -890,7 +903,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/celo/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/celo/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -935,7 +950,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/corn/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/corn/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -1185,7 +1202,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/ink/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/ink/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -1223,11 +1242,15 @@
               "pages": [
                 {
                   "group": "DEX",
-                  "pages": ["data-catalog/evm/kaia/curated-data/dex/dex-trades"]
+                  "pages": [
+                    "data-catalog/evm/kaia/curated-data/dex/dex-trades"
+                  ]
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/kaia/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/kaia/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -1617,7 +1640,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/sei/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/sei/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             },
@@ -2030,7 +2055,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/zora/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/zora/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -2038,7 +2065,6 @@
         }
       ]
     },
-
     {
       "group": "Other Networks",
       "pages": [
@@ -2156,6 +2182,7 @@
           "iconType": "solid",
           "pages": [
             "data-catalog/ton/overview",
+            "data-catalog/ton/accounts",
             "data-catalog/ton/blocks",
             "data-catalog/ton/transactions",
             "data-catalog/ton/messages",
@@ -2233,7 +2260,9 @@
         {
           "group": "GhostLogs",
           "icon": "ghost",
-          "pages": ["data-catalog/community/ghostlogs/overview"]
+          "pages": [
+            "data-catalog/community/ghostlogs/overview"
+          ]
         },
         {
           "group": "Lens",
@@ -2307,7 +2336,10 @@
         },
         {
           "group": "SVM",
-          "pages": ["echo/svm/balances", "echo/svm/transactions"]
+          "pages": [
+            "echo/svm/balances",
+            "echo/svm/transactions"
+          ]
         },
         "echo/hooks",
         "echo/proxy"
@@ -2346,7 +2378,9 @@
     },
     {
       "group": "Custom Endpoints",
-      "pages": ["api-reference/custom/overview"]
+      "pages": [
+        "api-reference/custom/overview"
+      ]
     },
     {
       "group": "SQL Endpoints",
@@ -2389,7 +2423,9 @@
         },
         {
           "group": "Webhooks",
-          "pages": ["api-reference/webhooks/webhook"]
+          "pages": [
+            "api-reference/webhooks/webhook"
+          ]
         }
       ]
     },
@@ -2414,7 +2450,9 @@
       "pages": [
         {
           "group": "DEX",
-          "pages": ["api-reference/dex/endpoint/dex_pair"]
+          "pages": [
+            "api-reference/dex/endpoint/dex_pair"
+          ]
         },
         {
           "group": "EigenLayer",
@@ -2429,9 +2467,10 @@
         },
         {
           "group": "EVM Contracts",
-          "pages": ["api-reference/evm/endpoint/contracts"]
+          "pages": [
+            "api-reference/evm/endpoint/contracts"
+          ]
         },
-
         {
           "group": "Farcaster",
           "pages": [
@@ -2443,7 +2482,9 @@
         },
         {
           "group": "Markets",
-          "pages": ["api-reference/markets/endpoint/marketplace_marketshare"]
+          "pages": [
+            "api-reference/markets/endpoint/marketplace_marketshare"
+          ]
         },
         {
           "group": "Projects",
@@ -2464,7 +2505,9 @@
     },
     {
       "group": "",
-      "pages": ["catalyst/overview"]
+      "pages": [
+        "catalyst/overview"
+      ]
     }
   ],
   "feedback": {
