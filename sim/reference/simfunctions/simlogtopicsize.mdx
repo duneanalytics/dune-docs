@@ -1,0 +1,25 @@
+---
+title: simLogTopicSize
+excerpt: Returns the number of topics in a log
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simLogTopicSize() internal returns (uint64 size)
+```
+
+# Return Values
+
+| Name | Type   | Description                     |
+| ---- | ------ | ------------------------------- |
+| size | uint64 | the number of topics in the log |
+
+# Notes
+
+1. Can only be called in a log hook.

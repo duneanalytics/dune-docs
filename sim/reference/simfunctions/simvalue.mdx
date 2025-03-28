@@ -1,0 +1,25 @@
+---
+title: simValue
+excerpt: Returns the value sent with the (internal) transaction
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simValue() internal returns (uint256 value)
+```
+
+# Return Values
+
+| Name  | Type    | Description                                              |
+| ----- | ------- | -------------------------------------------------------- |
+| value | uint256 | the value sent with the Ethereum transaction/call/create |
+
+# Notes
+
+1. Scoped to the deepest currently executing internal transaction.

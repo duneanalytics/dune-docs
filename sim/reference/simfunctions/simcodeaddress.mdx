@@ -1,0 +1,25 @@
+---
+title: simCodeAddress
+excerpt: Returns the code address of the (internal) transaction
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simCodeAddress() internal returns (address code)
+```
+
+# Return Values
+
+| Name | Type    | Description                                                                                                                                                                                   |
+| ---- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code | address | the address of the code that will be executed. In a delegate call for example, it will return the address of the delegate. This is different from simTo that will return the contract itself. |
+
+# Notes
+
+1. Scoped to the deepest currently executing internal transaction.

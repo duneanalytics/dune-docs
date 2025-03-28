@@ -1,0 +1,25 @@
+---
+title: simParentCodeAddress
+excerpt: Returns the parent code address of the (internal) transaction
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simParentCodeAddress() internal returns (address parent)
+```
+
+# Return Values
+
+| Name   | Type    | Description                                                                                                                                                                                                                                                                      |
+| ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| parent | address | the address of the code that triggers the code execution. If a call is made within a delegate call, simParentCodeAddress will return the address of the delegate. This is different from simFrom that will return the address of the contract making the original delegate call. |
+
+# Notes
+
+1. Scoped to the deepest currently executing internal transaction.
