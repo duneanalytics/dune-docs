@@ -2465,6 +2465,59 @@
     {
       "group": "",
       "pages": ["catalyst/overview"]
+    },
+    {
+      "group": "sim",
+      "pages": [
+        "sim/index",
+        {
+          "group": "Getting Started",
+          "pages": [
+            "sim/getting-started/account-setup",
+            "sim/getting-started/querying-data",
+            "sim/getting-started/hello-lambda",
+            "sim/getting-started/a-simple-api"
+          ]
+        },
+        {
+          "group": "Example Canvases",
+          "pages": [
+            "sim/example-canvases/explorer-homepage",
+            "sim/example-canvases/tracking-erc721-transfers",
+            "sim/example-canvases/partydao-crowdfund-statuses",
+            "sim/example-canvases/flash-swaps-on-uniswapv2",
+            "sim/example-canvases/monitor-and-activate-makers-esm",
+            "sim/example-canvases/on-chain-prices",
+            "sim/example-canvases/powering-bots-with-webhooks"
+          ]
+        },
+        {
+          "group": "Canvas Components",
+          "pages": [
+            "sim/canvas-components/api",
+            "sim/canvas-components/comment",
+            "sim/canvas-components/data-source",
+            "sim/canvas-components/evm-lambda",
+            "sim/canvas-components/external-trigger",
+            "sim/canvas-components/patch",
+            "sim/canvas-components/persistence",
+            "sim/canvas-components/schema-mirror",
+            "sim/canvas-components/schema",
+            "sim/canvas-components/webhook"
+          ]
+        },
+        {
+          "group": "More Details",
+          "pages": [
+            "sim/more-details/custom-types",
+            "sim/more-details/global-counter",
+            "sim/more-details/hook-ctx-and-simfunctions",
+            "sim/more-details/querying-and-data-types-faq",
+            "sim/more-details/storage-hooks",
+            "sim/reference/simfunctions/index"
+          ]
+        }
+      ]
     }
   ],
   "feedback": {

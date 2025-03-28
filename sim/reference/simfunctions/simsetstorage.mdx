@@ -1,0 +1,25 @@
+---
+title: simSetStorage
+excerpt: Overwrites the contents of any (contract, slot)
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simSetStorage(address contract_, bytes32 slot, bytes32 value) internal
+```
+
+Change the value of a storage slot, for the duration of the probe transaction
+
+# Parameters
+
+| Name       | Type    | Description                            |
+| ---------- | ------- | -------------------------------------- |
+| contract\_ | address | the contract to which change the value |
+| slot       | bytes32 | the slot to which change the value     |
+| value      | bytes32 | the new value to set in the slot       |
