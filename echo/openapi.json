@@ -223,7 +223,7 @@
             "name": "chain_ids",
             "in": "query",
             "description": "Either 'all' or a comma separated list of chain ids to get balances for",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string",
               "nullable": true
