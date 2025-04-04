@@ -2198,6 +2198,7 @@
           "iconType": "solid",
           "pages": [
             "data-catalog/ton/overview",
+            "data-catalog/ton/accounts",
             "data-catalog/ton/blocks",
             "data-catalog/ton/transactions",
             "data-catalog/ton/messages",
