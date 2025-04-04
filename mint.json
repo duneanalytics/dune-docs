@@ -1234,6 +1234,48 @@
           ]
         },
         {
+          "group": "lens",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/lens/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/lens/raw/blocks",
+                "data-catalog/evm/lens/raw/creation-traces",
+                "data-catalog/evm/lens/raw/logs",
+                "data-catalog/evm/lens/raw/transactions",
+                "data-catalog/evm/lens/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/lens/decoded/overview",
+                "data-catalog/evm/lens/decoded/call-tables",
+                "data-catalog/evm/lens/decoded/event-logs",
+                "data-catalog/evm/lens/decoded/contracts",
+                "data-catalog/evm/lens/decoded/logs-decoded",
+                "data-catalog/evm/lens/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": ["data-catalog/evm/lens/curated-data/dex/dex-trades"]
+                },
+                {
+                  "group": "NFT",
+                  "pages": ["data-catalog/evm/lens/curated-data/nft/nft-trades"]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Linea",
           "icon": "database",
           "iconType": "solid",
