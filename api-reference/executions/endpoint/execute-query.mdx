@@ -126,7 +126,7 @@ import (
 
 func main() {
 
-    url := "https://api.dune.com/api/v1/query/{query_id}/execute"
+    url = "https://api.dune.com/api/v1/query/{query_id}/execute"
 
     req, _ := http.NewRequest("POST", url, nil)
 
@@ -182,3 +182,149 @@ HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/query/
 ```
 
 </RequestExample>
+
+## Examples and Tutorials
+
+Welcome to the Examples and Tutorials section! Here, you'll find a collection of code examples and step-by-step tutorials to help you get started with executing a query.
+
+### Step-by-Step Tutorial: Executing a Query
+
+#### Step 1: Define the Query
+
+Before you can execute a query, you need to define the query with its parameters. This includes specifying the query ID and any parameters required for the query.
+
+**Example using Python SDK:**
+
+```python
+import dotenv, os, json
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+# define the query to run
+query = QueryBase(
+    name="Sample Query",
+    query_id=1215383,
+    params=[
+        QueryParameter.text_type(name="TextField", value="Word"),
+        QueryParameter.number_type(name="NumberField", value=3.1415926535),
+        QueryParameter.date_type(name="DateField", value="2022-05-04 00:00:00"),
+        QueryParameter.enum_type(name="ListField", value="Option 1"),
+    ],
+)
+```
+
+#### Step 2: Execute the Query
+
+Once you have defined the query, you can execute it by making a POST request to the execute endpoint.
+
+**Example using cURL:**
+
+```bash
+curl -X POST -H x-dune-api-key:{{api_key}} "https://api.dune.com/api/v1/query/{{query_id}}/execute" -d '{"query_parameters": {"param1":24}, "performance": "large"}'
+```
+
+**Example using Python SDK:**
+
+```python
+result = dune.execute_query(query = query # pass in the query we just defined
+          , performance = "large" # define engine query is run on, default is "medium"
+)
+print(result)
+```
+
+**Example using Python Requests:**
+
+```python
+import requests
+
+url = "https://api.dune.com/api/v1/query/{query_id}/execute"
+headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+response = requests.request("POST", url, headers=headers)
+print(response.text)
+```
+
+**Example using JavaScript Fetch:**
+
+```javascript
+const options = {method: 'POST', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
+
+fetch('https://api.dune.com/api/v1/query/{query_id}/execute', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+```
+
+**Example using Go:**
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+	url := "https://api.dune.com/api/v1/query/{query_id}/execute"
+	req, _ := http.NewRequest("POST", url, nil)
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+}
+```
+
+**Example using PHP:**
+
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/query/{query_id}/execute",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_HTTPHEADER => [
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+**Example using Java:**
+
+```java
+HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/query/{query_id}/execute")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .asString();
+System.out.println(response.getBody());
+```
