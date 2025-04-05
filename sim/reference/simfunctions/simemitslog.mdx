@@ -1,0 +1,32 @@
+---
+title: simEmitsLog
+excerpt: Checks if a contract emits a log
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simEmitsLog(address addr, string canonicalSignature) internal returns (bool result)
+```
+
+# Parameters
+
+| Name               | Type    | Description                      |
+| ------------------ | ------- | -------------------------------- |
+| addr               | address | the contract's address           |
+| canonicalSignature | string  | e.g. `Transfer(address,uint256)` |
+
+# Return Values
+
+| Name   | Type | Description                                             |
+| ------ | ---- | ------------------------------------------------------- |
+| result | bool | `true` if the contract emits the log, otherwise `false` |
+
+# Notes
+
+1. If the address passed to `simEmitsLog` is not a contract, the result will be `false`.

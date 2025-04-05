@@ -1,0 +1,25 @@
+---
+title: simCalldata
+excerpt: Returns the calldata of the (internal) transaction
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simCalldata() internal returns (bytes calldata_)
+```
+
+# Return Values
+
+| Name       | Type  | Description                                          |
+| ---------- | ----- | ---------------------------------------------------- |
+| calldata\_ | bytes | the calldata of the Ethereum transaction/call/create |
+
+# Notes
+
+1. Scoped to the deepest currently executing internal transaction.

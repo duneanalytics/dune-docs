@@ -1,0 +1,24 @@
+---
+title: The ctx object and simFunctions
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+When adding a hook your callback function comes prepopulated with a context (ctx) object that exposes key details associated with the hook. The context object will differ depending on the hook type and hooked function/log or storage.
+
+Generally speaking
+
+* Storage hooks will have: valueBefore, valueAfter (of the storage slot that was changed), and information about the storageKey/path to it and the ctx.txn object
+* Log hooks: all the decoded data of the logs, and the ctx.txn object
+* Function hooks: all the inputs and outputs of the function, the sighash of the function and  ctx.txn object
+* Transaction hooks: Will contain selected metadata of the transaction like the caller/callee, depth etc. and the ctx.txn object
+* Global storage hooks: contain the valueBefore/after of the storage slot in question, the path and the ctx.txn.object
+* Block hooks: currently contain no ctx object.
+
+Besides the context object you can also use simFunctions from within your Lambda and patches. simFunctions are abstractions we offer to allow you to perform executions that would be impossible or difficult with just Solidity. For example, you can overwrite the ETH balance of an address in a simulation using `simSetBalance`. When you add a sim function from the sidebar, it's inserted into the code editor at the location of the cursor. Sim functions are documented at [/sim/reference/simfunctions/index](/sim/reference/simfunctions/index).

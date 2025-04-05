@@ -1,0 +1,25 @@
+---
+title: simSalt
+excerpt: Returns the salt of a CREATE2 transaction
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simSalt() internal returns (bytes32 salt)
+```
+
+# Return Values
+
+| Name | Type    | Description                                        |
+| ---- | ------- | -------------------------------------------------- |
+| salt | bytes32 | the salt if the ethereum transaction is a create2. |
+
+# Notes
+
+1. Can only be used in a CREATE2 transaction.

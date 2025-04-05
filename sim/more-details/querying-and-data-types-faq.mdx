@@ -1,0 +1,39 @@
+---
+title: Querying and data types FAQ
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+1. When should I use `uint256` versus downcast to `uint64`?
+   1. When you emit a `uint256` to a persistence, it is ingested by Apache Pinot as `BIG_DECIMAL`. When you emit a `uint64`, it's ingested as `LONG`. In general, Pinot math functions support `LONG` better than `BIG_DECIMAL`. Often there are work-arounds for `BIG_DECIMAL`, e.g., using `sum_precision` instead of `sum`--reach out if you're stuck and we can help.
+   2. Given the above, we recommend emitting data as `uint256` only when you need the precision. For balances, precision is crucial. For data like block numbers or timestamps, casting to `uint64` (i.e., `uint64(block.number)`) in the lambda and emitting as `uint64` in the schema might make your life easier if you later want to do `max(block_number)`.
+2. What should I do about `numeric literal out of range` errors?
+   1. This relates to Q1 above. Try a query like `select * from @sim.erc20_balance_changes_block where balance > 69803846217511559491961` and you'll run into `numeric literal out of range`. The simplest fix for this is to just pass the number as a string: `select * from @sim.erc20_balance_changes_block where balance > '69803846217511559491961'`. You can also use scientific notation: `select * from @sim.erc20_balance_changes_block where balance > 6.9e22`, but this comes with a lack of precision.
+   2. Another situation where you might run into this is if you're using [Global counter](https://docs.sim.io/docs/global-counter) as a cursor for API [pagination](https://docs.sim.io/docs/api#pagination).
+3. Is it better to use WHERE with a subquery or do an inner join?
+   1. It depends--try both and look at the execution time at the bottom of the query editor! Here are some examples of what we're talking about. 
+      ```sql WHERE with subquery
+      -- DEMO PURPOSES ONLY, TABLES DON'T EXIST
+      SELECT order_id, customer_id, order_total
+      FROM Orders
+      WHERE customer_id IN (
+          SELECT customer_id
+          FROM Customers
+          WHERE customer_status = 'active'
+      )
+      ```
+      ```sql Inner join
+      -- DEMO PURPOSES ONLY, TABLES DON'T EXIST
+      SELECT o.order_id, o.customer_id, o.order_total
+      FROM Orders o
+      INNER JOIN Customers c ON o.customer_id = c.customer_id
+      WHERE c.customer_status = 'active'
+      ```
+4. Why is my query slow? Can I make it faster?
+   1. It depends... Probably! Hit us on on Telegram--we're happy to help.

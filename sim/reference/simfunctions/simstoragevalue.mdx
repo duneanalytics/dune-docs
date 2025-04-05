@@ -1,0 +1,25 @@
+---
+title: simStorageValue
+excerpt: Returns the value of the slot that was read/written
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simStorageValue() internal returns (bytes32 value)
+```
+
+# Return Values
+
+| Name  | Type    | Description                                 |
+| ----- | ------- | ------------------------------------------- |
+| value | bytes32 | the value of the slot that was read/written |
+
+# Notes
+
+1. Can only be called in a storage hook

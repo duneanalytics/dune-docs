@@ -1,0 +1,43 @@
+---
+title: Querying Data
+description: Let's query some existing tables in sim Studio
+---
+
+<Note>
+**Requirements:** You've already created your user account and an organization.
+</Note>
+
+## Steps
+
+1. From your org dashboard, open the query editor by hitting the `Queries` button.
+
+<img src="https://files.readme.io/b640409-2024-07-04_07_25_59-Clipboard.png" alt="Query button" />
+
+2. Explore the query editor's three sidebars: `Tables`, `Queries`, and `Templates`.
+   - The tables sidebar shows all persistences that belong to your organization as well as all `sim` core tables. If you open the query editor from a canvas that contains active persistence components, those tables will also be highlighted as Canvas tables.
+   - The queries sidebar shows all of your queries. Queries are owned at the user-level, not at the org-level, so your collaborators won't see you queries unless you share with them.
+   - The templates sidebar shows some common pre-built queries.
+
+3. In the query editor, write a simple SQL query like `select * from @sim.blocks limit 10`. Then hit the Run button at the top right.
+
+4. You can add parameters to a query using the `$` sign. Try replacing `limit 10` with `limit $limit` and then hit the run button again. This time it will ask you to define a type and value for the parameter. Parameters are helpful when you're running the same query frequently with different values and/or prototyping a query you intend to use in an API.
+
+5. Try adding a new query with the `+` button.
+
+## Basic query tips
+
+<Tip>
+Here are some helpful tips for writing effective queries in sim Studio:
+</Tip>
+
+1. It's SQL... We use Pinot's multistage engine. Pinot has [documentation](https://docs.pinot.apache.org/users/user-guide-query) available.
+
+2. Always use a limit unless you know your result set is small. We help you with this with the `limit 100` checkbox.
+
+3. Often the second time you run a query will be significantly faster than the first because the relevant data segments stay loaded in memory.
+
+4. Filter with `where` early and often. Pinot has automatic indexing for all columns, so you should easily be able to filter on any column.
+
+5. Addresses are stored as lower case strings. If you have a checksummed address, convert it to lower case, e.g., `where account_address = lower('0x48D004a6C175dB331E99BeAf64423b3098357Ae7')`.
+
+You now know how to query existing tables. That'll only get you so far in life...
