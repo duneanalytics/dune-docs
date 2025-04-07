@@ -5056,7 +5056,7 @@
         "properties": {
           "error": {
             "type": "string",
-            "example": "This api request would exceed your configured limits per billing cycle."
+            "example": "This API request would exceed your configured limits per billing cycle."
           }
         }
       },
