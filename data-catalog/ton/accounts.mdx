@@ -1,0 +1,31 @@
+---
+title: ton.accounts
+sidebarTitle: "Accounts"
+description: Description of the ton.accounts table on Dune
+---
+
+## Table Description
+Contains all updates of accounts. Including updates of balance and code_hash.
+This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/ton/ton_accounts.sql).
+
+## Column Descriptions
+
+| **Column** | **type** | **Description** |
+| --- | --- | --- |
+| **address** | varchar | Account raw address |
+| **status** | varchar | Status of account |
+| **last_tx_hash** | varchar | Hash of the latest transaction |
+| **last_tx_at** | timestamp(3) with time zone | timetsmap of the latest transaction | 
+| **balance** | bigint | Raw ton balance |
+| **code_hash** | varchar | Account code hash (on-chain value) |
+| **deployment_tx_hash** | varchar | Hash of transaction when account was deployed |
+| **deployment_at** | timestamp(3) with time zone | Timestamp when account was deployed |
+| **deployment_by_external** | boolean | Equals true when deployment of transactions was first transaction in trace, in other words when `(deployment tx_hash = deployment trace_id)`, false otherwise |
+| **initial_funding_tx_hash** | varchar | Transaction hash with the first occur of account in transactions |
+| **initial_funding_at** | timestamp(3) with time zone | Timestamp of the first occur of account in transactions |
+| **first_tx_sender** | varchar | Raw address of who intiated the first transaction with this account |
+| **interfaces** | array(varchar) | The list of known available interfaces (for example `wallet_v4r2`, [full list available here](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/ton/ton_accounts.sql)) 
+
+## Table Sample
+
+Table sample can be found [here](https://dune.com/queries/3419983/5785629?table_name_t6c1ea=accounts&table_schema_t6c1ea=ton).
