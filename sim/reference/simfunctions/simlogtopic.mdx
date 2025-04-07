@@ -1,0 +1,31 @@
+---
+title: simLogTopic
+excerpt: Returns a topic from a log
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simLogTopic(uint8 index) internal returns (bytes32 topic)
+```
+
+# Parameters
+
+| Name  | Type  | Description                                |
+| ----- | ----- | ------------------------------------------ |
+| index | uint8 | which topic to get; error if out of bounds |
+
+# Return Values
+
+| Name  | Type    | Description         |
+| ----- | ------- | ------------------- |
+| topic | bytes32 | the requested topic |
+
+# Notes
+
+1. Can only be called in a log hook.

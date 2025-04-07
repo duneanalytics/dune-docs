@@ -1,0 +1,85 @@
+---
+title: Explorer Homepage
+description: Let's explore how we built the sim Explorer homepage with sim
+---
+
+## Goal
+
+Our old homepage for [sim Explorer / evm.storage](https://explorer.sim.io/) was a search bar with a static list of three contracts that you could click into. We wanted to make a new one with sim that was more engaging and dynamic, and decided on adding modules for recent blocks, active contracts, and latest transactions. Here's the new design:
+
+<img 
+  src="https://files.readme.io/4cd96e7-image.png" 
+  alt="Explorer homepage design" 
+  className="border" 
+/>
+
+## Canvas
+
+<iframe 
+  src="https://studio.sim.io/embed/520c88e1-6b30-4617-98fa-a7e3ef646d60" 
+  title="Explorer homepage canvas" 
+  width="100%" 
+  height="400px" 
+  frameborder="0">
+</iframe>
+
+## APIs
+
+### Recent blocks
+
+The recent blocks API uses the [@sim.blocks](/sim/reference/core-tables/blocks) core table to pull the most recent ten blocks. The query includes CTEs to apply the latest ENS resolution for each coinbase address. We also use whether the address has been the sender on any transactions as a simple heuristic to classify it as an EOA as opposed to a contract.
+
+### Active contracts
+
+The active contracts API sums calls and transactions in blocks across the last hour and the hour before that for every contract, then it sorts by call counts descending and returns the ten most active contracts. This table uses the `@org.contract_call_counts_block` table built in this canvas and described below.
+
+### Latest transactions
+
+The latest transactions API uses the @sim.ethereum\_transactions core table to pull the most recent transactions. Like we did for coinbase in the recent blocks API, we add in ENS names and add identifiers for whether the from or to addresses are EOAs.
+
+## Data pipeline
+
+To build the `@org.contract_call_counts_block` table, we built a simple data pipeline that runs at the tip for Ethereum and Base. The Lambda hooks on each txn/call. Ignoring precompiles, if the call recipient is seen for the first time, it's added to the `activeContracts` array. We increment the `call_counts` value for that address by one. And, if it's an external transaction, i.e., `call_depth == 0`, we also increment the `txn_counts` variable.
+
+```solidity
+function postTransaction() public {
+    CallContext storage ctx = getCallContext();
+    // ignore precompiles
+    if (uint160(ctx.txn.to()) <= 9) {
+    return;
+    }
+    if (!isActive[ctx.txn.to()]) {
+        activeContracts.push(ctx.txn.to());
+        isActive[ctx.txn.to()] = true;
+    }
+    call_counts[ctx.txn.to()]++;
+    if (ctx.call_depth == 0) {
+        txn_counts[ctx.txn.to()]++;
+    }
+}
+```
+
+Because standard EVM Lambda state is reset between blocks, `activeContracts`, `call_counts`, and `txn_counts` are stateful within the block and adjust on each transaction. At the end of the block, we simply iterate over the `activeContracts` array and emit the counts and some other data for each contract:
+
+```solidity
+function postBlock() public {
+    for (uint256 i = activeContracts.length; i > 0; i--) {
+        simEmitToSchema_call_counts(
+            SchemaCall_countsColumns({
+                chain_id: uint64(block.chainid),
+                block_timestamp: uint64(block.timestamp),
+                block_number: uint64(block.number),
+                contract_address: activeContracts[i-1],
+                name: getName(activeContracts[i-1]),
+                symbol: getSymbol(activeContracts[i-1]),
+                call_count: call_counts[activeContracts[i-1]],
+                txn_count: txn_counts[activeContracts[i-1]]
+            })
+        );
+    }
+}
+```
+
+<Note>
+You'll notice we also define `getName` and `getSymbol` functions. These just allow us to grab the name and symbol on contracts that expose them without causing reversions when trying to fetch them from contracts that don't.
+</Note>

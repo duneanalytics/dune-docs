@@ -1,0 +1,25 @@
+---
+title: simTransactionIndex
+excerpt: Returns the index of the transaction within its block
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simTransactionIndex() internal returns (uint64 index)
+```
+
+# Return Values
+
+| Name  | Type   | Description                                   |
+| ----- | ------ | --------------------------------------------- |
+| index | uint64 | the index of the transaction within its block |
+
+# Notes
+
+1. Can only be called within a transaction hook
