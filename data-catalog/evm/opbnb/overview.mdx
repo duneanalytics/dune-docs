@@ -1,0 +1,64 @@
+---
+title: Ink Overview
+icon: "star"
+sidebarTitle: "Overview"
+description: Ink data on Dune
+---
+
+## What is Ink?
+Ink is Kraken's dedicated DeFi chain, built as a Layer 2 solution using the OP Stack technology. As part of the Superchain ecosystem, it provides a scalable, secure environment for decentralized finance applications while maintaining full compatibility with the Ethereum ecosystem.
+
+## Technical Architecture
+Ink's architecture leverages the OP Stack to deliver a robust DeFi-focused platform:
+
+### Optimistic Rollup Technology
+- Inherits Ethereum's security through optimistic rollups
+- Posts transaction data to Ethereum mainnet
+- Uses fraud proofs for security guarantees
+- Provides fast transaction finality with L2 execution
+
+### Network Specifications
+- **Technology Stack**: OP Stack (Superchain)
+- **Gas Token**: ETH
+- **Challenge Period**: ~7 days
+- **Block Time**: ~2 seconds
+- **Network Type**: EVM-compatible Layer 2
+
+### Developer Tools & Infrastructure
+- **Smart Contract Development**: Support for Foundry, Hardhat, and Remix
+- **Block Explorers**: Multiple options for transaction monitoring
+- **Infrastructure**:
+  - Account Abstraction support
+  - Cross-chain bridges
+  - Oracle integration
+  - VRF capabilities
+  - Indexing services
+
+### Compatibility & Integration
+- Full EVM compatibility
+- Native bridge functionality
+- Support for standard Ethereum development tools
+- Seamless integration with existing Ethereum infrastructure
+
+<CardGroup cols={1}>
+  <Card title="Ink Documentation" icon="link" href="https://docs.inkonchain.com">
+    Official documentation for developers building on Ink - Kraken's DeFi chain
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Insights into smart contract interactions through event logs
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on blocks processed on Ink
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Detailed data on transactions
+  </Card>
+  <Card title="decoded" icon="file" href="./decoded/overview">
+    Decoded transaction information for enhanced analysis
+  </Card>
+</CardGroup>
