@@ -6,39 +6,43 @@ description: opBNB data on Dune
 ---
 
 ## What is opBNB?
-opBNB is BNB Chain's dedicated Layer 2 solution, built using the OP Stack technology. It provides a scalable, secure environment for decentralized applications while maintaining full compatibility with the BNB Smart Chain ecosystem.
+opBNB is a high-performance Layer 2 scaling solution for the BNB Smart Chain, powered by the bedrock version of Optimism OP Stack. It works by offloading transaction processing and resource usage from the BNB Smart Chain while maintaining data posting to the underlying mainnet. Users interact with opBNB by depositing funds from BSC and using applications and contracts on opBNB.
 
-## Technical Architecture
-opBNB's architecture leverages the OP Stack to deliver a robust platform:
+## Key Features and Advantages
 
 ### Optimistic Rollup Technology
-- Inherits BNB Smart Chain's security through optimistic rollups
-- Posts transaction data to BNB Smart Chain mainnet
-- Uses fraud proofs for security guarantees
-- Provides fast transaction finality with L2 execution
+- Processes transactions off-chain while maintaining BSC chain security
+- Bundles multiple transactions into single batches for main chain submission
+- Reduces computational load on BSC for faster and cheaper transactions
+- Supports up to 5,000 transactions per second (TPS)
+
+### Transaction Efficiency
+- Lower transaction fees through off-chain processing
+- Faster transaction confirmations
+- Enhanced user experience for DApps and DeFi platforms
+- Ideal for micro-transactions
+
+### Security and Infrastructure
+- Maintains security through BSC main chain's security model
+- Fraud-proof mechanism for transaction validation
+- Sequencers aggregate transactions and compute state transitions
+- Provers generate cryptographic proofs for state validity
+- Verifiers check proofs to ensure network integrity
 
 ### Network Specifications
-- **Technology Stack**: OP Stack
+- **Technology Stack**: OP Stack (bedrock version)
 - **Gas Token**: BNB
-- **Challenge Period**: ~7 days
-- **Block Time**: ~2 seconds
 - **Network Type**: EVM-compatible Layer 2
+- **Base Chain**: BNB Smart Chain
 
 ### Developer Tools & Infrastructure
-- **Smart Contract Development**: Support for Foundry, Hardhat, and Remix
+- **Smart Contract Development**: Support for standard Ethereum development tools
 - **Block Explorers**: Multiple options for transaction monitoring
 - **Infrastructure**:
-  - Account Abstraction support
   - Cross-chain bridges
   - Oracle integration
   - VRF capabilities
   - Indexing services
-
-### Compatibility & Integration
-- Full EVM compatibility
-- Native bridge functionality
-- Support for standard Ethereum development tools
-- Seamless integration with existing BNB Smart Chain infrastructure
 
 <CardGroup cols={1}>
   <Card title="opBNB Documentation" icon="link" href="https://docs.bnbchain.org/bnb-opbnb/overview/">
