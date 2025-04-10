@@ -1,0 +1,68 @@
+---
+title: opBNB Overview
+icon: "star"
+sidebarTitle: "Overview"
+description: opBNB data on Dune
+---
+
+## What is opBNB?
+opBNB is a high-performance Layer 2 scaling solution for the BNB Smart Chain, powered by the bedrock version of Optimism OP Stack. It works by offloading transaction processing and resource usage from the BNB Smart Chain while maintaining data posting to the underlying mainnet. Users interact with opBNB by depositing funds from BSC and using applications and contracts on opBNB.
+
+## Key Features and Advantages
+
+### Optimistic Rollup Technology
+- Processes transactions off-chain while maintaining BSC chain security
+- Bundles multiple transactions into single batches for main chain submission
+- Reduces computational load on BSC for faster and cheaper transactions
+- Supports up to 5,000 transactions per second (TPS)
+
+### Transaction Efficiency
+- Lower transaction fees through off-chain processing
+- Faster transaction confirmations
+- Enhanced user experience for DApps and DeFi platforms
+- Ideal for micro-transactions
+
+### Security and Infrastructure
+- Maintains security through BSC main chain's security model
+- Fraud-proof mechanism for transaction validation
+- Sequencers aggregate transactions and compute state transitions
+- Provers generate cryptographic proofs for state validity
+- Verifiers check proofs to ensure network integrity
+
+### Network Specifications
+- **Technology Stack**: OP Stack (bedrock version)
+- **Gas Token**: BNB
+- **Network Type**: EVM-compatible Layer 2
+- **Base Chain**: BNB Smart Chain
+
+### Developer Tools & Infrastructure
+- **Smart Contract Development**: Support for standard Ethereum development tools
+- **Block Explorers**: Multiple options for transaction monitoring
+- **Infrastructure**:
+  - Cross-chain bridges
+  - Oracle integration
+  - VRF capabilities
+  - Indexing services
+
+<CardGroup cols={1}>
+  <Card title="opBNB Documentation" icon="link" href="https://docs.bnbchain.org/bnb-opbnb/overview/">
+    Official documentation for developers building on opBNB
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Insights into smart contract interactions through event logs
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on blocks processed on opBNB
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Detailed data on transactions
+  </Card>
+  <Card title="decoded" icon="file" href="./decoded/overview">
+    Decoded transaction information for enhanced analysis
+  </Card>
+</CardGroup>
