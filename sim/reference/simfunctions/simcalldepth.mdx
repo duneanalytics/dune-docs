@@ -1,0 +1,25 @@
+---
+title: simCallDepth
+excerpt: Returns the call depth of the currently executing (internal) transaction
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simCallDepth() internal returns (uint64 depth)
+```
+
+# Return Values
+
+| Name  | Type   | Description                                                                                            |
+| ----- | ------ | ------------------------------------------------------------------------------------------------------ |
+| depth | uint64 | the call depth of this Ethereum transaction/call/create; 0 means the start of the Ethereum transaction |
+
+# Notes
+
+1. Scoped to the deepest currently executing internal transaction.

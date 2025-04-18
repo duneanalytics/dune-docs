@@ -1,0 +1,24 @@
+---
+title: simSetBalance
+excerpt: Overwrite the native token balance of a given address
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simSetBalance(address contract_, uint256 value) internal
+```
+
+Change the balance of a contract, for the duration of the probe transaction
+
+#### Parameters
+
+| Name       | Type    | Description           |
+| ---------- | ------- | --------------------- |
+| contract\_ | address | contract value to set |
+| value      | uint256 | value to set          |

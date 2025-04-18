@@ -1,0 +1,28 @@
+---
+title: simReadStorage
+excerpt: Reads storage for specified (contract, slot)
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+```solidity
+function simReadStorage(address contract_, bytes32 slot) internal returns (bytes32 value)
+```
+
+# Parameters
+
+| Name       | Type    | Description                             |
+| ---------- | ------- | --------------------------------------- |
+| contract\_ | address | address of the contract storage to read |
+| slot       | bytes32 | storage slot to read                    |
+
+# Return Values
+
+| Name  | Type    | Description                                |
+| ----- | ------- | ------------------------------------------ |
+| value | bytes32 | the wanted slot value of the chain context |
