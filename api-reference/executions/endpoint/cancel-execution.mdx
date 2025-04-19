@@ -128,3 +128,129 @@ HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/execut
 
 ```
 </RequestExample>
+
+## Examples and Tutorials
+
+Welcome to the Examples and Tutorials section! Here, you'll find a collection of code examples and step-by-step tutorials to help you get started with canceling an execution.
+
+### Step-by-Step Tutorial: Canceling an Execution
+
+#### Step 1: Obtain the Execution ID
+
+Before you can cancel an execution, you need to have the `execution_id`. This ID is obtained from making an [execute query](/api-reference/executions/endpoint/execute-query) POST request.
+
+#### Step 2: Cancel the Execution
+
+Once you have the `execution_id`, you can cancel the execution by making a POST request to the cancel endpoint.
+
+**Example using cURL:**
+
+```bash
+curl -X POST -H x-dune-api-key:{{api_key}} "https://api.dune.com/api/v1/execution/{{execution_id}}/cancel"
+```
+
+**Example using Python SDK:**
+
+```python
+import dotenv, os, json
+from dune_client.client import DuneClient
+
+# change the current working directory where .env file lives
+os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
+# load .env file
+dotenv.load_dotenv(".env")
+# setup Dune Python client
+dune = DuneClient.from_env()
+
+result = dune.cancel_execution(job_id = '01HM79YYNXADPK66YWZK5X0NXB') # pass in the execution_id
+print(result)
+```
+
+**Example using Python Requests:**
+
+```python
+import requests
+
+url = "https://api.dune.com/api/v1/execution/{execution_id}/cancel"
+headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+response = requests.request("POST", url, headers=headers)
+print(response.text)
+```
+
+**Example using JavaScript Fetch:**
+
+```javascript
+const options = {method: 'POST', headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}};
+
+fetch('https://api.dune.com/api/v1/execution/{execution_id}/cancel', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+```
+
+**Example using Go:**
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+	url := "https://api.dune.com/api/v1/execution/{execution_id}/cancel"
+	req, _ := http.NewRequest("POST", url, nil)
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+}
+```
+
+**Example using PHP:**
+
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/execution/{execution_id}/cancel",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_HTTPHEADER => [
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+**Example using Java:**
+
+```java
+HttpResponse<String> response = Unirest.post("https://api.dune.com/api/v1/execution/{execution_id}/cancel")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .asString();
+System.out.println(response.getBody());
+```
