@@ -14,6 +14,102 @@
     }
   ],
   "paths": {
+    "/echo/beta/activity/evm/{address}": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "summary": "Get EVM activity for a given address",
+        "description": "This endpoint provides a real-time feed of on-chain activity for any EVM address. Activity is returned in chronological order (newest first) and includes native token transfers, ERC20 token transfers with metadata, ERC721 (NFT) transfers with token IDs, and contract interactions with decoded function calls.",
+        "operationId": "getEvmActivity",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API key to access the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Wallet to get activity for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset to paginate through result sets. This is a cursor being passed from the previous response, only use what the backend returns here.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of activity items to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityResponse"
+                },
+                "example": {
+                  "activity": [
+                    {
+                      "chain_id": 8453,
+                      "block_number": 26635101,
+                      "block_time": "2025-02-20T13:52:29+00:00",
+                      "transaction_hash": "0x184544c8d67a0cbed0a3f04abe5f958b96635e8c743c070f70e24b1c06cd1aa6",
+                      "type": "receive",
+                      "asset_type": "erc20",
+                      "token_address": "0xf92e740ad181b13a484a886ed16aa6d32d71b19a",
+                      "from": "0xd152f549545093347a162dce210e7293f1452150",
+                      "value": "123069652500000000000",
+                      "value_usd": 0.14017463965013963,
+                      "token_metadata": {
+                        "symbol": "ENT",
+                        "decimals": 18,
+                        "price_usd": 0.001138986230989314,
+                        "pool_size": 5.2274054439382835
+                      }
+                    }
+                  ],
+                  "next_offset": "KgAAAAAAAAAweDQ4ZDAwNGE2YzE3NWRiMzMxZTk5YmVhZjY0NDIzYjMwOTgzNTdhZTdAVxVC-y0GAAUhAAAAAAAA6XCRAQAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAAAAAAA"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - The request could not be understood by the server due to malformed data"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error - A generic error occurred on the server."
+          }
+        }
+      }
+    },
     "/echo/beta/balances/svm/{address}": {
       "get": {
         "tags": [
@@ -1113,6 +1209,255 @@
   },
   "components": {
     "schemas": {
+      "ActivityItem": {
+        "type": "object",
+        "properties": {
+          "chain_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the blockchain where activity occurred"
+          },
+          "block_number": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Block number where activity occurred"
+          },
+          "block_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the block"
+          },
+          "transaction_hash": {
+            "type": "string",
+            "description": "Hash of the transaction"
+          },
+          "type": {
+            "type": "string",
+            "description": "Activity type: 'transfer', 'call', 'mint', 'receive', 'send', 'swap', 'approve', etc."
+          },
+          "asset_type": {
+            "type": "string",
+            "description": "Asset type: 'native', 'erc20', 'erc721', 'erc1155'"
+          },
+          "token_address": {
+            "type": "string",
+            "description": "Contract address of token (for ERC20/ERC721/ERC1155)",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "description": "Address initiating the activity",
+            "nullable": true
+          },
+          "to": {
+            "type": "string",
+            "description": "Recipient address",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "Amount transferred (in WEI) or contract call value",
+            "nullable": true
+          },
+          "value_usd": {
+            "type": "number",
+            "format": "double",
+            "description": "USD value of the transaction",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Token ID (for ERC721/ERC1155 transfers)",
+            "nullable": true
+          },
+          "spender": {
+            "type": "string",
+            "description": "Address being approved to spend tokens (for approve activities)",
+            "nullable": true
+          },
+          "token_metadata": {
+            "type": "object",
+            "description": "Additional token information",
+            "nullable": true,
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "description": "Token symbol",
+                "nullable": true
+              },
+              "decimals": {
+                "type": "integer",
+                "description": "Token decimals",
+                "nullable": true
+              },
+              "name": {
+                "type": "string",
+                "description": "Token name",
+                "nullable": true
+              },
+              "logo": {
+                "type": "string",
+                "description": "URL to token logo",
+                "nullable": true
+              },
+              "price_usd": {
+                "type": "number",
+                "format": "double",
+                "description": "Token price in USD",
+                "nullable": true
+              },
+              "pool_size": {
+                "type": "number",
+                "format": "double",
+                "description": "Token pool size",
+                "nullable": true
+              },
+              "standard": {
+                "type": "string",
+                "description": "Token standard (e.g., 'erc721')",
+                "nullable": true
+              }
+            }
+          },
+          "function": {
+            "type": "object",
+            "description": "Decoded function information (for contract calls)",
+            "nullable": true,
+            "properties": {
+              "signature": {
+                "type": "string",
+                "description": "Function signature",
+                "nullable": true
+              },
+              "name": {
+                "type": "string",
+                "description": "Function name",
+                "nullable": true
+              },
+              "inputs": {
+                "type": "array",
+                "description": "Function parameters",
+                "nullable": true,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Parameter name"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Parameter type"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "Parameter value"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "contract_metadata": {
+            "type": "object",
+            "description": "Contract metadata",
+            "nullable": true,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Contract name",
+                "nullable": true
+              }
+            }
+          },
+          "from_token_address": {
+            "type": "string",
+            "description": "Source token address (for swaps)",
+            "nullable": true
+          },
+          "from_token_value": {
+            "type": "string",
+            "description": "Source token amount (for swaps)",
+            "nullable": true
+          },
+          "from_token_metadata": {
+            "type": "object",
+            "description": "Source token metadata (for swaps)",
+            "nullable": true,
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "nullable": true
+              },
+              "decimals": {
+                "type": "integer",
+                "nullable": true
+              },
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
+              "logo": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          "to_token_address": {
+            "type": "string",
+            "description": "Destination token address (for swaps)",
+            "nullable": true
+          },
+          "to_token_value": {
+            "type": "string",
+            "description": "Destination token amount (for swaps)",
+            "nullable": true
+          },
+          "to_token_metadata": {
+            "type": "object",
+            "description": "Destination token metadata (for swaps)",
+            "nullable": true,
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "nullable": true
+              },
+              "decimals": {
+                "type": "integer",
+                "nullable": true
+              },
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
+              "logo": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        }
+      },
+      "ActivityResponse": {
+        "type": "object",
+        "required": [
+          "activity"
+        ],
+        "properties": {
+          "activity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityItem"
+            },
+            "description": "Array of activity items"
+          },
+          "next_offset": {
+            "type": "string",
+            "nullable": true,
+            "description": "Pagination cursor for the next page of results"
+          }
+        }
+      },
       "BalanceData": {
         "type": "object",
         "required": [
@@ -1687,6 +2032,10 @@
     {
       "name": "transactions",
       "description": "Transactions API"
+    },
+    {
+      "name": "activity",
+      "description": "Activity API"
     }
   ]
 }
