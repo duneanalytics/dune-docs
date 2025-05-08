@@ -46,7 +46,7 @@ import { TableSample } from "/snippets/table-sample.mdx";
 Transfer data is available for the following EVM-compatible networks:
 
 <div>
-  <DuneEmbed height="600" qID="3695907" vID="6218008" />
+  <DuneEmbed height="1200" qID="3695907" vID="6218008" />
 </div>
 
 
@@ -118,4 +118,42 @@ WHERE block_time > now() - interval '1' day
     AND amount_usd IS NOT NULL
 ORDER BY amount_usd DESC
 LIMIT 50
+```
+
+**Find the circulating supply of a token over time**
+
+This query calculates the circulating supply of a token over time by summing the amount of tokens in circulation at each time interval.
+Please be aware that this won't work for tokens that have non-standard transfer mechanisms or minting/burning mechanisms.
+
+```sql
+WITH tx AS (
+    SELECT
+        DATE_TRUNC('hour', evt_block_time) AS event_hour,
+        value / 1e18 AS tokens_delta
+    FROM erc20_ethereum.evt_transfer
+    WHERE contract_address = 0x5bae9a5d67d1ca5b09b14c91935f635cfbf3b685
+      AND "from" = 0x0000000000000000000000000000000000000000
+
+    UNION ALL
+
+    SELECT
+        DATE_TRUNC('hour', evt_block_time) AS event_hour,
+        -value / 1e18 AS tokens_delta
+    FROM erc20_ethereum.evt_transfer
+    WHERE contract_address = 0x5bae9a5d67d1ca5b09b14c91935f635cfbf3b685
+      AND "to" = 0x0000000000000000000000000000000000000000
+),
+tx_hourly AS (
+    SELECT
+        event_hour,
+        SUM(tokens_delta) AS net_tokens
+    FROM tx
+    GROUP BY event_hour
+    ORDER BY event_hour DESC
+)
+SELECT
+    event_hour,
+    SUM(net_tokens) OVER (ORDER BY event_hour) AS circulating_supply
+FROM tx_hourly
+ORDER BY event_hour DESC;
 ```
