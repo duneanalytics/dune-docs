@@ -1,0 +1,24 @@
+---
+title: Transactions
+description: Fuel blockchain transactions data
+---
+
+# Transactions
+
+This table contains data about transactions in the Fuel blockchain.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| transaction_hash | string | The transaction hash |
+| block_number | bigint | The block number containing this transaction |
+| block_hash | string | The block hash containing this transaction |
+| timestamp | timestamp | The transaction timestamp |
+| from_address | string | The address of the transaction sender |
+| to_address | string | The address of the transaction recipient |
+| value | bigint | The amount of native tokens transferred |
+| gas_price | bigint | The gas price for the transaction |
+| gas_used | bigint | The amount of gas used by the transaction |
+| status | string | The status of the transaction |
+| input_data | string | The input data of the transaction | 
