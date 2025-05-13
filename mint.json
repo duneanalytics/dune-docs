@@ -2158,6 +2158,17 @@
           ]
         },
         {
+          "group": "Fuel",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/fuel/overview",
+            "data-catalog/fuel/blocks",
+            "data-catalog/fuel/transactions",
+            "data-catalog/fuel/receipts"
+          ]
+        },
+        {
           "group": "NEAR",
           "icon": "database",
           "iconType": "solid",
