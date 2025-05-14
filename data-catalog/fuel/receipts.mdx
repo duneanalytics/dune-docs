@@ -1,0 +1,54 @@
+---
+title: Receipts
+description: Fuel blockchain receipts data
+---
+
+# Table Description
+
+This table contains data about transaction receipts in the Fuel blockchain, including execution results, gas usage, and associated metadata.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| **block_time** | bigint | Block creation timestamp |
+| **block_height** | bigint | Block height/number |
+| **block_version** | string | Block version |
+| **block_producer** | binary | Block producer address |
+| **transaction_id** | binary | Transaction identifier |
+| **amount** | bigint | Token amount |
+| **asset_id** | binary | Asset identifier |
+| **contract_id** | binary | Contract identifier |
+| **data** | string | Receipt data |
+| **digest** | binary | Receipt hash |
+| **gas** | bigint | Gas limit |
+| **gas_used** | bigint | Gas consumed |
+| **id** | string | Receipt identifier |
+| **is** | bigint | State indicator |
+| **len** | bigint | Data length |
+| **nonce** | binary | Transaction nonce |
+| **param1** | bigint | Parameter 1 |
+| **param2** | bigint | Parameter 2 |
+| **ptr** | bigint | Pointer value |
+| **ra** | bigint | Register A |
+| **rb** | bigint | Register B |
+| **rc** | bigint | Register C |
+| **rd** | bigint | Register D |
+| **reason_reason** | int | Failure reason code |
+| **reason_instruction** | bigint | Failed instruction |
+| **receipt_type** | string | Receipt type |
+| **recipient** | binary | Recipient address |
+| **result** | bigint | Execution result |
+| **sender** | binary | Sender address |
+| **sub_id** | binary | Sub-identifier |
+| **to** | binary | Destination address |
+| **to_address** | string | Destination address string |
+| **val** | bigint | Value amount |
+| **_updated_at** | timestamp | Last update timestamp |
+| **_ingested_at** | timestamp | Ingestion timestamp |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="fuel" tableName="receipts" /> 

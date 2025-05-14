@@ -1,0 +1,38 @@
+---
+title: Fuel Data
+sidebarTitle: "Overview"
+icon: "star"
+description: Fuel blockchain data on Dune
+---
+
+## What is Fuel?
+
+Fuel is an operating system purpose built for Ethereum Rollups. It implements improvements suggested to the Ethereum VM (EVM) for many years that couldn't be implemented due to the need to maintain backward compatibility, including parallel transaction execution and multiple native assets.
+
+Fuel delivers unmatched processing capacity through its ability to execute transactions in parallel by using strict state access lists in the form of a UTXO model. With the FuelVM, Fuel full nodes identify the accounts a transaction touches, mapping out dependencies before execution.
+
+## Key Features
+
+- **Parallel Transaction Execution**: Fuel can execute transactions in parallel, significantly increasing throughput
+- **UTXO Model**: Uses a strict state access list model for efficient transaction processing
+- **Multiple Native Assets**: Supports multiple native assets natively
+- **FuelVM**: A purpose-built virtual machine that improves upon the EVM
+- **Sway Language**: A domain-specific language based on Rust for smart contract development
+
+## Fuel Data on Dune
+
+Fuel blockchain data is organized into several key tables that capture different aspects of on-chain activity:
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/fuel/blocks">
+    Core block data including block headers, validators, and block statistics.
+  </Card>
+
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/fuel/transactions">
+    Detailed transaction data including computation, actions, and state changes.
+  </Card>
+
+  <Card title="Receipts" icon="receipt" href="/data-catalog/fuel/receipts">
+    Transaction receipts containing execution results and event logs.
+  </Card>
+</CardGroup> 

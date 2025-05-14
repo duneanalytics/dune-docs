@@ -1,0 +1,68 @@
+---
+title: Transactions
+description: Fuel blockchain transactions data
+---
+
+# Table Description
+
+This table contains data about transactions in the Fuel blockchain, including transaction details, inputs, outputs, and associated metadata. Fuel transactions can be of different types: Script, Create, Mint, or Upgrade transactions.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| **block_height** | bigint | The height of the block containing this transaction |
+| **block_time** | bigint | The timestamp when the block was created |
+| **block_id** | binary | The unique identifier of the block |
+| **block_version** | string | The version of the block |
+| **block_producer** | binary | The address of the block producer |
+| **status** | string | The status of the transaction (Success/Failure) |
+| **id** | binary | The unique identifier of the transaction |
+| **type** | string | The type of transaction (Script/Create/Mint/Upgrade) |
+| **tx_pointer_block_height** | bigint | Block height for UTXO validation |
+| **tx_pointer_tx_index** | int | Transaction index for UTXO validation |
+| **tx_pointer** | struct | Reference to previous transaction in UTXO model |
+| **bytecode_root** | binary | Root hash of script bytecode |
+| **bytecode_witness_index** | bigint | Index in witnesses array |
+| **blob_id** | binary | Identifier for blob transactions |
+| **maturity** | bigint | Minimum block height for execution |
+| **mint_amount** | bigint | Amount of tokens to mint |
+| **mint_asset_id** | binary | Asset identifier for minting |
+| **mint_gas_price** | bigint | Gas price for minting |
+| **receipts_root** | binary | Merkle root of transaction receipts |
+| **salt** | binary | Unique value for transaction |
+| **script_gas_limit** | bigint | Maximum gas for script execution |
+| **subsection_index** | bigint | Index in multi-section transaction |
+| **subsections_number** | bigint | Total sections in transaction |
+| **input_asset_ids** | array(binary) | Asset IDs used as inputs |
+| **proof_set** | array(binary) | Zero-knowledge proofs for validation |
+| **input_contract** | struct | Input contract data (balances, state, UTXO) |
+| **output_contract** | struct | Output contract data (new balances, state) |
+| **policies** | struct | Transaction policies (maturity, fees, limits) |
+| **raw_payload** | binary | Raw transaction data |
+| **script** | binary | Compiled script bytecode |
+| **script_data** | binary | Script input data |
+| **storage_slots** | array(struct) | Contract storage updates |
+| **upgrade_purpose** | struct | Contract upgrade details |
+| **witnesses** | array(binary) | Transaction validation data |
+| **script_length** | bigint | Script bytecode length |
+| **script_data_length** | bigint | Script input data length |
+| **storage_slots_count** | bigint | Number of storage updates |
+| **proof_set_count** | bigint | Number of validation proofs |
+| **witnesses_count** | bigint | Number of witnesses |
+| **inputs_count** | bigint | Number of inputs |
+| **outputs_count** | bigint | Number of outputs |
+| **is_create** | boolean | Contract creation flag |
+| **is_mint** | boolean | Minting transaction flag |
+| **is_script** | boolean | Script transaction flag |
+| **is_upgrade** | boolean | Contract upgrade flag |
+| **is_upload** | boolean | Bytecode upload flag |
+| **is_blob** | boolean | Blob transaction flag |
+| **_updated_at** | timestamp | Last update timestamp |
+| **_ingested_at** | timestamp | Ingestion timestamp |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="fuel" tableName="transactions" /> 

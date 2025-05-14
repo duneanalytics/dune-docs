@@ -1,0 +1,40 @@
+---
+title: Blocks
+description: Fuel blockchain blocks data
+---
+
+# Table Description
+
+This table contains data about blocks in the Fuel blockchain, including block headers, consensus data, and transaction information.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| **block_time** | bigint | Block creation timestamp |
+| **block_date** | date | Block creation date |
+| **height** | bigint | Block height/number |
+| **time** | bigint | Unix timestamp |
+| **transactions_count** | bigint | Number of transactions |
+| **transactions_root** | binary | Merkle root of transactions |
+| **application_hash** | binary | Application state hash |
+| **consensus_parameters_version** | bigint | Consensus parameters version |
+| **da_height** | bigint | Data availability height |
+| **event_inbox_root** | binary | Event inbox Merkle root |
+| **id** | binary | Block identifier |
+| **message_outbox_root** | binary | Message outbox Merkle root |
+| **message_receipt_count** | bigint | Number of message receipts |
+| **prev_root** | binary | Previous block root |
+| **state_transition_bytecode_version** | bigint | State transition version |
+| **version** | string | Block version |
+| **consensus_type** | string | Consensus mechanism type |
+| **poa_consensus_data_signature** | binary | PoA consensus signature |
+| **producer** | binary | Block producer address |
+| **_updated_at** | timestamp | Last update timestamp |
+| **_ingested_at** | timestamp | Ingestion timestamp |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="fuel" tableName="blocks" />
