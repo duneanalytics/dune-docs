@@ -1,3 +1,8 @@
+---
+title: Adding a New Chain
+description: Step-by-step guide to generate documentation for a new blockchain.
+---
+
 # Generating Dune Docs for a New Chain
 
 ### Prerequisites

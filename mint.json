@@ -6,6 +6,14 @@
     "dark": "/logo/dune-logo-dark.png"
   },
   "favicon": "/dune.png",
+  "seo": {
+    "title": "Dune Docs",
+    "titleSuffix": " | Dune Docs",
+    "description": "Official documentation for building with Dune's data platform, query engine, and API.",
+    "image": "/images/dune-docs-cover.jpg",
+    "siteUrl": "https://docs.dune.com",
+    "twitterCard": "summary_large_image"
+  },
   "colors": {
     "primary": "#F4603E",
     "light": "#F49282",
