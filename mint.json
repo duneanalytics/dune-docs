@@ -54,10 +54,6 @@
       "url": "api-reference"
     },
     {
-      "name": "Echo",
-      "url": "echo"
-    },
-    {
       "name": "Datashare",
       "url": "datashare"
     },
@@ -2395,29 +2391,6 @@
             "data-catalog/community/snapshot/follows"
           ]
         }
-      ]
-    },
-    {
-      "group": "Dune Echo",
-      "pages": [
-        "echo/overview",
-        {
-          "group": "EVM",
-          "pages": [
-            "echo/evm/balances",
-            "echo/evm/balances-chains",
-            "echo/evm/transactions",
-            "echo/evm/transactions-chains",
-            "echo/evm/tokens",
-            "echo/evm/activity"
-          ]
-        },
-        {
-          "group": "SVM",
-          "pages": ["echo/svm/balances", "echo/svm/transactions"]
-        },
-        "echo/hooks",
-        "echo/proxy"
       ]
     },
     {
