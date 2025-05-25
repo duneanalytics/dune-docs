@@ -1,21 +1,20 @@
 ---
-title: sei.cosmos_tx_messages
-sidebarTitle: "Transaction Messages"
-description: Description of the sei.cosmos_tx_messages table on Dune
+title: Transaction Messages
+description: Noble blockchain transaction messages data
 ---
 
-## Table description
+# Table Description
 
-Contains all messages submitted to the blockchain. Each row represents one message, so there may be repeated `tx_id` if the transaction contains multiple messages.
+This table contains data about messages contained within transactions in the Noble blockchain, including message types, content, and associated metadata.
 
 <Tip>
 On execution, transactions from Cosmos emit data in two formats:
-- Messages (`sei.cosmos_tx_messages`): These provide a high-level, readable summary of actions, such as "send money" or "execute contract." They are easier to understand and track transaction types.
-- Events (`sei.cosmos_message_events`): These capture detailed, low-level changes at the chain level, including underlying blockchain modifications that may not always be directly related to state changes.
+- Messages (`noble.tx_messages`): These provide a high-level, readable summary of actions, such as "send money" or "execute contract." They are easier to understand and track transaction types.
+- Events (`noble.message_events`): These capture detailed, low-level changes at the chain level, including underlying blockchain modifications that may not always be directly related to state changes.
 - Use Messages for a general overview and Events when you need detailed insights. The two tables are complementary.
 </Tip>
 
-## Column Description
+## Column Descriptions
 
 | Column name       | Data Type | Description                                                   |
 | ---------------- | --------- | ------------------------------------------------------------- |
@@ -32,9 +31,8 @@ On execution, transactions from Cosmos emit data in two formats:
 | **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
 | **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
 
-
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
-<TableSample tableSchema="sei" tableName="cosmos_tx_messages" />
+<TableSample tableSchema="noble" tableName="tx_messages" /> 

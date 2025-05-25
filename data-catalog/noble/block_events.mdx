@@ -1,12 +1,11 @@
 ---
-title: sei.cosmos_block_events
-sidebarTitle: "Block Events"
-description: Description of the sei.cosmos_block_events table on Dune
+title: Block Events
+description: Noble blockchain block events data
 ---
 
-## Table description
+# Table Description
 
-Contains all block-level events and attributes in the chain, partitioned by `event_index`.
+This table contains data about block-level events and attributes in the Noble blockchain, including event types, sources, and associated metadata. The schema is modeled after Sei's Cosmos block events but adapted for Noble's context.
 
 ## Column Descriptions
 
@@ -25,9 +24,8 @@ Contains all block-level events and attributes in the chain, partitioned by `eve
 | **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
 | **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
 
-
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
-<TableSample tableSchema="sei" tableName="cosmos_block_events" />
+<TableSample tableSchema="noble" tableName="block_events" /> 

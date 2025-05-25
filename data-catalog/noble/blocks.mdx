@@ -1,12 +1,11 @@
 ---
-title: sei.cosmos_blocks
-sidebarTitle: "Blocks"
-description: Description of the sei.cosmos_blocks table on Dune
+title: Blocks
+description: Noble blockchain blocks data
 ---
 
-## Table description
+# Table Description
 
-Contains each validated block in the chain. `block_timestamp` is only available in this table, so you need to do an inner join on `block_height` to get `block_timestamp` to other tables.
+This table contains data about blocks in the Noble blockchain, including block headers, consensus data, and transaction information.
 
 ## Column Descriptions
 
@@ -25,4 +24,4 @@ Contains each validated block in the chain. `block_timestamp` is only available 
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
-<TableSample tableSchema="sei" tableName="cosmos_blocks" />
+<TableSample tableSchema="noble" tableName="blocks" /> 

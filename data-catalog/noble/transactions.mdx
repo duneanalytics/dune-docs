@@ -1,12 +1,11 @@
 ---
-title: sei.cosmos_transactions
-sidebarTitle: "Transactions"
-description: Description of the sei.cosmos_transactions table on Dune
+title: Transactions
+description: Noble blockchain transactions data
 ---
 
-## Table description
+# Table Description
 
-Contains relevant data associated with each transaction.
+This table contains data about transactions in the Noble blockchain, including transaction details, gas usage, and execution status.
 
 ## Column Descriptions
 
@@ -34,9 +33,8 @@ Contains relevant data associated with each transaction.
 | **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
 | **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
 
-
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
-<TableSample tableSchema="sei" tableName="cosmos_transactions" />
+<TableSample tableSchema="noble" tableName="transactions" /> 

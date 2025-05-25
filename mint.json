@@ -2173,6 +2173,23 @@
           ]
         },
         {
+          "group": "Noble",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/noble/overview",
+            "data-catalog/noble/blocks",
+            "data-catalog/noble/block_events",
+            "data-catalog/noble/bridge_transfers",
+            "data-catalog/noble/cctp_transactions",
+            "data-catalog/noble/message_events",
+            "data-catalog/noble/swaps",
+            "data-catalog/noble/transactions",
+            "data-catalog/noble/tx_messages",
+            "data-catalog/noble/validators"
+          ]
+        },
+        {
           "group": "NEAR",
           "icon": "database",
           "iconType": "solid",
