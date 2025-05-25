@@ -1,0 +1,53 @@
+---
+title: Noble Data
+sidebarTitle: "Overview"
+icon: "star"
+description: Noble blockchain data on Dune
+---
+
+## What is Noble?
+
+Noble is a Cosmos application-specific blockchain purpose-built for native asset issuance. It brings the efficiency and interoperability of native assets to the wider Cosmos ecosystem, starting with USDC. Noble's vision is to be the world's premier issuance hub for digital assets that connect to other blockchains seamlessly.
+
+## Key Features
+
+- **Native Asset Issuance**: Purpose-built for efficient and secure token issuance
+- **Cosmos Integration**: Built on Cosmos-SDK for seamless interoperability
+- **Smart Contract Capabilities**: Industry-standard asset issuance functionality
+- **IBC Compatibility**: Permissionless connection to other Cosmos chains
+- **Proof of Authority**: Currently uses a trusted validator set with economic security
+
+## Noble Data on Dune
+
+Noble blockchain data is organized into several key tables that capture different aspects of on-chain activity:
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/noble/blocks">
+    <p>Contains each validated block in the chain</p>
+  </Card>
+  <Card title="Block Events" icon="bolt" href="/data-catalog/noble/block_events">
+    <p>Contains all block-level events and attributes in the chain, partitioned by event_index</p>
+  </Card>
+  <Card title="Bridge Transfers" icon="bridge" href="/data-catalog/noble/bridge_transfers">
+    <p>Cross-chain bridge transfer data</p>
+  </Card>
+  <Card title="CCTP Transactions" icon="bridge" href="/data-catalog/noble/cctp_transactions">
+    <p>Cross-Chain Transfer Protocol transactions</p>
+  </Card>
+  <Card title="Message Events" icon="message" href="/data-catalog/noble/message_events">
+    <p>Contains all events and their corresponding attributes partitioned by message_index</p>
+  </Card>
+  <Card title="Swaps" icon="arrows-rotate" href="/data-catalog/noble/swaps">
+    <p>Token swap and liquidity pool data</p>
+  </Card>
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/noble/transactions">
+    <p>Contains relevant data associated with each transaction</p>
+  </Card>
+  <Card title="Transaction Messages" icon="envelope" href="/data-catalog/noble/tx_messages">
+    <p>Contains all messages submitted to the blockchain</p>
+  </Card>
+  <Card title="Validators" icon="shield" href="/data-catalog/noble/validators">
+    <p>Maps validator addresses to monikers (human-readable description) and other metadata</p>
+  </Card>
+</CardGroup>
+
