@@ -10,6 +10,7 @@ The `tokens.erc20` table contains metadata for ERC20 tokens across all EVM-compa
 - The blockchain on which the token exists
 - The contract address of the token
 - The token symbol
+- The token name
 - The number of decimals used by the token
 
 ### Utility
@@ -32,7 +33,8 @@ import { TableSample } from "/snippets/table-sample.mdx";
 
 ### Token Coverage
 
-We use the [DefinedFi](https://docs.defined.fi/reference/token) token list to index ERC20 tokens. The list is updated on a regular basis and includes tokens that are not native to the chain. The list includes tokens from all EVM-compatible chains, including EVM-compatible sidechains and all layer 2 solutions.
+We use [Sim API](https://docs.sim.dune.com/evm/token-info) to retrieve token metadata for all contracts that have emitted ERC20 Transfer events. For chains not supported on Sim API, we fall back to [DefinedFi](https://docs.defined.fi/reference/token) as our metadata provider.
+Native tokens are also included in this dataset, using metadata info from `dune.blockchains`.
 
 ## Sample Queries
 
