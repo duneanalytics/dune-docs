@@ -248,6 +248,52 @@
                 "data-catalog/curated/evm/NFT/nft-mints",
                 "data-catalog/curated/evm/NFT/nft-wash-trades"
               ]
+            },
+            {
+              "group": "Plume",
+              "icon": "star",
+              "pages": [
+                "data-catalog/evm/plume/overview",
+                {
+                  "group": "Raw",
+                  "pages": [
+                    "data-catalog/evm/plume/raw/blocks",
+                    "data-catalog/evm/plume/raw/transactions",
+                    "data-catalog/evm/plume/raw/logs",
+                    "data-catalog/evm/plume/raw/traces",
+                    "data-catalog/evm/plume/raw/creation-traces"
+                  ]
+                },
+                {
+                  "group": "Decoded",
+                  "pages": [
+                    "data-catalog/evm/plume/decoded/overview",
+                    "data-catalog/evm/plume/decoded/logs-decoded",
+                    "data-catalog/evm/plume/decoded/traces-decoded",
+                    "data-catalog/evm/plume/decoded/contracts",
+                    "data-catalog/evm/plume/decoded/event-logs",
+                    "data-catalog/evm/plume/decoded/call-tables"
+                  ]
+                },
+                {
+                  "group": "Curated Data",
+                  "pages": [
+                    {
+                      "group": "DEX",
+                      "pages": [
+                        "data-catalog/evm/plume/curated-data/dex/dex-trades",
+                        "data-catalog/evm/plume/curated-data/dex/dex-aggregator-trades"
+                      ]
+                    },
+                    {
+                      "group": "NFT",
+                      "pages": [
+                        "data-catalog/evm/plume/curated-data/nft/nft-trades"
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1430,6 +1476,51 @@
                 {
                   "group": "NFT",
                   "pages": ["data-catalog/evm/opbnb/curated-data/nft/nft-trades"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Plume",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/plume/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/plume/raw/blocks",
+                "data-catalog/evm/plume/raw/creation-traces",
+                "data-catalog/evm/plume/raw/logs",
+                "data-catalog/evm/plume/raw/transactions",
+                "data-catalog/evm/plume/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/plume/decoded/overview",
+                "data-catalog/evm/plume/decoded/call-tables",
+                "data-catalog/evm/plume/decoded/event-logs",
+                "data-catalog/evm/plume/decoded/contracts",
+                "data-catalog/evm/plume/decoded/logs-decoded",
+                "data-catalog/evm/plume/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/plume/curated-data/dex/dex-trades",
+                    "data-catalog/evm/plume/curated-data/dex/dex-aggregator-trades"
+                  ]
+                },
+                {
+                  "group": "NFT",
+                  "pages": ["data-catalog/evm/plume/curated-data/nft/nft-trades"]
                 }
               ]
             }
