@@ -10,7 +10,22 @@ The `tokens.erc20` table contains metadata for ERC20 tokens across all EVM-compa
 - The blockchain on which the token exists
 - The contract address of the token
 - The token symbol
+- The token name
 - The number of decimals used by the token
+
+### Coverage
+
+This table covers tokens across all EVM chains on Dune. Tokens are automatically detected and included when they meet the following criteria:
+- Have emitted ERC20 Transfer events
+- Have at least 1 transfer recorded on-chain
+
+New tokens meeting these criteria are added to the table within approximately 1 hour of detection.
+
+### Data Sources
+
+We use [Sim API](https://docs.sim.dune.com/evm/token-info) to retrieve token metadata for all qualifying contracts. For chains not supported on Sim API, we fall back to [DefinedFi](https://docs.defined.fi/reference/token) as our metadata provider.
+
+Native tokens are also included in this dataset, using metadata info from `dune.blockchains`.
 
 ### Utility
 
@@ -18,7 +33,6 @@ The ERC20 metadata table offers valuable information for token analysis and inte
 
 - Identify tokens across different blockchains
 - Retrieve essential token information for calculations and display
-- Cross-reference token data with other tables like `tokens.transfers`
 
 The table contains the following columns:
 
@@ -29,10 +43,6 @@ import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
 
 <TableSample tableSchema="tokens" tableName="erc20" />
-
-### Token Coverage
-
-We use the [DefinedFi](https://docs.defined.fi/reference/token) token list to index ERC20 tokens. The list is updated on a regular basis and includes tokens that are not native to the chain. The list includes tokens from all EVM-compatible chains, including EVM-compatible sidechains and all layer 2 solutions.
 
 ## Sample Queries
 
@@ -78,4 +88,17 @@ FROM tokens.erc20
 WHERE decimals != 18
 ORDER BY decimals DESC
 LIMIT 50
+```
+
+**Count tokens by blockchain**
+
+This query shows the distribution of tokens across different blockchains:
+
+```sql
+SELECT
+    blockchain,
+    COUNT(*) as token_count
+FROM tokens.erc20
+GROUP BY blockchain
+ORDER BY token_count DESC
 ```

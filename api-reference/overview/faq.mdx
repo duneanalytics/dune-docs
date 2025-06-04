@@ -9,6 +9,15 @@ There are no major performance differences within a specific performance tier wh
 
 The Dune API gives you programmatic access to the capabilities and data sets that can already be accessed from the Dune web app. The same queries and results exist in the web app, even if created/executed from the API (and vice versa).
 
+#### What are Sim APIs  and how do they differ from the Dune API?
+
+Sim APIs, formerly Echo, are a separate, developer-focused product by Dune, providing realtime access to EVM and SVM blockchain data.
+They are designed for building apps like realtime wallets and AI agents.
+
+[Sim APIs](https://sim.dune.com/) have their own documentation at [docs.sim.dune.com](https://docs.sim.dune.com), use a separate API key (`X-Sim-Api-Key`), and are optimized for low latency, realtime use cases.
+
+The Dune API primarily focuses on executing SQL queries you've written on Dune, managing those queries, and uploading data.
+
 #### How many Requests Per Minute can I make?
 
 The API rate limit currently varies by [subscription plan](https://dune.com/pricing). It's currently 40 per minute on free, 200 per minute on plus, and 1000 per minute on premium.
