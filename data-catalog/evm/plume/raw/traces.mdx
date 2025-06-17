@@ -4,6 +4,52 @@ sidebarTitle: "Traces"
 description: Description of the plume.traces table on Dune
 ---
 
+import { TracesSnippet } from '/snippets/plume/traces-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `plume.traces` table contains all internal transaction traces in the Plume blockchain.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| transaction_hash | string | Transaction hash |
+| transaction_index | decimal(38,0) | Transaction index in block |
+| from_address | string | Sender address |
+| to_address | string | Recipient address |
+| value | decimal(38,0) | Value in wei |
+| input | string | Input data |
+| output | string | Output data |
+| trace_type | string | Trace type |
+| call_type | string | Call type |
+| reward_type | string | Reward type |
+| gas | decimal(38,0) | Gas limit |
+| gas_used | decimal(38,0) | Gas used |
+| subtraces | decimal(38,0) | Number of subtraces |
+| trace_address | array | Trace address |
+| error | string | Error message |
+| status | decimal(38,0) | Status |
+| block_timestamp | timestamp | Block timestamp |
+| block_number | decimal(38,0) | Block number |
+
+## Sample Query
+
+```sql
+-- Get the most common contract interactions in the last 24 hours
+SELECT 
+    to_address,
+    COUNT(*) as interaction_count
+FROM plume.traces
+WHERE block_timestamp >= NOW() - INTERVAL '24' HOUR
+    AND trace_type = 'call'
+GROUP BY to_address
+ORDER BY interaction_count DESC
+LIMIT 10;
+```
+
+<TracesSnippet /> 
+=======
 import { TracesSnippet } from '/snippets/evm/raw/traces-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";

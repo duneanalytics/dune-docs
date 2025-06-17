@@ -4,6 +4,50 @@ sidebarTitle: "Creation Traces"
 description: Description of the plume.creation_traces table on Dune
 ---
 
+import { CreationTracesSnippet } from '/snippets/plume/creation-traces-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `plume.creation_traces` table contains all contract creation traces in the Plume blockchain.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| transaction_hash | string | Transaction hash |
+| transaction_index | decimal(38,0) | Transaction index in block |
+| from_address | string | Creator address |
+| to_address | string | Created contract address |
+| value | decimal(38,0) | Value in wei |
+| input | string | Creation bytecode |
+| output | string | Output data |
+| trace_type | string | Trace type |
+| call_type | string | Call type |
+| gas | decimal(38,0) | Gas limit |
+| gas_used | decimal(38,0) | Gas used |
+| subtraces | decimal(38,0) | Number of subtraces |
+| trace_address | array | Trace address |
+| error | string | Error message |
+| status | decimal(38,0) | Status |
+| block_timestamp | timestamp | Block timestamp |
+| block_number | decimal(38,0) | Block number |
+
+## Sample Query
+
+```sql
+-- Get the most active contract creators in the last 24 hours
+SELECT 
+    from_address,
+    COUNT(*) as contracts_created
+FROM plume.creation_traces
+WHERE block_timestamp >= NOW() - INTERVAL '24' HOUR
+GROUP BY from_address
+ORDER BY contracts_created DESC
+LIMIT 10;
+```
+
+<CreationTracesSnippet /> 
+=======
 import { CreationTracesSnippet } from '/snippets/evm/raw/creation-traces-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";

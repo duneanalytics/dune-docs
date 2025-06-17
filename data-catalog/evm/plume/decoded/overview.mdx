@@ -1,4 +1,52 @@
 ---
+title: Plume Decoded
+sidebarTitle: "Overview"
+icon: "star"
+description: Plume decoded data on Dune
+---
+
+import { OverviewSnippet } from '/snippets/plume/decoded/overview-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+import { CardGroup, Card } from "/components/card-group.mdx";
+
+The Plume decoded data provides human-readable information about contract interactions, events, and calls.
+
+## Key Features
+
+- **Decoded Events**: Human-readable event data
+- **Decoded Calls**: Decoded function calls and parameters
+- **Contract Information**: Metadata about deployed contracts
+- **Call Tables**: Detailed information about contract interactions
+
+## Plume Decoded Data on Dune
+
+<CardGroup cols={2}>
+  <Card title="Decoded Logs" icon="database" href="/data-catalog/evm/plume/decoded/logs-decoded">
+    Decoded event logs from contracts
+  </Card>
+  <Card title="Decoded Traces" icon="database" href="/data-catalog/evm/plume/decoded/traces-decoded">
+    Decoded function calls and parameters
+  </Card>
+  <Card title="Contracts" icon="database" href="/data-catalog/evm/plume/decoded/contracts">
+    Information about deployed contracts
+  </Card>
+  <Card title="Event Logs" icon="database" href="/data-catalog/evm/plume/decoded/event-logs">
+    Detailed event log information
+  </Card>
+  <Card title="Call Tables" icon="database" href="/data-catalog/evm/plume/decoded/call-tables">
+    Detailed call information
+  </Card>
+</CardGroup>
+
+<OverviewSnippet />
+
+<CardGroup cols={1}>
+  <Card title="Plume Documentation" icon="link" href="https://docs.plume.network">
+    The official documentation for Plume, providing detailed information on the protocol and developer resources
+  </Card>
+</CardGroup> 
+=======
 title: Decoded Data
 sidebarTitle: "Overview"
 description: Overview of decoded data on Plume

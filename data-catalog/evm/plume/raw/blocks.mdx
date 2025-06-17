@@ -4,6 +4,52 @@ sidebarTitle: "Blocks"
 description: Description of the plume.blocks table on Dune
 ---
 
+import { BlocksSnippet } from '/snippets/plume/blocks-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `plume.blocks` table contains all blocks in the Plume blockchain.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| number | decimal(38,0) | Block number |
+| hash | string | Block hash |
+| parent_hash | string | Parent block hash |
+| nonce | string | Block nonce |
+| sha3_uncles | string | SHA3 of uncles |
+| logs_bloom | string | Bloom filter for logs |
+| transactions_root | string | Root of transactions trie |
+| state_root | string | Root of state trie |
+| receipts_root | string | Root of receipts trie |
+| miner | string | Address of miner |
+| difficulty | decimal(38,0) | Block difficulty |
+| total_difficulty | decimal(38,0) | Total difficulty |
+| size | decimal(38,0) | Block size |
+| extra_data | string | Extra data |
+| gas_limit | decimal(38,0) | Gas limit |
+| gas_used | decimal(38,0) | Gas used |
+| timestamp | timestamp | Block timestamp |
+| transaction_count | decimal(38,0) | Number of transactions |
+| base_fee_per_gas | decimal(38,0) | Base fee per gas |
+
+## Sample Query
+
+```sql
+-- Get the average block time and gas usage for the last 24 hours
+SELECT 
+    DATE_TRUNC('hour', timestamp) as hour,
+    AVG(EXTRACT(EPOCH FROM (timestamp - LAG(timestamp) OVER (ORDER BY timestamp)))) as avg_block_time,
+    AVG(gas_used) as avg_gas_used
+FROM plume.blocks
+WHERE timestamp >= NOW() - INTERVAL '24' HOUR
+GROUP BY hour
+ORDER BY hour;
+```
+
+<BlocksSnippet /> 
+=======
 import { BlockSnippet } from '/snippets/evm/raw/blocks-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";

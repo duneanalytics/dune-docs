@@ -4,9 +4,61 @@ sidebarTitle: "DEX Aggregator Trades"
 description: Description of the plume.dex_aggregator_trades table on Dune
 ---
 
+
+import { DexAggregatorTradesSnippet } from '/snippets/plume/curated-data/dex/dex-aggregator-trades-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `plume.dex_aggregator_trades` table contains all DEX aggregator trades in the Plume blockchain.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| block_time | timestamp | Block timestamp |
+| token_bought_symbol | string | Symbol of bought token |
+| token_sold_symbol | string | Symbol of sold token |
+| token_bought_amount | double | Amount of bought token |
+| token_sold_amount | double | Amount of sold token |
+| token_bought_address | string | Address of bought token |
+| token_sold_address | string | Address of sold token |
+| taker | string | Taker address |
+| maker | string | Maker address |
+| project | string | Aggregator project name |
+| version | string | Aggregator version |
+| category | string | Trade category |
+| usd_amount | double | USD value of trade |
+| token_pair | string | Token pair |
+| tx_hash | string | Transaction hash |
+| tx_from | string | Transaction sender |
+| tx_to | string | Transaction recipient |
+| trace_address | array | Trace address |
+| evt_index | decimal(38,0) | Event index |
+| block_number | decimal(38,0) | Block number |
+| dex_name | string | DEX name |
+| dex_version | string | DEX version |
+
+## Sample Query
+
+```sql
+-- Get the top DEX aggregators by trading volume in the last 24 hours
+SELECT 
+    project,
+    COUNT(*) as trade_count,
+    SUM(usd_amount) as total_volume_usd
+FROM plume.dex_aggregator_trades
+WHERE block_time >= NOW() - INTERVAL '24' HOUR
+GROUP BY project
+ORDER BY total_volume_usd DESC
+LIMIT 10;
+```
+
+<DexAggregatorTradesSnippet /> 
+=======
 import { DexAggregatorTradesSnippet } from '/snippets/evm/curated/dex-aggregator-trades-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
 
 
 <DexAggregatorTradesSnippet blockchain="plume" /> 
+

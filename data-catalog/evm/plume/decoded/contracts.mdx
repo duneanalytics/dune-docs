@@ -4,6 +4,43 @@ sidebarTitle: "Contracts"
 description: Description of the plume.contracts table on Dune
 ---
 
+import { ContractsSnippet } from '/snippets/plume/decoded/contracts-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `plume.contracts` table contains information about deployed contracts in the Plume blockchain.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| address | string | Contract address |
+| bytecode | string | Contract bytecode |
+| function_sighashes | array | Function signatures |
+| is_erc20 | boolean | Whether contract is ERC20 |
+| is_erc721 | boolean | Whether contract is ERC721 |
+| is_erc1155 | boolean | Whether contract is ERC1155 |
+| block_number | decimal(38,0) | Block number |
+| block_timestamp | timestamp | Block timestamp |
+| transaction_hash | string | Creation transaction hash |
+| creator_address | string | Creator address |
+| created_at | timestamp | Creation timestamp |
+
+## Sample Query
+
+```sql
+-- Get the number of contracts created per day
+SELECT 
+    DATE_TRUNC('day', created_at) as day,
+    COUNT(*) as contracts_created
+FROM plume.contracts
+WHERE created_at >= NOW() - INTERVAL '30' DAY
+GROUP BY day
+ORDER BY day;
+```
+
+<ContractsSnippet /> 
+=======
 import { ContractsSnippet } from '/snippets/evm/decoded/contracts-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
