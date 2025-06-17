@@ -1,0 +1,43 @@
+---
+title: layerzero.transfers
+sidebarTitle: "Transfers"
+description: Description of the layerzero.transfers table on Dune
+---
+
+import { TransfersSnippet } from '/snippets/layerzero/transfers-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `layerzero.transfers` table contains all cross-chain transfers executed through the LayerZero protocol. Each transfer represents a value transfer event between source and destination chains.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| timestampUpdated | timestamp | Timestamp of the last update |
+| primary_key | string | Unique identifier for the transfer |
+| messages_foreign_key | string | Foreign key reference to the associated message |
+| addr_to | string | Recipient address |
+| type_transfer | string | Type of transfer |
+| symbol | string | Token symbol |
+| token | string | Token address |
+| usd_value | double | USD value of the transfer |
+| _updated_at | timestamp | Last update timestamp |
+| _ingested_at | timestamp | Ingestion timestamp |
+
+## Sample Query
+
+```sql
+-- Get the top tokens by volume transferred in the last 24 hours
+SELECT 
+    symbol,
+    COUNT(*) as transfer_count,
+    SUM(usd_value) as total_volume_usd
+FROM layerzero.transfers
+WHERE timestampUpdated >= NOW() - INTERVAL '24' HOUR
+GROUP BY symbol
+ORDER BY total_volume_usd DESC
+LIMIT 10;
+```
+
+<TransfersSnippet /> 

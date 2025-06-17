@@ -1,0 +1,61 @@
+---
+title: layerzero.messages
+sidebarTitle: "Messages"
+description: Description of the layerzero.messages table on Dune
+---
+
+import { MessagesSnippet } from '/snippets/layerzero/messages-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `layerzero.messages` table contains all cross-chain messages sent through the LayerZero protocol. Each message represents a cross-chain communication event between source and destination chains.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| timestampUpdated | timestamp | Timestamp of the last update |
+| primary_key | string | Unique identifier for the message |
+| transfer_foreign_key | string | Foreign key reference to the transfer |
+| tx_hash_source | string | Transaction hash on the source chain |
+| tx_hash_destination | string | Transaction hash on the destination chain |
+| ts_source | timestamp | Timestamp of the message on source chain |
+| ts_destination | timestamp | Timestamp of the message on destination chain |
+| block_number_source | decimal(38,0) | Block number on the source chain |
+| block_number_destination | decimal(38,0) | Block number on the destination chain |
+| addr_from | string | Address of the message sender |
+| usd_dvn_fee | double | USD value of the DVN fee |
+| usd_executor_fee | double | USD value of the executor fee |
+| usd_value | double | Total USD value of the message |
+| source_contract | string | Contract address on the source chain |
+| source_chain | string | Source chain identifier |
+| source_chain_key | string | Source chain key |
+| source_layer | string | Source chain layer |
+| destination_contract | string | Contract address on the destination chain |
+| destination_chain | string | Destination chain identifier |
+| destination_chain_key | string | Destination chain key |
+| destination_layer | string | Destination chain layer |
+| project | string | Project identifier |
+| state | string | Current state of the message |
+| layerzero_version | string | Version of LayerZero protocol used |
+| uln_version | string | Version of ULN used |
+| _updated_at | timestamp | Last update timestamp |
+| _ingested_at | timestamp | Ingestion timestamp |
+
+## Sample Query
+
+```sql
+-- Get the total number of messages and total value transferred per chain pair
+SELECT 
+    source_chain,
+    destination_chain,
+    COUNT(*) as message_count,
+    SUM(usd_value) as total_value_usd
+FROM layerzero.messages
+WHERE ts_source >= NOW() - INTERVAL '7' DAY
+GROUP BY source_chain, destination_chain
+ORDER BY total_value_usd DESC
+LIMIT 10;
+```
+
+<MessagesSnippet /> 

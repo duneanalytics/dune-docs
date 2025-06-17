@@ -1,0 +1,44 @@
+---
+title: plume.logs_decoded
+sidebarTitle: "Logs Decoded"
+description: Description of the plume.logs_decoded table on Dune
+---
+
+import { LogsDecodedSnippet } from '/snippets/plume/decoded/logs-decoded-snippet.mdx';
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `plume.logs_decoded` table contains decoded event logs from contracts in the Plume blockchain.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| log_index | decimal(38,0) | Log index in transaction |
+| transaction_hash | string | Transaction hash |
+| transaction_index | decimal(38,0) | Transaction index in block |
+| block_hash | string | Block hash |
+| block_number | decimal(38,0) | Block number |
+| address | string | Contract address |
+| data | string | Log data |
+| topics | array | Log topics |
+| block_timestamp | timestamp | Block timestamp |
+| event_name | string | Decoded event name |
+| event_signature | string | Event signature |
+| event_params | json | Decoded event parameters |
+
+## Sample Query
+
+```sql
+-- Get the most common events in the last 24 hours
+SELECT 
+    event_name,
+    COUNT(*) as event_count
+FROM plume.logs_decoded
+WHERE block_timestamp >= NOW() - INTERVAL '24' HOUR
+GROUP BY event_name
+ORDER BY event_count DESC
+LIMIT 10;
+```
+
+<LogsDecodedSnippet /> 
