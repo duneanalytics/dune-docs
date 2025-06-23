@@ -1,25 +1,25 @@
 ---
-title: Migrating from Flipside to Dune
-description: A comprehensive guide for Flipside users transitioning to Dune, including table mappings and SQL syntax differences
+title: "Migrating from Flipside to Dune"
+description: "A comprehensive guide for Flipside users transitioning to Dune, including table mappings and SQL syntax differences"
 ---
 
 # Migrating from Flipside to Dune
 
 With the recent shutdown of Flipside Crypto, we extend a warm welcome to all Flipside users exploring Dune. We understand that migrating your queries and workflows can be a challenging task. This guide is designed to help you transition smoothly by mapping Flipside's data tables to Dune's and highlighting the key differences between their respective SQL query engines.
 
-Dune offers a powerful platform for blockchain analytics, powered by a community of thousands of creators. We're excited to have you join us!
+Dune offers a powerful platform for blockchain analytics, powered by a community of thousands of creators. We're excited to have you join us\!
 
 ## Key Differences at a Glance
 
 For a quick overview, here are some of the main differences between the Flipside and Dune platforms:
 
-| Feature | Flipside | Dune |
-| --- | --- | --- |
-| **Query Engine** | Snowflake SQL | Dune SQL (based on Trino) |
-| **Table Naming** | `database.schema.table` | `schema.table` (e.g., `tokens.transfers`) |
-| **Data Structure** | mostly raw tables | Layered approach: Raw, Decoded, and Curated Data |
-| **Community** | - | Active Discord, DuneCon, Bounties, and a vast library of community-generated queries |
-| **API Access** | Yes | Yes, with a generous free tier to get you started |
+| Feature            | Flipside                | Dune                                                                                 |
+| ------------------ | ----------------------- | ------------------------------------------------------------------------------------ |
+| **Query Engine**   | Snowflake SQL           | Dune SQL (based on Trino)                                                            |
+| **Table Naming**   | `database.schema.table` | `schema.table` (e.g., `tokens.transfers`)                                            |
+| **Data Structure** | mostly raw tables       | Layered approach: Raw, Decoded, and Curated Data                                     |
+| **Community**      | -                       | Active Discord, DuneCon, Bounties, and a vast library of community-generated queries |
+| **API Access**     | Yes                     | Yes, with a generous free tier to get you started                                    |
 
 ---
 
@@ -27,66 +27,66 @@ For a quick overview, here are some of the main differences between the Flipside
 
 Below is a comprehensive mapping of Flipside's tables to their Dune equivalents. We've done our best to find the closest match. In Dune, data is often more modular, so a single Flipside table might map to multiple Dune tables or require a `JOIN` operation to achieve the same result. Use the search bar in Dune's data explorer to find these tables.
 
-| Flipside Table | Dune Table(s) | Migration Notes |
-| :--- | :--- | :--- |
-| `EZ_DEPOSITS` | `beacon.deposits` | Contains beacon chain deposit data. The mapping is straightforward. Both tables serve the same purpose of tracking deposits into the consensus layer. |
-| `EZ_WITHDRAWALS` | `beacon.withdrawals` | Contains beacon chain withdrawal data. This is a direct one-to-one mapping. |
-| `FACT_ATTESTATIONS` | `beacon.attestations` | Holds details on validator attestations. This is a direct one-to-one mapping. |
-| `FACT_BLOB_SIDECARS` | `beacon.blobs` | Contains data on blob sidecars from the beacon chain RPC. This is a direct one-to-one mapping. |
-| `FACT_BLOCKS` | `beacon.blocks` | Contains consensus layer block data. This is a direct one-to-one mapping for raw block information. |
-| `FACT_DEPOSITS` | `beacon.deposits` | Contains beacon chain deposit data. This is a direct mapping. |
-| `FACT_VALIDATORS` | `beacon.validators` | Holds information about consensus layer validators. This is a direct one-to-one mapping. |
-| `FACT_VALIDATOR_BALANCES` | `beacon.validator_day_summaries` | Provides validator balance information. **Note the difference in granularity:** Flipside's table offered raw balance data, whereas Dune's `validator_day_summaries` provides balances aggregated by day, which is more efficient for daily trend analysis. |
-| `FACT_WITHDRAWALS` | `beacon.withdrawals` | Details withdrawals from the beacon chain. This is a direct one-to-one mapping. |
-| `DIM_ORACLE_FEEDS` | `chainlink_ethereum.oracle_addresses` | Provides metadata for Chainlink oracles. **Note:** Replace `ethereum` with your target chain (e.g., `chainlink_optimism.oracle_addresses` for Optimism). |
-| `EZ_ORACLE_FEEDS` | `chainlink.price_feeds` | Contains Chainlink price feed data. Dune's `chainlink.price_feeds` is a curated Spell that provides similar data, often with a more standardized schema across different chains. |
-| `FACT_ORACLE_FEEDS` | `chainlink.price_feeds` | Contains Chainlink price feed data. This maps directly to Dune's curated `chainlink.price_feeds` Spell. |
-| `DIM_CONTRACTS` | `ethereum.contracts` | Contains metadata for deployed contracts. **Note:** Replace `ethereum` with your target chain. Dune also has a cross-chain `evms.contracts` table for multi-chain analysis. |
-| `DIM_CONTRACT_ABIS` | `ethereum.contracts` | Holds contract ABI data. Flipside had a separate table, but Dune integrates ABI information directly into the contracts table. |
-| `DIM_EVENT_SIGNATURES` | `abi.signatures`; `decoding.evm_signatures` | Contains event signatures for decoding. Dune provides `abi.signatures` for general signatures and `decoding.evm_signatures` for those actively used in decoding EVM data. |
-| `DIM_FUNCTION_SIGNATURES` | `abi.signatures`; `decoding.evm_signatures` | Contains function signatures for decoding. Similar to event signatures, Dune separates these into general and EVM-specific tables. |
-| `DIM_LABELS` | `labels.addresses`; `labels.owner_addresses`; `labels.owner_details` | Contains address labels. **Note the structural difference:** Flipside used a single table, whereas Dune employs a more granular, multi-table structure that separates labels for addresses from labels for entities/owners. You may need to `JOIN` these tables. |
-| `EZ_BALANCE_DELTAS` | `balances_ethereum.erc20_day`; `ethereum.traces` | Provides token and native asset balance changes. On Dune, you can calculate balance deltas from daily balance tables or derive them from transfer tables like `erc20_ethereum.evt_Transfer` and `ethereum.traces` (`value > 0`). |
-| `EZ_CURRENT_BALANCES` | `balances_ethereum.erc20_latest` | Provides current wallet balances. Dune's `balances_ethereum.erc20_latest` table provides the most recent balance for tokens, similar to Flipside's convenience table. |
-| `EZ_NATIVE_TRANSFERS` | `ethereum.traces` | Contains transfers of the chain's native asset. **This is a key difference:** Flipside provided a convenient table. On Dune, you should query the `ethereum.traces` table where `value > 0` to capture all native asset transfers, including internal ones. |
-| `EZ_SNAPSHOT` | `dune.shot.dataset_follows`<br/>`dune.shot.dataset_proposals_view`<br/>`dune.shot.dataset_spaces_view`<br/>`dune.shot.dataset_users`<br/>`dune.shot.dataset_votes_view` | Contains off-chain Snapshot voting data. **Note the structural difference:** Flipside aggregated this into a single table. Dune ingests Snapshot's data into multiple, more granular tables that you will need to `JOIN` using proposal or space IDs. |
-| `EZ_TOKEN_TRANSFERS` | `erc20_ethereum.evt_Transfer` | Contains ERC-20 token transfer events. Dune's decoded event tables provide the raw transfer data. For aggregated, cleaned data across all chains, use the curated `tokens.transfers` table. |
-| `FACT_BLOCKS` | `ethereum.blocks` | Provides execution-layer block data. For raw block data, `ethereum.blocks` is a direct match. For aggregated metrics like daily gas fees, Dune offers pre-computed tables in the `dune` schema. |
-| `FACT_CONTRACT_READS` | Decoded call tables (e.g., `aave_v3_ethereum.AToken_call_balanceOf`) | Contains data from contract reads. On Dune, this corresponds to decoded call tables for specific protocols. Use the data explorer to find the specific contract and function you need. |
-| `FACT_DECODED_EVENT_LOGS` | Decoded event tables (e.g., `erc20_ethereum.evt_Transfer`) | Contains decoded event logs. This is a core feature of Dune. Instead of one large table, Dune has individual decoded event tables for popular contracts, which are much more efficient to query. |
-| `FACT_DECODED_TRACES` | Decoded call tables (e.g., `uniswap_v3_ethereum.Factory_call_createPool`) | Contains decoded trace/call data. Similar to events, Dune provides decoded call tables for specific function calls on popular contracts. |
-| `FACT_ETH_BALANCES` | `balances_ethereum.native_day` | Contains historical ETH balances. Dune's daily balance tables offer daily snapshots of balances, which is often more performant than querying raw transfer data to reconstruct balances. |
-| `FACT_EVENT_LOGS` | `ethereum.logs` | Contains raw, undecoded event logs. This is a direct one-to-one mapping. |
-| `FACT_TOKEN_BALANCES` | `balances_ethereum.erc20_day` | Contains historical token balances. Dune's daily balance tables offer daily snapshots, providing a more efficient way to query historical balances than reconstructing from transfers. |
-| `FACT_TOKEN_TRANSFERS` | `erc20_ethereum.evt_Transfer` | Contains raw ERC-20 token transfer events. This maps to the raw decoded event table on Dune for the `Transfer` event on ERC-20 contracts. |
-| `FACT_TRANSACTIONS` | `ethereum.transactions` | Contains execution-layer transaction data. This is a direct one-to-one mapping. |
-| `DIM_DEX_LIQUIDITY_POOLS` | `dex.pools` | Contains information on DEX liquidity pools. Dune's `dex.pools` Spell aims to provide standardized pool data across a wide variety of DEXs. |
-| `EZ_BRIDGE_ACTIVITY` | `bridge.flows` | Aggregates bridge deposit and withdrawal activity. Dune's `bridge.flows` is a comprehensive curated Spell that covers a wide array of bridging protocols with a standardized schema. |
-| `EZ_DEX_SWAPS` | `dex.trades` | Contains DEX swap events. **This is a major improvement on Dune.** The `dex.trades` Spell is a powerful curated table that aggregates and standardizes swap data from a much wider range of protocols than Flipside's table. |
-| `EZ_LENDING_BORROWS` | `lending.borrows` | Contains asset borrowing events from lending protocols. Dune's `lending.borrows` Spell aggregates this data across many protocols into a standardized format. |
-| `EZ_LENDING_DEPOSITS` | `lending.supplies` | Contains asset deposit events into lending protocols. Dune's `lending.supplies` Spell aggregates this data across many protocols into a standardized format. |
-| `EZ_LENDING_FLASHLOANS` | `lending.flashloans` | Contains flash loan transactions. Dune's `lending.flashloans` Spell aggregates this data across protocols that support flash loans. |
-| `EZ_LENDING_LIQUIDATIONS` | `lending.liquidations` | Contains collateral liquidation events. Dune's `lending.liquidations` Spell aggregates liquidation data across multiple lending protocols. |
-| `EZ_LENDING_REPAYMENTS` | `lending.repayments` | Contains loan repayment events. Dune's `lending.repayments` Spell aggregates this data across multiple lending protocols. |
-| `EZ_LENDING_WITHDRAWS` | `lending.withdraws` | Contains asset withdrawal events from lending protocols. Dune's `lending.withdraws` Spell aggregates this data across many protocols. |
-| `EZ_LIQUID_STAKING_DEPOSITS` | `staking_ethereum.deposits` | Contains liquid staking deposit events. Dune's liquid staking tables aggregate data from a wide range of liquid staking providers. |
-| `EZ_LIQUID_STAKING_WITHDRAWALS` | `staking_ethereum.withdrawals` | Contains liquid staking withdrawal events. Dune's liquid staking tables aggregate data from various liquid staking providers. |
-| `EZ_ENS_DOMAINS` | `labels.ens` | Contains data on ENS domain registrations. This maps well to Dune's `labels.ens` table. |
-| `FACT_DAO_VOTES` | `dao.votes` | Contains DAO voting records. Dune's `dao.votes` Spell aims to standardize voting data across different DAO frameworks. |
-| `FACT_REGISTRATIONS` | `ens.view_registrations` | Contains ENS registration records. This is a direct mapping. |
-| `FACT_RENEWALS` | `ens.view_renewals` | Contains ENS domain renewal records. This is a direct mapping. |
-| `FACT_TRANSFERS` | `nft.transfers` where `nft_contract_address` is ENS | Contains ENS domain transfer events. On Dune, you would query the `nft.transfers` table and filter for the ENS contract address (`0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85`). |
-| `EZ_GOVERNANCE_VOTES` | `governance.votes` | Contains records of governance votes. Dune's `governance.votes` spell covers multiple protocols, including Maker. |
-| `FACT_CAT_BITE` | `maker_ethereum.cat_evt_bite` | Contains MakerDAO liquidation events. This is a direct mapping to the raw event table in Dune. |
-| `DIM_NFT_COLLECTION_METADATA` | `nft.collections` | Contains metadata for NFT collections. Dune's `nft.collections` Spell provides curated metadata for a vast number of NFT collections. |
-| `EZ_NFT_MINTS` | `nft.mints` | Contains NFT mint events. Dune's `nft.mints` is a curated Spell that identifies and standardizes minting events across various standards. |
-| `EZ_NFT_SALES` | `nft.trades` | Contains NFT sale events. **This is another major improvement on Dune.** The `nft.trades` Spell is a powerful abstraction that aggregates sales across dozens of marketplaces into a single, clean table. |
-| `EZ_NFT_TRANSFERS` | `nft.transfers` | Contains NFT transfer events. Dune's `nft.transfers` curated table is the standard place to find all ERC721 and ERC1155 transfers. |
-| `EZ_ASSET_METADATA` | `tokens.erc20`, `tokens.nft` | Contains asset metadata. Dune separates metadata for fungible (`tokens.erc20`) and non-fungible (`tokens.nft`) tokens into dedicated, curated tables. |
-| `EZ_PRICES_HOURLY` | `prices.usd_hourly` | Provides hourly token prices. This is a direct mapping to Dune's hourly prices table. Dune also offers `prices.usd_daily` and `prices.usd_latest`. |
-| `EZ_SWAPS` | `dex.trades` | Contains DEX swap events. This maps to Dune's comprehensive `dex.trades` Spell, which covers a much wider array of DEXs. |
-| `DIM_DATES` | `utils.days`, `utils.hours`, `utils.minutes` | Provides a table of dates for time-series analysis. Dune offers several utility tables for different time granularities to simplify `JOIN` operations. |
-| `FACT_TRACES` | `ethereum.traces` | Contains raw trace data for internal contract calls. This is a direct one-to-one mapping. |
+| Flipside Table                  | Dune Table(s)                                                                                                                                                               | Migration Notes                                                                                                                                                                                                                                                  |
+| :------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `EZ_DEPOSITS`                   | `beacon.deposits`                                                                                                                                                           | Contains beacon chain deposit data. The mapping is straightforward. Both tables serve the same purpose of tracking deposits into the consensus layer.                                                                                                            |
+| `EZ_WITHDRAWALS`                | `beacon.withdrawals`                                                                                                                                                        | Contains beacon chain withdrawal data. This is a direct one-to-one mapping.                                                                                                                                                                                      |
+| `FACT_ATTESTATIONS`             | `beacon.attestations`                                                                                                                                                       | Holds details on validator attestations. This is a direct one-to-one mapping.                                                                                                                                                                                    |
+| `FACT_BLOB_SIDECARS`            | `beacon.blobs`                                                                                                                                                              | Contains data on blob sidecars from the beacon chain RPC. This is a direct one-to-one mapping.                                                                                                                                                                   |
+| `FACT_BLOCKS`                   | `beacon.blocks`                                                                                                                                                             | Contains consensus layer block data. This is a direct one-to-one mapping for raw block information.                                                                                                                                                              |
+| `FACT_DEPOSITS`                 | `beacon.deposits`                                                                                                                                                           | Contains beacon chain deposit data. This is a direct mapping.                                                                                                                                                                                                    |
+| `FACT_VALIDATORS`               | `beacon.validators`                                                                                                                                                         | Holds information about consensus layer validators. This is a direct one-to-one mapping.                                                                                                                                                                         |
+| `FACT_VALIDATOR_BALANCES`       | `beacon.validator_day_summaries`                                                                                                                                            | Provides validator balance information. **Note the difference in granularity:** Flipside's table offered raw balance data, whereas Dune's `validator_day_summaries` provides balances aggregated by day, which is more efficient for daily trend analysis.       |
+| `FACT_WITHDRAWALS`              | `beacon.withdrawals`                                                                                                                                                        | Details withdrawals from the beacon chain. This is a direct one-to-one mapping.                                                                                                                                                                                  |
+| `DIM_ORACLE_FEEDS`              | `chainlink_ethereum.oracle_addresses`                                                                                                                                       | Provides metadata for Chainlink oracles. **Note:** Replace `ethereum` with your target chain (e.g., `chainlink_optimism.oracle_addresses` for Optimism).                                                                                                         |
+| `EZ_ORACLE_FEEDS`               | `chainlink.price_feeds`                                                                                                                                                     | Contains Chainlink price feed data. Dune's `chainlink.price_feeds` is a curated Spell that provides similar data, often with a more standardized schema across different chains.                                                                                 |
+| `FACT_ORACLE_FEEDS`             | `chainlink.price_feeds`                                                                                                                                                     | Contains Chainlink price feed data. This maps directly to Dune's curated `chainlink.price_feeds` Spell.                                                                                                                                                          |
+| `DIM_CONTRACTS`                 | `ethereum.contracts`                                                                                                                                                        | Contains metadata for deployed contracts. **Note:** Replace `ethereum` with your target chain. Dune also has a cross-chain `evms.contracts` table for multi-chain analysis.                                                                                      |
+| `DIM_CONTRACT_ABIS`             | `ethereum.contracts`                                                                                                                                                        | Holds contract ABI data. Flipside had a separate table, but Dune integrates ABI information directly into the contracts table.                                                                                                                                   |
+| `DIM_EVENT_SIGNATURES`          | `abi.signatures`; `decoding.evm_signatures`                                                                                                                                 | Contains event signatures for decoding. Dune provides `abi.signatures` for general signatures and `decoding.evm_signatures` for those actively used in decoding EVM data.                                                                                        |
+| `DIM_FUNCTION_SIGNATURES`       | `abi.signatures`; `decoding.evm_signatures`                                                                                                                                 | Contains function signatures for decoding. Similar to event signatures, Dune separates these into general and EVM-specific tables.                                                                                                                               |
+| `DIM_LABELS`                    | `labels.addresses`; `labels.owner_addresses`; `labels.owner_details`                                                                                                        | Contains address labels. **Note the structural difference:** Flipside used a single table, whereas Dune employs a more granular, multi-table structure that separates labels for addresses from labels for entities/owners. You may need to `JOIN` these tables. |
+| `EZ_BALANCE_DELTAS`             | `balances_ethereum.erc20_day`; `ethereum.traces`                                                                                                                            | Provides token and native asset balance changes. On Dune, you can calculate balance deltas from daily balance tables or derive them from transfer tables like `erc20_ethereum.evt_Transfer` and `ethereum.traces` (`value > 0`).                                 |
+| `EZ_CURRENT_BALANCES`           | `balances_ethereum.erc20_latest`                                                                                                                                            | Provides current wallet balances. Dune's `balances_ethereum.erc20_latest` table provides the most recent balance for tokens, similar to Flipside's convenience table.                                                                                            |
+| `EZ_NATIVE_TRANSFERS`           | `ethereum.traces`                                                                                                                                                           | Contains transfers of the chain's native asset. **This is a key difference:** Flipside provided a convenient table. On Dune, you should query the `ethereum.traces` table where `value > 0` to capture all native asset transfers, including internal ones.      |
+| `EZ_SNAPSHOT`                   | `dune.shot.dataset_follows`<br />`dune.shot.dataset_proposals_view`<br />`dune.shot.dataset_spaces_view`<br />`dune.shot.dataset_users`<br />`dune.shot.dataset_votes_view` | Contains off-chain Snapshot voting data. **Note the structural difference:** Flipside aggregated this into a single table. Dune ingests Snapshot's data into multiple, more granular tables that you will need to `JOIN` using proposal or space IDs.            |
+| `EZ_TOKEN_TRANSFERS`            | `erc20_ethereum.evt_Transfer`                                                                                                                                               | Contains ERC-20 token transfer events. Dune's decoded event tables provide the raw transfer data. For aggregated, cleaned data across all chains, use the curated `tokens.transfers` table.                                                                      |
+| `FACT_BLOCKS`                   | `ethereum.blocks`                                                                                                                                                           | Provides execution-layer block data. For raw block data, `ethereum.blocks` is a direct match. For aggregated metrics like daily gas fees, Dune offers pre-computed tables in the `dune` schema.                                                                  |
+| `FACT_CONTRACT_READS`           | Decoded call tables (e.g., `aave_v3_ethereum.AToken_call_balanceOf`)                                                                                                        | Contains data from contract reads. On Dune, this corresponds to decoded call tables for specific protocols. Use the data explorer to find the specific contract and function you need.                                                                           |
+| `FACT_DECODED_EVENT_LOGS`       | Decoded event tables (e.g., `erc20_ethereum.evt_Transfer`)                                                                                                                  | Contains decoded event logs. This is a core feature of Dune. Instead of one large table, Dune has individual decoded event tables for popular contracts, which are much more efficient to query.                                                                 |
+| `FACT_DECODED_TRACES`           | Decoded call tables (e.g., `uniswap_v3_ethereum.Factory_call_createPool`)                                                                                                   | Contains decoded trace/call data. Similar to events, Dune provides decoded call tables for specific function calls on popular contracts.                                                                                                                         |
+| `FACT_ETH_BALANCES`             | `balances_ethereum.native_day`                                                                                                                                              | Contains historical ETH balances. Dune's daily balance tables offer daily snapshots of balances, which is often more performant than querying raw transfer data to reconstruct balances.                                                                         |
+| `FACT_EVENT_LOGS`               | `ethereum.logs`                                                                                                                                                             | Contains raw, undecoded event logs. This is a direct one-to-one mapping.                                                                                                                                                                                         |
+| `FACT_TOKEN_BALANCES`           | `balances_ethereum.erc20_day`                                                                                                                                               | Contains historical token balances. Dune's daily balance tables offer daily snapshots, providing a more efficient way to query historical balances than reconstructing from transfers.                                                                           |
+| `FACT_TOKEN_TRANSFERS`          | `erc20_ethereum.evt_Transfer`                                                                                                                                               | Contains raw ERC-20 token transfer events. This maps to the raw decoded event table on Dune for the `Transfer` event on ERC-20 contracts.                                                                                                                        |
+| `FACT_TRANSACTIONS`             | `ethereum.transactions`                                                                                                                                                     | Contains execution-layer transaction data. This is a direct one-to-one mapping.                                                                                                                                                                                  |
+| `DIM_DEX_LIQUIDITY_POOLS`       | `dex.pools`                                                                                                                                                                 | Contains information on DEX liquidity pools. Dune's `dex.pools` Spell aims to provide standardized pool data across a wide variety of DEXs.                                                                                                                      |
+| `EZ_BRIDGE_ACTIVITY`            | `bridge.flows`                                                                                                                                                              | Aggregates bridge deposit and withdrawal activity. Dune's `bridge.flows` is a comprehensive curated Spell that covers a wide array of bridging protocols with a standardized schema.                                                                             |
+| `EZ_DEX_SWAPS`                  | `dex.trades`                                                                                                                                                                | Contains DEX swap events. **This is a major improvement on Dune.** The `dex.trades` Spell is a powerful curated table that aggregates and standardizes swap data from a much wider range of protocols than Flipside's table.                                     |
+| `EZ_LENDING_BORROWS`            | `lending.borrows`                                                                                                                                                           | Contains asset borrowing events from lending protocols. Dune's `lending.borrows` Spell aggregates this data across many protocols into a standardized format.                                                                                                    |
+| `EZ_LENDING_DEPOSITS`           | `lending.supplies`                                                                                                                                                          | Contains asset deposit events into lending protocols. Dune's `lending.supplies` Spell aggregates this data across many protocols into a standardized format.                                                                                                     |
+| `EZ_LENDING_FLASHLOANS`         | `lending.flashloans`                                                                                                                                                        | Contains flash loan transactions. Dune's `lending.flashloans` Spell aggregates this data across protocols that support flash loans.                                                                                                                              |
+| `EZ_LENDING_LIQUIDATIONS`       | `lending.liquidations`                                                                                                                                                      | Contains collateral liquidation events. Dune's `lending.liquidations` Spell aggregates liquidation data across multiple lending protocols.                                                                                                                       |
+| `EZ_LENDING_REPAYMENTS`         | `lending.repayments`                                                                                                                                                        | Contains loan repayment events. Dune's `lending.repayments` Spell aggregates this data across multiple lending protocols.                                                                                                                                        |
+| `EZ_LENDING_WITHDRAWS`          | `lending.withdraws`                                                                                                                                                         | Contains asset withdrawal events from lending protocols. Dune's `lending.withdraws` Spell aggregates this data across many protocols.                                                                                                                            |
+| `EZ_LIQUID_STAKING_DEPOSITS`    | `staking_ethereum.deposits`                                                                                                                                                 | Contains liquid staking deposit events. Dune's liquid staking tables aggregate data from a wide range of liquid staking providers.                                                                                                                               |
+| `EZ_LIQUID_STAKING_WITHDRAWALS` | `staking_ethereum.withdrawals`                                                                                                                                              | Contains liquid staking withdrawal events. Dune's liquid staking tables aggregate data from various liquid staking providers.                                                                                                                                    |
+| `EZ_ENS_DOMAINS`                | `labels.ens`                                                                                                                                                                | Contains data on ENS domain registrations. This maps well to Dune's `labels.ens` table.                                                                                                                                                                          |
+| `FACT_DAO_VOTES`                | `dao.votes`                                                                                                                                                                 | Contains DAO voting records. Dune's `dao.votes` Spell aims to standardize voting data across different DAO frameworks.                                                                                                                                           |
+| `FACT_REGISTRATIONS`            | `ens.view_registrations`                                                                                                                                                    | Contains ENS registration records. This is a direct mapping.                                                                                                                                                                                                     |
+| `FACT_RENEWALS`                 | `ens.view_renewals`                                                                                                                                                         | Contains ENS domain renewal records. This is a direct mapping.                                                                                                                                                                                                   |
+| `FACT_TRANSFERS`                | `nft.transfers` where `nft_contract_address` is ENS                                                                                                                         | Contains ENS domain transfer events. On Dune, you would query the `nft.transfers` table and filter for the ENS contract address (`0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85`).                                                                                  |
+| `EZ_GOVERNANCE_VOTES`           | `governance.votes`                                                                                                                                                          | Contains records of governance votes. Dune's `governance.votes` spell covers multiple protocols, including Maker.                                                                                                                                                |
+| `FACT_CAT_BITE`                 | `maker_ethereum.cat_evt_bite`                                                                                                                                               | Contains MakerDAO liquidation events. This is a direct mapping to the raw event table in Dune.                                                                                                                                                                   |
+| `DIM_NFT_COLLECTION_METADATA`   | `nft.collections`                                                                                                                                                           | Contains metadata for NFT collections. Dune's `nft.collections` Spell provides curated metadata for a vast number of NFT collections.                                                                                                                            |
+| `EZ_NFT_MINTS`                  | `nft.mints`                                                                                                                                                                 | Contains NFT mint events. Dune's `nft.mints` is a curated Spell that identifies and standardizes minting events across various standards.                                                                                                                        |
+| `EZ_NFT_SALES`                  | `nft.trades`                                                                                                                                                                | Contains NFT sale events. **This is another major improvement on Dune.** The `nft.trades` Spell is a powerful abstraction that aggregates sales across dozens of marketplaces into a single, clean table.                                                        |
+| `EZ_NFT_TRANSFERS`              | `nft.transfers`                                                                                                                                                             | Contains NFT transfer events. Dune's `nft.transfers` curated table is the standard place to find all ERC721 and ERC1155 transfers.                                                                                                                               |
+| `EZ_ASSET_METADATA`             | `tokens.erc20`, `tokens.nft`                                                                                                                                                | Contains asset metadata. Dune separates metadata for fungible (`tokens.erc20`) and non-fungible (`tokens.nft`) tokens into dedicated, curated tables.                                                                                                            |
+| `EZ_PRICES_HOURLY`              | `prices.usd_hourly`                                                                                                                                                         | Provides hourly token prices. This is a direct mapping to Dune's hourly prices table. Dune also offers `prices.usd_daily` and `prices.usd_latest`.                                                                                                               |
+| `EZ_SWAPS`                      | `dex.trades`                                                                                                                                                                | Contains DEX swap events. This maps to Dune's comprehensive `dex.trades` Spell, which covers a much wider array of DEXs.                                                                                                                                         |
+| `DIM_DATES`                     | `utils.days`, `utils.hours`, `utils.minutes`                                                                                                                                | Provides a table of dates for time-series analysis. Dune offers several utility tables for different time granularities to simplify `JOIN` operations.                                                                                                           |
+| `FACT_TRACES`                   | `ethereum.traces`                                                                                                                                                           | Contains raw trace data for internal contract calls. This is a direct one-to-one mapping.                                                                                                                                                                        |
 
 ---
 
@@ -101,6 +101,7 @@ Let's walk through the most common changes you'll need to make to your queries.
 In Dune, blockchain addresses, transaction hashes, and other raw byte data are stored as `VARBINARY` types, not simple strings. When you filter by or insert these values in your queries, you **must** prefix them with `0x`. This is one of the most common tripping points for new users.
 
 **Dune SQL (Correct):**
+
 ```sql
 -- Filtering for transactions to a specific address
 SELECT *
@@ -109,6 +110,7 @@ WHERE "to" = 0x742d35Cc6634C0532925a3b844Bc454e4438f44e -- Uniswap V2: Router 2
 ```
 
 **Flipside/Snowflake (and incorrect in Dune):**
+
 ```sql
 -- This will fail or return no results in Dune
 SELECT *
@@ -117,7 +119,7 @@ WHERE "to" = '0x742d35Cc6634C0532925a3b844Bc454e4438f44e'
 ```
 
 <Note>
-**Pro tip:** When copying addresses from block explorers, they typically include the `0x` prefix. In Dune, simply remove the quotes around the address to use it as a `VARBINARY` literal.
+  **Pro tip:** When copying addresses from block explorers, they typically include the `0x` prefix. In Dune, simply remove the quotes around the address to use it as a `VARBINARY` literal.
 </Note>
 
 ### 2. Common Syntax Adjustments
@@ -125,28 +127,33 @@ WHERE "to" = '0x742d35Cc6634C0532925a3b844Bc454e4438f44e'
 Here are some of the most frequent syntax adjustments you'll encounter.
 
 #### Identifier Quoting
+
 This should be an easy transition. Both Snowflake and Trino follow the ANSI SQL standard and use double quotes (`"`) to quote identifiers (e.g., column names with spaces or reserved words like `"from"` or `"to"`). Your quoting syntax will likely not need to change.
 
-*   **Snowflake/Dune SQL (Trino):** `SELECT "from", "to" FROM "my_table";`
+- **Snowflake/Dune SQL (Trino):** `SELECT "from", "to" FROM "my_table";`
 
 #### Data Type Casting
+
 Snowflake commonly uses `::` for casting. Dune SQL uses the ANSI SQL standard `CAST(column AS TYPE)`.
 
-*   **Snowflake:** `SELECT '123'::integer, '2023-01-01'::date;`
-*   **Dune SQL:** `SELECT CAST('123' AS integer), CAST('2023-01-01' AS date);`
+- **Snowflake:** `SELECT '123'::integer, '2023-01-01'::date;`
+- **Dune SQL:** `SELECT CAST('123' AS integer), CAST('2023-01-01' AS date);`
 
 #### Accessing JSON Data
+
 Accessing nested data in JSON objects requires specific functions in Trino. While Snowflake uses a colon (`:`), Trino uses `json_extract_scalar`.
 
-*   **Snowflake:** `SELECT my_json_column:key::string FROM my_table;`
-*   **Dune SQL (Trino):** `SELECT json_extract_scalar(my_json_column, '$.key') FROM my_table;`
+- **Snowflake:** `SELECT my_json_column:key::string FROM my_table;`
+- **Dune SQL (Trino):** `SELECT json_extract_scalar(my_json_column, '$.key') FROM my_table;`
 
 ### 3. Key Function and Pattern Changes
 
 #### Flattening Arrays with `UNNEST`
+
 To un-nest array elements into their own rows, Snowflake uses `LATERAL FLATTEN()`. The Trino equivalent is `UNNEST`.
 
 **Snowflake:**
+
 ```sql
 SELECT t.id, value:name::string
 FROM my_table t,
@@ -154,6 +161,7 @@ LATERAL FLATTEN(input => t.my_json_array);
 ```
 
 **Dune SQL (Trino):**
+
 ```sql
 SELECT t.id, item.name
 FROM my_table t
@@ -161,9 +169,11 @@ CROSS JOIN UNNEST(t.my_json_array) AS t(item)
 ```
 
 #### Filtering Window Functions (Replacing `QUALIFY`)
+
 Snowflake's `QUALIFY` clause is a convenient way to filter the results of a window function. `QUALIFY` is not available in Dune SQL. The standard approach is to use a subquery or a Common Table Expression (CTE), which works perfectly in Trino.
 
 **Snowflake:**
+
 ```sql
 SELECT *
 FROM my_table
@@ -171,6 +181,7 @@ QUALIFY ROW_NUMBER() OVER (PARTITION BY id ORDER BY timestamp DESC) = 1;
 ```
 
 **Dune SQL (Trino):**
+
 ```sql
 WITH ranked_rows AS (
     SELECT *,
@@ -186,7 +197,9 @@ WHERE rn = 1;
 Here are some practical examples of migrating common Flipside query patterns to Dune:
 
 #### Example 1: Daily DEX Volume Analysis
+
 **Flipside Pattern:**
+
 ```sql
 SELECT 
     block_timestamp::date as date,
@@ -198,6 +211,7 @@ ORDER BY 1;
 ```
 
 **Dune Equivalent:**
+
 ```sql
 SELECT 
     DATE_TRUNC('day', block_time) as date,
@@ -210,7 +224,9 @@ ORDER BY 1;
 ```
 
 #### Example 2: Token Balance Analysis
+
 **Flipside Pattern:**
+
 ```sql
 SELECT 
     user_address,
@@ -221,6 +237,7 @@ WHERE contract_address = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'::string;
 ```
 
 **Dune Equivalent:**
+
 ```sql
 SELECT 
     address as user_address,
@@ -237,6 +254,7 @@ Many Flipside tables encouraged filtering by `block_timestamp::date` for perform
 You can find partition keys in the schema browser in the query editor.
 
 **Performance Best Practices:**
+
 - Always filter by `block_time` or `block_date` when available
 - Use the curated Spells (like `dex.trades`, `nft.trades`) instead of raw tables when possible
 - Limit your date ranges to what you actually need for analysis
@@ -248,23 +266,26 @@ You can find partition keys in the schema browser in the query editor.
 
 Dune's approach to data is layered, providing different levels of abstraction to make analysis easier:
 
-1.  **Raw Data:** Raw, unprocessed data from the blockchain (e.g., `ethereum.blocks`, `ethereum.transactions`). This is your source of truth.
-2.  **Decoded Data:** Raw data is decoded into human-readable tables. For example, contract events are decoded into tables like `aave_v3_ethereum.Supply`. This saves you the effort of dealing with logs and topics.
-3.  **Curated Data (Spells):** These are higher-level abstractions built and maintained by the community. Tables like `dex.trades` or `nft.trades` aggregate data across multiple protocols, making cross-platform analysis simple.
+1. **Raw Data:** Raw, unprocessed data from the blockchain (e.g., `ethereum.blocks`, `ethereum.transactions`). This is your source of truth.
+2. **Decoded Data:** Raw data is decoded into human-readable tables. For example, contract events are decoded into tables like `aave_v3_ethereum.Supply`. This saves you the effort of dealing with logs and topics.
+3. **Curated Data (Spells):** These are higher-level abstractions built and maintained by the community. Tables like `dex.trades` or `nft.trades` aggregate data across multiple protocols, making cross-platform analysis simple.
 
 We encourage you to explore the [data catalog](/data-catalog) in the Dune app to discover the wealth of datasets available.
 
 ## Common Migration Challenges and Solutions
 
 ### Challenge 1: Missing Convenience Tables
-**Issue:** Flipside provided many "EZ_" convenience tables that aggregated complex data.
+
+**Issue:** Flipside provided many "EZ\_" convenience tables that aggregated complex data.
 **Solution:** Dune's curated Spells (like `dex.trades`, `nft.trades`) often provide even better aggregations. If a specific convenience table doesn't exist, you can often recreate it using raw or decoded data.
 
 ### Challenge 2: Different Table Schemas
+
 **Issue:** Column names and data types may differ between platforms.
 **Solution:** Use Dune's data explorer to examine table schemas. The `DESCRIBE` command can also help: `DESCRIBE dex.trades;`
 
 ### Challenge 3: Cross-Chain Analysis
+
 **Issue:** Flipside often had separate databases per chain.
 **Solution:** Dune's curated tables often include a `blockchain` column, making cross-chain analysis much easier. Simply add `WHERE blockchain IN ('ethereum', 'polygon')` to your queries.
 
@@ -272,10 +293,11 @@ We encourage you to explore the [data catalog](/data-catalog) in the Dune app to
 
 We know migrating can be tough, but you're not alone. Here are some resources to help you on your journey:
 
-*   **Dune Documentation:** [docs.dune.com](https://dune.com/docs/)
-*   **Dune Discord:** Join our [Discord server](https://discord.gg/dune) to ask questions and connect with thousands of other crypto data wizards.
-*   **Find a Query:** Fork one of the 600,000+ public queries on Dune to get a head start.
-*   **Data Catalog:** Explore our comprehensive [data catalog](/data-catalog) to understand available datasets.
-*   **Query Examples:** Check out our [quickstart guide](/quickstart) for hands-on examples.
+- **Dune Documentation:** [docs.dune.com](https://dune.com/docs/)
+- **Dune Discord:** Join our [Discord server](https://discord.gg/dune) to ask questions and connect with thousands of other crypto data wizards.
+- **Find a Query:** Fork one of the 600,000\+ public queries on Dune to get a head start.
+- **Data Catalog:** Explore our comprehensive [data catalog](/data-catalog) to understand available datasets.
+- **Query Examples:** Check out our [quickstart guide](/quickstart) for hands-on examples.
+- **Onboarding: **Fill out this [onboarding form](https://forms.gle/G3x9mWmW3AYauu6FA) and we’ll schedule a live session to help you.
 
-Welcome to Dune! We can't wait to see what you build.
+Welcome to Dune\! We can't wait to see what you build.
