@@ -1,0 +1,35 @@
+---
+title: xrpl.aggregated_metrics_daily
+sidebarTitle: "Aggregated Metrics Daily"
+description: Description of the xrpl.aggregated_metrics_daily table on Dune
+---
+
+## Table Description
+Contains daily aggregated metrics and statistics for XRP Ledger network activity and performance.
+
+## Column Descriptions
+
+| **Column** | **type** | **Description** |
+| --- | --- | --- |
+| **date** | date | The date for which metrics are aggregated |
+| **issuers_count_daily** | integer | Number of unique token issuers active on this date |
+| **tokens_count_daily** | integer | Number of unique tokens active on this date |
+| **xrp_txn_volume_xrp** | decimal(38,6) | Total XRP transaction volume for the day |
+| **xrp_payment_volume_xrp** | decimal(38,6) | Total XRP payment volume for the day |
+| **dex_traded_tokens_count_daily** | integer | Number of unique tokens traded on DEX on this date |
+| **dex_traders_count_daily** | integer | Number of unique traders on DEX on this date |
+| **dex_pairs_count_daily** | integer | Number of trading pairs on DEX on this date |
+| **dex_xrp_pairs_count_daily** | integer | Number of XRP trading pairs on DEX on this date |
+| **dex_xrp_pair_volume_xrp** | decimal(38,6) | Total volume of XRP pairs traded on DEX for the day |
+| **amm_pools_count_daily** | integer | Number of AMM (Automated Market Maker) pools on this date |
+| **amm_xrp_pools_count_daily** | integer | Number of AMM pools containing XRP on this date |
+| **amm_tvl_xrp** | decimal(38,6) | Total Value Locked (TVL) in AMM pools in XRP |
+| **amm_users_count_daily** | integer | Number of unique users interacting with AMM on this date |
+| **amm_xrp_volume_xrp** | decimal(38,6) | Total XRP volume traded through AMM for the day |
+| **_ingested_at** | timestamp | Data ingestion timestamp |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="xrpl" tableName="aggregated_metrics_daily" /> 

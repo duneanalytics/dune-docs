@@ -1,0 +1,67 @@
+---
+title: XRPL Data
+sidebarTitle: "Overview"
+icon: "star"
+description: XRP Ledger data on Dune
+---
+
+## What is XRPL?
+
+The XRP Ledger (XRPL) is a decentralized, open-source blockchain technology that enables fast, energy-efficient, and reliable digital asset transfers. Developed by Ripple, XRPL is designed to be a sustainable blockchain for payments and financial services, capable of processing 1,500 transactions per second with settlement times of 3-5 seconds.
+
+XRPL operates on a unique consensus protocol that doesn't require mining, making it significantly more energy-efficient than proof-of-work blockchains. The network is maintained by a global community of validators who work together to validate transactions and maintain the integrity of the ledger. This consensus mechanism ensures fast finality while maintaining decentralization and security.
+
+## Key Concepts of XRPL
+
+XRPL's infrastructure is built on several key components that ensure its efficiency, security, and scalability for financial applications. These components work together to provide a robust platform for payments, tokenization, and decentralized finance.
+
+### **Consensus Protocol**
+XRPL uses a unique consensus mechanism called the XRP Ledger Consensus Protocol, which doesn't rely on mining or proof-of-work. Instead, validators work together to agree on the order and validity of transactions. This approach provides fast finality (3-5 seconds), high throughput (1,500 TPS), and energy efficiency while maintaining decentralization.
+
+### **Built-in Decentralized Exchange (DEX)**
+XRPL includes a native decentralized exchange that allows users to trade any issued tokens directly on the ledger without requiring smart contracts. This built-in DEX supports limit orders, offers, and automatic market making, enabling efficient token trading and liquidity provision.
+
+### **Tokenization and Issued Currencies**
+XRPL supports the creation of custom tokens (called "issued currencies" or "IOUs") by any account. These tokens can represent fiat currencies, cryptocurrencies, or any other asset. Each token is identified by a currency code and issuer, allowing for flexible tokenization of real-world assets.
+
+### **Multi-Signing and Security**
+XRPL provides advanced security features including multi-signing capabilities, allowing accounts to require multiple signatures for transactions. This feature is essential for institutional use cases and provides enhanced security for high-value transactions.
+
+### **Escrow and Time-Delayed Payments**
+XRPL includes built-in escrow functionality that allows for time-delayed payments and conditional transactions. This feature enables complex financial instruments like time-locked payments, conditional releases, and automated financial agreements.
+
+### **Payment Channels**
+XRPL supports payment channels for high-frequency, low-latency payments. Payment channels allow parties to conduct numerous off-ledger payments that can be settled on the ledger later, reducing transaction costs and improving performance for micro-payments.
+
+### **Transaction Types and Use Cases**
+XRPL supports various transaction types including:
+- **Payment**: Transfer XRP or issued currencies between accounts
+- **OfferCreate/OfferCancel**: Create or cancel trading offers on the DEX
+- **TrustSet**: Establish trust lines for issued currencies
+- **AccountSet**: Configure account settings and flags
+- **EscrowCreate/EscrowFinish/EscrowCancel**: Manage escrow transactions
+- **PaymentChannelCreate/PaymentChannelFund/PaymentChannelClaim**: Manage payment channels
+
+<CardGroup cols={1}>
+  <Card title="XRP Ledger documentation" icon="link" href="https://xrpl.org/docs">
+    Explore comprehensive documentation on XRP Ledger, detailing its architecture, protocol, and resources for developers.
+  </Card>
+</CardGroup>
+
+## XRPL Data on Dune
+
+XRP Ledger data is organized into several key tables that capture different aspects of on-chain activity, from individual transactions to daily aggregated metrics. These tables provide comprehensive insights into network activity, trading patterns, and ecosystem health.
+
+<CardGroup cols={2}>
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/xrpl/transactions">
+    Detailed transaction data including payment types, account changes, and transaction metadata. Contains all transaction types from payments to DEX trades and account modifications.
+  </Card>
+
+  <Card title="Ledgers" icon="cube" href="/data-catalog/xrpl/ledgers">
+    Core ledger data including ledger headers, consensus information, and validation details. Provides insights into network consensus and ledger-level statistics.
+  </Card>
+
+  <Card title="Aggregated Metrics Daily" icon="chart-line" href="/data-catalog/xrpl/aggregated_metrics_daily">
+    Daily aggregated metrics and statistics for network activity and performance. Includes token issuance, trading volume, DEX activity, and AMM metrics.
+  </Card>
+</CardGroup> 
