@@ -1239,6 +1239,47 @@
           ]
         },
         {
+          "group": "Katana",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/katana/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/katana/raw/blocks",
+                "data-catalog/evm/katana/raw/creation-traces",
+                "data-catalog/evm/katana/raw/logs",
+                "data-catalog/evm/katana/raw/transactions",
+                "data-catalog/evm/katana/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/katana/decoded/overview",
+                "data-catalog/evm/katana/decoded/call-tables",
+                "data-catalog/evm/katana/decoded/event-logs",
+                "data-catalog/evm/katana/decoded/contracts",
+                "data-catalog/evm/katana/decoded/logs-decoded",
+                "data-catalog/evm/katana/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/katana/curated-data/dex/dex-trades",
+                    "data-catalog/evm/katana/curated-data/dex/dex-aggregator-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Lens",
           "icon": "database",
           "iconType": "solid",
