@@ -58,6 +58,8 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
 
     If we can't find the Implementation contract's ABI, you'll need to find it using the relevant chain's blockchain explorer and input it manually.
 
+    You can use the [Etherscan Proxy Contract Checker](https://etherscan.io/proxyContractChecker) to help verify and link proxy contracts with their implementation ABIs.
+
 </Accordion>
 <Accordion title="How do I submit Diamond Proxy contracts?">
     Similar to vanilla Proxy contracts, [EIP-2535](https://eips.ethereum.org/EIPS/eip-2535) contracts can be supported by passing in the address of the Diamond Proxy as well as **a single ABI representing the totality of all the facets interfaces**.
@@ -97,13 +99,15 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
     1. **Identify the duplicate submissions** in your contracts list
     2. **Choose which namespace to keep** (e.g., LiFiDiamond_v2 vs LiFiDiamond)
     3. **Resubmit the contract** and select "Rename a contract" as the reason for resubmission
-    4. **Contact Dune support** via Slack (For Enterprise Customers), Telegram (Paid Customers), Discord, or email (support@dune.com) to remove the duplicate namespace
 
-    **Going forward: Before submitting, search if the contract already exists under your project**
+    ![Resubmission UI example](/web-app/images/alerts/Contract%20resubmission%20sc.png)
+
+    4. **Contact Dune support** via Slack (For Enterprise Customers), Telegram (Paid Customers), [Discord](https://discord.com/invite/ErrzwBz), or email (support@dune.com) to remove the duplicate namespace
+
+    **Going forward: Before submitting, [search](https://dune.com/dune/is-my-contract-decoded-yet-v2) if the contract already exists under your project**
 
     To prevent this:
     - Check existing decoded contracts before submitting
-    - To do this you can check here: https://dune.com/dune/is-my-contract-decoded-yet-v2
     - Use consistent naming conventions across your team
     - Document which contracts are already decoded
 </Accordion>
@@ -114,7 +118,7 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
     1. Resubmit under the correct namespace
     2. Wait for new decoding to complete
     3. Migrate your queries to use the new tables
-    4. Submit a request to Dune support on the removal of the old namespace
+    4. Submit a request to Dune support via Slack (For Enterprise Customers), Telegram (Paid Customers), [Discord](https://discord.com/invite/ErrzwBz), or email (support@dune.com) to remove the old namespace
 
     **Plan your namespace structure carefully before submission.**
 </Accordion>
@@ -198,7 +202,7 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
     After decoding completes, you can check:
 
     1. **Query the decoded tables for multiple contract addresses**
-    2. **Can use dune.com/agent**:
+    2. **Can use [dune.com/agent](https://dune.com/agent)**:
 
     ```sql
     -- Find all contracts with the same bytecode as a specific contract
@@ -238,8 +242,10 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
     ```
 
     **For different versions under same namespace**:
-    - Use different contract names: Token_v1, Token_v2
-    - Submit each version separately
+    - For upgradeable contracts (e.g., proxy pattern), submit only the proxy contract address with the current implementation's ABI.
+    - Use the same project and contract names for consistency.
+    - When a new implementation is deployed, resubmit the proxy contract with the updated ABI and the same names (select 'NO' for several instances).
+    - Do not submit multiple versions as separate contracts; just update the ABI as needed via resubmission.
 </Accordion>
 
 <Accordion title="Multiple teams deployed our contracts. How do we organize the data?">
@@ -319,7 +325,7 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
     ```sql
     -- Query all chains at once
     SELECT * FROM namespace.contract_evt_Event
-    WHERE blockchain IN ('ethereum', 'polygon', 'arbitrum')
+    WHERE chain IN ('ethereum', 'polygon', 'arbitrum')
     ```
 </Accordion>
 
@@ -340,13 +346,41 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
 </Accordion>
 
 <Accordion title="My contract has been upgraded multiple times. Should I submit all versions?">
-    **Yes**, submit each implementation version separately with clear naming:
+    **Handling Upgraded Contracts on Dune**
 
-    - ProjectName_TokenV1
-    - ProjectName_TokenV2
-    - ProjectName_TokenV3
+    When your contract has been upgraded multiple times, you don't need to submit all versions. Here's what you should do:
 
-    This ensures historical data remains queryable and version-specific events are captured.
+    **For Proxy Contracts (Most Common Upgrade Pattern)**
+    If your contract uses a proxy pattern for upgrades:
+
+    - Submit only the proxy contract address with the current implementation's ABI
+    - Use the same project name and contract name for consistency
+    - When you have a new implementation that you want to decode, resubmit the contract with:
+        - Same proxy address
+        - Updated ABI from the new implementation
+        - Same project and contract names
+        - Select 'NO' for "several instances" option
+
+    **Resubmission Process**
+    The documentation specifically mentions resubmissions for cases like yours:
+
+    > Sometimes you need to resubmit a contract because the name is originally submitted wrong, or you need to update the ABI.
+
+    When resubmitting:
+    - Go to the contract submission page
+    - Select the resubmission reason from the dropdown
+    - If your reason isn't listed, provide detailed information about why you're resubmitting to avoid rejection
+
+    **Key Points About Contract Upgrades**
+    - Dune handles upgradeable contracts by allowing ABI updates through resubmission
+    - The documentation notes: "some contracts are upgradeable (i.e., the smart contract code can be modified). In this case we may not have all of the ABIs. ABIs can be checked in the ABI column of the {blockchain}.contracts tables. A contract can always be resubmitted with missing ABIs so we can update our data."
+    - You only need to submit the current/latest version that you want decoded
+
+    **What NOT to Do**
+    - Don't submit multiple versions of the same contract as separate submissions
+    - Don't submit implementation contract addresses directly (for proxy patterns)
+
+    The most efficient approach is to submit your current proxy contract with the latest implementation's ABI, and resubmit when you have significant upgrades that require new decoding.
 </Accordion>
 
 ## Decoding Process FAQs
@@ -391,6 +425,8 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
     - Optimizer settings
     - Constructor parameters embedded in bytecode
 
+    You can use [Etherscan's Find Similar Contracts tool](https://etherscan.io/find-similar-contracts) to check for bytecode similarity and see if your contract matches others on-chain.
+
     You may need to submit contracts individually.
 </Accordion>
 
@@ -406,15 +442,17 @@ In order to properly decode transactions for contracts that fit the [Proxy patte
 </Accordion>
 
 <Accordion title="When should I resubmit vs. submit a new contract?">
-    **Resubmit when**:
-    - Updating ABI for the same contract
-    - Fixing naming errors
-    - Adding missed chains
-
     **New submission when**:
     - Different contract address
     - New version with different address
     - Different contract type in protocol
+    - Adding missed chains
+
+    **Resubmit when**:
+    - Updating ABI for the same contract
+    - Fixing naming errors
+    - Request contract deletion
+    - Submitting for another reason
 </Accordion>
 
 ### Additional Questions?
