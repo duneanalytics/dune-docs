@@ -2425,7 +2425,7 @@
           "pages": [
             "data-catalog/xrpl/overview",
             "data-catalog/xrpl/transactions",
-            "data-catalog/xrpl/ledgers",
+            "data-catalog/xrpl/ledger",
             "data-catalog/xrpl/aggregated_metrics_daily"
           ]
         },
