@@ -1,0 +1,110 @@
+---
+title: xrpl.transactions
+sidebarTitle: "Transactions"
+description: Description of the xrpl.transactions table on Dune
+---
+
+## Table Description
+Contains all transaction data from the XRP Ledger including payment types, account changes, and transaction metadata.
+
+## Column Descriptions
+
+| **Column** | **type** | **Description** |
+| --- | --- | --- |
+| **account** | string | The account that initiated the transaction |
+| **account_txn_id** | string | Unique identifier for the transaction from the account's perspective |
+| **amount** | struct(currency: string, issuer: string, value: string) | The amount being transferred (for payment transactions) |
+| **amount2** | struct(currency: string, issuer: string, value: string) | Secondary amount field for complex transactions |
+| **asset** | struct(currency: string, issuer: string) | Asset information for token-related transactions |
+| **asset2** | struct(currency: string, issuer: string) | Secondary asset information |
+| **asset_class** | string | Classification of the asset being traded |
+| **auth_accounts** | array(struct(authaccount: struct(account: string))) | Accounts authorized for this transaction |
+| **authorize** | string | Account to be authorized |
+| **balance** | struct(currency: string, value: string) | Balance information |
+| **bid_max** | struct(currency: string, issuer: string, value: string) | Maximum bid amount for auction transactions |
+| **bid_min** | struct(currency: string, issuer: string, value: string) | Minimum bid amount for auction transactions |
+| **cancel_after** | long | Timestamp after which the transaction should be cancelled |
+| **channel** | string | Payment channel identifier |
+| **check_id** | string | Unique identifier for a check |
+| **clear_flag** | long | Flag to be cleared from the account |
+| **condition** | string | Condition for conditional transactions |
+| **deliver_max** | struct(currency: string, issuer: string, value: string) | Maximum amount to deliver in a payment |
+| **deliver_min** | struct(currency: string, issuer: string, value: string) | Minimum amount to deliver in a payment |
+| **destination** | string | Destination account for the transaction |
+| **destination_tag** | long | Tag for the destination account |
+| **domain** | string | Domain associated with the account |
+| **email_hash** | string | Hash of the email address |
+| **expiration** | long | Expiration timestamp for the transaction |
+| **fee** | string | Transaction fee in drops |
+| **finish_after** | long | Timestamp after which the transaction should be finished |
+| **flags** | long | Transaction flags |
+| **fulfillment** | string | Fulfillment condition for conditional transactions |
+| **invoice_id** | string | Invoice identifier |
+| **issuer** | string | Issuer of the token |
+| **lp_token_in** | struct(currency: string, issuer: string, value: string) | Liquidity pool token input amount |
+| **lp_token_out** | struct(currency: string, value: string) | Liquidity pool token output amount |
+| **last_ledger_sequence** | long | Last ledger sequence number |
+| **last_update_time** | long | Last update timestamp |
+| **ledger_sequence** | long | Ledger sequence number |
+| **limit_amount** | struct(currency: string, issuer: string, value: string) | Limit amount for trust lines |
+| **memos** | array(struct(Memo: struct(MemoData: string, MemoFormat: string, MemoType: string))) | Transaction memos |
+| **metadata** | string | Transaction metadata in JSON format |
+| **nf_token_broker_fee** | struct(currency: string, issuer: string, value: string) | NFT broker fee |
+| **nf_token_buy_offer** | string | NFT buy offer identifier |
+| **nf_token_id** | string | NFT token identifier |
+| **nf_token_minter** | string | NFT token minter |
+| **nf_token_offers** | array(string) | NFT token offers |
+| **nf_token_sell_offer** | string | NFT sell offer identifier |
+| **nf_token_taxon** | long | NFT token taxon |
+| **offer_sequence** | long | Offer sequence number |
+| **operation_limit** | long | Operation limit |
+| **oracle_document_id** | long | Oracle document identifier |
+| **owner** | string | Owner of the account or asset |
+| **paths** | string | Payment paths for cross-currency payments |
+| **previous_txn_id** | string | Previous transaction identifier |
+| **price_data_series** | array(struct(PriceData: struct(AssetPrice: string, BaseAsset: String, QuoteAsset: string, Scale: long))) | Price data series |
+| **provider** | string | Provider information |
+| **public_key** | string | Public key of the account |
+| **quality_in** | long | Quality in for exchange transactions |
+| **quality_out** | long | Quality out for exchange transactions |
+| **regular_key** | string | Regular key for the account |
+| **send_max** | struct(currency: string, issuer: string, value: string) | Maximum amount to send |
+| **sequence** | long | Account sequence number |
+| **set_flag** | long | Flag to be set on the account |
+| **settle_delay** | long | Settlement delay |
+| **signature** | string | Transaction signature |
+| **signer_entries** | array(struct(SignerEntry: struct(Account: String, SignerWeight: long))) | Signer entries for multi-signing |
+| **signer_quorum** | long | Signer quorum |
+| **signers** | array(struct(Signer: struct(Account: string, SigningPubKey: string, TxnSignature: string))) | Transaction signers |
+| **signing_pub_key** | string | Signing public key |
+| **source_tag** | long | Source tag |
+| **taker_gets** | struct(currency: string, issuer: string, value: string) | Amount the taker gets in an offer |
+| **taker_pays** | struct(currency: string, issuer: string, value: string) | Amount the taker pays in an offer |
+| **tick_size** | long | Tick size for trading |
+| **ticket_count** | long | Number of tickets |
+| **ticket_sequence** | long | Ticket sequence number |
+| **trading_fee** | long | Trading fee |
+| **transaction_type** | string | Type of transaction |
+| **transfer_fee** | long | Transfer fee |
+| **transfer_rate** | long | Transfer rate |
+| **txn_signature** | string | Transaction signature |
+| **unl_modify_disabling** | long | UNL modify disabling flag |
+| **unl_modify_validator** | string | UNL modify validator |
+| **uri** | string | URI associated with the account |
+| **hash** | string | Transaction hash |
+| **ledger_index** | long | Ledger index |
+| **_event_created_at** | timestamp | Event creation timestamp |
+| **_ledger_close_time_human** | string | Human-readable ledger close time |
+| **ledger_close_date** | date | Date when the ledger closed |
+| **_inserted_at** | timestamp | Record insertion timestamp |
+| **message_key** | string | Message key |
+| **e_price** | struct(currency: string, value: string) | Exchange price |
+| **unauthorize** | string | Account to be unauthorized |
+| **amendment** | string | Amendment identifier |
+| **_ingested_at** | timestamp | Data ingestion timestamp |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="xrpl" tableName="transactions" /> 

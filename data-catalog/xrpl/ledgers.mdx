@@ -1,0 +1,38 @@
+---
+title: xrpl.ledger
+sidebarTitle: "Ledger"
+description: Description of the xrpl.ledger table on Dune
+---
+
+## Table Description
+Contains core ledger data from the XRP Ledger including ledger headers, consensus information, and validation details.
+
+## Column Descriptions
+
+| **Column** | **type** | **Description** |
+| --- | --- | --- |
+| **ledger_hash** | string | Unique hash identifier for the ledger |
+| **ledger_index** | bigint | Sequential index number of the ledger |
+| **validated** | boolean | Whether the ledger has been validated by consensus |
+| **account_hash** | string | Hash of the account state tree |
+| **close_flags** | bigint | Flags indicating how the ledger was closed |
+| **close_time** | bigint | Unix timestamp when the ledger was closed |
+| **close_time_human** | string | Human-readable timestamp when the ledger was closed |
+| **close_time_resolution** | bigint | Resolution of the close time in seconds |
+| **close_time_iso** | string | ISO 8601 formatted close time |
+| **parent_close_time** | bigint | Close time of the parent ledger |
+| **parent_hash** | string | Hash of the parent ledger |
+| **total_coins** | string | Total XRP supply in the ledger |
+| **transaction_hash** | string | Hash of the transaction tree |
+| **closed** | boolean | Whether the ledger is closed |
+| **transaction_count** | bigint | Number of transactions included in this ledger |
+| **event_created_at** | timestamp | Timestamp when the ledger event was created |
+| **ledger_close_date** | date | Date when the ledger was closed |
+| **_inserted_at** | timestamp | Record insertion timestamp |
+| **_ingested_at** | timestamp | Data ingestion timestamp |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="xrpl" tableName="ledger" /> 
