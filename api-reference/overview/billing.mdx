@@ -17,10 +17,38 @@ If your execution fails, then no credits are charged. If you execute a query but
 | Queries Endpoint | Available on Plus and Premium |
 | Webhooks (Alerts) | 1 on Free <br></br> 5 on Plus <br></br> 50 on Premium |
 
-A datapoint applies to query results after the query is run, and can in most cases be thought of `rows * columns` with an additional limit of 100 avg bytes per cell in a set of results. This can be expressed as: 
+A datapoint applies to query results after the query is run, and can in most cases be thought of `rows * columns` with an additional limit of 100 avg bytes per cell in a set of results. This can be expressed as:
 
-```math
-Credits = Datapoints/1000 = max(rows*columns, ceil(totalbytes/100))/1000
+$$
+Credits = \frac{Datapoints}{1000} = \frac{\max(\text{rows} * \text{columns}, \lceil \frac{\text{totalbytes}}{100} \rceil)}{1000}
+$$
+
+**Byte-Based Calculation Details**
+
+When calculating datapoints based on total bytes, cells that exceed 100 bytes will "spill over" into additional cells. Here's how this works:
+
+**Example Table:**
+```
++-----+-----+-----+
+| A1  | B1  | C1  |
++-----+-----+-----+
+| A2  | B2  | C2  |
++-----+-----+-----+
+| A3  | B3  | C3  |
++-----+-----+-----+
 ```
 
-Any API usage billing will be based on what account the API key is associated with. If you use your team api key to call a public query belonging to yourself, the billing will be associated to the team (and vice versa).
+**Spillover Calculation:**
+If one cell contains 175 bytes, that cell effectively counts as 2 cells in the datapoint calculation:
+
+- First 100 bytes = 1 cell
+- Remaining 75 bytes = 1 additional cell
+
+**Example breakdown:**
+- 8 cells of 100 bytes each = 8 cells
+- 1 cell of 175 bytes = 2 cells (100 + 75)
+- Total: 10 cells
+
+**API Usage Billing**
+
+Any API usage billing will be based on what account the API key is associated with. If you use your team API key to call a public query belonging to yourself, the billing will be associated to the team (and vice versa).
