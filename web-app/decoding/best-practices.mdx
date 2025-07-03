@@ -1,0 +1,398 @@
+---
+title: 'Contract Decoding Best Practices Guide'
+---
+
+# Dune Contract Decoding Best Practices Guide
+
+## Introduction
+This comprehensive guide covers best practices for decoding smart contracts on Dune. Whether you're dealing with simple single-chain contracts or complex multi-chain factory deployments, this guide will help you submit contracts correctly for optimal decoding.
+
+### Before You Begin
+- **Start with the basics**: Review Andrew's [Decoding 101](https://www.youtube.com/watch?v=s3eKEeu9At8) video
+- **Reference documentation @** [Dune Docs | Decoding Contracts](https://docs.dune.com/web-app/decoding/decoding-contracts)
+- **Leverage AI assistance**: Use the "Ask AI" feature throughout Dune documentation for quick help
+
+![](/web-app/images/decoding-contracts/mint_moment_tx.png)
+
+## Quick Reference: Submission Checklist
+> Before submitting any contract:
+>
+> - Identify the contract type (single, created by a factory, proxy)
+> - Locate the correct ABI (implementation, not proxy)
+>   - For more information, check this [Documentation by OpenZeppelin](https://docs.openzeppelin.com/contracts/4.x/api/proxy)
+> - If submitting for multiple chains use a multichain explorer like [Blockscout](https://www.blockscout.com/) to determine which chains a contract has been deployed on (**Please note:** if an address exists on another chain that doesn't mean that it is a contract on that chain, so make sure to validate this by ensuring that the address is a contract on that specific chain)
+> - Check for [identical bytecode](https://etherscan.io/find-similar-contracts) across addresses
+> - Document any special patterns or versions
+
+**Dune Contract Submission Page:** [https://dune.com/contracts/new](https://dune.com/contracts/new)
+
+## Quick Decision Tree
+
+<Accordion title="Step 1: Is your contract a proxy?">
+  <p>
+    <a href="https://etherscan.io/proxyContractChecker" target="_blank">Check using Etherscan Proxy Checker</a>
+  </p>
+  <p><b>If YES:</b></p>
+  <ul>
+    <li>Use implementation ABI at proxy address</li>
+    <li>Submit the proxy address</li>
+    <li>Use the implementation contract's ABI (not the proxy's ABI)</li>
+    <li>The implementation contains the actual business logic</li>
+  </ul>
+  <p><b>If NO:</b> Go to Step 2</p>
+</Accordion>
+
+<Accordion title="Step 2: Is it created by a factory?">
+  <p>
+    <a href="https://docs.dune.com/web-app/decoding/decoding-contracts" target="_blank">Check Dune documentation for details</a>
+  </p>
+  <p><b>If YES:</b></p>
+  <ul>
+    <li>Enable "Decode other contracts created by the same factory" flags</li>
+    <li>Submit the ABI for the created contracts, NOT the factory ABI</li>
+    <li>Mark as factory-deployed in submission</li>
+    <li>Include sample addresses of created contracts</li>
+  </ul>
+  <p><b>If NO:</b> Go to Step 3</p>
+</Accordion>
+
+<Accordion title="Step 3: Do all instances share identical bytecode?">
+  <p>
+    <a href="https://etherscan.io/find-similar-contracts" target="_blank">Verify using Etherscan Similar Contracts</a>
+  </p>
+  <p><b>If YES:</b></p>
+  <ul>
+    <li>Enable bytecode matching</li>
+    <li>Submit one ABI that covers all instances</li>
+    <li>Check the "Enable bytecode matching" checkbox</li>
+    <li>Note the shared bytecode pattern</li>
+  </ul>
+  <p><b>If NO:</b></p>
+  <ul>
+    <li>Standard submission process</li>
+    <li>Submit the contract's ABI with the specific contract address and chain</li>
+    <li>This is the most common scenario</li>
+    <li>If unsure, always default to Standard Submission</li>
+  </ul>
+</Accordion>
+
+## Contract Decoding Scenarios
+
+### 1. Single Smart Contract on Single Chain
+**Definition**: One contract deployed to one blockchain
+
+**How to Submit:**
+- Submit the contract's ABI with the specific contract address and chain
+- Straightforward process with no special considerations
+
+**Example**: Ethereum Name Service (ENS) Registry
+- Contract: `0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e` (Ethereum only)
+- Action: Submit ENS Registry ABI for this specific address on Ethereum
+
+### 2. Single Contract on Multiple Chains
+**Definition**: Same contract deployed across different blockchains
+
+**How to Submit:**
+- Submit the same ABI once
+- Specify all chains where it's deployed
+- Use the same submission if addresses match across chains
+
+**Example**: LayerZero Endpoint
+- Contract: `0x66A71Dcef29A0fFBDBE3c6a460a3B5BC225Cd675` (multiple chains)
+- Action: Submit as "Submit as multiple chains" with same ABI for all chains with this address and select the chains
+
+> 💡 **Pro Tip:** Use [Blockscout](https://www.blockscout.com/) to verify deployments. It's okay if you miss a chain initially—you can always add more chains later. To add more chains later go to the [Contract Submission Page](https://dune.com/contracts/new). If it is a single chain select the chain, add the address, and submit as normal. If there are multiple chains, select the "Submit on Multiple Chains" in the dropdown and include all the new chains of the contract, and submit the contracts.
+
+### 3. Factory-Deployed Contracts (Single Chain)
+**Definition**: A factory contract creates multiple instances of the same contract type
+
+**How to Submit:**
+- Submit the ABI for the **created contracts**, NOT the factory ABI
+- Mark as factory-deployed in submission
+- Include sample addresses of created contracts
+
+**Example**: Uniswap V2 Pairs on Ethereum
+- Factory: `0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f`
+- Sample Pair: `0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc` (USDC/ETH)
+- Action: Submit UniswapV2Pair contract & ABI (not factory ABI)
+- **Tip:** If an ABI isn't verified for certain addresses, the ABI will be the same across chains in the same project (ie., UniswapV2Pair ABI is going to be the same on all EVM chains regardless of the address)
+
+### 4. Factory-Deployed Contracts (Multiple Chains)
+**Definition:** Factory pattern deployed across multiple chains
+
+**How to Submit:**
+- Submit the created contract's ABI once
+- Select all chains where factories exist
+- Check the "Decode other contracts deployed by the same factory" checkbox
+- The submission will detect factory-created instances on each selected chain
+
+**Example:** Uniswap V2 Factory Pattern
+- Ethereum Factory: `0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f`
+- Polygon Factory: `0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32`
+- Arbitrum Factory: `0xf1D7CC64Fb4452F05c498126312eBE29f30Fbcf9`
+- Action: Submit UniswapV2Pair ABI once, select all three chains, enable factory flag
+
+**Note:** Dune will automatically find all pairs created by each chain's factory
+
+### 5. Contracts with Identical Bytecode (Single Chain)
+**Definition**: Multiple contracts with identical bytecode but different addresses
+
+**How to Submit:**
+- Submit one ABI that covers all instances
+- Check the "Enable bytecode matching" checkbox
+- Note the shared bytecode pattern
+
+**Example**: Compound V2 cToken Contracts
+- cUSDC: `0x39AA39c021dfbaE8faC545936693aC917d5E7563`
+- cETH: `0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5`
+- Action: One cToken ABI submission covers all
+
+### 6. Contracts with Identical Bytecode (Across Multiple Chains)
+**Definition**: Same bytecode deployed across multiple chains
+
+> ⚠️ **WARNING:** Use bytecode matching with extreme caution when submitting across multiple chains! This feature can produce many false positives, as different contracts may have identical bytecode but have completely different purposes or contexts. Only use when you're certain the contracts are truly identical implementations.
+
+**How to Submit:**
+- Submit one ABI specifying all chains and addresses
+- Check the "Enable bytecode matching" checkbox
+
+**Example**: Safe Singleton 1.3.0
+- Address: `0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552` (multiple chains)
+- Action: One Safe ABI submission for all chains
+
+## Proxy Contract Patterns
+
+### Basic Proxy Rules
+**Critical**: Always use the **implementation contract's ABI**, not the proxy's ABI
+- Submit the proxy address
+- Decode using the implementation's functions
+- The implementation contains the actual business logic
+- To check if your contract is a proxy, you can visit a block explorer like ([etherscan.io](http://etherscan.io)) and click into the "Contract" section. If you see "Read as Proxy" and "Write as Proxy" as the image below then select the ABI of the implementation contract.
+- For more resources:
+  - https://info.etherscan.com/what-is-proxy-contract/
+  - https://etherscan.io/proxyContractChecker
+
+![](/proxy-find-implementation.png)
+
+### 9. Proxy Contract (Single Chain)
+**Definition**: Proxy that delegates calls to an implementation
+
+**Example**: USDC Token on Ethereum
+- Proxy: `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`
+- Action: Use implementation ABI, submit proxy address
+
+### 10. Proxy Contract (Multiple Chains)
+**Definition**: Same proxy pattern across chains
+
+**How to Submit:**
+- Use implementation ABI
+- Specify all proxy addresses across chains
+- Include implementation addresses in notes
+
+## Advanced Patterns
+
+### Upgradeable Proxies
+#### Transparent Upgradeable Proxy
+**Challenge**: Implementation changes over time. More info [here](https://www.rareskills.io/post/transparent-upgradeable-proxy).
+
+**How to Submit:**
+- **Use the Proxy Contract Address:** Submit using the proxy contract's address (not the implementation contract address)
+- **Use the Implementation Contract's ABI:** You must provide the ABI of the implementation contract (not the proxy contract's ABI)
+- Submit Initial implementation then it is best to:
+  - Resubmit each implementation version as "upgrade the ABI of a contract" with the new implementation ABI each time.
+- Use the same name for all implementations (e.g., just "uniswap_v3" for all versions)
+  - The system will handle merging and version tracking automatically
+- Track upgrade events if needed
+
+**Example**: Uniswap V3 Upgradeable Proxy
+- Proxy: `0xEe6A57eC80ea46401049E92587E52f5Ec1c24785`
+- Implementation V1: `0x0882477e7895bdc5cea7cb1552ed914ab157fe56`
+
+#### Beacon Proxy
+**Definition**: Multiple proxies point to a beacon holding the implementation. More info [here](https://www.rareskills.io/post/beacon-proxy).
+
+**How to Submit:**
+- **Contract Address:** Use the Beacon proxy contract address (the actual proxy that users interact with)
+- **Submit beacon's implementation ABI**: Use the implementation contract's ABI (not the beacon or proxy ABI)
+- For additional beacon proxies with the same implementation:
+  - Use the same project name and contract name
+  - Check "Are there several instances of this contract?" if they have identical bytecode
+  - This will consolidate them into the same decoded tables
+- All proxies decode using same ABI
+- Note the beacon pattern in comments
+
+#### Diamond Proxy (EIP-2535)
+**Definition**: Modular proxy with multiple implementation contracts (facets), more info [here](https://eips.ethereum.org/EIPS/eip-2535).
+
+**How to Submit:**
+- **Option A**: Submit each facet's ABI separately as upgrades
+  - Submit the first facet ABI as a new contract
+  - Submit additional facet ABIs as "upgrades" to the same contract
+  - Use the same project name and contract name for all submissions
+  - Dune will merge the ABIs in the background
+- **Option B**: Create one combined ABI with all facet functions
+  - Merge all facet ABIs into a single file before submission
+  - Submit once as a new contract
+
+**Important Notes:**
+- Each facet typically has its own purpose (e.g., deposits, payments, lending)
+- Even though facets have distinct names, submit all under the **same contract name**
+- Query by event/function name to distinguish between facets
+- Facets can be updated independently - submit new versions as upgrades
+- **Contact Dune support** via Slack (For Enterprise Customers), Telegram (Paid Customers), [Discord](https://discord.com/invite/ErrzwBz), or email (support@dune.com) if you have questions about the submission process
+
+### Factory Variations
+#### Multi-Type Factories
+**Definition**: Factory deploys different contract types
+
+**How to Submit:**
+- Submit separate contracts individually, in this case **do NOT check "is created by factory"**
+- Submit separate ABIs for each contract type
+- TLDR; you will need to submit each contract individually
+- Clear naming convention for each type
+- Document the factory's capabilities
+- Reach out to Dune Support if you have any questions
+
+#### Minimal Proxy (EIP-1167)
+**Definition**: This standard specifies a minimal bytecode implementation that delegates all calls to a known, fixed address, more info [here](https://eips.ethereum.org/EIPS/eip-1167).
+
+**How to Submit:**
+- **Address:** Use minimal proxy contract address
+- **ABI:** Submit implementation (master/template) contract ABI
+- For EIP-1167 minimal proxies that have multiple clones deployed from the same factory:
+  - Check the "Are there several instances of this contract?" box during submission
+  - Dune only considers a contract a dynamic instance if the bytecode matches 100%
+- Note the clone pattern
+
+**Example**: Gnosis Safe Clones
+- Master: `0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552`
+- All clones use master's ABI
+
+### Version Management
+#### Multiple ABI Versions
+**Challenge**: Different versions active simultaneously
+
+**How to Submit:**
+- Submit each version separately
+  - First submission, submit normally, then each submission afterwards would need to be a resubmission with the upgraded ABI
+- Document version differences
+
+#### Gradual Cross-Chain Rollouts
+**Challenge**: Slight ABI differences across chains
+
+**How to Submit:**
+- Start with latest/most complete ABI
+- Add chains as they deploy
+- Note any chain-specific differences
+
+## Edge Cases & Special Situations
+
+### Self-Destructed and Redeployed Contracts
+**Situation**: Same address, different bytecode
+
+**How to Submit:**
+- Resubmit new ABI with updated deployment info
+- Clearly note the redeployment
+- Include destruction/redeployment dates
+
+### Factory-Deployed Proxies
+**Situation**: Factory creates proxies, not implementations
+
+**How to Submit:**
+- The address to use would be the address of one of the created proxies
+- Submit the proxy's implementation ABI
+- Note both factory and proxy patterns
+- Clear documentation is crucial
+
+## Common Mistakes to Avoid
+1. **Submitting Factory ABIs**: Always submit the created contract's ABI, not the factory's
+2. **Using Proxy ABIs**: Always use implementation ABIs for proxy contracts
+3. **Missing Chains**: Use tools like Blockscout to find all deployments
+4. **Poor Naming**: Use descriptive names that include version/type info
+5. **Incomplete Documentation**: Always note special patterns or deployment methods
+
+## Best Practices Summary
+1. **Start Simple**: Begin with one chain, expand gradually
+2. **Focus on Logic**: Always decode using the contract with actual business logic
+3. **Document Everything**: Use submission comments for complex patterns
+4. **Version Clearly**: Use descriptive naming for different versions/types
+5. **Verify Thoroughly**: Double-check addresses and bytecode matches
+6. **Think User-First**: Make contract interactions readable regardless of complexity
+
+## Troubleshooting Tips
+- **Can't find all deployments?** Start with what you have—you can add more chains later
+- **Unsure about bytecode?** Use Etherscan's "Similar Contracts" feature
+- **Complex proxy pattern?** Focus on the final implementation that executes
+- **Factory creating variants?** Submit separate ABIs for each variant type
+
+Remember: The goal is to make contract interactions readable and queryable. When in doubt, prioritize clarity and usability over technical perfection. You can always refine your submission later!
+
+## Additional
+
+## Check Your Work
+
+### Check if Contract is decoded on the specific blockchain
+```sql
+select *
+from {blockchain}.contracts
+where address = 0x...
+```
+
+### Verify the table exists and has data
+```sql
+/* Verify the table exists and has data */
+SELECT
+    COUNT(*) AS total_rows,
+    MIN(evt_block_time) AS first_event,
+    MAX(evt_block_time) AS latest_event
+FROM eigenlayer_ethereum.DelegationManager_evt_OperatorSharesIncreased
+-- replace above line with {your_project_ethereum.yourcontract_evt_yourevent};
+```
+
+**Please note:** We display the full list of tables to be created in the submission form
+
+### Check all columns are properly decoded
+```sql
+-- Check all columns are properly decoded
+DESCRIBE eigenlayer_ethereum.DelegationManager_evt_OperatorSharesIncreased;
+-- replace above line with {your_project_ethereum.yourcontract_evt_yourevent};
+
+-- Or get column info
+-- Ethereum
+SELECT 'ethereum' as chain, column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'factory_evt_poolcreated'
+AND table_schema = 'uniswap_v3_ethereum'
+UNION ALL
+-- Add other chains as needed
+SELECT 'worldchain' as chain, column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'uniswapv3factory_evt_poolcreated'
+AND table_schema = 'uniswap_worldchain';
+```
+
+### Expected Tables and Event Types
+- Search the contract in the data explorer to view both the tables and events related to the contract
+
+### When NOT to Decode
+**Skip These Contracts:**
+- Pure libraries (no deployable bytecode)
+- Contracts with only view functions
+- Simple forwarder/relay contracts
+- Contracts that only emit standard ERC20/721 events
+- Test/deprecated contracts with no usage
+- Contracts with no transactions are not needed to decode
+
+**Consider Carefully:**
+- Governance contracts (usually low activity)
+- Admin/owner contracts (minimal events)
+- Price oracle contracts (mostly reads)
+
+## Remember
+- One ABI can decode thousands of contracts
+- Namespaces can't be merged or moved
+- 100% bytecode match is strict
+- Factory pattern and bytecode finds future contracts too
+- Plan namespace structure before submitting
+
+![](/images/migration-banner.jpeg)
