@@ -112,6 +112,7 @@
           "group": "Decoding Contracts",
           "pages": [
             "web-app/decoding/decoding-contracts",
+            "web-app/decoding/best-practices",
             "web-app/decoding/multichain-decoding",
             "web-app/decoding/short-guide-contract-submission"
           ]
