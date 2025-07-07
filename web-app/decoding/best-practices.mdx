@@ -32,51 +32,51 @@ Before submitting any contract:
 ## Quick Decision Tree
 
 <Accordion title="Step 1: Is your contract a proxy?">
+  
   [Check using Etherscan Proxy Checker →](https://etherscan.io/proxyContractChecker)
 
-  <Note type="success" title="If YES:">
-    - Use implementation ABI at proxy address
-    - Submit the proxy address
-    - Use the implementation contract's ABI (not the proxy's ABI)
-    - The implementation contains the actual business logic
-  </Note>
+  ### If YES:
+  - Use implementation ABI at proxy address
+  - Submit the proxy address
+  - Use the implementation contract's ABI (not the proxy's ABI)
+  - The implementation contains the actual business logic
 
-  <Note type="info" title="If NO:">
-    → Go to Step 2
-  </Note>
+  ### If NO:
+  → Go to Step 2
+
 </Accordion>
 
 <Accordion title="Step 2: Is it created by a factory?">
+  
   [Check Dune documentation for details →](https://docs.dune.com/web-app/decoding/decoding-contracts)
 
-  <Note type="success" title="If YES:">
-    - Enable "Decode other contracts created by the same factory" flags
-    - Submit the ABI for the created contracts, NOT the factory ABI
-    - Mark as factory-deployed in submission
-    - Include sample addresses of created contracts
-  </Note>
+  ### If YES:
+  - Enable "Decode other contracts created by the same factory" flags
+  - Submit the ABI for the created contracts, NOT the factory ABI
+  - Mark as factory-deployed in submission
+  - Include sample addresses of created contracts
 
-  <Note type="info" title="If NO:">
-    → Go to Step 3
-  </Note>
+  ### If NO:
+  → Go to Step 3
+
 </Accordion>
 
 <Accordion title="Step 3: Do all instances share identical bytecode?">
+  
   [Verify using Etherscan Similar Contracts →](https://etherscan.io/find-similar-contracts)
 
-  <Note type="success" title="If YES:">
-    - Enable bytecode matching
-    - Submit one ABI that covers all instances
-    - Check the "Enable bytecode matching" checkbox
-    - Note the shared bytecode pattern
-  </Note>
+  ### If YES:
+  - Enable bytecode matching
+  - Submit one ABI that covers all instances
+  - Check the "Enable bytecode matching" checkbox
+  - Note the shared bytecode pattern
 
-  <Note type="warning" title="If NO:">
-    - Standard submission process
-    - Submit the contract's ABI with the specific contract address and chain
-    - This is the most common scenario
-    - If unsure, always default to Standard Submission
-  </Note>
+  ### If NO:
+  - Standard submission process
+  - Submit the contract's ABI with the specific contract address and chain
+  - This is the most common scenario
+  - If unsure, always default to Standard Submission
+
 </Accordion>
 
 ## Contract Decoding Scenarios
