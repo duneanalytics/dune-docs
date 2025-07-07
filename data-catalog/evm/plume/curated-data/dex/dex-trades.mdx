@@ -4,48 +4,9 @@ sidebarTitle: "DEX Trades"
 description: Description of the plume.dex_trades table on Dune
 ---
 
-import { DexTradesSnippet } from '/snippets/plume/curated-data/dex/dex-trades-snippet.mdx';
+import { DexTradesSnippet } from '/snippets/curated-data/dex/text/dex-trades-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
 
-The `plume.dex_trades` table contains all DEX trades in the Plume blockchain.
 
-## Table Schema
-
-| Column Name | Data Type | Description |
-|------------|-----------|-------------|
-| block_time | timestamp | Block timestamp |
-| token_bought_symbol | string | Symbol of bought token |
-| token_sold_symbol | string | Symbol of sold token |
-| token_bought_amount | double | Amount of bought token |
-| token_sold_amount | double | Amount of sold token |
-| token_bought_address | string | Address of bought token |
-| token_sold_address | string | Address of sold token |
-| taker | string | Taker address |
-| maker | string | Maker address |
-| project | string | DEX project name |
-| version | string | DEX version |
-| category | string | Trade category |
-| usd_amount | double | USD value of trade |
-| token_pair | string | Token pair |
-| tx_hash | string | Transaction hash |
-| tx_from | string | Transaction sender |
-| tx_to | string | Transaction recipient |
-| trace_address | array | Trace address |
-| evt_index | decimal(38,0) | Event index |
-| block_number | decimal(38,0) | Block number |
-
-## Sample Query
-
-```sql
--- Get the top DEXs by trading volume in the last 24 hours
-SELECT 
-    project,
-    COUNT(*) as trade_count,
-    SUM(usd_amount) as total_volume_usd
-FROM plume.dex_trades
-WHERE block_time >= NOW() - INTERVAL '24' HOUR
-GROUP BY project
-ORDER BY total_volume_usd DESC
-LIMIT 10;
-```
+<DexTradesSnippet blockchain="plume" />

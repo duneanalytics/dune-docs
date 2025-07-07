@@ -4,48 +4,9 @@ sidebarTitle: "Transactions"
 description: Description of the plume.transactions table on Dune
 ---
 
-import { TransactionsSnippet } from '/snippets/plume/transactions-snippet.mdx';
+import { TransactionsSnippet } from '/snippets/evm/raw/transactions-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
 
-The `plume.transactions` table contains all transactions in the Plume blockchain.
 
-## Table Schema
-
-| Column Name | Data Type | Description |
-|------------|-----------|-------------|
-| hash | string | Transaction hash |
-| nonce | decimal(38,0) | Transaction nonce |
-| block_hash | string | Block hash |
-| block_number | decimal(38,0) | Block number |
-| transaction_index | decimal(38,0) | Transaction index in block |
-| from_address | string | Sender address |
-| to_address | string | Recipient address |
-| value | decimal(38,0) | Value in wei |
-| gas | decimal(38,0) | Gas limit |
-| gas_price | decimal(38,0) | Gas price in wei |
-| input | string | Transaction input data |
-| receipt_cumulative_gas_used | decimal(38,0) | Cumulative gas used |
-| receipt_gas_used | decimal(38,0) | Gas used |
-| receipt_contract_address | string | Contract address if created |
-| receipt_root | string | Receipt root |
-| receipt_status | decimal(38,0) | Transaction status |
-| block_timestamp | timestamp | Block timestamp |
-| max_fee_per_gas | decimal(38,0) | Max fee per gas |
-| max_priority_fee_per_gas | decimal(38,0) | Max priority fee per gas |
-| transaction_type | decimal(38,0) | Transaction type |
-
-## Sample Query
-
-```sql
--- Get the top gas spenders in the last 24 hours
-SELECT 
-    from_address,
-    COUNT(*) as tx_count,
-    SUM(receipt_gas_used * gas_price) / 1e18 as total_gas_cost_eth
-FROM plume.transactions
-WHERE block_timestamp >= NOW() - INTERVAL '24' HOUR
-GROUP BY from_address
-ORDER BY total_gas_cost_eth DESC
-LIMIT 10;
-```
+<TransactionsSnippet blockchain="plume" />

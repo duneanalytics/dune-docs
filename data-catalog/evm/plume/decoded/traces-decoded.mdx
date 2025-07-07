@@ -4,47 +4,9 @@ sidebarTitle: "Traces Decoded"
 description: Description of the plume.traces_decoded table on Dune
 ---
 
-import { TracesDecodedSnippet } from '/snippets/plume/decoded/traces-decoded-snippet.mdx';
+import { TracesDecodedSnippet } from '/snippets/evm/decoded/traces-decoded-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
 
-The `plume.traces_decoded` table contains decoded function calls and parameters from contract interactions.
 
-## Table Schema
-
-| Column Name | Data Type | Description |
-|------------|-----------|-------------|
-| transaction_hash | string | Transaction hash |
-| transaction_index | decimal(38,0) | Transaction index in block |
-| from_address | string | Sender address |
-| to_address | string | Recipient address |
-| value | decimal(38,0) | Value in wei |
-| input | string | Input data |
-| output | string | Output data |
-| trace_type | string | Trace type |
-| call_type | string | Call type |
-| gas | decimal(38,0) | Gas limit |
-| gas_used | decimal(38,0) | Gas used |
-| subtraces | decimal(38,0) | Number of subtraces |
-| trace_address | array | Trace address |
-| error | string | Error message |
-| status | decimal(38,0) | Status |
-| block_timestamp | timestamp | Block timestamp |
-| block_number | decimal(38,0) | Block number |
-| function_name | string | Decoded function name |
-| function_signature | string | Function signature |
-| function_params | json | Decoded function parameters |
-
-## Sample Query
-
-```sql
--- Get the most common function calls in the last 24 hours
-SELECT 
-    function_name,
-    COUNT(*) as call_count
-FROM plume.traces_decoded
-WHERE block_timestamp >= NOW() - INTERVAL '24' HOUR
-GROUP BY function_name
-ORDER BY call_count DESC
-LIMIT 10;
-```
+<TracesDecodedSnippet blockchain="plume" />
