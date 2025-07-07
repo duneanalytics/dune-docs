@@ -4,36 +4,9 @@ sidebarTitle: "Logs"
 description: Description of the plume.logs table on Dune
 ---
 
-import { LogsSnippet } from '/snippets/plume/logs-snippet.mdx';
+import { LogsSnippet } from '/snippets/evm/raw/logs-snippet.mdx';
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
 
-The `plume.logs` table contains all event logs emitted by contracts in the Plume blockchain.
 
-## Table Schema
-
-| Column Name | Data Type | Description |
-|------------|-----------|-------------|
-| log_index | decimal(38,0) | Log index in transaction |
-| transaction_hash | string | Transaction hash |
-| transaction_index | decimal(38,0) | Transaction index in block |
-| block_hash | string | Block hash |
-| block_number | decimal(38,0) | Block number |
-| address | string | Contract address |
-| data | string | Log data |
-| topics | array | Log topics |
-| block_timestamp | timestamp | Block timestamp |
-
-## Sample Query
-
-```sql
--- Get the most active contracts by event count in the last 24 hours
-SELECT 
-    address,
-    COUNT(*) as event_count
-FROM plume.logs
-WHERE block_timestamp >= NOW() - INTERVAL '24' HOUR
-GROUP BY address
-ORDER BY event_count DESC
-LIMIT 10;
-```
+<LogsSnippet blockchain="plume" />
