@@ -2345,6 +2345,7 @@
           "pages": [
             "data-catalog/ton/overview",
             "data-catalog/ton/accounts",
+            "data-catalog/ton/balances_history",
             "data-catalog/ton/blocks",
             "data-catalog/ton/transactions",
             "data-catalog/ton/messages",
