@@ -201,16 +201,6 @@
       ]
     },
     {
-      "group": "Dune Index",
-      "icon": "chart-line",
-      "pages": [
-        "data-catalog/dune-index/introduction",
-        "data-catalog/dune-index/gas-fees",
-        "data-catalog/dune-index/net-transfers",
-        "data-catalog/dune-index/transactions"
-      ]
-    },
-    {
       "group": "Curated Data",
       "pages": [
         "data-catalog/curated/overview",
@@ -2415,6 +2405,16 @@
             "data-catalog/layerzero/transfers"
           ]
         }
+      ]
+    },
+    {
+      "group": "Dune Index",
+      "icon": "chart-line",
+      "pages": [
+        "data-catalog/dune-index/introduction",
+        "data-catalog/dune-index/gas-fees",
+        "data-catalog/dune-index/net-transfers",
+        "data-catalog/dune-index/transactions"
       ]
     },
     {
