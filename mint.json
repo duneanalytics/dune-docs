@@ -201,83 +201,57 @@
       ]
     },
     {
-      "group": "Dune Index",
-      "icon": "chart-line",
-      "pages": [
-        "data-catalog/dune-index/introduction",
-        "data-catalog/dune-index/gas-fees",
-        "data-catalog/dune-index/net-transfers",
-        "data-catalog/dune-index/transactions"
-      ]
-    },
-    {
       "group": "Curated Data",
       "pages": [
         "data-catalog/curated/overview",
         {
-          "group": "EVM",
-          "icon": "e",
+          "group": "DEX Trades",
+          "icon": "shuffle",
           "pages": [
-            "data-catalog/curated/evm/overview",
+            "data-catalog/curated/dex-trades/overview",
             {
-              "group": "Asset Tracking",
-              "icon": "coins",
+              "group": "EVM DEX",
+              "icon": "e",
               "pages": [
-                "data-catalog/curated/evm/asset-tracking/overview",
-                "data-catalog/curated/evm/asset-tracking/balances",
-                "data-catalog/curated/evm/asset-tracking/nft-metadata",
-                "data-catalog/curated/evm/asset-tracking/nft-transfers",
-                "data-catalog/curated/evm/asset-tracking/token-transfers",
-                "data-catalog/curated/evm/asset-tracking/tokens-metadata"
+                "data-catalog/curated/dex-trades/evm/dex-trades",
+                "data-catalog/curated/dex-trades/evm/dex-aggregator-trades",
+                "data-catalog/curated/dex-trades/evm/dex-sandwiched",
+                "data-catalog/curated/dex-trades/evm/dex-sandwiches"
               ]
             },
             {
-              "group": "DEX",
-              "icon": "shuffle",
+              "group": "Solana DEX",
+              "icon": "s",
               "pages": [
-                "data-catalog/curated/evm/DEX/overview",
-                "data-catalog/curated/evm/DEX/dex-trades",
-                "data-catalog/curated/evm/DEX/dex-aggregator-trades",
-                "data-catalog/curated/evm/DEX/dex-sandwiched",
-                "data-catalog/curated/evm/DEX/dex-sandwiches"
-              ]
-            },
-            {
-              "group": "NFT",
-              "icon": "image",
-              "pages": [
-                "data-catalog/curated/evm/NFT/overview",
-                "data-catalog/curated/evm/NFT/nft-trades",
-                "data-catalog/curated/evm/NFT/nft-mints",
-                "data-catalog/curated/evm/NFT/nft-wash-trades"
+                "data-catalog/curated/dex-trades/solana/overview",
+                "data-catalog/curated/dex-trades/solana/jupiter-aggregator-trades",
+                "data-catalog/curated/dex-trades/solana/solana-dex-trades"
               ]
             }
           ]
         },
         {
-          "group": "Solana",
-          "icon": "s",
+          "group": "Token Transfers",
+          "icon": "coins",
           "pages": [
-            "data-catalog/curated/solana/overview",
+            "data-catalog/curated/token-transfers/overview",
             {
-              "group": "Asset Tracking",
-              "icon": "coins",
+              "group": "EVM Token Transfers",
+              "icon": "e",
               "pages": [
-                "data-catalog/curated/solana/asset-tracking/overview",
-                "data-catalog/curated/solana/asset-tracking/solana-nft-metadata",
-                "data-catalog/curated/solana/asset-tracking/solana-nft-transfers",
-                "data-catalog/curated/solana/asset-tracking/solana-token-accounts",
-                "data-catalog/curated/solana/asset-tracking/solana-token-metadata",
-                "data-catalog/curated/solana/asset-tracking/solana-token-transfers"
+                "data-catalog/curated/token-transfers/evm/balances",
+                "data-catalog/curated/token-transfers/evm/token-transfers",
+                "data-catalog/curated/token-transfers/evm/tokens-metadata"
               ]
             },
             {
-              "group": "Trading",
-              "icon": "shuffle",
+              "group": "Solana Token Transfers",
+              "icon": "s",
               "pages": [
-                "data-catalog/curated/solana/trading/overview",
-                "data-catalog/curated/solana/trading/jupiter-aggregator-trades",
-                "data-catalog/curated/solana/trading/solana-dex-trades"
+                "data-catalog/curated/token-transfers/solana/overview",
+                "data-catalog/curated/token-transfers/solana/solana-token-accounts",
+                "data-catalog/curated/token-transfers/solana/solana-token-metadata",
+                "data-catalog/curated/token-transfers/solana/solana-token-transfers"
               ]
             }
           ]
@@ -303,6 +277,32 @@
             "data-catalog/curated/prices/prices_day",
             "data-catalog/curated/prices/prices_usd",
             "data-catalog/curated/prices/prices_latest"
+          ]
+        },
+        {
+          "group": "NFT Trades",
+          "icon": "image",
+          "pages": [
+            "data-catalog/curated/nft-trades/overview",
+            {
+              "group": "EVM NFT",
+              "icon": "e",
+              "pages": [
+                "data-catalog/curated/nft-trades/evm/nft-trades",
+                "data-catalog/curated/nft-trades/evm/nft-mints",
+                "data-catalog/curated/nft-trades/evm/nft-wash-trades",
+                "data-catalog/curated/nft-trades/evm/nft-metadata",
+                "data-catalog/curated/nft-trades/evm/nft-transfers"
+              ]
+            },
+            {
+              "group": "Solana NFT",
+              "icon": "s",
+              "pages": [
+                "data-catalog/curated/nft-trades/solana/solana-nft-metadata",
+                "data-catalog/curated/nft-trades/solana/solana-nft-transfers"
+              ]
+            }
           ]
         }
       ]
@@ -2417,6 +2417,7 @@
         }
       ]
     },
+
     {
       "group": "Community Data",
       "pages": [
@@ -2446,11 +2447,7 @@
             "data-catalog/community/farcaster/power_badge"
           ]
         },
-        {
-          "group": "GhostLogs",
-          "icon": "ghost",
-          "pages": ["data-catalog/community/ghostlogs/overview"]
-        },
+
         {
           "group": "Lens",
           "icon": "cloud",
@@ -2504,6 +2501,16 @@
             "data-catalog/community/snapshot/follows"
           ]
         }
+      ]
+    },
+    {
+      "group": "Dune Index",
+      "icon": "chart-line",
+      "pages": [
+        "data-catalog/dune-index/introduction",
+        "data-catalog/dune-index/gas-fees",
+        "data-catalog/dune-index/net-transfers",
+        "data-catalog/dune-index/transactions"
       ]
     },
     {

@@ -1,0 +1,87 @@
+---
+title: DEX Data
+sidebarTitle: Overview
+icon: "chart-line"
+description: Curated DEX trading data across multiple blockchain networks
+---
+
+Decentralized exchanges (DEXs) have become a cornerstone of DeFi, enabling permissionless trading of tokens directly on-chain. Dune provides comprehensive coverage of DEX activity through curated tables that capture trades, aggregator usage, and MEV events like sandwich attacks across both EVM and Solana networks. These datasets enable analysis of trading volumes, liquidity dynamics, price impact, and market manipulation across major DEX protocols and networks.
+
+## Cross-Chain DEX Coverage
+
+Our DEX data covers multiple blockchain ecosystems:
+
+- **EVM Networks**: Ethereum, Arbitrum, Polygon, Base, Optimism, and 40+ other EVM chains
+- **Solana**: Comprehensive coverage of Solana DEX protocols and Jupiter aggregator
+
+## Available Datasets
+
+### EVM DEX Data
+
+<CardGroup cols={2}>
+  <Card title="DEX Trades" icon="arrow-right-arrow-left" href="/data-catalog/curated/dex-trades/evm/dex-trades">
+    Individual trades across DEX protocols like Uniswap, Sushiswap, Curve and more
+  </Card>
+
+  <Card title="Aggregator Trades" icon="shuffle" href="/data-catalog/curated/dex-trades/evm/dex-aggregator-trades">
+    Trades routed through aggregators like 1inch, 0x Protocol, ParaSwap
+  </Card>
+
+  <Card title="Sandwich Attacks" icon="bread-slice" href="/data-catalog/curated/dex-trades/evm/dex-sandwiches">
+    Detected sandwich attack trades and their details
+  </Card>
+
+  <Card title="Sandwiched Trades" icon="user-injured" href="/data-catalog/curated/dex-trades/evm/dex-sandwiched">
+    Transactions that were victims of sandwich attacks
+  </Card>
+</CardGroup>
+
+### Solana DEX Data
+
+<CardGroup cols={2}>
+  <Card title="Solana DEX Trades" icon="handshake" href="/data-catalog/curated/dex-trades/solana/solana-dex-trades">
+    Detailed trade data across Solana DEX protocols like Orca, Raydium, and more
+  </Card>
+
+  <Card title="Jupiter Aggregator" icon="layer-group" href="/data-catalog/curated/dex-trades/solana/jupiter-aggregator-trades">
+    Trades executed through the Jupiter aggregator on Solana
+  </Card>
+</CardGroup>
+
+## Key Features
+
+- **Multi-Chain Coverage**: Analyze DEX activity across EVM and Solana ecosystems
+- **Standardized Schema**: Consistent data structure for cross-chain analysis
+- **MEV Detection**: Identify sandwich attacks and other MEV activities (EVM)
+- **Aggregator Data**: Track trades through major aggregators on both networks
+- **Real-time Updates**: Data is updated continuously as new blocks are processed
+
+## Sample Cross-Chain Analysis
+
+Compare DEX trading volume across different blockchain networks:
+
+```sql
+-- EVM DEX volume
+SELECT 
+    'EVM' as ecosystem,
+    blockchain,
+    DATE_TRUNC('day', block_time) as date,
+    SUM(amount_usd) as volume_usd
+FROM dex.trades
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1, 2, 3
+
+UNION ALL
+
+-- Solana DEX volume  
+SELECT 
+    'Solana' as ecosystem,
+    'solana' as blockchain,
+    DATE_TRUNC('day', block_time) as date,
+    SUM(amount_usd) as volume_usd
+FROM dex_solana.trades
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1, 2, 3
+
+ORDER BY date DESC, volume_usd DESC
+```

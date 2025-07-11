@@ -1,0 +1,86 @@
+---
+title: NFT Data
+sidebarTitle: Overview
+icon: "image"
+description: Curated NFT market data across multiple blockchain networks
+---
+
+Non-fungible tokens (NFTs) have emerged as a major force in the crypto ecosystem, enabling unique digital assets and collectibles. Dune provides comprehensive coverage of NFT market activity through curated tables that capture trades, mints, transfers, and metadata across both EVM and Solana networks. These datasets enable analysis of sales volumes, collection trends, minting patterns, and market dynamics across major NFT marketplaces and networks.
+
+## Cross-Chain NFT Coverage
+
+Our NFT data covers multiple blockchain ecosystems:
+
+- **EVM Networks**: Ethereum, Polygon, Arbitrum, Base, Optimism, and 40+ other EVM chains
+- **Solana**: Comprehensive coverage of Solana NFT ecosystem and metadata
+
+## Available Datasets
+
+### EVM NFT Data
+
+<CardGroup cols={2}>
+  <Card title="NFT Trades" icon="shop" href="/data-catalog/curated/nft-trades/evm/nft-trades">
+    NFT sales across marketplaces like OpenSea, LooksRare, and more
+  </Card>
+
+  <Card title="NFT Mints" icon="plus" href="/data-catalog/curated/nft-trades/evm/nft-mints">
+    Initial NFT creation and minting events
+  </Card>
+
+  <Card title="Wash Trades" icon="broom" href="/data-catalog/curated/nft-trades/evm/nft-wash-trades">
+    Detected wash trading activity and suspicious patterns
+  </Card>
+</CardGroup>
+
+### Solana NFT Data
+
+<CardGroup cols={2}>
+  <Card title="NFT Transfers" icon="arrow-right-arrow-left" href="/data-catalog/curated/nft-trades/solana/solana-nft-transfers">
+    Transfer events for Solana NFTs across the network
+  </Card>
+
+  <Card title="NFT Metadata" icon="hexagon-vertical-nft" href="/data-catalog/curated/nft-trades/solana/solana-nft-metadata">
+    Comprehensive metadata for Solana NFTs including attributes and collections
+  </Card>
+</CardGroup>
+
+## Key Features
+
+- **Multi-Chain Coverage**: Analyze NFT activity across EVM and Solana ecosystems
+- **Marketplace Integration**: Data from major NFT marketplaces and platforms
+- **Wash Trade Detection**: Identify suspicious trading patterns (EVM)
+- **Metadata Tracking**: Comprehensive NFT metadata and attributes
+- **Collection Analytics**: Track performance at the collection level
+- **Real-time Updates**: Data is updated continuously as new blocks are processed
+
+## Sample Cross-Chain Analysis
+
+Compare NFT trading activity across different blockchain networks:
+
+```sql
+-- EVM NFT trades
+SELECT 
+    'EVM' as ecosystem,
+    blockchain,
+    DATE_TRUNC('day', block_time) as date,
+    COUNT(*) as num_trades,
+    SUM(amount_usd) as volume_usd
+FROM nft.trades
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1, 2, 3
+
+UNION ALL
+
+-- Solana NFT transfers (as proxy for activity)
+SELECT 
+    'Solana' as ecosystem,
+    'solana' as blockchain,
+    DATE_TRUNC('day', block_time) as date,
+    COUNT(*) as num_transfers,
+    NULL as volume_usd
+FROM solana.nft_transfers
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1, 2, 3
+
+ORDER BY date DESC, volume_usd DESC NULLS LAST
+```

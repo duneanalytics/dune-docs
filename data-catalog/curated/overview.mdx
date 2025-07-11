@@ -11,15 +11,43 @@ import { DuneEmbed } from '/snippets/dune-embed.mdx';
 
 Dune and its community are building a collection of curated data tables that make it easier to query and analyze blockchain data. These tables are built using dbt, a tool that allows you to transform data in your warehouse using SQL and Jinja templating. We sometimes refer to these tables as _spells_ and the collection of them as _spellbook_.
 
-The curated data tables are built on top of raw data tables and provide a high-level view of the data. For example, the `dex.trades` table aggregates data from multiple sources to provide a comprehensive view of all trades on decentralized exchanges.
+The curated data tables are built on top of raw data tables and provide a high-level view of the data across multiple blockchain networks. For example, the `dex.trades` table aggregates data from multiple sources to provide a comprehensive view of all trades on decentralized exchanges across EVM networks, while `dex_solana.trades` provides similar coverage for Solana DEXs.
 
-The curated data tables are maintained in the [Spellbook repository](https://github.com/duneanalytics/spellbook) and are available for anyone to use
+The curated data tables are maintained in the [Spellbook repository](https://github.com/duneanalytics/spellbook) and are available for anyone to use.
+
+## Available Categories
+
+Our curated data is organized by use case to make it easier to find the data you need:
+
+<CardGroup cols={2}>
+  <Card title="DEX Trades" icon="shuffle" href="/data-catalog/curated/dex-trades/overview">
+    Comprehensive DEX trading data across EVM and Solana networks
+  </Card>
+  <Card title="NFT Trades" icon="image" href="/data-catalog/curated/nft-trades/overview">
+    NFT trading, minting, and metadata across multiple blockchains
+  </Card>
+  <Card title="Token Transfers" icon="coins" href="/data-catalog/curated/token-transfers/overview">
+    Token transfers, balances, and metadata across EVM and Solana
+  </Card>
+  <Card title="Address Labels" icon="tag" href="/data-catalog/curated/labels/overview">
+    Identify and categorize blockchain addresses
+  </Card>
+  <Card title="Token Prices" icon="dollar-sign" href="/data-catalog/curated/prices/overview">
+    Historical and real-time token pricing data
+  </Card>
+</CardGroup>
+
+## Cross-Chain Coverage
+
+Our curated data covers multiple blockchain ecosystems:
+
+- **EVM Networks**: Ethereum, Arbitrum, Polygon, Base, Optimism, and 40+ other EVM chains
+- **Solana**: Comprehensive coverage of Solana DeFi and NFT ecosystems
 
 Here is a non-exhaustive list of some of the curated data tables available in Spellbook:
 
 <div>
 <DuneEmbed qID={3708634} vID={6239879} height={400} />
-
 </div>
 
 ## Benefits of curated data Tables
@@ -27,6 +55,7 @@ Here is a non-exhaustive list of some of the curated data tables available in Sp
 Curated data tables provide several benefits:
 
 - **Simplified Queries**: curated data tables make it easier to query and analyze blockchain data by providing a high-level view of the data.
+- **Cross-Chain Analysis**: Consistent data models enable easy comparison between different blockchain networks.
 - **Consistent Data Models**: The curated data tables follow a consistent data model, making it easier to combine data from different sources.
 - **Community Contributions**: The curated data tables are maintained by the Dune community, so anyone can contribute to them and improve the data quality.
 
