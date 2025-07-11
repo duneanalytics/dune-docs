@@ -1,0 +1,83 @@
+---
+title: EVM Curated Data
+sidebarTitle: Overview
+icon: "star"
+description: EVM-specific information for curated data tables across EVM networks
+---
+
+## Overview
+
+This page provides EVM-specific information about Dune's curated data tables. For the main curated data categories, please see:
+
+- [DEX Trades Data](/data-catalog/curated/dex-trades/overview) - DEX trades across EVM and Solana
+- [NFT Trades Data](/data-catalog/curated/nft-trades/overview) - NFT activity across all networks  
+- [Token Transfer Data](/data-catalog/curated/token-transfers/overview) - Token transfers and balances across chains
+
+## EVM-Specific Features
+
+EVM curated data tables provide specific features for EVM-compatible networks:
+
+- **Standardized across 40+ EVM chains**: Consistent schema from Ethereum to Layer 2s
+- **Smart contract integration**: Decoded events and function calls
+- **MEV detection**: Sandwich attacks and other MEV activities
+- **Gas and fee tracking**: Comprehensive transaction cost analysis
+
+## EVM Network Coverage
+
+Our EVM curated data covers:
+
+- **Ethereum Mainnet**: The original EVM network
+- **Layer 2 Solutions**: Arbitrum, Optimism, Polygon, Base, and more
+- **Alternative EVM chains**: Avalanche, Fantom, BNB Chain, and others
+- **Testnets**: Sepolia and other test networks
+
+## Example Query
+
+Here's a simple query to analyze EVM DEX trading activity across multiple chains:
+
+```sql
+SELECT 
+    blockchain,
+    date_trunc('day', block_time) as date,
+    COUNT(*) as num_trades,
+    SUM(amount_usd) as volume_usd
+FROM dex.trades
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1, 2
+ORDER BY 2 DESC, 1
+```
+
+import { QueryContainer } from "/snippets/query-container.mdx";
+
+<QueryContainer queryText="SELECT blockchain, date_trunc('day', block_time) as date, COUNT(*) as num_trades, SUM(amount_usd) as volume_usd FROM dex.trades WHERE block_time >= NOW() - INTERVAL '30' day GROUP BY 1, 2 ORDER BY 2 DESC, 1" />
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card
+    title="Spellbook EVM Models"
+    icon="github"
+    href="https://github.com/duneanalytics/spellbook/"
+  >
+    View the source code for EVM curated data models
+  </Card>
+  <Card
+    title="EVM Documentation"
+    icon="book"
+    href="https://spellbook-docs.dune.com/"
+  >
+    Native dbt documentation for EVM models
+  </Card>
+</CardGroup>
+
+## Coverage and Limitations
+
+The EVM curated tables aim to provide comprehensive coverage of on-chain activity, but there are some limitations to be aware of:
+
+- Token transfers are captured through standard ERC20/721/1155 events
+- Some non-standard token implementations may not be fully captured
+- DEX coverage includes major protocols but may not capture all DEX activity
+- Data is typically available with a short delay after on-chain finality
+- Coverage may vary by chain and protocol
+
+For the most up-to-date coverage information, please check the documentation for each specific table. 
