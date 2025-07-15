@@ -1965,6 +1965,35 @@
           ]
         },
         {
+          "group": "Tac",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/tac/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/tac/raw/blocks",
+                "data-catalog/evm/tac/raw/creation-traces",
+                "data-catalog/evm/tac/raw/logs",
+                "data-catalog/evm/tac/raw/transactions",
+                "data-catalog/evm/tac/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/tac/decoded/overview",
+                "data-catalog/evm/tac/decoded/call-tables",
+                "data-catalog/evm/tac/decoded/event-logs",
+                "data-catalog/evm/tac/decoded/contracts",
+                "data-catalog/evm/tac/decoded/logs-decoded",
+                "data-catalog/evm/tac/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Unichain",
           "icon": "database",
           "iconType": "solid",
