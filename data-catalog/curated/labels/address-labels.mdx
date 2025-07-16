@@ -5,12 +5,20 @@ icon: "maximize"
 description: Description of the labels.addresses table on Dune
 ---
 
+import { DuneEmbed } from '/snippets/dune-embed.mdx'
+
 The `labels.addresses` table on Dune catalogs specific blockchain addresses, associating them with descriptive labels, categories, and usage metrics. This table is a superset of many other `labels.<category>` tables, providing a comprehensive overview of labeled addresses across various categories and blockchains.
 You can use the `category` column to filter labels for the specific type of address you are interested in.
 
 <Note>
 The `labels.addresses` table serves as a central repository for all labeled addresses on Dune, offering a consolidated view of labeled entities across different categories and blockchains. 
 </Note>
+
+## Available Categories
+
+Here are all the distinct category values available in the `labels.addresses` table:
+
+<DuneEmbed qID={5488568} vID={8942954} height={400} />
 
 ## Column Descriptions
 
