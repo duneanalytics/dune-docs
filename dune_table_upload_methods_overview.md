@@ -1,32 +1,28 @@
----
-title: 'Overview'
-icon: "star"
----
+# Dune Analytics Table Upload Methods: High-Level Overview
 
-# Table Upload Methods: Two Approaches
-
-Dune provides two distinct methods for uploading data to create queryable tables. Each method serves different use cases and offers unique advantages and trade-offs.
+This document provides a comprehensive comparison of the two primary methods for uploading data tables to Dune Analytics, outlining their capabilities, limitations, and ideal use cases.
 
 ## Method 1: CSV Upload - Simple but Inflexible
 
-The CSV upload method is the most straightforward way to get data into Dune, designed for users who want quick and easy data uploads without complex setup requirements.
+### Overview
+The CSV upload method is the most straightforward way to get data into Dune. It's designed for users who want quick and easy data uploads without complex setup requirements.
 
 ### How It Works
 - **UI Upload**: Click "Upload Data" in Dune interface, select CSV file, name your table, add description, and save
-- **API Upload**: Use the [`/upload endpoint`](./upload) to programmatically upload CSV files
+- **API Upload**: Use the `/upload` endpoint to programmatically upload CSV files
 - **Schema**: Automatically inferred from CSV data (no manual schema definition required)
 - **Table Naming**: Results in `dune.team_name.dataset_name` format
 
 ### Key Characteristics
 
-**Advantages:**
+#### ✅ Advantages
 - **Simplicity**: Minimal setup required - just upload and go
 - **User-Friendly**: Perfect for non-technical users
 - **Quick Start**: Immediate data availability for querying
 - **Automatic Processing**: Schema inference handles data types automatically
 - **Both UI and API**: Available through web interface or programmatic upload
 
-**Limitations:**
+#### ❌ Limitations
 - **Size Constraint**: Maximum 200MB file size limit
 - **No Incremental Updates**: Must replace entire table to update data
 - **Limited Control**: Cannot modify schema after upload
@@ -42,6 +38,7 @@ The CSV upload method is the most straightforward way to get data into Dune, des
 - Users without programming experience
 
 ### Credit Usage
+- Varies by plan tier
 - Plus Plan: 5,000 data points per credit
 - Premium Plan: 25,000 data points per credit
 
@@ -49,35 +46,36 @@ The CSV upload method is the most straightforward way to get data into Dune, des
 
 ## Method 2: Programmatic Table Management - Flexible but Complex
 
-The programmatic approach uses a combination of four API endpoints ([`create`](./create), [`insert`](./insert), [`clear`](./clear), [`delete`](./delete)) to provide full control over table lifecycle and data management.
+### Overview
+The programmatic approach uses a combination of four API endpoints (`create`, `insert`, `clear`, `delete`) to provide full control over table lifecycle and data management.
 
 ### Core Operations
 
-#### 1. **Create Table** ([`POST /v1/table/create`](./create))
+#### 1. **Create Table** (`POST /v1/table/create`)
 - Define table schema explicitly with column names, types, and nullability
 - Set table as public or private
 - Specify namespace and table name
 - **Cost**: 10 credits per successful table creation
 
-#### 2. **Insert Data** ([`POST /v1/table/insert`](./insert))
+#### 2. **Insert Data** (`POST /v1/table/insert`)
 - Add new rows to existing tables
 - Support for incremental data loading
 - Append operations without replacing existing data
 - JSON payload with structured data
 
-#### 3. **Clear Data** ([`POST /v1/table/clear`](./clear))
+#### 3. **Clear Data** (`POST /v1/table/clear`)
 - Remove all data from table while preserving schema
 - Useful for complete data refreshes
 - Table structure remains intact
 
-#### 4. **Delete Table** ([`DELETE /v1/table/delete`](./delete))
+#### 4. **Delete Table** (`DELETE /v1/table/delete`)
 - Permanently remove table and all its data
 - Complete cleanup operation
 - Irreversible action
 
 ### Key Characteristics
 
-**Advantages:**
+#### ✅ Advantages
 - **Full Control**: Complete management of table lifecycle
 - **Incremental Updates**: Add data without replacing existing content
 - **Large Data Support**: No 200MB size limitation
@@ -87,7 +85,7 @@ The programmatic approach uses a combination of four API endpoints ([`create`](.
 - **Programmatic**: Perfect for automated workflows and ETL pipelines
 - **Privacy Control**: Set tables as public or private
 
-**Limitations:**
+#### ❌ Limitations
 - **Complexity**: Requires more technical knowledge and setup
 - **Schema Management**: Must manually define and maintain schema
 - **Multiple API Calls**: Requires orchestration of multiple endpoints
@@ -153,31 +151,29 @@ The programmatic approach uses a combination of four API endpoints ([`create`](.
 
 ## Implementation Considerations
 
-<Note>
-**Security & Authentication**
+### Security & Authentication
 Both methods require:
 - Dune API key authentication
 - Proper credential management
 - Team/user context considerations
-</Note>
 
-**Performance & Scalability**
+### Performance & Scalability
 - **CSV Upload**: Limited by file size and processing time
 - **Programmatic**: Scalable for large datasets, can handle concurrent operations
 
-**Monitoring & Maintenance**
+### Monitoring & Maintenance
 - **CSV Upload**: Minimal monitoring needed
 - **Programmatic**: Requires error handling, retry logic, and workflow orchestration
 
-**Cost Management**
+### Cost Management
 - Both methods consume credits based on data volume
 - Programmatic method has additional table creation costs
 - Consider credit consumption in high-frequency update scenarios
 
 ---
 
-## Recommendation
+## Conclusion
 
-For most users starting with Dune, CSV upload provides an excellent entry point due to its simplicity and speed for smaller, static datasets. As data complexity and automation requirements grow, migrating to programmatic table management becomes advantageous for maintaining scalable, reliable data pipelines.
+The choice between CSV upload and programmatic table management depends largely on your technical requirements, data volume, and update frequency. CSV upload excels in simplicity and speed for smaller, static datasets, while programmatic management provides the flexibility and control needed for enterprise-scale data operations.
 
-The choice ultimately depends on your technical requirements, data volume, and update frequency. CSV upload excels in simplicity, while programmatic management provides the flexibility and control needed for enterprise-scale data operations.
+For most users starting with Dune, CSV upload provides an excellent entry point. As data complexity and automation requirements grow, migrating to programmatic table management becomes advantageous for maintaining scalable, reliable data pipelines.
