@@ -53,6 +53,34 @@ Parameters can be text, numbers,a date, a manual list of values or a list of val
 </div>
 
 
+### Parameters in Query Views
+
+Parameters can also be used in [Query Views](/query-engine/query-a-query), allowing you to pass parameters several levels deep into nested queries. This powerful feature enables you to create complex, reusable query architectures where parameters flow through multiple layers of queries.
+
+For example, you can create a base query with parameters, then use that query as a view in another query while passing different parameter values. This allows for modular query design and enables sophisticated dashboard architectures. See the [Query Views documentation](/query-engine/query-a-query) for detailed examples and syntax.
+
+```sql
+-- Base query (query_123) with parameters
+SELECT 
+    project,
+    sum(amount_usd) as volume
+FROM dex.trades 
+WHERE blockchain = '{{blockchain_param}}'
+  AND block_time >= cast('{{start_date}}' as timestamp)
+GROUP BY project
+```
+
+```sql
+-- Query that uses the base query as a view with parameters
+SELECT 
+    project,
+    volume,
+    volume * 0.003 as estimated_fees
+FROM "query_123(blockchain_param='ethereum', start_date='2024-01-01')"
+WHERE volume > 1000000
+ORDER BY volume DESC
+```
+
 ### Freeform parameters
 
 Freeform parameters are useful if you want your users to be able to input any text, number or date value. An example of this would be a parameter that allows users to input an address, a token, or a date.   

@@ -81,7 +81,8 @@
         "learning/how-tos/search-for-content",
         "learning/how-tos/share-dune-content",
         "learning/how-tos/share-your-query",
-        "learning/how-tos/transfer-ownership"
+        "learning/how-tos/transfer-ownership",
+        "learning/flipside-migration-guide"
       ]
     },
     {
@@ -111,6 +112,8 @@
           "group": "Decoding Contracts",
           "pages": [
             "web-app/decoding/decoding-contracts",
+            "web-app/decoding/best-practices",
+            "web-app/decoding/faqs",
             "web-app/decoding/multichain-decoding",
             "web-app/decoding/short-guide-contract-submission"
           ]
@@ -198,83 +201,57 @@
       ]
     },
     {
-      "group": "Dune Index",
-      "icon": "chart-line",
-      "pages": [
-        "data-catalog/dune-index/introduction",
-        "data-catalog/dune-index/gas-fees",
-        "data-catalog/dune-index/net-transfers",
-        "data-catalog/dune-index/transactions"
-      ]
-    },
-    {
       "group": "Curated Data",
       "pages": [
         "data-catalog/curated/overview",
         {
-          "group": "EVM",
-          "icon": "e",
+          "group": "DEX Trades",
+          "icon": "shuffle",
           "pages": [
-            "data-catalog/curated/evm/overview",
+            "data-catalog/curated/dex-trades/overview",
             {
-              "group": "Asset Tracking",
-              "icon": "coins",
+              "group": "EVM DEX",
+              "icon": "e",
               "pages": [
-                "data-catalog/curated/evm/asset-tracking/overview",
-                "data-catalog/curated/evm/asset-tracking/balances",
-                "data-catalog/curated/evm/asset-tracking/nft-metadata",
-                "data-catalog/curated/evm/asset-tracking/nft-transfers",
-                "data-catalog/curated/evm/asset-tracking/token-transfers",
-                "data-catalog/curated/evm/asset-tracking/tokens-metadata"
+                "data-catalog/curated/dex-trades/evm/dex-trades",
+                "data-catalog/curated/dex-trades/evm/dex-aggregator-trades",
+                "data-catalog/curated/dex-trades/evm/dex-sandwiched",
+                "data-catalog/curated/dex-trades/evm/dex-sandwiches"
               ]
             },
             {
-              "group": "DEX",
-              "icon": "shuffle",
+              "group": "Solana DEX",
+              "icon": "s",
               "pages": [
-                "data-catalog/curated/evm/DEX/overview",
-                "data-catalog/curated/evm/DEX/dex-trades",
-                "data-catalog/curated/evm/DEX/dex-aggregator-trades",
-                "data-catalog/curated/evm/DEX/dex-sandwiched",
-                "data-catalog/curated/evm/DEX/dex-sandwiches"
-              ]
-            },
-            {
-              "group": "NFT",
-              "icon": "image",
-              "pages": [
-                "data-catalog/curated/evm/NFT/overview",
-                "data-catalog/curated/evm/NFT/nft-trades",
-                "data-catalog/curated/evm/NFT/nft-mints",
-                "data-catalog/curated/evm/NFT/nft-wash-trades"
+                "data-catalog/curated/dex-trades/solana/overview",
+                "data-catalog/curated/dex-trades/solana/jupiter-aggregator-trades",
+                "data-catalog/curated/dex-trades/solana/solana-dex-trades"
               ]
             }
           ]
         },
         {
-          "group": "Solana",
-          "icon": "s",
+          "group": "Token Transfers",
+          "icon": "coins",
           "pages": [
-            "data-catalog/curated/solana/overview",
+            "data-catalog/curated/token-transfers/overview",
             {
-              "group": "Asset Tracking",
-              "icon": "coins",
+              "group": "EVM Token Transfers",
+              "icon": "e",
               "pages": [
-                "data-catalog/curated/solana/asset-tracking/overview",
-                "data-catalog/curated/solana/asset-tracking/solana-nft-metadata",
-                "data-catalog/curated/solana/asset-tracking/solana-nft-transfers",
-                "data-catalog/curated/solana/asset-tracking/solana-token-accounts",
-                "data-catalog/curated/solana/asset-tracking/solana-token-metadata",
-                "data-catalog/curated/solana/asset-tracking/solana-token-transfers"
+                "data-catalog/curated/token-transfers/evm/balances",
+                "data-catalog/curated/token-transfers/evm/token-transfers",
+                "data-catalog/curated/token-transfers/evm/tokens-metadata"
               ]
             },
             {
-              "group": "Trading",
-              "icon": "shuffle",
+              "group": "Solana Token Transfers",
+              "icon": "s",
               "pages": [
-                "data-catalog/curated/solana/trading/overview",
-                "data-catalog/curated/solana/trading/jupiter-aggregator-trades",
-                "data-catalog/curated/solana/trading/solana-dex-trades"
+                "data-catalog/curated/token-transfers/solana/overview",
+                "data-catalog/curated/token-transfers/solana/solana-token-accounts",
+                "data-catalog/curated/token-transfers/solana/solana-token-metadata",
+                "data-catalog/curated/token-transfers/solana/solana-token-transfers"
               ]
             }
           ]
@@ -300,6 +277,32 @@
             "data-catalog/curated/prices/prices_day",
             "data-catalog/curated/prices/prices_usd",
             "data-catalog/curated/prices/prices_latest"
+          ]
+        },
+        {
+          "group": "NFT Trades",
+          "icon": "image",
+          "pages": [
+            "data-catalog/curated/nft-trades/overview",
+            {
+              "group": "EVM NFT",
+              "icon": "e",
+              "pages": [
+                "data-catalog/curated/nft-trades/evm/nft-trades",
+                "data-catalog/curated/nft-trades/evm/nft-mints",
+                "data-catalog/curated/nft-trades/evm/nft-wash-trades",
+                "data-catalog/curated/nft-trades/evm/nft-metadata",
+                "data-catalog/curated/nft-trades/evm/nft-transfers"
+              ]
+            },
+            {
+              "group": "Solana NFT",
+              "icon": "s",
+              "pages": [
+                "data-catalog/curated/nft-trades/solana/solana-nft-metadata",
+                "data-catalog/curated/nft-trades/solana/solana-nft-transfers"
+              ]
+            }
           ]
         }
       ]
@@ -1238,6 +1241,47 @@
           ]
         },
         {
+          "group": "Katana",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/katana/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/katana/raw/blocks",
+                "data-catalog/evm/katana/raw/creation-traces",
+                "data-catalog/evm/katana/raw/logs",
+                "data-catalog/evm/katana/raw/transactions",
+                "data-catalog/evm/katana/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/katana/decoded/overview",
+                "data-catalog/evm/katana/decoded/call-tables",
+                "data-catalog/evm/katana/decoded/event-logs",
+                "data-catalog/evm/katana/decoded/contracts",
+                "data-catalog/evm/katana/decoded/logs-decoded",
+                "data-catalog/evm/katana/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/katana/curated-data/dex/dex-trades",
+                    "data-catalog/evm/katana/curated-data/dex/dex-aggregator-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Lens",
           "icon": "database",
           "iconType": "solid",
@@ -1374,23 +1418,6 @@
           ]
         },
         {
-          "group": "Mode",
-          "icon": "database",
-          "iconType": "regular",
-          "pages": [
-            "data-catalog/evm/mode/overview",
-            {
-              "group": "Raw",
-              "pages": [
-                "data-catalog/evm/mode/raw/blocks",
-                "data-catalog/evm/mode/raw/logs",
-                "data-catalog/evm/mode/raw/transactions",
-                "data-catalog/evm/mode/raw/traces"
-              ]
-            }
-          ]
-        },
-        {
           "group": "opBNB",
           "icon": "database",
           "iconType": "solid",
@@ -1429,7 +1456,9 @@
                 },
                 {
                   "group": "NFT",
-                  "pages": ["data-catalog/evm/opbnb/curated-data/nft/nft-trades"]
+                  "pages": [
+                    "data-catalog/evm/opbnb/curated-data/nft/nft-trades"
+                  ]
                 }
               ]
             }
@@ -1476,6 +1505,46 @@
                   "group": "NFT",
                   "pages": [
                     "data-catalog/evm/optimism/curated-data/nft/nft-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Plume",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/plume/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/plume/raw/blocks",
+                "data-catalog/evm/plume/raw/creation-traces",
+                "data-catalog/evm/plume/raw/logs",
+                "data-catalog/evm/plume/raw/transactions",
+                "data-catalog/evm/plume/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/plume/decoded/overview",
+                "data-catalog/evm/plume/decoded/event-logs",
+                "data-catalog/evm/plume/decoded/contracts",
+                "data-catalog/evm/plume/decoded/logs-decoded",
+                "data-catalog/evm/plume/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/plume/curated-data/dex/dex-trades",
+                    "data-catalog/evm/plume/curated-data/dex/dex-aggregator-trades"
                   ]
                 }
               ]
@@ -1896,6 +1965,35 @@
           ]
         },
         {
+          "group": "Tac",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/tac/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/tac/raw/blocks",
+                "data-catalog/evm/tac/raw/creation-traces",
+                "data-catalog/evm/tac/raw/logs",
+                "data-catalog/evm/tac/raw/transactions",
+                "data-catalog/evm/tac/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/tac/decoded/overview",
+                "data-catalog/evm/tac/decoded/call-tables",
+                "data-catalog/evm/tac/decoded/event-logs",
+                "data-catalog/evm/tac/decoded/contracts",
+                "data-catalog/evm/tac/decoded/logs-decoded",
+                "data-catalog/evm/tac/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Unichain",
           "icon": "database",
           "iconType": "solid",
@@ -2276,6 +2374,7 @@
           "pages": [
             "data-catalog/ton/overview",
             "data-catalog/ton/accounts",
+            "data-catalog/ton/balances_history",
             "data-catalog/ton/blocks",
             "data-catalog/ton/transactions",
             "data-catalog/ton/messages",
@@ -2283,6 +2382,17 @@
             "data-catalog/ton/dex_trades",
             "data-catalog/ton/jetton_events",
             "data-catalog/ton/jetton_metadata"
+          ]
+        },
+        {
+          "group": "XRPL",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/xrpl/overview",
+            "data-catalog/xrpl/transactions",
+            "data-catalog/xrpl/ledger",
+            "data-catalog/xrpl/aggregated_metrics_daily"
           ]
         },
         {
@@ -2322,6 +2432,22 @@
       ]
     },
     {
+      "group": "Protocols",
+      "pages": [
+        {
+          "group": "LayerZero",
+          "icon": "circles-overlap",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/layerzero/overview",
+            "data-catalog/layerzero/messages",
+            "data-catalog/layerzero/transfers"
+          ]
+        }
+      ]
+    },
+
+    {
       "group": "Community Data",
       "pages": [
         {
@@ -2350,11 +2476,7 @@
             "data-catalog/community/farcaster/power_badge"
           ]
         },
-        {
-          "group": "GhostLogs",
-          "icon": "ghost",
-          "pages": ["data-catalog/community/ghostlogs/overview"]
-        },
+
         {
           "group": "Lens",
           "icon": "cloud",
@@ -2408,6 +2530,16 @@
             "data-catalog/community/snapshot/follows"
           ]
         }
+      ]
+    },
+    {
+      "group": "Dune Index",
+      "icon": "chart-line",
+      "pages": [
+        "data-catalog/dune-index/introduction",
+        "data-catalog/dune-index/gas-fees",
+        "data-catalog/dune-index/net-transfers",
+        "data-catalog/dune-index/transactions"
       ]
     },
     {

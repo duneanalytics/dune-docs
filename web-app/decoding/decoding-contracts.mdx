@@ -3,7 +3,7 @@ title: Decoding Contracts
 description: Instead of working with the logs and traces in their raw states, on Dune we decode smart contract activity into nice human-readable tables.
 ---
 
-**Dune's extensive catalog of decoded smart contracts are driven by our Wizards. Our decoding process empowers our community to submit the data and build the tables that they’d like to query on Dune!**
+**Dune's extensive catalog of decoded smart contracts are driven by our Wizards. Our decoding process empowers our community to submit the data and build the tables that they'd like to query on Dune!**
 
 But what does decoding mean? Blockchain transaction data starts as bytecode, a low level programming language that can be read by machines. Using the ABI (Application Binary Interface) that is specific to each contract, we translate that bytecode into query-able data tables.
 
@@ -43,7 +43,7 @@ To successfully submit a contract, you will need four pieces of information:
 4. **Contract Name**: The name of the smart contract as given by the project (ex. USDT, Pair, LiquidityFactory)
 5. **ABI**: Unique to each smart contract. Further details can be found [here](https://docs.soliditylang.org/en/latest/abi-spec.html). Note that for contracts that are verified by a chain's explorer we will attempt to auto-fetch the ABI. Otherwise the ABI will need to be entered manually.
 
-In most cases, the contract name will be pulled directly from a blockchain scanner. We recommend using the name provided. If the name is not automatically provided, please follow our naming conventions to assure the contract is properly assimilated into Dune’s database.
+In most cases, the contract name will be pulled directly from a blockchain scanner. We recommend using the name provided. If the name is not automatically provided, please follow our naming conventions to assure the contract is properly assimilated into Dune's database.
 
 ### When do you need Several Instances Options?
 
@@ -139,89 +139,9 @@ One quick tip to find and begin querying your decoded table is to use Dune's Exp
 
 Then it's all ready for you to query. Let the data flow!
 
-# B. Frequently Asked Questions
+# B. Need Help?
 
-<Accordion title="How do I figure out if my contract has been decoded?">
-    There are two main ways to find out if your contract has been decoded.
-
-    First: Account Settings
-
-    Information on submitted contracts can be found in your account settings under “Contracts”. The status of the contract will reflect one of the following:
-
-    1. Pending
-    2. Approved/Rejected*
-
-    Note that once a contract has been approved, it takes around 24 hours for the data to be fully decoded and populated into our database.
-
-    *If the contract is rejected, hover your mouse over the status to see the reason for the rejection.
-
-    Second: Our [Contract Decoding Dashboard](https://dune.com/dune/is-my-contract-decoded-yet-v2)
-    ![](/web-app/images/decoding-contracts/4.png)
-
-    Built by our decoding team, this dashboard gives you information on the status of any submitted contract. Input the contract address in the box at the top of the dashboard and if the contract has been decoded, the contract information will populate the box along with where it is located in the Dune database.
-
-</Accordion>
-<Accordion title="I see data on Dune but it doesn't match or is missing what I expected to see">
-    Unfortunately, Dune only has access to contract data in circumstances that the contract performed an event that left a trace. Our recommendation is to check out the \{blockchain}.traces table to see what information is available for a particular contract.
-
-    Alternatively, some contracts are upgradeable (ie., the smart contract code can be modified). In this case we may not have all of the ABIs. ABIs can be checked in the ABI column of the \{blockchain}.contracts tables. A contract can always be resubmitted with missing ABIs so we can update our data.
-
-</Accordion>
-<Accordion title="How do I submit contract information manually?">
-    <Info>If the contract being manually submitted is a Proxy contract, we recommend you to move on to the next section.</Info>
-
-    Although we try to fetch contract information such as the ABI, sometimes this information might not be available through our sources.
-
-    In those instances, you will need to manually input the contract's name and its ABI.
-
-    If the contract has been verified by the chain's block explorer, you should be able to find this information there.
-
-</Accordion>
-<Accordion title="How do I submit a proxy contract?">
-In order to properly decode transactions for contracts that fit the [Proxy pattern](https://blog.openzeppelin.com/proxy-patterns/), Dune needs to map the Proxy contract's address with the implementation contract's ABI.
-
-    We avoid monitoring the implementation contract's address because its logic is accessed in transactions via the [`DelegateCall` function](https://medium.com/coinmonks/delegatecall-calling-another-contract-function-in-solidity-b579f804178c).
-
-    If we did monitor the implementation contract's address directly, we would miss out on any event logs in its logic since these are actually fired by the caller (the Proxy in this case) when calling a function through `DelegateCall`.
-
-    <Warning> When submitting Proxy-patterned contracts to Dune, you should input the Proxy contract's address and, if you have it, the Implementation contract's ABI. If the Proxy has a new implementation upgraded that you wish to decode, use the same project name + contract name and select <b>'NO'</b> for several instances! </Warning>
-
-    ![new proxy implementation submission](/web-app/images/decoding-contracts/5.png)
-
-    When you submit the Proxy contract's address, we'll attempt to fetch the proxy's contract name and the implementation address it's pointing towards to source the Implementation contract's ABI.
-
-    If we can't find the Implementation contract's ABI, you'll need to find it using the relevant chain's blockchain explorer and input it manually.
-
-</Accordion>
-<Accordion title="How do I submit Diamond Proxy contracts?">
-    Similar to vanilla Proxy contracts, [EIP-2535](https://eips.ethereum.org/EIPS/eip-2535) contracts can be supported by passing in the address of the Diamond Proxy as well as **a single ABI representing the totality of all the facets interfaces**.
-</Accordion>
-<Accordion title="My submission got rejected, why?">
-    The most common reason that your submission got rejected is because it has already been decoded! You can make use of [this dashboard](https://dune.com/dune/is-my-contract-decoded-yet-v2) to check whether the contract have been decoded.
-
-    **Enter the contract that you wish to decode and hit enter to run:**
-
-    ![check if contract is decoded](/web-app/images/decoding-contracts/check_decoding_input_address.png)
-
-    **Viewing results:**
-
-    ![query results to determine whether contract is decoded](/web-app/images/decoding-contracts/check_decoding_result_output.png)
-
-    If you see results after running the query, that means the contract is already decoded! You'll be able to find the decoded tables under 'Decoded Projects' in the data explorer.
-
-    In the interest of data quality, we reject duplicative, incorrect or low quality submissions. To avoid rejection, be sure to submit accurate contract information! Submissions can be rejected for a number of reasons, including not following the naming conventions, not providing clear data at submission, etc. The particular reason for a contract submission being rejected can be found in account settings under “Contracts” by hovering the mouse over the “Rejected” status.
-
-</Accordion>
-<Accordion title="Why am I missing historical data for my contract?">
-    It may take up to six hours from the time of contract approval for the contract to be fully decoded along with its historical data. If you still can't see the data after this period, please reach out to us through our [#decoding Discord channel](https://discord.com/channels/757637422384283659/850326962152538122).
-</Accordion>
-<Accordion title="I'm waiting for my data to fully decode. What can I do in the meantime?">
-    Need some data urgently but the contract have yet to be fully decoded? You can refer to these queries that utilizes the logs table to get the events:
-
-    - [Querying Synthetix's PerpsTracking Event](https://dune.com/queries/2743182)
-    - [Querying USDT's AddedBlackList Event](https://dune.com/queries/3250843)
-
-</Accordion>
+For frequently asked questions about decoding contracts, check out our [Decoding FAQs](/web-app/decoding/faqs).
 
 ### Additional Questions?
 

@@ -1,0 +1,77 @@
+---
+title: Solana Curated Data
+sidebarTitle: Overview
+icon: "star"
+description: Solana-specific information for curated data tables on Solana
+---
+
+## Overview
+
+This page provides Solana-specific information about Dune's curated data tables. For the main curated data categories, please see:
+
+- [DEX Trades Data](/data-catalog/curated/dex-trades/overview) - DEX trades across EVM and Solana
+- [NFT Trades Data](/data-catalog/curated/nft-trades/overview) - NFT activity across all networks  
+- [Token Transfer Data](/data-catalog/curated/token-transfers/overview) - Token transfers and balances across chains
+
+## Solana-Specific Features
+
+Solana curated data tables provide specific features for the Solana blockchain:
+
+- **SPL Token support**: Comprehensive coverage of SPL tokens and Token22 program
+- **Program-based architecture**: Data structured around Solana's program model
+- **High-performance tracking**: Optimized for Solana's high-throughput environment
+- **Account-based model**: Detailed account state and balance tracking
+
+## Solana Program Coverage
+
+Our Solana curated data covers major programs:
+
+- **Token Programs**: SPL Token, Token22 (Token Extensions)
+- **DEX Programs**: Orca, Raydium, Serum, and other major DEXs
+- **NFT Programs**: Metaplex and other NFT standards
+- **Aggregators**: Jupiter and other routing protocols
+
+## Example Query
+
+Here's a simple query to analyze Solana token transfer activity:
+
+```sql
+SELECT 
+    date_trunc('day', block_time) as date,
+    COUNT(*) as num_transfers,
+    COUNT(DISTINCT from_address) as unique_senders
+FROM solana.token_transfers
+WHERE block_time >= NOW() - INTERVAL '30' day
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card
+    title="Spellbook Solana Models"
+    icon="github"
+    href="https://github.com/duneanalytics/spellbook/tree/main/dbt_subprojects/solana" 
+  >
+    View the source code for Solana curated data models
+  </Card>
+  <Card
+    title="Solana Documentation"
+    icon="book"
+    href="https://spellbook-docs.dune.com/"
+  >
+    Native dbt documentation for Solana models
+  </Card>
+</CardGroup>
+
+## Coverage and Limitations
+
+The Solana curated tables aim to provide comprehensive coverage of on-chain activity, but there are some limitations to be aware of:
+
+- Token and NFT transfers are captured through standard SPL token program events
+- Some non-standard token implementations may not be fully captured
+- DEX coverage includes major protocols but may not capture all DEX activity
+- Data is typically available with a short delay after on-chain finality
+
+For the most up-to-date coverage information, please check the documentation for each specific table. 
