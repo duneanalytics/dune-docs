@@ -38,7 +38,7 @@
   },
   "tabs": [
     {
-      "name": "Web App",
+      "name": "Analytics Studio",
       "url": "web-app"
     },
     {
@@ -50,7 +50,7 @@
       "url": "data-catalog"
     },
     {
-      "name": "SQL API Reference",
+      "name": "Analytics API",
       "url": "api-reference"
     },
     {
@@ -58,7 +58,7 @@
       "url": "datashare"
     },
     {
-      "name": "Blockchain Integrations",
+      "name": "Catalyst",
       "url": "catalyst"
     }
   ],
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "group": "Web App",
+      "group": "Analytics Studio",
       "pages": [
         "web-app/overview",
         {
