@@ -1993,6 +1993,35 @@
             }
           ]
         },
+                {
+          "group": "Taiko",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/taiko/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/taiko/raw/blocks",
+                "data-catalog/evm/taiko/raw/creation-traces",
+                "data-catalog/evm/taiko/raw/logs",
+                "data-catalog/evm/taiko/raw/transactions",
+                "data-catalog/evm/taiko/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/taiko/decoded/overview",
+                "data-catalog/evm/taiko/decoded/call-tables",
+                "data-catalog/evm/taiko/decoded/event-logs",
+                "data-catalog/evm/taiko/decoded/contracts",
+                "data-catalog/evm/taiko/decoded/logs-decoded",
+                "data-catalog/evm/taiko/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
         {
           "group": "Unichain",
           "icon": "database",
