@@ -1993,7 +1993,7 @@
             }
           ]
         },
-        {
+                {
           "group": "Taiko",
           "icon": "database",
           "iconType": "solid",
@@ -2018,18 +2018,6 @@
                 "data-catalog/evm/taiko/decoded/contracts",
                 "data-catalog/evm/taiko/decoded/logs-decoded",
                 "data-catalog/evm/taiko/decoded/traces-decoded"
-              ]
-            },
-            {
-              "group": "Curated",
-              "pages": [
-                {
-                  "group": "DEX",
-                  "pages": [
-                    "data-catalog/evm/taiko/curated-data/dex/dex-trades",
-                    "data-catalog/evm/taiko/curated-data/dex/dex-aggregator-trades"
-                  ]
-                }
               ]
             }
           ]
