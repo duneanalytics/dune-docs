@@ -1154,6 +1154,46 @@
           ]
         },
         {
+          "group": "Hemi",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/hemi/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/hemi/raw/blocks",
+                "data-catalog/evm/hemi/raw/creation-traces",
+                "data-catalog/evm/hemi/raw/logs",
+                "data-catalog/evm/hemi/raw/transactions",
+                "data-catalog/evm/hemi/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/hemi/decoded/overview",
+                "data-catalog/evm/hemi/decoded/call-tables",
+                "data-catalog/evm/hemi/decoded/event-logs",
+                "data-catalog/evm/hemi/decoded/contracts",
+                "data-catalog/evm/hemi/decoded/logs-decoded",
+                "data-catalog/evm/hemi/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/hemi/curated-data/dex/dex-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Ink",
           "icon": "database",
           "iconType": "solid",
