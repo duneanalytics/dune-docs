@@ -2005,6 +2005,46 @@
           ]
         },
         {
+          "group": "Superseed",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/superseed/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/superseed/raw/blocks",
+                "data-catalog/evm/superseed/raw/creation-traces",
+                "data-catalog/evm/superseed/raw/logs",
+                "data-catalog/evm/superseed/raw/transactions",
+                "data-catalog/evm/superseed/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/superseed/decoded/overview",
+                "data-catalog/evm/superseed/decoded/call-tables",
+                "data-catalog/evm/superseed/decoded/event-logs",
+                "data-catalog/evm/superseed/decoded/contracts",
+                "data-catalog/evm/superseed/decoded/logs-decoded",
+                "data-catalog/evm/superseed/decoded/traces-decoded"
+              ]
+            },
+            {
+              "group": "Curated",
+              "pages": [
+                {
+                  "group": "DEX",
+                  "pages": [
+                    "data-catalog/evm/superseed/curated-data/dex/dex-trades"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "group": "Tac",
           "icon": "database",
           "iconType": "solid",
