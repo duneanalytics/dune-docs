@@ -1,66 +1,42 @@
 ---
-title: Snowflake Datashare Overview
+title: Dune Datashare Overview
 sidebarTitle: Overview
-icon: snowflake
-description: You can access all of Dune's data via the Snowflake data marketplace.
+icon: database
+description: Access all of Dune's blockchain data directly in your data warehouse for privacy and control.
 ---
 
-Unlock the full potential of blockchain analytics with Dune's Datashare on Snowflake. Gain access to Dune's full data catalog with over 1.5 million tables, featuring raw blockchain data, human-readable smart contracts, detailed insights into protocols, dex/nft trades, and comprehensive cross-chain data. All are directly available on the Snowflake Marketplace, making it the most extensive and rich resource for blockchain data in the crypto universe.
+Access Dune's complete blockchain dataset (1.5M+ tables, 50+ chains) directly in your data warehouse. Query in your own environment - we can't see your queries.
 
-## Key Features
+## Platforms
 
-- **Extensive Data Catalog**: The largest assembly of blockchain data in the crypto space, at your fingertips.
-- **Cross-Chain Insights**: Abstracted and harmonized data from more than 15 blockchains, providing a panoramic view of the blockchain ecosystem.
-- **Human-Readable Smart Contracts**: Simplifying the complexity of smart contracts, making them accessible and understandable.
-- **Direct Access via Snowflake Marketplace**: Seamless integration and access through the Snowflake data marketplace, ensuring optimal performance and reduced query costs.
-- **Cross Region Replication**: Data is available in multiple regions to ensure data proximity and help keep your query costs low.
-- **Precision and Accuracy**: Data is meticulously curated and maintained, ensuring the highest quality and reliability.
+| **Platform** | **Access** | **Trial** |
+|-------------|------------|-----------|
+| ❄️ **[Snowflake](/datashare/datashare-snowflake)** | Marketplace | 30-day free trial |
+| 🔍 **[BigQuery](/datashare/datashare-bigquery)** | Custom setup | Contact for trial |
 
-## Datashare 101's
+## Why Datashare
 
-To start leveraging Dune's Datashare on Snowflake for your blockchain analytics needs, visit the Dune profile on the [Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune). There are trial tables available. If interested in participating in the trial please refer to our trial guide under [getting started](/datashare/datashare-trial/).
+- **Privacy**: Query in your warehouse
+- **Join your data**: Combine with your existing datasets
+- **Control costs**: Manage your own compute
+- **Complete dataset**: All the data that powers Dune
 
-## Dune vs. Datashare
+## Sharing Identifiers
 
-The data we provide on the Snowflake Marketplace is the same data that powers our analytics platform. However, since the data is in a different environment, there are slight differences in the way we need to store the data.
+Each platform uses different methods to access shared data:
 
-### Datatypes
+- **Snowflake**: Uses share identifiers via Snowflake Marketplace
+- **BigQuery**: Uses dataset sharing via Analytics Hub or direct sharing
 
-On Snowflake, the way we store data is different, since there is no native support for common blockchain data types in Snowflake. This affects the way we store addresses, hashes, call data and other varbinary data. Furthermore, high-precisions integers like `uint256` and `int256` are also affected.
+See platform-specific guides for complete setup instructions.
 
-### Varbinary Data
+<CardGroup cols={2}>
+  <Card title="Snowflake" icon="snowflake" href="/datashare/datashare-snowflake">
+    Self-service via Marketplace
+  </Card>
+  <Card title="BigQuery" icon="search" href="/datashare/datashare-bigquery">
+    Custom delivery setup
+  </Card>
+</CardGroup>
 
-For columns that have the datatype `varbinary` in Dune, there are two columns in Snowflake named "column_name" and "column_name_hex" (e.g., hash and hash_hex). "Column_name" is of type `varbinary`, "column_name_hex" is of type `string` and contains the 0x-prefixed lowercase hex representation of the binary data for convenience. For complex queries, it is recommended to use the "column_name" column, as it is more efficient. Snowflake does not support storing `varbinary` data with a `0x` prefix, so we store the data as `varbinary` and provide a `string` column with the hex representation for convenience. Queries using "hash_hex" will be much slower than queries using "hash" due to the data type.
-
-
-|Database | Column Name | Data Type         | Data Display Sample                                                            |
-|------------|-------------|----------------|------------------------------------------------------------------------|
-|Dune        | hash        | `varbinary`    | 0xefb2e2c26974f72d9f3f04c693db73ecc679dd60   |
-|Snowflake   | hash        | `varbinary`    | EFB2E2C26974F72D9F3F04C693DB73ECC679DD60  |
-|Snowflake   | hash_hex    | `string`       | '0xEfB2E2c26974F72D9f3f04C693DB73eCc679dd60' |
-
-
-```sql
---Using hash:
-select * from ethereum.transactions where hash = X'efb2e2c26974f72d9f3f04c693db73ecc679dd60'
---Using hash_hex:
-select * from ethereum.transactions where hash_hex = LOWER('0xEfB2E2c26974F72D9f3f04C693DB73eCc679dd60') -- Not recommended
-```
-
-<Info> Varbinary data in Snowflake is displayed as `ABCDEF` but needs to be queried via `X'abcdef'`. There is a difference between the representation and the actual data. </Info>
-
-
-### High Precision Integers
-
-For most columns with type `INT256` or `UINT256` in Dune, there are two columns in Snowflake, one of type `DOUBLE`, and one of type `VARBINARY`. The `VARBINARY` column contains the 32-byte, big-endian, 2s complement representation of the INT256 or UINT256 number. The DOUBLE column is named "column_name" while the `VARBINARY` column is usually named "column_name_binary" or "column_name_raw". For most use cases, the `DOUBLE` column is sufficient, but for queries that require exact precision, it is recommended to use the Dune query engine, as it has native support for these data types. 
-
-The `VARBINARY` datatype columns are useful when exact precision is needed, but calculations are not required. For example, if you want to join on `token_id` for erc1155 transfers, you can use the `VARBINARY` column `token_id_binary`. Using double for this would not work, as the precision is not sufficient. 
-
-|Database    | Column Name                 | Data Type    | Data Display Sample                                       |
-|------------|--------------------------|-----------|---------------------------------------------------|
-|Dune        | column_name              | INT256    | 123456789012345678901234567890123456789           |
-|Snowflake   | column_name              | DOUBLE    | 3.4567890123456788e+16                            |
-|Snowflake   | column_name_binary       | VARBINARY | X'5ce0e9a56015fec5aadfa328ae398115'               |
-|Snowflake   | column_name_raw          | VARBINARY | X'5ce0e9a56015fec5aadfa328ae398115'               |
-
-<Info> Varbinary data in Snowflake is displayed as `ABCDEF` but needs to be queried via `X'abcdef'`. There is a difference between the representation and the actual data. </Info>
+Need a different platform? [Contact us](https://dune.com/enterprise).
