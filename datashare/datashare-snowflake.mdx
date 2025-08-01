@@ -1,0 +1,60 @@
+---
+title: Snowflake Datashare
+sidebarTitle: Snowflake
+icon: snowflake
+description: Access Dune's blockchain data through the Snowflake Marketplace
+---
+
+Access 1.5M+ blockchain tables across 50+ chains via the Snowflake Marketplace.
+
+## Get Started
+
+**Trial (Free):**
+1. Go to [Dune on Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune)
+2. Click "Get" on any dataset for 30-day free trial
+3. Start querying
+
+**Production:** [Contact enterprise team](https://dune.com/enterprise) or email datashares-sales@dune.com
+
+## Sharing Identifiers
+
+Snowflake uses share identifiers for accessing shared datasets:
+
+- **Marketplace shares**: Automatically managed when you click "Get" on marketplace
+- **Direct shares**: For enterprise setups, you'll receive specific share names
+- **Share format**: `<account_locator>.<share_name>` (e.g., `DUNEANALYTICS.ETHEREUM_SHARE`)
+
+For direct share access, use:
+```sql
+-- List available shares
+SHOW SHARES;
+```
+
+See [Snowflake's sharing documentation](https://docs.snowflake.com/en/user-guide/data-share-consumers) for more details.
+
+## Data Types
+
+Blockchain data types are adapted for Snowflake:
+
+### Addresses & Hashes
+- `column_name` (VARBINARY) - use for queries (faster)
+- `column_name_hex` (STRING) - for convenience
+
+```sql
+-- Recommended:
+WHERE hash = X'efb2e2c26974f72d9f3f04c693db73ecc679dd60'
+-- Slower:
+WHERE hash_hex = '0xefb2e2c26974f72d9f3f04c693db73ecc679dd60'
+```
+
+### Large Integers (uint256/int256)
+- `column_name` (DOUBLE) - for most calculations
+- `column_name_binary` (VARBINARY) - for exact precision
+
+Use VARBINARY for exact matching (e.g., token IDs), DOUBLE for calculations.
+
+## Details
+
+- **Freshness**: hourly or daily depending on requirements
+- **Regions**: Available worldwide, contact us for specific region availability
+- **Support**: support@dune.com | [Discord](https://discord.gg/2VCqwzzF7u)

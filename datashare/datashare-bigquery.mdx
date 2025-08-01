@@ -1,0 +1,84 @@
+---
+title: BigQuery Datashare
+sidebarTitle: BigQuery
+icon: cloud
+description: Access Dune's blockchain data directly in your BigQuery environment
+---
+
+Access 1.5M+ blockchain tables across 50+ chains in your BigQuery environment.
+
+## Get Started
+
+**Trial:** Email datashares-sales@dune.com or [contact enterprise team](https://dune.com/enterprise)
+
+**Requirements:**
+- GCP Project ID
+- Preferred region (US Central 1 or EU West 2)
+- Chains of interest
+
+## Sharing Identifiers
+
+BigQuery uses dataset sharing for accessing Dune data:
+
+- **Analytics Hub**: Shared datasets appear in your project's Analytics Hub
+- **Direct sharing**: We grant access to specific dataset IDs in your project
+
+## Principal Types
+
+We need a "Principal" to grant access. This can be:
+
+| **Type** | **Format** | **Example** |
+|----------|------------|-------------|
+| **User** | `user:email@domain.com` | `user:bob@acme.com` |
+| **Service Account** | `serviceAccount:name@project.iam.gserviceaccount.com` | `serviceAccount:etl-sa@cust-proj.iam.gserviceaccount.com` |
+| **Domain** | `domain:domain.com` | `domain:acme.com` |
+| **Project Service Accounts** | `principalSet://cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER/type/ServiceAccount` | All service accounts for project |
+
+<Info>
+  Most common: provide your email address or a service account email. We can share complete blockchain history in seconds.
+</Info>
+
+See [GCP Principal Identifiers documentation](https://cloud.google.com/iam/docs/principal-identifiers) for more details.
+
+
+## Data Types
+
+BigQuery uses native types for blockchain data:
+
+### Addresses & Hashes
+```sql
+-- Query using BYTES
+WHERE tx_hash = FROM_HEX('efb2e2c26974f72d9f3f04c693db73ecc679dd60')
+-- Or STRING
+WHERE tx_hash_hex = '0xefb2e2c26974f72d9f3f04c693db73ecc679dd60'
+```
+
+### Large Integers
+BigQuery's `BIGNUMERIC` handles uint256/int256 natively:
+```sql
+WHERE value > CAST('1000000000000000000000' AS BIGNUMERIC)
+```
+
+### Event Logs
+```sql
+SELECT block_number, topics, data
+FROM `project.ethereum.logs`
+WHERE topics[OFFSET(0)] = FROM_HEX('ddf252ad...')
+```
+
+## Query Optimization
+
+- Use `block_time` in WHERE clauses for partitioning
+- Select only needed columns
+- Tables are clustered by common query patterns
+
+## Regions
+
+| Region | Chains | Freshness |
+|--------|--------|-----------|
+| US Central 1 | 50+ | 24 hours |
+| EU West 2 | 50+ | 24 hours |
+
+Need other regions? [Contact us](https://dune.com/enterprise)
+
+**Support:** datashares-sales@dune.com | support@dune.com | [Discord](https://discord.gg/2VCqwzzF7u)
