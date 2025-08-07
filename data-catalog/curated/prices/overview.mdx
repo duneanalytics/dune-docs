@@ -128,6 +128,26 @@ For details on how Dune processes DEX trade data to derive accurate token prices
     - 7 days for hourly prices
     - 2 days for minute prices
 
+### Quality Filtering Rules
+
+The quality filtering system uses multiple statistical methods to identify and flag potentially anomalous trades:
+
+1. **Price Outlier Detection (Median-based)**:
+   - Trades where the relative price deviation from the median price is greater than a factor 3 (in both directions)
+
+2. **Statistical Outlier Detection (Standard Deviation-based)**:
+   - Trades where the absolute price deviation from the median price is greater than 8 times the standard deviation
+
+3. **Transfer Amount Filtering**:
+   - Trades where the token amount is greater than the maximum transfer amount
+   - This helps identify trades that report larger amounts than the actual transfers
+
+A trade is flagged as an outlier if it triggers **any** of these three conditions. Flagged trades are excluded from price calculations to improve data quality.
+
+**Note**: While these filtering mechanisms help reduce the impact of anomalous trades, they are not foolproof. Users should always validate prices for critical applications.
+
+All statistics (median, standard deviation, max transfer amount) are calculated using 7-day rolling weighted averages for each token. This aims to provide a stable baseline measurements that will also adapt to changing market conditions.
+
 ## Usage Examples
 
 Here are some examples of how to use the prices tables.
