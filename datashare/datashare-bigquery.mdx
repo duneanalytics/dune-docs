@@ -5,7 +5,16 @@ icon: cloud
 description: Access Dune's blockchain data directly in your BigQuery environment
 ---
 
-Access 1.5M+ blockchain tables across 50+ chains in your BigQuery environment.
+Access 1.5M+ blockchain tables across 50+ chains directly in your BigQuery environment.
+
+## How It Works
+
+BigQuery Datashare uses Google Cloud's dataset sharing to replicate Dune's data into your project:
+
+- **Cross-Project Sharing**: Dune grants your project access to shared datasets containing our blockchain data
+- **Regional Replication**: Data is replicated to your preferred region (US Central 1 or EU West 2)
+- **Native Integration**: Shared datasets appear as regular BigQuery datasets in your project
+- **Automatic Sync**: Fresh data arrives daily/hourly without manual intervention
 
 ## Get Started
 

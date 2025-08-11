@@ -4,39 +4,80 @@ sidebarTitle: FAQs
 description: Frequently Asked Questions about Dune Datashare
 ---
 <AccordionGroup>
-  <Accordion title="How do I get started?">
-    **Snowflake**: Go to [Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune) for 30-day trial
+  <Accordion title="How does datashare work technically?">
+    **Snowflake**: Uses Snowflake's native data sharing - data stays in our account but appears as tables in yours. Zero storage costs, only compute charges.
     
-    **BigQuery**: Email datashares-sales@dune.com for trial setup
+    **BigQuery**: We replicate data to shared datasets in your GCP project. Data is copied to your region for performance.
+    
+    Both provide the same curated blockchain data that powers dune.com.
+  </Accordion>
+
+  <Accordion title="What identifiers do I need to share with Dune?">
+    **Snowflake**: Account locator (e.g., `ABC12345.US-EAST-1`) - found in your Snowflake URL
+    
+    **BigQuery**: GCP Project ID and a Principal (your email, service account, or domain)
+    
+    We never need passwords or sensitive credentials - just sharing identifiers.
+  </Accordion>
+
+  <Accordion title="How do I get started?">
+    **Snowflake**: Self-service via [Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune) for 30-day trial
+    
+    **BigQuery**: Email datashares-sales@dune.com with your GCP Project ID
     
     **Enterprise**: Visit [dune.com/enterprise](https://dune.com/enterprise)
   </Accordion>
 
   <Accordion title="What platforms do you support?">
-    - **Snowflake** (marketplace, worldwide regions)
+    - **Snowflake** (marketplace access, all regions)
     - **BigQuery** (custom setup, US Central 1 & EU West 2)
+    
+    Need Databricks, Redshift, or another platform? [Contact us](https://dune.com/enterprise)
   </Accordion>
 
   <Accordion title="How fresh is the data?">
-    24 hours by default. Custom refresh rates available for enterprise.
+    **Standard**: 24 hours for most tables
+    **Enterprise**: Hourly updates available
+    **Real-time**: Some key tables update every few minutes
+    
+    Freshness varies by chain and table type.
   </Accordion>
 
   <Accordion title="Is it the same data as Dune's platform?">
-    Yes, identical data. Data types optimized for each platform (e.g., BigQuery's BIGNUMERIC vs Snowflake's VARBINARY).
+    Yes, identical curated data. Data types are optimized for each platform:
+    - BigQuery: Uses BIGNUMERIC for large integers, BYTES for addresses
+    - Snowflake: Uses VARBINARY for addresses/hashes, DOUBLE for calculations
   </Accordion>
 
   <Accordion title="Can I join with my existing data?">
-    Yes - query in your own warehouse and join with your datasets.
+    Yes - that's the main benefit! Query blockchain data alongside your internal datasets using your warehouse's native SQL.
+  </Accordion>
+
+  <Accordion title="Do you see my queries or data?">
+    No. You query in your own warehouse environment. Dune cannot see your queries, results, or any data you join with ours.
+  </Accordion>
+
+  <Accordion title="What does it cost?">
+    **Trials**: Free (Snowflake 30 days, BigQuery by request)
+    **Production**: Contact sales for pricing
+    **Compute**: You pay your cloud provider's standard rates for querying
   </Accordion>
 
   <Accordion title="[Snowflake] Get button didn't work?">
-    You may need to click "Get" twice. Snowflake sometimes needs to prep data first.
+    Click "Get" twice if needed. Snowflake sometimes requires:
+    1. First click: Copies data to your region
+    2. Second click: Adds share to your account
+  </Accordion>
+
+  <Accordion title="[BigQuery] How do I find shared datasets?">
+    Shared datasets appear in your BigQuery console under your project. Look for datasets with names like `dune_ethereum` or `dune_polygon`.
   </Accordion>
 
   <Accordion title="Need help?">
-    - Email: support@dune.com
-    - Sales: datashares-sales@dune.com  
-    - Discord: [#datashare channel](https://discord.gg/2VCqwzzF7u)
+    - **Technical Support**: support@dune.com
+    - **Sales/Trials**: datashares-sales@dune.com  
+    - **Discord**: [#datashare channel](https://discord.gg/2VCqwzzF7u)
+    - **Enterprise**: [dune.com/enterprise](https://dune.com/enterprise)
   </Accordion>
 </AccordionGroup>
 
