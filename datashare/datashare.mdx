@@ -5,38 +5,105 @@ icon: database
 description: Access all of Dune's blockchain data directly in your data warehouse for privacy and control.
 ---
 
-Access Dune's complete blockchain dataset (1.5M+ tables, 50+ chains) directly in your data warehouse. Query in your own environment - we can't see your queries.
+Dune Datashare brings our complete blockchain dataset (1.5M+ tables, 50+ chains) directly into your data warehouse. Query blockchain data in your own environment with complete privacy and control.
+
+## How Datashare Works
+
+Datashare replicates Dune's processed blockchain data directly into your cloud data warehouse:
+
+1. **Data Replication**: We maintain live copies of all Dune tables in your Snowflake or BigQuery environment
+2. **Native Integration**: Data appears as regular tables/datasets in your warehouse - no APIs or external connections
+3. **Fresh Data**: Automatic updates keep your data in sync with Dune's platform (hourly/daily refresh)
+4. **Your Environment**: Query using your warehouse's native SQL, compute, and security controls
+
+<Info>
+This is the same curated, decoded blockchain data that powers dune.com - optimized for analytics with proper data types and indexing.
+</Info>
 
 ## Platforms
 
-| **Platform** | **Access** | **Trial** |
-|-------------|------------|-----------|
-| ❄️ **[Snowflake](/datashare/datashare-snowflake)** | Marketplace | 30-day free trial |
-| 🔍 **[BigQuery](/datashare/datashare-bigquery)** | Custom setup | Contact for trial |
+| **Platform** | **Access Method** | **Trial Available** |
+|-------------|------------------|-------------------|
+| ❄️ **[Snowflake](/datashare/datashare-snowflake)** | Marketplace or Direct Share | 30-day free trial |
+| 🔍 **[BigQuery](/datashare/datashare-bigquery)** | Dataset Sharing | Contact for trial |
 
-## Why Datashare
+## Why Choose Datashare
 
-- **Privacy**: Query in your warehouse
-- **Join your data**: Combine with your existing datasets
-- **Control costs**: Manage your own compute
-- **Complete dataset**: All the data that powers Dune
+- **Complete Privacy**: Query in your warehouse - Dune never sees your queries or results
+- **Join Your Data**: Seamlessly combine blockchain data with your internal datasets
+- **Cost Control**: Use your existing warehouse compute and manage costs directly
+- **No Rate Limits**: Query as much as you need without API constraints
+- **Enterprise Security**: Leverage your warehouse's existing security and compliance controls
 
-## Sharing Identifiers
+## Working with Dune
 
-Each platform uses different methods to access shared data:
+### Getting Started
 
-- **Snowflake**: Uses share identifiers via Snowflake Marketplace
-- **BigQuery**: Uses dataset sharing via Analytics Hub or direct sharing
+**For Trials:**
+- **Snowflake**: Self-service via [Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune)
+- **BigQuery**: Email datashares-sales@dune.com with your requirements
 
-See platform-specific guides for complete setup instructions.
+**For Production:** Contact our enterprise team at [dune.com/enterprise](https://dune.com/enterprise) or datashares-sales@dune.com
+
+### What We Need From You
+
+To set up datashare access, we need specific identifiers from your cloud environment:
+
+<AccordionGroup>
+  <Accordion title="Snowflake Requirements">
+    **For Marketplace Access:**
+    - Your Snowflake account locator (e.g., `ABC12345.us-east-1`)
+    - Organization name (if using Snowsight)
+    
+    **For Direct Shares:**
+    - Account locator: `<account_name>.<region>` 
+    - Account name (the part before the dot in your Snowflake URL)
+    - Cloud region (AWS, Azure, or GCP region)
+    
+    Example: If your URL is `https://abc12345.us-east-1.snowflakecomputing.com`, your account locator is `ABC12345.US-EAST-1`
+  </Accordion>
+  
+  <Accordion title="BigQuery Requirements">
+    **Required Information:**
+    - **GCP Project ID** (not project name - the unique ID)
+    - **Principal for access** (user email, service account, or domain)
+    - **Preferred region** (US Central 1 or EU West 2)
+    - **Chains of interest** (optional - we can share all by default)
+    
+    **Principal Examples:**
+    - User: `user:alice@company.com`
+    - Service Account: `serviceAccount:etl-service@my-project.iam.gserviceaccount.com`
+    - Domain: `domain:company.com` (all users in domain)
+  </Accordion>
+</AccordionGroup>
+
+### Setup Process
+
+1. **Share Identifiers**: Provide the required identifiers for your platform
+2. **Access Configuration**: We configure sharing permissions on our side
+3. **Verification**: We'll confirm when data is available in your environment
+4. **Support**: Ongoing technical support for queries and optimization
+
+<Warning>
+**Security Note**: We only need identifiers to grant access - never passwords, keys, or other sensitive credentials.
+</Warning>
+
+## Platform-Specific Access
 
 <CardGroup cols={2}>
-  <Card title="Snowflake" icon="snowflake" href="/datashare/datashare-snowflake">
-    Self-service via Marketplace
+  <Card title="Snowflake Guide" icon="snowflake" href="/datashare/datashare-snowflake">
+    Marketplace access, data types, and query examples
   </Card>
-  <Card title="BigQuery" icon="search" href="/datashare/datashare-bigquery">
-    Custom delivery setup
+  <Card title="BigQuery Guide" icon="cloud" href="/datashare/datashare-bigquery">
+    Dataset sharing, principals, and optimization tips
   </Card>
 </CardGroup>
 
-Need a different platform? [Contact us](https://dune.com/enterprise).
+## Next Steps
+
+1. **[Try a free trial](/datashare/datashare-trial)** - Test our data on your platform
+2. **[Review platform guides](/datashare/datashare-snowflake)** - Learn about data types and querying
+3. **[Contact enterprise team](https://dune.com/enterprise)** - Discuss production requirements
+4. **[Check FAQs](/datashare/datashare-faqs)** - Common questions and troubleshooting
+
+Need a different platform or have questions? [Contact us](https://dune.com/enterprise) or email support@dune.com.
