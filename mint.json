@@ -1458,6 +1458,35 @@
           ]
         },
         {
+          "group": "Monad Testnet",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/monad-testnet/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/monad-testnet/raw/blocks",
+                "data-catalog/evm/monad-testnet/raw/creation-traces",
+                "data-catalog/evm/monad-testnet/raw/logs",
+                "data-catalog/evm/monad-testnet/raw/transactions",
+                "data-catalog/evm/monad-testnet/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/monad-testnet/decoded/overview",
+                "data-catalog/evm/monad-testnet/decoded/call-tables",
+                "data-catalog/evm/monad-testnet/decoded/event-logs",
+                "data-catalog/evm/monad-testnet/decoded/contracts",
+                "data-catalog/evm/monad-testnet/decoded/logs-decoded",
+                "data-catalog/evm/monad-testnet/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "opBNB",
           "icon": "database",
           "iconType": "solid",
