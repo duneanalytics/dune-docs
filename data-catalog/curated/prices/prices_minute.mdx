@@ -18,24 +18,24 @@ The `prices.minute` table provides the most granular price data for tokens acros
 | contract_address | varbinary | Token contract address (fixed address for native tokens) |
 | symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
 | timestamp | timestamp | Minute timestamp |
-| price | double | Token price in USD |
+| price | double | Token price in USD (volume-weighted average) |
 | decimals | int | Token decimals |
 | volume | double | Trading volume in USD (from price source) |
 | source | varchar | Data source ('coinpaprika' or 'dex.trades') |
-| source_timestamp | timestamp | Exact timestamp of the source data point |
 
 ## Implementation Details
 
 The minute prices are built through these steps:
 
 1. Collect sparse price observations from different sources
-2. Take the most recent price observation per minute
-3. Fill missing minutes with the previous minute's price (forward filling)
-4. Set an expiration time of 48h for forward filling to avoid stale data
+2. Fill missing minutes with the previous minute's price (forward filling)
+3. Set an expiration time of 48h for forward filling to avoid stale data
 
 ## Usage
 
 This table is ideal for high-frequency analysis and examining short-term price movements. It's particularly useful for studying price impacts of specific events or transactions with high temporal precision.
+
+**Note**: While the table provides minute-level granularity, the underlying data sources are aligned to 5-minute intervals for consistency and improved data quality.
 
 ## Latency and Update Frequency
 
@@ -80,3 +80,6 @@ ORDER BY 1
 - Consider using `prices.hour` or `prices.day` for longer time ranges if minute-level precision is not required
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
 - Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
+- Prices are calculated using volume-weighted averages for more accurate representation
+- **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
+- **Data Limitations**: While filtering helps improve data quality, users should always validate prices for critical applications
