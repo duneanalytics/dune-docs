@@ -36,6 +36,8 @@ The hourly prices are built through these steps:
 
 This table is useful for intraday analysis and tracking price movements with higher granularity than daily data. It's suitable for examining price patterns within a day or across multiple days.
 
+**Note**: The underlying data sources are aligned to 5-minute intervals for consistency and improved data quality.
+
 ## Latency and Update Frequency
 
 The `prices.hour` table is updated hourly based on the upstream data pipeline. As a result, prices typically have a latency of approximately 1 hour from real-time.
