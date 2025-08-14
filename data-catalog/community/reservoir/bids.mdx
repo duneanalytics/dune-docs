@@ -21,7 +21,7 @@ This table contains records with information about each bid.
 | currency\_address   | string    | Currency address                             |
 | currency\_symbol    | string    | Currency symbol                              |
 | currency\_price     | string    | Currency price                               |
-| quantity            | bigint    | Amount of tokens that is listed              |
+| quantity            | bigint    | Amount of tokens that are listed             |
 | quantity\_filled    | bigint    | Amount of tokens that was filled             |
 | quantity\_remaining | bigint    | Amount of tokens remaining                   |
 | valid\_from         | bigint    | Listing start time                           |
@@ -29,7 +29,7 @@ This table contains records with information about each bid.
 | nonce               | bigint    | The order nonce of the maker                 |
 | source              | string    | Source of the listing (e.g. opensea.io)      |
 | fee\_bps            | bigint    | Listing fee                                  |
-| expiration          | bigint    | Associated transaction hash                  |
+| expiration          | bigint    | Expiration timestamp                         |
 | raw\_data           | string    | Raw order data (format will vary per source) |
 | created\_at         | timestamp | Timestamp the listing was created            |
 | updated\_at         | timestamp | Timestamp the listing was updated            |

@@ -53,7 +53,7 @@ The price system works in multiple layers:
 
 - 900,000 unique tokens
 - 40+ blockchains
-- new tokens are automatically added when they exceed a $10k volume threshold
+- New tokens are automatically added when they exceed a $10k volume threshold
 
 import { DuneEmbed } from '/snippets/dune-embed.mdx'
 
@@ -117,15 +117,14 @@ For details on how Dune processes DEX trade data to derive accurate token prices
   - Excludes trades with less than $10,000 USD in total volume
   - Takes the median price from each minute to reduce outlier impact
   - Calculates USD prices using our trusted token prices as reference
-  - Uses forward-filling to handle periods without valid trades, with time limits
-   - 30 days for daily prices
-   - 7 days for hourly prices
-   - 2 days for minute prices 
+  - Uses forward-filling to handle periods without valid trades, with time limits:
+    - 30 days for daily prices
+    - 7 days for hourly prices
+    - 2 days for minute prices
 
 ## Usage Examples
 
 Here are some examples of how to use the prices tables.
- 
 ### Basic query to get the latest ETH price:
 ```sql
 SELECT price

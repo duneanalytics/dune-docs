@@ -38,10 +38,11 @@ export const BlockSnippet = ({ blockchain }) => (
   <h3>Show the number of transactions in each block</h3>
   <pre><code>{
 `SELECT
-    number,
+    block_number,
     count(*)
-  FROM ${blockchain}.blocks
+  FROM ${blockchain}.transactions
   GROUP BY 1 
+  ORDER BY block_number DESC
   LIMIT 10`}</code></pre>
   </div>
 );

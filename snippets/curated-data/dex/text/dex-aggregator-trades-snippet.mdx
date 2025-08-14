@@ -11,7 +11,7 @@ export const DexAggregatorTradesSnippet = ({ blockchain }) => (
       For instance, a user might initiate a trade to swap USDC for PEPE via a DEX aggregator. The aggregator might route this trade through several liquidity pools such as WETH-USDC and WETH-PEPE, but <code>dex_aggregator.trades</code> will record it as a single USDC → PEPE trade.
     </p>
     <p>
-      Complimentary to <code>dex_aggregator.trades</code> is the <code>dex.trades</code> table, where detailed trade executions are recorded. This table captures the granular steps of each trade, including interactions with different liquidity pools. The volume routed through aggregators is also recorded in the <code>dex.trades</code> table. One row in <code>dex_aggregator.trades</code> corresponds to one or more rows in <code>dex.trades</code>, providing a comprehensive view of the detailed execution path that aggregated trades take.
+      Complementary to <code>dex_aggregator.trades</code> is the <code>dex.trades</code> table, where detailed trade executions are recorded. This table captures the granular steps of each trade, including interactions with different liquidity pools. The volume routed through aggregators is also recorded in the <code>dex.trades</code> table. One row in <code>dex_aggregator.trades</code> corresponds to one or more rows in <code>dex.trades</code>, providing a comprehensive view of the detailed execution path that aggregated trades take.
     </p>
     <h2>Coverage</h2>
     <p> The following table shows which projects and versions of those projects are covered in the <code>dex.trades</code> table on {blockchain}. </p>

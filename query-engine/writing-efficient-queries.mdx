@@ -13,7 +13,7 @@ DuneSQL is a Trino-based query engine designed for handling data stored in a col
 
 ### Short Introduction to Databases
 
-Let's start with a short introduction into databases so we can understand what we need to optimize for when writing queries on DuneSQL.
+Let's start with a short introduction to databases so we can understand what we need to optimize for when writing queries on DuneSQL.
 
 At their core, databases are sophisticated systems designed to store, retrieve, and manage data. Their primary goal is to provide fast, efficient, and reliable access to vast amounts of structured information. You can think of a database as a collection of tables, where each table is a collection of rows and columns. Conceptually, these tables exist in two ways:
 
@@ -79,7 +79,7 @@ SELECT * FROM ethereum.transactions
 WHERE hash = 0xce1f1a2dd0c10fcf9385d14bc92c686c210e4accf00a3fe7ec2b5db7a5499cff
 ```
 
-using the steps above the query engine would do the following:
+Using the steps above the query engine would do the following:
 
 1. **File Level:** The query engine tries to locate the specific parquet files associated with the table or a portion of the table being queried. It reads the metadata contained in the footer of each parquet file to determine whether it might contain the data needed for the query. It will try to skip any files that do not contain the data needed for the query. However, since the query is based on a random hash, the engine will not be able to skip any files. It will have to read all the files associated with the table.
 
@@ -93,7 +93,7 @@ WHERE block_number = 14854616
 AND hash = 0xce1f1a2dd0c10fcf9385d14bc92c686c210e4accf00a3fe7ec2b5db7a5499cff
 ```
 
-using the steps above the query engine would do the following:
+Using the steps above the query engine would do the following:
 
 1. **File Level:** The query engine tries to locate the specific parquet files associated with the table or a portion of the table being queried. It reads the metadata contained in the footer of each parquet file to determine whether it might contain the data needed for the query. In this case, the engine will check whether the `block_number` we are searching for is within the range of `min/max` values for the `block_number` column in the footer of each parquet file. For example, if the engine starts reading the first parquet file and sees that the `min/max` values for the `block_number` column are `14854600` and `14854620`, it will know that the file does not contain the data needed for the query. It will skip the file and move on to the next one. This will significantly reduce the amount of data that needs to be read into memory, which will improve query performance.
 
@@ -110,7 +110,7 @@ The above example is pretty theoretical, as you will most likely not be querying
 Usually you would write a query like this:
 
 ```sql
-Select
+SELECT
   *
 FROM ethereum.traces
 WHERE to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
@@ -119,15 +119,15 @@ WHERE to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 With our new knowledge, we can deduce that this query will be very inefficient, as the engine will have to read almost all the files and row groups associated with the table. Instead, we can optimize the query by helping the engine to skip files with a `block_number` greater than a specific value. For example, if we know that the smart contract was deployed in block `17580248`, we can write the query like this:
 
 ```sql
-Select
-  "from"
-  ,to
-  ,block_time
-  ,tx_hash
-  ,input
+SELECT
+  "from",
+  to,
+  block_time,
+  tx_hash,
+  input
 FROM ethereum.traces
-where block_number > 17580247
-and to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
+WHERE block_number > 17580247
+AND to = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
 By including the `block_number` column in the query, the engine can quickly narrow down the search to files and row groups that have a `block_number` greater than `17580247`. This significantly reduces the amount of data that needs to be read, thereby improving query performance. Additionally, only querying the columns you absolutely need will also improve query performance.
@@ -135,18 +135,18 @@ By including the `block_number` column in the query, the engine can quickly narr
 We can also apply the same principle to join tables. For example, if we want to join `ethereum.transactions` with `uniswap_v3_ethereum.Pair_evt_Swap`, we can write the query like this:
 
 ```sql
-Select
+SELECT
   to,
   "from",
   value,
   block_date,
-  sqrt_price_x96,
+  sqrt_price_x96
 FROM
   uniswap_v3_ethereum.Pair_evt_Swap swap
-  inner join ethereum.transactions t
-    on swap.evt_tx_hash = t.hash
-    and swap.evt_block_number = t.block_number
-where
+  INNER JOIN ethereum.transactions t
+    ON swap.evt_tx_hash = t.hash
+    AND swap.evt_block_number = t.block_number
+WHERE
   swap.contract_address = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
@@ -155,21 +155,21 @@ By including the `block_number` column in the join condition, the engine can qui
 It also makes a difference whether we join `ethereum.transactions` to `uniswap_v3_ethereum.Pair_evt_Swap` or the other way around. The following query will be even faster:
 
 ```sql
-Select
+SELECT
   to,
   "from",
   value,
   block_time,
   sqrt_price_x96
 FROM ethereum.transactions t
-inner join uniswap_v3_ethereum.Pair_evt_Swap swap
-  on t.hash = swap.evt_tx_hash
-  and t.block_number = swap.evt_block_number
-where
+INNER JOIN uniswap_v3_ethereum.Pair_evt_Swap swap
+  ON t.hash = swap.evt_tx_hash
+  AND t.block_number = swap.evt_block_number
+WHERE
   swap.contract_address = 0x510100D5143e011Db24E2aa38abE85d73D5B2177
 ```
 
-<info> Using `block_date` is often better than using `block_number` or `block_time` as there are less distinct values to check against. Use `block_date` during joins where  it is possible.{" "} </info>
+<info> Using `block_date` is often better than using `block_number` or `block_time` as there are fewer distinct values to check against. Use `block_date` during joins where it is possible. </info>
 
 This join order optimization is related to the size of the tables. **You should always join the smaller table on the bigger table**. In this case, `ethereum.transactions` is much bigger than `uniswap_v3_ethereum.Pair_evt_Swap`, so we should join `uniswap_v3_ethereum.Pair_evt_Swap` with `ethereum.transactions`.
 
@@ -193,7 +193,7 @@ In addition to leveraging the columnar storage format and using sequentially ord
 
 5. **Use window functions**: Window functions can be more efficient than self-joins or subqueries for computing aggregations over a set of rows related to the current row.
 
-6. **Avoid using DISTINCT when possible**: DISTINCT can be computationally expensive, especially on large datasets. Trino has implemented a range of [**approximate aggregate functions**](/query-engine/Functions-and-operators/aggregate#approximate-aggregate-functions) functions that can be used to get a good estimate of the distinct values in a column with a much lower computational cost.
+6. **Avoid using DISTINCT when possible**: DISTINCT can be computationally expensive, especially on large datasets. Trino has implemented a range of [**approximate aggregate functions**](/query-engine/Functions-and-operators/aggregate#approximate-aggregate-functions) that can be used to get a good estimate of the distinct values in a column with a much lower computational cost.
 
 7. **Use `UNION ALL` instead of `UNION`**: If you're combining the results of multiple queries, use `UNION ALL` instead of `UNION` to avoid the overhead of removing duplicate rows.
 

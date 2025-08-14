@@ -15,8 +15,8 @@ import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 <ColumnDescriptions tableSchema="starknet" tableName="blocks" />
 
 <Note>
-- Prior to [v3 transactions upgrade](https://www.starknet.io/developers/roadmap/v3-transactions/), fees are denominated in `wei` as users pay gas with ETH. For transactions v3 and later, fees are denominated in `fri` as users pay gas with STRK. Hence here you can see two gas types of gas fields, one for `wei` and one for `fri`.     
-- Starting with Starknet v0.13.1, Starknet distinguishes between blocks whose state diffs are sent to L1 as calldata and blocks whose state diffs are sent to L1 as blobs. The `l1_da_mode` property in the Starknet block header contains this information. Values possible are `BLOB` or `CALLDATA`.
+- Prior to [v3 transactions upgrade](https://www.starknet.io/developers/roadmap/v3-transactions/), fees are denominated in `wei` as users pay gas with ETH. For transactions v3 and later, fees are denominated in `fri` as users pay gas with STRK. Hence here you can see two types of gas fields, one for `wei` and one for `fri`.     
+- Starting with Starknet v0.13.1, Starknet distinguishes between blocks whose state diffs are sent to L1 as calldata and blocks whose state diffs are sent to L1 as blobs. The `l1_da_mode` property in the Starknet block header contains this information. Possible values are `BLOB` or `CALLDATA`.
 - Visit this [Starknet doc on block structure](https://docs.starknet.io/architecture-and-concepts/network-architecture/block-structure/) to learn more.
 </Note>
 

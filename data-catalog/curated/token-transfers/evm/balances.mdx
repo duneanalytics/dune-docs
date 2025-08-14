@@ -52,16 +52,16 @@ Balances are available for the following EVM-compatible networks:
 
 ### Balance Calculation Methodology
 
-Our approach to storing balances is the following: We store token balances for each address. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_<chain>.balances` table, which is updated . For the balance to be queried, the address must have appeared in any of the following tables:
+Our approach to storing balances is the following: We store token balances for each address. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_<chain>.balances` table, which is updated daily. For the balance to be queried, the address must have appeared in any of the following tables:
 
 - **For native currencies**: Transactions and traces ``to``/``from`` addresses, Ethereum-specific withdrawals, and block mining/validator activities.
-- **For ERC20**: Analysis is based on token transfer events detailed in the [tokens_ethereum_base_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/tokens/ethereum/tokens_ethereum_base_transfers.sql). The address balance is updated based on the `to`/`from` addresses in the transfer events. If the token is a non-standard ERC20 token, the balance might not be updated until we detect a standard ERC20 transfer event. Known issues currently include ERC4626 tokens and rebasing tokens like stETH or $ampleforth. We are working on improving the range of balance changes that we detect.
+- **For ERC20**: Analysis is based on token transfer events detailed in the [tokens_ethereum_base_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/tokens/ethereum/tokens_ethereum_base_transfers.sql). The address balance is updated based on the `to`/`from` addresses in the transfer events. If the token is a non-standard ERC20 token, the balance might not be updated until we detect a standard ERC20 transfer event. Known issues currently include ERC4626 tokens and rebasing tokens like stETH or Ampleforth. We are working on improving the range of balance changes that we detect.
 - **For ERC721 and ERC1155**: Inspection of NFT transfer activities via the [nft_ethereum_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/nft/transfers/chains/nft_ethereum_transfers.sql), focusing on the `to`/`from` addresses.
 
 These dependencies on transfer and NFT event tables introduce a delay to balance updates, contingent on the latency inherent in the Spellbook's processing.
 
 This also means that if an address has not been involved in any of the above activities, its balance will not be updated.
-This might be the case for non-standard erc20 contracts that do not emit the `Transfer` event, or for addresses that have not been involved in any transactions or NFT transfers. If there is a specific token that does not emit the `Transfer` event, but has a different event for token transfers, please let us know and we will see if we can include it in our balance calculations.
+This might be the case for non-standard ERC20 contracts that do not emit the `Transfer` event, or for addresses that have not been involved in any transactions or NFT transfers. If there is a specific token that does not emit the `Transfer` event, but has a different event for token transfers, please let us know and we will see if we can include it in our balance calculations.
 
 ### Granular balances
 
@@ -81,7 +81,7 @@ The `tokens_<chain>.balances` table adds a new row every time a balance changes 
 
 #### Querying for the latest fungible Token Balances for a specific Address
 
-This query will return the latest fungible token balances for the specified address. Fungible tokens refer to erc20 and native tokens. Please keep in mind that the balance table lags behind the real state by approximately 2 hours.
+This query will return the latest fungible token balances for the specified address. Fungible tokens refer to ERC20 and native tokens. Please keep in mind that the balance table lags behind the real state by approximately 2 hours.
 
 ```sql
 select 
@@ -103,7 +103,7 @@ order by balance_usd desc
 
 #### Querying for daily fungible Token Balances for a specific Address
 
-This query will return the daily fungible token balances for the specified address over time. Fungible tokens refer to erc20 and native tokens.
+This query will return the daily fungible token balances for the specified address over time. Fungible tokens refer to ERC20 and native tokens.
 
 ```sql
 select

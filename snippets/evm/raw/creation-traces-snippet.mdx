@@ -5,7 +5,7 @@ export const CreationTracesSnippet = ({ blockchain }) => (
       The <code>{blockchain}.creation_traces</code> table contains information about the creation of smart contracts on the {blockchain} blockchain. This includes the address of the contract, the address of the creator, the block number at which the contract was created, the transaction hash, and the contract's bytecode. This table is useful for understanding the deployment of smart contracts on the {blockchain} blockchain.
     </p>
     <Tip>
-      This table is a subset of the <code>traces</code> table, which contains information about all traces on the {blockchain} blockchain. The <code>creation_traces</code> table is filtered to only include traces that create new smart contracts. The filter for this is <code>type = 'create' </code>.
+      This table is a subset of the <code>traces</code> table, which contains information about all traces on the {blockchain} blockchain. The <code>creation_traces</code> table is filtered to only include traces that create new smart contracts. The filter for this is <code>type = 'create'</code>.
     </Tip>
     <h2>Column Descriptions</h2>
     <ColumnDescriptions tableSchema={blockchain} tableName="creation_traces" />
@@ -15,11 +15,11 @@ export const CreationTracesSnippet = ({ blockchain }) => (
     <h3>Show the creation of a specific smart contract</h3>
     <pre><code>{
 `SELECT * FROM ${blockchain}.creation_traces
-WHERE contract_address = 0x06012c8cf97bead5deae237070f9587f8e7a266d`}</code></pre>
+WHERE contract_address = '0x06012c8cf97bead5deae237070f9587f8e7a266d'`}</code></pre>
     <h3>Show the creation of smart contracts by a specific creator</h3>
     <pre><code>{
 `SELECT * FROM ${blockchain}.creation_traces
-WHERE "from" = 0x0d4a11d5eeaac28ec3f61d100da81f6a1b65c9d6`}</code></pre>
+WHERE "from" = '0x0d4a11d5eeaac28ec3f61d100da81f6a1b65c9d6'`}</code></pre>
     <h3>Show the creation of smart contracts in the last 10 days</h3>
     <pre><code>{
 `SELECT 

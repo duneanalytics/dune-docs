@@ -33,7 +33,7 @@ SELECT
     COUNT(*) as transfer_count,
     SUM(usd_value) as total_volume_usd
 FROM layerzero.transfers
-WHERE timestampUpdated >= NOW() - INTERVAL '24' HOUR
+WHERE timestampUpdated >= NOW() - INTERVAL '24 HOURS'
 GROUP BY symbol
 ORDER BY total_volume_usd DESC
 LIMIT 10;

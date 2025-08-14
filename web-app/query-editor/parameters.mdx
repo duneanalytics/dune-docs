@@ -24,7 +24,7 @@ Parameters can be a **single value** or a **list of values** and you can choose 
 3. open the parameter options 
 4. configure your parameter's name, type, and default value
 
-Parameters can be text, numbers,a date, a manual list of values or a list of values from a different query.
+Parameters can be text, numbers, a date, a manual list of values or a list of values from a different query.
 
 <div
   style={{
@@ -112,7 +112,7 @@ where evt_block_time between cast('{{start_date_parameter}}' as timestamp) and c
 ### List parameters
 
 List parameters are useful if you want your users to be able to choose **one** or **multiple values** from a pre-defined list of values. This list can be manually defined or populated from a different query.
-Examples of this include parameters that allows users to choose from a list of tokens or a list of token pairs.
+Examples of this include parameters that allow users to choose from a list of tokens or a list of token pairs.
 
 ![list parameter](/web-app/query-editor/images/parameters/list-parameter.jpeg)
 
@@ -125,12 +125,12 @@ where token_pair = ({{token_pair_parameter}})
 or
 
 ```sql
---- list parameter allowing with multiple values
+--- list parameter allowing multiple values
 Select * from dex.trades
 where token in (Select token from unnest(split('{{token_list_parameter}}',',')) as c(token))
 ```
 
-If you want to allow multiple values, you need to adjust your query for this. Use the `unnest` and `split` functions to turn the columns into useable values.
+If you want to allow multiple values, you need to adjust your query for this. Use the `unnest` and `split` functions to turn the columns into usable values.
 By default, the values will be inserted into the query as individual columns.
 **Example**:   
 A list of 3 selected values in a parameter called `example_parameter_name` will be inserted into the query like this:
@@ -143,7 +143,7 @@ Select {{example_parameter_name}}
 | WETH-USDC | WBTC-USDC | DAI-USDC  |
 */
 ``` 
-Most of the time, you'll want to use the values in a `where in` clause. To do this, you need to use the `unnest` and `split` functions to turn the columns into useable values.
+Most of the time, you'll want to use the values in a `where in` clause. To do this, you need to use the `unnest` and `split` functions to turn the columns into usable values.
 For example:
 ```sql
 Select * from dex.trades
@@ -152,7 +152,7 @@ where token_pair in (Select pair from unnest(split('{{example_parameter_name}}',
 
 #### Manual list
 
-When you manually define a list of values, the list can be text values, numbers, dates or even varbinary values. The system attemtps to detect the type of the list values, but sometimes you might have to manually adjust the type within the query by using the `cast` function.
+When you manually define a list of values, the list can be text values, numbers, dates or even varbinary values. The system attempts to detect the type of the list values, but sometimes you might have to manually adjust the type within the query by using the `cast` function.
 
 A very common example of using a manual list is setting the "time granularity" of a dashboard/query.
 
@@ -203,7 +203,7 @@ Select distinct project from dex.trades
 
 **Example 2:**
 
-Filter on all available perpeptual futures available on synthetix. The master query for this is query_3256054. We can use this query to populate a list of all available perps:
+Filter on all available perpetual futures available on synthetix. The master query for this is query_3256054. We can use this query to populate a list of all available perps:
 
 ```sql 
 --query 3256054 constructs the daily open interest for all synthetix perps

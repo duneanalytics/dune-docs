@@ -10,12 +10,9 @@ While Dune's ability to easily execute queries and make visualizations are prett
   here](https://github.com/duneanalytics/dune-client) and installed by doing
   `pip install dune-client`
 </Note>
-## 🎓 What is a Sankey Diagram? Sankey diagrams are flow diagrams in which the width
-of the arrows or lines are proportional to the flow quantity they represent. They're
-commonly used to depict the flow of energy, material, or costs between stages. So
-if you've been longing to visualize the movement of tokens between wallets, or how
-users transition between different app states, a Sankey diagram is your weapon of
-choice!
+## 🎓 What is a Sankey Diagram? 
+
+Sankey diagrams are flow diagrams in which the width of the arrows or lines are proportional to the flow quantity they represent. They're commonly used to depict the flow of energy, material, or costs between stages. So if you've been longing to visualize the movement of tokens between wallets, or how users transition between different app states, a Sankey diagram is your weapon of choice!
 
 For a deeper dive, [check this article](https://medium.com/@twelsh37/understanding-plotly-sankey-charting-3ee263a81549).
 
@@ -28,21 +25,27 @@ The key components for a Sankey are:
 
 ## ⛲ Let's Generate that Sankey!
 
-Here, we will walk through two examples. Example 1 is to graph a Sankey for a certain subset of RabbitHole Quests with Optimism grant, see how the questors are retained after 1-month period. Example 2 is to graph a Sankey for the token flow when swapping USDC for WETH using Uniswap if the swap is not direct.
+Here, we will walk through two examples. Example 1 is to graph a Sankey for a certain subset of RabbitHole Quests with Optimism grant, to see how the questors are retained after a 1-month period. Example 2 is to graph a Sankey for the token flow when swapping USDC for WETH using Uniswap if the swap is not direct.
 
-We will show you different ways to fetch data from Dune API in the process as well.
+We will show you different ways to fetch data from the Dune API in the process as well.
 
 ### 1. Setup
 
 Import all necessary libraries and authenticate to set up DuneClient.
 
 <Note>
-  1. Make sure you create have a .env file created with your 'DUNE_API_KEY' in
+  1. Make sure you have a .env file created with your 'DUNE_API_KEY' in
   it! 2. Replace the path to your own directory in `os.chdir(...)`
 </Note>
-``` py import pandas as pd import plotly.graph_objects as go import colorlover as
-cl import pandas as pd import dotenv, os, json from dune_client.types import QueryParameter
-from dune_client.client import DuneClient from dune_client.query import QueryBase
+``` py 
+import pandas as pd 
+import plotly.graph_objects as go 
+import colorlover as cl 
+import pandas as pd 
+import dotenv, os, json 
+from dune_client.types import QueryParameter
+from dune_client.client import DuneClient 
+from dune_client.query import QueryBase
 
 # change the current working directory where .env file lives
 

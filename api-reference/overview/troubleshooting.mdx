@@ -17,7 +17,7 @@ Dune uses conventional HTTP response codes to indicate the success or failure of
 | 429              | Too Many Requests  | Too many requests hit the API too quickly (rate limited).                     |
 | 500              | Server Errors      | Generic internal server error.                                  |
 
-For specific error code information, please refer to each of the endpoint itself. Here we list some common errors and suggest possible solution:
+For specific error code information, please refer to each of the endpoints themselves. Here we list some common errors and suggest possible solutions:
 
 #### Invalid API key
 ```json
@@ -34,7 +34,7 @@ You did not input a valid API key. You can go generate a new key and make sure y
 "error": "not found: Query not found or private"
 }
 ```
-When you perform an action to a private query your API key doesn't have access to, you will get this error. If you indeed own this query, please check the context of the API key and the query owner are the same. 
+When you perform an action on a private query your API key doesn't have access to, you will get this error. If you indeed own this query, please check that the context of the API key and the query owner are the same. 
 
 
 #### Credit limit error

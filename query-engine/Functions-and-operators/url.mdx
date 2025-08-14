@@ -5,7 +5,7 @@ title: URL functions
 ## Extraction functions
 
 The URL extraction functions extract components from HTTP URLs (or any
-valid URIs conforming to `2396`). The following syntax is supported:
+valid URIs conforming to RFC `2396`). The following syntax is supported:
 
 ``` text
 [protocol:][//host[:port]][path][?query][#fragment]
@@ -27,7 +27,7 @@ Returns the host from `url`.
 #### url_extract_parameter()
 **``url_extract_parameter(url, name)``** → varchar
 
-Returns the value of the f query string parameter named `name` from `url`. Parameter extraction is handled in the typical manner as specified by RFC 1866#section-8.2.1.
+Returns the value of the query string parameter named `name` from `url`. Parameter extraction is handled in the typical manner as specified by RFC 1866#section-8.2.1.
 
 #### url_extract_path()
 **``url_extract_path(url)``** → varchar

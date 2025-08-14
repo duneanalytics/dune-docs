@@ -103,7 +103,7 @@ Replaces all instances of `search` with `replace` in `string`.
 #### reverse()
 **``reverse(string)``** → varchar
 
-Returns `string` with the characters
+Returns `string` with the characters in reverse order.
 
 #### rpad()
 **``rpad(string, size, padstring)``** → varchar
@@ -141,7 +141,7 @@ Splits `string` on `delimiter` and returns an array.
 #### split()
 **``split(string, delimiter, limit)``** → array(varchar)
 
-Splits `string` on `delimiter` and returns an array of size at most `limit`. The last element in the array always contain everything left in the `string`. `limit` must be a positive number.
+Splits `string` on `delimiter` and returns an array of size at most `limit`. The last element in the array always contains everything left in the `string`. `limit` must be a positive number.
 
 #### split_part()
 **``split_part(string, delimiter, index)``** → varchar
@@ -190,11 +190,6 @@ This is an alias for `substring`.
 Returns a substring from `string` of length `length` from the starting position `start`. Positions start with `1`. A negative starting position is interpreted as being relative to the end of the string.
 
 #### translate()
-**``translate(source, from, to)``** → varchar
-
-Returns the `source` string translated by replacing characters found in the
-
-
 **``translate(source, from, to)``** → varchar
 
 Returns the `source` string translated by replacing characters found in the `from` string with the corresponding characters in the `to` string. If the `from` string contains duplicates, only the first is used. If the `source` character does not exist in the `from` string, the `source` character will be copied without translation. If the index of the matching character in the `from` string is beyond the length of the `to` string, the `source` character will be omitted from the resulting string.
@@ -278,7 +273,7 @@ Encodes `string` into a UTF-8 varbinary representation.
 
 ```sql 
     SELECT to_utf8('Hello, world!'); -- 0x48656C6C6F2C20776F726C6421
-    Select keccak(to_utf8('Transfer(address,address,uint256)')) --0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef 
+    SELECT keccak(to_utf8('Transfer(address,address,uint256)')) --0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef 
 ```
 
 #### from_utf8()

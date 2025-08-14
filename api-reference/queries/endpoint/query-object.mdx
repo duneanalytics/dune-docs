@@ -3,7 +3,7 @@ title: 'Overview'
 icon: "star"
 ---
 
-These query management endspoints help you programmatically create and manage Dune SQL queries via the API, ideal for integration with GitHub or other CI/CD pipelines.
+These query management endpoints help you programmatically create and manage Dune SQL queries via the API, ideal for integration with GitHub or other CI/CD pipelines.
 
 ### Queries
 
@@ -15,7 +15,7 @@ Each query comes with fields you can edit such as:
 - `query_sql`: the raw sql text
 - `params`: parameters within the query, using the `{{ foo }}` syntax. See the section below for more details.
 - `is_private`: boolean for if query is private or not. Private queries cannot be found or queried by others.
-- `archived`: boolean for if query is archived or not. Archived queries cannot run or edited by anyone.
+- `archived`: boolean for if query is archived or not. Archived queries cannot be run or edited by anyone.
 
 ### Query Parameters
 
@@ -35,7 +35,7 @@ For passing these parameters through the API request body, you can use the follo
 "baz": "2020-12-01T01:20:30Z"
 }
 ```
-Where "foo", "bar", and "baz" are three params in a query. If you leave one out, it goes with the default param valiue.
+Where "foo", "bar", and "baz" are three params in a query. If you leave one out, it goes with the default param value.
 
 For Queries endpoints, you'll need to define the type and more:
 

@@ -1,12 +1,12 @@
 ---
-title: ethereum.traces_decoded
+title: tron.traces_decoded
 sidebarTitle: "Decoded Traces"
-description: Description of the ethereum.traces_decoded table on Dune
+description: Description of the tron.traces_decoded table on Dune
 ---
 
 ## Table Description
 
-The `traces_decoded` table contains decoded traces from Ethereum transactions. The table matches `MethodID`, which consists of the first 4 bytes of any eth call to the trace signature and the corresponding Method name. The table does not contain the full trace data and is not suitable for analysis of smart contract level data. For that, use the specific event tables as described in [Call-tables](/data-catalog/evm/ethereum/decoded/traces-decoded). 
+The `traces_decoded` table contains decoded traces from Tron transactions. The table matches `MethodID`, which consists of the first 4 bytes of any Tron call to the trace signature and the corresponding Method name. The table does not contain the full trace data and is not suitable for analysis of smart contract level data. For that, use the specific event tables as described in [Call-tables](/data-catalog/tron/decoded/traces-decoded). 
 
 This table is great for gaining a high level understanding of the types of events that are being emitted by a smart contract or smart contracts of a certain protocol.
 
@@ -14,10 +14,10 @@ This table is great for gaining a high level understanding of the types of event
 
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 
-<ColumnDescriptions tableSchema="ethereum" tableName="traces_decoded" />
+<ColumnDescriptions tableSchema="tron" tableName="traces_decoded" />
 
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
-<TableSample tableSchema="ethereum" tableName="traces_decoded" />
+<TableSample tableSchema="tron" tableName="traces_decoded" />

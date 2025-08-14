@@ -15,11 +15,13 @@ The `dex.sandwiches` table provides an in-depth view of the outer trades in sand
 
 However, this table also captures more complex sandwich attack patterns. For example:
 
+```
 bot1: ETH>USDC
 victim1: USDC>ETH
 bot1: USDC>ETH
 victim2: ETH>USDC
 bot1: ETH>USDC
+```
 
 In this scenario, the bot executes trades on both sides of the liquidity pool, sandwiching multiple victim trades in a single sequence.
 

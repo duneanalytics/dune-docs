@@ -28,7 +28,7 @@ The window can be specified in two ways (see
 
 ## Aggregate functions
 
-All `aggregate` can be used as window functions by adding the `OVER` clause. The aggregate function is
+All aggregate functions can be used as window functions by adding the `OVER` clause. The aggregate function is
 computed for each row over the rows within the current row's window
 frame.
 
@@ -67,7 +67,7 @@ For example, with `6` rows and `4` buckets, the bucket values would be as follow
 #### percent_rank()
 **percent_rank()** → double
 
-Returns the percentage ranking of a value in group of values. The result is `(r - 1) / (n - 1)` where `r` is the `rank` of the row and `n` is the total number of rows in the window partition.
+Returns the percentage ranking of a value in a group of values. The result is `(r - 1) / (n - 1)` where `r` is the `rank` of the row and `n` is the total number of rows in the window partition.
 
 #### rank()
 **rank()** → bigint

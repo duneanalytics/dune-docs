@@ -7,9 +7,9 @@ description: Wand is a beta suite of tools for writing SQL queries with the help
 
 
 ### Wand Create
-The Wand Create feature allows you to automatically generate SQL queries from natural language questions. It utilizes a suite of Dune-specific few-shot examples and automatically fetches table schemas to include in the prompt. (You must to explicitly include the relevant tables in your natural language question to include table schemas.) 
+The Wand Create feature allows you to automatically generate SQL queries from natural language questions. It utilizes a suite of Dune-specific few-shot examples and automatically fetches table schemas to include in the prompt. (You must explicitly include the relevant tables in your natural language question to include table schemas.) 
 
-This feature simplifies the process of writing getting started writing a SQL query, especially for users who may not be familiar with the database structure. Your mileage may vary depending on the complexity of your question and how well the underlying tables are suited to answering it. We recommend using this feature as a starting point and then refining the query using the Wand Edit feature. 
+This feature simplifies the process of getting started writing a SQL query, especially for users who may not be familiar with the database structure. Your mileage may vary depending on the complexity of your question and how well the underlying tables are suited to answering it. We recommend using this feature as a starting point and then refining the query using the Wand Edit feature. 
 
 You can find this feature in the query page below the query editor.
 
@@ -215,7 +215,7 @@ LEFT JOIN daily_mints dm ON et.dt = dm.dt
 ```
 
 ## Wand Debug
-The Wand Debug feature helps fix SQL queries that have syntax errors. When an executed query encounters a syntax error, the Fix Query button should appear in the results/visualization panel. Clicking this button collect your query and the error message and send it to the Wand Debug feature. The Wand Debug feature will then attempt to fix the query and return the fixed query to you. If the Wand Debug feature is unable to fix the query, it will return the updated query with message indicating it is not fully debugged. The query submitted for debugging will be saved in your query history, so you can also recover it.
+The Wand Debug feature helps fix SQL queries that have syntax errors. When an executed query encounters a syntax error, the Fix Query button should appear in the results/visualization panel. Clicking this button collects your query and the error message and sends it to the Wand Debug feature. The Wand Debug feature will then attempt to fix the query and return the fixed query to you. If the Wand Debug feature is unable to fix the query, it will return the updated query with a message indicating it is not fully debugged. The query submitted for debugging will be saved in your query history, so you can also recover it.
 
 You can find this feature in the results/visualization panel if you've executed a query that failed on a syntax error. 
 

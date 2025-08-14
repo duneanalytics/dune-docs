@@ -75,10 +75,10 @@ The above result listing points out, as expected, that the texts with
 the id 1 and 3 are quite similar.
 
 One may argue that the text with the id 2 is somewhat similar to the
-texts with the id 1 and 3. Due to the fact in the example above
+texts with the id 1 and 3. Due to the fact that in the example above
 4-shingles are taken into account for measuring the similarity of the
 texts, there are no intersections found for the text pairs 1 and 2,
-respectively 3 and 2 and therefore there the similarity index for
+respectively 3 and 2 and therefore the similarity index for
 these text pairs is 0.
 
 ## Data structures
@@ -119,16 +119,20 @@ Create a `setdigest` corresponding to a `bigint` array:
 ```
 Create a `setdigest` corresponding to a `varchar` array:
 
+```sql
     SELECT make_set_digest(value)
     FROM (VALUES 'Trino', 'SQL', 'on', 'everything') T(value);
+```
 
 
 #### merge_set_digest()
 **``merge_set_digest(setdigest, setdigest)``** → setdigest
 
-
 Returns the `setdigest` of the aggregate union of the individual
 `setdigest` Set Digest structures.
+
+#### cardinality()
+**``cardinality(x)``** → bigint
 
 Returns the cardinality of the set digest from its internal
 `HyperLogLog` component.

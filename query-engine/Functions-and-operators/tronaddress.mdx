@@ -3,9 +3,9 @@ title: Tron address functions
 description: Utilities for working with TRON's custom address format.
 ---
 
-Tron blockchain adopted a custom type of addresses. It is similar to [Base58](/query-engine/Functions-and-operators/base58) encoding format, with some modifications.
+The Tron blockchain adopted a custom type of addresses. It is similar to [Base58](/query-engine/Functions-and-operators/base58) encoding format, with some modifications.
 
-Under basic tron address encoding format an address can be encoded as:
+Under the basic Tron address encoding format an address can be encoded as:
 ```
 base58encode ( concat ( <constant-prefix>, <address>, <checksum> ) )
 ```
@@ -31,5 +31,5 @@ Encodes a `VARBINARY` hex address to the corresponding Tron address.
 ```sql
 SELECT 
     to_tron_address(0x503aa4ad108bd3a89ba0310e23b49fb654cd6986)
--- results 'THHRK1bA7YRPZBcLnTP1SZy9ipUpsRwpo6'
+-- results in 'THHRK1bA7YRPZBcLnTP1SZy9ipUpsRwpo6'
 ```

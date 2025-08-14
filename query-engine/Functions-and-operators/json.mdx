@@ -201,7 +201,7 @@ Let `<path>` return a sequence of three JSON objects:
 {"customer" : 300, "region" : "AFRICA", "comment" : null}
 ```
 
-The results is:
+The result is:
 
 ```text
 100, "AFRICA", "ASIA", 300, "AFRICA", null
@@ -384,7 +384,7 @@ evaluation throws an error, returns `unknown`.
 ```
 
 The nested `<path>` must evaluate to a sequence of textual items, and the
-other operand must evaluate to a single textual item. If evaluating of either
+other operand must evaluate to a single textual item. If evaluation of either
 operand throws an error, the result is `unknown`. All items from the sequence
 are checked for starting with the right operand. The result is `true` if a
 match is found, otherwise `false`. However, if any of the comparisons throws
@@ -850,7 +850,7 @@ FROM customers
 
 The following query gets the collection of children for each customer.
 Note that the `json_query` function can only output a single JSON item. If
-you dont use array wrapper, you get an error for every customer with multiple
+you don't use array wrapper, you get an error for every customer with multiple
 children. The error is handled according to the `ON ERROR` clause.
 
 ```sql
@@ -892,7 +892,7 @@ FROM customers
 | 103 | [2]      |
 
 The following query gets all children above the age of 12 for each customer,
-wrapped in a JSON array. The second and the third customer dont have children
+wrapped in a JSON array. The second and the third customer don't have children
 of this age. Such case is handled according to the `ON EMPTY` clause. The
 default value returned `ON EMPTY` is `NULL`. In the following example,
 `EMPTY ARRAY ON EMPTY` is specified.
@@ -1051,7 +1051,7 @@ FROM customers
 | 102 | problematic  |
 | 103 | knows best   |
 
-The following query gets the first childs age for each customer as
+The following query gets the first child's age for each customer as
 `tinyint`:
 
 ```sql
@@ -1069,7 +1069,7 @@ FROM customers
 | 102 | 8     |
 | 103 | 2     |
 
-The following query gets the third childs age for each customer. In the strict
+The following query gets the third child's age for each customer. In the strict
 mode, this should cause a structural error for the customers who do not have
 the third child. This error is handled according to the `ON ERROR` clause.
 
@@ -1625,7 +1625,7 @@ feature-rich alternative to parse and extract JSON data.
 #### json_extract_scalar()
 **``json_extract_scalar(json, json_path)``** → varchar
 
-Like json_extract`, but returns the result value as a string (as opposed
+Like `json_extract`, but returns the result value as a string (as opposed
 to being encoded as JSON). The value referenced by `json_path` must be a
 scalar (boolean, number or string).
 

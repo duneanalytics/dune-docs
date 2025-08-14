@@ -9,35 +9,35 @@ Records trades performed on Stellar's decentralized exchange.
 
 ## Column Descriptions
 
-| **Column**                            | **Description**                                                              | **Type**                              |
-| --------------------------------------|------------------------------------------------------------------------------| ------------------------------------- |
-| **closed_at_date**                    | The date when the trade operation was closed.                                | date                                 |
-| **history_operation_id**              | The unique identifier for the operation associated with the trade.            | bigint                               |
-| **order**                             | The sequence or order of the trade execution within the operation.            | bigint                               |
-| **selling_account_address**           | The account address of the seller in the trade.                               | varchar                              |
-| **selling_asset_code**                | The code of the asset being sold in the trade.                                | varchar                              |
-| **selling_asset_issuer**              | The issuer of the asset being sold in the trade.                              | varchar                              |
-| **selling_asset_type**                | The type of asset being sold (e.g., native, issued).                          | varchar                              |
-| **selling_asset_id**                  | The identifier for the asset being sold.                                      | bigint                               |
-| **selling_amount**                    | The amount of the asset being sold.                                           | double                               |
-| **buying_account_address**            | The account address of the buyer in the trade.                                | varchar                              |
-| **buying_asset_code**                 | The code of the asset being bought in the trade.                              | varchar                              |
-| **buying_asset_issuer**               | The issuer of the asset being bought in the trade.                            | varchar                              |
-| **buying_asset_type**                 | The type of asset being bought (e.g., native, issued).                        | varchar                              |
-| **buying_asset_id**                   | The identifier for the asset being bought.                                    | bigint                               |
-| **buying_amount**                     | The amount of the asset being bought.                                         | double                               |
-| **price_n**                           | The numerator of the price ratio (price as a fraction) of the trade.          | bigint                               |
-| **price_d**                           | The denominator of the price ratio (price as a fraction) of the trade.        | bigint                               |
-| **selling_offer_id**                  | The offer ID for the selling side of the trade.                               | bigint                               |
-| **buying_offer_id**                   | The offer ID for the buying side of the trade.                                | bigint                               |
-| **selling_liquidity_pool_id**         | The identifier for the liquidity pool involved in the selling side of the trade, if applicable. | varchar              |
-| **liquidity_pool_fee**                | The fee in lumens (XLM) for the liquidity pool, if applicable.                | bigint                               |
-| **trade_type**                        | The type of trade (e.g., market, limit).                                      | bigint                               |
-| **rounding_slippage**                 | The slippage amount due to rounding in the trade execution.                   | bigint                               |
-| **seller_is_exact**                   | A boolean indicating whether the seller's amount was exact in the trade.      | boolean                              |
-| **closed_at**                         | The timestamp when the trade was closed.                                      | timestamp(3) with time zone          |
-| **updated_at**                        | The time when the trade record was last updated.                              | timestamp(3) with time zone          |
-| **ingested_at**                       | The time when the trade data was ingested into the system.                    | timestamp(3) with time zone          |
+| **Column**                            | **Description**                                                                                    | **Type**                    |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------- |
+| **closed_at_date**                    | The date when the trade operation was closed.                                                     | date                        |
+| **history_operation_id**              | The unique identifier for the operation associated with the trade.                                | bigint                      |
+| **order**                             | The sequence or order of the trade execution within the operation.                                | bigint                      |
+| **selling_account_address**           | The account address of the seller in the trade.                                                   | varchar                     |
+| **selling_asset_code**                | The code of the asset being sold in the trade.                                                    | varchar                     |
+| **selling_asset_issuer**              | The issuer of the asset being sold in the trade.                                                  | varchar                     |
+| **selling_asset_type**                | The type of asset being sold (e.g., native, issued).                                              | varchar                     |
+| **selling_asset_id**                  | The identifier for the asset being sold.                                                          | bigint                      |
+| **selling_amount**                    | The amount of the asset being sold.                                                               | double                      |
+| **buying_account_address**            | The account address of the buyer in the trade.                                                    | varchar                     |
+| **buying_asset_code**                 | The code of the asset being bought in the trade.                                                  | varchar                     |
+| **buying_asset_issuer**               | The issuer of the asset being bought in the trade.                                                | varchar                     |
+| **buying_asset_type**                 | The type of asset being bought (e.g., native, issued).                                            | varchar                     |
+| **buying_asset_id**                   | The identifier for the asset being bought.                                                        | bigint                      |
+| **buying_amount**                     | The amount of the asset being bought.                                                             | double                      |
+| **price_n**                           | The numerator of the price ratio (price as a fraction) of the trade.                              | bigint                      |
+| **price_d**                           | The denominator of the price ratio (price as a fraction) of the trade.                            | bigint                      |
+| **selling_offer_id**                  | The offer ID for the selling side of the trade.                                                   | bigint                      |
+| **buying_offer_id**                   | The offer ID for the buying side of the trade.                                                    | bigint                      |
+| **selling_liquidity_pool_id**         | The identifier for the liquidity pool involved in the selling side of the trade, if applicable.   | varchar                     |
+| **liquidity_pool_fee**                | The fee in lumens (XLM) for the liquidity pool, if applicable.                                    | bigint                      |
+| **trade_type**                        | The type of trade (e.g., market, limit).                                                          | bigint                      |
+| **rounding_slippage**                 | The slippage amount due to rounding in the trade execution.                                       | bigint                      |
+| **seller_is_exact**                   | A boolean indicating whether the seller's amount was exact in the trade.                          | boolean                     |
+| **closed_at**                         | The timestamp when the trade was closed.                                                          | timestamp(3) with time zone |
+| **updated_at**                        | The time when the trade record was last updated.                                                  | timestamp(3) with time zone |
+| **ingested_at**                       | The time when the trade data was ingested into the system.                                        | timestamp(3) with time zone |
 
 
 ## Table Sample

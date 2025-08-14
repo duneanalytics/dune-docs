@@ -43,7 +43,7 @@ However, if one of these functions is invoked by another smart contract in the c
 
 In short: **State data stored in the memory of a smart contract is not available on Dune!**
 
-A good example of this is the function `decimals` of the [erc20 token contract](https://etherscan.io/token/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984#readContract) `Uni` which is a `constant` state variable that is able to be accessed through an automatically created "[getter function](https://docs.soliditylang.org/en/v0.7.4/contracts.html#getter-functions)". Should a smart contract invoke this function in the context of transaction, this message call will be recorded in the Dune table [`uniswap."UNI_call_decimals"`](https://dune.com/queries/741354).
+A good example of this is the function `decimals` of the [erc20 token contract](https://etherscan.io/token/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984#readContract) `Uni` which is a `constant` state variable that is able to be accessed through an automatically created "[getter function](https://docs.soliditylang.org/en/v0.7.4/contracts.html#getter-functions)". Should a smart contract invoke this function in the context of a transaction, this message call will be recorded in the Dune table [`uniswap."UNI_call_decimals"`](https://dune.com/queries/741354).
 
 This is in contrast to anyone calling this function locally using web3.py/web3.js or using the Etherscan frontend to access this state. These local calls are not recorded in Dune.
 

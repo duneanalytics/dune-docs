@@ -13,15 +13,15 @@ This table captures detailed transaction data from the Ethereum mempool. It incl
 | Column Name                   | Description                                                                                            | Data Type |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------ | --------- |
 | `to`                          | The recipient address of the transaction.                                                              | varchar    |
-| `from`                        | The sender address of the transaction.                                                                 | Varchar    |
-| `hash`                        | The unique transaction hash.                                                                           | Varchar    |
+| `from`                        | The sender address of the transaction.                                                                 | varchar    |
+| `hash`                        | The unique transaction hash.                                                                           | varchar    |
 | `nonce`                       | The nonce of the transaction, a counter of the sender's transactions.                                  | Integer   |
 | `value`                       | The value transferred in the transaction, in wei.                                                      | BigInt    |
 | `gas`                         | The gas limit set for the transaction.                                                                 | Integer   |
 | `gas_price`                   | The gas price set for the transaction, in wei.                                                         | BigInt    |
 | `data_size`                   | The size of the data payload in the transaction, in bytes.                                             | Integer   |
-| `data_4bytes`                 | The first four bytes of the transaction data, typically the method identifier in a contract call.      | Varchar    |
-| `sources`                     | The sources that captured the transaction data.                                                        | Varchar    |
+| `data_4bytes`                 | The first four bytes of the transaction data, typically the method identifier in a contract call.      | varchar    |
+| `sources`                     | The sources that captured the transaction data.                                                        | varchar    |
 | `chain_id`                    | The identifier for the blockchain network (e.g., 1 for Ethereum Mainnet).                              | Integer   |
 | `gas_fee_cap`                 | The maximum amount of gas fee the sender is willing to pay (EIP-1559).                                 | BigInt    |
 | `gas_tip_cap`                 | The maximum tip the sender is willing to pay miners (EIP-1559).                                        | BigInt    |

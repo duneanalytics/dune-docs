@@ -1,5 +1,5 @@
 ---
-title: USDT on tron
+title: USDT on Tron
 sidebarTitle: "Tether"
 description: Decoded USDT data on the Tron network.
 ---
@@ -26,7 +26,7 @@ These are the events that are logged by the USDT contract on the Tron network an
 
 - `tether_tron.tether_usd_evt_issue`: Contains records of issue events, where new USDT tokens are created and issued within the ecosystem.
 
-- `tether_tron.tether_usd_evt_ownershipttransferred`: Logs the transfer of contract ownership events, which indicates a change in who can execute administrative functions on the contract.
+- `tether_tron.tether_usd_evt_ownershiptransferred`: Logs the transfer of contract ownership events, which indicates a change in who can execute administrative functions on the contract.
 
 - `tether_tron.tether_usd_evt_params`: Stores data related to changes in the contract's operational parameters, which could include things like fees, transaction limits, or other configuration settings.
 
@@ -43,7 +43,7 @@ You can query all of these tables in the `tether_tron` schema in the Dune databa
 
 ## Example queries 
 
-### Daily transfer count of USDT on Tron.
+### Daily transfer count of USDT on Tron
 
 ```sql
 SELECT 
@@ -58,7 +58,7 @@ group by 1
   <DuneEmbed qID={3556879} vID={5985629} height={300} />
 </div>
 
-### Daily transfer volume of USDT on Tron.
+### Daily transfer volume of USDT on Tron
 
 ```sql
 SELECT 

@@ -1,6 +1,6 @@
 ---
-title: Transactions Fees
-sidebarTitle: "Transactions Fees"
+title: Transaction Fees
+sidebarTitle: "Transaction Fees"
 icon: "gas-pump"
 description: Understanding transaction fees and their relationship to transaction costs in blockchain networks
 ---
@@ -231,8 +231,11 @@ For EVM networks, we have developed a unified model to calculate transaction fee
   provides a straightforward way to calculate transaction fees. Tron also
   subsidizes the fees for transactions, so the fee paid is not necessarily the
   actual cost of the transaction. We are correcting for this in the
-  `metrics.gas_fees_daily` table, but not in gas.fees yet. ```sql tx_fee_raw =
-  gas_used * gas_price ```
+  `metrics.gas_fees_daily` table, but not in gas.fees yet.
+  
+  ```sql
+  tx_fee_raw = gas_used * gas_price
+  ```
 </Tab>
 
   <Tab title="zkEVM">
@@ -281,7 +284,7 @@ For EVM networks, we have developed a unified model to calculate transaction fee
 
 ### Non-EVM Networks
 
-For non-EVM networks we haven't yet found a consistent way to model the fee structure, so we are not yet able to provide a unified model for non-EVM networks. However all the data is included in the `metrics.gas_fees_daily` table.
+For non-EVM networks we haven't yet found a consistent way to model the fee structure, so we are not yet able to provide a unified model for non-EVM networks. However, all the data is included in the `metrics.gas_fees_daily` table.
 
 #### Solana
 
@@ -312,7 +315,7 @@ Solana has two "types" of transactions: _transactions_ and _votes_. We track the
   </Tab>
 </Tabs>
 
-We consider both `gas_solana.tx_fees` and `gas_solana.vote_fees` when calculating the total transaction fees for solana in `metrics.gas_fees_daily`.
+We consider both `gas_solana.tx_fees` and `gas_solana.vote_fees` when calculating the total transaction fees for Solana in `metrics.gas_fees_daily`.
 
 #### Bitcoin
 

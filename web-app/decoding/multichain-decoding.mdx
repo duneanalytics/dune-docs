@@ -23,7 +23,7 @@ Here are a few examples showing how you can use multichain decoded table views t
     FROM (
         SELECT 
             --this event is emitted on sale set updates too so we take distinct
-            distinct
+            DISTINCT
             l.blockchain
             , l.collection as nft_address
             , l.erc20zAddress as erc20_address
@@ -53,7 +53,7 @@ Here are a few examples showing how you can use multichain decoded table views t
     FROM (
         SELECT 
             --this event is emitted on sale set updates too so we take distinct
-            distinct
+            DISTINCT
             l.blockchain
             , l.collection as nft_address
             , l.erc20zAddress as erc20_address
@@ -103,15 +103,15 @@ Here are a few examples showing how you can use multichain decoded table views t
 <Tabs>
   <Tab title="Using multichain decoded tables">
   ```sql 
-    select chain, date_trunc('day', call_block_time) AS block_date, count(*) as cnt
-    from gnosis_safe_multichain.Safe_v1_4_1_call_execTransaction
-    group by 1, 2
+    SELECT chain, date_trunc('day', call_block_time) AS block_date, count(*) as cnt
+    FROM gnosis_safe_multichain.Safe_v1_4_1_call_execTransaction
+    GROUP BY 1, 2
   ```
   </Tab>
   <Tab title="Unioning single chain decoded tables">
   ```sql 
-    select chain, date_trunc('day', call_block_time) AS block_date, count(*) as cnt
-    from (
+    SELECT chain, date_trunc('day', call_block_time) AS block_date, count(*) as cnt
+    FROM (
     SELECT 'arbitrum' AS chain, call_block_time
     FROM gnosis_safe_arbitrum.Safe_v1_4_1_call_execTransaction
 
@@ -165,7 +165,7 @@ Here are a few examples showing how you can use multichain decoded table views t
     SELECT 'polygon' AS chain, call_block_time
     FROM gnosis_safe_polygon.Safe_v1_4_1_call_execTransaction
     )
-    group by 1,2
+    GROUP BY 1, 2
   ```
   </Tab>
 </Tabs>

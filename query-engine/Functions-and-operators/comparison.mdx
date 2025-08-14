@@ -63,7 +63,7 @@ The `IS NULL` and `IS NOT NULL` operators test whether a value is null
 
 Using `NULL` with `IS NULL` evaluates to true:
 ```sql
-    select NULL IS NULL; -- true
+    SELECT NULL IS NULL; -- true
 ```
 But any other constant does not:
 ```sql
@@ -85,7 +85,7 @@ In the example shown above, a `NULL` value is not considered distinct
 from `NULL`. When you are comparing values which may include `NULL` use
 these operators to guarantee either a `TRUE` or `FALSE` result.
 
-The following truth table demonstrate the handling of `NULL` in
+The following truth table demonstrates the handling of `NULL` in
 `IS DISTINCT FROM` and `IS NOT DISTINCT FROM`:
 
 | a      | b      | a = b   | a \<\> b | a DISTINCT b | a NOT DISTINCT b |
@@ -194,4 +194,4 @@ matches. If you need to match the used escape character as well, you can
 escape it.
 
 If you want to match for the chosen escape character, you simply escape
-itself. For example, you can use `\\` to match for `''''`.
+itself. For example, you can use `\\\\` to match for `\\`.

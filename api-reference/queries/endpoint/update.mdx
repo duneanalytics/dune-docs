@@ -35,14 +35,14 @@ query = dune.update_query(
 )
 ```
 
-```python Python
+```bash cURL
 curl --request PATCH \
   --url https://api.dune.com/api/v1/query/{queryId} \
   --header 'Content-Type: application/json' \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
   --data '{
   "query_id": 1252207,
-  "query_sql": "{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"
+  "query_sql": "SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"
 }'
 ```
 
@@ -50,7 +50,7 @@ curl --request PATCH \
 const options = {
   method: 'PATCH',
   headers: {'X-DUNE-API-KEY': '<x-dune-api-key>', 'Content-Type': 'application/json'},
-  body: '{"query_id":1252207,"query_sql":"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"}'
+  body: '{"query_id":1252207,"query_sql":"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"}'
 };
 
 fetch('https://api.dune.com/api/v1/query/{queryId}', options)
@@ -73,7 +73,7 @@ func main() {
 
 	url := "https://api.dune.com/api/v1/query/{queryId}"
 
-	payload := strings.NewReader("{\n  \"query_id\": 1252207,\n  ,\n  \"query_sql\": \"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}")
+	payload := strings.NewReader("{\n  \"query_id\": 1252207,\n  \"query_sql\": \"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}")
 
 	req, _ := http.NewRequest("PATCH", url, payload)
 
@@ -104,7 +104,7 @@ curl_setopt_array($curl, [
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "PATCH",
-  CURLOPT_POSTFIELDS => "{\n  \"query_id\": 1252207,\n  \"query_sql\": \"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}",
+  CURLOPT_POSTFIELDS => "{\n  \"query_id\": 1252207,\n  \"query_sql\": \"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}",
   CURLOPT_HTTPHEADER => [
     "Content-Type: application/json",
     "X-DUNE-API-KEY: <x-dune-api-key>"
@@ -127,7 +127,7 @@ if ($err) {
 HttpResponse<String> response = Unirest.patch("https://api.dune.com/api/v1/query/{queryId}")
   .header("X-DUNE-API-KEY", "<x-dune-api-key>")
   .header("Content-Type", "application/json")
-  .body("{\n  \"query_id\": 1252207,\n  \"query_sql\": \"{{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}")
+  .body("{\n  \"query_id\": 1252207,\n  \"query_sql\": \"SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}\"}")
   .asString();
 ```
 

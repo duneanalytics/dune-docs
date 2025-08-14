@@ -17,7 +17,7 @@ The `prices.hour` table provides hourly token price data across all supported bl
 | blockchain | varchar | Blockchain identifier (e.g., 'ethereum', 'arbitrum') |
 | contract_address | varbinary | Token contract address (fixed address for native tokens) |
 | symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
-| timestamp | timestamp | Hour timestamp (00:00, 01:00, etc. UTC of each hour) |
+| timestamp | timestamp | Hour timestamp (00:00, 01:00, etc. in UTC for each hour) |
 | price | double | Token price in USD |
 | decimals | int | Token decimals |
 | volume | double | Trading volume in USD (from price source) |
@@ -31,7 +31,7 @@ The hourly prices are built through these steps:
 1. Collect sparse price observations from different sources
 2. Group by hour, taking the most recent price observation per hour
 3. Fill missing hours with the previous hour's price (forward filling)
-4. Set a 7-day (168 hour) expiration for forward filling to avoid stale data
+4. Set a 7-day (168-hour) expiration for forward filling to avoid stale data
 
 ## Usage
 
@@ -43,7 +43,7 @@ The `prices.hour` table is updated hourly based on the upstream data pipeline. A
 
 ## Usage Examples
 
-Here are some examples of how to use the prices tables.
+Here are some examples of how to use the hourly prices table.
 
 ### Get hourly ETH prices for the last day:
 ```sql

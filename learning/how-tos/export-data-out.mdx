@@ -120,7 +120,7 @@ import pandas as pd
 def get_latest_query_result(query_id):
     res_df = pd.DataFrame()
     try:
-        result_url = f"https://api.dune.com/api-referencev1/query/{query_id}/results"
+        result_url = f"https://api.dune.com/api/v1/query/{query_id}/results"
         result_response = requests.get(result_url, headers=headers)
         print(json.loads(result_response.text))
         query_res = json.loads(result_response.text)["result"]["rows"]
