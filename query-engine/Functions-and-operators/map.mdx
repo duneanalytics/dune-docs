@@ -110,7 +110,7 @@ Returns all the values in the map `x`.
 **``map_zip_with(map(K,V1), map(K,V2), function(K,V1,V2,V3))``** → map(K,V3)
 
 Merges the two given maps into a single map by applying `function` to
-the pair of values with the same key. For keys only presented in one
+the pair of values with the same key. For keys only present in one
 map, NULL will be passed as the value for the missing key:
 ```sql
     SELECT map_zip_with(MAP(ARRAY[1, 2, 3], ARRAY['a', 'b', 'c']),

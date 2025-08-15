@@ -45,7 +45,7 @@ Obtain the squared elements of an array column with
 | [5, 6, 7] | [25, 36, 49]    |
 
 
-The function `transform` can be also
+The function `transform` can also be
 employed to safely cast the elements of an array to strings:
 ```sql
     SELECT transform(prices, n -> TRY_CAST(n AS VARCHAR) || '$') as price_tags
@@ -98,14 +98,14 @@ with `any_match`:
     WHERE any_match(numbers, n ->  COALESCE(n, 0) > 100);
     -- [100, 200, 300]
 ```
-Capitalize the f word in a string via `regexp_replace`:
+Capitalize the first word in a string via `regexp_replace`:
 ```sql
     SELECT regexp_replace('once upon a time ...', '^(\w)(\w*)(\s+.*)$',x -> upper(x[1]) || x[2] || x[3]);
     -- Once upon a time ...
 ```
 
-Lambda expressions can be also applied in aggregation functions.
-Following statement is a sample the overly complex calculation of the
+Lambda expressions can also be applied in aggregation functions.
+The following statement is a sample of the overly complex calculation of the
 sum of all elements of a column by making use of `reduce_agg`:
 ```sql
     SELECT reduce_agg(value, 0, (a, b) -> a + b, (a, b) -> a + b) sum_values

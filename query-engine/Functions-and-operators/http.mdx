@@ -7,9 +7,9 @@ import { DuneEmbed } from "/snippets/dune-embed.mdx"
 
 The HTTP functions send HTTP requests to a specified URL.
 Using the HTTP functions, you can interact with HTTP servers directly in SQL queries.
-They allow to fetch data from external APIs, as well as invoke remote procedure calls.
+They allow you to fetch data from external APIs, as well as invoke remote procedure calls.
 
-With the HTTP functions we can e.g. pull in a list of coins from coingecko:
+With the HTTP functions, we can e.g. pull in a list of coins from CoinGecko:
 
 ```sql
 SELECT * FROM UNNEST(
@@ -57,7 +57,7 @@ The function sends an HTTP GET request to the given URL, optionally including th
 and returns the response body as `varchar`.
 
 Often, the response is a JSON document. You can process it further with [JSON-processing SQL functions](/query-engine/Functions-and-operators/json).
-Other response formats, like html, are also supported.
+Other response formats, like HTML, are also supported.
 
 #### http_post()
 
@@ -90,7 +90,7 @@ made within the query.
 SELECT http_get('https://api.coingecko.com/api/v3/coins/list');
 ```
 
-### Multiple HTTP GET requests parametrized with Dune data
+### Multiple HTTP GET requests parameterized with Dune data
 
 ```sql
 SELECT

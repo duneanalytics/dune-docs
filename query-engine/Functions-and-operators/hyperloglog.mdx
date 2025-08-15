@@ -36,7 +36,7 @@ Examples:
     CREATE TABLE visit_summaries (  
       visit_date date,
       hll varbinary
-    )
+    );
     INSERT INTO visit_summaries
     SELECT visit_date, cast(approx_set(user_id) AS varbinary)
     FROM user_visits

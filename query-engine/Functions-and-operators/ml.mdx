@@ -10,7 +10,7 @@ problems.
 
 <Note>
 Note: The machine learning functions are not optimized for distributed
-processing. The capability to train large data sets is limited by this
+processing. The capability to train large data sets is limited by the
 execution of the final training on a single instance.
 </Note>
 # Feature vector
@@ -19,7 +19,7 @@ To solve a problem with the machine learning technique, especially as a
 supervised learning problem, it is necessary to represent the data set
 with the sequence of pairs of labels and feature vector. A label is a
 target value you want to predict from the unseen feature and a feature
-is a A N-dimensional vector whose elements are numerical values. In
+is an N-dimensional vector whose elements are numerical values. In
 Trino, a feature vector is represented as a map-type value, whose key is
 an index of each feature, so that it can express a sparse vector. Since
 classifiers and regressors can recognize the map-type feature vector,
@@ -64,7 +64,7 @@ model
 68 61 72 29 3e
 ```
 
-`classify` returns the predicted label by using the trained model. The trained model can not be saved natively,
+`classify` returns the predicted label by using the trained model. The trained model cannot be saved natively,
 and needs to be passed in the format of a nested query:
 ```sql
     SELECT
@@ -92,7 +92,7 @@ internal parameters of the model.
 # Regression
 
 Regression is another type of supervised learning problem, predicting
-continuous value, unlike the classification problem. The target must be
+a continuous value, unlike the classification problem. The target must be
 numerical values that can be described as `double`.
 
 The following code shows the creation of the model predicting
@@ -124,7 +124,7 @@ Internally, the model is trained by
 `learn_libsvm_regressor` provides you a
 way to control the training process.
 
-# Machine learning functions \{#machine-learning-functions-1}
+# Machine learning functions {#machine-learning-functions-1}
 
 #### features()
 **``features(double, ...)``** → map(bigint, double)  
