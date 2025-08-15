@@ -16,7 +16,7 @@ Records time limits for smart contract data, enforcing storage expiry rules.
 | **key_hash**                          | The hash of the key used to identify the TTL entry, in binary format.        | varbinary                            |
 | **live_until_ledger_seq**             | The ledger sequence number until which the TTL entry remains live.           | bigint                               |
 | **last_modified_ledger**              | The ledger sequence number where the TTL entry was last modified.            | bigint                               |
-| **ledger_entry_change**               | Indicates the type of change made to the ledger entry (insert, update, delete). | bigint                            |
+| **ledger_entry_change**               | Indicates the type of change made to the ledger entry (insert, update, delete). | bigint                               |
 | **deleted**                           | A boolean indicating whether the TTL entry has been deleted from the ledger. | boolean                              |
 | **closed_at**                         | The timestamp when the TTL entry was closed.                                 | timestamp(3) with time zone          |
 | **ledger_sequence**                   | The sequence number of the ledger in which the TTL entry is included.        | bigint                               |

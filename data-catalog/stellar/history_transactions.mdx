@@ -17,7 +17,7 @@ Contains transaction details, linking to multiple operations within a transactio
 | **ledger_sequence**                   | The sequence number of the ledger in which the transaction is included.      | bigint                               |
 | **account**                           | The account address that originated the transaction.                         | varchar                              |
 | **account_sequence**                  | The source account's sequence number that this transaction consumed.         | bigint                               |
-| **max_fee**                           | The maximum fee that the account was willing to pay for the transaction.      | bigint                               |
+| **max_fee**                           | The maximum fee that the account was willing to pay for the transaction.     | bigint                               |
 | **operation_count**                   | The number of operations contained within this transaction.                  | bigint                               |
 | **created_at**                        | The timestamp when the transaction was created.                              | timestamp(3) with time zone          |
 | **memo_type**                         | The type of memo attached to the transaction (e.g., text, id, hash).         | varchar                              |
@@ -45,7 +45,7 @@ Contains transaction details, linking to multiple operations within a transactio
 | **soroban_resources_write_bytes**     | The number of bytes written during Soroban smart contract execution.         | bigint                               |
 | **closed_at**                         | The timestamp when the transaction was closed.                               | timestamp(3) with time zone          |
 | **transaction_result_code**           | The result code that includes error codes for failed transactions.           | varchar                              |
-| **inclusion_fee_bid**                 | The fee bid by the account to include the transaction in the ledger.          | bigint                              |
+| **inclusion_fee_bid**                 | The fee bid by the account to include the transaction in the ledger.         | bigint                               |
 | **inclusion_fee_charged**             | The actual fee charged for the transaction to be included in the ledger.     | bigint                               |
 | **resource_fee_refund**               | The refunded portion of the resource fee.                                    | bigint                               |
 | **non_refundable_resource_fee_charged**| The portion of the resource fee that is non-refundable.                      | bigint                               |
