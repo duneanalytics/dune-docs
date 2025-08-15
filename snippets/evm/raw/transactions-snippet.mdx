@@ -16,7 +16,8 @@ export const TransactionsSnippet = ({ blockchain }) => (
     <h2>Examples</h2>
     <h3>Show all transactions sent by a specific address</h3>
     <pre><code>{`SELECT * 
-FROM ${blockchain}.transactions WHERE "from" = '0x50A1b5c358F8D34F0d35aA2f10742c46054E247e'
+FROM ${blockchain}.transactions 
+WHERE "from" = '0x50A1b5c358F8D34F0d35aA2f10742c46054E247e'
 `}</code></pre>
     <h3>Count the number of transactions per block</h3>
     <pre><code>{`SELECT 
