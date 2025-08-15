@@ -28,14 +28,14 @@ import { TableSample } from "/snippets/table-sample.mdx";
 
 ```sql
 select * from ethereum.creation_traces
-where contract_address = 0x06012c8cf97bead5deae237070f9587f8e7a266d
+where contract_address = '0x06012c8cf97bead5deae237070f9587f8e7a266d'
 ```
 
 ### Show the creation of smart contracts by a specific creator
 
 ```sql
 select * from ethereum.creation_traces
-where "from" = 0x0d4a11d5eeaac28ec3f61d100da81f6a1b65c9d6
+where "from" = '0x0d4a11d5eeaac28ec3f61d100da81f6a1b65c9d6'
 ```
 
 ### Show the creation of smart contracts in the last 10 days

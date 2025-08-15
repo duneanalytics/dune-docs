@@ -43,7 +43,7 @@ LIMIT 10
 ```sql
 SELECT
   date_trunc('day', time) AS day,
-  count(distinct number)
+  count(*)
 FROM
   ethereum.blocks
 GROUP BY

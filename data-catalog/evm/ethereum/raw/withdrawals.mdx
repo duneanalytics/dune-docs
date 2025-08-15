@@ -44,7 +44,7 @@ import { TableSample } from "/snippets/table-sample.mdx";
 ```sql
 select
 date_trunc('day', block_time) as dt,
-sum(AMOUNT)/1e9 as withdraw_amount
+sum(amount)/1e9 as withdraw_amount
 from ethereum.withdrawals
 group by 1
 ``` 
