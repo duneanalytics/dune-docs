@@ -69,7 +69,7 @@ To build a network, we need nodes and their relationships. Refer to [this Dune q
 - Nodes are identified by a unique "fid" (Farcaster ID).
 - Relationships (edges) between nodes are based on four actions: follow, like, repost, and comment.
 - Interaction weights are: follow = 5, like = 1, repost = 3, comment = 2. They consider directionality.
-- These interactions as parameterized variables, adjust as needed.
+- These interactions are parameterized variables, adjust as needed.
 
 ### Packages and Imports
 
@@ -167,7 +167,7 @@ Adjust the timeout as necessary.
 There are two methods to export data from Dune and into notebook:
 
 <Tabs>
-  <Tab title="FiGet Latest Resultrst">
+  <Tab title="Get Latest Result">
 
     Retrieve the latest result, which is faster as it bypasses execution.
 
@@ -177,8 +177,7 @@ There are two methods to export data from Dune and into notebook:
     ```
 
   </Tab>
-  <Tab title="Query a Query
-">
+  <Tab title="Query a Query">
 
   </Tab>
   <Tab title="Second">
@@ -296,7 +295,7 @@ _Again, above is a brief code snippet. For the comprehensive version, visit the 
 
 Visualization enhances any analysis, but visualizing extensive networks like ours can be a maze. Let's navigate two visualization paths you can adapt further:
 
-- In Gephi: [Gephi](https://gephi.org/) is a good tool to presenting large networks comprehensively. Export the graph from Python with nx.write_gml(G, "file_name.gml") and dive into Gephi. Tweak node sizes, colors, and labels to distill insights.
+- In Gephi: [Gephi](https://gephi.org/) is a good tool for presenting large networks comprehensively. Export the graph from Python with nx.write_gml(G, "file_name.gml") and dive into Gephi. Tweak node sizes, colors, and labels to distill insights.
 
 - In Python notebook: for a more focused lens, visualize the top 200 nodes by degree with NetworkX. Node color denotes out-degree: a blue node engages less, while a red one is more active. Node size illustrates in-degree, reflecting the interactions received.
 

@@ -51,7 +51,7 @@ There are three components in the toolkit. The blockchain team or a RaaS provide
 
 2. **Node Indexer**: Does the heavy lifting of indexing the chain data and sending it to Dune
    - Provided as a [Docker image](https://github.com/duneanalytics/node-indexer) in Dune’s registry
-   - Run by the customer/RAAS on their preferred platform
+   - Run by the customer/RaaS on their preferred platform
    - Configured to connect to the specific RPC node and stack (e.g., OP)
    - Makes relevant RPC calls (`eth_getBlockReceipts`, `debug_traceBlockByNumber`, `eth_getBlockByNumber`)
    - Forwards data to the Dune API
@@ -60,7 +60,7 @@ There are three components in the toolkit. The blockchain team or a RaaS provide
 3. **Blockchain Endpoints**:
    - API that accepts RPC call responses, transforms the data to match Dune’s schema, and uploads it continuously to Dune
    - Creates four raw tables on Dune: `<chain>.blocks`, `<chain>.transactions`, `<chain>.traces`, `<chain>.logs`
-<Note>Your team or a RaaS provider only needs to spin up the Node Indexer. It will handle writing to the Blockchain endpoints and transforming the RPC calls into predefined raw tables with schemas for EVM chains.</Note>
+<Note>Your team or RaaS provider only needs to spin up the Node Indexer. It will handle writing to the Blockchain endpoints and transforming the RPC calls into predefined raw tables with schemas for EVM chains.</Note>
 
 ## Considerations
 
