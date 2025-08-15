@@ -30,7 +30,7 @@ Pagination can be effectively combined with [filtering](./filtering) and [sortin
     from dune_client.client import DuneClient
     from dune_client.query import QueryBase
 
-    os.chdir("<path_to_your_dotevn_file>")
+    os.chdir("<path_to_your_dotenv_file>")
 
     # load .env file
     dotenv.load_dotenv(".env")
@@ -126,7 +126,7 @@ Pagination can be effectively combined with [filtering](./filtering) and [sortin
 
         // Create query parameters
         params := url.Values{}
-        params.Set("limit", 1000)
+        params.Set("limit", "1000")
 
         // Add parameters to URL
         fullURL := fmt.Sprintf("%s?%s", url, params.Encode())
