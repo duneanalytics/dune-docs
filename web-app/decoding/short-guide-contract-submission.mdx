@@ -21,7 +21,7 @@ Batch submission bypasses UI safeguards, so make sure all flags are accurate, th
 </Warning>
 
 Follow [this Google Sheet template](https://docs.google.com/spreadsheets/d/1yxJqlmSE2yYgXgSIXcPRr5xxP9ck9JZB8_sGOITtYEM/edit?gid=0#gid=0) for exact format, and refer to [Dune’s documentation](./decoding-contracts) for guidance on fields like:
-- **`has_multiple_instances`** is flag for for [dynamic contracts](./decoding-contracts#are-there-several-instances-of-this-contract-dynamic-contract)
+- **`has_multiple_instances`** is flag for [dynamic contracts](./decoding-contracts#are-there-several-instances-of-this-contract-dynamic-contract)
 - **`is_created_by_factory`** is flag for [factory contracts](./decoding-contracts#is-it-created-by-a-factory-contract-factory-contract)
 
 ## Submission Strategy
@@ -39,7 +39,7 @@ If using a proxy pattern, submit the **implementation contract's ABI**.
 These contracts typically don’t need submission, as Dune already covers standard approvals and transfers. Submit only if custom events are needed.
 
 ### DEX Contracts
-Look for below sets of contracts:
+Look for the following sets of contracts:
 - **Factory Contract**: should emit pool creation events.
 - **Pair/Pool Contract**: should emit swap events.
 
@@ -75,15 +75,15 @@ For an overview of how decoding works and submission instructions, watch this vi
 
 ### Batch Submit via CSV through Backend
 
-In the event that you are collecting dozens protocol contracts, and would like to batch submit contracts via a CSV. Please work with use (via the Slack or TG channel we have) with a correctly formatted CSV and batch submit contracts for decodoing. 
+In the event that you are collecting dozens of protocol contracts, and would like to batch submit contracts via a CSV, please work with us (via the Slack or TG channel we have) with a correctly formatted CSV and batch submit contracts for decoding. 
 <Warning>
-This is the less recommended route to go because for this to work, one needs to be super sure about the advanced flags are correctly marked and the ABI is correct and formatted well and the naming of the protocol and contract conforms with our standard. Submitting with UI has the benefit of the UI having many safe guard and checks and hint, and doing a manaul backedn batch submission means you will lose that guidance and sometimes result in longer debugging /turn around time. So use this option at you caution.
+This is the less recommended route to go because for this to work, one needs to be super sure that the advanced flags are correctly marked and the ABI is correct and formatted well and the naming of the protocol and contract conforms with our standard. Submitting with UI has the benefit of the UI having many safeguards and checks and hints, and doing a manual backend batch submission means you will lose that guidance and sometimes result in longer debugging/turnaround time. So use this option at your caution.
 </Warning>
 
 For multiple contracts, submit in bulk using [this Google Sheet template](https://docs.google.com/spreadsheets/d/1yxJqlmSE2yYgXgSIXcPRr5xxP9ck9JZB8_sGOITtYEM/edit?gid=0#gid=0). Be sure to:
 - Follow the format precisely.
 - Provide the ABI directly 
-- Refer to [Dune’s documentation](https://docs.dune.com/web-app/decoding/decoding-contracts) if you’re unsure about fields like `has_multiple_instances` or `is_created_by_factory`. `has_multiple_instances` coresponds to dynamic contract and `is_created_by_factory` corresponds to factory contract in Dune's decoding pipeline.
+- Refer to [Dune's documentation](https://docs.dune.com/web-app/decoding/decoding-contracts) if you're unsure about fields like `has_multiple_instances` or `is_created_by_factory`. `has_multiple_instances` corresponds to dynamic contract and `is_created_by_factory` corresponds to factory contract in Dune's decoding pipeline.
 
 ## Submission Strategy
 
@@ -100,11 +100,11 @@ For multiple contracts, submit in bulk using [this Google Sheet template](https:
 Generally, these don’t need submission unless you want custom events beyond approvals and transfers, which are already covered.
 
 ### DEX Contracts
-Look for below sets of contracts:
+Look for the following sets of contracts:
 - **Factory Contract** which should emit pool creation events, also useful for dex.trades spellbook creation 
-- **Pair/Pool Contract** which shoud emit swap events, also useful for dex.trades spellbook creation
+- **Pair/Pool Contract** which should emit swap events, also useful for dex.trades spellbook creation
 
-And ofc if you want to also decode other contracts for routers or position manager, please also submit those contracts. 
+And of course if you want to also decode other contracts for routers or position manager, please also submit those contracts. 
 
 ### NFT Marketplace Contracts
 Look for the main marketplace contract with events like:
@@ -133,7 +133,7 @@ If you are a chain, engage with the top protocols on your chain to submit their 
 If you are a protocol, talk to your devs or data analyst to see which protocol contracts contain the main logic so you can track relevant events and functions calls. 
 
 If you want to do a batch submission, follow the format of this google sheet exactly https://docs.google.com/spreadsheets/d/1yxJqlmSE2yYgXgSIXcPRr5xxP9ck9JZB8_sGOITtYEM/edit?gid=0#gid=0
-Please note you must give the ABI properly and not just proide a ULR link.
+Please note you must give the ABI properly and not just provide a URL link.
 Also, for questions on what "has_multiple_instances" and "is_created_by_factory" means, please visit this page (link). has_multiple_instances correspond to https://docs.dune.com/web-app/decoding/decoding-contracts#are-there-several-instances-of-this-contract-dynamic-contract and is_created_by_factory corresponds to https://docs.dune.com/web-app/decoding/decoding-contracts#is-it-created-by-a-factory-contract-factory-contract.
 
 Please also note if your contract is a proxy contract, you MUST submit the implementation contract's ABI. Please also note that our current automatic pipeline is not able to handle dynamic proxy pattern or other more exotic contract patterns. 
