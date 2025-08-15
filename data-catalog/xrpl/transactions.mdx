@@ -62,7 +62,7 @@ Contains all transaction data from the XRP Ledger including payment types, accou
 | **owner** | string | Owner of the account or asset |
 | **paths** | string | Payment paths for cross-currency payments |
 | **previous_txn_id** | string | Previous transaction identifier |
-| **price_data_series** | array(struct(PriceData: struct(AssetPrice: string, BaseAsset: String, QuoteAsset: string, Scale: long))) | Price data series |
+| **price_data_series** | array(struct(PriceData: struct(AssetPrice: string, BaseAsset: string, QuoteAsset: string, Scale: long))) | Price data series |
 | **provider** | string | Provider information |
 | **public_key** | string | Public key of the account |
 | **quality_in** | long | Quality in for exchange transactions |
@@ -73,7 +73,7 @@ Contains all transaction data from the XRP Ledger including payment types, accou
 | **set_flag** | long | Flag to be set on the account |
 | **settle_delay** | long | Settlement delay |
 | **signature** | string | Transaction signature |
-| **signer_entries** | array(struct(SignerEntry: struct(Account: String, SignerWeight: long))) | Signer entries for multi-signing |
+| **signer_entries** | array(struct(SignerEntry: struct(Account: string, SignerWeight: long))) | Signer entries for multi-signing |
 | **signer_quorum** | long | Signer quorum |
 | **signers** | array(struct(Signer: struct(Account: string, SigningPubKey: string, TxnSignature: string))) | Transaction signers |
 | **signing_pub_key** | string | Signing public key |
