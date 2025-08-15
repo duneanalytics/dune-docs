@@ -7,7 +7,7 @@ title: Array functions and operators
 The `[]` operator is used to access an element of an array and is
 indexed starting from one:
 ```sql
-    SELECT my_array[1] AS f_element
+    SELECT my_array[1] AS first_element
 ```
  Concatenation operator: \|\| \{concatenation_operator}
 
@@ -89,7 +89,7 @@ Returns the minimum value of input array.
 #### array_position()
 **``array_position(x, element)``** → bigint
 
-Returns the position of the f occurrence of the element in the array. Returns `NULL` if the element is not found. The position is counted from 1.
+Returns the position of the first occurrence of the element in the array. Returns `NULL` if the element is not found. The position is counted from 1.
 
 #### array_remove()
 **``array_remove(x, element)``** → array
@@ -105,7 +105,7 @@ Sorts and returns the array `x`. The elements of `x` must be orderable. Null ele
 
 **``array_sort(array(T), function(T,T,int))``** → array(T)
 
-Sorts and returns the `array` based on the given comparator `function`. The comparator will take two nullable arguments representing two nullable elements of the `array`. It returns -1, 0, or 1 as the f nullable element is less than, equal to, or greater than the second nullable element. If the comparator function returns other values (including `NULL`), the query will fail and raise an error.
+Sorts and returns the `array` based on the given comparator `function`. The comparator will take two nullable arguments representing two nullable elements of the `array`. It returns -1, 0, or 1 as the first nullable element is less than, equal to, or greater than the second nullable element. If the comparator function returns other values (including `NULL`), the query will fail and raise an error.
 ```sql
     SELECT array_sort(ARRAY[3, 2, 5, 1, 2],
                   (x, y) -> IF(x < y, 1, IF(x = y, 0, -1)));
@@ -181,7 +181,7 @@ SELECT combinations(ARRAY[1, 2, 3], 2);
 SELECT combinations(ARRAY[1, 2, 2], 2);
 -- [[1, 2], [1, 2], [2, 2]]
 ```
-Order of sub-groups is deterministic but unspecified. Order of elements within a sub-group deterministic but unspecified. n must be not be greater than 5, and the total size of sub-groups generated must be smaller than 100,000.
+Order of sub-groups is deterministic but unspecified. Order of elements within a sub-group is deterministic but unspecified. n must not be greater than 5, and the total size of sub-groups generated must be smaller than 100,000.
 
 #### contains()
 **``contains(x, element)``** → boolean

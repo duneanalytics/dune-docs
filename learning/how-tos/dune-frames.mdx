@@ -23,7 +23,7 @@ Next, you'll need to get a Dune API key from [your user settings](https://dune.c
 
 We call the Dune API in the `/api/dune.ts` file in the `getRecommendations(fid)` function [defined here](https://github.com/andrewhong5297/dune-frames/blob/main/api/dune.ts#L10).
 
-Below is the main API call, which makes a [FILTER](/api-reference/executions/filtering) call on an [existing result set](/api-reference/executions/endpoint/get-query-result). Using filters, we get our results in 20-30ms instead of reruning the whole query (which may take 10-20 seconds).
+Below is the main API call, which makes a [FILTER](/api-reference/executions/filtering) call on an [existing result set](/api-reference/executions/endpoint/get-query-result). Using filters, we get our results in 20-30ms instead of rerunning the whole query (which may take 10-20 seconds).
 
 ```javascript
 //schedule the query on a 6-hour interval, and then fetch by filtering for the user fid within the query results
