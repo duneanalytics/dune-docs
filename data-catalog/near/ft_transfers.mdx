@@ -22,12 +22,12 @@ Table tracking all Fungible Token (FT) transfers in NEAR.
 | token_id                | ID of the Fungible Token involved in the transfer (e.g., "near").         | varchar                           |
 | receipt_id              | The receipt ID associated with the FT transfer.                           | varchar                           |
 | contract_account_id     | The contract account handling the FT transfer.                            | varchar                           |
-| cause                   | The function name invoked to cause the FT transfer.                      | varchar                           |
+| cause                   | The function name invoked to cause the FT transfer.                       | varchar                           |
 | status                  | The status of the FT transfer (e.g., "SUCCESS_VALUE").                    | varchar                           |
 | event_memo              | Memo attached to the FT transfer event.                                   | varchar                           |
 | event_index             | Event index of the FT transfer event.                                     | uint256                           |
-| affected_account_id     | The account affected by the FT transfer, i.e. the "to" account.           | varchar                           |
-| involved_account_id     | The account involved in the FT transfer, i.e. the "from" account.         | varchar                           |
+| affected_account_id     | The account affected by the FT transfer, i.e., the "to" account.          | varchar                           |
+| involved_account_id     | The account involved in the FT transfer, i.e., the "from" account.        | varchar                           |
 | delta_amount            | The amount of FT tokens transferred.                                      | decimal(38,0)                     |
 | processed_time          | Timestamp when the FT transfer data was processed.                        | timestamp(3) with time zone       |
 | updated_at              | Timestamp when the FT transfer record was last updated.                   | timestamp(3) with time zone       |

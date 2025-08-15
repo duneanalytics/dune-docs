@@ -52,7 +52,7 @@ import { TableSample } from "/snippets/table-sample.mdx";
 
 ## Data Manipulation Tips 
 
-The `actions` data in NEAR can be complicated and nested, causing it hard to analyze sometimes. So here we give two examples on how to work array and json data to make it easier to analyze.
+The `actions` data in NEAR can be complicated and nested, making it hard to analyze sometimes. So here we give two examples on how to work with array and json data to make it easier to analyze.
 
 ### Explode array of rows into separate rows with defined fields 
 
@@ -130,7 +130,7 @@ select block_date
     
     -- , typeof(args_parsed) as data_type 
     /* This is how you can get fields within each parsed function call args 
-        - first examine the fields in the args_parsed for the tye of method `call_method_name`
+        - first examine the fields in the args_parsed for the type of method `call_method_name`
         - then parse accordingly
     */
     , json_extract(args_parsed, '$.receiver_id') AS receiver_id
