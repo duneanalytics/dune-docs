@@ -58,12 +58,12 @@ Begin by constructing the SQL queries you need using Dune's **Query Editor**, a 
 - Analyze daily activity on Ethereum by entering the following SQL:
 
 ```sql
---Query to get Ethereum's unique daily active users and passive users  in 2023
+--Query to get Ethereum's unique daily active users and passive users in 2023
 
 SELECT  
 --truncate time to day
 date_trunc('day', block_time) AS time,
--- count distinct addresses that sent a transactions
+-- count distinct addresses that sent transactions
 COUNT(distinct "from") AS users,
 -- count distinct addresses that received a transaction
 COUNT(distinct "to") AS receiving_addresses
@@ -92,7 +92,7 @@ After executing a query, the results are displayed in a table below the Query Ed
   - Adjust the settings to suit your visualization needs, such as formatting axis labels and tick marks to enhance readability.
 
 
-In the example below, we'll create a line chart to visualize the number of unique daily active users and passive users on Ethereum in 2023. We'll format the axis label and tick label to `0a`to make the numbers more user-friendly.
+In the example below, we'll create a line chart to visualize the number of unique daily active users and passive users on Ethereum in 2023. We'll format the axis label and tick label to `0a` to make the numbers more user-friendly.
 
 <div
   style={{
@@ -184,7 +184,7 @@ Now, you can share your dashboard with the world. Learn more about sharing your 
 
 Enhance your Dune skills and community engagement with these resources:
 
-*   **[Dune Official Getting Started Video Series](https://www.youtube.com/watch?v=S-cctFmR828\&list=PLK3b5d4iK10ext4v-GBySekaA8-GP8quD\&index=1)::** Learn how the data flows and how to navigate the Dune app to create queries, visualizations, and dashboards.
+*   **[Dune Official Getting Started Video Series](https://www.youtube.com/watch?v=S-cctFmR828\&list=PLK3b5d4iK10ext4v-GBySekaA8-GP8quD\&index=1):** Learn how the data flows and how to navigate the Dune app to create queries, visualizations, and dashboards.
 
 *   **[All Ethereum and SQL Basics](https://web3datadegens.substack.com/p/a-basic-wizard-guide-to-dune-sql):** Learn all the basic SQL concepts and Ethereum tables that you'll need in your analysis.
 
