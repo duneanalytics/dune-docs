@@ -7,7 +7,7 @@ description: Sei data on Dune
 
 ## What is Sei?
 
-Sei is a Layer-1 blockchain optimized for trading and decentralized finance (DeFi). It combines the strengths of Solana and Ethereum by implementing a fast parallelized EVM chain, providing a hyper optimized execution layer that benefits from the tooling and mindshare around the EVM.
+Sei is a Layer-1 blockchain optimized for trading and decentralized finance (DeFi). It combines the strengths of Solana and Ethereum by implementing a fast parallelized EVM chain, providing a hyper-optimized execution layer that benefits from the tooling and mindshare around the EVM.
 
 <Warning>
 Sei is a Cosmos chain with EVM modules added in the [v2 upgrade](https://www.mintscan.io/sei/proposals/55). Dune indexes the EVM data separately from the Cosmos data. As such, data latency between the two can be expected.
@@ -19,7 +19,7 @@ Sei is a Cosmos chain with EVM modules added in the [v2 upgrade](https://www.min
 - For Cosmos data, Dune partners with a data provider, and these tables and schemas can be found in the [Cosmos Data](#cosmos-data) section.
 - The EVM and Cosmos components share the same consensus mechanism, validated by the same validators, but they operate independently with interoperability features.
 - Interoperability between EVM and Cosmos relies on [EVM Precompiles](https://www.docs.sei.io/dev-interoperability/precompiles/addr) and [Pointer Contracts](https://www.docs.sei.io/dev-interoperability/pointer-contracts). If these do not emit events, it may result in data gaps.
-- Dune's EVM data for Sei starts from the v2 upgrade at [block height 73,123,881](https://seitrace.com/block/79123881).
+- Dune's EVM data for Sei starts from the v2 upgrade at [block height 79,123,881](https://seitrace.com/block/79123881).
 </Tip>
 
 
@@ -31,9 +31,9 @@ Parallelization allows Sei to process multiple independent transactions simultan
 
 Sei introduces four major innovations:
 
-1. **Twin Turbo Consensus**: This feature allows Sei to reach the fastest time to finality of any blockchain at 400ms, unlocking web2 like experiences for applications.
+1. **Twin Turbo Consensus**: This feature allows Sei to reach the fastest time to finality of any blockchain at 400ms, unlocking web2-like experiences for applications.
 2. **Optimistic Parallelization**: This feature allows developers to unlock parallel processing for their Ethereum applications, with no additional work.
-3. **SeiDB**: This major upgrade allows Sei to handle the much higher rate of data storage, reads and writes which become extremely important for a high performance blockchain.
+3. **SeiDB**: This major upgrade allows Sei to handle the much higher rate of data storage, reads and writes which become extremely important for a high-performance blockchain.
 4. **Interoperable EVM**: This allows existing developers in the Ethereum ecosystem to deploy their applications, tooling and infrastructure to Sei with no changes, while benefiting from the 100x performance improvements offered by Sei.
 
 ### Performance Metrics
