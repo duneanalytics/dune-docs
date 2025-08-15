@@ -56,9 +56,9 @@ Each part of this query helps us analyze DEX activity:
 - `blockchain`: Helps us compare activity across Ethereum, Polygon, Arbitrum, etc.
 - `COUNT(*)`: Gives us the trading frequency
 - `SUM(amount_usd)`: Shows the total value traded in USD
-- `WHERE block_date >= NOW() - INTERVAL '30 days'`: Focuses on recent activity
-- `GROUP BY 1, 2, 3`: Combines trades by day, blockchain, and DEX
-- `ORDER BY 1 DESC, 5 DESC`: Shows newest and highest volume trades first
+- `WHERE block_date >= NOW() - INTERVAL '30' day`: Focuses on recent activity
+- `GROUP BY 1, 2`: Combines trades by day and blockchain
+- `ORDER BY 1 DESC, 4 DESC`: Shows newest and highest volume trades first
 
 ## Making Your Analysis Dynamic with Parameters
 
@@ -97,7 +97,7 @@ After running your query, you can create powerful visualizations:
 
 1. Click "New Visualization"
 2. Choose "Bar Chart"
-3. Set X-axis to `trading_day`
+3. Set X-axis to `block_date`
 4. Set Y-axis to `trading_volume_usd`
 5. Group by `blockchain`
 
