@@ -4,12 +4,12 @@ title: Varbinary functions (DuneSQL)
 
 ## Varbinary Functions
 
-Dune SQL represents varbinarys using the varbinary type.
+Dune SQL represents varbinaries using the varbinary type.
 
-To make it simpler to work with varbinarys we have the following helper functions, which work with these two kinds of representation. They simplify interactions with varbinarys, as they automatically account for the `0x`-prefix and use byte index instead of character index. For instance, the varbinary_substring methods take indexes by byte, not by character (twice the varbinary length).
+To make it simpler to work with varbinaries we have the following helper functions, which work with these two kinds of representation. They simplify interactions with varbinaries, as they automatically account for the `0x`-prefix and use byte index instead of character index. For instance, the varbinary_substring methods take indexes by byte, not by character (twice the varbinary length).
 
 
-You can use these function to extract data from undecoded events logs, or calldata. For instance, if you have a function that takes a `uint256` as an argument, you can use `varbinary_to_uint256` to extract the value from the calldata. You'll oftentimes need to use `varbinary_substring` to extract the correct part of the calldata or use other bytearray manipulation functions to get the correct value.
+You can use these functions to extract data from undecoded events logs, or calldata. For instance, if you have a function that takes a `uint256` as an argument, you can use `varbinary_to_uint256` to extract the value from the calldata. You'll oftentimes need to use `varbinary_substring` to extract the correct part of the calldata or use other bytearray manipulation functions to get the correct value.
 
 ```sql
 select tx_hash,
@@ -196,7 +196,7 @@ Select from_hex('0x6574686275696c646572')
 
 **``varbinary_concat(varbinary, varbinary)``** → varbinary  
 
-Concatenates two varbinarys or strings.
+Concatenates two varbinaries or strings.
 
 
 ```sql
@@ -206,7 +206,7 @@ SELECT varbinary_concat(0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2,
 
 **`varbinary_concat(varchar, varchar)`** → varchar
 
-Concatenates two varbinarys or strings.
+Concatenates two varbinaries or strings.
 
 
 ```sql
@@ -274,7 +274,7 @@ Removes zero bytes or spaces from the end of a varbinary or string.
 ```sql
  -- this will remove the zeros at the end,
  -- returning 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2
-SELECT varbinary_ltrim(0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000)
+SELECT varbinary_rtrim(0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000)
 ```
 
 #### varbinary_position()
@@ -397,7 +397,7 @@ Returns a suffix varbinary or string starting at a given index.
 
 
 ```sql
--- using varbinary_substring starting from the 21th index
+-- using varbinary_substring starting from the 21st index
 -- this returns 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 
 SELECT 0x0000000000000000000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 as original_bytearray,
        varbinary_substring(0x0000000000000000000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2,21) as bytearraysubstring_data

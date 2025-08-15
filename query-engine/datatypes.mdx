@@ -29,23 +29,23 @@ We have built custom functions to make it easier to work with varbinaries in Dun
 
 ### `TINYINT`
 
-A 8-bit signed two\'s complement integer with a minimum value of `-2^7`
+An 8-bit signed two's complement integer with a minimum value of `-2^7`
 and a maximum value of `2^7 - 1`.
 
 ### `SMALLINT`
 
-A 16-bit signed two\'s complement integer with a minimum value of
+A 16-bit signed two's complement integer with a minimum value of
 `-2^15` and a maximum value of `2^15 - 1`.
 
 ### `INTEGER`
 
-A 32-bit signed two\'s complement integer with a minimum value of
+A 32-bit signed two's complement integer with a minimum value of
 `-2^31` and a maximum value of `2^31 - 1`. The name `INT` is also
 available for this type.
 
 ### `BIGINT`
 
-A 64-bit signed two\'s complement integer with a minimum value of
+A 64-bit signed two's complement integer with a minimum value of
 `-2^63` and a maximum value of `2^63 - 1`.
 
 ### `UINT256` (Dune SQL)
@@ -126,9 +126,6 @@ Example type definitions: `char`, `char(20)`
 
 
 
-```sql
-    Select * from ethereum.transactions where "from" = 0xc8ebccc5f5689fa8659d83713341e5ad19349448
-```
 
 ### `JSON`
 
@@ -295,11 +292,11 @@ Example: `ROW(1, 2.0)[1]`
 An IP address that can represent either an IPv4 or IPv6 address.
 Internally, the type is a pure IPv6 address. Support for IPv4 is handled
 using the _IPv4-mapped IPv6 address_ range
-(`4291#section-2.5.5.2`). When creating an
+([RFC 4291 section 2.5.5.2](https://tools.ietf.org/rfc/rfc4291.html#section-2.5.5.2)). When creating an
 `IPADDRESS`, IPv4 addresses will be mapped into that range. When
 formatting an `IPADDRESS`, any address within the mapped range will be
 formatted as an IPv4 address. Other addresses will be formatted as IPv6
-using the canonical format defined in `5952`.
+using the canonical format defined in [RFC 5952](https://tools.ietf.org/rfc/rfc5952.html).
 
 Examples: `IPADDRESS '10.0.0.1'`, `IPADDRESS '2001:db8::1'`
 
@@ -309,7 +306,7 @@ Examples: `IPADDRESS '10.0.0.1'`, `IPADDRESS '2001:db8::1'`
 
 This type represents a UUID (Universally Unique IDentifier), also known
 as a GUID (Globally Unique IDentifier), using the format defined in
-`4122`\
+[RFC 4122](https://tools.ietf.org/rfc/rfc4122.html).
 
 Example: `UUID '12151fd2-7586-11e9-8f9e-2a86e4085a59'`
 
@@ -327,7 +324,7 @@ efficient.
 
 ### `P4HyperLogLog`
 
-A P4HyperLogLog sketch is similar to `hyperloglog_type`, but it starts (and remains) in the dense representation.
+A P4HyperLogLog sketch is similar to `HyperLogLog`, but it starts (and remains) in the dense representation.
 
 ## SetDigest
 
@@ -363,7 +360,7 @@ queried to retrieve approximate quantile values from the distribution.
 The level of accuracy for a qdigest is tunable, allowing for more
 precise results at the expense of space.
 
-A qdigest can be used to give approximate answer to queries asking for
+A qdigest can be used to give approximate answers to queries asking for
 what value belongs at a certain quantile. A useful property of qdigests
 is that they are additive, meaning they can be merged together without
 losing precision.

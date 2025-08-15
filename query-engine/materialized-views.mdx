@@ -5,12 +5,12 @@ description: Materialized tables are a way to store the results of a query in a 
 
 ## Overview
 
-The **"Materialized View"** feature on Dune allows you to use an existing query's results as table in another query. This functionality enables you to build your own simple data pipeline inside of Dune. This feature is especially useful when you have a query that takes a long time to run, or when you want to use the results of a query in another query. Instead of running the same query pattern over and over again, you can run it once and then use the results in other queries.
+The **"Materialized View"** feature on Dune allows you to use an existing query's results as a table in another query. This functionality enables you to build your own simple data pipeline inside of Dune. This feature is especially useful when you have a query that takes a long time to run, or when you want to use the results of a query in another query. Instead of running the same query pattern over and over again, you can run it once and then use the results in other queries.
 
 You should think of using this feature any time you run into:
 
 1. You use the same query pattern across multiple queries
-2. Query timeouts (running longer than 30 mintes)
+2. Query timeouts (running longer than 30 minutes)
 3. Execution Error: Stage limits (exceeding stage limits in the planning stage, can happen when joining many tables)
 4. Execution Error: Memory limits (exceeding the memory limits, can happen when you use too many large tables like `solana.transactions` or `ethereum.traces`)
 
@@ -78,7 +78,7 @@ When you query a materialized view in another query, it does not rerun the mater
 - A query result has a 200MB limit in the editor but a materialized view doesn't have storage limits. Even though the results will look truncated in the editor.
 - This materialized view refresh schedule is DIFFERENT from the query scheduler. Results from running the query or the normal query scheduler will NOT update the materialized view.
 - Plans have total monthly storage limits (for premium plans, it's 50GB, plus it's 15GB, free is 1MB).
-- You can delete your materialized in the same dialouge where you created it.
+- You can delete your materialized view in the same dialogue where you created it.
 - If your team or account name starts with a number, you'll need to wrap the `name` in quotes i.e. `dune."21co".result_stablecoin_total_supply_on_ethereum`
 - There currently is no way to nicely ensure sequential execution of materialized views. If you have a materialized view that depends on another materialized view, you'll need to ensure that the upstream materialized view is updated first. This can be done by setting the refresh schedule to be more frequent than the downstream materialized view.
 
