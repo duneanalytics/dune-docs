@@ -67,7 +67,7 @@ As Substrate chains use SS58 Addresses, the following Dune function is very usef
 
 - [SS58 functions: from_ss58(varchar) + to_ss58(varbinary, int)](/query-engine/Functions-and-operators/ss58)
 
-### overview of recent blocks 
+### Overview of recent blocks 
 
 ```sql
 SELECT DATE(block_time) AS logDT,
@@ -82,7 +82,7 @@ GROUP BY 1
 order by 1 desc;
 ```
 
-### popular pallets 
+### Popular pallets 
 
 Query the most popular pallets and their methods.
 
@@ -92,7 +92,7 @@ where call_section not in ('timestamp', 'utility', 'proxy')
 group by call_section, call_method order by count(*) desc
 ```
 
-### frequent events 
+### Frequent events 
 
 Query the most frequent events, excluding system events.
 
@@ -102,7 +102,7 @@ where section not in ('system')
 group by 2 order by count(*) desc
 ```
 
-### other chains
+### Other chains
 
 To query other chains, replace `polkadot` with the chain name, e.g. `kusama`, `interlay`, `astar` etc. 
 
