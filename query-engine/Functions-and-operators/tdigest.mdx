@@ -16,7 +16,7 @@ to and from `VARBINARY`.
 
 Aggregates all inputs into a single `tdigest`.
 
-#### values_at_quantile()
+#### value_at_quantile()
 **``value_at_quantile(tdigest, quantile)``** → double
 
 Returns the approximate percentile value from the T-digest, given the number `quantile` between 0 and 1.
@@ -34,4 +34,4 @@ Composes all input values of `x` into a `tdigest`. `x` can be of any numeric typ
 
 **``tdigest_agg(x, w)``** → tdigest
 
-Composes all input values of `x` into a `tdigest` using the per-item weight `w`. `w` must be greater or equal than 1. `x` and `w` can be of any numeric type.
+Composes all input values of `x` into a `tdigest` using the per-item weight `w`. `w` must be greater than or equal to 1. `x` and `w` can be of any numeric type.

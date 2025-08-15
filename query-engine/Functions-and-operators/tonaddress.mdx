@@ -8,7 +8,7 @@ Smart contract addresses on the TON blockchain are composed of two key component
     1. Workchain Identifier. A signed 8-bit number that identifies the workchain. Currently, only the masterchain (workchain_id = -1) and occasionally the basic workchain (workchain_id = 0) are active on the TON blockchain.
     1. Account Identifier. A 256-bit number unique to each account within a workchain.
 
-There are two different representation of contract addresses on TON blockchain:
+There are two different representations of contract addresses on TON blockchain:
     * Raw addresses: Original full representation of smart contract addresses. Raw smart contract addresses consist of a workchain ID and account ID and are displayed in the following format: `<decimal workchain_id>:<64 hexadecimal digits with account_id>`. Example: `-1:fcb91a3a3816d0f7b8c2c76108b8a9bc5a6b7a55bd79f8ab101c52db29232260`.
     * User-friendly addresses: An enhanced version of raw address designed to improve security and usability. User-friendly addresses were developed to secure and simplify the experience for TON users who share addresses on the internet (for example, on public messaging platforms or via their email service providers), as well as in the real world. User-friendly addresses are made up of 36 bytes in total.
 
