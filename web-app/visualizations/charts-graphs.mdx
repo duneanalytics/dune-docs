@@ -62,12 +62,12 @@ All graph Visualizations share a common set of editing options, see the tabs bel
 
     * If applicable, ticking this box will stack the chart values on top of each other based on the x-axis values.
     * If this is not turned on, the values will be plotted individually on the y-axis.
-    * The calculation underpinning this will always group the value corresponding to one value on the x-axis. Make sure your data is clean in able for this to work (avoid gaps in your data).
+    * The calculation underpinning this will always group the value corresponding to one value on the x-axis. Make sure your data is clean in order for this to work (avoid gaps in your data).
 
     **Normalize to percentage data**
 
     * This will normalize the chart to display percentage values of the chosen data table.
-    * The calculation underpinning this will always group the value corresponding to one value on the x-axis. Make sure your data is clean in able for this to work (avoid gaps in your data).
+    * The calculation underpinning this will always group the value corresponding to one value on the x-axis. Make sure your data is clean in order for this to work (avoid gaps in your data).
 
     **Show data labels**
 
@@ -96,7 +96,7 @@ All graph Visualizations share a common set of editing options, see the tabs bel
 
     **Sort Values**
 
-    * by ticking this box you can specify if you want the values in your chart to be ordered.
+    * By ticking this box you can specify if you want the values in your chart to be ordered.
     * If your x-axis is a time series, this will automatically happen.
 
     **Reverse value**
@@ -105,11 +105,11 @@ All graph Visualizations share a common set of editing options, see the tabs bel
 
     **Logarithmic**
 
-    * Ticking this box will make your x-axis values display \_\_ logarithmically.
+    * Ticking this box will make your x-axis values display logarithmically.
   </Tab>
     <Tab title="Y-axis options">
 
-    With these options you can influence how your x-axis data gets displayed.
+    With these options you can influence how your y-axis data gets displayed.
 
     ![see explanations below](web-app/images/charts-graphs/graphs-7.png)
 
@@ -119,7 +119,7 @@ All graph Visualizations share a common set of editing options, see the tabs bel
 
     **Logarithmic**
 
-    * Ticking this box will make your x-axis values display \_\_ logarithmically.
+    * Ticking this box will make your x-axis values display logarithmically.
 
     **Enable right y-axis**
 
@@ -164,9 +164,9 @@ Here's how to format them:
 
 | Starting Value        | Tick/Label format | Output          | Description                                                                                                                                           |
 | ------------ | ----------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1256784.3745 | `[blank]`  | 1256784.3745000 | Displays the number 7 decimal precision.                                                                                                                |
+| 1256784.3745 | `[blank]`  | 1256784.3745000 | Displays the number with 7 decimal precision.                                                                                                                |
 | 1256784.3745 | `0`           | 1256784         | Displays only the integer.                                                                                                                            |
 | 1256784.3745 | `0,0`         | 1,256,784       | Only displays the integer with comma separation.                                                                                                      |
-| 1256784.3745 | `0,0.00`      | 1,256,784.38    | Displays the number with `[x]` decimal precision, where `[x]` is the number of `0` you add after the decimal point.                                                                |
+| 1256784.3745 | `0,0.00`      | 1,256,784.38    | Displays the number with `[x]` decimal precision, where `[x]` is the number of `0`s you add after the decimal point.                                                                |
 | 1256784.3745 | `0.0a`     | 1.2M            | Displays the number with `[x]` precision and a letter based on the number's `1e[y]` power (eg "m" for million, "b" for billion)  |
-| 1256784.3745 | `$0.0a`    | $1.2M           | Adds a "\$" to the number. Works with all formats above though use of the `a` suffix is recommended. Currently the only "\$" is the only supported currency symbol.                                                                                      |
+| 1256784.3745 | `$0.0a`    | $1.2M           | Adds a "\$" to the number. Works with all formats above though use of the `a` suffix is recommended. Currently "\$" is the only supported currency symbol.                                                                                      |
