@@ -3,7 +3,7 @@ title: 'Billing'
 icon: "file-invoice-dollar"
 ---
 
-Pricing for API is charged along two dimensions. All details can be found at [dune.com/pricing](https://dune.com/pricing)
+Pricing for the API is charged along two dimensions. All details can be found at [dune.com/pricing](https://dune.com/pricing)
 
 <Note>
 If your execution fails, then no credits are charged. If you execute a query but never pull the results, you are only charged for the execution.
@@ -17,7 +17,7 @@ If your execution fails, then no credits are charged. If you execute a query but
 | Queries Endpoint | Available on Plus and Premium |
 | Webhooks (Alerts) | 1 on Free <br></br> 5 on Plus <br></br> 50 on Premium |
 
-A datapoint applies to query results after the query is run, and can in most cases be thought of `rows * columns` with an additional limit of 100 avg bytes per cell in a set of results. This can be expressed as:
+A datapoint applies to query results after the query is run, and can in most cases be thought of as `rows * columns` with an additional limit of 100 avg bytes per cell in a set of results. This can be expressed as:
 
 $$
 Credits = \frac{Datapoints}{1000} = \frac{\max(\text{rows} * \text{columns}, \lceil \frac{\text{totalbytes}}{100} \rceil)}{1000}

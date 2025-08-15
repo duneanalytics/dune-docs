@@ -9,7 +9,7 @@ There are no major performance differences within a specific performance tier wh
 
 The Dune API gives you programmatic access to the capabilities and data sets that can already be accessed from the Dune web app. The same queries and results exist in the web app, even if created/executed from the API (and vice versa).
 
-#### What are Sim APIs  and how do they differ from the Dune API?
+#### What are Sim APIs and how do they differ from the Dune API?
 
 Sim APIs, formerly Echo, are a separate, developer-focused product by Dune, providing realtime access to EVM and SVM blockchain data.
 They are designed for building apps like realtime wallets and AI agents.
@@ -64,7 +64,7 @@ Yes!
     
 The results storage period can be found on the API response on the “expires_at” field in the execution status and results body.
 
-#### How do I import Dune data into a google sheet? 
+#### How do I import Dune data into a Google sheet? 
 
-Use "Import Data" to import your CSV results into a google sheet using "api_key" as a param. (We advise against doing this any public document where your API key can be viewed and compromised.)
+Use "Import Data" to import your CSV results into a Google sheet using "api_key" as a param. (We advise against doing this in any public document where your API key can be viewed and compromised.)
 `=importData("https://api.dune.com/api/v1/query/{{query_id}}/results/csv?api_key={{api_key}}")`. Then, [schedule a query execution](https://dune.com/docs/app/query-editor/query-scheduler/?h=scheduling) to have your results regularly updated on a set schedule.
