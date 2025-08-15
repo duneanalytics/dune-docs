@@ -20,22 +20,22 @@ openapi: 'GET /v1/farcaster/trends/users'
 
 | Column                | Description                           | Type       |
 | --------------------- | ------------------------------------- | ---------- |
-| fid_active_tier_name  | name of farcaster tier this week    | string |
-| fid_active_tier       | farcaster user tier this week        | integer        |
-| fid_active_tier_last  | farcaster user tier last week | integer        |
-| fid                   | farcaster user id            | integer        |
-| fname                 | farcaster username of user          | string |
+| fid_active_tier_name  | name of Farcaster tier this week    | string |
+| fid_active_tier       | Farcaster user tier this week        | integer        |
+| fid_active_tier_last  | Farcaster user tier last week | integer        |
+| fid                   | Farcaster user id            | integer        |
+| fname                 | Farcaster username of user          | string |
 | account_age           | age of account in days      | integer        |
-| channels              | number of casted in channels in the last week        | integer        |
-| top_channels          | top casted in channels        | array(string)|
-| top_domains           | top casted domains         | array(string)|
+| channels              | number of channels cast in during the last week        | integer        |
+| top_channels          | top channels cast in        | array(string)|
+| top_domains           | top domains cast         | array(string)|
 | top_engagers          | top cast engagers        | array(string)|
 | followers             | total number of followers           | integer        |
 | wow_followers         | week over week change in number of followers  | integer        |
 | casts                 | number of casts in the last week   | integer        |
 | wow_casts             | week over week change in number of casts | integer        |
 | engagement            | engagement on user casts in the last week  | integer        |
-| wow_engage            | week over week change in number of engage  | integer        |
+| wow_engage            | week over week change in number of engagements  | integer        |
 | total_transactions    | total number of wallet transactions  | integer        |
 | trading_volume_usd    | total NFT and DEX trading volume (USD)| integer        |
 | contracts_deployed    | total number of deployed contracts  | integer        |
