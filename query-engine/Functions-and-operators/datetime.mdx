@@ -49,14 +49,13 @@ Returns the current time with time zone as of the start of the query.
 **``current_timestamp``**
 
 Returns the current timestamp with time zone as of the start of the
-query, with `3` digits of subsecond precision,
+query, with `3` digits of subsecond precision.
 
 
 #### current_timestamp()
 **``current_timestamp(p)``**
 
-Returns the current `timestamp with time zone
-as `timestamp-with-time-zone-data-type` of the start of the query, with `p` digits of subsecond precision:
+Returns the current timestamp with time zone as of the start of the query, with `p` digits of subsecond precision:
 ```sql
     SELECT current_timestamp(6);
     -- 2020-06-24 08:25:31.759993 America/Los_Angeles
@@ -396,7 +395,6 @@ table, based on the MySQL manual, describes the format specifiers:
 | `%Y`      | Year, numeric, four digits                                                                                       |
 | `%y`      | Year, numeric (two digits)[^7]                                                                                   |
 | `%%`      | A literal `%` character                                                                                          |
-| `%x`      | `x`, for any `x` not
 
 
 

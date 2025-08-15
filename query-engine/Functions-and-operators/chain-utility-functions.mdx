@@ -11,13 +11,13 @@ These functions are helpful to generate links to the explorer of a chain, to spe
 Most of the time you'll want to use ``get_href()`` in combination with one of the other functions to generate a clickable link to a specific address or transaction.
  
 ```sql
-Select
+SELECT
     get_href(get_chain_explorer_address('ethereum', to), cast(to as varchar))
 FROM ethereum.transactions
-limit 100
+LIMIT 100
 ```
 
-This sql code will generate a clickable link pointing to the explorer of the Ethereum chain for each address in the ``to`` column. The displayed link will be the address itself.
+This SQL code will generate a clickable link pointing to the explorer of the Ethereum chain for each address in the ``to`` column. The displayed link will be the address itself.
 
 You can find all the functions in action on this dashboard: [Chain Utility Functions](https://dune.com/dune/chain-utility-functions)
 
@@ -40,7 +40,7 @@ This function generates a URL for the explorer of a specified chain (provided as
 SELECT 
     get_chain_explorer_address('ethereum', cast(to as varchar)) 
 FROM ethereum.transactions 
-limit 100
+LIMIT 100
 ```
 
 #### get_chain_explorer_address()
@@ -52,7 +52,7 @@ This function generates a URL for the explorer of a specified chain (provided as
 SELECT 
     get_chain_explorer_address('ethereum', to) 
 FROM ethereum.transactions 
-limit 100
+LIMIT 100
 ```
 
 #### get_chain_explorer_tx_hash()
@@ -64,7 +64,7 @@ This function generates a URL for the explorer of a specified chain (provided as
 SELECT 
     get_chain_explorer_tx_hash('ethereum', cast(hash as varchar)) 
 FROM ethereum.transactions 
-limit 100
+LIMIT 100
 ```
 
 #### get_chain_explorer_tx_hash()
@@ -76,7 +76,7 @@ This function generates a URL for the explorer of a specified chain (provided as
 SELECT 
     get_chain_explorer_tx_hash('ethereum', hash) 
 FROM ethereum.transactions 
-limit 100
+LIMIT 100
 ```
 
 #### get_chain_explorer()
@@ -98,7 +98,7 @@ This function returns a link to access a specific pool on the Balancer app. The 
 SELECT 
     get_balancer_link(blockchain, cast(pool_id as varchar))
 FROM balancer.trades
-limit 100
+LIMIT 100
 ```
 
 #### get_balancer_link()
@@ -110,7 +110,7 @@ This function returns a link to access a specific pool on the Balancer app. The 
 SELECT 
     get_balancer_link(blockchain, pool_id)
 FROM balancer.trades
-limit 100
+LIMIT 100
 ```
 
 #### all_evm_chains()

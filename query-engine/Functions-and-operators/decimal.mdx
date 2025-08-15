@@ -26,10 +26,10 @@ type `DECIMAL(xp, xs)` and `y` is of type `DECIMAL(yp, ys)`.
 
 | Operation          | Result type precision                            | Result type scale |
 |--------------------|--------------------------------------------------|-------------------|
-| `x + y` and `x -y` | `min(38,1 +max(xs, ys) + max(xp - xs, yp - ys))` | `max(xs, ys)`     |
+| `x + y` and `x -y` | `min(38, 1 + max(xs, ys) + max(xp - xs, yp - ys))` | `max(xs, ys)`     |
 | `x * y`            | `min(38, xp + yp)`                               | `xs + ys`         |
 | `x / y`            | `min(38, xp + ys + max(0, ys-xs))`               | `max(xs, ys)`     |
-| `x % y`            | `min(xp - xs, yp - ys) + max(xs, bs)`            | `max(xs, ys)`     |
+| `x % y`            | `min(xp - xs, yp - ys) + max(xs, ys)`            | `max(xs, ys)`     |
 
 
 If the mathematical result of the operation is not exactly representable
@@ -46,7 +46,7 @@ decimal(38, 0) cannot be represented as a decimal(38, 1).
 
 ### Comparison operators
 
-All standard `comparison` work for the
+All standard `comparison` operators work for the
 decimal type.
 
 ### Unary decimal operators

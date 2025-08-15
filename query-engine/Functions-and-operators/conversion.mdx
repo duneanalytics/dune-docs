@@ -12,7 +12,7 @@ When necessary, values can be explicitly cast to a particular type using the [ca
 
 ### Implicit Casting with numeric types
 
-DuneSQL has added support for implicit casts when performing operations with `INT256` and `UINT256` and other numeric types like `INTEGER`, `BIGINTEGER`, `DECIMAL`, or `DOUBLE`.
+DuneSQL has added support for implicit casts when performing operations with `INT256` and `UINT256` and other numeric types like `INTEGER`, `BIGINT`, `DECIMAL`, or `DOUBLE`.
 This allows you to use `INT256` and `UINT256` without adding casts explicitly.
 
 Whenever DuneSQL needs to find a common type for `INT256` or `UINT256` and another numeric type, it will generally go towards the bigger type.  

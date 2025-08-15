@@ -14,7 +14,7 @@ SELECT
 
 Now that we are able to convert Base58-encoded strings to `VARBINARY` values, we can use the `bytearray_to_bigint` function to convert the `VARBINARY` value to a `BIGINT` value. However, we need to consider more things:
 
-1. The decoded `VARBINARY` value does not only contain the data we want to convert to a `BIGINT` value. It also contains a discriminator that indicates which function of a solana program was called. We need to remove this discriminator before we can convert the `VARBINARY` value to a `BIGINT` value. We do this by using the `bytearray_substring` function.
+1. The decoded `VARBINARY` value does not only contain the data we want to convert to a `BIGINT` value. It also contains a discriminator that indicates which function of a Solana program was called. We need to remove this discriminator before we can convert the `VARBINARY` value to a `BIGINT` value. We do this by using the `bytearray_substring` function.
 
 2. Solana uses little-endian byte order, so we need to reverse the byte order before we can convert the `VARBINARY` value to a `BIGINT` value. We do this by using the `bytearray_reverse` function.
 
@@ -41,7 +41,7 @@ and call_block_slot = 187701147
 
 [→ Query in Dune](https://dune.com/queries/2846422)
 
-<tip> This specific query decodes the token amount that was sold in a Solana swap transaction. While probably applicable for lots of other solana programs, it is not guaranteed to work for all solana programs. You might need to adjust the query to your specific use case, depending on the solana program you are querying. </tip>
+<tip> This specific query decodes the token amount that was sold in a Solana swap transaction. While probably applicable for lots of other Solana programs, it is not guaranteed to work for all Solana programs. You might need to adjust the query to your specific use case, depending on the Solana program you are querying. </tip>
 
 
 
@@ -67,5 +67,5 @@ Converts a `VARBINARY` value to a Base58-encoded string.
 ```sql 
 SELECT 
     to_base58(0x030094357700000000)
--- results in base58 encoded varchar 3DZBMRwnSU8f
+-- results in Base58 encoded varchar 3DZBMRwnSU8f
 ```
