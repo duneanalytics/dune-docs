@@ -97,27 +97,27 @@ You can choose to either get the latest query result without triggering an execu
 <Tabs>
   <Tab title="Get latest result without execution">
   ```python 
-    query_result = dune.get_latest_result(3373921) # get latest result in json format
-    # query_result = dune.get_latest_result_dataframe(3373921) # get latest result in Pandas dataframe format
-    ```
+  query_result = dune.get_latest_result(3373921) # get latest result in json format
+  # query_result = dune.get_latest_result_dataframe(3373921) # get latest result in Pandas dataframe format
+  ```
     </Tab>
-    <Tab title="Query a query">
-    ```python 
-    query = QueryBase(
-        query_id=3373921,
+  <Tab title="Query a query">
+  ```python 
+  query = QueryBase(
+      query_id=3373921,
 
-        # uncomment and change the parameter values if needed
-        # params=[
-        #     QueryParameter.text_type(name="contract", value="0x6B175474E89094C44Da98b954EedeAC495271d0F"), # default is DAI
-        #     QueryParameter.text_type(name="owner", value="owner"), # default using vitalik.eth's wallet 
-        # ],
-    )
+      # uncomment and change the parameter values if needed
+      # params=[
+      #     QueryParameter.text_type(name="contract", value="0x6B175474E89094C44Da98b954EedeAC495271d0F"), # default is DAI
+      #     QueryParameter.text_type(name="owner", value="owner"), # default using vitalik.eth's wallet 
+      # ],
+  )
 
     query_result = dune.run_query_dataframe(
-      query=query
-      # , ping_frequency = 10 # uncomment to change the seconds between checking execution status, default is 1 second
-      # , performance="large" # uncomment to run query on large engine, default is medium
-      # , batch_size = 5_000 # uncomment to change the maximum number of rows to retrieve per batch of results, default is 32_000
+        query=query
+        # , ping_frequency = 10 # uncomment to change the seconds between checking execution status, default is 1 second
+        # , performance="large" # uncomment to run query on large engine, default is medium
+        # , batch_size = 5_000 # uncomment to change the maximum number of rows to retrieve per batch of results, default is 32_000
     ) 
 
     # Note: to get the result in csv format, call run_query_csv(); for json format, call run_query().
@@ -164,10 +164,10 @@ You can choose to either get the latest query result without triggering an execu
     )
 
     query_result = dune.run_query_dataframe(
-      query=query
-      # , ping_frequency = 10 # uncomment to change the seconds between checking execution status, default is 1 second
-      # , performance="large" # uncomment to run query on large engine, default is medium
-      # , batch_size = 5_000 # uncomment to change the maximum number of rows to retrieve per batch of results, default is 32_000
+        query=query
+        # , ping_frequency = 10 # uncomment to change the seconds between checking execution status, default is 1 second
+        # , performance="large" # uncomment to run query on large engine, default is medium
+        # , batch_size = 5_000 # uncomment to change the maximum number of rows to retrieve per batch of results, default is 32_000
     ) 
 
     # Note: to get the result in csv format, call run_query_csv(); for json format, call run_query().
