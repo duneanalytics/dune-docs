@@ -1,0 +1,83 @@
+---
+title: "DuneSql Trino Connector"
+description: "Connect to Dune data from Trino, Presto, and Starburst-compatible tools"
+icon: "plug"
+---
+
+The DuneSql Trino Connector allows you to access Dune's blockchain data through any tool that supports Trino, Presto, or Starburst connectors. This opens up Dune data to a vast ecosystem of business intelligence tools, data analysis platforms, and programming SDKs.
+
+{/* Placeholder for architecture diagram */}
+_[Architecture Diagram: Show how the Trino Connector acts as a bridge between BI tools and Dune's data]_
+
+## Prerequisites & Requirements
+
+Before getting started, ensure you have:
+
+- **Active Dune Account**: [Sign up](https://dune.com) if you don't have one
+- **Dune API Key**: Generate one from your [account settings](https://dune.com/settings/api)
+- **Compatible Tool**: Any application supporting Trino/Presto/Starburst connectors
+
+<Note>
+  The DuneSql Trino Connector requires a Dune account with API access. Free
+  accounts have limited credits - consider upgrading for production use.
+</Note>
+
+## Connection Parameters
+
+Use these parameters to configure your connection:
+
+| Parameter       | Value                     | Required | Description                        |
+| --------------- | ------------------------- | -------- | ---------------------------------- |
+| **Host**        | `dune-api-trino.dune.com` | ✅       | Dune's Trino connector endpoint    |
+| **Port**        | `443`                     | ✅       | Standard HTTPS port                |
+| **Username**    | `dune`                    | ✅       | Fixed username for all connections |
+| **Password**    | `<your-api-key>`          | ✅       | Your Dune API key                  |
+| **Catalog**     | `delta_prod`              | ✅       | Main data catalog                  |
+| **SSL/TLS**     | `true`                    | ✅       | Always use encrypted connections   |
+| **HTTP Scheme** | `https`                   | ✅       | Secure HTTP protocol               |
+
+### How to Get Your API Key
+
+1. Log into your Dune account
+2. Navigate to Settings → API
+3. Click "Create New API Key"
+4. Choose appropriate permissions ("All endpoints" recommended)
+5. Copy and securely store your API key
+
+<Warning>
+  Never share your API keys publicly or commit them to version control. Use
+  environment variables or secure credential storage.
+</Warning>
+
+## Technical Details
+
+### Supported SQL Operations
+
+The Dune SQL Trino Connector supports any query that can be made on dune.com or on the dune.com Analytics API. These contain most read operations found in the SQL spec. See [Query Engine](dune.com/dcos/query-engine/overview) for more details.
+
+### Rate Limiting
+
+Rate limits are applied to sql queries made via the Dune SQL Trino Connector in the same way they are applied for the [Analytics API](http://localhost:3000/api-reference/overview/rate-limits)
+
+## Billing & Cost Implications
+
+The Dune SQL Trino Connector executes all queries on the the [Medium Query Engine](http://localhost:3000/query-engine/query-executions#query-engine-size) and thus will cost 10 Credits per execution. Each time query results are fetched you will be charged for the number of datapoints consumed. Seeing [Analytics Api - Billing](https://dune.com/docs/api-reference/overview/billing) for more details
+
+### Cost Optimization Tips
+
+1. **Limit Result Sets**: Always use `LIMIT` for exploratory queries
+2. **Filter Early**: Apply `WHERE` clauses to reduce data processing
+3. **Monitor Usage**: Check your credit consumption regularly
+4. **Batch Queries**: Combine multiple small queries where possible
+
+## Limitations & Known Issues
+
+### Current Limitations
+
+1. **Metadata Queries**: Limited support for `SHOW TABLES` and `SHOW SCHEMAS` due to performance constraints. This constrains your client from supporting table and schema exploration.
+
+### Workarounds
+
+- **For Schema Discovery**: Use the data explorer on https://dune.com/data
+- **For Large Result Sets**: Use pagination with `LIMIT` and `OFFSET`
+- **For Timeouts**: Break large queries into smaller, filtered queries

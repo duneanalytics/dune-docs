@@ -2818,6 +2818,10 @@
             "api-reference/projects/introduction",
             "api-reference/projects/endpoint/linea_lxp"
           ]
+        },
+        {
+          "group": "DuneSql Trino Connector",
+          "pages": ["api-reference/dunesql-trino-connector/overview"]
         }
       ]
     },
