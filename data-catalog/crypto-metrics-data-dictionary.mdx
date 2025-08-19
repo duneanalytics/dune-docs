@@ -1,0 +1,367 @@
+---
+title: Crypto Metrics Data Dictionary
+description: A comprehensive reference for key cryptocurrency metrics used in blockchain analytics, including definitions, formulas, use cases, and Dune query examples.
+icon: "chart-line"
+---
+
+# Crypto Metrics Data Dictionary
+
+This comprehensive data dictionary provides definitions, formulas, use cases, and Dune query examples for key cryptocurrency metrics across different categories: Blockchain, Protocol, and Wallet metrics.
+
+## Blockchain Metrics
+
+### MVRV (Market Value to Realized Value)
+**Definition:** Market Value to Realized Value ratio - assesses if a cryptocurrency is overvalued or undervalued  
+**Formula:** Market Cap / Realized Value  
+**Use Case:** Identify market tops/bottoms; MVRV > 3.5 often indicates overvaluation  
+**TradFi Analogy:** Similar to Price-to-Book ratio (Note: Not exact equivalent - MVRV uses on-chain cost basis)
+
+<CardGroup cols={1}>
+  <Card title="MVRV Query Example" icon="code" href="https://dune.com/queries/5640249">
+    View the complete MVRV calculation query
+  </Card>
+</CardGroup>
+
+### RSOV (Realized Store of Value)
+**Definition:** For (L1s only) Realized Store of Value - quantifies long-term value drivers of L1 tokens through staking and DeFi usage  
+**Formula:** Realized Value Staked + Realized Value in DeFi  
+**Use Case:** Evaluate L1 token adoption as store of value asset; compare growth expectations  
+**TradFi Analogy:** Similar to measuring bank deposits + investment AUM
+
+<CardGroup cols={1}>
+  <Card title="RSOV Query Example" icon="code" href="https://dune.com/queries/5636718">
+    View the complete RSOV calculation query
+  </Card>
+</CardGroup>
+
+### REV (Real Economic Value)
+**Definition:** Real Economic Value - tracks actual fees users pay to use blockchain, excluding inflationary rewards  
+**Formula:** Transaction Fees + MEV Tips  
+**Use Case:** Measure genuine demand for blockspace; compare economic intensity across chains  
+**TradFi Analogy:** Similar to revenue or GDP for blockchains (Note: High REV can indicate inefficiency, not just demand)
+
+<CardGroup cols={1}>
+  <Card title="REV Query Example" icon="code" href="https://dune.com/queries/5544195">
+    View the complete REV calculation query
+  </Card>
+</CardGroup>
+
+### TVL (Total Value Locked)
+**Definition:** Total Value Locked - total value of assets locked or staked in a blockchain/protocol  
+**Formula:** Σ(Asset Amount × Current Price)  
+**Use Case:** Measure trust and liquidity committed; compare DeFi protocol adoption  
+**TradFi Analogy:** Similar to Assets Under Management (AUM)
+
+<CardGroup cols={1}>
+  <Card title="TVL Query Example" icon="code" href="https://dune.com/queries/5544205">
+    View the complete TVL calculation query
+  </Card>
+</CardGroup>
+
+### Active Addresses
+**Definition:** Number of unique addresses that sent or received transactions in a period  
+**Formula:** COUNT(DISTINCT address)  
+**Use Case:** Measure network adoption and user activity trends  
+**TradFi Analogy:** Similar to Monthly Active Users (MAU)
+
+<CardGroup cols={1}>
+  <Card title="Active Addresses Query Example" icon="code" href="https://dune.com/queries/5544235">
+    View the complete Active Addresses calculation query
+  </Card>
+</CardGroup>
+
+### Transaction Count & Volume
+**Definition:** Number of transactions and their total USD value  
+**Formula:** COUNT(transactions), SUM(value × price)  
+**Use Case:** Track network usage and economic throughput  
+**TradFi Analogy:** Similar to payment processing volume
+
+<CardGroup cols={1}>
+  <Card title="Transaction Count & Volume Query Example" icon="code" href="https://dune.com/queries/5544321">
+    View the complete Transaction Count & Volume calculation query
+  </Card>
+</CardGroup>
+
+### Average Transaction Fee
+**Definition:** Average cost in USD to execute a transaction  
+**Formula:** Total Fees / Transaction Count  
+**Use Case:** Evaluate network accessibility and congestion  
+**TradFi Analogy:** Similar to transaction processing fees
+
+<CardGroup cols={1}>
+  <Card title="Average Transaction Fee Query Example" icon="code" href="https://dune.com/queries/5544342">
+    View the complete Average Transaction Fee calculation query
+  </Card>
+</CardGroup>
+
+### Network Revenue
+**Definition:** Total fees collected by validators/miners  
+**Formula:** Σ(Transaction Fees + MEV)  
+**Use Case:** Assess blockchain's revenue generation and validator incentives  
+**TradFi Analogy:** Similar to exchange/payment network revenue
+
+<CardGroup cols={1}>
+  <Card title="Network Revenue Query Example" icon="code" href="https://dune.com/queries/5544348">
+    View the complete Network Revenue calculation query
+  </Card>
+</CardGroup>
+
+### Exchange Netflows
+**Definition:** Net token flow in/out of exchanges (inflow - outflow)  
+**Formula:** Deposits - Withdrawals  
+**Use Case:** Gauge selling pressure; negative = accumulation, positive = distribution  
+**TradFi Analogy:** Similar to fund flows data
+
+<CardGroup cols={1}>
+  <Card title="Exchange Netflows Query Example" icon="code" href="https://dune.com/queries/5544368">
+    View the complete Exchange Netflows calculation query
+  </Card>
+</CardGroup>
+
+### Staking Ratio
+**Definition:** Percentage of total supply staked (PoS chains)  
+**Formula:** Staked Supply / Total Supply × 100  
+**Use Case:** Measure network security and token holder confidence  
+**TradFi Analogy:** Similar to bond participation rate
+
+<CardGroup cols={1}>
+  <Card title="Staking Ratio Query Example" icon="code" href="https://dune.com/queries/5649225">
+    View the complete Staking Ratio calculation query
+  </Card>
+</CardGroup>
+
+## Protocol Metrics
+
+### Protocol Revenue
+**Definition:** Total fees generated by the protocol  
+**Formula:** Σ(Protocol Fees)  
+**Use Case:** Evaluate protocol profitability and sustainability  
+**TradFi Analogy:** Direct equivalent to company revenue
+
+<CardGroup cols={1}>
+  <Card title="Protocol Revenue Query Example" icon="code" href="https://dune.com/queries/5576224">
+    View the complete Protocol Revenue calculation query
+  </Card>
+</CardGroup>
+
+### Total Active Addresses
+**Definition:** Unique addresses interacting with protocol contracts  
+**Formula:** COUNT(DISTINCT user_address)  
+**Use Case:** Track user adoption and engagement  
+**TradFi Analogy:** Similar to customer count
+
+<CardGroup cols={1}>
+  <Card title="Total Active Addresses Query Example" icon="code" href="https://dune.com/queries/5576244">
+    View the complete Total Active Addresses calculation query
+  </Card>
+</CardGroup>
+
+### Transaction Volume
+**Definition:** Total value of transactions processed by protocol  
+**Formula:** Σ(Transaction Values)  
+**Use Case:** Measure protocol's market share and growth  
+**TradFi Analogy:** Similar to Gross Merchandise Value (GMV)
+
+<CardGroup cols={1}>
+  <Card title="Transaction Volume Query Example" icon="code" href="https://dune.com/queries/5576286">
+    View the complete Transaction Volume calculation query
+  </Card>
+</CardGroup>
+
+### Fee Generation
+**Definition:** Fees collected from users per transaction or period  
+**Formula:** Total Fees / Time Period  
+**Use Case:** Analyze protocol's fee efficiency and user costs  
+**TradFi Analogy:** Similar to commission rates
+
+<CardGroup cols={1}>
+  <Card title="Fee Generation Query Example" icon="code" href="https://dune.com/queries/5576292">
+    View the complete Fee Generation calculation query
+  </Card>
+</CardGroup>
+
+### Protocol Treasury Value
+**Definition:** Total value of assets held in protocol treasury  
+**Formula:** Σ(Treasury Assets × Price)  
+**Use Case:** Assess protocol's financial reserves and runway  
+**TradFi Analogy:** Similar to cash reserves/balance sheet
+
+<CardGroup cols={1}>
+  <Card title="Protocol Treasury Value Query Example" icon="code" href="https://dune.com/queries/5576299">
+    View the complete Protocol Treasury Value calculation query
+  </Card>
+</CardGroup>
+
+### Daily/Monthly Active Addresses
+**Definition:** Unique addresses interacting daily or monthly  
+**Formula:** COUNT(DISTINCT address) per period  
+**Use Case:** Track user retention and growth patterns  
+**TradFi Analogy:** Standard DAU/MAU metrics
+
+<CardGroup cols={1}>
+  <Card title="Daily/Monthly Active Addresses Query Example" icon="code" href="https://dune.com/queries/5576322">
+    View the complete Daily/Monthly Active Addresses calculation query
+  </Card>
+</CardGroup>
+
+### Protocol Efficiency Ratio
+**Definition:** Fees generated per dollar of TVL  
+**Formula:** Total Fees / TVL  
+**Use Case:** Compare capital efficiency across protocols  
+**TradFi Analogy:** Similar to Return on Assets (ROA)
+
+<CardGroup cols={1}>
+  <Card title="Protocol Efficiency Ratio Query Example" icon="code" href="https://dune.com/queries/5576378">
+    View the complete Protocol Efficiency Ratio calculation query
+  </Card>
+</CardGroup>
+
+### New vs Returning Users
+**Definition:** Breakdown of first-time vs repeat users  
+**Formula:** New Users / Total Users  
+**Use Case:** Measure user acquisition vs retention  
+**TradFi Analogy:** Similar to customer acquisition metrics
+
+<CardGroup cols={1}>
+  <Card title="New vs Returning Users Query Example" icon="code" href="https://dune.com/queries/5576381">
+    View the complete New vs Returning Users calculation query
+  </Card>
+</CardGroup>
+
+### Gas Usage/Fees Paid
+**Definition:** Total gas consumed and fees paid by protocol users  
+**Formula:** Σ(Gas Used × Gas Price)  
+**Use Case:** Evaluate protocol's cost to users and efficiency  
+**TradFi Analogy:** Similar to transaction costs
+
+<CardGroup cols={1}>
+  <Card title="Gas Usage/Fees Paid Query Example" icon="code" href="https://dune.com/queries/5576409">
+    View the complete Gas Usage/Fees Paid calculation query
+  </Card>
+</CardGroup>
+
+## Wallet Metrics
+
+### Wallet Balance Distribution
+**Definition:** Distribution of holdings across wallet tiers  
+**Formula:** Grouped by balance ranges  
+**Use Case:** Analyze wealth concentration and user segments  
+**TradFi Analogy:** Similar to wealth distribution analysis
+
+<CardGroup cols={1}>
+  <Card title="Wallet Balance Distribution Query Example" icon="code" href="https://dune.com/queries/5576417">
+    View the complete Wallet Balance Distribution calculation query
+  </Card>
+</CardGroup>
+
+### Transaction Frequency
+**Definition:** Average number of transactions per wallet per period  
+**Formula:** Total Transactions / Active Wallets  
+**Use Case:** Measure user engagement and activity levels  
+**TradFi Analogy:** Similar to transaction frequency in banking
+
+<CardGroup cols={1}>
+  <Card title="Transaction Frequency Query Example" icon="code" href="https://dune.com/queries/5576435">
+    View the complete Transaction Frequency calculation query
+  </Card>
+</CardGroup>
+
+### Active Wallet Count
+**Definition:** Number of wallets with at least one transaction  
+**Formula:** COUNT(DISTINCT active_wallets)  
+**Use Case:** Track network growth and adoption  
+**TradFi Analogy:** Similar to active account metrics
+
+<CardGroup cols={1}>
+  <Card title="Active Wallet Count Query Example" icon="code" href="https://dune.com/queries/5576448">
+    View the complete Active Wallet Count calculation query
+  </Card>
+</CardGroup>
+
+### Wallet Age/Cohort Analysis
+**Definition:** Analysis of wallets grouped by creation date  
+**Formula:** Grouped by first transaction date  
+**Use Case:** Understand user retention and lifecycle  
+**TradFi Analogy:** Similar to customer cohort analysis
+
+<CardGroup cols={1}>
+  <Card title="Wallet Age/Cohort Analysis Query Example" icon="code" href="https://dune.com/queries/5576464">
+    View the complete Wallet Age/Cohort Analysis calculation query
+  </Card>
+</CardGroup>
+
+### Cross-chain Activity
+**Definition:** Wallets active on multiple blockchains  
+**Formula:** Wallets on Chain A ∩ Chain B  
+**Use Case:** Measure multi-chain adoption and user sophistication  
+**TradFi Analogy:** Similar to multi-product usage
+
+<CardGroup cols={1}>
+  <Card title="Cross-chain Activity Query Example" icon="code" href="https://dune.com/queries/5576492">
+    View the complete Cross-chain Activity calculation query
+  </Card>
+</CardGroup>
+
+### DeFi Participation Rate
+**Definition:** Percentage of wallets interacting with DeFi protocols  
+**Formula:** DeFi Users / Total Active Wallets × 100  
+**Use Case:** Gauge DeFi adoption and market penetration  
+**TradFi Analogy:** Similar to investment product adoption rate
+
+<CardGroup cols={1}>
+  <Card title="DeFi Participation Rate Query Example" icon="code" href="https://dune.com/queries/5576505">
+    View the complete DeFi Participation Rate calculation query
+  </Card>
+</CardGroup>
+
+### Average Transaction Value
+**Definition:** Mean transaction size per wallet  
+**Formula:** Total Value / Transaction Count  
+**Use Case:** Profile user behavior and wealth levels  
+**TradFi Analogy:** Direct equivalent to average transaction size
+
+<CardGroup cols={1}>
+  <Card title="Average Transaction Value Query Example" icon="code" href="https://dune.com/queries/5576567">
+    View the complete Average Transaction Value calculation query
+  </Card>
+</CardGroup>
+
+### Wallet Growth Rate
+**Definition:** Rate of new wallet creation over time  
+**Formula:** (New Wallets(t) - New Wallets(t-1)) / New Wallets(t-1)  
+**Use Case:** Track adoption acceleration or deceleration  
+**TradFi Analogy:** Similar to new account growth rate
+
+<CardGroup cols={1}>
+  <Card title="Wallet Growth Rate Query Example" icon="code" href="https://dune.com/queries/5576596">
+    View the complete Wallet Growth Rate calculation query
+  </Card>
+</CardGroup>
+
+### Dormant vs Active Ratio
+**Definition:** Ratio of inactive to active wallets  
+**Formula:** Dormant Wallets / Total Wallets  
+**Use Case:** Assess network health and true active user base  
+**TradFi Analogy:** Similar to inactive account ratio
+
+<CardGroup cols={1}>
+  <Card title="Dormant vs Active Ratio Query Example" icon="code" href="https://dune.com/queries/5576600">
+    View the complete Dormant vs Active Ratio calculation query
+  </Card>
+</CardGroup>
+
+### First-time vs Power Users
+**Definition:** Segmentation by transaction count tiers  
+**Formula:** Categorized by lifetime transactions  
+**Use Case:** Identify user segments for targeted analysis  
+**TradFi Analogy:** Similar to customer segmentation
+
+<CardGroup cols={1}>
+  <Card title="First-time vs Power Users Query Example" icon="code" href="https://dune.com/queries/5576625">
+    View the complete First-time vs Power Users calculation query
+  </Card>
+</CardGroup>
+
+<Info>
+This data dictionary provides a comprehensive reference for key cryptocurrency metrics used in blockchain analytics. Each metric includes its definition, formula, use case, and a practical Dune query example to help you implement these calculations in your own analyses.
+</Info>
