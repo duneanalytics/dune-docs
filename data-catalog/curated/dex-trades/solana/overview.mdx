@@ -48,7 +48,7 @@ SELECT
     project,
     COUNT(*) as num_trades,
     SUM(amount_usd) as volume_usd
-FROM solana.dex_trades
+FROM dex_solana.trades
 WHERE block_time >= NOW() - INTERVAL '30' day
 GROUP BY 1, 2
 ORDER BY 1 DESC, 4 DESC
