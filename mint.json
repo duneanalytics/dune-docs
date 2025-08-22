@@ -2581,6 +2581,16 @@
             "data-catalog/layerzero/messages",
             "data-catalog/layerzero/transfers"
           ]
+        },
+        {
+          "group": "Succinct",
+          "icon": "bolt",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/succinct/overview",
+            "data-catalog/succinct/bids",
+            "data-catalog/succinct/requests"
+          ]
         }
       ]
     },
