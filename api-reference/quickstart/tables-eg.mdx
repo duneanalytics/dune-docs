@@ -16,7 +16,7 @@ DUNE_API_KEY=<paste your API key here>
 </Tip>
 
 ### Upload the CSV
-Follow below steps to upload your CSV. Please make sure to modify paths to your .env file and to your CSV file. 
+Follow the below steps to upload your CSV. Please make sure to modify paths to your .env file and to your CSV file. 
 
 ```python
 import dotenv, os
@@ -45,7 +45,7 @@ with open(csv_file_path) as open_file:
 
 Once the upload is successful, you will see the data show up under [Your Data](https://dune.com/queries?category=uploaded_data) in the Data Explorer. 
 
-You can query your uploaded table under the name `dune.<team or user handle>.dataset_<table name defined>`. For example, here I defined the table name to be "cereal_table" and my team name is "dune", so to access the uploaded table we will do `select * from dune.dune.dataset_cereal_table`
+You can query your uploaded table under the name `dune.<team or user handle>.dataset_<table name defined>`. For example, here I defined the table name to be "cereal_table" and my team name is "dune", so to access the uploaded table we will do `select * from dune.dune.dataset_cereal_table`.
 
 
 
