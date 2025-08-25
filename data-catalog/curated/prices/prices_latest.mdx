@@ -98,4 +98,6 @@ WHERE b.name IN ('ethereum', 'arbitrum', 'optimism', 'polygon', 'gnosis', 'solan
 - For native tokens, use `dune.blockchains` table to get the standardized address for each blockchain
 - The timestamp column shows when the price was last updated, useful for determining freshness
 - For historical analysis, use `prices.day`, `prices.hour`, or `prices.minute` instead
-- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
+- **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
+- **Data Limitations**: While filtering helps improve data quality, users should always validate prices for critical applications 
