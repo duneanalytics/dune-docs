@@ -43,7 +43,7 @@ Use any tool that supports Trino, Presto, or Starburst connectors. Popular choic
     iconType="duotone"
     href="#trino-presto-starburst-clients-setup-for-dune"
   >
-    JDBC/ODBC/CLI tools and SDKs work out of the box.
+    You can use official Trino client libraries and SDKs.
   </Card>
 </CardGroup>
 
@@ -66,81 +66,6 @@ Use these values in your Trino, Presto, or Starburst client configuration:
   [Authentication](/api-reference/overview/authentication). Remember to keep
   your API keys secret and rotate them immediately if they are ever exposed.
 </Note>
-
-## Metabase Setup for Dune
-
-Follow these steps to connect Dune as a data source in Metabase.
-
-### Add the Database Connection
-
-<Steps>
-  <Step title="Open Admin settings">
-    From the Metabase home page, click the <b>Settings</b> gear icon in the top-right corner.
-    Select <b>Admin settings</b> from the dropdown menu.
-
-    <Frame>
-      <img src="/images/trino-presto-connector/metabase-1.png" alt="Metabase step 1: Open Admin settings" />
-    </Frame>
-
-  </Step>
-  <Step title="Go to Databases">
-    In the Admin panel, navigate to the <b>Databases</b> tab.
-    <Frame>
-      <img src="/images/trino-presto-connector/metabase-2.png" alt="Metabase step 2: Go to Databases" />
-    </Frame>
-  </Step>
-  <Step title="Add database">
-    Click the blue <b>Add database</b> button to open the configuration modal.
-    <Frame>
-      <img src="/images/trino-presto-connector/metabase-3.png" alt="Metabase step 3: Add database" />
-    </Frame>
-  </Step>
-  <Step title="Choose driver">
-    In the modal, select <code>Starburst (Trino)</code> as the <b>Database type</b>.
-  </Step>
-  <Step title="Enter connection details">
-    Fill in the form fields using the values from the <a href="#connection-parameters">Connection Parameters</a> section.
-    For best performance in Metabase, we recommend disabling <b>Rerun queries for simple explorations</b> and <b>Periodically refingerprint tables</b> in the advanced settings.
-  </Step>
-</Steps>
-
-<Note>
-  Schema discovery queries such as <code>SHOW TABLES</code> or{" "}
-  <code>SHOW SCHEMAS</code> may not be available in Metabase with this connector
-  because Dune’s catalog spans millions of tables. Many BI tools are not yet
-  optimized to enumerate catalogs at this scale. An update with improved schema
-  discovery is planned for the future.
-</Note>
-
-### Run a Test Query
-
-After configuring and saving the connection, you can run a query to verify that everything is working.
-
-<Steps>
-  <Step title="Create a new SQL query">
-    Click the <b>+ New</b> button and select <b>SQL query</b>.
-  </Step>
-  <Step title="Select database">
-    In the editor, choose your newly created <b>Dune SQL</b> data source from
-    the <b>Select a database</b> dropdown.
-  </Step>
-  <Step title="Paste example SQL">
-    Paste the example query below into the editor.
-  </Step>
-  <Step title="Run the query">Run the query to verify the connection.</Step>
-</Steps>
-
-You can use this query to test your connection. It fetches the daily transaction count from the last year on Base.
-
-```sql
-SELECT
-  date_trunc('day', block_time) AS time,
-  count(*) AS count
-FROM base.transactions
-WHERE block_time > now() - interval '12' month
-GROUP BY 1
-ORDER BY 1 DESC
-```
 
 ## Hex Setup for Dune
 
@@ -218,9 +143,84 @@ GROUP BY 1
 ORDER BY 1 DESC
 ```
 
+## Metabase Setup for Dune
+
+Follow these steps to connect Dune as a data source in Metabase.
+
+### Add the Database Connection
+
+<Steps>
+  <Step title="Open Admin settings">
+    From the Metabase home page, click the <b>Settings</b> gear icon in the top-right corner.
+    Select <b>Admin settings</b> from the dropdown menu.
+
+    <Frame>
+      <img src="/images/trino-presto-connector/metabase-1.png" alt="Metabase step 1: Open Admin settings" />
+    </Frame>
+
+  </Step>
+  <Step title="Go to Databases">
+    In the Admin panel, navigate to the <b>Databases</b> tab.
+    <Frame>
+      <img src="/images/trino-presto-connector/metabase-2.png" alt="Metabase step 2: Go to Databases" />
+    </Frame>
+  </Step>
+  <Step title="Add database">
+    Click the blue <b>Add database</b> button to open the configuration modal.
+    <Frame>
+      <img src="/images/trino-presto-connector/metabase-3.png" alt="Metabase step 3: Add database" />
+    </Frame>
+  </Step>
+  <Step title="Choose driver">
+    In the modal, select <code>Starburst (Trino)</code> as the <b>Database type</b>.
+  </Step>
+  <Step title="Enter connection details">
+    Fill in the form fields using the values from the <a href="#connection-parameters">Connection Parameters</a> section.
+    For best performance in Metabase, we recommend disabling <b>Rerun queries for simple explorations</b> and <b>Periodically refingerprint tables</b> in the advanced settings.
+  </Step>
+</Steps>
+
+<Note>
+  Schema discovery queries such as <code>SHOW TABLES</code> or{" "}
+  <code>SHOW SCHEMAS</code> may not be available in Metabase with this connector
+  because Dune’s catalog spans millions of tables. Many BI tools are not yet
+  optimized to enumerate catalogs at this scale. An update with improved schema
+  discovery is planned for the future.
+</Note>
+
+### Run a Test Query
+
+After configuring and saving the connection, you can run a query to verify that everything is working.
+
+<Steps>
+  <Step title="Create a new SQL query">
+    Click the <b>+ New</b> button and select <b>SQL query</b>.
+  </Step>
+  <Step title="Select database">
+    In the editor, choose your newly created <b>Dune SQL</b> data source from
+    the <b>Select a database</b> dropdown.
+  </Step>
+  <Step title="Paste example SQL">
+    Paste the example query below into the editor.
+  </Step>
+  <Step title="Run the query">Run the query to verify the connection.</Step>
+</Steps>
+
+You can use this query to test your connection. It fetches the daily transaction count from the last year on Base.
+
+```sql
+SELECT
+  date_trunc('day', block_time) AS time,
+  count(*) AS count
+FROM base.transactions
+WHERE block_time > now() - interval '12' month
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
 ## Trino/Presto/Starburst Clients Setup for Dune
 
-You can connect from any client that supports Trino, Presto, or Starburst, including popular tools like DBeaver and Power BI. While the specific setup steps will vary for each client, the core connection details remain the same.
+You can connect from any client that supports Trino, Presto, or Starburst, including popular tools like DBeaver, DataGrip, and DbVisualizer. While the specific setup steps will vary for each client, the core connection details remain the same.
 
 Refer to your client's documentation for instructions on adding a new Trino, Presto, or Starburst data source, and use the values from the [Connection Parameters](#connection-parameters) table to configure it.
 
