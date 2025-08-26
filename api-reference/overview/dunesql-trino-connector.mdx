@@ -1,0 +1,294 @@
+---
+title: "DuneSQL Trino Connector"
+description: "A convenient way to use Dune outside of Dune with Trino/Presto/Starburst-compatible tools."
+icon: "plug"
+---
+
+Access Dune's blockchain data from your favorite BI tools and clients using the DuneSQL Trino/Presto connector. It's a more convenient way to use Dune outside of Dune with any tool that supports Trino, Presto, or Starburst connectors.
+
+<Frame caption="Trino/Presto client → Dune connector → Dune Query Engine">
+  <img
+    src="/images/trino-presto-connector/trino - light.png"
+    alt="Architecture diagram: Trino/Presto client → Dune connector → Dune Query Engine"
+    class="block dark:hidden"
+    noZoom
+  />
+  <img
+    src="/images/trino-presto-connector/trino - dark.png"
+    alt="Architecture diagram: Trino/Presto client → Dune connector → Dune Query Engine"
+    class="hidden dark:block"
+    noZoom
+  />
+</Frame>
+
+## Compatible Tools
+
+Use any tool that supports Trino, Presto, or Starburst connectors. Popular choices include:
+
+<CardGroup cols={2}>
+  <Card title="Hex" icon="cube" iconType="duotone" href="#hex-setup-for-dune">
+    Notebook-native analytics; connect via built-in Trino connector.
+  </Card>
+  <Card
+    title="Metabase"
+    icon="chart-bar"
+    iconType="duotone"
+    href="#metabase-setup-for-dune"
+  >
+    Self-hosted/managed BI; connect using the Starburst/Trino driver.
+  </Card>
+  <Card
+    title="Any Trino/Presto/Starburst client"
+    icon="plug"
+    iconType="duotone"
+    href="#using-trino-sdks-directly-in-your-code"
+  >
+    Treat Dune like a Database in your language of choice with popular Trino
+    libraries.
+  </Card>
+</CardGroup>
+
+## Connection Parameters
+
+Use these values in your Trino, Presto, or Starburst client configuration:
+
+| Parameter   | Value                     | Description                        |
+| ----------- | ------------------------- | ---------------------------------- |
+| Host        | `dune-api-trino.dune.com` | Dune's Trino/Presto endpoint       |
+| Port        | `443`                     | Standard HTTPS port                |
+| Username    | `dune`                    | Fixed username for all connections |
+| Password    | `<your-dune-api-key>`     | Your Dune API key                  |
+| Catalog     | `delta_prod`              | Main data catalog                  |
+| SSL/TLS     | `true`                    | Always use encrypted connections   |
+| HTTP scheme | `https`                   | Required for secure connections    |
+
+<Note>
+  If you need an API key, see our guide on
+  [Authentication](/api-reference/overview/authentication). Remember to keep
+  your API keys secret and rotate them immediately if they are ever exposed.
+</Note>
+
+## Hex Setup for Dune
+
+Follow these steps to connect Dune as a data source in your Hex workspace.
+
+### Add the Data Connection
+
+<Steps>
+  <Step title="Open Data sources">
+    Under Workspace settings, select <b>Data sources</b>.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-1.png"
+        alt="Hex step 1: Open Data sources"
+      />
+    </Frame>
+  </Step>
+  <Step title="Add connection and choose Trino">
+    Click the green <b>+ Connection</b> button, then select <b>Trino</b> from
+    the list of available connections.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-2.png"
+        alt="Hex step 2: Add connection and choose Trino"
+      />
+    </Frame>
+  </Step>
+  <Step title="Enter connection details">
+    Fill in the form fields using the values from the{" "}
+    <a href="#connection-parameters">Connection Parameters</a> section.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-3.png"
+        alt="Hex step 3: Enter connection details"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+### Run a Test Query
+
+Once your data source is configured, you can query it directly from any Hex project.
+
+<Steps>
+  <Step title="Open or create a project">
+    Open an existing project or create a new one.
+  </Step>
+  <Step title="Add a SQL cell">
+    Add a new <b>SQL cell</b> to your notebook.
+  </Step>
+  <Step title="Select data source">
+    In the data source dropdown at the top of the cell, select your newly
+    created <b>Dune SQL</b> connection.
+  </Step>
+  <Step title="Paste and run SQL">
+    Paste the example query below into the cell and run it.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-4.png"
+        alt="Hex step: Paste and run SQL"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+You can use this query to test your connection. It fetches the daily transaction count from the last year on Base.
+
+```sql
+SELECT
+  date_trunc('day', block_time) AS time,
+  count(*) AS count
+FROM base.transactions
+WHERE block_time > now() - interval '12' month
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
+## Metabase Setup for Dune
+
+Follow these steps to connect Dune as a data source in Metabase.
+
+### Add the Database Connection
+
+<Steps>
+  <Step title="Open Admin settings">
+    From the Metabase home page, click the <b>Settings</b> gear icon in the top-right corner.
+    Select <b>Admin settings</b> from the dropdown menu.
+
+    <Frame>
+      <img src="/images/trino-presto-connector/metabase-1.png" alt="Metabase step 1: Open Admin settings" />
+    </Frame>
+
+  </Step>
+  <Step title="Go to Databases">
+    In the Admin panel, navigate to the <b>Databases</b> tab.
+    <Frame>
+      <img src="/images/trino-presto-connector/metabase-2.png" alt="Metabase step 2: Go to Databases" />
+    </Frame>
+  </Step>
+  <Step title="Add database">
+    Click the blue <b>Add database</b> button to open the configuration modal.
+    <Frame>
+      <img src="/images/trino-presto-connector/metabase-3.png" alt="Metabase step 3: Add database" />
+    </Frame>
+  </Step>
+  <Step title="Choose driver">
+    In the modal, select <code>Starburst (Trino)</code> as the <b>Database type</b>.
+  </Step>
+  <Step title="Enter connection details">
+    Fill in the form fields using the values from the <a href="#connection-parameters">Connection Parameters</a> section.
+    For best performance in Metabase, we recommend disabling <b>Rerun queries for simple explorations</b> and <b>Periodically refingerprint tables</b> in the advanced settings.
+  </Step>
+</Steps>
+
+<Note>
+  Schema discovery queries such as <code>SHOW TABLES</code> or{" "}
+  <code>SHOW SCHEMAS</code> may not be available in Metabase with this connector
+  because Dune’s catalog spans millions of tables. Many BI tools are not yet
+  optimized to enumerate catalogs at this scale. An update with improved schema
+  discovery is planned for the future.
+</Note>
+
+### Run a Test Query
+
+After configuring and saving the connection, you can run a query to verify that everything is working.
+
+<Steps>
+  <Step title="Create a new SQL query">
+    Click the <b>+ New</b> button and select <b>SQL query</b>.
+  </Step>
+  <Step title="Select database">
+    In the editor, choose your newly created <b>Dune SQL</b> data source from
+    the <b>Select a database</b> dropdown.
+  </Step>
+  <Step title="Paste example SQL">
+    Paste the example query below into the editor.
+  </Step>
+  <Step title="Run the query">Run the query to verify the connection.</Step>
+</Steps>
+
+You can use this query to test your connection. It fetches the daily transaction count from the last year on Base.
+
+```sql
+SELECT
+  date_trunc('day', block_time) AS time,
+  count(*) AS count
+FROM base.transactions
+WHERE block_time > now() - interval '12' month
+GROUP BY 1
+ORDER BY 1 DESC
+```
+## Using Trino SDKs directly in your code
+
+Connect to Dune using Trino SDKs in your preferred language.
+
+<Tabs>
+  <Tab title="Bash">
+    ```bash
+    # Install: brew install trino
+    trino --server https://dune-api-trino.dune.com:443 \
+      --user dune --password \
+      --catalog delta_prod \
+      --schema runtime \
+      --execute "SELECT count(*) FROM base.transactions WHERE block_time > now() - interval '1' day"
+    ```
+  </Tab>
+
+  <Tab title="TypeScript">
+    ```typescript
+    import { Trino, BasicAuth } from "trino-client";
+
+    const trino = Trino.create({
+      server: "https://dune-api-trino.dune.com:443",
+      catalog: "delta_prod",
+      schema: "runtime",
+      auth: new BasicAuth("dune", process.env.DUNE_API_KEY),
+    });
+
+    const iter = await trino.query("SELECT count(*) FROM base.transactions WHERE block_time > now() - interval '1' day");
+    for await (const result of iter) {
+      console.log(result.data);
+    }
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    import trino
+    import os
+
+    conn = trino.dbapi.connect(
+        host='dune-api-trino.dune.com',
+        port=443,
+        user='dune',
+        catalog='delta_prod',
+        schema='runtime',
+        auth=trino.auth.BasicAuthentication('dune', os.environ['DUNE_API_KEY']),
+        http_scheme='https'
+    )
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT count(*) FROM base.transactions WHERE block_time > now() - interval '1' day")
+    print(cursor.fetchall())
+    ```
+
+  </Tab>
+</Tabs>
+
+## Supported SQL Operations
+
+Queries executed via the connector align with what you can run on the Dune platform. See the [Query Engine overview](/query-engine/overview) for more information on supported functions and syntax.
+
+## Rate Limits
+
+Rate limits for the connector mirror those of the Dune Analytics API. Please refer to the [Rate Limits](/api-reference/overview/rate-limits) documentation for details.
+
+## Billing & Cost
+
+All queries run via the connector are executed on the [Medium Query Engine](/query-engine/query-executions#query-engine-size) and cost 10 Dune Credits per execution. In addition, fetching results consumes credits proportional to the number of datapoints returned. For a full breakdown, please see our documentation on [Billing](/api-reference/overview/billing).
+
+## Limitations
+
+The connector currently has limited support for metadata discovery queries such as `SHOW TABLES` or `SHOW SCHEMAS`. This may impact the data source browsing and autocomplete experience within some BI tools.
+
+For schema and table discovery, see the [Data Explorer](/web-app/query-editor/data-explorer) guide. If you encounter timeouts with large result sets, consider paginating your queries using `LIMIT` and `OFFSET`, narrowing your filters, or splitting complex queries into smaller, more manageable parts.

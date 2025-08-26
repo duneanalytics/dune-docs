@@ -1185,9 +1185,7 @@
               "pages": [
                 {
                   "group": "DEX",
-                  "pages": [
-                    "data-catalog/evm/hemi/curated-data/dex/dex-trades"
-                  ]
+                  "pages": ["data-catalog/evm/hemi/curated-data/dex/dex-trades"]
                 }
               ]
             }
@@ -2102,7 +2100,7 @@
             }
           ]
         },
-                {
+        {
           "group": "Taiko",
           "icon": "database",
           "iconType": "solid",
@@ -2705,6 +2703,7 @@
         },
         "api-reference/overview/authentication",
         "api-reference/overview/sdks",
+        "api-reference/overview/dunesql-trino-connector",
         {
           "group": "Result Filtering",
           "pages": [
