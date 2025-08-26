@@ -8,7 +8,7 @@ description: Historical hourly price data for tokens across all supported blockc
 
 ## Overview
 
-The `prices.hour` table provides hourly token price data across all supported blockchains. It contains the last known price for each hour, ensuring a continuous time series for more granular price analysis than daily data.
+The `prices.hour` table provides hourly token price data across all supported blockchains. It contains volume-weighted average prices for each hour, ensuring a continuous time series for more granular price analysis than daily data.
 
 ## Table Schema
 
@@ -17,25 +17,26 @@ The `prices.hour` table provides hourly token price data across all supported bl
 | blockchain | varchar | Blockchain identifier (e.g., 'ethereum', 'arbitrum') |
 | contract_address | varbinary | Token contract address (fixed address for native tokens) |
 | symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
-| timestamp | timestamp | Hour timestamp (00:00, 01:00, etc. in UTC for each hour) |
-| price | double | Token price in USD |
+| timestamp | timestamp | Hour timestamp (00:00, 01:00, etc. UTC of each hour) |
+| price | double | Token price in USD (volume-weighted average) |
 | decimals | int | Token decimals |
 | volume | double | Trading volume in USD (from price source) |
 | source | varchar | Data source ('coinpaprika' or 'dex.trades') |
-| source_timestamp | timestamp | Exact timestamp of the source data point |
 
 ## Implementation Details
 
 The hourly prices are built through these steps:
 
 1. Collect sparse price observations from different sources
-2. Group by hour, taking the most recent price observation per hour
+2. Group by hour, calculating volume-weighted average price per hour
 3. Fill missing hours with the previous hour's price (forward filling)
-4. Set a 7-day (168-hour) expiration for forward filling to avoid stale data
+4. Set a 7-day (168 hour) expiration for forward filling to avoid stale data
 
 ## Usage
 
 This table is useful for intraday analysis and tracking price movements with higher granularity than daily data. It's suitable for examining price patterns within a day or across multiple days.
+
+**Note**: The underlying data sources are aligned to 5-minute intervals for consistency and improved data quality.
 
 ## Latency and Update Frequency
 
@@ -43,7 +44,7 @@ The `prices.hour` table is updated hourly based on the upstream data pipeline. A
 
 ## Usage Examples
 
-Here are some examples of how to use the hourly prices table.
+Here are some examples of how to use the prices tables.
 
 ### Get hourly ETH prices for the last day:
 ```sql
@@ -76,4 +77,7 @@ ORDER BY 1
 - Prices older than 7 days (168 hours) will not be forward-filled to avoid using stale data
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
 - Hourly data is useful for analyzing intraday patterns and short-term price movements
-- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
+- Prices are calculated using volume-weighted averages for more accurate representation
+- **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
+- **Data Limitations**: While filtering helps improve data quality, users should always validate prices for critical applications 
