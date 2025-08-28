@@ -10,13 +10,13 @@ Access Dune's blockchain data from your favorite BI tools and clients using the 
   <img
     src="/images/trino-presto-connector/trino - light.png"
     alt="Architecture diagram: Trino/Presto client → Dune connector → Dune Query Engine"
-    class="block dark:hidden"
+    className="block dark:hidden"
     noZoom
   />
   <img
     src="/images/trino-presto-connector/trino - dark.png"
     alt="Architecture diagram: Trino/Presto client → Dune connector → Dune Query Engine"
-    class="hidden dark:block"
+    className="hidden dark:block"
     noZoom
   />
 </Frame>
@@ -57,7 +57,7 @@ Use these values in your Trino, Presto, or Starburst client configuration:
 | Host        | `dune-api-trino.dune.com` | Dune's Trino/Presto endpoint       |
 | Port        | `443`                     | Standard HTTPS port                |
 | Username    | `dune`                    | Fixed username for all connections |
-| Password    | `<your-dune-api-key>`     | Your Dune API key                  |
+| Password    | `<your-dune-api-key>`     | [Your Dune API key](/api-reference/overview/authentication)                  |
 | Catalog     | `delta_prod`              | Main data catalog                  |
 | SSL/TLS     | `true`                    | Always use encrypted connections   |
 | HTTP scheme | `https`                   | Required for secure connections    |
