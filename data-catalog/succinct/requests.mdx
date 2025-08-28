@@ -1,0 +1,65 @@
+---
+title: succinct.requests
+sidebarTitle: "Requests"
+description: Description of the succinct.requests table on Dune
+---
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `succinct.requests` table contains all proof requests submitted by application developers to the Succinct Network. Each request represents a demand for ZK proof generation, which provers can then bid on through the auction mechanism.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| vk_hash | binary | Verification key hash for the proof request |
+| requester | binary | Address of the application developer submitting the request |
+| fulfiller_address | binary | Address of the prover that fulfilled the request |
+| gas_price | bigint | Gas price for the request transaction |
+| max_price_per_gas | bigint | Maximum price per gas unit the requester is willing to pay |
+| gas_used | bigint | Gas used for the request transaction |
+| gas_limit | bigint | Gas limit for the request transaction |
+| cycles | bigint | Number of computational cycles required for the proof |
+| created_at | timestamp | Timestamp when the request was submitted |
+| fulfilled_at | timestamp | Timestamp when the request was fulfilled |
+| deadline | timestamp | Deadline by which the proof must be generated |
+| date | date | Date when the request was submitted |
+| tx_hash | binary | Transaction hash of the request submission |
+| id | binary | Unique identifier for the proof request |
+| sender | binary | Address of the sender (may be different from requester) |
+| base_fee | decimal(38,0) | Base fee for the transaction |
+| min_auction_period | bigint | Minimum auction period in seconds |
+| _updated_at | timestamp | Last update timestamp |
+| _ingested_at | timestamp | Ingestion timestamp |
+
+## Sample Query
+
+```sql
+-- Get the total number of requests and fulfillment rates by requester
+SELECT 
+    requester,
+    COUNT(*) as total_requests,
+    COUNT(CASE WHEN fulfiller_address IS NOT NULL THEN 1 END) as fulfilled_requests,
+    COUNT(CASE WHEN fulfiller_address IS NOT NULL THEN 1 END) * 100.0 / COUNT(*) as fulfillment_rate
+FROM succinct.requests
+WHERE created_at >= NOW() - INTERVAL '30' DAY
+GROUP BY requester
+ORDER BY total_requests DESC
+LIMIT 10;
+```
+
+## Sample Query
+
+```sql
+-- Get request activity and gas usage over time
+SELECT 
+    DATE_TRUNC('day', created_at) as day,
+    COUNT(*) as total_requests,
+    AVG(gas_used) as avg_gas_used,
+    SUM(gas_used) as total_gas_used
+FROM succinct.requests
+WHERE created_at >= NOW() - INTERVAL '7' DAY
+GROUP BY DATE_TRUNC('day', created_at)
+ORDER BY day DESC;
+``` 

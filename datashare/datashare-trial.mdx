@@ -1,97 +1,56 @@
 ---
 title: Getting Started with Datashare
 sidebarTitle: Getting Started
-description: Interested in Dune Datashare? Test out our data on Snowflake!
+description: Interested in Dune Datashare? Test out our data on Snowflake or BigQuery!
 ---
 
-Dune's vast data catalog can make getting started with Datashare feel daunting. With this in mind, we have created flexible trial data on Snowflake that are available and easily accessible by any Snowflake user. Follow the step-by-step setup guide below to begin!
+Test Dune's blockchain data on your preferred platform:
 
-## Finding the Trial Data
+<CardGroup cols={2}>
+  <Card title="Snowflake Trial" icon="snowflake">
+    **Self-service** - Available now
+    
+    - 50+ chains, 30-day free trial
+    - Via Snowflake Marketplace
+    
+    [Get Started →](#snowflake)
+  </Card>
+  <Card title="BigQuery Trial" icon="cloud">
+    **Custom setup** - Contact required
+    
+    - 50+ chains in US/EU regions
+    - Email for trial access
+    
+    [Request Access →](#bigquery)
+  </Card>
+</CardGroup>
 
-To access Dune's trial data, proceed with the following steps: 
+## Snowflake
 
-<Warning>
-  To access the trial data, you will need to have an account on Snowflake. Please create an account on Snowflake before following this guide.
-</Warning>
-
-1. Navigate to the "Data Provider" tab in the sidebar.
-2. Type in "Dune" in the search bar. Dune's Snowflake profile should pop up under "Providers".
-
-The process can be seen below. Note that Dune has tables on 17 chains available for trial. The specific tables available for each chain can be seen on the chain's landing page.
-
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "calc(52.74853801169591% + 41px)",
-    height: 0
-  }}
->
-  <iframe
-    src="https://demo.arcade.software/qNJ56zJxbqp51vwBXgD4?embed&show_copy_link=true"
-    frameBorder={0}
-    loading="lazy"
-    webkitallowfullscreen=""
-    mozallowfullscreen=""
-    allowFullScreen=""
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      colorScheme: "light"
-    }}
-    title= "Snowflake - How to find trial data"
-  />
-</div>
-
-## Accessing the Trial Data
-
-Once you've identified which chain(s) you'd like to add to your trial, you will take the following steps (note that you will need to repeat this process for each chain you want to add to your trial): 
-
-1. Navigate to the "Get" button under "30 Days Free".
-2. Click the "Get" button.
-3. In the window that pops up, make sure that make sure that "Try for Free" is highlighted and select your preferred options.
-4. Click "Get".
-
-<Tip>
-When you click "Get" you will be provided with a few options.
-
-**Database Name:** The prechosen name for the database is here. If you'd like to change the name of the database, you can do so in this box.
-
-**Roles:** If you would like to limit access to this trial, you can choose which roles can access the data. 
-</Tip>
-
-When the data is ready to use, the screen will show a popup. From there if you'd like to immediately start querying the data, you can select "Query Data". If you would like to navigate away from the page, you can always return to query the data by selecting "Open" on the chain's landing page.
-
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "calc(52.74853801169591% + 41px)",
-    height: 0
-  }}
->
-  <iframe
-    src="https://demo.arcade.software/oIRO4Z9EMYU6ekSMDoQs?embed&show_copy_link=true"
-    frameBorder={0}
-    loading="lazy"
-    webkitallowfullscreen=""
-    mozallowfullscreen=""
-    allowFullScreen=""
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      colorScheme: "light"
-    }}
-    title= "Snowflake: How to Download Trial Data"
-  />
-</div>
+1. Go to [Dune on Snowflake Marketplace](https://app.snowflake.com/marketplace/providers/GZSVZMYSCO/Dune)
+2. Click "Get" on any dataset for 30-day trial
+3. Configure database name and roles
+4. Start querying
 
 <Warning>
- Note that due to Snowflake's setup, you may need to click the "Get" button twice. Once to copy the data to the local server, and again to actually "Get" the data. To be safe, it's always good to open the trial data from the landing page to make sure it was successfully added to your Snowflake.
+You may need to click "Get" twice - once to copy data, then again to add to your Snowflake.
 </Warning>
 
-Once you've confirmed that the data has successfully been added to your Snowflake as a database, you are free to begin querying! You can add as many of the trial chains to your Snowflake as you'd like for 30 days.
+See [Snowflake guide](/datashare/datashare-snowflake) for data types and query examples.
+
+## BigQuery
+
+Email datashares-sales@dune.com or use our [Enterprise form](https://dune.com/enterprise)
+
+**Include:**
+- GCP Project ID
+- Preferred region (US Central 1 or EU West 2)  
+- Chains of interest
+
+We'll set up trial access in your BigQuery project with technical support.
+
+See [BigQuery guide](/datashare/datashare-bigquery) for data types and query examples.
+
+## Support
+
+Questions? Email support@dune.com or join [Discord](https://discord.gg/2VCqwzzF7u)

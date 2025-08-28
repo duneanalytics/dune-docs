@@ -38,7 +38,7 @@
   },
   "tabs": [
     {
-      "name": "Web App",
+      "name": "Analytics Studio",
       "url": "web-app"
     },
     {
@@ -50,7 +50,7 @@
       "url": "data-catalog"
     },
     {
-      "name": "SQL API Reference",
+      "name": "Analytics API",
       "url": "api-reference"
     },
     {
@@ -58,7 +58,7 @@
       "url": "datashare"
     },
     {
-      "name": "Blockchain Integrations",
+      "name": "Catalyst",
       "url": "catalyst"
     }
   ],
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "group": "Web App",
+      "group": "Analytics Studio",
       "pages": [
         "web-app/overview",
         {
@@ -1185,9 +1185,7 @@
               "pages": [
                 {
                   "group": "DEX",
-                  "pages": [
-                    "data-catalog/evm/hemi/curated-data/dex/dex-trades"
-                  ]
+                  "pages": ["data-catalog/evm/hemi/curated-data/dex/dex-trades"]
                 }
               ]
             }
@@ -1453,6 +1451,35 @@
                     "data-catalog/evm/mantle/curated-data/nft/nft-trades"
                   ]
                 }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Monad Testnet",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/monad-testnet/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/monad-testnet/raw/blocks",
+                "data-catalog/evm/monad-testnet/raw/creation-traces",
+                "data-catalog/evm/monad-testnet/raw/logs",
+                "data-catalog/evm/monad-testnet/raw/transactions",
+                "data-catalog/evm/monad-testnet/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/monad-testnet/decoded/overview",
+                "data-catalog/evm/monad-testnet/decoded/call-tables",
+                "data-catalog/evm/monad-testnet/decoded/event-logs",
+                "data-catalog/evm/monad-testnet/decoded/contracts",
+                "data-catalog/evm/monad-testnet/decoded/logs-decoded",
+                "data-catalog/evm/monad-testnet/decoded/traces-decoded"
               ]
             }
           ]
@@ -2073,7 +2100,7 @@
             }
           ]
         },
-                {
+        {
           "group": "Taiko",
           "icon": "database",
           "iconType": "solid",
@@ -2552,6 +2579,16 @@
             "data-catalog/layerzero/messages",
             "data-catalog/layerzero/transfers"
           ]
+        },
+        {
+          "group": "Succinct",
+          "icon": "bolt",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/succinct/overview",
+            "data-catalog/succinct/bids",
+            "data-catalog/succinct/requests"
+          ]
         }
       ]
     },
@@ -2652,7 +2689,7 @@
       ]
     },
     {
-      "group": "",
+      "group": "Analytics API",
       "pages": [
         "api-reference/overview/introduction",
         {
@@ -2666,6 +2703,7 @@
         },
         "api-reference/overview/authentication",
         "api-reference/overview/sdks",
+        "api-reference/overview/dunesql-trino-connector",
         {
           "group": "Result Filtering",
           "pages": [
@@ -2793,15 +2831,17 @@
       ]
     },
     {
-      "group": "",
+      "group": "Datashare",
       "pages": [
         "datashare/datashare",
+        "datashare/datashare-snowflake",
+        "datashare/datashare-bigquery",
         "datashare/datashare-trial",
         "datashare/datashare-faqs"
       ]
     },
     {
-      "group": "",
+      "group": "Catalyst",
       "pages": ["catalyst/overview"]
     }
   ],

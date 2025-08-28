@@ -22,7 +22,6 @@ The `prices.latest` table provides the most recently available price for each to
 | timestamp | timestamp | Timestamp when this price was recorded |
 | volume | double | Trading volume in USD (from price source) |
 | source | varchar | Data source ('coinpaprika' or 'dex.trades') |
-| source_timestamp | timestamp | Exact timestamp of the source data point |
 
 ## Implementation Details
 
@@ -90,7 +89,7 @@ FROM dune.blockchains b
 JOIN prices.latest p
   ON p.blockchain = b.name
   AND p.contract_address = b.token_address
-WHERE b.name IN ('ethereum', 'arbitrum', 'optimism', 'polygon','gnosis','solana')
+WHERE b.name IN ('ethereum', 'arbitrum', 'optimism', 'polygon', 'gnosis', 'solana')
 ```
 
 ## Data Quality Notes
@@ -99,4 +98,6 @@ WHERE b.name IN ('ethereum', 'arbitrum', 'optimism', 'polygon','gnosis','solana'
 - For native tokens, use `dune.blockchains` table to get the standardized address for each blockchain
 - The timestamp column shows when the price was last updated, useful for determining freshness
 - For historical analysis, use `prices.day`, `prices.hour`, or `prices.minute` instead
-- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters 
+- Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
+- **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
+- **Data Limitations**: While filtering helps improve data quality, users should always validate prices for critical applications 

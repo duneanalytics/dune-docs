@@ -8,7 +8,7 @@ description: Historical daily price data for tokens across all supported blockch
 
 ## Overview
 
-The `prices.day` table provides daily token price data across all supported blockchains. It contains the last known price for each day, ensuring a continuous time series for price analysis.
+The `prices.day` table provides daily token price data across all supported blockchains. It contains volume-weighted average prices for each day, ensuring a continuous time series for price analysis.
 
 ## Table Schema
 
@@ -18,24 +18,25 @@ The `prices.day` table provides daily token price data across all supported bloc
 | contract_address | varbinary | Token contract address (fixed address for native tokens) |
 | symbol | varchar | Token symbol (e.g., 'ETH', 'USDC') |
 | timestamp | timestamp | Date timestamp (00:00 UTC of each day) |
-| price | double | Token price in USD |
+| price | double | Token price in USD (volume-weighted average) |
 | decimals | int | Token decimals |
 | volume | double | Trading volume in USD (from price source) |
 | source | varchar | Data source ('coinpaprika' or 'dex.trades') |
-| source_timestamp | timestamp | Exact timestamp of the source data point |
 
 ## Implementation Details
 
 The daily prices are built through these steps:
 
 1. Collect sparse price observations from different sources
-2. Group by day, taking the most recent price observation per day
+2. Group by day, calculating volume-weighted average price per day
 3. Fill missing days with the previous day's price (forward filling)
 4. Set a 30-day expiration for forward filling to avoid stale data
 
 ## Usage
 
 This table is ideal for analyzing daily price trends and performing day-over-day comparisons. It provides a good balance between data granularity and query performance for longer-term analyses.
+
+**Note**: The underlying data sources are aligned to 5-minute intervals for consistency and improved data quality.
 
 ## Latency and Update Frequency
 
@@ -100,3 +101,6 @@ ORDER BY timestamp
 - For native tokens, use `dune.blockchains` table to get the standardized address for each blockchain
 - The same token may have different prices on different blockchains due to bridging inefficiencies
 - Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
+- Prices are calculated using volume-weighted averages for more accurate representation
+- **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
+- **Data Limitations**: While filtering helps improve data quality, users should always validate prices for critical applications

@@ -20,7 +20,7 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
     from dune_client.client import DuneClient
     from dune_client.query import QueryBase
 
-    os.chdir("<path_to_your_dotevn_file>")
+    os.chdir("<path_to_your_dotenv_file>")
 
     # load .env file
     dotenv.load_dotenv(".env")
@@ -112,7 +112,7 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
 
         // Create query parameters
         params := url.Values{}
-        params.Set("limit", 10)
+        params.Set("limit", "10")
         params.Set("filters", "block_time > '2024-03-01'")
         params.Set("columns", "tx_from,tx_to,tx_hash,amount_usd")
         params.Set("sort_by", "amount_usd desc, block_time")

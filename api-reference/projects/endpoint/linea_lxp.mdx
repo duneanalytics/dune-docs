@@ -15,7 +15,7 @@ openapi: 'GET /v1/points/linea/lxp'
 
 | Column                  | Description                                             | Type            |
 | ----------------------- | ------------------------------------------------------- | --------------- |
-| wallet                  | User wallet which hold LXP points                        | string       |
+| wallet                  | User wallet which holds LXP points                        | string       |
 | current_lxp             | Current [Linea Voyage LXP](https://docs.linea.build/use-mainnet/linea-xp)  balance         | double          |
 | num_quests              | Number of quests completed by the user to obtain LXP                  | integer          |
 | on_farcaster            | Indicates if the wallet is connected to a Farcaster account            | boolean         |
@@ -24,7 +24,7 @@ openapi: 'GET /v1/points/linea/lxp'
 | connected_wallets       | List of wallet addresses connected to the user          | array(string)|
 | L14D_active_tier        | The active tier of the connected wallet user over the last 14 days. Possible values are "vip", "influencer", "star", "active", "npc", and "not active"     | string     |
 | top_channels            | Top 3 channels where connected wallet user is active           | array(string)  |
-| top_domains             | Top 3 domains frequented casted by the connected wallet user              | array(string)  |
+| top_domains             | Top 3 domains frequently casted by the connected wallet user              | array(string)  |
 | top_engagers            | Top 3 users who engage with this connected wallet user             | array(string)  |
 | num_followers           | Number of followers the connected wallet user has on Farcaster           | integer          |
 | num_onchain_txns        | Number of on-chain transactions performed by the connected wallet user   | integer          |

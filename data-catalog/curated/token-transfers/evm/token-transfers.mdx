@@ -17,7 +17,7 @@ The `tokens.transfers` table contains token transfer events across ERC20 tokens 
   - Gas used transfers
 
 <Info>
- Some erc20 tokens and native currencies have non-standard ways of being transferred and might not be included in the transfers table.
+ Some ERC20 tokens and native currencies have non-standard ways of being transferred and might not be included in the transfers table.
  You can check the logic for the transfers table [here](https://github.com/duneanalytics/spellbook/tree/main/dbt_subprojects/tokens/models/transfers_and_balances). The level of detail of the transfers table will vary by chain.
 </Info>
 
@@ -81,7 +81,7 @@ LIMIT 100
 
 This query calculates the daily transfer volume for a specific ERC20 token. 
 
-Please be aware that token volumes are not necessarily indicative of anything. These metric can be misleading if the token is not well-known or if there are a lot of small transfers. Token transfers can be mints, burns, transfers, flashloans and anything in between, trying to read into the data can lead to misleading results.
+Please be aware that token volumes are not necessarily indicative of anything. These metrics can be misleading if the token is not well-known or if there are a lot of small transfers. Token transfers can be mints, burns, transfers, flash loans and anything in between, trying to read into the data can lead to misleading results.
 
 ```sql
 SELECT

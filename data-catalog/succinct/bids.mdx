@@ -1,0 +1,40 @@
+---
+title: succinct.bids
+sidebarTitle: "Bids"
+description: Description of the succinct.bids table on Dune
+---
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `succinct.bids` table contains all proof generation bids submitted by provers in the Succinct Network. Each bid represents a prover's offer to generate a ZK proof for a specific request at a given price, participating in the auction-based proof contest mechanism.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| id | long | Unique identifier for the bid |
+| tx_hash | binary | Transaction hash of the bid submission |
+| prover | binary | Address of the prover submitting the bid |
+| request_id | binary | Unique identifier for the proof request |
+| amount | bigint | Amount of PROVE tokens bid for the proof generation |
+| created_at | timestamp | Timestamp when the bid was submitted |
+| stake | decimal(38,0) | Amount of PROVE tokens staked by the prover |
+| date | date | Date when the bid was submitted |
+| _updated_at | timestamp | Last update timestamp |
+| _ingested_at | timestamp | Ingestion timestamp |
+
+## Sample Query
+
+```sql
+-- Get the total number of bids and total amount bid per prover
+SELECT 
+    prover,
+    COUNT(*) as bid_count,
+    SUM(amount) as total_bid_amount
+FROM succinct.bids
+WHERE created_at >= NOW() - INTERVAL '7' DAY
+GROUP BY prover
+ORDER BY total_bid_amount DESC
+LIMIT 10;
+``` 
