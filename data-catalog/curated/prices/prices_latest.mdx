@@ -89,7 +89,7 @@ FROM dune.blockchains b
 JOIN prices.latest p
   ON p.blockchain = b.name
   AND p.contract_address = b.token_address
-WHERE b.name IN ('ethereum', 'arbitrum', 'optimism', 'polygon','gnosis','solana')
+WHERE b.name IN ('ethereum', 'arbitrum', 'optimism', 'polygon', 'gnosis', 'solana')
 ```
 
 ## Data Quality Notes
