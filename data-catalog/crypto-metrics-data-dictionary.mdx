@@ -134,26 +134,15 @@ Metrics that analyze user behavior, wallet distribution, and individual wallet a
 **Framework Credit:** skycatcher.xyz
 
 ```sql
-WITH eth_prices AS (
-  -- Get unique daily ETH prices
-  SELECT 
-    DATE(timestamp) AS day,
-    AVG(price) AS eth_price
-  FROM prices.day
-  WHERE 
-    contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2
-    AND blockchain = 'ethereum'
-    AND price > 0
-    AND DATE(timestamp) >= CURRENT_DATE - INTERVAL '365' day
-  GROUP BY DATE(timestamp)
-)
--- Example query structure for MVRV calculation
+-- Example MVRV calculation query structure
 SELECT 
-  day,
-  eth_price,
-  -- Additional MVRV calculation logic would go here
-  'MVRV calculation example' as description
-FROM eth_prices
+  DATE(timestamp) AS day,
+  AVG(price) AS eth_price
+FROM prices.day
+WHERE contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2
+  AND blockchain = 'ethereum'
+  AND price > 0
+GROUP BY DATE(timestamp)
 ORDER BY day DESC
 LIMIT 10
 ```
