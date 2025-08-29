@@ -29,18 +29,6 @@ These are learning resources and starting templates for your analysis.
 Metrics that measure the overall health, activity, and economic performance of blockchain networks.
 
 <CardGroup cols={2}>
-  <Card title="MVRV" icon="chart-line" href="https://dune.com/queries/5640249">
-    Market Value to Realized Value ratio for assessing cryptocurrency valuation
-  </Card>
-  <Card title="RSOV" icon="shield" href="https://dune.com/queries/5636718">
-    Realized Store of Value for L1 tokens through staking and DeFi usage
-  </Card>
-  <Card title="REV" icon="dollar-sign" href="https://dune.com/queries/5698900">
-    Real Economic Value tracking actual fees users pay
-  </Card>
-  <Card title="TVL" icon="lock" href="https://dune.com/queries/5699034">
-    Total Value Locked measuring trust and liquidity committed
-  </Card>
   <Card title="DEX Volume Crosschain" icon="chart-line" href="https://dune.com/queries/5699811">
     DEX trades volume across multiple blockchain networks
   </Card>
@@ -58,6 +46,18 @@ Metrics that measure the overall health, activity, and economic performance of b
   </Card>
   <Card title="Total Economic Activity" icon="chart-bar" href="https://dune.com/queries/5703816">
     Comprehensive measure of all economic activity onchain
+  </Card>
+  <Card title="MVRV" icon="chart-line" href="https://dune.com/queries/5640249">
+    Market Value to Realized Value ratio for assessing cryptocurrency valuation
+  </Card>
+  <Card title="RSOV" icon="shield" href="https://dune.com/queries/5636718">
+    Realized Store of Value for L1 tokens through staking and DeFi usage
+  </Card>
+  <Card title="REV" icon="dollar-sign" href="https://dune.com/queries/5698900">
+    Real Economic Value tracking actual fees users pay
+  </Card>
+  <Card title="TVL" icon="lock" href="https://dune.com/queries/5699034">
+    Total Value Locked measuring trust and liquidity committed
   </Card>
 </CardGroup>
 
@@ -139,44 +139,6 @@ Metrics that analyze user behavior, wallet distribution, and individual wallet a
 
 ## Detailed Metric Definitions
 
-### MVRV \{#mvrv}
-
-**Category:** Blockchain  
-**Definition:** Market Value to Realized Value ratio - assesses if a cryptocurrency is overvalued or undervalued  
-**Formula:** Market Cap / Realized Value  
-**Use Case:** Identify market tops/bottoms; MVRV > 3.5 often indicates overvaluation  
-**Dune Query Example:** [MVRV Analysis for Ethereum](https://dune.com/queries/5640249)  
-**Traditional Finance Analogy:** Similar to Price-to-Book ratio (Note: Not exact equivalent - MVRV uses on-chain cost basis)
-
-### RSOV \{#rsov}
-
-**Category:** Blockchain  
-**Definition:** For (L1s only) Realized Store of Value - quantifies long-term value drivers of L1 tokens through staking and DeFi usage  
-**Formula:** Realized Value Staked + Realized Value in DeFi  
-**Use Case:** Evaluate L1 token adoption as store of value asset; compare growth expectations  
-**Dune Query Example:** [RSOV Analysis for Ethereum](https://dune.com/queries/5636718)  
-**Traditional Finance Analogy:** Similar to measuring bank deposits + investment AUM  
-**Dashboard Example:** [RSOV Dashboard](https://dune.com/sc_research/rsov)  
-**Framework Credit:** skycatcher.xyz
-
-### REV \{#rev}
-
-**Category:** Blockchain  
-**Definition:** Real Economic Value - tracks actual fees users pay to use blockchain, excluding inflationary rewards  
-**Formula:** Transaction Fees + MEV Tips  
-**Use Case:** Measure genuine demand for blockspace; compare economic intensity across chains  
-**Dune Query Example:** [REV Analysis](https://dune.com/queries/5698900)  
-**Traditional Finance Analogy:** Similar to revenue or GDP for blockchains (Note: High REV can indicate inefficiency, not just demand)
-
-### TVL \{#tvl}
-
-**Category:** Blockchain  
-**Definition:** Total Value Locked - total value of assets locked or staked in a blockchain/protocol  
-**Formula:** Σ(Asset Amount × Current Price)  
-**Use Case:** Measure trust and liquidity committed; compare DeFi protocol adoption  
-**Dune Query Example:** [TVL Analysis](https://dune.com/queries/5699034)  
-**Traditional Finance Analogy:** Similar to Assets Under Management (AUM)
-
 ### DEX Volume Crosschain \{#dex-volume-crosschain}
 
 **Category:** Blockchain  
@@ -229,6 +191,44 @@ Metrics that analyze user behavior, wallet distribution, and individual wallet a
 **Use Case:** Valuing blockchains as economies, not just fee machines  
 **Dune Query Example:** [Total Economic Activity](https://dune.com/queries/5703816)  
 **Framework Credit:** Artemis
+
+### MVRV \{#mvrv}
+
+**Category:** Blockchain  
+**Definition:** Market Value to Realized Value ratio - assesses if a cryptocurrency is overvalued or undervalued  
+**Formula:** Market Cap / Realized Value  
+**Use Case:** Identify market tops/bottoms; MVRV > 3.5 often indicates overvaluation  
+**Dune Query Example:** [MVRV Analysis for Ethereum](https://dune.com/queries/5640249)  
+**Traditional Finance Analogy:** Similar to Price-to-Book ratio (Note: Not exact equivalent - MVRV uses on-chain cost basis)
+
+### RSOV \{#rsov}
+
+**Category:** Blockchain  
+**Definition:** For (L1s only) Realized Store of Value - quantifies long-term value drivers of L1 tokens through staking and DeFi usage  
+**Formula:** Realized Value Staked + Realized Value in DeFi  
+**Use Case:** Evaluate L1 token adoption as store of value asset; compare growth expectations  
+**Dune Query Example:** [RSOV Analysis for Ethereum](https://dune.com/queries/5636718)  
+**Traditional Finance Analogy:** Similar to measuring bank deposits + investment AUM  
+**Dashboard Example:** [RSOV Dashboard](https://dune.com/sc_research/rsov)  
+**Framework Credit:** skycatcher.xyz
+
+### REV \{#rev}
+
+**Category:** Blockchain  
+**Definition:** Real Economic Value - tracks actual fees users pay to use blockchain, excluding inflationary rewards  
+**Formula:** Transaction Fees + MEV Tips  
+**Use Case:** Measure genuine demand for blockspace; compare economic intensity across chains  
+**Dune Query Example:** [REV Analysis](https://dune.com/queries/5698900)  
+**Traditional Finance Analogy:** Similar to revenue or GDP for blockchains (Note: High REV can indicate inefficiency, not just demand)
+
+### TVL \{#tvl}
+
+**Category:** Blockchain  
+**Definition:** Total Value Locked - total value of assets locked or staked in a blockchain/protocol  
+**Formula:** Σ(Asset Amount × Current Price)  
+**Use Case:** Measure trust and liquidity committed; compare DeFi protocol adoption  
+**Dune Query Example:** [TVL Analysis](https://dune.com/queries/5699034)  
+**Traditional Finance Analogy:** Similar to Assets Under Management (AUM)
 
 ---
 
