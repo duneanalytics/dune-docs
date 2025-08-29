@@ -146,8 +146,16 @@ WITH eth_prices AS (
     AND price > 0
     AND DATE(timestamp) >= CURRENT_DATE - INTERVAL '365' day
   GROUP BY DATE(timestamp)
-),
--- ... rest of query
+)
+-- Example query structure for MVRV calculation
+SELECT 
+  day,
+  eth_price,
+  -- Additional MVRV calculation logic would go here
+  'MVRV calculation example' as description
+FROM eth_prices
+ORDER BY day DESC
+LIMIT 10
 ```
 
 ### RSOV {#rsov}
