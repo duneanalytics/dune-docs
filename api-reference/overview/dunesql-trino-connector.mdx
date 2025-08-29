@@ -1,21 +1,21 @@
 ---
 title: "DuneSQL Trino Connector"
-description: "A convenient way to use Dune outside of Dune with Trino/Presto/Starburst-compatible tools."
+description: "Access the entirety of Dune's blockchain data through your preferred Trino/Presto/Starburst-compatible tools and SDKs."
 icon: "plug"
 ---
 
-Access Dune's blockchain data from your favorite BI tools and clients using the DuneSQL Trino/Presto connector. It's a more convenient way to use Dune outside of Dune with any tool that supports Trino, Presto, or Starburst connectors.
+Access Dune's blockchain data from your favorite BI tools and clients using the DuneSQL Trino/Presto connector. Connect Dune with popular tools like Hex, Metabase, DBeaver, and any Trino, Presto, or Starburst-compatible application for seamless data analysis.
 
 <Frame caption="Trino/Presto client → Dune connector → Dune Query Engine">
   <img
     src="/images/trino-presto-connector/trino - light.png"
-    alt="Architecture diagram: Trino/Presto client → Dune connector → Dune Query Engine"
+    alt="Dune Trino Presto connector architecture diagram showing integration flow"
     className="block dark:hidden"
     noZoom
   />
   <img
     src="/images/trino-presto-connector/trino - dark.png"
-    alt="Architecture diagram: Trino/Presto client → Dune connector → Dune Query Engine"
+    alt="Dune Trino Presto connector architecture diagram showing integration flow"
     className="hidden dark:block"
     noZoom
   />
@@ -23,11 +23,11 @@ Access Dune's blockchain data from your favorite BI tools and clients using the 
 
 ## Compatible Tools
 
-Use any tool that supports Trino, Presto, or Starburst connectors. Popular choices include:
+Dune's Trino connector supports any tool that works with Trino, Presto, or Starburst connectors. Popular Dune integrations include:
 
 <CardGroup cols={2}>
   <Card title="Hex" icon="cube" iconType="duotone" href="#hex-setup-for-dune">
-    Notebook-native analytics; connect via built-in Trino connector.
+    Connect Dune to Hex's notebook-native analytics via built-in Trino connector.
   </Card>
   <Card
     title="Metabase"
@@ -35,7 +35,15 @@ Use any tool that supports Trino, Presto, or Starburst connectors. Popular choic
     iconType="duotone"
     href="#metabase-setup-for-dune"
   >
-    Self-hosted/managed BI; connect using the Starburst/Trino driver.
+    Integrate Dune with Metabase using the Starburst/Trino driver for BI dashboards.
+  </Card>
+  <Card
+    title="DBeaver"
+    icon="database"
+    iconType="duotone"
+    href="#dbeaver-setup-for-dune"
+  >
+    Connect Dune to DBeaver using the Trino driver for direct SQL access to blockchain data.
   </Card>
   <Card
     title="Any Trino/Presto/Starburst client"
@@ -47,6 +55,10 @@ Use any tool that supports Trino, Presto, or Starburst connectors. Popular choic
     libraries.
   </Card>
 </CardGroup>
+
+<Note>
+  Any of the supported client applications listed in the [Trino ecosystem](https://trino.io/ecosystem/#official-client-applications) are supported. Please visit their documentation to learn about their specific connection instructions, though the configuration should generally follow the same pattern using the connection parameters below.
+</Note>
 
 ## Connection Parameters
 
@@ -184,7 +196,7 @@ Follow these steps to connect Dune as a data source in Metabase.
 <Note>
   Schema discovery queries such as <code>SHOW TABLES</code> or{" "}
   <code>SHOW SCHEMAS</code> may not be available in Metabase with this connector
-  because Dune’s catalog spans millions of tables. Many BI tools are not yet
+  because Dune's catalog spans millions of tables. Many BI tools are not yet
   optimized to enumerate catalogs at this scale. An update with improved schema
   discovery is planned for the future.
 </Note>
@@ -218,6 +230,74 @@ WHERE block_time > now() - interval '12' month
 GROUP BY 1
 ORDER BY 1 DESC
 ```
+
+## DBeaver Setup for Dune
+
+Follow these steps to connect Dune as a data source in DBeaver.
+
+### Add a Database Connection
+
+<Steps>
+  <Step title="Create new connection">
+    In DBeaver, click the <b>New Database Connection</b> button. It usually looks like a plug with a plus on it.
+  </Step>
+  <Step title="Select Trino database">
+    You'll be taken to the "Connect to a database" screen. Find and select <b>Trino</b> from the list of accepted databases, then click on it.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/dbeaver-1.png"
+        alt="DBeaver step 2: Select Trino from database list"
+      />
+    </Frame>
+  </Step>
+  <Step title="Configure connection details">
+    You'll be taken to a screen where you can fill in your connection details. Make sure to click <b>Connect by host</b>, then fill in the connection parameters using the values from the <a href="#connection-parameters">Connection Parameters</a> section.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/dbeaver-2.png"
+        alt="DBeaver step 3: Enter connection details"
+      />
+    </Frame>
+  </Step>
+  <Step title="Finish connection setup">
+    Once you have all the details filled out properly, click <b>Finish</b> to create the connection.
+  </Step>
+</Steps>
+
+### Run a Test Query
+
+After configuring your connection, you can run a query to verify that everything is working.
+
+<Steps>
+  <Step title="Open SQL editor">
+    Right-click on your Dune database connection and navigate to the <b>SQL Editor</b> section. This will open up a new SQL editor.
+  </Step>
+  <Step title="Write your SQL query">
+    In the SQL editor, you can write all of your Dune-compatible SQL. Paste the example query below into the editor.
+  </Step>
+  <Step title="Run the script">
+    Click the <b>Run</b> button to execute your script. If everything went well, you will see the results displayed in the results panel.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/dbeaver-3.png"
+        alt="DBeaver step 5: Run SQL script and view results"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+You can use this query to test your connection. It fetches the daily transaction count from the last year on Base.
+
+```sql
+SELECT
+  date_trunc('day', block_time) AS time,
+  count(*) AS count
+FROM base.transactions
+WHERE block_time > now() - interval '12' month
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
 ## Using Trino SDKs directly in your code
 
 Connect to Dune using Trino SDKs in your preferred language.
@@ -271,9 +351,124 @@ Connect to Dune using Trino SDKs in your preferred language.
     cursor.execute("SELECT count(*) FROM base.transactions WHERE block_time > now() - interval '1' day")
     print(cursor.fetchall())
     ```
+  </Tab>
 
+  <Tab title="Rust">
+    ```rust
+    use prusto::{ClientBuilder, Presto};
+
+    #[derive(Presto, Debug)]
+    struct Foo {
+        a: i64,
+        b: f64,
+        c: String,
+    }
+
+    #[tokio::main]
+    async fn main() {
+        let cli = ClientBuilder::new("user", "localhost")
+            .port(8090)
+            .catalog("catalog")
+            .build()
+            .unwrap();
+
+        let sql = "select 1 as a, cast(1.1 as double) as b, 'bar' as c ";
+
+        let data = cli.get_all::<Foo>(sql.into()).await.unwrap().into_vec();
+
+        for r in data {
+            println!("{:?}", r)
+        }
+    }
+    ```
+  </Tab>
+
+  <Tab title="Go">
+    ```go
+    import "database/sql"
+    import _ "github.com/trinodb/trino-go-client/trino"
+
+    dsn := "http://user@localhost:8080?catalog=default&schema=test"
+    db, err := sql.Open("trino", dsn)
+    ```
+  </Tab>
+
+  <Tab title="Ruby">
+    ```ruby
+    require 'trino-client'
+
+    # create a client object:
+    client = Trino::Client.new(
+      server: "localhost:8880",   # required option
+      ssl: {verify: false},
+      catalog: "native",
+      schema: "default",
+      user: "frsyuki",
+      password: "********",
+      time_zone: "US/Pacific",
+      language: "English",
+      properties: {
+        "hive.force_local_scheduling": true,
+        "raptor.reader_stream_buffer_size": "32MB"
+      },
+      http_proxy: "proxy.example.com:8080",
+      http_debug: true
+    )
+
+    # run a query and get results as an array of arrays:
+    columns, rows = client.run("select * from sys.node")
+    rows.each {|row|
+      p row  # row is an array
+    }
+
+    # run a query and get results as an array of hashes:
+    results = client.run_with_names("select alpha, 1 AS beta from tablename")
+    results.each {|row|
+      p row['alpha']   # access by name
+      p row['beta']
+      p row.values[0]  # access by index
+      p row.values[1]
+    }
+
+    # run a query and fetch results streamingly:
+    client.query("select * from sys.node") do |q|
+      # get columns:
+      q.columns.each {|column|
+        puts "column: #{column.name}.#{column.type}"
+      }
+
+      # get query results. it feeds more rows until
+      # query execution finishes:
+      q.each_row {|row|
+        p row  # row is an array
+      }
+    end
+
+    # killing a query
+    query = client.query("select * from sys.node")
+    query_id = query.query_info.query_id
+    query.each_row {|row| ... }  # when a thread is processing the query,
+    client.kill(query_id)  # another thread / process can kill the query.
+
+    # Use Query#transform_row to parse Trino ROW types into Ruby Hashes.
+    # You can also set a scalar_parser to parse scalars how you'd like them.
+    scalar_parser = -> (data, type) { (type === 'json') ? JSON.parse(data) : data }
+    client.query("select * from sys.node") do |q|
+      q.scalar_parser = scalar_parser
+
+      # get query results. it feeds more rows until
+      # query execution finishes:
+      q.each_row {|row|
+        p q.transform_row(row)
+      }
+    end
+    ```
   </Tab>
 </Tabs>
+
+<Note>
+  Besides the code samples shown above, Trino supports a variety of other official and unofficial SDKs. Please check the [official Trino SDKs page](https://trino.io/ecosystem/client-driver#official-client-drivers) to see which ones are available and to view their GitHub repositories for updated code samples and documentation.
+</Note>
 
 ## Supported SQL Operations
 
