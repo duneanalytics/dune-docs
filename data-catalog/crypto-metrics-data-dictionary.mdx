@@ -4,8 +4,6 @@ description: "A comprehensive guide to key crypto metrics, their definitions, fo
 icon: "chart-line"
 ---
 
-# Crypto Metrics Data Dictionary
-
 This comprehensive guide provides definitions, formulas, use cases, and practical Dune query examples for key crypto metrics across three main categories: **Blockchain**, **Protocol**, and **Wallet** metrics.
 
 ## Blockchain Metrics
@@ -130,22 +128,7 @@ Metrics that analyze user behavior, wallet distribution, and individual wallet a
 **Formula:** Market Cap / Realized Value  
 **Use Case:** Identify market tops/bottoms; MVRV > 3.5 often indicates overvaluation  
 **Dune Query Example:** [MVRV Analysis for Ethereum](https://dune.com/queries/5640249)  
-**Traditional Finance Analogy:** Similar to Price-to-Book ratio (Note: Not exact equivalent - MVRV uses on-chain cost basis)  
-**Framework Credit:** skycatcher.xyz
-
-```sql
--- Example MVRV calculation query structure
-SELECT 
-  DATE(timestamp) AS day,
-  AVG(price) AS eth_price
-FROM prices.day
-WHERE contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2
-  AND blockchain = 'ethereum'
-  AND price > 0
-GROUP BY DATE(timestamp)
-ORDER BY day DESC
-LIMIT 10
-```
+**Traditional Finance Analogy:** Similar to Price-to-Book ratio (Note: Not exact equivalent - MVRV uses on-chain cost basis)
 
 ### RSOV \{#rsov}
 
@@ -433,3 +416,4 @@ This metrics dictionary was compiled with contributions from:
 - [Data Catalog Overview](/data-catalog/overview) - Explore available data sources
 - [Query Engine Documentation](/query-engine/overview) - Learn DuneSQL syntax
 - [Community Queries](https://dune.com/browse) - Discover more metric implementations
+- [Dune Agent](https://dune.com/agent) - AI-powered query assistance
