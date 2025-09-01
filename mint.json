@@ -1985,6 +1985,35 @@
           ]
         },
         {
+          "group": "Somnia",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/somnia/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/somnia/raw/blocks",
+                "data-catalog/evm/somnia/raw/creation-traces",
+                "data-catalog/evm/somnia/raw/logs",
+                "data-catalog/evm/somnia/raw/transactions",
+                "data-catalog/evm/somnia/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/somnia/decoded/overview",
+                "data-catalog/evm/somnia/decoded/call-tables",
+                "data-catalog/evm/somnia/decoded/event-logs",
+                "data-catalog/evm/somnia/decoded/contracts",
+                "data-catalog/evm/somnia/decoded/logs-decoded",
+                "data-catalog/evm/somnia/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Sophon",
           "icon": "database",
           "iconType": "solid",
