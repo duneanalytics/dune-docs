@@ -50,7 +50,7 @@ Metrics that measure the overall health, activity, and economic performance of b
   <Card title="MVRV" icon="chart-line" href="https://dune.com/queries/5640249">
     Market Value to Realized Value ratio for assessing cryptocurrency valuation
   </Card>
-  <Card title="RSOV" icon="shield" href="https://dune.com/queries/5636718">
+  <Card title="RSOV" icon="shield" href="https://dune.com/sc_research/rsov">
     Realized Store of Value for L1 tokens through staking and DeFi usage
   </Card>
   <Card title="REV" icon="dollar-sign" href="https://dune.com/queries/5698900">
@@ -139,285 +139,38 @@ Metrics that analyze user behavior, wallet distribution, and individual wallet a
 
 ## Detailed Metric Definitions
 
-### DEX Volume Crosschain \{#dex-volume-crosschain}
-
-**Category:** Blockchain  
-**Definition:** DEX Trades volume across chains  
-**Formula:** COUNT(transactions), SUM(value × price)  
-**Use Case:** Track network DEX usage and economic throughput  
-**Dune Query Example:** [Cross-chain DEX Volume](https://dune.com/queries/5699811)  
-**Traditional Finance Analogy:** Similar to payment processing volume
-
-### Average Transaction Fee \{#average-transaction-fee}
-
-**Category:** Blockchain  
-**Definition:** Average cost in USD to execute a transaction  
-**Formula:** Total Fees / Transaction Count  
-**Use Case:** Evaluate network accessibility and congestion  
-**Dune Query Example:** [Average Transaction Fees](https://dune.com/queries/5544342)  
-**Traditional Finance Analogy:** Similar to transaction processing fees
-
-### L2 Network Revenue Crosschain \{#l2-network-revenue}
-
-**Category:** Blockchain  
-**Definition:** Total fees collected by sequencers minus L1 data costs  
-**Formula:** Σ(L2 Gas Fees + Priority Fees) - L1 Data Costs  
-**Use Case:** Assess L2 profitability, sustainability, and sequencer incentives  
-**Dune Query Example:** [L2 Network Revenue](https://dune.com/queries/5699834)
-
-### Exchange Netflows \{#exchange-netflows}
-
-**Category:** Blockchain  
-**Definition:** Net token flow in/out of exchanges (inflow - outflow)  
-**Formula:** Deposits - Withdrawals  
-**Use Case:** Gauge selling pressure; negative = accumulation, positive = distribution  
-**Dune Query Example:** [Exchange Netflows](https://dune.com/queries/5699860)  
-**Traditional Finance Analogy:** Similar to fund flows data
-
-### Staking Ratio \{#staking-ratio}
-
-**Category:** Blockchain  
-**Definition:** Percentage of total supply staked (PoS chains)  
-**Formula:** Staked Supply / Total Supply × 100  
-**Use Case:** Measure network security and token holder confidence  
-**Dune Query Example:** [Staking Ratio](https://dune.com/queries/5700362/9255801)  
-**Traditional Finance Analogy:** Similar to bond participation rate
-
-### Total Economic Activity \{#total-economic-activity}
-
-**Category:** Blockchain  
-**Definition:** Comprehensive measure of all economic activity onchain  
-**Formula:** Chain Fees + MEV + Settlement Volume (DEX + NFT + Filtered Transfers) + App Fees  
-**Use Case:** Valuing blockchains as economies, not just fee machines  
-**Dune Query Example:** [Total Economic Activity](https://dune.com/queries/5703816)  
-**Framework Credit:** Artemis
-
-### MVRV \{#mvrv}
-
-**Category:** Blockchain  
-**Definition:** Market Value to Realized Value ratio - assesses if a cryptocurrency is overvalued or undervalued  
-**Formula:** Market Cap / Realized Value  
-**Use Case:** Identify market tops/bottoms; MVRV > 3.5 often indicates overvaluation  
-**Dune Query Example:** [MVRV Analysis for Ethereum](https://dune.com/queries/5640249)  
-**Traditional Finance Analogy:** Similar to Price-to-Book ratio (Note: Not exact equivalent - MVRV uses on-chain cost basis)
-
-### RSOV \{#rsov}
-
-**Category:** Blockchain  
-**Definition:** For (L1s only) Realized Store of Value - quantifies long-term value drivers of L1 tokens through staking and DeFi usage  
-**Formula:** Realized Value Staked + Realized Value in DeFi  
-**Use Case:** Evaluate L1 token adoption as store of value asset; compare growth expectations  
-**Dune Query Example:** [RSOV Analysis for Ethereum](https://dune.com/queries/5636718)  
-**Traditional Finance Analogy:** Similar to measuring bank deposits + investment AUM  
-**Dashboard Example:** [RSOV Dashboard](https://dune.com/sc_research/rsov)  
-**Framework Credit:** skycatcher.xyz
-
-### REV \{#rev}
-
-**Category:** Blockchain  
-**Definition:** Real Economic Value - tracks actual fees users pay to use blockchain, excluding inflationary rewards  
-**Formula:** Transaction Fees + MEV Tips  
-**Use Case:** Measure genuine demand for blockspace; compare economic intensity across chains  
-**Dune Query Example:** [REV Analysis](https://dune.com/queries/5698900)  
-**Traditional Finance Analogy:** Similar to revenue or GDP for blockchains (Note: High REV can indicate inefficiency, not just demand)
-
-### TVL \{#tvl}
-
-**Category:** Blockchain  
-**Definition:** Total Value Locked - total value of assets locked or staked in a blockchain/protocol  
-**Formula:** Σ(Asset Amount × Current Price)  
-**Use Case:** Measure trust and liquidity committed; compare DeFi protocol adoption  
-**Dune Query Example:** [TVL Analysis](https://dune.com/queries/5699034)  
-**Traditional Finance Analogy:** Similar to Assets Under Management (AUM)
-
----
-
-## Protocol Metrics
-
-### Protocol Revenue \{#protocol-revenue}
-
-**Category:** Protocol  
-**Definition:** Total fees generated by the protocol  
-**Formula:** Σ(Protocol Fees)  
-**Use Case:** Evaluate protocol profitability and sustainability  
-**Dune Query Example:** [Protocol Revenue](https://dune.com/queries/5576224)  
-**Traditional Finance Analogy:** Direct equivalent to company revenue
-
-### DEX Trading Volume \{#dex-trading-volume}
-
-**Category:** Protocol  
-**Definition:** Total value of transactions processed by protocol  
-**Formula:** Σ(Transaction Values)  
-**Use Case:** Measure protocol's market share and growth  
-**Dune Query Example:** [DEX Trading Volume](https://dune.com/queries/5576286)  
-**Traditional Finance Analogy:** Similar to Gross Merchandise Value (GMV)
-
-### Fee Generation \{#fee-generation}
-
-**Category:** Protocol  
-**Definition:** Fees collected from users per transaction or period  
-**Formula:** Total Fees / Time Period  
-**Use Case:** Analyze protocol's fee efficiency and user costs  
-**Dune Query Example:** [Fee Generation](https://dune.com/queries/5576292)  
-**Traditional Finance Analogy:** Similar to commission rates
-
-### Protocol Treasury Value \{#protocol-treasury-value}
-
-**Category:** Protocol  
-**Definition:** Total value of assets held in protocol treasury  
-**Formula:** Σ(Treasury Assets × Price)  
-**Use Case:** Assess protocol's financial reserves and runway  
-**Dune Query Example:** [Protocol Treasury Value](https://dune.com/queries/5576299)  
-**Traditional Finance Analogy:** Similar to cash reserves/balance sheet
-
-### Daily/Monthly Active Addresses \{#daily-monthly-active-addresses}
-
-**Category:** Protocol  
-**Definition:** Unique addresses interacting daily or monthly  
-**Formula:** COUNT(DISTINCT address) per period  
-**Use Case:** Track user retention and growth patterns  
-**Dune Query Example:** [Daily/Monthly Active Users](https://dune.com/queries/5576322)  
-**Traditional Finance Analogy:** Standard DAU/MAU metrics
-
-### Protocol Efficiency Ratio \{#protocol-efficiency-ratio}
-
-**Category:** Protocol  
-**Definition:** Fees generated per dollar of TVL  
-**Formula:** Total Fees / TVL  
-**Use Case:** Compare capital efficiency across protocols  
-**Dune Query Example:** [Protocol Efficiency Ratio](https://dune.com/queries/5576378)  
-**Traditional Finance Analogy:** Similar to Return on Assets (ROA)
-
-### New vs Returning Users \{#new-vs-returning-users}
-
-**Category:** Protocol  
-**Definition:** Breakdown of first-time vs repeat users  
-**Formula:** New Users / Total Users  
-**Use Case:** Measure user acquisition vs retention  
-**Dune Query Example:** [New vs Returning Users](https://dune.com/queries/5576381?Blockchain_t6c1ea=ethereum&Protocol_t6c1ea=uniswap)  
-**Traditional Finance Analogy:** Similar to customer acquisition metrics
-
-### Gas Fees by Protocol Users \{#gas-fees-by-protocol-users}
-
-**Category:** Protocol  
-**Definition:** Total gas consumed and fees paid by protocol users  
-**Formula:** Σ(Gas Used × Gas Price)  
-**Use Case:** Evaluate protocol's cost to users and efficiency  
-**Dune Query Example:** [Gas Usage/Fees by Protocol Users](https://dune.com/queries/5576409)  
-**Traditional Finance Analogy:** Similar to transaction costs
-
-### Outstanding Supply \{#outstanding-supply}
-
-**Category:** Protocol  
-**Definition:** Total tokens minted minus protocol-controlled holdings  
-**Formula:** Total Supply - (Treasury + DAO + Foundation + Vesting Contracts)  
-**Use Case:** Find smarter circulating supply  
-**Dune Query Example:** [Outstanding Supply](https://dune.com/queries/5700697?Blockchain_t6c1ea=ethereum&Token_Contract_t6c1ea=0x1f9840a85d5af5bf1d1762f925bdaddc4201f984&Token_Decimals_t6c1ea=18&Protocol_Address_1_t6c1ea=0x1a9c8182c09f50c8318d769245bea52c32be35bc&Protocol_Address_2_t6c1ea=0x4b4e140d1f131fdad6fb59c13af796fd194e4135&Protocol_Address_3_t6c1ea=0xe3953d9d317b834592ab58ab2c7a6ad22b54075d&Protocol_Address_4_t6c1ea=0x3d30b1ab88d487b0f3061f40de76845bec3f1e94+&Protocol_Address_5_t6c1ea=0x0000000000000000000000000000000000000000)  
-**Traditional Finance Analogy:** Outstanding Shares in equities  
-**Framework Credit:** Artemis
-
-### GMV \{#gmv}
-
-**Category:** Protocol  
-**Definition:** Gross Merchandise Value - total value of all transactions  
-**Formula:** GMV=∑(Price of Each Item Sold×Quantity Sold)  
-**Use Case:** Suggests that a protocol or marketplace is actively used  
-**Dune Query Example:** [GMV Analysis](https://dune.com/queries/5700620/9256236)  
-**Traditional Finance Analogy:** Similar to Gross Merchandise Value
-
----
-
-## Wallet Metrics
-
-### Wallet Balance Distribution \{#wallet-balance-distribution}
-
-**Category:** Wallet  
-**Definition:** Distribution of holdings across wallet tiers  
-**Formula:** Grouped by balance ranges  
-**Use Case:** Analyze wealth concentration and user segments  
-**Dune Query Example:** [Wallet Balance Distribution](https://dune.com/queries/5576417)  
-**Traditional Finance Analogy:** Similar to wealth distribution analysis
-
-### Transaction Frequency \{#transaction-frequency}
-
-**Category:** Wallet  
-**Definition:** Average number of transactions per wallet per period  
-**Formula:** Total Transactions / Active Wallets  
-**Use Case:** Measure user engagement and activity levels  
-**Dune Query Example:** [Transaction Frequency Distribution](https://dune.com/queries/5576435)  
-**Traditional Finance Analogy:** Similar to transaction frequency in banking
-
-### Active Wallet Count \{#active-wallet-count}
-
-**Category:** Wallet  
-**Definition:** Number of wallets with at least one transaction  
-**Formula:** COUNT(DISTINCT active_wallets)  
-**Use Case:** Track network growth and adoption  
-**Dune Query Example:** [Active Wallet Count](https://dune.com/queries/5576448)  
-**Traditional Finance Analogy:** Similar to active account metrics
-
-### Wallet Age/Cohort Analysis \{#wallet-age-cohort-analysis}
-
-**Category:** Wallet  
-**Definition:** Analysis of wallets grouped by creation date  
-**Formula:** Grouped by first transaction date  
-**Use Case:** Understand user retention and lifecycle  
-**Dune Query Example:** [Wallet Age/Cohort Analysis](https://dune.com/queries/5576464)  
-**Traditional Finance Analogy:** Similar to customer cohort analysis
-
-### Cross-chain Activity \{#cross-chain-activity}
-
-**Category:** Wallet  
-**Definition:** Wallets active on multiple blockchains  
-**Formula:** Wallets on Chain A ∩ Chain B  
-**Use Case:** Measure multi-chain adoption and user sophistication  
-**Dune Query Example:** [Cross-chain Activity](https://dune.com/queries/5576492)  
-**Traditional Finance Analogy:** Similar to multi-product usage
-
-### DeFi Participation Rate \{#defi-participation-rate}
-
-**Category:** Wallet  
-**Definition:** Percentage of wallets interacting with DeFi protocols  
-**Formula:** DeFi Users / Total Active Wallets × 100  
-**Use Case:** Gauge DeFi adoption and market penetration  
-**Dune Query Example:** [DeFi Participation Rate](https://dune.com/queries/5576505)  
-**Traditional Finance Analogy:** Similar to investment product adoption rate
-
-### Average Transaction Value \{#average-transaction-value}
-
-**Category:** Wallet  
-**Definition:** Mean transaction size per wallet  
-**Formula:** Total Value / Transaction Count  
-**Use Case:** Profile user behavior and wealth levels  
-**Dune Query Example:** [Average Transaction Value](https://dune.com/queries/5576567)  
-**Traditional Finance Analogy:** Direct equivalent to average transaction size
-
-### Wallet Growth Rate \{#wallet-growth-rate}
-
-**Category:** Wallet  
-**Definition:** Rate of new wallet creation over time  
-**Formula:** (New Wallets(t) - New Wallets(t-1)) / New Wallets(t-1)  
-**Use Case:** Track adoption acceleration or deceleration  
-**Dune Query Example:** [Wallet Growth Rate](https://dune.com/queries/5576596)  
-**Traditional Finance Analogy:** Similar to new account growth rate
-
-### Dormant vs Active Ratio \{#dormant-vs-active-ratio}
-
-**Category:** Wallet  
-**Definition:** Ratio of inactive to active wallets  
-**Formula:** Dormant Wallets / Total Wallets  
-**Use Case:** Assess network health and true active user base  
-**Dune Query Example:** [Dormant vs Active Ratio](https://dune.com/queries/5576600)  
-**Traditional Finance Analogy:** Similar to inactive account ratio
-
-### First-time vs Power Users \{#first-time-vs-power-users}
-
-**Category:** Wallet  
-**Definition:** Segmentation by transaction count tiers  
-**Formula:** Categorized by lifetime transactions  
-**Use Case:** Identify user segments for targeted analysis  
-**Dune Query Example:** [First-time vs Power Users](https://dune.com/queries/5576625)  
-**Traditional Finance Analogy:** Similar to customer segmentation
+| Metric Name | Definition | Formula | Use Case | Traditional Finance Analogy | Category | Dune Query Example |
+|-------------|------------|---------|----------|------------------------------|-----------|-------------------|
+| **DEX Volume Crosschain** | DEX Trades volume across chains | COUNT(transactions), SUM(value × price) | Track network DEX usage and economic throughput | Similar to payment processing volume | Blockchain | [Cross-chain DEX Volume](https://dune.com/queries/5699811) |
+| **Average Transaction Fee** | Average cost in USD to execute a transaction | Total Fees / Transaction Count | Evaluate network accessibility and congestion | Similar to transaction processing fees | Blockchain | [Average Transaction Fees](https://dune.com/queries/5544342) |
+| **L2 Network Revenue Crosschain** | Total fees collected by sequencers minus L1 data costs | Σ(L2 Gas Fees + Priority Fees) - L1 Data Costs | Assess L2 profitability, sustainability, and sequencer incentives | Similar to network infrastructure revenue | Blockchain | [L2 Network Revenue](https://dune.com/queries/5699834) |
+| **Exchange Netflows** | Net token flow in/out of exchanges (inflow - outflow) | Deposits - Withdrawals | Gauge selling pressure; negative = accumulation, positive = distribution | Similar to fund flows data | Blockchain | [Exchange Netflows](https://dune.com/queries/5699860) |
+| **Staking Ratio** | Percentage of total supply staked (PoS chains) | Staked Supply / Total Supply × 100 | Measure network security and token holder confidence | Similar to bond participation rate | Blockchain | [Staking Ratio](https://dune.com/queries/5700362/9255801) |
+| **Total Economic Activity** | Comprehensive measure of all economic activity onchain | Chain Fees + MEV + Settlement Volume (DEX + NFT + Filtered Transfers) + App Fees | Valuing blockchains as economies, not just fee machines | Similar to GDP measurement | Blockchain | [Total Economic Activity](https://dune.com/queries/5703816) |
+| **MVRV** | Market Value to Realized Value ratio - assesses if a cryptocurrency is overvalued or undervalued | Market Cap / Realized Value | Identify market tops/bottoms; MVRV > 3.5 often indicates overvaluation | Similar to Price-to-Book ratio | Blockchain | [MVRV Analysis for Ethereum](https://dune.com/queries/5640249) |
+| **RSOV** | For (L1s only) Realized Store of Value - quantifies long-term value drivers of L1 tokens through staking and DeFi usage | Realized Value Staked + Realized Value in DeFi | Evaluate L1 token adoption as store of value asset; compare growth expectations | Similar to measuring bank deposits + investment AUM | Blockchain | [RSOV Dashboard](https://dune.com/sc_research/rsov) |
+| **REV** | Real Economic Value - tracks actual fees users pay to use blockchain, excluding inflationary rewards | Transaction Fees + MEV Tips | Measure genuine demand for blockspace; compare economic intensity across chains | Similar to revenue or GDP for blockchains | Blockchain | [REV Analysis](https://dune.com/queries/5698900) |
+| **TVL** | Total Value Locked - total value of assets locked or staked in a blockchain/protocol | Σ(Asset Amount × Current Price) | Measure trust and liquidity committed; compare DeFi protocol adoption | Similar to Assets Under Management (AUM) | Blockchain | [TVL Analysis](https://dune.com/queries/5699034) |
+| **Protocol Revenue** | Total fees generated by the protocol | Σ(Protocol Fees) | Evaluate protocol profitability and sustainability | Direct equivalent to company revenue | Protocol | [Protocol Revenue](https://dune.com/queries/5576224) |
+| **DEX Trading Volume** | Total value of transactions processed by protocol | Σ(Transaction Values) | Measure protocol's market share and growth | Similar to Gross Merchandise Value (GMV) | Protocol | [DEX Trading Volume](https://dune.com/queries/5576286) |
+| **Fee Generation** | Fees collected from users per transaction or period | Total Fees / Time Period | Analyze protocol's fee efficiency and user costs | Similar to commission rates | Protocol | [Fee Generation](https://dune.com/queries/5576292) |
+| **Protocol Treasury Value** | Total value of assets held in protocol treasury | Σ(Treasury Assets × Price) | Assess protocol's financial reserves and runway | Similar to cash reserves/balance sheet | Protocol | [Protocol Treasury Value](https://dune.com/queries/5576299) |
+| **Daily/Monthly Active Addresses** | Unique addresses interacting daily or monthly | COUNT(DISTINCT address) per period | Track user retention and growth patterns | Standard DAU/MAU metrics | Protocol | [Daily/Monthly Active Users](https://dune.com/queries/5576322) |
+| **Protocol Efficiency Ratio** | Fees generated per dollar of TVL | Total Fees / TVL | Compare capital efficiency across protocols | Similar to Return on Assets (ROA) | Protocol | [Protocol Efficiency Ratio](https://dune.com/queries/5576378) |
+| **New vs Returning Users** | Breakdown of first-time vs repeat users | New Users / Total Users | Measure user acquisition vs retention | Similar to customer acquisition metrics | Protocol | [New vs Returning Users](https://dune.com/queries/5576381?Blockchain_t6c1ea=ethereum&Protocol_t6c1ea=uniswap) |
+| **Gas Fees by Protocol Users** | Total gas consumed and fees paid by protocol users | Σ(Gas Used × Gas Price) | Evaluate protocol's cost to users and efficiency | Similar to transaction costs | Protocol | [Gas Usage/Fees by Protocol Users](https://dune.com/queries/5576409) |
+| **Outstanding Supply** | Total tokens minted minus protocol-controlled holdings | Total Supply - (Treasury + DAO + Foundation + Vesting Contracts) | Find smarter circulating supply | Outstanding Shares in equities | Protocol | [Outstanding Supply](https://dune.com/queries/5700697?Blockchain_t6c1ea=ethereum&Token_Contract_t6c1ea=0x1f9840a85d5af5bf1d1762f925bdaddc4201f984&Token_Decimals_t6c1ea=18&Protocol_Address_1_t6c1ea=0x1a9c8182c09f50c8318d769245bea52c32be35bc&Protocol_Address_2_t6c1ea=0x4b4e140d1f131fdad6fb59c13af796fd194e4135&Protocol_Address_3_t6c1ea=0xe3953d9d317b834592ab58ab2c7a6ad22b54075d&Protocol_Address_4_t6c1ea=0x3d30b1ab88d487b0f3061f40de76845bec3f1e94+&Protocol_Address_5_t6c1ea=0x0000000000000000000000000000000000000000) |
+| **GMV** | Gross Merchandise Value - total value of all transactions | GMV=∑(Price of Each Item Sold×Quantity Sold) | Suggests that a protocol or marketplace is actively used | Similar to Gross Merchandise Value | Protocol | [GMV Analysis](https://dune.com/queries/5700620/9256236) |
+| **Wallet Balance Distribution** | Distribution of holdings across wallet tiers | Grouped by balance ranges | Analyze wealth concentration and user segments | Similar to wealth distribution analysis | Wallet | [Wallet Balance Distribution](https://dune.com/queries/5576417) |
+| **Transaction Frequency** | Average number of transactions per wallet per period | Total Transactions / Active Wallets | Measure user engagement and activity levels | Similar to transaction frequency in banking | Wallet | [Transaction Frequency Distribution](https://dune.com/queries/5576435) |
+| **Active Wallet Count** | Number of wallets with at least one transaction | COUNT(DISTINCT active_wallets) | Track network growth and adoption | Similar to active account metrics | Wallet | [Active Wallet Count](https://dune.com/queries/5576448) |
+| **Wallet Age/Cohort Analysis** | Analysis of wallets grouped by creation date | Grouped by first transaction date | Understand user retention and lifecycle | Similar to customer cohort analysis | Wallet | [Wallet Age/Cohort Analysis](https://dune.com/queries/5576464) |
+| **Cross-chain Activity** | Wallets active on multiple blockchains | Wallets on Chain A ∩ Chain B | Measure multi-chain adoption and user sophistication | Similar to multi-product usage | Wallet | [Cross-chain Activity](https://dune.com/queries/5576492) |
+| **DeFi Participation Rate** | Percentage of wallets interacting with DeFi protocols | DeFi Users / Total Active Wallets × 100 | Gauge DeFi adoption and market penetration | Similar to investment product adoption rate | Wallet | [DeFi Participation Rate](https://dune.com/queries/5576505) |
+| **Average Transaction Value** | Mean transaction size per wallet | Total Value / Transaction Count | Profile user behavior and wealth levels | Direct equivalent to average transaction size | Wallet | [Average Transaction Value](https://dune.com/queries/5576567) |
+| **Wallet Growth Rate** | Rate of new wallet creation over time | (New Wallets(t) - New Wallets(t-1)) / New Wallets(t-1) | Track adoption acceleration or deceleration | Similar to new account growth rate | Wallet | [Wallet Growth Rate](https://dune.com/queries/5576596) |
+| **Dormant vs Active Ratio** | Ratio of inactive to active wallets | Dormant Wallets / Total Wallets | Assess network health and true active user base | Similar to inactive account ratio | Wallet | [Dormant vs Active Ratio](https://dune.com/queries/5576600) |
+| **First-time vs Power Users** | Segmentation by transaction count tiers | Categorized by lifetime transactions | Identify user segments for targeted analysis | Similar to customer segmentation | Wallet | [First-time vs Power Users](https://dune.com/queries/5576625) |
 
 ---
 
@@ -427,6 +180,8 @@ This metrics dictionary was compiled with contributions from:
 
 - **skycatcher.xyz** - MVRV, RSOV, and other blockchain metrics
 - **Artemis** - Total Economic Activity and Outstanding Supply metrics
+- **Blockworks** - REV metric
+- **DefiLlama** - TVL metric
 
 ## Additional Resources
 
