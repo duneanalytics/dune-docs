@@ -1107,6 +1107,35 @@
           ]
         },
         {
+          "group": "Flow EVM",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/flow-evm/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/flow-evm/raw/blocks",
+                "data-catalog/evm/flow-evm/raw/creation-traces",
+                "data-catalog/evm/flow-evm/raw/logs",
+                "data-catalog/evm/flow-evm/raw/transactions",
+                "data-catalog/evm/flow-evm/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/flow-evm/decoded/overview",
+                "data-catalog/evm/flow-evm/decoded/call-tables",
+                "data-catalog/evm/flow-evm/decoded/event-logs",
+                "data-catalog/evm/flow-evm/decoded/contracts",
+                "data-catalog/evm/flow-evm/decoded/logs-decoded",
+                "data-catalog/evm/flow-evm/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Gnosis",
           "icon": "database",
           "iconType": "solid",
