@@ -1,0 +1,66 @@
+---
+title: HyperEVM Overview
+sidebarTitle: "Overview"
+icon: "star"
+description: HyperEVM data on Dune
+---
+
+## What is HyperEVM?
+
+HyperEVM is the EVM-compatible layer of the Hyperliquid blockchain, which features a dual-block architecture with HyperCore and HyperEVM. The HyperEVM is not a separate chain, but rather secured by the same HyperBFT consensus as HyperCore, allowing it to interact directly with HyperCore's spot and perpetual order books.
+
+## Key Features
+
+- **Dual-Block Architecture**: Combines HyperCore (for trading) and HyperEVM (for smart contracts)
+- **EVM-Compatible**: Full compatibility with Ethereum smart contracts and tooling
+- **Direct Order Book Access**: Smart contracts can read prices and execute trades directly on HyperCore
+- **Permissionless Asset Deployment**: Projects can deploy ERC20 contracts and corresponding spot assets
+- **Unified State**: No bridging risk between HyperCore and HyperEVM
+- **Mature Liquidity**: Access to established, liquid onchain order books
+- **Captive Audience**: Built-in user base excited about onchain finance
+
+## Technical Capabilities
+
+- **Read Precompiles**: Smart contracts can read prices directly from HyperCore order books
+- **Write System Contracts**: Contracts can send orders directly to HyperCore order books
+- **Protocolized Liquidations**: Lending protocols can implement automated liquidations
+- **Native Token Integration**: Seamless connection between HyperEVM contracts and HyperCore trading
+
+## Use Cases
+
+- **DeFi Protocols**: Lending, borrowing, and automated trading strategies
+- **Token Projects**: Permissionless listing and trading of new assets
+- **Trading Bots**: Direct access to order books for algorithmic trading
+- **Cross-Protocol Integration**: Seamless interaction between different DeFi applications
+
+## Current Status
+
+HyperEVM is currently in alpha stage with a gradual roll-out approach to ensure:
+- Equal access for all developers (no insiders)
+- Safe system upgrades for high-volume trading
+- Live iteration based on user feedback
+
+## Data on Dune
+
+We currently don't support traces yet for hyperEVM so compared to usual EVM support we will not have:
+- Traces
+- Traces_decoded
+- "Enable bytecode matching" decoding feature
+- "Decode other contracts created by the same factory" decoding feature 
+
+<CardGroup cols={2}>
+  <Card title="Raw Data" icon="database" href="/data-catalog/evm/hyperevm/raw/blocks">
+    Access to raw blockchain data including blocks, transactions, and logs
+  </Card>
+  <Card title="Decoded Data" icon="code" href="/data-catalog/evm/hyperevm/decoded/overview">
+    Human-readable contract interactions and events
+  </Card>
+</CardGroup>
+
+## Resources
+
+<CardGroup cols={1}>
+  <Card title="Hyperliquid Documentation" icon="link" href="https://hyperliquid.gitbook.io/hyperliquid-docs/hyperevm">
+    Official documentation for developers building on HyperEVM
+  </Card>
+</CardGroup>
