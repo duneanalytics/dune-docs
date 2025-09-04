@@ -45,7 +45,7 @@ The price system works in multiple layers:
    - **Quality filtering applied to DEX trades to reduce anomalous data impact**
    - Sparse 5-minute data collected from both sources (aligned intervals for consistency)
    - Aggregated to hourly and daily sparse records using volume-weighted averages
-   - Filled into continuous time series for steady time intervals
+   - **Minute-level data uses interpolated prices**: The `prices.minute` table now uses linear interpolation between hourly anchor points from `prices.hour` to provide smooth, continuous minute-level data while reducing noise and outliers
 
 3. **Token handling**:
    - Native tokens are assigned fixed addresses instead of NULL or 0xeeee...

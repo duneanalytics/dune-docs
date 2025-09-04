@@ -25,17 +25,21 @@ The `prices.minute` table provides the most granular price data for tokens acros
 
 ## Implementation Details
 
-The minute prices are built through these steps:
+The minute prices are built using a sparse hour interpolation approach:
 
-1. Collect sparse price observations from different sources
-2. Fill missing minutes with the previous minute's price (forward filling)
-3. Set an expiration time of 48h for forward filling to avoid stale data
+1. **Source from hourly data**: Uses `prices.hour` as the source instead of raw minute-level data
+2. **Linear interpolation**: Implements linear interpolation between hourly anchor points to create smooth minute-level data
+3. **Noise reduction**: Reduces noise and outliers by using stable hourly data points as anchors
+4. **Forward-filling**: The system forward-fills with the last available price for a maximum of 48 hours (2880 minutes) to avoid stale data
+5. **Continuous time series**: Provides minute-by-minute data points for every minute between hourly anchors
+
+This approach ensures more reliable and consistent minute-level pricing while maintaining the granularity needed for high-frequency analysis.
 
 ## Usage
 
 This table is ideal for high-frequency analysis and examining short-term price movements. It's particularly useful for studying price impacts of specific events or transactions with high temporal precision.
 
-**Note**: While the table provides minute-level granularity, the underlying data sources are aligned to 5-minute intervals for consistency and improved data quality.
+**Note**: The minute-level data is interpolated from hourly anchor points, providing smooth and consistent pricing while reducing the impact of noise and outliers that can occur in raw minute-level data.
 
 ## Latency and Update Frequency
 
@@ -80,6 +84,7 @@ ORDER BY 1
 - Consider using `prices.hour` or `prices.day` for longer time ranges if minute-level precision is not required
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
 - Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
-- Prices are calculated using volume-weighted averages for more accurate representation
-- **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
-- **Data Limitations**: While filtering helps improve data quality, users should always validate prices for critical applications
+- **Interpolated Pricing**: Minute-level data is interpolated from hourly anchor points, providing smoother and more consistent pricing
+- **Reduced Noise**: The interpolation approach reduces the impact of noise and outliers that can occur in raw minute-level data
+- **48-Hour Forward-Fill**: The system forward-fills with the last available price for a maximum of 48 hours (2880 minutes) to avoid stale data
+- **Data Limitations**: While the interpolation approach improves data quality, users should always validate prices for critical applications
