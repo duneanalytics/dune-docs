@@ -21,6 +21,10 @@ Access Dune's blockchain data from your favorite BI tools and clients using the 
   />
 </Frame>
 
+<Warning>
+The DuneSQL Trino Connector is currently only available to Plus, Premium and Enterprise customers.
+</Warning>
+
 ## Compatible Tools
 
 Dune's Trino connector supports any tool that works with Trino, Presto, or Starburst connectors. Popular Dune integrations include:
@@ -480,7 +484,7 @@ Rate limits for the connector mirror those of the Dune Analytics API. Please ref
 
 ## Billing & Cost
 
-All queries run via the connector are executed on the [Medium Query Engine](/query-engine/query-executions#query-engine-size) and cost 10 Dune Credits per execution. In addition, fetching results consumes credits proportional to the number of datapoints returned. For a full breakdown, please see our documentation on [Billing](/api-reference/overview/billing).
+All queries run via the connector are executed on the [Large Query Engine](/query-engine/query-executions#query-engine-size) and cost 20 Dune Credits per execution. In addition, fetching results consumes credits proportional to the number of datapoints returned. For a full breakdown, please see our documentation on [Billing](/api-reference/overview/billing).
 
 ## Limitations
 
