@@ -4899,6 +4899,9 @@
           "cron_expression": {
             "type": "string"
           },
+          "expires_at": {
+            "type": "string"
+          },
           "is_private": {
             "type": "boolean"
           },
