@@ -13,7 +13,7 @@ The resulting table will be empty, and can be inserted into with the [/insert en
 </Note>
 
 ## Schema
-You need to define the schema of your data by providing `schema` array of columns in the request. Each column has three parameters: 
+You need to define the schema of your data by providing a `schema` array of columns in the request. Each column has three parameters: 
 
 **name**: the name of the field
 
@@ -61,7 +61,7 @@ table = dune.create_table(
 ```typescript TS SDK
 import { DuneClient, ColumnType } from "@duneanalytics/client-sdk";
 
-client = new DuneClient(process.env.DUNE_API_KEY!);
+const client = new DuneClient(process.env.DUNE_API_KEY!);
 const result = await client.table.create({
   namespace: "my_user",
   table_name: "interest_rates",
