@@ -1,0 +1,63 @@
+---
+title: ton.nft_events
+sidebarTitle: "NFT Events"
+description: Description of the ton.nft_events table on Dune
+---
+
+## Table Description
+Records of all NFT-related events on the TON blockchain, including mints, transfers, and sales. This table is partitioned by block_date.
+
+## Column Descriptions
+| **Column**                 | **Type**      | **Description**                                                   |
+|----------------------------|---------------|-------------------------------------------------------------------|
+| **block_time**             | timestamp     | Timestamp of when the block containing the event was created      |
+| **block_date**             | date          | Date of when the block containing the event was created           |
+| **type**                   | string        | Type of NFT event (mint, transfer, sale, etc.)                    |
+| **nft_item_address**       | string        | Address of the NFT item                                           |
+| **is_init**                | boolean       | Whether the NFT is initialized                                    |
+| **nft_item_index**         | int           | Index of the NFT within its collection                            |
+| **collection_address**     | string        | Address of the NFT collection (nullable)                          |
+| **owner_address**          | string        | Address of the NFT owner                                          |
+| **content_onchain**        | string        | NFT metadata extracted from on-chain data                         |
+| **timestamp**              | int           | Timestamp of NFT state update or action                           |
+| **lt**                     | bigint        | Logical time of NFT state update or action                        |
+| **tx_hash**                | string        | Transaction hash if applicable                                    |
+| **trace_id**               | string        | Trace identifier if applicable                                    |
+| **prev_owner**             | string        | Previous owner address if applicable                              |
+| **query_id**               | decimal(20,0) | Query identifier if exists                                        |
+| **forward_amount**         | decimal(38,0) | Amount of forward message from transfer if related                |
+| **forward_payload**        | binary        | Payload of forward message from transfer if related               |
+| **comment**                | string        | Text comment from forward_payload                                 |
+| **custom_payload**         | string        | Custom payload from transfer message if related                   |
+| **sale_contract**          | string        | Address of sale contract if related                               |
+| **sale_type**              | string        | Type of sale (sale or auction)                                    |
+| **sale_end_time**          | int           | End time of sale if applicable (unixtime)                         |
+| **marketplace_address**    | string        | Address of the marketplace                                        |
+| **marketplace_fee_address**| string        | Address receiving marketplace fee                                 |
+| **marketplace_fee**        | decimal(38,0) | Amount of marketplace fee                                         |
+| **sale_price**             | decimal(38,0) | Price of the NFT                                                  |
+| **payment_asset**          | string        | Asset type of payment (only TON supported)                        |
+| **royalty_address**        | string        | Address receiving royalty                                         |
+| **royalty_amount**         | decimal(38,0) | Amount of royalty                                                 |
+| **auction_max_bid**        | decimal(38,0) | Maximum bid for auction                                           |
+| **auction_min_bid**        | decimal(38,0) | Minimum bid for auction                                           |
+| **auction_min_step**       | decimal(38,0) | Minimum bid step for auction                                      |
+| **updated_at**             | timestamp     | Last time the record was updated                                  |
+| **ingested_at**            | timestamp     | Time when the record was ingested                                 |
+
+Supported event types:
+
+| Type         | prev_owner        | Comments                                                                                                 |
+|--------------|-------------------|----------------------------------------------------------------------------------------------------------|
+| mint         | deployer address  | Tx related to the NFT deployment                                                                         |
+| put_on_sale  | null             | NFT is put on sale via sale contract                                                                      |
+| cancel_sale  | null             | Sale is cancelled and NFT is returned to the owner                                                        |
+| sale         | seller           | NFT is sold via sale contract, see sale related fields for details                                        |
+| transfer     | previous owner   | Direct NFT transfer between addresses. Also includes automatic transfers of TON DNS in case of expiration |
+| bid          | bidder           | New bid for an auction                                                                                    |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="ton" tableName="nft_events" />
