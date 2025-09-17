@@ -2602,7 +2602,10 @@
             "data-catalog/ton/dex_pools",
             "data-catalog/ton/dex_trades",
             "data-catalog/ton/jetton_events",
-            "data-catalog/ton/jetton_metadata"
+            "data-catalog/ton/jetton_metadata",
+            "data-catalog/ton/nft_events",
+            "data-catalog/ton/nft_metadata",
+            "data-catalog/ton/prices_daily"
           ]
         },
         {

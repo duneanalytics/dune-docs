@@ -1,0 +1,35 @@
+---
+title: ton.jetton_metadata
+sidebarTitle: "NFT Metadata"
+description: Description of the ton.nft_metadata table on Dune
+---
+
+## Table Description
+Contains metadata information for NFT items and collections.
+
+## Column Descriptions
+| **Column**               | **Type**    | **Description**                                                                            |
+|--------------------------|-------------|--------------------------------------------------------------------------------------------|
+| **type**                 | string      | Possible values: item or collection                                                        |
+| **address**              | string      | NFT item/collection address                                                                |
+| **update_time_onchain**  | int         | Last update time recorded on-chain                                                         |
+| **update_time_metadata** | int         | Last update time of the metadata                                                           |
+| **parent_address**       | string      | Collection owner address if type is collection, otherwise collection address for the item  |
+| **content_onchain**      | string      | On-chain content                                                                           |
+| **metadata_status**      | int         | Status of the metadata                                                                     |
+| **name**                 | string      | TEP-64 NFT name                                                                            |
+| **description**          | string      | TEP-64 NFT description                                                                     |
+| **image**                | string      | TEP-64 NFT image URL                                                                       |
+| **image_data**           | string      | TEP-64 NFT image data                                                                      |
+| **attributes**           | string      | TEP-64 NFT attributes                                                                      |
+| **sources**              | struct      | Raw metadata sources                                                                       |
+| **tonapi_image_url**     | string      | TON API image URL                                                                          |
+| **adding_date**          | int         | Date when the metadata was added                                                           |
+| **updated_at**           | timestamp   | Last time the record was updated                                                           |
+| **ingested_at**          | timestamp   | Time when the record was ingested                                                          |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="ton" tableName="nft_metadata" />

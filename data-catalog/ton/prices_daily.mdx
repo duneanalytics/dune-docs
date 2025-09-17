@@ -1,0 +1,31 @@
+---
+title: ton.prices_daily
+sidebarTitle: "Assets prices"
+description: Description of the ton.prices_daily table on Dune
+---
+
+## Table Description
+Contains daily prices for most popular assets. All prices are derived from onchain events, the following types of assets are supported:
+* Jettons with sufficient trading volume on DEXs
+* DEX LP tokens (based on ton.dex_pools TVL values)
+* StormTrade LP tokens
+* tsUSDe
+
+This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/ton/ton_jetton_price_daily.sql).
+
+## Column Descriptions
+
+| **Column** | **type** | **Description** |
+| --- | --- | --- |
+| **blockchain** | varchar | Blockchain for the token (Equals to ton) |
+| **token_address** | varchar | Token (Jetton) address in raw format |
+| **timestamp** | timestamp | Start of the day in UTC |
+| **price_ton** | double precision | Jetton price in TON (ignoring decimals) |
+| **price_usd** | double precision | Jetton price in USD (ignoring decimals) |
+| **asset_type** | varchar | Asset type: Jetton (price is based on DEX trades), DEX LP, SLP (StormTrade LP token) or tsUSDe |
+
+Note: **price_ton** and **price_usd** values are already adjusted for token decimals, so multiplying token amounts by these prices will give the correct value without needing decimal conversion.
+
+## Table Sample
+
+Table sample can be found [here](https://dune.com/queries/3419983/5785629?table_name_t6c1ea=prices_daily&table_schema_t6c1ea=ton).
