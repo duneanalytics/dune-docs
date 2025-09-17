@@ -119,7 +119,6 @@
           ]
         },
         "web-app/dashboards",
-        "web-app/dashboard-minting",
         "web-app/teams",
         "web-app/dune-ai",
         "web-app/upload-data",
