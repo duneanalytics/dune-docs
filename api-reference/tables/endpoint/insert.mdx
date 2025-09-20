@@ -7,7 +7,7 @@ To be able to insert into a table, it must have been created with the [/create e
 
 <Note>
 - The data in the files must conform to the schema, and must use the same column names as the schema.
-- One successful `/insert` request consumes 1 credits.
+- One successful `/insert` request consumes 1 credit.
 - The maximum request size is 1.2GB
 </Note>
 
@@ -19,7 +19,7 @@ A status code of 200 means that the data in the request was successfully inserte
 If you get any other status code, you can safely retry your request after addressing the issue that the error message indicated.
 
 ## Concurrent requests
-A limited number of concurrent insertion requests per table is supported. However, there will be a slight performance penalty as we serialize the writes behind the scenes to ensure data integrity. Larger number of concurrent requests per table may result in an increased number of failures. Therefore, we recommend managing your requests within a 5-10 threshold to maintain optimal performance.
+A limited number of concurrent insertion requests per table is supported. However, there will be a slight performance penalty as we serialize the writes behind the scenes to ensure data integrity. A larger number of concurrent requests per table may result in an increased number of failures. Therefore, we recommend managing your requests within a 5-10 threshold to maintain optimal performance.
 
 ## Supported filetypes
 ### CSV files (`Content-Type: text/csv`)
@@ -32,7 +32,7 @@ Each line must have keys that match the column names of the table.
 ## Data types
 DuneSQL supports a variety of types which are not natively supported in many data exchange formats. Here we provide guidance on how to work with such types.
 ### Varbinary values
-When uploading varbinary data using JSON or CSV formats, you need to convert the binary data into a textual representation. Reason being, JSON or CSV don't natively support binary values. There are many ways to transform binary data to a textual representation. We support **hexadecimal** and **base64** encodings.
+When uploading varbinary data using JSON or CSV formats, you need to convert the binary data into a textual representation. The reason being, JSON or CSV don't natively support binary values. There are many ways to transform binary data to a textual representation. We support **hexadecimal** and **base64** encodings.
 
 #### base64
 Base64 is a binary-to-text encoding scheme that transforms binary data into a sequence of characters. All characters are taken from a set of 64 characters.
@@ -40,7 +40,7 @@ Base64 is a binary-to-text encoding scheme that transforms binary data into a se
 Example: `{"varbinary_column":"SGVsbG8gd29ybGQK"}`
 
 #### hexadecimal
-In the hexadecimal representation input data should contain an even number of characters in the range `[0-9a-fA-F]` always prefixed with `0x`.
+In the hexadecimal representation, input data should contain an even number of characters in the range `[0-9a-fA-F]` always prefixed with `0x`.
 
 Example: `{"varbinary_column":"0x92b7d1031988c7af"}`
 
@@ -74,7 +74,7 @@ with open("./interest_rates.csv", "rb") as data:
 import * as fs from "fs/promises";
 import { DuneClient, ContentType } from "@duneanalytics/client-sdk";
 
-client = new DuneClient(process.env.DUNE_API_KEY!);
+const client = new DuneClient(process.env.DUNE_API_KEY!);
 const data = await fs.readFile("./sample_table_insert.csv");
 // Or JSON
 // const data: Buffer = await fs.readFile("./sample_table_insert.json");
