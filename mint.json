@@ -1675,6 +1675,35 @@
           ]
         },
         {
+          "group": "Plasma",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/plasma/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/plasma/raw/blocks",
+                "data-catalog/evm/plasma/raw/transactions",
+                "data-catalog/evm/plasma/raw/logs",
+                "data-catalog/evm/plasma/raw/traces",
+                "data-catalog/evm/plasma/raw/creation-traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/plasma/decoded/overview",
+                "data-catalog/evm/plasma/decoded/call-tables",
+                "data-catalog/evm/plasma/decoded/event-logs",
+                "data-catalog/evm/plasma/decoded/contracts",
+                "data-catalog/evm/plasma/decoded/logs-decoded",
+                "data-catalog/evm/plasma/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Polygon",
           "icon": "database",
           "iconType": "solid",
