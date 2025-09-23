@@ -1,14 +1,23 @@
 ---
 title: Minute Prices
 icon: stopwatch
-description: Real-time minute-by-minute price data for tokens across all supported blockchains
+description: Minute-by-minute price data with underlying coinpaprika implementation
 ---
 
 # prices.minute
 
 ## Overview
 
-The `prices.minute` table provides the most granular price data for tokens across multiple blockchains, with minute-level precision. This is the highest resolution price data available in the Dune platform.
+The `prices.minute` table provides minute-level price data for tokens across multiple blockchains using the same **hybrid approach** as all other price tables:
+
+1. **Coinpaprika prices** for tokens where we have reliable external data (~2,000 major tokens)
+2. **DEX-derived prices** for the long tail of tokens not covered by coinpaprika
+
+Minute-level data uses interpolation from hourly anchor points to provide smooth, continuous pricing.
+
+<Info>
+    Minute-level data uses interpolation between hourly anchor points for smooth pricing. Forward-filling is applied for up to 48 hours when no trading activity exists.
+</Info>
 
 ## Table Schema
 
@@ -25,21 +34,40 @@ The `prices.minute` table provides the most granular price data for tokens acros
 
 ## Implementation Details
 
-The minute prices are built using a sparse hour interpolation approach:
+The minute prices are built using the hybrid approach with interpolation:
 
-1. **Source from hourly data**: Uses `prices.hour` as the source instead of raw minute-level data
-2. **Linear interpolation**: Implements linear interpolation between hourly anchor points to create smooth minute-level data
-3. **Noise reduction**: Reduces noise and outliers by using stable hourly data points as anchors
-4. **Forward-filling**: The system forward-fills with the last available price for a maximum of 48 hours (2880 minutes) to avoid stale data
-5. **Continuous time series**: Provides minute-by-minute data points for every minute between hourly anchors
+1. **Source prioritization**: Coinpaprika prices for ~2,000 major tokens, DEX-derived prices for long tail tokens
+2. **Hourly interpolation**: Uses hourly data as anchor points for linear interpolation
+3. **Linear interpolation**: Implements interpolation between hourly anchor points to create smooth minute-level data
+4. **Noise reduction**: Reduces noise and outliers by using stable hourly data points as anchors
+5. **Forward-filling**: The system forward-fills with the last available price for a maximum of 48 hours (2880 minutes) to avoid stale data
+6. **Continuous time series**: Provides minute-by-minute data points for every minute between hourly anchors
 
-This approach ensures more reliable and consistent minute-level pricing while maintaining the granularity needed for high-frequency analysis.
+### Source-Specific Variants
+
+#### `prices_coinpaprika.minute`
+For purely coinpaprika-based minute prices:
+- **Coverage**: Only tokens with Coinpaprika listings (~2,000 tokens)
+- **Source**: External exchange-aggregated minute pricing with interpolation
+- **Use case**: When you need minute-level external price validation
+- **Key role**: Serves as the underlying source for the `prices.usd` legacy view
+- **Schema**: Same as `prices.minute` but `source` is always 'coinpaprika'
+
+#### `prices_dex.minute`
+For purely DEX-derived minute prices:
+- **Coverage**: All tokens with sufficient DEX trading volume
+- **Source**: On-chain DEX trading activity with interpolation
+- **Use case**: When you need minute-level pricing that reflects on-chain activity
+- **Schema**: Same as `prices.minute` but `source` is always 'dex.trades'
 
 ## Usage
 
 This table is ideal for high-frequency analysis and examining short-term price movements. It's particularly useful for studying price impacts of specific events or transactions with high temporal precision.
 
-**Note**: The minute-level data is interpolated from hourly anchor points, providing smooth and consistent pricing while reducing the impact of noise and outliers that can occur in raw minute-level data.
+**Important Notes**: 
+- The minute-level data is interpolated from hourly anchor points using the hybrid approach
+- Provides comprehensive token coverage through coinpaprika and DEX-derived sources
+- Provides smooth and consistent pricing while reducing the impact of noise and outliers
 
 ## Latency and Update Frequency
 
@@ -82,9 +110,13 @@ ORDER BY 1
 
 - Due to its high granularity, queries on this table may be more resource-intensive
 - Consider using `prices.hour` or `prices.day` for longer time ranges if minute-level precision is not required
+- **Comprehensive coverage**: Includes both coinpaprika and DEX-derived tokens through hybrid approach
 - Native tokens (like ETH, BNB) are assigned fixed addresses for consistency
 - Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
-- **Interpolated Pricing**: Minute-level data is interpolated from hourly anchor points, providing smoother and more consistent pricing
-- **Reduced Noise**: The interpolation approach reduces the impact of noise and outliers that can occur in raw minute-level data
+- **Interpolated Pricing**: Minute-level data is interpolated from hourly anchor points using hybrid methodology
+- **Reduced Noise**: The interpolation approach reduces the impact of noise and outliers
 - **48-Hour Forward-Fill**: The system forward-fills with the last available price for a maximum of 48 hours (2880 minutes) to avoid stale data
-- **Data Limitations**: While the interpolation approach improves data quality, users should always validate prices for critical applications
+- **External source reliability**: Coinpaprika data provides stable, exchange-aggregated pricing
+- **DEX-derived limitations**: DEX-derived prices can contain errors due to low liquidity, market manipulation, or anomalous trades
+- **Fallback option**: For critical applications, consider using `prices_coinpaprika.minute` for more reliable pricing where available
+- **Data validation**: Always validate prices for critical applications, especially for lesser-known tokens

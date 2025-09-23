@@ -1,23 +1,23 @@
 ---
-title: Prices
+title: Prices overview
 icon: circle-dollar
 description: Token price data across multiple blockchains
 ---
 
 # Prices (Token Price Data)
 
-Dune provides reliable token price data for use in your queries across 40+ blockchains. This implementation is a complete rewrite of the price aggregation system with significant improvements.
+Dune provides comprehensive, reliable token price data for use in your queries across 40+ blockchains. Our price system combines external market data with on-chain trading activity to deliver accurate pricing for both major tokens and the long tail of emerging assets. Whether you're building dashboards, conducting research, or powering applications, you can access consistent price data at multiple time granularities with transparent sourcing and quality controls.
 
 ## Key Features
 
 - **Multi-blockchain support**: Prices for tokens across 40+ blockchains
-- **Standardized native token addresses**: Native tokens (like ETH, BNB) have fixed contract addresses for consistency
-- **Multiple time granularities**: hourly, daily, and latest price data
+- **Multiple time granularities**: minute, hourly, daily, and latest price data
 - **Source transparency**: Each price point includes its data source
 - **Data quality**: Comprehensive filtering to ensure price reliability
+- **Standardized native token addresses**: Native tokens (like ETH, BNB) have fixed contract addresses for consistency
 - **Volume-weighted pricing**: Prices are calculated using volume-weighted averages for more accurate representation
-- **Consistent 5-minute intervals**: All data sources aligned to 5-minute intervals for improved consistency
 - **Enhanced outlier detection**: Multi-layered filtering system to reduce impact of anomalous trades
+
 
 ## Available Tables
 
@@ -26,39 +26,43 @@ The `prices` schema exposes these main tables:
 | Table | Description |
 |-------|-------------|
 | `prices.latest` | The most recent price for each token |
-| `prices.day` | Daily token prices (volume-weighted average price of each day) |
-| `prices.hour` | Hourly token prices (volume-weighted average price of each hour) |
-| `prices.minute` | Minute-by-minute token prices |
+| `prices.day` | Daily token prices using hybrid approach |
+| `prices.hour` | Hourly token prices using hybrid approach |
+| `prices.minute` | Minute-by-minute token prices using hybrid approach |
 
-For best performance, use the table with the coarsest granularity that meets your analytical needs. Querying minute-level data over long time periods can be very resource-intensive.
+## Methodology
 
-## Implementation Details
+### Hybrid Pricing Approach
 
-The price system works in multiple layers:
+All tables use the same methodology combining two data sources:
 
-1. **Base data sources**:
-   - External price feeds (Coinpaprika) - provides trusted token prices at 5-minute intervals
-   - DEX trading data (from `dex.trades`) - aggregated into 5-minute intervals with enhanced outlier detection
+1. **Coinpaprika** (~2,000 major tokens)
+   - External market data from aggregated exchanges
+   - Available at 5-minute intervals
+   - Aggregated to hourly/daily, interpolated for minute-level
 
-2. **Data processing pipeline**:
-   - **USD price calculation**: DEX trades are converted to USD using trusted token prices as reference
-   - **Quality filtering applied to DEX trades to reduce anomalous data impact**
-   - Sparse 5-minute data collected from both sources (aligned intervals for consistency)
-   - Aggregated to hourly and daily sparse records using volume-weighted averages
-   - **Minute-level data uses interpolated prices**: The `prices.minute` table now uses linear interpolation between hourly anchor points from `prices.hour` to provide smooth, continuous minute-level data while reducing noise and outliers
+2. **DEX-derived** (long tail tokens)
+   - On-chain trading activity from `dex.trades`
+   - Quality filtering to reduce anomalous trades:
+     - **VWMP Outlier Detection**: Prices deviating >3x from 7-day rolling median
+     - **MAD Outlier Detection**: Prices deviating >2x median absolute deviation  
+     - **Transfer Outlier Detection**: Token amounts exceeding max transfer amounts
+     - **Volume Outlier Detection**: Trades &lt;$0.01 or &gt;$1M
+   - Aggregated into 5-minute intervals using volume-weighted averages
+   - Minimum $10k volume thresholds
 
-3. **Token handling**:
-   - Native tokens are assigned fixed addresses instead of NULL or 0xeeee...
-   - You can find the correct native token address for each blockchain in the `dune.blockchains` table
-   - Trusted tokens (major stablecoins, wrapped assets) serve as price anchors
-   - Non-trusted tokens derive prices through DEX trades against trusted tokens
-   - Simply put: We use prices from trusted tokens to calculate USD prices of other tokens based on the data from DEX trades, then apply quality filtering
+3. **Forward-filling** when no activity exists:
+   - Daily: 30 days max | Hourly: 7 days max | Minute: 2 days max
+
+Token lists are defined in [dbt spellbook](https://github.com/duneanalytics/spellbook/tree/main/dbt_subprojects/tokens/models/prices).
+
+*Note: While the dex-derived data filtering improves quality, users should validate prices for critical applications. There is no guarantee that the dex-derived data is always correct.*
 
 ## Coverage
 
 - 900,000 unique tokens
 - 40+ blockchains
-- new tokens are automatically added when they exceed a $10k volume threshold
+- tokens are automatically added when they exceed a $10k volume threshold
 
 import { DuneEmbed } from '/snippets/dune-embed.mdx'
 
@@ -89,72 +93,30 @@ All price tables share the following schema:
 | `volume`           | _double_    | Trading volume in USD (from price source)                                        |
 | `source`           | _varchar_   | Data source ('coinpaprika' or 'dex.trades')                                      |
 
+
 ## Technical Notes
 
-- Prices are calculated independently per blockchain
-- Token identification requires both `contract_address` AND `blockchain`
-- `symbol` is not unique - do not use for token identification or joins
-- For native tokens, use the standardized addresses from `dune.blockchains` table
-- If there are no trades for a token, we use the last available price and carry it forward for a limited time period:
-  - 30 days for daily prices
-  - 7 days for hourly prices
-  - 2 days for minute prices
-- **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades, though this is not foolproof
-- **Volume-Weighted Pricing**: Prices are calculated using volume-weighted averages rather than simple medians for more representative pricing
-- **5-Minute Intervals**: All data sources are aligned to 5-minute intervals for consistency and improved data quality
-- **Enhanced Protection**: Multi-layered outlier detection provides better protection against price manipulation and flash crashes
+- **Token identification**: Requires both `contract_address` AND `blockchain` (symbols are not unique)
+- **Native tokens**: Use standardized addresses from `dune.blockchains` table  
+- **Pricing independence**: Calculated separately per blockchain
+- **Volume-weighted**: Uses volume-weighted averages for accuracy
+- **5-minute alignment**: All sources aligned to 5-minute intervals
 
-## Methodology
+### Source-Specific Variants
 
-### Step 1: Importing Trusted Token Prices
+For specialized analysis, each granularity offers source-specific tables:
 
-Dune sources trusted token prices from [Coin Paprika](https://coinpaprika.com/). These prices:
+**Coinpaprika-only tables:**
+- `prices_coinpaprika.day`, `prices_coinpaprika.hour`, `prices_coinpaprika.minute`, `prices_coinpaprika.latest`
 
-- Cover major tokens that are defined in the `prices.trusted_tokens` table
-- Serve as base prices for calculating prices of other tokens traded against them in DEX pairs
-- Are updated at 5-minute intervals
+**DEX-derived tables:**
+- `prices_dex.day`, `prices_dex.hour`, `prices_dex.minute`, `prices_dex.latest`
 
-### Step 2: DEX-Derived Prices with Quality Filtering
+*See individual granularity pages for detailed documentation on these variants.*
 
-For details on how Dune processes DEX trade data to derive accurate token prices, see the [DEX Trade Processing](/data-catalog/curated/dex-trades/evm/dex-trades):
+**Performance tip:** Use the coarsest granularity that meets your needs. Minute-level queries over long periods are resource-intensive.
 
-- We start by collecting raw trading data from the `dex.trades` table
-- We calculate USD prices for trading pairs where one token is from our trusted token list using trusted token prices as reference
-- **Quality filtering is then applied to reduce the impact of anomalous trades:**
-  - **VWMP Outlier Detection**: Prices that deviate more than 3x from the rolling 7-day volume-weighted median price
-  - **MAD Outlier Detection**: Prices that deviate more than 2x the median absolute deviation from the hourly VWMP
-  - **Transfer Outlier Detection**: Token amounts that exceed the maximum transfer amount seen in the past 7 days
-  - **Volume Outlier Detection**: Trade volumes below $0.01 or above $1,000,000
-- The filtered data then goes through our processing pipeline which:
-  - Excludes trades with less than $10,000 USD in total volume
-  - Aggregates trades into 5-minute intervals using volume-weighted averages
-  - Takes the volume-weighted average price from each interval to reduce outlier impact
-  - Uses forward-filling to handle periods without valid trades, with time limits
-    - 30 days for daily prices
-    - 7 days for hourly prices
-    - 2 days for minute prices
 
-### Quality Filtering Rules
-
-The quality filtering system uses multiple statistical methods to identify and flag potentially anomalous trades:
-
-1. **VWMP Outlier Detection**:
-   - Trades where the relative price deviation from the 7d rolling median price is greater than a factor 3 (in both directions)
-
-2. **MAD Outlier Detection**:
-   - Trades where the absolute price deviation from the 4h rollingmedian price is greater than 2 times the 4h rolling median absolute deviation
-
-3. **Transfer Outlier Detection**:
-   - Trades where the token amount is greater than the maximum transfer amount
-   - This helps identify trades that report larger amounts than the actual transfers
-
-4. **Volume Outlier Detection**:
-   - Trades with volumes below $0.01 or above $1,000,000
-   - This helps filter out dust trades and suspiciously large volumes
-
-A trade is flagged as an outlier if it triggers **any** of these four conditions. Flagged trades are excluded from price calculations to improve data quality.
-
-**Note**: While these filtering mechanisms help reduce the impact of anomalous trades, they are not foolproof. Users should always validate prices for critical applications.
 
 ## Usage Examples
 
@@ -192,8 +154,11 @@ WHERE name = 'arbitrum'
 
 ## Legacy Tables
 
-The following tables are maintained for historical compatibility but we no longer add tokens to them:
+The following tables are maintained for historical compatibility:
 
-- `prices.usd`
-- `prices.usd_daily`
-- `prices.usd_latest`
+- `prices.usd` - **View of `prices_coinpaprika.minute`** (maintains legacy schema)
+- `prices.usd_daily` - Historical daily prices (fixed token set)
+- `prices.usd_latest` - Latest prices (fixed token set)
+
+Note: `prices.usd` is a view of `prices_coinpaprika.minute` while preserving the legacy schema for backward compatibility.
+
