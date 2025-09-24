@@ -1,14 +1,19 @@
 ---
 title: Daily Prices
 icon: calendar-day
-description: Historical daily price data for tokens across all supported blockchains, aggregated at 00:00 UTC
+description: Daily token price data across 40+ blockchains - hybrid approach combining centralized exchange and decentralized exchange data for comprehensive coverage
 ---
 
 # prices.day
 
 ## Overview
 
-The `prices.day` table provides daily token price data across all supported blockchains. It contains volume-weighted average prices for each day, ensuring a continuous time series for price analysis.
+The `prices.day` table provides daily token prices using a **hybrid approach** that combines multiple data sources for maximum coverage:
+
+1. **Coinpaprika prices** for tokens where we have reliable external data (~2,000 major tokens, defined in [dbt spellbook lists](https://github.com/duneanalytics/spellbook/tree/main/dbt_subprojects/tokens/models/prices))
+2. **DEX-derived prices** for the long tail of tokens not covered by coinpaprika
+
+This hybrid methodology ensures comprehensive token coverage while maintaining price quality through different data sources optimized for different token categories.
 
 ## Table Schema
 
@@ -27,16 +32,64 @@ The `prices.day` table provides daily token price data across all supported bloc
 
 The daily prices are built through these steps:
 
-1. Collect sparse price observations from different sources
-2. Group by day, calculating volume-weighted average price per day
-3. Fill missing days with the previous day's price (forward filling)
-4. Set a 30-day expiration for forward filling to avoid stale data
+1. **Source prioritization**: Coinpaprika prices take precedence where available, DEX-derived prices fill gaps
+2. **Token list management**: Lists defining which tokens use coinpaprika vs DEX are managed in dbt spellbook
+3. **Data aggregation**: Group by day, calculating volume-weighted average price per day  
+4. **Forward filling**: Fill missing days with the previous day's price (forward filling)
+5. **Expiration**: Set a 30-day expiration for forward filling to avoid stale data
+
+### Alternative Tables
+
+If you need prices from specific sources only:
+
+#### `prices_coinpaprika.day`
+For purely coinpaprika-based daily prices:
+- **Coverage**: Only tokens with Coinpaprika listings (~2,000 tokens)
+- **Source**: External exchange-aggregated pricing
+- **Use case**: When you need stable, externally-validated daily pricing
+- **Special note**: Used by `tokens.transfers` for stable pricing
+- **Schema**: Same as `prices.day` but `source` is always 'coinpaprika'
+
+#### `prices_dex.day` 
+For purely DEX algorithm-based daily prices:
+- **Coverage**: All tokens with sufficient DEX trading volume
+- **Source**: On-chain DEX trading activity only (from `dex.trades` table)
+- **Use case**: When you need pricing that reflects actual on-chain liquidity and trading activity
+- **Methodology**: Comprehensive outlier detection and quality filtering applied to DEX trades
+- **Key difference**: Even tokens with coinpaprika coverage use DEX-derived prices for consistency
+- **Schema**: Same as `prices.day` but `source` is always 'dex.trades'
+
+**Example - Compare DEX vs combined pricing:**
+```sql
+SELECT
+  d.timestamp,
+  d.symbol,
+  d.price as dex_price,
+  c.price as combined_price,
+  (d.price - c.price) / c.price * 100 as price_diff_pct
+FROM prices_dex.day d
+JOIN prices.day c 
+  ON d.blockchain = c.blockchain 
+  AND d.contract_address = c.contract_address 
+  AND d.timestamp = c.timestamp
+WHERE d.blockchain = 'ethereum'
+AND d.contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
+AND d.timestamp >= NOW() - INTERVAL '30' DAY
+ORDER BY d.timestamp
+```
 
 ## Usage
 
-This table is ideal for analyzing daily price trends and performing day-over-day comparisons. It provides a good balance between data granularity and query performance for longer-term analyses.
+This table provides comprehensive daily price coverage by combining coinpaprika and DEX-derived sources. It's ideal for:
+
+- Daily price trend analysis
+- Portfolio valuations
+- Day-over-day price comparisons
+- General token price lookups
 
 **Note**: The underlying data sources are aligned to 5-minute intervals for consistency and improved data quality.
+
+**For specific use cases**: If you need purely coinpaprika or purely DEX-derived prices, use the dedicated source-specific tables instead.
 
 ## Latency and Update Frequency
 
@@ -103,4 +156,6 @@ ORDER BY timestamp
 - Always use `contract_address` and `blockchain` for precise token identification, never use `symbol` for joins or filters
 - Prices are calculated using volume-weighted averages for more accurate representation
 - **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
-- **Data Limitations**: While filtering helps improve data quality, users should always validate prices for critical applications
+- **DEX-derived limitations**: DEX-derived prices can contain errors due to low liquidity, market manipulation, or anomalous trades
+- **Fallback option**: For critical applications, consider using `prices_coinpaprika.day` for more reliable pricing where available
+- **Data validation**: Always validate prices for critical applications, especially for lesser-known tokens

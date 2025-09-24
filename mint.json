@@ -1229,7 +1229,6 @@
               "group": "Raw",
               "pages": [
                 "data-catalog/evm/hyperevm/raw/blocks",
-                "data-catalog/evm/hyperevm/raw/creation-traces",
                 "data-catalog/evm/hyperevm/raw/logs",
                 "data-catalog/evm/hyperevm/raw/transactions"
               ]
@@ -1238,7 +1237,6 @@
               "group": "Decoded",
               "pages": [
                 "data-catalog/evm/hyperevm/decoded/overview",
-                "data-catalog/evm/hyperevm/decoded/call-tables",
                 "data-catalog/evm/hyperevm/decoded/event-logs",
                 "data-catalog/evm/hyperevm/decoded/contracts",
                 "data-catalog/evm/hyperevm/decoded/logs-decoded"

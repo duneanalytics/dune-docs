@@ -1,70 +1,109 @@
 ---
 title: USD Prices (Legacy)
 icon: money-bill
-description: Historical price tables - still functional but no new tokens will be added
+description: Legacy price tables with limited token coverage
 ---
 
 # Legacy Price Tables
 
-<Warning>
-    While these tables remain functional for existing tokens, no new tokens will be added. For complete coverage including new tokens, please use `prices.latest`, `prices.day`, `prices.hour`, or `prices.minute` tables instead.
-</Warning>
+These tables continue to work and update regularly, so you can keep using them if they meet your needs. However, for broader token coverage and improved functionality, consider the modern price tables.
 
-The following legacy tables provide historical price data for a fixed set of tokens (~2,800 tokens). While these tables continue to update for existing tokens, new tokens will only be added to the modern price tables.
+<Info>
+    **`prices.usd`** is based on coinpaprika data and covers ~2,800 tokens. For comprehensive coverage including newer tokens, use `prices.minute`, `prices.hour`, or `prices.day` which include both coinpaprika and DEX-derived pricing.
+</Info>
 
-## Legacy Tables
+## Why Consider Modern Tables?
 
-| Table | Description |
-|-------|-------------|
-| `prices.usd` | Historical prices with timestamps |
-| `prices.usd_daily` | Daily historical prices |
-| `prices.usd_latest` | Latest available price per token |
+- **More tokens**: 900,000+ vs ~2,800 in legacy tables
+- **Hybrid approach**: Combines coinpaprika and DEX-derived pricing for maximum coverage
+- **Same reliability**: Coinpaprika data quality maintained in modern tables
+- **Additional features**: Source transparency, quality filtering, and standardized native token addresses
 
-## Modern Alternatives
+## Available Legacy Tables
 
-For complete token coverage, use:
-- `prices.latest` for the most recent price
-- `prices.day` for daily historical prices
-- `prices.hour` for hourly historical data
-- `prices.minute` for granular historical data
+| Table | Coverage | Description |
+|-------|----------|-------------|
+| `prices.usd` | ~2,800 tokens | Historical prices with timestamps (coinpaprika data) |
+| `prices.usd_daily` | ~2,800 tokens | Daily historical prices |
+| `prices.usd_latest` | ~2,800 tokens | Latest available price per token |
 
-Example query using modern tables:
+## Modern Alternatives (Recommended)
 
+For broader coverage and additional features:
+
+| Modern Table | Coverage | Best For |
+|--------------|----------|----------|
+| `prices.day` | 900,000+ tokens | Daily analysis with hybrid pricing |
+| `prices.hour` | 900,000+ tokens | Intraday analysis |
+| `prices.minute` | 900,000+ tokens | High-frequency analysis |
+| `prices.latest` | 900,000+ tokens | latest prices |
+
+**Migration examples:**
+
+### Simple price lookup
 ```sql
--- For historical prices, use prices.day
-SELECT
-    contract_address,
-    blockchain,
-    symbol,
-    price,
-    timestamp
-FROM prices.day
-WHERE
-    blockchain = 'ethereum'
-    AND contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 -- WETH
-    AND timestamp >= DATE '2023-01-01'
-ORDER BY timestamp ASC
+-- Legacy:
+SELECT price, minute FROM prices.usd 
+WHERE contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 AND blockchain = 'ethereum'
+
+-- Modern equivalent:
+SELECT price, timestamp FROM prices.minute 
+WHERE contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 AND blockchain = 'ethereum'
 ```
 
-## Legacy Table Structure
+### Daily aggregation (much faster with modern tables)
+```sql
+-- Legacy - manually aggregate minute data:
+SELECT 
+  DATE(timestamp) as date,
+  AVG(price) as avg_daily_price
+FROM prices.usd 
+WHERE contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 
+  AND blockchain = 'ethereum'
+  AND timestamp >= NOW() - INTERVAL '30' DAY
+GROUP BY DATE(timestamp)
 
-### prices.usd / prices.usd_daily
+-- Modern - use pre-aggregated daily table:
+SELECT 
+  timestamp as date,
+  price as avg_daily_price
+FROM prices.day 
+WHERE contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 
+  AND blockchain = 'ethereum'
+  AND timestamp >= NOW() - INTERVAL '30' DAY
+```
 
-| Column name        | Data type   | Description                                   |
-| ------------------ | ----------- | --------------------------------------------- |
-| `contract_address` | _varbinary_ | The unique identifier of the token |
-| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
-| `price`           | _double_    | The price of the asset in USD                |
-| `timestamp`       | _timestamp_ | The timestamp for which this price is reported |
-| `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
+### Token coverage comparison
+```sql
+-- See the difference in token coverage:
+SELECT COUNT(*) FROM prices.usd_latest;          -- ~2,800 tokens
+SELECT COUNT(*) FROM prices.latest;              -- 900,000+ tokens
+```
 
-### prices.usd_latest
+## Legacy Table Schema
 
-| Column name        | Data type   | Description                                   |
-| ------------------ | ----------- | --------------------------------------------- |
-| `contract_address` | _varbinary_ | The unique identifier of the token |
-| `symbol`           | _varchar_   | The identifier of the asset (ticker, cashtag) |
-| `price`           | _double_    | The latest price of the asset in USD          |
-| `blockchain`      | _varchar_   | The blockchain on which the asset exists      |
+All legacy tables share a similar schema:
 
-For more information about the current price feed, please refer to the [Prices Overview](/data-catalog/curated/prices/overview).
+| Column | Type | Description |
+|--------|------|-------------|
+| `contract_address` | varbinary | Token contract address |
+| `symbol` | varchar | Token symbol |
+| `price` | double | USD price |
+| `minute` | timestamp | Price timestamp (`prices.usd_latest` excludes this) |
+| `blockchain` | varchar | Blockchain identifier |
+
+## Key Differences from Modern Tables
+
+- **Token coverage**: Limited to ~2,800 tokens vs 900,000+ in modern tables
+- **Data sources**: Coinpaprika only vs hybrid approach in modern tables
+- **Schema**: Legacy format vs standardized modern schema with `source` column
+- **Native tokens**: May use different address conventions vs standardized addresses
+
+## Still Need Legacy Tables?
+
+**No problem!** These tables continue to update and work reliably. You can:
+- Keep using them if they cover your token needs
+- Mix legacy and modern tables in your queries
+- Gradually migrate to modern tables when convenient
+
+For comprehensive documentation on the modern pricing system, see [Prices Overview](/data-catalog/curated/prices/overview).
