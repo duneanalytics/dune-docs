@@ -36,14 +36,14 @@ For broader coverage and additional features:
 | `prices.day` | 900,000+ tokens | Daily analysis with hybrid pricing |
 | `prices.hour` | 900,000+ tokens | Intraday analysis |
 | `prices.minute` | 900,000+ tokens | High-frequency analysis |
-| `prices.latest` | 900,000+ tokens | Current prices |
+| `prices.latest` | 900,000+ tokens | latest prices |
 
 **Migration examples:**
 
 ### Simple price lookup
 ```sql
 -- Legacy:
-SELECT price, timestamp FROM prices.usd 
+SELECT price, minute FROM prices.usd 
 WHERE contract_address = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 AND blockchain = 'ethereum'
 
 -- Modern equivalent:
@@ -89,7 +89,7 @@ All legacy tables share a similar schema:
 | `contract_address` | varbinary | Token contract address |
 | `symbol` | varchar | Token symbol |
 | `price` | double | USD price |
-| `timestamp` | timestamp | Price timestamp (`prices.usd_latest` excludes this) |
+| `minute` | timestamp | Price timestamp (`prices.usd_latest` excludes this) |
 | `blockchain` | varchar | Blockchain identifier |
 
 ## Key Differences from Modern Tables

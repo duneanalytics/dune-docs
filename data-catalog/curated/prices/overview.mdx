@@ -48,7 +48,7 @@ All tables use the same methodology combining two data sources:
      - **MAD Outlier Detection**: Prices deviating >2x median absolute deviation  
      - **Transfer Outlier Detection**: Token amounts exceeding max transfer amounts
      - **Volume Outlier Detection**: Trades &lt;$0.01 or &gt;$1M
-   - Aggregated into 5-minute intervals using volume-weighted averages
+   - Aggregated into 1 hour intervals using volume-weighted averages
    - Minimum $10k volume thresholds
 
 3. **Forward-filling** when no activity exists:
@@ -56,7 +56,9 @@ All tables use the same methodology combining two data sources:
 
 Token lists are defined in [dbt spellbook](https://github.com/duneanalytics/spellbook/tree/main/dbt_subprojects/tokens/models/prices).
 
-*Note: While the dex-derived data filtering improves quality, users should validate prices for critical applications. There is no guarantee that the dex-derived data is always correct.*
+<Warning>
+While the dex-derived data filtering improves quality, users should validate prices for critical applications. There is no guarantee that the dex-derived data is always correct.
+</Warning>
 
 ## Coverage
 
@@ -97,10 +99,9 @@ All price tables share the following schema:
 ## Technical Notes
 
 - **Token identification**: Requires both `contract_address` AND `blockchain` (symbols are not unique)
-- **Native tokens**: Use standardized addresses from `dune.blockchains` table  
+- **Native tokens**: Use standardized addresses from `dune.blockchains` table. We mostly set native tokens to `0x000...`
 - **Pricing independence**: Calculated separately per blockchain
 - **Volume-weighted**: Uses volume-weighted averages for accuracy
-- **5-minute alignment**: All sources aligned to 5-minute intervals
 
 ### Source-Specific Variants
 
@@ -157,8 +158,6 @@ WHERE name = 'arbitrum'
 The following tables are maintained for historical compatibility:
 
 - `prices.usd` - **View of `prices_coinpaprika.minute`** (maintains legacy schema)
-- `prices.usd_daily` - Historical daily prices (fixed token set)
-- `prices.usd_latest` - Latest prices (fixed token set)
 
 Note: `prices.usd` is a view of `prices_coinpaprika.minute` while preserving the legacy schema for backward compatibility.
 
