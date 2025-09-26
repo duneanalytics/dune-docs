@@ -25,17 +25,12 @@ Pagination can be effectively combined with [filtering](./filtering) and [sortin
     use a lower level function like `get_execution_results_csv`.
     '''
 
-    import dotenv, os
     from dune_client.types import QueryParameter
     from dune_client.client import DuneClient
     from dune_client.query import QueryBase
 
-    os.chdir("<path_to_your_dotenv_file>")
-
-    # load .env file
-    dotenv.load_dotenv(".env")
     # setup Dune Python client
-    dune = DuneClient.from_env()
+    dune = DuneClient()
 
     # Higher level function, let pagination be handled automatically and get full query result
     query = QueryBase(

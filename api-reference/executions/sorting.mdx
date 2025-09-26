@@ -15,17 +15,12 @@ Sorting can be effectively combined with [pagination](./pagination), [filtering]
 <Tabs>
     <Tab title="Python SDK">
     ```python
-    import dotenv, os
     from dune_client.types import QueryParameter
     from dune_client.client import DuneClient
     from dune_client.query import QueryBase
 
-    os.chdir("<path_to_your_dotenv_file>")
-
-    # load .env file
-    dotenv.load_dotenv(".env")
     # setup Dune Python client
-    dune = DuneClient.from_env()
+    dune = DuneClient()
 
     query_result = dune.get_latest_result_dataframe(
         query=3567562 # https://dune.com/queries/3567562

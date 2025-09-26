@@ -35,17 +35,13 @@ Download Dune Python SDK by running `pip install dune-client`
 For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
 '''
 
-import dotenv, os, json
+import json
 from dune_client.types import QueryParameter
 from dune_client.client import DuneClient
 from dune_client.query import QueryBase
 
-# change the current working directory where .env file lives
-os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
-# load .env file
-dotenv.load_dotenv(".env")
 # setup Dune Python client
-dune = DuneClient.from_env()
+dune = DuneClient()
 
 result = dune.get_execution_status(job_id = '01HM79YYNXADPK66YWZK5X0NXB') # pass in the execution_id
 

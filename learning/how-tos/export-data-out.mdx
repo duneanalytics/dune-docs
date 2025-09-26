@@ -111,7 +111,6 @@ For this guide, we'll focus on exporting data using the ['get latest query resul
 </Note>
 ```py
 
-import dotenv
 import os
 import json
 import requests
@@ -129,7 +128,6 @@ def get_latest_query_result(query_id):
         print(f"Error retrieving result for query {query_id}: {e}")
     return res_df
 
-dotenv.load_dotenv('path_to_env_file')  # Replace 'path_to_env_file' with your .env file path
 api_key = os.getenv("DUNE_API_KEY")
 query_id = 2945343
 headers = {"x-dune-api-key": api_key}
