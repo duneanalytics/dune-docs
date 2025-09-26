@@ -24,17 +24,13 @@ Result returns the status, metadata, and query results (in CSV) from a query exe
 
     ``` python Python SDK 
 
-    import dotenv, os, json
+    import json
     from dune_client.types import QueryParameter
     from dune_client.client import DuneClient
     from dune_client.query import QueryBase
 
-    # change the current working directory where .env file lives
-    os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
-    # load .env file
-    dotenv.load_dotenv(".env")
     # setup Dune Python client
-    dune = DuneClient.from_env()
+    dune = DuneClient()
 
     ```
     Use `run_query` to get result in JSON, 
@@ -65,17 +61,13 @@ Download Dune Python SDK by running `pip install dune-client`
 For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
 '''
 
-import dotenv, os, json
+import json
 from dune_client.types import QueryParameter
 from dune_client.client import DuneClient
 from dune_client.query import QueryBase
 
-# change the current working directory where .env file lives
-os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
-# load .env file
-dotenv.load_dotenv(".env")
 # setup Dune Python client
-dune = DuneClient.from_env()
+dune = DuneClient()
 
 result = dune.get_execution_results_csv(job_id = '01HM7F50BXZVPHJNWJQM6GMS1M') # pass in the execution_id
 

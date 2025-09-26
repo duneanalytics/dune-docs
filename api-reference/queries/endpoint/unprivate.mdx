@@ -16,12 +16,9 @@ curl --request GET \
 ```
 
 ```python Python SDK
-import dotenv, os
 from dune_client.client import DuneClient
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-dotenv.load_dotenv(".env")
-dune = DuneClient.from_env()
+dune = DuneClient()
 
 query = dune.unprivate_query(1252207)
 ```

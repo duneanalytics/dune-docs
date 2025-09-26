@@ -21,14 +21,11 @@ curl --request PATCH \
 ```
 
 ```python Python SDK
-import dotenv, os
 from dune_client.types import QueryParameter
 from dune_client.client import DuneClient
 from dune_client.query import QueryBase
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-dotenv.load_dotenv(".env")
-dune = DuneClient.from_env()
+dune = DuneClient()
 
 query = dune.update_query(
     query_sql="SELECT * FROM {{blockchain}}.transactions WHERE to = {{address}} AND block_number > {{blocknumber}}"
