@@ -30,6 +30,22 @@ The transfers table provides a comprehensive view of token movement across netwo
 - Identify significant token movements
 - Monitor exchange and DeFi protocol activity
 
+### Pricing Methodology
+
+<Warning>
+**Important**: The USD values in `tokens.transfers` are calculated using `prices_coinpaprika.hour`, **not** the hybrid `prices.hour` table.
+</Warning>
+
+The `amount_usd` column in the transfers table uses Coinpaprika-sourced pricing data exclusively, which provides:
+
+- **Stable, externally-validated pricing** from centralized exchange aggregation
+- **Protection against outliers** that can occur in DEX-derived pricing algorithms  
+- **Consistent valuation** across major tokens (~2,000 tokens with Coinpaprika coverage)
+
+This approach prevents pricing anomalies from DEX trading activity that could negatively impact aggregations and analysis on the transfers table. Tokens without Coinpaprika coverage will not have USD values populated.
+
+For more details on Dune's pricing methodology and the differences between pricing sources, see the [Prices documentation](/data-catalog/curated/prices/overview).
+
 
 The table contains the following columns:
 
@@ -83,6 +99,8 @@ This query calculates the daily transfer volume for a specific ERC20 token.
 
 Please be aware that token volumes are not necessarily indicative of anything. These metrics can be misleading if the token is not well-known or if there are a lot of small transfers. Token transfers can be mints, burns, transfers, flash loans and anything in between, trying to read into the data can lead to misleading results.
 
+Note: The `amount_usd` values are calculated using Coinpaprika pricing data (`prices_coinpaprika.hour`) for stable, exchange-validated pricing.
+
 ```sql
 SELECT
     block_date,
@@ -104,6 +122,8 @@ ORDER BY 1 DESC
 **Identify largest transfers in the last 24 hours**
 
 This query finds the largest token transfers by USD value in the last 24 hours:
+
+Note: USD values are sourced from Coinpaprika pricing data for reliable valuation.
 
 ```sql
 SELECT
