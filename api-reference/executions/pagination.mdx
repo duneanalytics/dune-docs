@@ -15,19 +15,15 @@ Pagination can be effectively combined with [filtering](./filtering) and [sortin
 <Tabs>
     <Tab title="Python SDK">
     ```python
-    '''
-    When using higher level functions like `get_latest_result_dataframe`, 
-    pagination via `limit` param is done automatically behind the scenes 
-    to get all rows in the result set.
-    
-    To actually paginate manually, i.e., 
-    limit the number of rows each call returns, 
-    use a lower level function like `get_execution_results_csv`.
-    '''
+    # When using higher level functions like `get_latest_result_dataframe`, 
+    # pagination via `limit` param is done automatically behind the scenes 
+    # to get all rows in the result set.
+    # 
+    # To actually paginate manually, i.e., 
+    # limit the number of rows each call returns, 
+    # use a lower level function like `get_execution_results_csv`.
 
-    from dune_client.types import QueryParameter
     from dune_client.client import DuneClient
-    from dune_client.query import QueryBase
 
     # setup Dune Python client
     dune = DuneClient()

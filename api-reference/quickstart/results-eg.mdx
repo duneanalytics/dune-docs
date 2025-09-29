@@ -81,19 +81,17 @@ You can choose to either get the latest query result without triggering an execu
 ### Putting it all together
 
     ```python
-    from dune_client.types import QueryParameter
     from dune_client.client import DuneClient
     from dune_client.query import QueryBase
 
     # setup Dune Python client
     dune = DuneClient()
 
-    """ get the latest executed result without triggering a new execution """
+    # get the latest executed result without triggering a new execution
     query_result = dune.get_latest_result(3373921) # get latest result in json format
-    # query_result = dune.get_latest_result_dataframe(3373921) # get latest result in Pandas dataframe format
 
 
-    """  query the query (execute and get latest result) """
+    # query the query (execute and get latest result)
     query = QueryBase(
         query_id=3373921,
 
@@ -110,6 +108,4 @@ You can choose to either get the latest query result without triggering an execu
       # , performance="large" # uncomment to run query on large engine, default is medium
       # , batch_size = 5_000 # uncomment to change the maximum number of rows to retrieve per batch of results, default is 32_000
     ) 
-
-    # Note: to get the result in csv format, call run_query_csv(); for json format, call run_query().
     ```
