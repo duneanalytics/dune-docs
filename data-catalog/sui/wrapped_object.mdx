@@ -1,0 +1,30 @@
+---
+title: sui.wrapped_object
+sidebarTitle: "Wrapped Object"
+description: Description of the sui.wrapped_object table on Dune
+---
+
+## Table Description
+Contains data about wrapped objects on the Sui blockchain. Wrapped objects are objects that have been wrapped by another object, creating a hierarchical ownership structure. This table tracks the wrapping relationships and metadata. This table is partitioned by date.
+
+## Column Descriptions
+
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **object_id** | binary | Binary representation of the unique identifier of the wrapped object |
+| **root_object_id** | binary | Binary representation of the unique identifier of the root object that contains this wrapped object |
+| **root_object_version** | decimal(20,0) | Version of the root object |
+| **checkpoint** | decimal(20,0) | Checkpoint sequence number containing this wrapping operation |
+| **epoch** | decimal(20,0) | Epoch number when the object was wrapped |
+| **timestamp_ms** | decimal(20,0) | Unix timestamp in milliseconds when the object was wrapped |
+| **date** | date | Date of when the object was wrapped |
+| **json_path** | string | JSON path to the wrapped object within the root object |
+| **struct_tag** | string | Struct tag of the wrapped object |
+| **_updated_at** | timestamp | Last time the record was updated |
+| **_ingested_at** | timestamp | Time when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sui" tableName="wrapped_object" />

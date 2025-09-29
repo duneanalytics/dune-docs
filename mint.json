@@ -2615,6 +2615,22 @@
           ]
         },
         {
+          "group": "Sui",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/sui/overview",
+            "data-catalog/sui/checkpoints",
+            "data-catalog/sui/events",
+            "data-catalog/sui/move_call",
+            "data-catalog/sui/move_package",
+            "data-catalog/sui/objects",
+            "data-catalog/sui/transaction_objects",
+            "data-catalog/sui/transactions",
+            "data-catalog/sui/wrapped_object"
+          ]
+        },
+        {
           "group": "TON",
           "icon": "database",
           "iconType": "solid",
