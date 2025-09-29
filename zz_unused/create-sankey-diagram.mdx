@@ -36,25 +36,14 @@ We will show you different ways to fetch data from Dune API in the process as we
 
 Import all necessary libraries and authenticate to set up DuneClient.
 
-<Note>
-  1. Make sure you create have a .env file created with your 'DUNE_API_KEY' in
-  it! 2. Replace the path to your own directory in `os.chdir(...)`
-</Note>
 ``` py import pandas as pd import plotly.graph_objects as go import colorlover as
-cl import pandas as pd import dotenv, os, json from dune_client.types import QueryParameter
+cl import pandas as pd import json from dune_client.types import QueryParameter
 from dune_client.client import DuneClient from dune_client.query import QueryBase
 
-# change the current working directory where .env file lives
-
-os.chdir("...") # please replace with path to your own current directory
-
-# load .env file
-
-dotenv.load_dotenv(".env")
 
 # setup Dune Python client
 
-dune = DuneClient.from_env()
+dune = DuneClient()
 
 ````
 
