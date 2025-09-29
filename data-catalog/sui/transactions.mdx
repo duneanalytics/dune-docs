@@ -1,0 +1,68 @@
+---
+title: sui.transactions
+sidebarTitle: "Transactions"
+description: Description of the sui.transactions table on Dune
+---
+
+## Table Description
+Contains comprehensive transaction data from the Sui blockchain. This table records all transactions processed on the network, including transfers, smart contract interactions, and system operations. This table is partitioned by date.
+
+## Column Descriptions
+
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **transaction_digest** | string | Unique hash identifier of the transaction |
+| **checkpoint** | decimal(20,0) | Checkpoint sequence number containing this transaction |
+| **epoch** | decimal(20,0) | Epoch number when the transaction was executed |
+| **timestamp_ms** | decimal(20,0) | Unix timestamp in milliseconds when transaction was executed |
+| **date** | date | Date of when the transaction was executed |
+| **sender** | binary | Binary representation of the address that initiated the transaction |
+| **transaction_kind** | string | Type of transaction (e.g., "ProgrammableTransaction", "ChangeEpoch", "Genesis") |
+| **is_system_txn** | boolean | Whether this is a system transaction |
+| **is_sponsored_tx** | boolean | Whether this is a sponsored transaction |
+| **transaction_count** | decimal(20,0) | Number of transactions in the batch |
+| **execution_success** | boolean | Whether the transaction executed successfully |
+| **input** | decimal(20,0) | Number of input objects |
+| **shared_input** | decimal(20,0) | Number of shared input objects |
+| **gas_coins** | decimal(20,0) | Number of gas coins used |
+| **created** | decimal(20,0) | Number of objects created |
+| **mutated** | decimal(20,0) | Number of objects mutated |
+| **deleted** | decimal(20,0) | Number of objects deleted |
+| **transfers** | decimal(20,0) | Number of transfers performed |
+| **split_coins** | decimal(20,0) | Number of coin splits performed |
+| **merge_coins** | decimal(20,0) | Number of coin merges performed |
+| **publish** | decimal(20,0) | Number of packages published |
+| **upgrade** | decimal(20,0) | Number of package upgrades |
+| **others** | decimal(20,0) | Number of other operations |
+| **move_calls** | decimal(20,0) | Number of move calls made |
+| **packages** | string | Packages involved in the transaction |
+| **gas_owner** | binary | Binary representation of the gas owner address |
+| **gas_object_id** | binary | Binary representation of the gas object ID |
+| **gas_object_sequence** | decimal(20,0) | Sequence number of the gas object |
+| **gas_object_digest** | string | Digest of the gas object |
+| **gas_budget** | decimal(20,0) | Gas budget allocated for the transaction |
+| **total_gas_cost** | bigint | Total gas cost for the transaction |
+| **computation_cost** | decimal(20,0) | Computation cost component of gas |
+| **storage_cost** | decimal(20,0) | Storage cost component of gas |
+| **storage_rebate** | decimal(20,0) | Storage rebate received |
+| **non_refundable_storage_fee** | decimal(20,0) | Non-refundable storage fees |
+| **gas_price** | decimal(20,0) | Gas price for the transaction |
+| **raw_transaction** | string | Raw transaction data |
+| **has_zklogin_sig** | boolean | Whether the transaction has zkLogin signature |
+| **has_upgraded_multisig** | boolean | Whether the transaction has upgraded multisig |
+| **transaction_json** | string | JSON representation of the transaction |
+| **effects_json** | string | JSON representation of the transaction effects |
+| **transaction_position** | decimal(20,0) | Position of the transaction within the checkpoint |
+| **events_digest** | string | Digest of events emitted by the transaction |
+| **transaction_data_bcs_length** | decimal(20,0) | Length of transaction data BCS in bytes |
+| **effects_bcs_length** | decimal(20,0) | Length of effects BCS in bytes |
+| **events_bcs_length** | decimal(20,0) | Length of events BCS in bytes |
+| **signatures_bcs_length** | decimal(20,0) | Length of signatures BCS in bytes |
+| **_updated_at** | timestamp | Last time the record was updated |
+| **_ingested_at** | timestamp | Time when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sui" tableName="transactions" />

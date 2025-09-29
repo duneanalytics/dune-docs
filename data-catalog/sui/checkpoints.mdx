@@ -1,0 +1,39 @@
+---
+title: sui.checkpoints
+sidebarTitle: "Checkpoints"
+description: Description of the sui.checkpoints table on Dune
+---
+
+## Table Description
+Contains checkpoint data from the Sui blockchain. Checkpoints are fundamental units of consensus in Sui, representing a collection of transactions that have been finalized and agreed upon by validators. This table is partitioned by date.
+
+## Column Descriptions
+
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **checkpoint_digest** | string | Unique hash identifier of the checkpoint |
+| **sequence_number** | decimal(20,0) | Sequential number of the checkpoint |
+| **epoch** | decimal(20,0) | Epoch number when the checkpoint was created |
+| **timestamp_ms** | decimal(20,0) | Unix timestamp in milliseconds when the checkpoint was created |
+| **date** | date | Date of when the checkpoint was created |
+| **previous_checkpoint_digest** | string | Hash of the previous checkpoint |
+| **end_of_epoch** | boolean | Whether this checkpoint marks the end of an epoch |
+| **total_gas_cost** | bigint | Total gas cost for all transactions in this checkpoint |
+| **computation_cost** | decimal(20,0) | Total computation cost for transactions in this checkpoint |
+| **storage_cost** | decimal(20,0) | Total storage cost for transactions in this checkpoint |
+| **storage_rebate** | decimal(20,0) | Total storage rebate for transactions in this checkpoint |
+| **non_refundable_storage_fee** | decimal(20,0) | Non-refundable storage fees |
+| **total_transaction_blocks** | decimal(20,0) | Total number of transaction blocks in this checkpoint |
+| **total_transactions** | decimal(20,0) | Total number of transactions in this checkpoint |
+| **total_successful_transaction_blocks** | decimal(20,0) | Total number of successful transaction blocks in this checkpoint |
+| **total_successful_transactions** | decimal(20,0) | Total number of successful transactions in this checkpoint |
+| **network_total_transaction** | decimal(20,0) | Total number of transactions processed by the network up to this checkpoint |
+| **validator_signature** | string | Validator signature for this checkpoint |
+| **_updated_at** | timestamp | Last time the record was updated |
+| **_ingested_at** | timestamp | Time when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sui" tableName="checkpoints" />

@@ -1,0 +1,43 @@
+---
+title: sui.objects
+sidebarTitle: "Objects"
+description: Description of the sui.objects table on Dune
+---
+
+## Table Description
+Contains data about Sui objects, which are the fundamental units of data storage on the Sui blockchain. Unlike traditional blockchains that use key-value stores, Sui uses an object-centric model where data is stored as objects with unique identifiers. This table is partitioned by date.
+
+## Column Descriptions
+
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **object_id** | binary | Binary representation of the unique identifier of the object |
+| **version** | decimal(20,0) | Version number of the object |
+| **digest** | string | Hash digest of the object contents |
+| **type_** | string | Type of the object (e.g., "0x2::coin::Coin<0x2::sui::SUI>") |
+| **checkpoint** | decimal(20,0) | Checkpoint sequence number containing this object operation |
+| **epoch** | decimal(20,0) | Epoch number when the object was created/updated |
+| **timestamp_ms** | decimal(20,0) | Unix timestamp in milliseconds when the object was created/updated |
+| **date** | date | Date of when the object was created/updated |
+| **owner_type** | string | Type of ownership (e.g., "AddressOwner", "ObjectOwner", "Shared", "Immutable") |
+| **owner_address** | binary | Binary representation of the owner address (if applicable) |
+| **object_status** | string | Status of the object (e.g., "Created", "Mutated", "Deleted") |
+| **initial_shared_version** | decimal(20,0) | Initial shared version for shared objects |
+| **previous_transaction** | string | Hash of the previous transaction that modified this object |
+| **has_public_transfer** | boolean | Whether the object can be publicly transferred |
+| **is_consensus** | boolean | Whether this is a consensus object |
+| **storage_rebate** | decimal(20,0) | Storage rebate for this object |
+| **bcs** | string | Binary Canonical Serialization of the object data |
+| **coin_type** | string | Type of coin if this object is a coin |
+| **coin_balance** | decimal(20,0) | Balance of the coin if this object is a coin |
+| **struct_tag** | string | Struct tag of the object |
+| **object_json** | string | JSON representation of the object data |
+| **bcs_length** | decimal(20,0) | Length of the BCS data in bytes |
+| **_updated_at** | timestamp | Last time the record was updated |
+| **_ingested_at** | timestamp | Time when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sui" tableName="objects" />

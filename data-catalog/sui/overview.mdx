@@ -1,0 +1,66 @@
+---
+title: Sui Data
+sidebarTitle: "Overview"
+icon: "star"
+description: Sui blockchain data on Dune
+---
+
+## What is Sui?
+
+Sui is a layer 1 blockchain protocol designed for high performance and scalability. The name derives from the Japanese word for water, reflecting the platform's fluid and adaptable nature. Sui features several key innovations:
+
+- **Object-Centric Architecture**: Unlike traditional blockchains that use key-value stores, Sui treats blocks as objects that define assets, enabling more sophisticated programmability.
+- **Delegated Proof-of-Stake (DPoS)**: Energy-efficient consensus mechanism where validators stake SUI tokens to secure the network.
+- **Move Programming Language**: A robust logic engine specifically designed for Sui's object-based approach to blockchain technology.
+- **Parallel Transaction Processing**: Enables high throughput by processing independent transactions simultaneously.
+
+## Sui Networks
+
+Sui operates across multiple networks serving different purposes:
+
+- **Mainnet**: Production network processing real transactions and handling SUI trading and NFT activities
+- **Testnet**: Staging environment for quality assurance and developer testing
+- **Devnet**: Development network for testing new features and latest planned capabilities
+- **Localnet**: Local development environment for optimized workflows
+
+## SUI Token Economics
+
+The native token for Sui is **SUI**, with **MIST** serving as the smallest unit (1 SUI = 1 billion MIST). All transaction costs, including gas fees and data storage, are paid using SUI tokens. The platform uses a delegated proof-of-stake model where validators must stake SUI to participate in consensus, aligning their interests with network security and efficiency.
+
+## Sui Data on Dune
+
+Sui blockchain data is organized into several key tables that capture different aspects of on-chain activity:
+
+<CardGroup cols={2}>
+  <Card title="Checkpoints" icon="cube" href="/data-catalog/sui/checkpoints">
+    Checkpoint data representing finalized collections of transactions agreed upon by validators.
+  </Card>
+
+  <Card title="Events" icon="calendar" href="/data-catalog/sui/events">
+    Event data emitted by smart contracts and system operations on the Sui blockchain.
+  </Card>
+
+  <Card title="Move Call" icon="code" href="/data-catalog/sui/move_call">
+    Data about Move function calls executed on the Sui blockchain.
+  </Card>
+
+  <Card title="Move Package" icon="box" href="/data-catalog/sui/move_package">
+    Information about Move packages deployed on the Sui blockchain.
+  </Card>
+
+  <Card title="Objects" icon="shapes" href="/data-catalog/sui/objects">
+    Sui's unique object-centric data including object states, ownership, and metadata.
+  </Card>
+
+  <Card title="Transaction Objects" icon="link" href="/data-catalog/sui/transaction_objects">
+    Objects involved in transactions, tracking which objects are read, written, or deleted.
+  </Card>
+
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/sui/transactions">
+    Comprehensive transaction data including transfers, smart contract interactions, and system operations.
+  </Card>
+
+  <Card title="Wrapped Object" icon="layer-group" href="/data-catalog/sui/wrapped_object">
+    Data about wrapped objects and their hierarchical ownership structure.
+  </Card>
+</CardGroup>
