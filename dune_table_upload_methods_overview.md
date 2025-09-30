@@ -55,7 +55,7 @@ The programmatic approach uses a combination of four API endpoints (`create`, `i
 - Define table schema explicitly with column names, types, and nullability
 - Set table as public or private
 - Specify namespace and table name
-- **Cost**: 10 credits per successful table creation
+- **Cost**: Credits are consumed based on actual compute resources used for table creation
 
 #### 2. **Insert Data** (`POST /v1/table/insert`)
 - Add new rows to existing tables
@@ -90,7 +90,7 @@ The programmatic approach uses a combination of four API endpoints (`create`, `i
 - **Schema Management**: Must manually define and maintain schema
 - **Multiple API Calls**: Requires orchestration of multiple endpoints
 - **Higher Learning Curve**: More complex implementation
-- **Credit Consumption**: Table creation costs 10 credits
+- **Credit Consumption**: Credits are consumed based on actual compute resources used for table creation
 
 ### Typical Workflow
 1. **Create** table with defined schema
@@ -122,7 +122,7 @@ The programmatic approach uses a combination of four API endpoints (`create`, `i
 | **API Calls Required** | 1 | Multiple (2-4) |
 | **Learning Curve** | Minimal | Steep |
 | **Automation Friendly** | Limited | Excellent |
-| **Credit Cost** | Data points only | 10 credits + data points |
+| **Credit Cost** | Data points only | Credits based on compute resources + data points |
 | **Privacy Options** | Public/Private | Public/Private |
 | **Error Recovery** | Limited | Granular control |
 
