@@ -10,18 +10,39 @@ Dune uses a usage-based credit system that charges based on actual compute resou
 
 ## How the Credit System Works
 
-Our usage-based credit system ensures fair pricing by charging based on actual compute resources consumed rather than fixed amounts per query. This approach provides several key advantages:
+Historically, our query engine charged a fixed number of credits per execution, a simple approach for analysts but ultimately **unfair and limiting**: simpler queries were overcharged, complex queries undercharged, and query timeouts restricted capabilities.
 
-- **Fair pricing**: Simple queries cost less, complex queries cost more based on actual resource usage
-- **Better timeouts**: Larger queries can run longer without arbitrary limits
-- **Scalable**: Supports growing workloads across 100+ chains and complex data operations
+As Dune adoption grows—spanning over **100 chains, complex tables, and new ways to consume data through APIs and dbt-style connectors—both we and our customers need pricing that scales with real usage**.
+
+This new engine brings that flexibility. **Your credit system remains the same, but now when you run a query, credits are spent in proportion to the consumed resources.** This means that small, simple queries will become cheaper and larger queries can run longer (better timeouts).
+
+**Key benefits:**
+
+- **Usage-based** – Pay in proportion to actual consumption
+- **Efficiency** – Incentives to write cleaner, optimized queries  
+- **Scalable** – Sustainable future support for larger workloads with longer timeouts and advanced integrations like **dbt**, **Trino REST API**, **SQL Mesh**, AI-driven workflows, and expanded connector options to come in the near future
+
+This fair, usage-based model ensures Dune can keep pace with your most ambitious data needs.
 
 ## Credit Pricing
 
 Credits are consumed based on the actual compute resources used for each query execution. The more complex your query, the more credits it consumes, but simple queries cost significantly less.
 
-**Overage Pricing**  
-Overage is charged at the same rate as your plan. The price per 100 credits shown for each plan is what you pay for any usage beyond your included credits, keeping pricing simple and transparent.
+**Credit Pricing = Overage Pricing**  
+Overage is now charged at the same rate as your plan. The price per 100 credits shown for each plan is what you pay for any usage beyond your included credits, keeping things simple and transparent.
+
+**Analyst Plan Pricing Update** 
+
+- **Monthly plans**: New pricing of $75/month, up from $49/month, takes effect at your first billing cycle after October 21st.
+- **Annual plans**: New pricing of $65/month ($780/year), up from $45/month, takes effect at your next annual renewal after October 21st.
+
+<Note>
+This adjustment ensures sustainable economics as Dune scales to support 100+ chains and complex workflows. Your 4,000 credits will go further with usage-based pricing, meaning lighter queries cost less, giving you more value.
+</Note>
+
+<Warning>
+**Note:** All plans will transition to usage-based credit consumption by their next monthly billing cycle after October 21st (including all annual plans). However, Analyst annual plans will adopt their new pricing at their next annual renewal cycle.
+</Warning>
 
 **Quick Plan Reference**
 
@@ -43,12 +64,17 @@ Overage is charged at the same rate as your plan. The price per 100 credits show
 Explore the complete pricing plan with credit limits and features for each tier: [dune.com/pricing](https://dune.com/pricing)
 </Info>
 
-## Optimizing Your Credit Usage
+## What can I do to prepare?
 
-- **Monitor your usage.** Check your query volume and costs in your account settings to understand your consumption patterns.
-- **Optimize your queries.** Efficient queries save credits and run faster. See [query optimization tips](https://docs.dune.com/query-engine/writing-efficient-queries) for guidance.
-- **Choose the right plan.** If you consistently exceed your plan limits, consider upgrading or contact our sales team at [dune.com/enterprise](http://dune.com/enterprise) to discuss the best plan for your needs.
-- **Set credit caps.** Use query cost caps to limit the amount of credits you're willing to spend on individual queries.
+- **Review your usage.** Check your query volume and costs to understand where you stand before the change takes place.
+- **Optimize your queries.** Efficient queries save credits and run faster. See [here](https://docs.dune.com/query-engine/writing-efficient-queries) for tips.
+- **Pick the plan that fits.** If you anticipate heavy usage or notice overages, please contact our sales team at [dune.com/enterprise](http://dune.com/enterprise) to discuss the best plan for your needs.
+- **Cap your query costs.** Use our new feature to cap the amount of credits you're willing to spend on a query.
+
+## Important Dates
+
+- **October 7th-20th**: New pricing in effect for net-new subscriptions.
+- **October 21st**: The new usage-based model will apply to your plan on **your first new monthly billing cycle after this date**.
 
 ## Need Help?
 
