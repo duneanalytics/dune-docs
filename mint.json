@@ -119,7 +119,6 @@
           ]
         },
         "web-app/dashboards",
-        "web-app/dashboard-minting",
         "web-app/teams",
         "web-app/dune-ai",
         "web-app/upload-data",
@@ -1107,6 +1106,35 @@
           ]
         },
         {
+          "group": "Flow EVM",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/flow-evm/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/flow-evm/raw/blocks",
+                "data-catalog/evm/flow-evm/raw/creation-traces",
+                "data-catalog/evm/flow-evm/raw/logs",
+                "data-catalog/evm/flow-evm/raw/transactions",
+                "data-catalog/evm/flow-evm/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/flow-evm/decoded/overview",
+                "data-catalog/evm/flow-evm/decoded/call-tables",
+                "data-catalog/evm/flow-evm/decoded/event-logs",
+                "data-catalog/evm/flow-evm/decoded/contracts",
+                "data-catalog/evm/flow-evm/decoded/logs-decoded",
+                "data-catalog/evm/flow-evm/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Gnosis",
           "icon": "database",
           "iconType": "solid",
@@ -1187,6 +1215,31 @@
                   "group": "DEX",
                   "pages": ["data-catalog/evm/hemi/curated-data/dex/dex-trades"]
                 }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "HyperEVM",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/hyperevm/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/hyperevm/raw/blocks",
+                "data-catalog/evm/hyperevm/raw/logs",
+                "data-catalog/evm/hyperevm/raw/transactions"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/hyperevm/decoded/overview",
+                "data-catalog/evm/hyperevm/decoded/event-logs",
+                "data-catalog/evm/hyperevm/decoded/contracts",
+                "data-catalog/evm/hyperevm/decoded/logs-decoded"
               ]
             }
           ]
@@ -1619,6 +1672,35 @@
           ]
         },
         {
+          "group": "Plasma",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/plasma/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/plasma/raw/blocks",
+                "data-catalog/evm/plasma/raw/transactions",
+                "data-catalog/evm/plasma/raw/logs",
+                "data-catalog/evm/plasma/raw/traces",
+                "data-catalog/evm/plasma/raw/creation-traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/plasma/decoded/overview",
+                "data-catalog/evm/plasma/decoded/call-tables",
+                "data-catalog/evm/plasma/decoded/event-logs",
+                "data-catalog/evm/plasma/decoded/contracts",
+                "data-catalog/evm/plasma/decoded/logs-decoded",
+                "data-catalog/evm/plasma/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Polygon",
           "icon": "database",
           "iconType": "solid",
@@ -1980,6 +2062,35 @@
                     "data-catalog/evm/sonic/curated-data/nft/nft-trades"
                   ]
                 }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Somnia",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/somnia/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/somnia/raw/blocks",
+                "data-catalog/evm/somnia/raw/creation-traces",
+                "data-catalog/evm/somnia/raw/logs",
+                "data-catalog/evm/somnia/raw/transactions",
+                "data-catalog/evm/somnia/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/somnia/decoded/overview",
+                "data-catalog/evm/somnia/decoded/call-tables",
+                "data-catalog/evm/somnia/decoded/event-logs",
+                "data-catalog/evm/somnia/decoded/contracts",
+                "data-catalog/evm/somnia/decoded/logs-decoded",
+                "data-catalog/evm/somnia/decoded/traces-decoded"
               ]
             }
           ]
@@ -2504,6 +2615,22 @@
           ]
         },
         {
+          "group": "Sui",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/sui/overview",
+            "data-catalog/sui/checkpoints",
+            "data-catalog/sui/events",
+            "data-catalog/sui/move_call",
+            "data-catalog/sui/move_package",
+            "data-catalog/sui/objects",
+            "data-catalog/sui/transaction_objects",
+            "data-catalog/sui/transactions",
+            "data-catalog/sui/wrapped_object"
+          ]
+        },
+        {
           "group": "TON",
           "icon": "database",
           "iconType": "solid",
@@ -2517,7 +2644,10 @@
             "data-catalog/ton/dex_pools",
             "data-catalog/ton/dex_trades",
             "data-catalog/ton/jetton_events",
-            "data-catalog/ton/jetton_metadata"
+            "data-catalog/ton/jetton_metadata",
+            "data-catalog/ton/nft_events",
+            "data-catalog/ton/nft_metadata",
+            "data-catalog/ton/prices_daily"
           ]
         },
         {
@@ -2719,10 +2849,6 @@
         "api-reference/overview/billing",
         "api-reference/overview/faq"
       ]
-    },
-    {
-      "group": "Custom Endpoints",
-      "pages": ["api-reference/custom/overview"]
     },
     {
       "group": "SQL Endpoints",

@@ -64,3 +64,50 @@ Go to **Settings** → **Subscriptions** for a deeper dive into your credit usag
 Exceeding your monthly allocation? Here's how to handle it:
 1. Add a payment method to your account to use additional credits at a fee above your included limit.
 2. Set a cap in the **limit extra credits** field to keep your spending in check.
+
+### 📊 Export Credit Usage Data
+Teams and users can export detailed credit usage metrics to analyze consumption patterns and optimize their Dune usage.
+
+#### How to Export Usage Data
+1. Navigate to your team's usage dashboard
+2. Click the **"Export usage"** button  
+3. Your team's last 30 days of usage data will be downloaded as a CSV file
+
+#### Understanding the Exported Data
+The exported CSV file contains comprehensive usage information with the following columns:
+
+| Column | Description |
+|--------|-------------|
+| timestamp | The exact date and time when the credit was consumed |
+| user_id | Unique identifier for the user who consumed the credits |
+| user_name | Display name of the user |
+| service | The Dune service that consumed credits (e.g., query execution, API calls) |
+| record_type | Type of usage record |
+| credit_cost | Number of credits consumed for this action |
+| plan | Your team's current subscription plan |
+| skipped_quota_enforcement | Indicates if quota limits were bypassed (true/false) |
+| query_id | Unique identifier for queries (when applicable) |
+| metadata | Additional contextual information about the usage |
+
+#### Use Cases for Exported Data
+The exported usage data enables teams to:
+
+• **Track individual user consumption:** Identify which team members are using the most credits  
+• **Analyze service usage patterns:** Understand which Dune services consume the most credits  
+• **Budget planning:** Use historical data to forecast future credit needs  
+• **Optimize queries:** Identify expensive queries using the query_id field  
+• **Compliance and reporting:** Generate usage reports for internal auditing  
+• **Cost allocation:** Distribute costs across different teams or projects based on actual usage  
+
+#### Data Analysis Tips
+• Import the CSV into spreadsheet software or data analysis tools  
+• Create pivot tables to summarize usage by user, service, or time period  
+• Use the timestamp field to analyze usage patterns over time  
+• Filter by query_id to identify and optimize resource-intensive queries  
+• Monitor the credit_cost column to track spending trends  
+
+#### Important Notes
+• The export includes the last 30 days of data  
+• All timestamps are in UTC  
+• Credit costs reflect your team's pricing plan at the time of usage  
+• The metadata field may contain additional JSON-formatted information depending on the service  

@@ -1,0 +1,31 @@
+---
+title: sui.move_package
+sidebarTitle: "Move Package"
+description: Description of the sui.move_package table on Dune
+---
+
+## Table Description
+Contains information about Move packages deployed on the Sui blockchain. Move packages are collections of Move modules that define smart contracts and their functionality. This table tracks package deployments, updates, and metadata. This table is partitioned by date.
+
+## Column Descriptions
+
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **package_id** | binary | Binary representation of the unique identifier of the Move package |
+| **checkpoint** | decimal(20,0) | Checkpoint sequence number containing this package operation |
+| **epoch** | decimal(20,0) | Epoch number when the package was deployed/updated |
+| **timestamp_ms** | decimal(20,0) | Unix timestamp in milliseconds when the package was deployed/updated |
+| **date** | date | Date of when the package was deployed/updated |
+| **bcs** | string | Binary Canonical Serialization of the package data |
+| **transaction_digest** | string | Hash of the transaction that deployed/updated this package |
+| **package_version** | decimal(20,0) | Version number of the package |
+| **original_package_id** | binary | Binary representation of the original package ID (for upgrades) |
+| **bcs_length** | decimal(20,0) | Length of the BCS data in bytes |
+| **_updated_at** | timestamp | Last time the record was updated |
+| **_ingested_at** | timestamp | Time when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sui" tableName="move_package" />

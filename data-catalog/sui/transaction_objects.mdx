@@ -1,0 +1,30 @@
+---
+title: sui.transaction_objects
+sidebarTitle: "Transaction Objects"
+description: Description of the sui.transaction_objects table on Dune
+---
+
+## Table Description
+Contains data about objects that are involved in transactions on the Sui blockchain. This table tracks which objects are read, written, or deleted in each transaction, providing a comprehensive view of object interactions. This table is partitioned by date.
+
+## Column Descriptions
+
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **object_id** | binary | Binary representation of the unique identifier of the object |
+| **version** | decimal(20,0) | Version of the object in this transaction |
+| **transaction_digest** | string | Hash of the transaction |
+| **checkpoint** | decimal(20,0) | Checkpoint sequence number containing this transaction |
+| **epoch** | decimal(20,0) | Epoch number when the transaction was executed |
+| **timestamp_ms** | decimal(20,0) | Unix timestamp in milliseconds when the transaction was executed |
+| **date** | date | Date of when the transaction was executed |
+| **input_kind** | string | Kind of input for this object (e.g., "Input", "SharedInput", "Receiving") |
+| **object_status** | string | Status of the object (e.g., "Created", "Mutated", "Deleted", "Unchanged") |
+| **_updated_at** | timestamp | Last time the record was updated |
+| **_ingested_at** | timestamp | Time when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="sui" tableName="transaction_objects" />
