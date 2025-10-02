@@ -114,6 +114,16 @@ ORDER BY gas_price DESC
 LIMIT 1000
 ```
 
+### Use Curated Data Tables
+
+Leverage Dune's [curated tables](https://docs.dune.com/data-catalog/overview) which are pre-computed and optimized rather than use raw logs and traces.
+
+## Query Performance Troubleshooting
+
+- Monitor query execution time in the Dune interface
+- Check the query plan for full table scans (run EXPLAIN ANALYZE YOUR_QUERY)
+- Consider query complexity vs. result value trade-offs
+
 ## ❌ DON'Ts: Query Anti-Patterns to Avoid
 
 ### 1. **DON'T** Use `SELECT *` on Large Tables
@@ -189,16 +199,6 @@ ORDER BY gas_price DESC
 LIMIT 10000
 ```
 
-
-### Use Curated Data Tables
-
-Leverage Dune's [curated tables](https://docs.dune.com/data-catalog/overview) which are pre-computed and optimized rather than use raw logs and traces.
-
-## Query Performance Monitoring
-
-- Monitor query execution time in the Dune interface
-- Check the query plan for full table scans (run EXPLAIN ANALYZE YOUR_QUERY)
-- Consider query complexity vs. result value trade-offs
 
 ## Summary
 
