@@ -71,6 +71,7 @@
       "group": "Jump right in",
       "pages": [
         "learning/how-tos/create-your-first-query",
+        "learning/how-tos/query-templates",
         "learning/how-tos/create-new-content",
         "learning/how-tos/create-your-first-visualization",
         "learning/how-tos/navigate-query-editor",
