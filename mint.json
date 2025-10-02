@@ -144,6 +144,7 @@
     {
       "group": "DuneSQL",
       "pages": [
+        "query-engine/dunesql-architecture",
         "query-engine/writing-efficient-queries",
         "query-engine/datatypes",
         "query-engine/reserved-keywords"
