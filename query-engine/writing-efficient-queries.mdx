@@ -118,6 +118,11 @@ LIMIT 1000
 
 Leverage Dune's [curated tables](https://docs.dune.com/data-catalog/overview) which are pre-computed and optimized rather than use raw logs and traces.
 
+### Use Materialized Views
+
+[Materialized views](https://docs.dune.com/query-engine/materialized-views) are a way to store the results of a query in a table that can be queried like any other table. 
+This is useful when you have a query that takes a long time to run, as you can re-use the results without having to re-execute your whole query.
+
 ## Query Performance Troubleshooting
 
 - Monitor query execution time in the Dune interface
