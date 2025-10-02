@@ -62,9 +62,12 @@ SELECT
 FROM ethereum.transactions t
 INNER JOIN ethereum.logs l 
     ON t.hash = l.tx_hash
+    AND t.block_date = l.block_date
+    AND l.block_date >= TIMESTAMP '2024-10-01'
+    AND l.block_date < TIMESTAMP '2024-10-02'
+WHERE t."to" = 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
     AND t.block_date >= TIMESTAMP '2024-10-01'
     AND t.block_date < TIMESTAMP '2024-10-02'
-WHERE t."to" = 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
 ```
 
 ### 4. Use CTEs for Complex Logic
