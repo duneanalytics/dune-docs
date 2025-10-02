@@ -3,8 +3,6 @@ title: Writing Efficient Queries
 description: Get the most out of DuneSQL by writing efficient queries.
 ---
 
-# Writing Efficient DuneSQL Queries
-
 This guide provides practical do's and don'ts specifically tailored to DuneSQL and Dune's architecture, allowing you to optimize credit spend.
 
 ## Key Principles
@@ -14,26 +12,27 @@ Understanding the [DuneSQL architecture](/query-engine/dunesql-architecture) wil
 
 ## ✅ DO's: Query Optimization Best Practices
 
-### 1. **DO** Leverage Time-Based Partitioning
+### 1. Leverage Time-Based Partitioning
 
 Dune partitions most tables by `block_date` or by `block_time` 
+
 Check on the data explorer (left-side panel) to see which fields are used as partitions.
 Always include time filters to enable partition pruning.
 
 ```sql
 -- ✅ GOOD: Filters by block_date to enable partition pruning
 SELECT 
-    transaction_hash,
-    from_address,
-    to_address,
+    hash,
+    "from",
+    "to",
     value
-FROM ethereum.transactions
-WHERE block_date >= TIMESTAMP '2024-10-01 00:00:00'
-  AND block_date < TIMESTAMP '2024-10-02 00:00:00'
-  AND to_address = '0xa0b86a33e6842d6ba8a977b96b4ba0b76b0e3a0e'
+FROM base.transactions
+WHERE block_time >= TIMESTAMP '2025-09-01 00:00:00'
+  AND block_time < TIMESTAMP '2025-10-02 00:00:00'
+  AND "to" = 0x827922686190790b37229fd06084350E74485b72
 ```
 
-### 2. **DO** Select Only Required Columns
+### 2. Select Only Required Columns
 
 Specify only the columns you need. Dune's columnar storage makes this especially effective.
 
@@ -49,26 +48,26 @@ WHERE contract_address = 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   AND evt_block_time >= NOW() - INTERVAL '7' DAY
 ```
 
-### 3. **DO** Use Efficient JOIN Strategies
+### 3. Use Efficient JOIN Strategies
 
 Put time filters in the ON clause and join on indexed columns when possible.
 
 ```sql
 -- ✅ GOOD: Efficient join with time filter in ON clause
 SELECT 
-    t.transaction_hash,
+    t.hash,
     t.block_time,
     l.topic0,
     l.data
 FROM ethereum.transactions t
 INNER JOIN ethereum.logs l 
-    ON t.transaction_hash = l.transaction_hash
+    ON t.hash = l.tx_hash
     AND t.block_date >= TIMESTAMP '2024-10-01'
     AND t.block_date < TIMESTAMP '2024-10-02'
-WHERE t.to_address = 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+WHERE t."to" = 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
 ```
 
-### 4. **DO** Use CTEs for Complex Logic
+### 4. Use CTEs for Complex Logic
 
 Break complex queries into readable Common Table Expressions.
 
@@ -98,14 +97,14 @@ SELECT * FROM volume_metrics
 ORDER BY trade_date DESC
 ```
 
-### 5. **DO** Use LIMIT with Large Result Sets
+### 5. Use LIMIT with Large Result Sets
 
 Always use LIMIT when you don't need all results, especially for exploratory queries.
 
 ```sql
 -- ✅ GOOD: Using LIMIT for large result sets
 SELECT 
-    transaction_hash,
+    hash,
     block_time,
     gas_used,
     gas_price
@@ -128,28 +127,12 @@ FROM ethereum.transactions
 WHERE block_time >= TIMESTAMP '2024-10-01'
 
 -- ✅ GOOD: Select only needed columns
-SELECT transaction_hash, from_address, to_address, value
+SELECT hash, from_address, to_address, value
 FROM ethereum.transactions  
 WHERE block_time >= TIMESTAMP '2024-10-01'
 ```
 
-### 3. **DON'T** Use Inefficient String Operations
-
-Avoid LIKE patterns that start with wildcards.
-
-```sql
--- ❌ BAD: Leading wildcard prevents index usage
-SELECT *
-FROM ethereum.logs
-WHERE topic0 LIKE '%Transfer%'
-
--- ✅ GOOD: Use specific hex values or exact matches
-SELECT *
-FROM ethereum.logs  
-WHERE topic0 = 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef  -- Transfer event
-```
-
-### 5. **DON'T** Create Unnecessary Subqueries
+### 2. **DON'T** Create Unnecessary Subqueries
 
 Avoid nested subqueries when JOINs or window functions work better.
 
@@ -187,19 +170,19 @@ SELECT
 FROM gas_used
 ```
 
-### 6. **DON'T** Use ORDER BY Without LIMIT on Large Results
+### 3. **DON'T** Use ORDER BY Without LIMIT on Large Results
 
 Sorting large result sets is expensive.
 
 ```sql
 -- ❌ BAD: Ordering large result set without limit
-SELECT transaction_hash, gas_price
+SELECT hash, gas_price
 FROM ethereum.transactions
 WHERE block_time >= TIMESTAMP '2024-10-01'
 ORDER BY gas_price DESC
 
 -- ✅ GOOD: Add LIMIT when ordering
-SELECT transaction_hash, gas_price
+SELECT hash, gas_price
 FROM ethereum.transactions
 WHERE block_time >= TIMESTAMP '2024-10-01'
 ORDER BY gas_price DESC
