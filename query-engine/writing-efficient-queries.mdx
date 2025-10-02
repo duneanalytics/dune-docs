@@ -27,8 +27,8 @@ SELECT
     "to",
     value
 FROM base.transactions
-WHERE block_time >= TIMESTAMP '2025-09-01 00:00:00'
-  AND block_time < TIMESTAMP '2025-10-02 00:00:00'
+WHERE block_date >= TIMESTAMP '2025-09-01 00:00:00'
+  AND block_date < TIMESTAMP '2025-10-02 00:00:00'
   AND "to" = 0x827922686190790b37229fd06084350E74485b72
 ```
 
