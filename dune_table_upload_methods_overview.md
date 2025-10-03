@@ -90,7 +90,7 @@ The programmatic approach uses a combination of four API endpoints (`create`, `i
 - **Schema Management**: Must manually define and maintain schema
 - **Multiple API Calls**: Requires orchestration of multiple endpoints
 - **Higher Learning Curve**: More complex implementation
-- **Credit Consumption**: Credits are consumed based on actual compute resources used for table creation
+- **Credit Consumption**: Table creation costs 10 credits
 
 ### Typical Workflow
 1. **Create** table with defined schema
