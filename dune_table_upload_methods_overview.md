@@ -55,7 +55,7 @@ The programmatic approach uses a combination of four API endpoints (`create`, `i
 - Define table schema explicitly with column names, types, and nullability
 - Set table as public or private
 - Specify namespace and table name
-- **Cost**: Credits are consumed based on actual compute resources used for table creation
+- **Cost**: 10 credits per successful table creation
 
 #### 2. **Insert Data** (`POST /v1/table/insert`)
 - Add new rows to existing tables
