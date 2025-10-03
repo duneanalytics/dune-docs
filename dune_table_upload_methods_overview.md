@@ -122,7 +122,7 @@ The programmatic approach uses a combination of four API endpoints (`create`, `i
 | **API Calls Required** | 1 | Multiple (2-4) |
 | **Learning Curve** | Minimal | Steep |
 | **Automation Friendly** | Limited | Excellent |
-| **Credit Cost** | Data points only | Credits based on compute resources + data points |
+| **Credit Cost** | Data points only | 10 credits + data points |
 | **Privacy Options** | Public/Private | Public/Private |
 | **Error Recovery** | Limited | Granular control |
 
