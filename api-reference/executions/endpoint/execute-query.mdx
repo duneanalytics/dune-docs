@@ -38,7 +38,7 @@ openapi: 'POST /v1/query/{query_id}/execute'
 
 If the query has parameters and you don't add them in your API call, it will just run with the default params. You may add query parameters as part of the POST params data.
 
-You can choose to include a `performance` parameter, by default it will use the "medium" performance tier which consumes 10 credits. "large" will use 20 credits and are faster.
+You can choose to include a `performance` parameter, by default it will use the "medium" performance tier. Credits are consumed based on actual compute resources used. "large" tier provides more resources for complex queries.
 
 Returns an execution_id associated with the triggered query execution and the state of the execution.
 
