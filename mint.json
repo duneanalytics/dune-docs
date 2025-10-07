@@ -71,6 +71,7 @@
       "group": "Jump right in",
       "pages": [
         "learning/how-tos/create-your-first-query",
+        "learning/how-tos/query-templates",
         "learning/how-tos/create-new-content",
         "learning/how-tos/create-your-first-visualization",
         "learning/how-tos/navigate-query-editor",
@@ -145,6 +146,7 @@
     {
       "group": "DuneSQL",
       "pages": [
+        "query-engine/dunesql-architecture",
         "query-engine/writing-efficient-queries",
         "query-engine/datatypes",
         "query-engine/reserved-keywords"

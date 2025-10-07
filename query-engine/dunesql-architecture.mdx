@@ -1,0 +1,101 @@
+---
+title: DuneSQL Architecture
+description: Understand how DuneSQL's query engine works.
+---
+
+**DuneSQL is built on a sophisticated architecture designed for handling blockchain data at scale. Understanding this architecture helps you write more efficient queries and get the most out of the system.**
+
+DuneSQL is a Trino-based query engine designed for handling data stored in a columnar format. More specifically, we use Parquet files as the underlying storage format, with Delta Lake providing additional capabilities for data management and versioning. 
+This architecture allows for efficient data access and query processing, as well as fast data loading and data compression.
+
+## Database Fundamentals
+
+At their core, databases are sophisticated systems designed to store, retrieve, and manage data. Their primary goal is to provide fast, efficient, and reliable access to vast amounts of structured information. You can think of a database as a collection of tables, where each table is a collection of rows and columns. Conceptually, these tables exist in two ways:
+
+- **Logical**: The logical view of a table is the way the data is organized and presented to the user. This is the view you see when you query a table.
+- **Physical**: The physical view of a table is the way the data is stored on disk. This is the view you see when you look at the underlying files that make up the table.
+
+Databases are designed to optimize for the logical view of a table, which is the view that users interact with. However, the physical view of a table is also important, as it determines how the data is stored and accessed. In order to optimize the usability of the logical view of a table, databases use a variety of techniques to optimize the physical view of a table. These techniques include:
+
+- **Data partitioning**: Data partitioning is a technique that divides data into smaller chunks called partitions. This reduces the amount of data that needs to be stored and accessed, which improves performance.
+- **Data indexing**: Data indexing is a technique that creates a data structure called an index. This data structure contains information about the data in a table, which allows the database to quickly find the data it needs.
+- **Data storage layout**: Data storage layout relates to how the data is stored on disk. This includes the file format, how the data is physically stored on disk, and how the data is organized in memory. The right data storage layout can significantly improve performance.
+- **Data compression**: Data compression is a technique that reduces the size of data by removing redundant information. This reduces the amount of data that needs to be stored and accessed, which improves performance.
+- **Data caching**: Data caching is a technique that stores frequently accessed data in memory. This reduces the amount of data that needs to be stored and accessed, which improves performance.
+
+For the most part, these techniques are employed in the background and are not visible to the user. However, understanding how **data partitioning**, **data indexing** and the **data storage layout** work is essential for understanding how DuneSQL works.
+
+Databases employ these techniques to combat their most significant challenge: **the I/O bound nature of data storage**. I/O bound refers to the fact that the speed of data access is limited by the speed of the storage device. Read speed, the time it takes to load data from storage to memory, is an essential constraint of databases.
+
+Every time you query a table, the database needs to read the data from disk into memory. This happens in a unit called a page. Pages are the smallest unit of data that can be read from disk into memory. Since reading pages from disk is slow, databases try to minimize the number of pages that need to be read into memory when querying a table. This is where data partitioning and data indexing come into play.
+
+**To quickly summarize:** The goal of a database is to provide fast, efficient, and reliable access to vast amounts of structured information. In the end, we want to access the logical view of a table as quickly as possible. To do this, database administrators use a variety of techniques to optimize the physical view of a table. These techniques include data partitioning, data indexing, data compression, and data caching. The goal of these techniques is to minimize the number of pages that need to be read into memory when querying a table.
+
+## DuneSQL Storage Architecture
+
+Dune stores data in Parquet files, which are first and foremost columnar storage files, but also utilize some of the advantages of row-oriented storage. Data in Parquet systems is partitioned by rows into multiple Parquet files, and within each file, the data is further partitioned into row groups. However, the pages inside of row groups store data in columns rather than rows. As a result, the database appears row-oriented at a higher level, but it reads data from column-oriented pages when accessing specific values.
+
+Additionally, each Parquet file contains metadata about the data it stores, mainly **min/max** column statistics for each column. This allows the database to efficiently skip entire Parquet files or row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered.
+
+<Frame caption="Very simplified contents of a Parquet file">
+  <img src="/query-engine/images/minmax-schema2.jpeg" />
+</Frame>
+
+<Frame caption="Schematic view of a Parquet file">
+  <img src="/query-engine/images/parquet.png" />
+</Frame>
+
+What's important to understand here is that the traditional index structure of a database is not needed in DuneSQL. Instead, the `min/max` values of each column are used to efficiently skip entire Parquet files or row groups within files while scanning through a table, provided that the column contains values that are not random and can be ordered. This is a key difference between DuneSQL and other databases like Snowflake.
+
+## Query Processing in DuneSQL
+
+If you query a table in DuneSQL, the system will access the data in the following order:
+
+1. **File Level:** At the foundational level, the query engine locates the specific Parquet files associated with the table or a portion of the table being queried. It reads the metadata contained in the footer of each Parquet file to determine whether it might contain the data needed for the query. It will skip any files that do not contain the data needed for the query.
+
+2. **Row Group Level:** Once the appropriate Parquet file is identified, the engine will access the relevant row groups within the file, based on the query conditions. Again, it will first read the metadata of each row group to determine whether it might contain the data needed for the query. If the row group does not contain the data needed for the query, it will skip the row group and move on to the next one.
+
+3. **Column Chunk Level:** Once the appropriate row group is identified, the system will access the relevant column chunks within the row group, based on the query conditions. The column chunks contain the actual data that is needed for the query. The database will only read the column chunks that contain the data needed for the query. It will not read the logical row - saving time and resources.
+
+4. **Page Level:** Within the column chunk, the data is further segmented into pages. The database reads these pages into memory, benefiting from any compression or encoding optimizations.
+
+During this process the engine starts stream processing from the first chunks of data it has read. It will optimize on the fly: based on the data it has already read, it can resign from reading other data if that data is recognized as irrelevant. This is called dynamic filtering and will usually save a lot of resources.
+
+If the query is too large to be processed in memory, the data will "spill" from memory to disk. This is called "spill to disk" and is a common occurrence in databases. This will negatively impact query performance, as reading data from disk is much slower than reading data from memory.
+
+## Delta Lake Integration
+
+DuneSQL also leverages Delta Lake for additional data management capabilities. Delta Lake provides:
+
+- **ACID transactions**: Ensures data consistency and reliability
+- **Schema evolution**: Allows tables to evolve over time without breaking existing queries
+- **Time travel**: Enables querying historical versions of data
+- **Upserts and deletes**: Supports more complex data operations than traditional Parquet files
+- **Data versioning**: Maintains a complete history of changes to the data
+
+The combination of Parquet's columnar storage format with Delta Lake's data management capabilities provides DuneSQL with both high performance and data reliability features essential for blockchain data processing.
+
+## Time Partitioning
+
+DuneSQL leverages time-based partitioning extensively, as blockchain data is inherently time-ordered. Most tables are partitioned by:
+
+- **Block time**: The timestamp when a block was mined
+- **Block date**: The date component of block time (often more efficient for queries)
+- **Block number**: The sequential number of the block
+
+This partitioning strategy allows the query engine to quickly identify and skip irrelevant time periods, dramatically reducing the amount of data that needs to be processed for time-based queries.
+
+## Columnar Storage Benefits
+
+The columnar storage format provides several key advantages for blockchain data:
+
+- **Compression**: Similar data types in columns compress very well, reducing storage requirements
+- **Selective column reading**: Only the columns needed for a query are read from disk
+- **Vectorized processing**: Operations can be performed on entire columns at once
+- **Better cache utilization**: Related data is stored together, improving memory access patterns
+
+## Notable Exceptions
+
+A notable exception to the general rule of using sequentially ordered columns is the Solana dataset `account_activity`, which is ordered by `account_keys` rather than `block_time`. This allows for utilizing the min/max values for `account_keys` when building queries based on raw Solana data.
+
+This architecture makes DuneSQL particularly well-suited for blockchain data analysis, where queries often involve time-based filtering and aggregations across large datasets. The combination of Trino's distributed query processing, Parquet's columnar storage, and Delta Lake's data management provides a robust foundation for handling the scale and complexity of blockchain data.
