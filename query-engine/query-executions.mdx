@@ -15,11 +15,11 @@ The query engine determines the amount of resources allocated to your query. The
 
 Query executions on Dune are triggered in four ways:
 
-1. **Interactive executions** are manually triggered by a user clicking the "Run" button in the query editor page or refreshing an entire dashboard. Interactive executions can be routed via the free, medium, or large cluster, depending on the query engine selected.
+1. **Interactive executions** are manually triggered by a user clicking the "Run" button in the query editor page or refreshing an entire dashboard. Interactive executions can be routed via the small, medium, or large cluster, depending on the query engine selected.
 
 2. **Scheduled executions** are triggered at a specific time and frequency. Scheduled executions can be routed via the medium or large cluster, depending on the execution tier selected.
 
-3. **API executions** are triggered by an API call. API executions can be routed via the community, medium, or large cluster, depending on the query engine selected.
+3. **API executions** are triggered by an API call. API executions can be routed via the small, medium, or large cluster, depending on the query engine selected.
 
 4. **Popular dashboards** are automatically refreshed based on their popularity. We measure popularity based on the number of views a dashboard has received. The most popular dashboards are refreshed every hour, the less popular dashboards are refreshed every 24 hours. Popular dashboards are refreshed via the community cluster.
 
@@ -161,7 +161,7 @@ Query executions on Dune are triggered in four ways:
 
 ## Query engine size
 
-Dune has three query engine sizes: **freey**, **medium**, and **large**. The query engine size determines the amount of resources allocated to your query. The larger the query engine, the more resources are allocated to your query. This means that queries executed on a larger query engine will run faster and are less likely to time out.
+Dune has three query engine sizes: **small**, **medium**, and **large**. The query engine size determines the amount of resources allocated to your query. The larger the query engine, the more resources are allocated to your query. This means that queries executed on a larger query engine will run faster and are less likely to time out.
 
 {/* ARCADE EMBED START */}
 <div style={{
@@ -193,7 +193,7 @@ Dune has three query engine sizes: **freey**, **medium**, and **large**. The que
 
 
 
-#### Free engine size
+#### Small engine size
 
 The Free engine is the default query engine for all queries on Dune. It is a shared cluster, meaning that it is used by all Dune users. This means that the community cluster can be busy at times if many users are running queries at the same time. 
 To avoid long loading times and timeouts, we recommend using the medium or large engine for resource-intensive queries.   
