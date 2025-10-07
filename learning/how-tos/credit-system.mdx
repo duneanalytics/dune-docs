@@ -1,0 +1,179 @@
+---
+title: "Credit System"
+description: "How Dune's usage-based credit system works for fair and flexible querying"
+icon: "coins"
+---
+
+# How you spend credits on Dune
+
+Dune uses a usage-based credit system that charges based on actual compute resources consumed, ensuring fair pricing for all users regardless of query complexity.
+
+## How the Credit System Works
+
+Historically, our query engine charged a fixed number of credits per execution, a simple approach for analysts but ultimately **unfair and limiting**: simpler queries were overcharged, complex queries undercharged, and query timeouts restricted capabilities.
+
+As Dune adoption grows—spanning over **100 chains, complex tables, and new ways to consume data through APIs and dbt-style connectors(to be announced)—both we and our customers need pricing that scales with real usage**.
+
+This new engine brings that flexibility. **Your credit system remains the same, but now when you run a query, credits are spent in proportion to the consumed resources.** This means that small, simple queries will become cheaper and larger queries can run longer (better timeouts).
+
+**Key benefits:**
+
+- **Usage-based** – Pay in proportion to actual consumption
+- **Efficiency** – Incentives to write cleaner, optimized queries  
+- **Scalable** – Sustainable future support for larger workloads with longer timeouts and advanced integrations like **dbt**, **Trino REST API**, **SQL Mesh**, AI-driven workflows, and expanded connector options to come in the near future
+
+This fair, usage-based model ensures Dune can keep pace with your most ambitious data needs.
+
+## Credit Pricing
+
+Credits are consumed based on the actual compute resources used for each query execution. The more complex your query, the more credits it consumes, but simple queries cost significantly less.
+
+**Credit Pricing = Overage Pricing**  
+Overage is now charged at the same rate as your plan. The price per 100 credits shown for each plan is what you pay for any usage beyond your included credits, keeping things simple and transparent.
+
+**Analyst Plan Pricing Update**
+
+- Monthly plans: New pricing of \$75/month, up from \$49/month, takes effect at your first billing cycle after October 21st.
+
+- Annual plans: New pricing of \$65/month (\$780/year), up from \$45/month, takes effect at your next annual renewal after October 21st.
+
+<Note>
+This adjustment ensures sustainable economics as Dune scales to support 100+ chains and complex workflows. Your 4,000 credits will go further with usage-based pricing, meaning lighter queries cost less, giving you more value.
+</Note>
+
+<Warning>
+**Note:** All plans will transition to usage-based credit consumption by their next monthly billing cycle after October 21st (including all annual plans). However, Analyst annual plans will adopt their new pricing at their next annual renewal cycle.
+</Warning>
+
+**Quick Plan Reference**
+
+| Plan | Monthly Price | Annual Price | Credits/Month | Cost per 100 Credits |
+|------|---------------|--------------|---------------|---------------------|
+| **Free** | Free | - | 2,500 | $5.00 |
+| **Analyst** | $75/month | - | 4,000 | $1.875 |
+| **Analyst (Annual)** | $65/month billed annually | $780/year | 4,000 | $1.625 |
+| **Plus** | $399/month | - | 25,000 | $1.596 |
+| **Plus (Annual)** | $349/month billed annually | $4,188/year | 25,000 | $1.396 |
+| **Premium** | Existing customers only | - | Varies | [Contact support](mailto:support@dune.com) |
+| **Enterprise** | Custom pricing | - | Custom | [Contact sales](https://dune.com/enterprise) |
+
+<Note>
+**Premium Plan**: Existing Premium customers will continue to be supported on their current plans. However, the Premium plan will no longer be available to *new* sign-ups or to users who downgrade and later wish to return. If you need support or have questions, please [contact us](mailto:support@dune.com) via email.
+</Note>
+
+<Note>
+**Enterprise**: Whether you're an existing plan considering an upgrade or a new team, we can custom-tailor a plan to your pricing needs at dune.com/enterprise. Enterprise clients receive **favorable per-credit pricing and customized support**.
+</Note>
+
+<Info>
+Explore the complete pricing plan with credit limits and features for each tier: [dune.com/pricing](https://dune.com/pricing)
+</Info>
+
+## What can I do to prepare?
+
+- **Review your usage.** Check your query volume and costs to understand where you stand before the change takes place.
+- **Optimize your queries.** Efficient queries save credits and run faster. See [here](https://docs.dune.com/query-engine/writing-efficient-queries) for tips.
+- **Pick the plan that fits.** If you anticipate heavy usage or notice overages, please contact our sales team at [dune.com/enterprise](http://dune.com/enterprise) to discuss the best plan for your needs. Enterprise clients receive **favorable per-credit pricing and customized support**.
+- **Cap your query costs.** Use our new feature to cap the amount of credits you're willing to spend on a query. More info on how to do this [here](https://app.arcade.software/share/C60r4u7ESOp5RXRuzbSN).
+- **Set overage limits.** Configure your overage spending limits to control costs. Learn how to set this up [here](https://app.arcade.software/share/so8QGM4H4MU0OWRWhNe9).
+
+## Important Dates
+
+- **October 7th-20th**: New pricing in effect for net-new subscriptions.
+- **October 21st**: The new usage-based model will apply to your plan on **your first new monthly billing cycle after this date**.
+
+## Need Help?
+
+Have questions or need additional support? [Contact Us](mailto:support@dune.com)
+
+## FAQ
+
+### Pricing & Plans
+
+<AccordionGroup>
+  <Accordion title="How does Dune's credit system work?">
+    Dune uses a usage-based credit system that charges based on actual compute resources consumed. This ensures fair pricing where lightweight queries cost less and complex queries cost more based on their actual resource requirements, providing everyone with a fair and flexible experience.
+  </Accordion>
+
+  <Accordion title="Is there a Free plan?">
+    Yes. The Free plan includes **2,500 credits per month at no cost**. With the usage-based system, credits are consumed based on actual query resources. Small, efficient queries use fewer credits, allowing you to run more queries within your monthly allowance. Larger or more complex queries will use credits more quickly. If you consistently need more capacity, you can upgrade to a paid plan anytime.
+  </Accordion>
+
+  <Accordion title="Can I run bigger queries if I stay on a Free plan?">
+    Yes, but you will be limited to the Small and Medium engine. If you often hit timeout limits, consider the Analyst or Plus plans.
+  </Accordion>
+
+  <Accordion title="Do I need to rewrite my queries?">
+    No. All existing queries will run as before. However, more efficient queries will consume fewer credits, so optimizing your queries can help you save on cost.
+  </Accordion>
+
+  <Accordion title="How are credits now calculated?">
+    Credits are based on the actual compute effort measured in CPU-seconds and network resources a query consumes. This means lightweight queries cost fewer credits, while complex, resource-intensive operations require more credits.
+  </Accordion>
+
+  <Accordion title="Will my monthly cost increase?">
+    It depends on your usage pattern. Light or efficient workloads will likely cost less. Heavy workloads may cost more, but you'll gain the ability to run larger, more complex queries without timeout limitations. You can set both query credit cost caps and overage limits in Settings to ensure your spending stays within comfortable boundaries.
+  </Accordion>
+
+  <Accordion title="I run a lot of API queries. Will they cost more?">
+    Cost will depend on compute used by those API queries. After October 21st, you can check the new usage dashboard in Settings to track API-specific consumption.
+  </Accordion>
+
+  <Accordion title="What happens to the Premium plan?">
+    Existing Premium customers will continue to be supported on their current plans. However, the Premium plan will no longer be available to *new* sign-ups or to users who downgrade and later wish to return. If you regularly exceed 25,000 credits/month or need guaranteed performance for large workloads, contact [sales](http://dune.com/enterprise) about Enterprise pricing.
+  </Accordion>
+
+  <Accordion title="What happens if I have a scheduled downgrade for a plan that occurs after October 21st, 2025?">
+    If you are downgrading to an Analyst plan, the new pricing will take effect ($65/month for annual users and $75/month for monthly users). If you are on a Premium plan, after downgrading, you will lose access to the Premium plan going forward.
+  </Accordion>
+
+  <Accordion title="How does the new engine affect my enterprise contract?">
+    Your custom contract remains in place. Your account manager will work with you to align credit allocation, pricing, and engines when your contract renews.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+### System & Migration
+
+<AccordionGroup>
+  <Accordion title="When did the usage-based system launch?">
+    The usage-based credit system launched in October 2025. All customers except Enterprise customers will be on the usage-based credit system and engine by November 2025.
+  </Accordion>
+
+  <Accordion title="Do I need to take any action?">
+    No action is required; all accounts automatically use the usage-based credit system and engine.
+  </Accordion>
+</AccordionGroup>
+
+### Usage & Monitoring
+
+<AccordionGroup>
+  <Accordion title="How can I monitor my credit consumption?">
+    A new usage and billing dashboard will show credits used, overages, and historical usage.
+  </Accordion>
+
+  <Accordion title="Will I see the cost before running a query?">
+    You'll see costs after execution.
+  </Accordion>
+
+  <Accordion title="Can I run bigger queries now?">
+    Yes. The new pricing structure supports more complex queries and higher data volumes with longer timeouts for Enterpris clients.
+  </Accordion>
+</AccordionGroup>
+
+### Optimization & Support
+
+<AccordionGroup>
+  <Accordion title="How can I lower my credit usage?">
+    Write efficient SQL, limit unnecessary joins or scans, and reuse results when possible. Our docs include [query optimization tips](https://docs.dune.com/query-engine/writing-efficient-queries).
+  </Accordion>
+
+  <Accordion title="What if I consistently exceed my plan credits?">
+    You can upgrade to a higher plan or contact our sales team to discuss a custom Enterprise solution.
+  </Accordion>
+
+  <Accordion title="Who do I contact for help?">
+    Reach out to support@dune.com or your Dune account manager for Enterprise plans.
+  </Accordion>
+</AccordionGroup>
