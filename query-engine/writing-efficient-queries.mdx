@@ -19,6 +19,8 @@ Dune partitions most tables by `block_date` or by `block_time`
 Check on the data explorer (left-side panel) to see which fields are used as partitions.
 Always include time filters to enable partition pruning.
 
+**Cross-chain tables:** Large cross-chain tables like `tokens.transfers`, `dex.trades`, and `evms.erc20_evt_transfers` are most often also partitioned by `blockchain` in addition to time. Wherever possible, specify the blockchain filter along with time filters to dramatically reduce the amount of data scanned.
+
 ```sql
 -- ✅ GOOD: Filters by block_date to enable partition pruning
 SELECT 
@@ -30,6 +32,18 @@ FROM base.transactions
 WHERE block_date >= TIMESTAMP '2025-09-01 00:00:00'
   AND block_date < TIMESTAMP '2025-10-02 00:00:00'
   AND "to" = 0x827922686190790b37229fd06084350E74485b72
+
+-- ✅ EXCELLENT: Filters by both blockchain and time for cross-chain tables
+SELECT 
+    block_time,
+    tx_hash,
+    "from",
+    "to",
+    amount_usd
+FROM dex.trades
+WHERE blockchain = 'ethereum'
+  AND block_time >= TIMESTAMP '2024-10-01'
+  AND block_time < TIMESTAMP '2024-11-01'
 ```
 
 ### 2. Select Only Required Columns
