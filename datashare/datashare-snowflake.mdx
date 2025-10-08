@@ -27,19 +27,13 @@ Snowflake Datashare uses Snowflake's native data sharing capabilities to provide
 
 ## Sharing Identifiers
 
-Snowflake uses share identifiers for accessing shared datasets:
+Please provide your Snowflake data sharing account identifier so I can grant you access to a listing. To find this identifier log in to your Snowflake account and click at your user profile at the bottom of the screen > *Account* > *View account details* > Copy data sharing account identifier (you can view a visual path [here](https://docs.snowflake.com/en/alias/client/account-identifier-listing)). You can also run the following SQL command:
 
-- **Marketplace shares**: Automatically managed when you click "Get" on marketplace
-- **Direct shares**: For enterprise setups, you'll receive specific share names
-- **Share format**: `<account_locator>.<share_name>` (e.g., `DUNEANALYTICS.ETHEREUM_SHARE`)
-
-For direct share access, use:
 ```sql
--- List available shares
-SHOW SHARES;
+SELECT CURRENT_ORGANIZATION_NAME() || '.' || CURRENT_ACCOUNT_NAME();
 ```
 
-See [Snowflake's sharing documentation](https://docs.snowflake.com/en/user-guide/data-share-consumers) for more details.
+Then, share your identifier with me.
 
 ## Data Types
 
