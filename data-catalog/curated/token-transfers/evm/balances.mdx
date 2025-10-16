@@ -8,34 +8,43 @@ description: "Balances for addresses on EVM networks."
 import { DuneEmbed } from '/snippets/dune-embed.mdx';
 
 <Warning>
-    This dataset is currently in open beta. We are working on adding more chains and methods to detect balance changes. We are also working on improving the query performance. We currently recommend using the `tokens_<chain>.balances` table for queries.
-    Mirroring the approach of [this query](https://dune.com/queries/3702725) is currently the fastest way to get started with the token balances dataset. 
+    **IMPORTANT: These tables are currently very unperformant.** The ONLY efficient way to query them is by using the query template pattern shown below. Do NOT query these tables directly - you will experience timeouts and poor performance.
 </Warning>
 
-The `tokens_<chain>.balances_daily` table contains all daily token balances across all addresses and on EVM-compatible networks. This dataset encompasses:
+The `tokens_<chain>.balances_daily` and `tokens_<chain>.balances` tables contain token balances across all addresses on EVM-compatible networks. This dataset encompasses:
 
 - **Native currency balances** (such as ETH, MATIC)
 - **ERC-20 token balances**
 - **ERC-721 (NFT) balances**
 - **ERC-1155 token balances**
 
-The table contains the following columns:
+## How to Query These Tables Efficiently
 
-import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+**The ONLY performant way to query these tables is through the query template pattern:**
 
-<ColumnDescriptions tableSchema="tokens_ethereum" tableName="balances_daily" />
+```sql
+SELECT 
+    day,
+    token_symbol,
+    token_address,
+    SUM(balance) as balance,
+    SUM(balance_usd) as balance_usd
+FROM "query_4419528(
+    blockchain = 'base', 
+    filter='address = 0x729170d38dd5449604f35f349fdfcc9ad08257cd', 
+    native_token='ETH'
+)"
+WHERE day >= timestamp '2025-01-01'
+GROUP BY 1, 2, 3
+```
 
+**Example Query:** [https://dune.com/queries/5133694](https://dune.com/queries/5133694)
 
-### Utility
+### Template Parameters
 
-Leveraging the balance tables equips analysts and developers with a foundational dataset for diverse applications, enabling you to:
-
-- **Evaluate token distribution patterns**
-- **Identify leading token holders**
-- **Examine an address's token portfolio**
-- **Review multi-signature wallet holdings**
-
-and much more, offering a granular view into the dynamics of token economics.
+- **blockchain**: The EVM chain to query (e.g., 'base', 'ethereum', 'arbitrum', 'optimism')
+- **filter**: Filter condition for addresses (e.g., `'address = 0x...'`)
+- **native_token**: The native token symbol for the chain (e.g., 'ETH', 'MATIC')
 
 ### Network Coverage
 
@@ -43,108 +52,33 @@ Balances are available for the following EVM-compatible networks:
 
 - Arbitrum
 - Avalanche C-Chain
-- Base 
-- Ethereum Mainnet
-- Gnosis Chain
+- Base
+- Ethereum
+- Kaia
+- Linea
 - Optimism
+- Polygon
 - Scroll
-- ZkSync
+- Worldchain
 
-### Balance Calculation Methodology
+## Balance Calculation Methodology
 
-Our approach to storing balances is the following: We store token balances for each address. This process involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_<chain>.balances` table, which is updated daily. For the balance to be queried, the address must have appeared in any of the following tables:
+Our approach to storing balances involves querying the blockchain for the balance of each address at the end of the day. The balance is then stored in the `tokens_<chain>.balances` table, which is updated daily. For the balance to be queried, the address must have appeared in any of the following tables:
 
-- **For native currencies**: Transactions and traces ``to``/``from`` addresses, Ethereum-specific withdrawals, and block mining/validator activities.
+- **For native currencies**: Transactions and traces `to`/`from` addresses, Ethereum-specific withdrawals, and block mining/validator activities.
 - **For ERC20**: Analysis is based on token transfer events detailed in the [tokens_ethereum_base_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/tokens/ethereum/tokens_ethereum_base_transfers.sql). The address balance is updated based on the `to`/`from` addresses in the transfer events. If the token is a non-standard ERC20 token, the balance might not be updated until we detect a standard ERC20 transfer event. Known issues currently include ERC4626 tokens and rebasing tokens like stETH or $ampleforth. We are working on improving the range of balance changes that we detect.
 - **For ERC721 and ERC1155**: Inspection of NFT transfer activities via the [nft_ethereum_transfers](https://github.com/duneanalytics/spellbook/blob/main/models/_sector/nft/transfers/chains/nft_ethereum_transfers.sql), focusing on the `to`/`from` addresses.
 
 These dependencies on transfer and NFT event tables introduce a delay to balance updates, contingent on the latency inherent in the Spellbook's processing.
 
-This also means that if an address has not been involved in any of the above activities, its balance will not be updated.
-This might be the case for non-standard ERC20 contracts that do not emit the `Transfer` event, or for addresses that have not been involved in any transactions or NFT transfers. If there is a specific token that does not emit the `Transfer` event, but has a different event for token transfers, please let us know and we will see if we can include it in our balance calculations.
+If an address has not been involved in any of the above activities, its balance will not be updated. This might be the case for non-standard ERC20 contracts that do not emit the `Transfer` event, or for addresses that have not been involved in any transactions or NFT transfers. If there is a specific token that does not emit the `Transfer` event, but has a different event for token transfers, please let us know and we will see if we can include it in our balance calculations.
 
-### Granular balances
+### Granular Balances
 
-We also provide a more granular view of token balances in the `tokens_<chain>.balances` table, which contains granular balance changes for each address, token combination per block. This table is updated in near real-time and is used to calculate the daily balances. This table is useful for more granular analysis, such as tracking the balance changes of a specific address over time. 
-
-However, the `tokens_<chain>.balances` table is very large and is not suitable for querying large time ranges or for querying balances for many addresses at once. For these use cases, the `tokens_<chain>.balances_daily` table is more suitable. 
+The `tokens_<chain>.balances` table provides a more granular view of token balances, containing granular balance changes for each address and token combination per block. This table is updated in near real-time and is used to calculate the daily balances. 
 
 The `tokens_<chain>.balances` table adds a new row every time a balance changes but does not carry the balance forward for every block. Instead, it only creates a new row for a balance change of an address and token combination.
 
-## Table Sample
-
-<div>
-  <DuneEmbed qID={3503489} vID={5892307} height={300} />
-</div>
-
-## Sample Queries
-
-#### Querying for the latest fungible Token Balances for a specific Address
-
-This query will return the latest fungible token balances for the specified address. Fungible tokens refer to ERC20 and native tokens. Please keep in mind that the balance table lags behind the real state by approximately 2 hours.
-
-```sql
-select 
-    address
-    ,token_symbol as symbol
-    ,balance
-    ,balance_usd
-    ,token_address
-from tokens_{{blockchain}}.balances_daily
-where address = {{wallet_address}} and day = date_trunc('day', now())
-    and (token_standard = 'erc20' or token_standard = 'native')
-    and balance_usd > 1
-order by balance_usd desc
-```
-
-<div>
-  <DuneEmbed qID={3459600} vID={5814175} height={300} />
-</div>
-
-#### Querying for daily fungible Token Balances for a specific Address
-
-This query will return the daily fungible token balances for the specified address over time. Fungible tokens refer to ERC20 and native tokens.
-
-```sql
-select
-     b.day
-    ,b.token_symbol
-    ,b.token_address
-    ,b.balance
-    ,b.balance_usd
-from tokens_{{blockchain}}.balances_daily  b
-where address = {{wallet_address}} 
-    and (token_standard = 'erc20' or token_standard = 'native')
-    and b.day > date_trunc('day',now()) - interval '{{months}}' month
-    and balance_usd > 1
-order by day desc, balance_usd desc
-```
-
-<div>
-  <DuneEmbed qID={3456704} vID={5814342} height={300} />
-</div>
-
-#### Find the top 50 token holders for a specific token
-
-This query will return the top 50 token holders for a specific ERC20 token on the Ethereum Mainnet.
-
-```sql
-WITH RankedBalances AS (
-    SELECT
-        b.address,
-        b.balance,
-        ROW_NUMBER() OVER(PARTITION BY b.day ORDER BY b.balance DESC) AS rank
-    FROM tokens_ethereum.balances_daily b
-    WHERE token_address = 0xbaac2b4491727d78d2b78815144570b9f2fe8899
-    AND b.day = date_trunc('day', current_date)
-)
-SELECT
-    address,
-    balance
-FROM RankedBalances
-WHERE rank <= 50;
-``` 
-
-<div>
-  <DuneEmbed qID={3503852} vID={5892563} height={300} />
-</div>
+<Note>
+**Direct querying is possible** for the `tokens_<chain>.balances` table when querying a limited time range and small number of addresses. For broader queries, use the query template pattern shown above.
+</Note>
