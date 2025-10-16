@@ -52,12 +52,14 @@ Balances are available for the following EVM-compatible networks:
 
 - Arbitrum
 - Avalanche C-Chain
-- Base 
-- Ethereum Mainnet
-- Gnosis Chain
+- Base
+- Ethereum
+- Kaia
+- Linea
 - Optimism
+- Polygon
 - Scroll
-- ZkSync
+- Worldchain
 
 ## Balance Calculation Methodology
 
@@ -77,4 +79,6 @@ The `tokens_<chain>.balances` table provides a more granular view of token balan
 
 The `tokens_<chain>.balances` table adds a new row every time a balance changes but does not carry the balance forward for every block. Instead, it only creates a new row for a balance change of an address and token combination.
 
-**Note:** The `tokens_<chain>.balances` table is very large. The same query template pattern shown above must be used for efficient querying.
+<Note>
+**Direct querying is possible** for the `tokens_<chain>.balances` table when querying a limited time range and small number of addresses. For broader queries, use the query template pattern shown above.
+</Note>
