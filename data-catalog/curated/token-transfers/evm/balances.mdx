@@ -23,7 +23,15 @@ The `tokens_<chain>.balances_daily` and `tokens_<chain>.balances` tables contain
 **The ONLY performant way to query these tables is through the query template pattern:**
 
 ```sql
-SELECT day, token_symbol, token_address, SUM(balance) as balance, SUM(balance_usd) as balance_usd FROM "query_4419528(blockchain = 'base', filter='address = 0x729170d38dd5449604f35f349fdfcc9ad08257cd', native_token='ETH')" WHERE day >= timestamp '2025-01-01' GROUP BY 1, 2, 3
+SELECT 
+    day,
+    token_symbol,
+    token_address,
+    SUM(balance) as balance,
+    SUM(balance_usd) as balance_usd
+FROM "query_4419528(blockchain = 'base', filter='address = 0x729170d38dd5449604f35f349fdfcc9ad08257cd', native_token='ETH')"
+WHERE day >= timestamp '2025-01-01'
+GROUP BY 1, 2, 3
 ```
 
 **Example Query:** [https://dune.com/queries/5133694](https://dune.com/queries/5133694)
