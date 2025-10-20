@@ -1,0 +1,122 @@
+---
+title: ASOF JOIN
+description: ASOF JOIN in DuneSQL performs nearest-neighbor matching using inequality predicates, making it ideal for temporal lookups like “latest price at trade time” or forward-fill balance snapshots.
+---
+
+## Overview
+
+ASOF JOIN in **DuneSQL** lets you join two relations based on the *closest matching row* according to an inequality in the `ON` clause - typically on a timestamp or sequence field.
+
+This is most useful when you need to:
+
+- Get the **latest price as of trade time**
+- Forward-fill sparse **balance** or **config/state** tables
+- Enrich dense time grids (e.g. hourly/daily) from sparse event data
+
+Unlike standard joins, **ASOF JOIN does not require exact equality** — it picks the *nearest valid match* according to your inequality condition.
+
+<Info>
+ASOF JOIN executes entirely at query time — it does not pre-materialize or store any helper tables. It is a runtime join optimized in the DuneSQL engine.
+</Info>
+
+## Syntax
+
+```sql
+SELECT ...
+FROM left_relation
+ASOF [ LEFT ] JOIN right_relation
+  ON <equality_conjuncts> AND <inequality_conjunct>
+```
+
+## Rules
+- **Exactly one inequality is required**, comparing a **right-side expression to a left-side expression** using <, <=, >, or >=.
+- **Any number of equality predicates** (left.sym = right.sym) are allowed and encouraged.
+- **ASOF JOIN** returns only matched left rows (like INNER JOIN).
+- **ASOF LEFT JOIN** returns all left rows and fills NULL when no neighbor exists.
+
+<Info>
+Typically, expressions compare timestamps: e.g. prices.ts <= trades.ts will pick the latest price at or before the trade.
+</Info>
+
+## Example
+#### Latest price at trade time
+```sql
+WITH
+  trades(ts, sym) AS (VALUES 
+    (TIMESTAMP '2024-01-01 09:30:05', 'ABC'),
+    (TIMESTAMP '2024-01-01 09:30:07', 'ABC')
+  ),
+  quotes(ts, sym, price) AS (VALUES 
+    (TIMESTAMP '2024-01-01 09:30:00', 'ABC', 100.0),
+    (TIMESTAMP '2024-01-01 09:30:06', 'ABC', 101.5)
+  )
+SELECT trades.ts, quotes.price
+FROM trades 
+ASOF JOIN quotes ON trades.sym = quotes.sym AND quotes.ts <= trades.ts
+ORDER BY 1
+```
+
+```
+-- output
+2024-01-01 09:30:05   100.0
+2024-01-01 09:30:07   101.5
+```
+
+#### Forward-fill with ASOF LEFT JOIN
+```sql
+WITH
+  readings(read_time) AS (
+    VALUES (TIMESTAMP '2024-01-01 10:00:00'),
+           (TIMESTAMP '2024-01-01 10:05:00')
+  ),
+  calibrations(effective_time, factor) AS (
+    VALUES (TIMESTAMP '2024-01-01 10:01:00', 1.02)
+  )
+SELECT readings.read_time, calibrations.factor
+FROM readings ASOF LEFT JOIN calibrations
+  ON calibrations.effective_time >= readings.read_time
+ORDER BY 1
+```
+
+```
+-- output
+-- output
+2024-01-01 10:00:00   1.02
+2024-01-01 10:05:00   NULL
+```
+
+## Performance
+ASOF JOIN consistently outperforms LEAD() + range joins for large temporal enrichments.
+Below is a rounded summary from production-scale testing (millions of rows):
+
+
+<Tip> 
+ASOF JOIN combines **cleaner SQL** and **runtime performance gains** when data is sparse or when “nearest match” logic is required. 
+</Tip>
+
+## When to use ASOF JOIN
+**✅ Recommended when:**
+- You need a point-in-time snapshot (latest state, price, config)
+- You are forward-filling sparse events into a regular time spine
+- Data is sparse or high-cardinality (wallet balances, token prices)
+
+**⚠️ Consider alternatives when:**
+- You just need window aggregates (e.g. moving averages) → use window functions
+- You already materialize reusable helper tables with valid ranges → consider pre-filled models
+
+## Limitations
+- **Exactly one inequality** is required in the ON clause.
+- That inequality must compare **right to left** (right.ts <= left.ts), not left to left.
+- Joins based on multiple inequalities are not supported — add extra conditions via equality or `WHERE`.
+
+## Best Practices
+- **Always constrain with equality first** (token, address, etc.) to avoid scanning irrelevant rows.
+- Use `ASOF LEFT` when you need to preserve all left rows, even if no match exists.
+- Prefer `<=` or `>=` for clear open/closed interval intent.
+- Document the direction:
+    - `<=` → “most recent up to this timestamp” (historical lookup)
+    - `>=` → “next upcoming record” (future-effective lookup)
+
+<Tip> 
+Think in terms of **“as of X, what was true?”** — that’s the strongest signal that ASOF JOIN is appropriate. 
+</Tip>
