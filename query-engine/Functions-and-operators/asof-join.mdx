@@ -12,6 +12,8 @@ This is most useful when you need to:
 - Get the **latest price as of trade time**
 - Forward-fill sparse **balance** or **config/state** tables
 - Enrich dense time grids (e.g. hourly/daily) from sparse event data
+- Tracking actions of an ENS across addresses over time.
+- Tracking actions of EIP-7702 enabled wallets by the contract they authorized to.
 
 Unlike standard joins, **ASOF JOIN does not require exact equality** — it picks the *nearest valid match* according to your inequality condition.
 
@@ -39,6 +41,25 @@ Typically, expressions compare timestamps: e.g. prices.ts <= trades.ts will pick
 </Info>
 
 ## Example
+#### Dune's ETH balances over time
+```sql
+select 
+    d.timestamp,
+    b.balance
+from utils.days d
+asof join tokens_ethereum.balances b
+on b.address = 0x7058decc644317062f90525f4C1489AaF456e6B3 --dune.eth
+    and b.token_standard = 'native' -- native ETH
+    and b.block_time <= d.timestamp -- ASOF JOIN condition
+```
+
+```
+-- output
+-- output
+2024-01-01 10:00:00   1.02
+2024-01-01 10:05:00   NULL
+```
+
 #### Latest price at trade time
 ```sql
 WITH
@@ -106,14 +127,13 @@ ASOF JOIN combines **cleaner SQL** and **runtime performance gains** when data i
 
 ## Limitations
 - **Exactly one inequality** is required in the ON clause.
-- That inequality must compare **right to left** (right.ts <= left.ts), not left to left.
 - Joins based on multiple inequalities are not supported — add extra conditions via equality or `WHERE`.
 
 ## Best Practices
 - **Always constrain with equality first** (token, address, etc.) to avoid scanning irrelevant rows.
 - Use `ASOF LEFT` when you need to preserve all left rows, even if no match exists.
 - Prefer `<=` or `>=` for clear open/closed interval intent.
-- Document the direction:
+- Document the direction, as inequality can compare from right to left or from left to right (e.g., right.ts <= left.ts or left.ts >= right.ts):
     - `<=` → “most recent up to this timestamp” (historical lookup)
     - `>=` → “next upcoming record” (future-effective lookup)
 
