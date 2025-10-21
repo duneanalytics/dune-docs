@@ -10,11 +10,11 @@
   "favicon": "/dune.png",
   "contextual": {
     "options": [
-      "copy",
-      "view",
       "chatgpt",
       "claude",
-      "perplexity"
+      "perplexity",
+      "copy",
+      "view"
     ]
   },
   "navigation": {
@@ -54,6 +54,7 @@
       },
       {
         "tab": "Analytics Studio",
+        "url": "web-app",
         "groups": [
           {
             "group": "Analytics Studio",
@@ -103,6 +104,7 @@
       },
       {
         "tab": "Query Engine",
+        "url": "query-engine",
         "groups": [
           {
             "group": "",
@@ -172,6 +174,7 @@
       },
       {
         "tab": "Data Catalog",
+        "url": "data-catalog",
         "groups": [
           {
             "group": "",
@@ -2963,6 +2966,7 @@
       },
       {
         "tab": "Analytics API",
+        "url": "api-reference",
         "groups": [
           {
             "group": "Analytics API",
@@ -3113,6 +3117,7 @@
       },
       {
         "tab": "Datashare",
+        "url": "datashare",
         "groups": [
           {
             "group": "Datashare",
@@ -3128,6 +3133,7 @@
       },
       {
         "tab": "Catalyst",
+        "url": "catalyst",
         "groups": [
           {
             "group": "Catalyst",
