@@ -2,12 +2,28 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Dune Docs",
+  "logo": {
+    "light": "/logo/dune-logo-light.png",
+    "dark": "/logo/dune-logo-dark.png"
+  },
+  "favicon": "/dune.png",
+  "seo": {
+    "title": "Dune Docs",
+    "titleSuffix": " | Dune Docs",
+    "description": "Official documentation for building with Dune's data platform, query engine, and API.",
+    "image": "/images/dune-docs-cover.jpg",
+    "siteUrl": "https://docs.dune.com",
+    "twitterCard": "summary_large_image"
+  },
   "colors": {
     "primary": "#F4603E",
     "light": "#F49282",
-    "dark": "#F4603E"
+    "dark": "#F4603E",
+    "anchors": {
+      "from": "#F4603E",
+      "to": "#F49282"
+    }
   },
-  "favicon": "/dune.png",
   "contextual": {
     "options": [
       "chatgpt",
@@ -17,7 +33,37 @@
       "view"
     ]
   },
+  "feedback": {
+    "thumbsRating": true,
+    "raiseIssue": true
+  },
+  "footerSocials": {
+    "linkedin": "https://www.linkedin.com/company/dune-analytics",
+    "github": "https://github.com/duneanalytics",
+    "twitter": "https://x.com/dune",
+    "discord": "https://discord.gg/ErrzwBz",
+    "telegram": "https://t.me/dune_updates",
+    "youtube": "https://www.youtube.com/@dunecom"
+  },
+  "analytics": {
+    "amplitude": {
+      "apiKey": "e76ce253e6eaa36e3be8e6872101e33a"
+    }
+  },
   "navigation": {
+    "navbar": {
+      "links": [
+        {
+          "label": "Support",
+          "href": "mailto:support@dune.com"
+        }
+      ],
+      "primary": {
+        "type": "button",
+        "label": "Start building",
+        "href": "https://dune.com"
+      }
+    },
     "tabs": [
       {
         "tab": "Get Started",
