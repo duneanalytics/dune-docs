@@ -62,6 +62,15 @@
       "url": "catalyst"
     }
   ],
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity"
+    ]
+  },
   "navigation": [
     {
       "group": "",
