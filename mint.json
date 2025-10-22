@@ -168,6 +168,7 @@
         "query-engine/Functions-and-operators/index",
         "query-engine/Functions-and-operators/aggregate",
         "query-engine/Functions-and-operators/array",
+        "query-engine/Functions-and-operators/asof-join",
         "query-engine/Functions-and-operators/base58",
         "query-engine/Functions-and-operators/binary",
         "query-engine/Functions-and-operators/bitwise",
