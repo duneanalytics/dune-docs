@@ -92,13 +92,13 @@ Break complex queries into readable Common Table Expressions.
 -- ✅ GOOD: Using CTEs for better performance and readability
 WITH daily_volumes AS (
     SELECT 
-        block_month as trade_date,
+        block_date as trade_date,
         SUM(amount_usd) as daily_volume
     FROM dex.trades
     WHERE blockchain = 'ethereum'
-      AND block_month >= TIMESTAMP '2024-09-01'     
-      AND block_month < TIMESTAMP '2024-10-01'
-    GROUP BY block_month
+      AND block_date >= TIMESTAMP '2024-09-01'     
+      AND block_date < TIMESTAMP '2024-10-01'
+    GROUP BY block_date
 ),
 volume_metrics AS (
     SELECT 
