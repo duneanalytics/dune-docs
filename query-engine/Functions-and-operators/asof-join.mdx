@@ -1,6 +1,6 @@
 ---
-title: ASOF JOIN
-description: ASOF JOIN in DuneSQL performs nearest-neighbor matching using inequality predicates, making it ideal for temporal lookups like “latest price at trade time” or forward-fill balance snapshots.
+title: ASOF Join
+description: ASOF JOIN in DuneSQL performs nearest-neighbor matching using inequality predicates, making it ideal for temporal lookups like "latest price at trade time" or forward-fill balance snapshots.
 ---
 
 ## Overview
@@ -31,13 +31,13 @@ ASOF [ LEFT ] JOIN right_relation
 ```
 
 ## Rules
-- **Exactly one inequality is required**, comparing a **right-side expression to a left-side expression** using <, <=, >, or >=.
+- **Exactly one inequality is required**, comparing a **right-side expression to a left-side expression** using `<`, `<=`, `>`, or `>=`.
 - **Any number of equality predicates** (left.sym = right.sym) are allowed and encouraged.
 - **ASOF JOIN** returns only matched left rows (like INNER JOIN).
 - **ASOF LEFT JOIN** returns all left rows and fills NULL when no neighbor exists.
 
 <Info>
-Typically, expressions compare timestamps: e.g. prices.ts <= trades.ts will pick the latest price at or before the trade.
+Typically, expressions compare timestamps: e.g. `prices.ts <= trades.ts` will pick the latest price at or before the trade.
 </Info>
 
 ## Example
@@ -54,7 +54,6 @@ on b.address = 0x7058decc644317062f90525f4C1489AaF456e6B3 --dune.eth
 ```
 
 ```
--- output
 -- output
 2024-01-01 10:00:00   1.02
 2024-01-01 10:05:00   NULL
@@ -101,7 +100,6 @@ ORDER BY 1
 
 ```
 -- output
--- output
 2024-01-01 10:00:00   1.02
 2024-01-01 10:05:00   NULL
 ```
@@ -133,7 +131,7 @@ ASOF JOIN combines **cleaner SQL** and **runtime performance gains** when data i
 - **Always constrain with equality first** (token, address, etc.) to avoid scanning irrelevant rows.
 - Use `ASOF LEFT` when you need to preserve all left rows, even if no match exists.
 - Prefer `<=` or `>=` for clear open/closed interval intent.
-- Document the direction, as inequality can compare from right to left or from left to right (e.g., right.ts <= left.ts or left.ts >= right.ts):
+- Document the direction, as inequality can compare from right to left or from left to right (e.g., `right.ts <= left.ts` or `left.ts >= right.ts`):
     - `<=` → “most recent up to this timestamp” (historical lookup)
     - `>=` → “next upcoming record” (future-effective lookup)
 
