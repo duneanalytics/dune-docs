@@ -42,6 +42,8 @@ Typically, expressions compare timestamps: e.g. `prices.ts <= trades.ts` will pi
 
 ## Example
 #### Dune's ETH balances over time
+[See query on dune.com](https://dune.com/queries/6015716).
+
 ```sql
 select 
     d.timestamp,
@@ -55,11 +57,15 @@ on b.address = 0x7058decc644317062f90525f4C1489AaF456e6B3 --dune.eth
 
 ```
 -- output
-2024-01-01 10:00:00   1.02
-2024-01-01 10:05:00   NULL
+| timestamp                | balance               |
+| ------------------------ | --------------------- |
+| 2020-02-27 00:00         | 0.006315391776612467  |
+| 2020-02-28 00:00         | 0.006315391776612467  |
+
 ```
 
 #### Latest price at trade time
+[See query on dune.com](https://dune.com/queries/6015749).
 ```sql
 WITH
   trades(ts, sym) AS (VALUES 
@@ -78,11 +84,15 @@ ORDER BY 1
 
 ```
 -- output
-2024-01-01 09:30:05   100.0
-2024-01-01 09:30:07   101.5
+| ts                       | price                 |
+| ------------------------ | --------------------- |
+| 2024-01-01 09:30:05      | 100.0                 |
+| 2024-01-01 09:30:07      | 101.5                 |
 ```
 
 #### Forward-fill with ASOF LEFT JOIN
+[See query on dune.com](https://dune.com/queries/6015744).
+
 ```sql
 WITH
   readings(read_time) AS (
@@ -100,8 +110,10 @@ ORDER BY 1
 
 ```
 -- output
-2024-01-01 10:00:00   1.02
-2024-01-01 10:05:00   NULL
+| read_time                | factor                |
+| ------------------------ | --------------------- |
+| 2024-01-01 10:00:00      | 1.02                  |
+| 2024-01-01 10:05:00      | NULL                  |
 ```
 
 ## Performance
