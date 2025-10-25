@@ -3046,13 +3046,13 @@
       "description": "Official documentation for building with Dune's data platform, query engine, and API.",
       "og:title": "Dune Documentation",
       "og:description": "Official documentation for building with Dune's data platform, query engine, and API. Access blockchain data, execute SQL queries, and build analytics applications.",
-      "og:image": "https://docs.dune.com/images/dune-docs-cover.jpg",
+      "og:image": "https://docs.dune.com/images/welcome-cover.jpeg",
       "og:site_name": "Dune Docs",
       "og:type": "website",
       "twitter:card": "summary_large_image",
       "twitter:title": "Dune Documentation",
       "twitter:description": "Official documentation for building with Dune's data platform, query engine, and API.",
-      "twitter:image": "https://docs.dune.com/images/dune-docs-cover.jpg"
+      "twitter:image": "https://docs.dune.com/images/welcome-cover.jpeg"
     },
     "indexing": "navigable"
   },
