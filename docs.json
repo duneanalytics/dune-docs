@@ -3041,12 +3041,14 @@
     ]
   },
   "seo": {
-    "indexing": "navigable",
     "metatags": {
+      "title": "Dune Docs",
+      "description": "Official documentation for building with Dune's data platform, query engine, and API.",
+      "og:image": "/images/welcome-cover.jpeg",
       "og:site_name": "Dune Docs",
-      "og:type": "website",
       "twitter:card": "summary_large_image"
-    }
+    },
+    "indexing": "navigable"
   },
   "footer": {
     "socials": {
