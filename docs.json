@@ -3044,7 +3044,6 @@
     "metatags": {
       "title": "Dune Docs",
       "description": "Official documentation for building with Dune's data platform, query engine, and API.",
-      "og:image": "/images/dune-docs-cover.jpg",
       "og:site_name": "Dune Docs",
       "twitter:card": "summary_large_image"
     },
