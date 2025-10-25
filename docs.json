@@ -3045,9 +3045,7 @@
     "metatags": {
       "og:site_name": "Dune Docs",
       "og:type": "website",
-      "og:image": "https://docs.dune.com/images/welcome-cover.jpeg",
-      "twitter:card": "summary_large_image",
-      "twitter:image": "https://docs.dune.com/images/welcome-cover.jpeg"
+      "twitter:card": "summary_large_image"
     }
   },
   "footer": {
@@ -3092,5 +3090,8 @@
       "source": "/api-reference/tables/blockchain/delete",
       "destination": "/catalyst/hosted"
     }
-  ]
+  ],
+  "thumbnails": {
+    "appearance": "dark"
+  }
 }
