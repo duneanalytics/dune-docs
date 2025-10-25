@@ -3045,10 +3045,10 @@
     "metatags": {
       "og:site_name": "Dune Docs",
       "og:type": "website",
-      "twitter:card": "summary_large_image"
-    },
-    "image": "/images/welcome-cover.jpeg",
-    "siteUrl": "https://docs.dune.com"
+      "og:image": "https://docs.dune.com/images/welcome-cover.jpeg",
+      "twitter:card": "summary_large_image",
+      "twitter:image": "https://docs.dune.com/images/welcome-cover.jpeg"
+    }
   },
   "footer": {
     "socials": {
