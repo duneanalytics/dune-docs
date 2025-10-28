@@ -1,0 +1,61 @@
+---
+title: Hyperliquid Market Data
+sidebarTitle: "Market Data"
+icon: "chart-candlestick"
+description: Historical trading data for Hyperliquid markets
+---
+
+# Market Data
+
+The `hyperliquid.market_data` table contains comprehensive historical trading data for all markets on the Hyperliquid decentralized exchange.
+
+## Table Schema
+
+**Table Name**: `hyperliquid.market_data`
+
+This table is updated monthly and includes the following data points:
+
+- **Trading Volume**: Historical trading volume across all markets
+- **Open Interest**: Total value of open positions
+- **Funding Rates**: Periodic funding rates for perpetual contracts
+- **Market Metrics**: Additional market statistics and indicators
+
+## Example Queries
+
+### View Recent Market Data
+
+```sql
+SELECT 
+    *
+FROM hyperliquid.market_data
+ORDER BY time DESC
+LIMIT 100
+```
+
+### Aggregate Trading Volume
+
+```sql
+SELECT 
+    DATE_TRUNC('day', time) as date,
+    SUM(volume) as daily_volume
+FROM hyperliquid.market_data
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
+### Analyze Funding Rates
+
+```sql
+SELECT 
+    market,
+    AVG(funding_rate) as avg_funding_rate,
+    MIN(funding_rate) as min_funding_rate,
+    MAX(funding_rate) as max_funding_rate
+FROM hyperliquid.market_data
+GROUP BY 1
+ORDER BY 2 DESC
+```
+
+## Update Schedule
+
+This dataset is updated on a **monthly basis**, providing historical snapshots of market activity across the Hyperliquid exchange.

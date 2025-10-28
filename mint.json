@@ -2769,7 +2769,8 @@
           "group": "Hyperliquid",
           "icon": "chart-line",
           "pages": [
-            "data-catalog/community/hyperliquid/overview"
+            "data-catalog/community/hyperliquid/overview",
+            "data-catalog/community/hyperliquid/market_data"
           ]
         },
         {
