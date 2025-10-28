@@ -2767,7 +2767,7 @@
         },
         {
           "group": "Hyperliquid",
-          "icon": "water",
+          "icon": "droplet",
           "pages": [
             "data-catalog/community/hyperliquid/overview",
             "data-catalog/community/hyperliquid/market-data"
