@@ -3767,7 +3767,7 @@
           {
             "name": "performance",
             "in": "query",
-            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Credits are consumed based on actual compute resources used. Medium is the default, large provides more resources for complex queries.",
             "schema": {
               "type": "string",
               "enum": [
@@ -4153,6 +4153,127 @@
             }
           }
         }
+      }
+    },
+    "/v1/sql/execute": {
+      "post": {
+        "summary": "Execute raw SQL query",
+        "description": "Execute raw SQL query without requiring a stored query ID",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performance",
+            "in": "query",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "medium",
+                "large"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Raw SQL query to execute",
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ExecuteQueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error402"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "sql"
       }
     },
     "/v1/table/upload/csv": {
@@ -4899,6 +5020,9 @@
           "cron_expression": {
             "type": "string"
           },
+          "expires_at": {
+            "type": "string"
+          },
           "is_private": {
             "type": "boolean"
           },
@@ -5172,6 +5296,19 @@
             "description": "Timestamp of when the query execution was cancelled, if applicable.",
             "example": "2024-12-20T11:04:18.724658237Z"
           },
+          "error": {
+            "type": "object",
+            "description": "In case the execution had an error, this object will contain the error details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.QueryResultError"
+              }
+            ]
+          },
+          "execution_cost_credits": {
+            "type": "number",
+            "description": "Cost of the execution"
+          },
           "execution_ended_at": {
             "type": "string",
             "description": "Timestamp of when the query execution ended.",
@@ -5362,6 +5499,34 @@
             "items": {
               "$ref": "#/components/schemas/models.Row"
             }
+          },
+          "update_type": {
+            "type": "string",
+            "description": "The type of update operation from Trino (e.g., \"SET SESSION\")"
+          }
+        }
+      },
+      "models.QueryResultError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A descriptive message about the error.",
+            "example": "Error: Line 1:1: mismatched input 'selecdt'"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Metadata about the syntax error that occurred, if applicable.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.SyntaxErrorMetadata"
+              }
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of error that occurred.",
+            "example": "syntax_error"
           }
         }
       },
@@ -5372,6 +5537,15 @@
             "type": "string",
             "description": "Timestamp of when the query execution was cancelled, if applicable.",
             "example": "2024-12-20T11:04:18.724658237Z"
+          },
+          "error": {
+            "type": "object",
+            "description": "In case the execution had an error, this object will contain the error details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.QueryResultError"
+              }
+            ]
           },
           "execution_ended_at": {
             "type": "string",
@@ -5440,6 +5614,21 @@
           "type": "object"
         }
       },
+      "models.SyntaxErrorMetadata": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "integer",
+            "description": "The column number at which the syntax error occurred.",
+            "example": 73
+          },
+          "line": {
+            "type": "integer",
+            "description": "The line number at which the syntax error occurred in the query.",
+            "example": 10
+          }
+        }
+      },
       "models.TableClearResponse": {
         "type": "object",
         "properties": {
@@ -5459,6 +5648,7 @@
           },
           "type": {
             "type": "array",
+            "description": "ColumnType is a json.RawMessage so that we can support objects like Array and Struct.",
             "items": {
               "type": "integer"
             }

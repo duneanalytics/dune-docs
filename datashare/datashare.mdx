@@ -11,6 +11,8 @@ Dune Datashare brings our complete blockchain dataset (1.5M+ tables, 50+ chains)
 
 Datashare replicates Dune's processed blockchain data directly into your cloud data warehouse:
 
+![Datashare Architecture](/datashare/images/datashare-architecture.png)
+
 1. **Data Replication**: We maintain live copies of all Dune tables in your Snowflake or BigQuery environment
 2. **Native Integration**: Data appears as regular tables/datasets in your warehouse - no APIs or external connections
 3. **Fresh Data**: Automatic updates keep your data in sync with Dune's platform (hourly/daily refresh)
@@ -51,16 +53,13 @@ To set up datashare access, we need specific identifiers from your cloud environ
 
 <AccordionGroup>
   <Accordion title="Snowflake Requirements">
-    **For Marketplace Access:**
-    - Your Snowflake account locator (e.g., `ABC12345.us-east-1`)
-    - Organization name (if using Snowsight)
-    
-    **For Direct Shares:**
-    - Account locator: `<account_name>.<region>` 
-    - Account name (the part before the dot in your Snowflake URL)
-    - Cloud region (AWS, Azure, or GCP region)
-    
-    Example: If your URL is `https://abc12345.us-east-1.snowflakecomputing.com`, your account locator is `ABC12345.US-EAST-1`
+    Please provide your Snowflake data sharing account identifier so I can grant you access to a listing. To find this identifier log in to your Snowflake account and click at your user profile at the bottom of the screen > *Account* > *View account details* > Copy data sharing account identifier (you can view a visual path [here](https://docs.snowflake.com/en/alias/client/account-identifier-listing)). You can also run the following SQL command:
+
+    ```sql
+    SELECT CURRENT_ORGANIZATION_NAME() || '.' || CURRENT_ACCOUNT_NAME();
+    ```
+
+    Then, share your identifier with me.
   </Accordion>
   
   <Accordion title="BigQuery Requirements">

@@ -27,19 +27,13 @@ Snowflake Datashare uses Snowflake's native data sharing capabilities to provide
 
 ## Sharing Identifiers
 
-Snowflake uses share identifiers for accessing shared datasets:
+Please provide your Snowflake data sharing account identifier so I can grant you access to a listing. To find this identifier log in to your Snowflake account and click at your user profile at the bottom of the screen > *Account* > *View account details* > Copy data sharing account identifier (you can view a visual path [here](https://docs.snowflake.com/en/alias/client/account-identifier-listing)). You can also run the following SQL command:
 
-- **Marketplace shares**: Automatically managed when you click "Get" on marketplace
-- **Direct shares**: For enterprise setups, you'll receive specific share names
-- **Share format**: `<account_locator>.<share_name>` (e.g., `DUNEANALYTICS.ETHEREUM_SHARE`)
-
-For direct share access, use:
 ```sql
--- List available shares
-SHOW SHARES;
+SELECT CURRENT_ORGANIZATION_NAME() || '.' || CURRENT_ACCOUNT_NAME();
 ```
 
-See [Snowflake's sharing documentation](https://docs.snowflake.com/en/user-guide/data-share-consumers) for more details.
+Then, share your identifier with me.
 
 ## Data Types
 
@@ -61,6 +55,30 @@ WHERE hash_hex = '0xefb2e2c26974f72d9f3f04c693db73ecc679dd60'
 - `column_name_binary` (VARBINARY) - for exact precision
 
 Use VARBINARY for exact matching (e.g., token IDs), DOUBLE for calculations.
+
+If you need full precision when doing arithmetic, you must work with the VARBINARY field:
+
+• You can convert the binary to `DECIMAL(38,0)` if you are fine with the smaller range (up to 38 digits vs. 78 for `UINT256`).
+
+• Any values larger than `DECIMAL(38,0)` will overflow and must be handled as `NULL` or excluded.
+
+Here is an example conversion query:
+```sql
+select 
+  IFF(
+    SUBSTR(amount_raw, 1, 17) != TO_BINARY(REPEAT('0', 34), 'HEX'), -- check for overflow
+    NULL, -- if overflow, return null
+    TO_NUMBER(
+      TO_VARCHAR(SUBSTR(amount_raw, 18, 15), 'HEX'),
+      REPEAT('X', 30)
+    )::NUMBER(38,0) -- convert last 15 bytes to decimal
+  ) AS amount_raw_converted,
+  amount_raw,
+  amount,
+  tx_hash
+from prod_datashares.tokens.transfers
+limit 100;
+```
 
 ## Details
 

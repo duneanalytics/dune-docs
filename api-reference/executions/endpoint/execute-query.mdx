@@ -12,17 +12,13 @@ openapi: 'POST /v1/query/{query_id}/execute'
 
     ``` python Python SDK 
 
-    import dotenv, os, json
+    import json
     from dune_client.types import QueryParameter
     from dune_client.client import DuneClient
     from dune_client.query import QueryBase
 
-    # change the current working directory where .env file lives
-    os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
-    # load .env file
-    dotenv.load_dotenv(".env")
     # setup Dune Python client
-    dune = DuneClient.from_env()
+    dune = DuneClient()
 
     query = QueryBase(
         name="Sample Query",
@@ -42,7 +38,7 @@ openapi: 'POST /v1/query/{query_id}/execute'
 
 If the query has parameters and you don't add them in your API call, it will just run with the default params. You may add query parameters as part of the POST params data.
 
-You can choose to include a `performance` parameter, by default it will use the "medium" performance tier which consumes 10 credits. "large" will use 20 credits and are faster.
+You can choose to include a `performance` parameter, by default it will use the "medium" performance tier. Credits are consumed based on actual compute resources used. "large" tier provides more resources for complex queries.
 
 Returns an execution_id associated with the triggered query execution and the state of the execution.
 
@@ -62,17 +58,13 @@ Download Dune Python SDK by running `pip install dune-client`
 For more info, visit the GitHub repository: https://github.com/duneanalytics/dune-client/tree/d2195b2a9577e2dcae5d2600cb3eddce20987f38
 '''
 
-import dotenv, os, json
+import json
 from dune_client.types import QueryParameter
 from dune_client.client import DuneClient
 from dune_client.query import QueryBase
 
-# change the current working directory where .env file lives
-os.chdir("/Users/abc/local-Workspace/python-notebook-examples")
-# load .env file
-dotenv.load_dotenv(".env")
 # setup Dune Python client
-dune = DuneClient.from_env()
+dune = DuneClient()
 
 # define the query to run
 query = QueryBase(
