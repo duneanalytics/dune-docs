@@ -2748,10 +2748,29 @@
           ]
         },
         {
+          "group": "Farcaster",
+          "icon": "torii-gate",
+          "pages": [
+            "data-catalog/community/farcaster/overview",
+            "data-catalog/community/farcaster/casts",
+            "data-catalog/community/farcaster/fids",
+            "data-catalog/community/farcaster/fnames",
+            "data-catalog/community/farcaster/links",
+            "data-catalog/community/farcaster/profile_with_addresses",
+            "data-catalog/community/farcaster/reactions",
+            "data-catalog/community/farcaster/signers",
+            "data-catalog/community/farcaster/storage",
+            "data-catalog/community/farcaster/user_data",
+            "data-catalog/community/farcaster/verifications",
+            "data-catalog/community/farcaster/power_badge"
+          ]
+        },
+        {
           "group": "Hyperliquid",
           "icon": "droplet",
           "pages": [
-            "data-catalog/community/farcaster/overview"
+            "data-catalog/community/hyperliquid/overview",
+            "data-catalog/community/hyperliquid/market-data"
           ]
         },
         {
