@@ -70,7 +70,7 @@ Use these values in your Trino, Presto, or Starburst client configuration:
 
 | Parameter   | Value                     | Description                        |
 | ----------- | ------------------------- | ---------------------------------- |
-| Host        | `dune-api-trino.dune.com` | Dune's Trino/Presto endpoint       |
+| Host        | `trino.api.dune.com`      | Dune's Trino/Presto endpoint       |
 | Port        | `443`                     | Standard HTTPS port                |
 | Username    | `dune`                    | Fixed username for all connections |
 | Password    | `<your-dune-api-key>`     | [Your Dune API key](/api-reference/overview/authentication)                  |
@@ -310,7 +310,7 @@ Connect to Dune using Trino SDKs in your preferred language.
   <Tab title="Bash">
     ```bash
     # Install: brew install trino
-    trino --server https://dune-api-trino.dune.com:443 \
+    trino --server https://trino.api.dune.com:443 \
       --user dune --password \
       --catalog delta_prod \
       --schema runtime \
@@ -323,7 +323,7 @@ Connect to Dune using Trino SDKs in your preferred language.
     import { Trino, BasicAuth } from "trino-client";
 
     const trino = Trino.create({
-      server: "https://dune-api-trino.dune.com:443",
+      server: "https://trino.api.dune.com:443",
       catalog: "delta_prod",
       schema: "runtime",
       auth: new BasicAuth("dune", process.env.DUNE_API_KEY),
@@ -342,7 +342,7 @@ Connect to Dune using Trino SDKs in your preferred language.
     import os
 
     conn = trino.dbapi.connect(
-        host='dune-api-trino.dune.com',
+        host='trino.api.dune.com',
         port=443,
         user='dune',
         catalog='delta_prod',
