@@ -2765,7 +2765,13 @@
             "data-catalog/community/farcaster/power_badge"
           ]
         },
-
+        {
+          "group": "Hyperliquid",
+          "icon": "chart-line",
+          "pages": [
+            "data-catalog/community/hyperliquid/overview"
+          ]
+        },
         {
           "group": "Lens",
           "icon": "cloud",

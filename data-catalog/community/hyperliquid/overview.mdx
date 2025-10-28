@@ -1,0 +1,40 @@
+---
+title: Hyperliquid Data
+sidebarTitle: "Hyperliquid Overview"
+icon: "chart-line"
+description: Hyperliquid market data is available on Dune
+---
+
+# Hyperliquid
+[Hyperliquid](https://hyperliquid.xyz) - a high-performance decentralized perpetuals exchange.
+
+Hyperliquid is a decentralized exchange built from the ground up with a custom L1 blockchain optimized for performance. It offers perpetual futures trading with low latency and high throughput, providing a competitive alternative to centralized exchanges while maintaining full decentralization.
+
+**Website**: [https://hyperliquid.xyz](https://hyperliquid.xyz)
+
+**Documentation**: [https://hyperliquid.gitbook.io](https://hyperliquid.gitbook.io)
+
+**Twitter**: [https://twitter.com/HyperliquidX](https://twitter.com/HyperliquidX)
+
+## Data available
+
+The Hyperliquid dataset on Dune provides historical trading data for the exchange:
+
+**Table**: `hyperliquid.market_data`
+
+This table contains comprehensive historical trading data including:
+- Trading volume
+- Open interest
+- Funding rates
+- Other market metrics
+
+**Update Frequency**: Monthly
+
+### Example Query
+
+```sql
+SELECT 
+    *
+FROM hyperliquid.market_data
+LIMIT 100
+```
