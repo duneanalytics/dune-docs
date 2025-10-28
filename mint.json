@@ -2769,8 +2769,7 @@
           "group": "Hyperliquid",
           "icon": "droplet",
           "pages": [
-            "data-catalog/community/hyperliquid/overview",
-            "data-catalog/community/hyperliquid/market-data"
+            "data-catalog/community/farcaster/overview"
           ]
         },
         {
