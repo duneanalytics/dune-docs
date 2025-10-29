@@ -2787,6 +2787,14 @@
                 ]
               },
               {
+                "group": "Hyperliquid",
+                "icon": "star",
+                "pages": [
+                  "data-catalog/community/hyperliquid/overview",
+                  "data-catalog/community/hyperliquid/market-data"
+                ]
+              },
+              {
                 "group": "Lens",
                 "icon": "cloud",
                 "pages": [

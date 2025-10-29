@@ -35,7 +35,7 @@ Once the pull request is merged, the changes will be automatically published to 
 
 ### Adding New Pages
 
-To add a new page to the documentation, create a new .mdx file in the folder where you want the page to be. Then, add the following to the `mint.json` file:
+To add a new page to the documentation, create a new .mdx file in the folder where you want the page to be. Then, add the following to the `docs.json` file:
 
 ```json
 {
