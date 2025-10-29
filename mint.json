@@ -2932,51 +2932,6 @@
       ]
     },
     {
-      "group": "Preset Endpoints",
-      "pages": [
-        {
-          "group": "DEX",
-          "pages": ["api-reference/dex/endpoint/dex_pair"]
-        },
-        {
-          "group": "EigenLayer",
-          "pages": [
-            "api-reference/eigenlayer/introduction",
-            "api-reference/eigenlayer/endpoint/avs_metadata",
-            "api-reference/eigenlayer/endpoint/avs_metrics",
-            "api-reference/eigenlayer/endpoint/operator_metadata",
-            "api-reference/eigenlayer/endpoint/operator_metrics",
-            "api-reference/eigenlayer/endpoint/operator_to_avs_mapping"
-          ]
-        },
-        {
-          "group": "EVM Contracts",
-          "pages": ["api-reference/evm/endpoint/contracts"]
-        },
-
-        {
-          "group": "Farcaster",
-          "pages": [
-            "api-reference/farcaster/introduction",
-            "api-reference/farcaster/endpoint/farcaster_channels",
-            "api-reference/farcaster/endpoint/farcaster_memecoins",
-            "api-reference/farcaster/endpoint/farcaster_users"
-          ]
-        },
-        {
-          "group": "Markets",
-          "pages": ["api-reference/markets/endpoint/marketplace_marketshare"]
-        },
-        {
-          "group": "Projects",
-          "pages": [
-            "api-reference/projects/introduction",
-            "api-reference/projects/endpoint/linea_lxp"
-          ]
-        }
-      ]
-    },
-    {
       "group": "Datashare",
       "pages": [
         "datashare/datashare",
