@@ -1,8 +1,8 @@
-#topbar-cta-button > a {
-    border-radius: 9999px;
-}
-
-#topbar-cta-button > a {
+#topbar-cta-button > a > span,
+#navigation-items .sidebar-group > li > a,
+#sidebar-group > li > a,
+#search-bar-entry,
+.chat-assistant-floating-input > div {
     border-radius: 9999px;
 }
 
@@ -26,9 +26,4 @@
 #page-context-menu > button:last-child {
     border-top-right-radius: 9999px;
     border-bottom-right-radius: 9999px;
-}
-
-#navigation-items .sidebar-group > li > a,
-#sidebar-group > li > a {
-    border-radius: 9999px;
 }
