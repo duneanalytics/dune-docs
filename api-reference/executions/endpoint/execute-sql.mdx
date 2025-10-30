@@ -10,9 +10,8 @@ description: "Execute raw SQL queries directly without needing to create a saved
 
 This endpoint is **usage-based** and consumes credits based on the computational resources used during execution.
 
-## Example Request
+<RequestExample>
 
-<CodeGroup>
 ```bash cURL
 curl -X POST "https://api.dune.com/api/v1/sql/execute" \
   -H "Content-Type: application/json" \
@@ -22,6 +21,7 @@ curl -X POST "https://api.dune.com/api/v1/sql/execute" \
     "performance": "medium"
   }'
 ```
+
 ```python Python
 import requests
 
@@ -38,6 +38,7 @@ data = {
 response = requests.post(url, json=data, headers=headers)
 print(response.json())
 ```
+
 ```javascript JavaScript
 const response = await fetch('https://api.dune.com/api/v1/sql/execute', {
   method: 'POST',
@@ -54,10 +55,8 @@ const response = await fetch('https://api.dune.com/api/v1/sql/execute', {
 const data = await response.json();
 console.log(data);
 ```
-</CodeGroup>
 
-## Complete Workflow Example
-```bash
+```bash Complete Workflow
 # Step 1: Execute SQL and get execution ID
 EXECUTION_ID=$(curl -s -X POST "https://api.dune.com/api/v1/sql/execute" \
   -H "Content-Type: application/json" \
@@ -81,13 +80,6 @@ curl -s "https://api.dune.com/api/v1/execution/$EXECUTION_ID/results" \
   -H "X-Dune-Api-Key: YOUR_API_KEY" | jq
 ```
 
-<RequestExample>
-```json
-{
-  "sql": "SELECT blockchain, project, version, block_time, token_sold_symbol, token_bought_symbol, amount_usd FROM dex.trades WHERE blockchain = 'ethereum' AND block_time > now() - interval '1 hour' ORDER BY amount_usd DESC LIMIT 10",
-  "performance": "large"
-}
-```
 </RequestExample>
 
 <ResponseExample>
