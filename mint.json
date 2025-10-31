@@ -2923,11 +2923,18 @@
           "group": "Tables",
           "pages": [
             "api-reference/tables/endpoint/overview",
+            "api-reference/tables/endpoint/list",
             "api-reference/tables/endpoint/create",
             "api-reference/tables/endpoint/insert",
             "api-reference/tables/endpoint/upload",
             "api-reference/tables/endpoint/clear",
             "api-reference/tables/endpoint/delete"
+          ]
+        },
+        {
+          "group": "Usage",
+          "pages": [
+            "api-reference/usage/endpoint/get-usage"
           ]
         }
       ]

@@ -1,0 +1,85 @@
+---
+title: "Get Usage"
+openapi: "GET /v1/usage"
+description: "Retrieve customer usage data for billing periods"
+---
+
+## Description
+
+Retrieves customer usage data including credits, queries, dashboards, and storage. Returns the current billing period when no timeframe is specified.
+
+<Note>
+**Implementation Details:**
+- Implemented in `core-node-grpc` service
+- Location: `https://github.com/duneanalytics/core/blob/1d426d60760535cf1d9eeea3cf6f6fefca0bbb58/core-node/apps/analytics/src/grpc/server/customers/index.ts`
+</Note>
+
+## Rate Limits
+
+This endpoint follows the standard rate limits for metadata endpoints.
+
+## Pricing
+
+This is a metadata endpoint and does not consume credits.
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://api.dune.com/api/v1/usage?start_date=2025-01-01&end_date=2025-02-01" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/usage"
+params = {
+    "start_date": "2025-01-01",
+    "end_date": "2025-02-01"
+}
+headers = {"X-DUNE-API-KEY": "YOUR_API_KEY"}
+
+response = requests.get(url, params=params, headers=headers)
+print(response.json())
+```
+
+```javascript JavaScript
+const url = 'https://api.dune.com/api/v1/usage';
+const params = new URLSearchParams({
+  start_date: '2025-01-01',
+  end_date: '2025-02-01'
+});
+
+const response = await fetch(`${url}?${params}`, {
+  headers: {
+    'X-DUNE-API-KEY': 'YOUR_API_KEY'
+  }
+});
+
+const data = await response.json();
+console.log(data);
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Example Response
+{
+  "private_queries": 100,
+  "private_dashboards": 100,
+  "bytes_used": 1000,
+  "bytes_allowed": 10101,
+  "billingPeriods": [
+    {
+      "start_date": "2025-01-01",
+      "end_date": "2025-02-01",
+      "credits_used": 100.10,
+      "credits_included": 100000
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
