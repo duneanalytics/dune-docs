@@ -2905,6 +2905,7 @@
                 "pages": [
                   "api-reference/executions/execution-object",
                   "api-reference/executions/endpoint/execute-query",
+                  "api-reference/executions/endpoint/execute-sql",
                   "api-reference/executions/endpoint/cancel-execution",
                   "api-reference/executions/endpoint/get-execution-status",
                   "api-reference/executions/endpoint/get-execution-result",

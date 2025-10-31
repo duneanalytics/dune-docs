@@ -3,9 +3,13 @@ title: 'Get Execution Status'
 openapi: 'GET /v1/execution/{execution_id}/status'
 ---
 
-You must pass the `execution_id` obtained from making an [execute query](/api-reference/executions/endpoint/execute-query) POST request. 
+You must pass the `execution_id` obtained from making an [execute query](/api-reference/executions/endpoint/execute-query) or [execute SQL](/api-reference/executions/endpoint/execute-sql) POST request. 
 
-Returns the status of a query execution along with relevant metadata of the results if the execution is completed.
+Returns the status of a query execution along with relevant metadata of the results if the execution is completed. **This endpoint now includes detailed error information when a query fails**, eliminating the need to call the results endpoint just to get error details.
+
+## Pricing
+
+This endpoint has **no charge** and does not consume credits.
 
 ## Execution States
 
@@ -13,11 +17,21 @@ Once an execution is triggered, it can be in one of the following states:
 
 - `QUERY_STATE_PENDING`: The query execution is waiting for an execution slot.
 - `QUERY_STATE_EXECUTING`: The query is currently executing.
-- `QUERY_STATE_FAILED`: The query execution failed. This is a terminal state.
+- `QUERY_STATE_FAILED`: The query execution failed. This is a terminal state. **The response will include detailed error information.**
 - `QUERY_STATE_COMPLETED`: The query execution completed successfully. You can retrieve the query result for this execution_id.
 - `QUERY_STATE_CANCELED`: The query execution was canceled by the user.
 - `QUERY_STATE_EXPIRED`: The query execution expired, and the result is no longer available.
 - `QUERY_STATE_COMPLETED_PARTIAL`: The query execution was successful, but the result was truncated because it was too large. To receive the truncated result, set the `allow_partial_results` flag to `true` in the API request to fetch the result.
+
+## Error Response Fields
+
+When a query execution fails (`QUERY_STATE_FAILED`), the response includes an `error` object with the following fields:
+
+- **type** (string): Error type classification (e.g., `FAILED_TYPE_EXECUTION_FAILED`)
+- **message** (string): Detailed error message explaining what went wrong, including line and column information
+- **metadata** (object): Additional error context
+  - **line** (integer): Line number where the error occurred
+  - **column** (integer): Column position where the error occurred
 
 <RequestExample>
 
@@ -139,3 +153,41 @@ HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/executi
 ```
 
 </RequestExample>
+
+<ResponseExample>
+
+```json Success Response
+{
+  "execution_id": "01HKZJ2683PHF9Q9PHHQ8FW4Q1",
+  "query_id": 3493826,
+  "is_execution_finished": true,
+  "state": "QUERY_STATE_COMPLETED",
+  "submitted_at": "2025-10-22T10:31:04.222464Z",
+  "expires_at": "2026-01-20T10:31:04.36241Z",
+  "execution_started_at": "2025-10-22T10:31:05.123456Z",
+  "execution_ended_at": "2025-10-22T10:31:15.789012Z",
+  "execution_cost_credits": 10
+}
+```
+
+```json Error Response
+{
+  "execution_id": "01K85QHSS0RBGW4BHDM0RFCG9C",
+  "query_id": 6012998,
+  "is_execution_finished": true,
+  "state": "QUERY_STATE_FAILED",
+  "submitted_at": "2025-10-22T10:31:04.222464Z",
+  "expires_at": "2026-01-20T10:31:04.36241Z",
+  "execution_cost_credits": 0,
+  "error": {
+    "type": "FAILED_TYPE_EXECUTION_FAILED",
+    "message": "line 1:8: Column 'x' cannot be resolved at line 1, position 8. Please verify that this column exists using the data explorer. Learn how to use the data explorer here: https://dune.com/docs/app/query-editor/data-explorer/ [Execution ID: 01K85QHSS0RBGW4BHDM0RFCG9C]",
+    "metadata": {
+      "line": 1,
+      "column": 8
+    }
+  }
+}
+```
+
+</ResponseExample>
