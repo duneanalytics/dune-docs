@@ -1,0 +1,114 @@
+---
+title: "List Tables"
+openapi: "GET /v1/tables"
+description: "Get a paginated list of uploaded tables"
+---
+
+## Description
+
+Retrieves a paginated list of tables uploaded by the user or their team. This endpoint calls the `catalogGRPCClient` to fetch customer tables.
+
+## Pagination
+
+Use the `limit` and `offset` parameters to paginate through large result sets:
+
+- To get the first 20 tables: `?limit=20&offset=0`
+- To get the next 20 tables: `?limit=20&offset=20`
+- Continue incrementing `offset` by `limit` to get subsequent pages
+
+## Rate Limits
+
+This endpoint follows the standard rate limits for metadata endpoints.
+
+## Pricing
+
+This is a metadata endpoint and does not consume credits.
+
+## Related Endpoints
+
+- [Create Table](/api-reference/tables/endpoint/create) - Create a new table
+- [Upload Data](/api-reference/tables/endpoint/upload) - Upload data to a table
+- [Delete Table](/api-reference/tables/endpoint/delete) - Delete a table
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://api.dune.com/api/v1/tables?limit=10&offset=0" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/tables"
+params = {
+    "limit": 10,
+    "offset": 0
+}
+headers = {"X-DUNE-API-KEY": "YOUR_API_KEY"}
+
+response = requests.get(url, params=params, headers=headers)
+print(response.json())
+```
+
+```javascript JavaScript
+const url = 'https://api.dune.com/api/v1/tables';
+const params = new URLSearchParams({
+  limit: 10,
+  offset: 0
+});
+
+const response = await fetch(`${url}?${params}`, {
+  headers: {
+    'X-DUNE-API-KEY': 'YOUR_API_KEY'
+  }
+});
+
+const data = await response.json();
+console.log(data);
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Example Response
+{
+  "tables": [
+    {
+      "full_name": "dune.dune.ai_contract_tags",
+      "is_private": true,
+      "table_size_bytes": "1152622",
+      "created_at": "2024-05-15T20:34:58.585Z",
+      "updated_at": "2024-05-16T21:19:02.459Z",
+      "purged_at": null,
+      "owner": {
+        "handle": "dune",
+        "type": "team"
+      },
+      "columns": [
+        {
+          "name": "blockchain",
+          "type": "string",
+          "nullable": false,
+          "metadata": {
+            "description": "Blockchain associated with the record",
+            "filtering_column": true
+          }
+        },
+        {
+          "name": "contract_address",
+          "type": "string",
+          "nullable": false,
+          "metadata": {
+            "description": "Address of the smart contract"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
