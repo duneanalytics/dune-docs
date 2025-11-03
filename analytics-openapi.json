@@ -5654,7 +5654,7 @@
       "models.GetUsageResponse": {
         "type": "object",
         "properties": {
-          "billingPeriods": {
+          "billing_periods": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/models.BillingPeriod"
