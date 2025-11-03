@@ -4997,6 +4997,95 @@
           }
         }
       }
+    },
+    "/v1/usage": {
+      "post": {
+        "summary": "Get Usage Data",
+        "description": "Get usage data for the authenticated customer including private queries, dashboards,\nbytes used/allowed, and billing periods",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload with optional start_date and end_date",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/models.GetUsageRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetUsageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "payload"
+      }
     }
   },
   "components": {
@@ -5135,6 +5224,27 @@
             "type": "string",
             "description": "Unique identifier for the materialized view",
             "example": "dune.dune.result_erc_20_token_summary"
+          }
+        }
+      },
+      "models.BillingPeriod": {
+        "type": "object",
+        "properties": {
+          "credits_included": {
+            "type": "number",
+            "description": "Float value"
+          },
+          "credits_used": {
+            "type": "number",
+            "description": "Float value"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD format"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD format"
           }
         }
       },
@@ -5525,6 +5635,42 @@
             "type": "integer",
             "description": "Version of the query, gets incremented every time the query is updated.",
             "example": 1
+          }
+        }
+      },
+      "models.GetUsageRequest": {
+        "type": "object",
+        "properties": {
+          "end_date": {
+            "type": "string",
+            "description": "Optional field in YYYY-MM-DD format"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "Optional field in YYYY-MM-DD format"
+          }
+        }
+      },
+      "models.GetUsageResponse": {
+        "type": "object",
+        "properties": {
+          "billingPeriods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.BillingPeriod"
+            }
+          },
+          "bytes_allowed": {
+            "type": "integer"
+          },
+          "bytes_used": {
+            "type": "integer"
+          },
+          "private_dashboards": {
+            "type": "integer"
+          },
+          "private_queries": {
+            "type": "integer"
           }
         }
       },
