@@ -4176,26 +4176,14 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "performance",
-            "in": "query",
-            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Credits are consumed based on actual compute resources used. Medium is the default, large provides more resources for complex queries.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "medium",
-                "large"
-              ]
-            }
           }
         ],
         "requestBody": {
-          "description": "Raw SQL query to execute",
+          "description": "SQL query and performance configuration",
           "content": {
-            "*/*": {
+            "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/models.ExecuteSQLRequest"
               }
             }
           },
@@ -5416,6 +5404,23 @@
           "state": {
             "type": "string",
             "example": "QUERY_STATE_PENDING"
+          }
+        }
+      },
+      "models.ExecuteSQLRequest": {
+        "type": "object",
+        "required": ["sql"],
+        "properties": {
+          "sql": {
+            "type": "string",
+            "description": "The SQL query to execute",
+            "example": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1 day' LIMIT 10"
+          },
+          "performance": {
+            "type": "string",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
+            "enum": ["medium", "large"],
+            "default": "medium"
           }
         }
       },
