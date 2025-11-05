@@ -45,7 +45,7 @@ The minute prices are built using the hybrid approach with interpolation:
 
 ### Source-Specific Variants
 
-#### `prices_coinpaprika.minute`
+#### `prices_external.minute`
 For purely coinpaprika-based minute prices:
 - **Coverage**: Only tokens with Coinpaprika listings (~2,000 tokens)
 - **Source**: External exchange-aggregated minute pricing with interpolation
@@ -118,5 +118,5 @@ ORDER BY 1
 - **48-Hour Forward-Fill**: The system forward-fills with the last available price for a maximum of 48 hours (2880 minutes) to avoid stale data
 - **External source reliability**: Coinpaprika data provides stable, exchange-aggregated pricing
 - **DEX-derived limitations**: DEX-derived prices can contain errors due to low liquidity, market manipulation, or anomalous trades
-- **Fallback option**: For critical applications, consider using `prices_coinpaprika.minute` for more reliable pricing where available
+- **Fallback option**: For critical applications, consider using `prices_external.minute` for more reliable pricing where available
 - **Data validation**: Always validate prices for critical applications, especially for lesser-known tokens

@@ -108,7 +108,7 @@ All price tables share the following schema:
 For specialized analysis, each granularity offers source-specific tables:
 
 **Coinpaprika-only tables:**
-- `prices_coinpaprika.day`, `prices_coinpaprika.hour`, `prices_coinpaprika.minute`, `prices_coinpaprika.latest`
+- `prices_external.day`, `prices_external.hour`, `prices_external.minute`, `prices_external.latest`
 
 **DEX-derived tables:**
 - `prices_dex.day`, `prices_dex.hour`, `prices_dex.minute`, `prices_dex.latest`
@@ -157,7 +157,7 @@ WHERE name = 'arbitrum'
 
 The following tables are maintained for historical compatibility:
 
-- `prices.usd` - **View of `prices_coinpaprika.minute`** (maintains legacy schema)
+- `prices.usd` - **View of `prices_external.minute`** (maintains legacy schema)
 
-Note: `prices.usd` is a view of `prices_coinpaprika.minute` while preserving the legacy schema for backward compatibility.
+Note: `prices.usd` is a view of `prices_external.minute` while preserving the legacy schema for backward compatibility.
 
