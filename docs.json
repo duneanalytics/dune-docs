@@ -2959,7 +2959,12 @@
                   "api-reference/tables/endpoint/clear",
                   "api-reference/tables/endpoint/delete"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "group": "Account Management",
+            "pages": [
               {
                 "group": "Usage",
                 "pages": [
