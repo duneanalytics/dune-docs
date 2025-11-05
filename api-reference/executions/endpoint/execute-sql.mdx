@@ -6,6 +6,10 @@ description: "Execute raw SQL queries directly without needing to create a saved
 
 > Run arbitrary SQL queries via API. This endpoint allows you to execute SQL directly without first creating a query object, perfect for dynamic analysis and automated workflows.
 
+<Note>
+When executing arbitrary SQL queries (queries not saved in Dune), the `query_id` in the response will always be `0`. This is a placeholder value since these queries are not stored in the Dune database.
+</Note>
+
 ## Pricing
 
 This endpoint is **usage-based** and consumes credits based on the computational resources used during execution.
