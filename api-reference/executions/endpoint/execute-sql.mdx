@@ -6,6 +6,10 @@ description: "Execute raw SQL queries directly without needing to create a saved
 
 > Run arbitrary SQL queries via API. This endpoint allows you to execute SQL directly without first creating a query object, perfect for dynamic analysis and automated workflows.
 
+<Note>
+When executing arbitrary SQL queries (queries not saved in Dune), the `query_id` in the response will always be `0`. This is a placeholder value since these queries are not stored in the Dune database.
+</Note>
+
 ## Pricing
 
 This endpoint is **usage-based** and consumes credits based on the computational resources used during execution.
@@ -17,7 +21,7 @@ curl -X POST "https://api.dune.com/api/v1/sql/execute" \
   -H "Content-Type: application/json" \
   -H "X-Dune-Api-Key: YOUR_API_KEY" \
   -d '{
-    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '\''1 day'\'' LIMIT 10",
+    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '\''1'\'' day LIMIT 10",
     "performance": "medium"
   }'
 ```
@@ -31,7 +35,7 @@ headers = {
     "Content-Type": "application/json"
 }
 data = {
-    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1 day' LIMIT 10",
+    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10",
     "performance": "medium"
 }
 
@@ -47,7 +51,7 @@ const response = await fetch('https://api.dune.com/api/v1/sql/execute', {
     'X-DUNE-API-KEY': 'YOUR_API_KEY'
   },
   body: JSON.stringify({
-    sql: "SELECT * FROM dex.trades WHERE block_time > now() - interval '1 day' LIMIT 10",
+    sql: "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10",
     performance: 'medium'
   })
 });
