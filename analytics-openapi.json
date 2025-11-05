@@ -5414,7 +5414,7 @@
           "sql": {
             "type": "string",
             "description": "The SQL query to execute",
-            "example": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1 day' LIMIT 10"
+            "example": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10"
           },
           "performance": {
             "type": "string",

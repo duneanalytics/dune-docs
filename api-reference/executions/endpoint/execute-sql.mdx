@@ -17,7 +17,7 @@ curl -X POST "https://api.dune.com/api/v1/sql/execute" \
   -H "Content-Type: application/json" \
   -H "X-Dune-Api-Key: YOUR_API_KEY" \
   -d '{
-    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '\''1 day'\'' LIMIT 10",
+    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '\''1'\'' day LIMIT 10",
     "performance": "medium"
   }'
 ```
@@ -31,7 +31,7 @@ headers = {
     "Content-Type": "application/json"
 }
 data = {
-    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1 day' LIMIT 10",
+    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10",
     "performance": "medium"
 }
 
@@ -47,7 +47,7 @@ const response = await fetch('https://api.dune.com/api/v1/sql/execute', {
     'X-DUNE-API-KEY': 'YOUR_API_KEY'
   },
   body: JSON.stringify({
-    sql: "SELECT * FROM dex.trades WHERE block_time > now() - interval '1 day' LIMIT 10",
+    sql: "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10",
     performance: 'medium'
   })
 });
