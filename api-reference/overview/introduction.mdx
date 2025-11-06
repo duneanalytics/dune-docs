@@ -1,5 +1,5 @@
 ---
-title: "Dune Analytics API"
+title: "Overview"
 icon: "connectdevelop"
 ---
 
@@ -41,11 +41,20 @@ Build powerful blockchain analytics applications with Dune's comprehensive API s
   </Card>
 </CardGroup>
 
+<Note>
+**When to use Analytics API vs Sim APIs:**
+
+Use the **Analytics API** for complex queries, historical analysis, custom SQL, and data exports where you need the full power of Dune's query engine.
+
+Use **[Sim APIs](https://sim.dune.com)** for real-time data, mobile apps, low-latency requirements, and standardized endpoints where sub-second response times are critical.
+</Note>
+
 ## Key Features
 
-<CardGroup cols={3}>
+<CardGroup cols={1}>
   <Card title="Advanced Filtering" icon="filter" href="/api-reference/executions/filtering">
     **Unique to Dune** - Filter results directly in API calls without modifying queries. Use SQL-like WHERE clauses to refine data on the fly.
+    
     ```python
     dune.get_latest_result(
       query=3567562,
@@ -56,16 +65,17 @@ Build powerful blockchain analytics applications with Dune's comprehensive API s
   
   <Card title="Execute Raw SQL" icon="code" href="/api-reference/executions/endpoint/execute-query">
     **New** - Run arbitrary SQL queries via API, not just saved queries. Perfect for dynamic analysis and automated workflows.
+    
     ```python
     dune.execute_sql(
-      "SELECT * FROM dex.trades 
-       WHERE block_time > now() - interval '1 day'"
+      "SELECT * FROM dex.trades WHERE block_time > now() - interval '1 day' LIMIT 10"
     )
     ```
   </Card>
   
   <Card title="Query Pipelines" icon="diagram-project" href="/api-reference/executions/endpoint/execute-query">
     Execute entire query lineages including materialized views and dependent queries in a single API call.
+    
     ```python
     dune.execute_pipeline(
       pipeline_id=12345
@@ -78,11 +88,12 @@ Build powerful blockchain analytics applications with Dune's comprehensive API s
 
 Our SDKs handle authentication, polling, pagination, and error handling automatically. The new `execute()` function manages the entire workflow for you.
 
-<CardGroup cols={3}>
+<CardGroup cols={1}>
   <Card title="Python" icon="python" href="/api-reference/overview/sdks">
     ```bash
     pip install dune-client
     ```
+    
     ```python
     from dune_client import DuneClient
     
@@ -97,6 +108,7 @@ Our SDKs handle authentication, polling, pagination, and error handling automati
     ```bash
     npm install @duneanalytics/client
     ```
+    
     ```typescript
     import { DuneClient } from '@duneanalytics/client';
     
@@ -111,6 +123,7 @@ Our SDKs handle authentication, polling, pagination, and error handling automati
     ```bash
     go get github.com/duneanalytics/duneapi-client-go
     ```
+    
     ```go
     client := duneapi.New("your-key")
     results := client.Execute(3493826)
@@ -162,31 +175,6 @@ Our SDKs handle authentication, polling, pagination, and error handling automati
   </Card>
 </CardGroup>
 
-## Need Real-time Data?
-
-For applications requiring sub-second latency and real-time blockchain data, consider these specialized options:
-
-<CardGroup cols={2}>
-  <Card title="Sim APIs" icon="zap" href="https://docs.sim.dune.com">
-    High-performance APIs designed specifically for real-time applications. Best for mobile apps, trading bots, and live data feeds.
-    
-    - Millisecond latency
-    - WebSocket support
-    - Specialized endpoints for DeFi
-    
-    [Explore Sim APIs →](https://sim.dune.com)
-  </Card>
-  
-  <Card title="When to use Sim vs Analytics API" icon="scales" href="https://docs.sim.dune.com">
-    **Analytics API:** Complex queries, historical analysis, custom SQL, data exports
-    
-    **Sim APIs:** Real-time data, mobile apps, low latency requirements, standardized endpoints
-    
-    [Compare options →](https://docs.sim.dune.com)
-  </Card>
-</CardGroup>
-
----
 
 ## Getting Help
 
