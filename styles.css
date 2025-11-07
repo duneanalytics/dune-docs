@@ -29,9 +29,13 @@
 }
 
 /* White underlines for CTA links in Note blocks */
+aside a,
 .note-container a,
 [class*="note"] a,
-.callout a {
+[class*="Note"] a,
+[class*="callout"] a,
+div[class*="admonition"] a,
+div[role="note"] a {
     text-decoration-color: white !important;
-    font-weight: bold;
+    text-decoration-thickness: 2px !important;
 }
