@@ -2901,6 +2901,15 @@
             ]
           },
           {
+            "group": "Data Transformations",
+            "pages": [
+              "api-reference/data-transformations/overview",
+              "api-reference/data-transformations/dbt-connector",
+              "api-reference/data-transformations/sql-operations"
+            ],
+            "icon": "arrows-rotate"
+          },
+          {
             "group": "SQL Endpoints",
             "pages": [
               {
