@@ -14,7 +14,7 @@ Contains data about Sui objects, which are the fundamental units of data storage
 | **object_id** | binary | Binary representation of the unique identifier of the object |
 | **version** | decimal(20,0) | Version number of the object |
 | **digest** | string | Hash digest of the object contents |
-| **type_** | string | Type of the object (e.g., "0x2::coin::Coin<0x2::sui::SUI>") |
+| **type_** | string | Type of the object (e.g., "0x2::coin::Coin&lt;0x2::sui::SUI&gt;") |
 | **checkpoint** | decimal(20,0) | Checkpoint sequence number containing this object operation |
 | **epoch** | decimal(20,0) | Epoch number when the object was created/updated |
 | **timestamp_ms** | decimal(20,0) | Unix timestamp in milliseconds when the object was created/updated |

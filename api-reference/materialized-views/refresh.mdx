@@ -5,7 +5,7 @@ openapi: 'POST /v1/materialized-views/{name}/refresh'
 
 
 <Note>
-- By default, the refresh runs on the `medium` engine. To boost performance, pass in a JSON body with `{"performance": "large"}. Credits are consumed based on actual compute resources used for the refresh operation.
+- By default, the refresh runs on the `medium` engine. To boost performance, pass in a JSON body with `{{"performance": "large"}}`. Credits are consumed based on actual compute resources used for the refresh operation.
 - If you prefer `medium` performance, you can omit the `performance` parameter.
 - You must own the materialized view to refresh it.
 </Note>
