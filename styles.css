@@ -27,3 +27,11 @@
     border-top-right-radius: 9999px;
     border-bottom-right-radius: 9999px;
 }
+
+/* White underlines for CTA links in Note blocks */
+.note-container a,
+[class*="note"] a,
+.callout a {
+    text-decoration-color: white !important;
+    font-weight: bold;
+}
