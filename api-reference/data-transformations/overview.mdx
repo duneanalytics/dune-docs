@@ -18,7 +18,7 @@ This connector supports industry-standard SQL operations for data transformation
 - **DML Operations**: INSERT, MERGE, DELETE, TRUNCATE for data manipulation
 - **Maintenance**: OPTIMIZE and VACUUM for table performance management
 
-All data stays within Dune—nothing leaves the platform. Your transformations read from Dune's blockchain data and write results to your private, isolated namespace.
+All data stays within Dune — nothing leaves the platform. Your transformations read from Dune's blockchain data and write results to your private, isolated namespace.
 
 ## Key Features
 
@@ -26,12 +26,12 @@ All data stays within Dune—nothing leaves the platform. Your transformations r
 
 - **Namespace isolation**: Tables are created in your organization's namespace (e.g., `your_team.table_name`)
 - **Private by default**: All tables and views you create are private to your team
-- **Optional sharing**: Choose to make specific datasets public when appropriate
+- **Optional sharing**: Choose to make specific datasets public when appropriate (still WIP, not yet available)
 - **No data egress**: All transformations execute within Dune's infrastructure
 
 ### Enterprise-Ready Workflows
 
-- **Drop-in integration**: Add to existing data pipelines—works with your current dbt, Airflow, or Prefect setup
+- **Drop-in integration**: Add to existing data pipelines — works with your current dbt, Airflow, or Prefect setup
 - **Git-based workflows**: Manage transformation logic in version control with PR reviews and approvals
 - **Production orchestration**: Schedule and automate with the tools you already use
 - **Audit & governance**: Private by default with full data lineage tracking and access controls
@@ -77,13 +77,16 @@ The session property `transformations=true` is **required** for all write operat
 
 ### Tool-Specific Setup
 
-Choose your tool to get started:
+**Tested and supported tools:**
 
 - **[dbt Connector](/api-reference/data-transformations/dbt-connector)** - Full guide for running dbt projects on Dune with templates, CI/CD, and best practices
+
+**Other tools that should work:**
 - **Hex** - Connect using Trino data connection with the parameters above
 - **Jupyter** - Use `trino-python-client` library with JWT authentication
 - **SQLMesh** - Configure Trino connection with transformations session property
 - **SQL Clients** - Any Trino-compatible client (DBeaver, Metabase, etc.)
+These tools may require additional configuration to work with Dune. Please reach out to [support@dune.com](mailto:support@dune.com) if you need help.
 
 ## How It Works
 
