@@ -240,7 +240,7 @@ This is controlled by the `get_custom_schema.sql` macro in the template.
 
 ### Production Deployment
 
-The production workflow runs on a schedule (hourly by default):
+The [production workflow](https://github.com/duneanalytics/dune-dbt-template/blob/main/.github/workflows/dbt_prod.yml) includes an hourly schedule (0 * * * *), but it’s commented out by default. You can enable it by uncommenting the corresponding lines when you’re ready to run production jobs automatically.
 
 1. **State comparison**: Uses manifest from previous run to detect changes
 2. **Full refresh modified models**: Any changed models run with `--full-refresh`
