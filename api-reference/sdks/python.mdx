@@ -1,0 +1,330 @@
+---
+title: "Python"
+icon: "python"
+description: "Official Python SDK for Dune Analytics API"
+---
+
+<Note>
+**New:** The Python SDK now includes an `execute()` function that automatically handles:
+- Query execution submission
+- Polling for completion
+- Automatic pagination for large result sets
+- Error handling and retries
+- Result formatting
+
+No more manual polling or pagination logic!
+</Note>
+
+## Overview
+
+The [Python SDK](https://github.com/duneanalytics/dune-client) is our most mature and feature-complete client.
+
+### Installation
+
+```bash
+pip install dune-client
+```
+
+<Warning>
+Always use the latest release. Check [releases page](https://github.com/duneanalytics/dune-client/releases) for the current version. Features in the main branch may not be released yet.
+</Warning>
+
+## Quick Start
+
+```python
+from dune_client import DuneClient
+import os
+
+# Initialize client
+dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+
+# Execute a query by ID
+results = dune.execute(query_id=3493826)
+
+# Or execute raw SQL
+results = dune.execute(sql="SELECT * FROM dex.trades LIMIT 10")
+
+# Access results
+for row in results.rows:
+    print(row)
+```
+
+## The execute() Function
+
+The `execute()` function is the simplest way to run queries and get results:
+
+<CodeGroup>
+```python Execute by Query ID
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Execute a saved query
+results = dune.execute(
+    query_id=3493826,
+    performance="medium",  # or "large"
+    params={
+        "blockchain": "ethereum",
+        "min_volume": 1000
+    }
+)
+
+print(f"Got {len(results.rows)} rows")
+```
+
+```python Execute Raw SQL
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Execute arbitrary SQL
+sql = """
+SELECT 
+    blockchain,
+    SUM(amount_usd) as volume
+FROM dex.trades
+WHERE block_time > now() - interval '24' hour
+GROUP BY 1
+ORDER BY 2 DESC
+"""
+
+results = dune.execute(sql=sql, performance="medium")
+
+for row in results.rows:
+    print(f"{row['blockchain']}: ${row['volume']:,.2f}")
+```
+
+```python With DataFrames
+from dune_client import DuneClient
+import pandas as pd
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Get results as a pandas DataFrame
+df = dune.execute_dataframe(query_id=3493826)
+
+# Or convert manually
+results = dune.execute(query_id=3493826)
+df = pd.DataFrame(results.rows)
+
+# Now use pandas for analysis
+print(df.describe())
+print(df.groupby('blockchain')['amount_usd'].sum())
+```
+</CodeGroup>
+
+## Advanced Features
+
+### Filtering and Pagination
+
+```python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Use Dune's server-side filtering
+results = dune.get_latest_result_dataframe(
+    query=3493826,
+    filters="amount_usd > 10000 AND blockchain = 'ethereum'",
+    columns="tx_hash,amount_usd,block_time",
+    sort_by="amount_usd desc",
+    limit=100,
+    offset=0
+)
+```
+
+### Query Management
+
+```python
+from dune_client import DuneClient
+from dune_client.query import QueryBase
+from dune_client.types import QueryParameter
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Create a new query
+query = QueryBase(
+    name="My DEX Analysis",
+    query_sql="SELECT * FROM dex.trades WHERE blockchain = {{blockchain}}",
+    params=[
+        QueryParameter.text_type(name="blockchain", value="ethereum")
+    ]
+)
+
+# Create the query on Dune
+created_query = dune.create_query(query)
+print(f"Created query: https://dune.com/queries/{created_query.query_id}")
+
+# Update an existing query
+query.query_id = created_query.query_id
+query.query_sql = "SELECT * FROM dex.trades WHERE blockchain = {{blockchain}} LIMIT 1000"
+dune.update_query(query)
+
+# Execute it
+results = dune.execute(query_id=created_query.query_id)
+```
+
+### Data Uploads
+
+```python
+from dune_client import DuneClient
+import pandas as pd
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Upload a CSV file
+with open('data.csv', 'rb') as file:
+    dune.upload_csv(
+        data=file,
+        table_name="my_dataset",
+        description="Custom dataset for analysis"
+    )
+
+# Or upload a DataFrame
+df = pd.DataFrame({
+    'address': ['0x123...', '0x456...'],
+    'label': ['DEX', 'Lending'],
+    'category': ['DeFi', 'DeFi']
+})
+
+dune.upload_csv(
+    data=df.to_csv(index=False),
+    table_name="my_labels",
+    is_private=False
+)
+```
+
+## API Reference
+
+<AccordionGroup>
+  <Accordion title="execute()">
+    Execute a query and wait for results.
+    
+    **Parameters:**
+    - `query_id` (int, optional): ID of saved query to execute
+    - `sql` (str, optional): Raw SQL to execute
+    - `params` (dict, optional): Query parameters
+    - `performance` (str, optional): "medium" or "large" (default: "medium")
+    
+    **Returns:** `ExecutionResult` with `.rows` property
+  </Accordion>
+
+  <Accordion title="execute_dataframe()">
+    Execute a query and return results as a pandas DataFrame.
+    
+    **Parameters:** Same as `execute()`
+    
+    **Returns:** `pandas.DataFrame`
+  </Accordion>
+
+  <Accordion title="get_latest_result()">
+    Get the most recent execution results for a query without re-executing.
+    
+    **Parameters:**
+    - `query` (int): Query ID
+    - `filters` (str, optional): Server-side filters
+    - `columns` (list, optional): Columns to include
+    - `sort_by` (list, optional): Sort order
+    - `limit` (int, optional): Max rows to return
+    - `offset` (int, optional): Pagination offset
+    
+    **Returns:** `ExecutionResult`
+  </Accordion>
+
+  <Accordion title="get_status()">
+    Check execution status without fetching results.
+    
+    **Parameters:**
+    - `execution_id` (str): Execution ID
+    
+    **Returns:** `ExecutionStatus`
+  </Accordion>
+
+  <Accordion title="cancel_execution()">
+    Cancel a running execution.
+    
+    **Parameters:**
+    - `execution_id` (str): Execution ID
+    
+    **Returns:** `bool`
+  </Accordion>
+
+  <Accordion title="create_query()">
+    Create a new query on Dune.
+    
+    **Parameters:**
+    - `query` (QueryBase): Query object with name, SQL, and parameters
+    
+    **Returns:** `QueryBase` with `query_id`
+  </Accordion>
+
+  <Accordion title="update_query()">
+    Update an existing query.
+    
+    **Parameters:**
+    - `query` (QueryBase): Query object with query_id and updated SQL
+    
+    **Returns:** `bool`
+  </Accordion>
+
+  <Accordion title="upload_csv()">
+    Upload CSV data to create a dataset.
+    
+    **Parameters:**
+    - `data` (str | bytes): CSV content
+    - `table_name` (str): Name for the table
+    - `description` (str, optional): Dataset description
+    - `is_private` (bool, optional): Make dataset private
+    
+    **Returns:** `bool`
+  </Accordion>
+</AccordionGroup>
+
+## Example Projects
+
+<CardGroup cols={2}>
+  <Card title="DeFi Analytics Dashboard" icon="chart-line" href="https://github.com/duneanalytics/dune-client/tree/main/examples/defi-dashboard">
+    Build a real-time DeFi analytics dashboard
+  </Card>
+  
+  <Card title="Automated Reports" icon="file-export" href="https://github.com/duneanalytics/dune-client/tree/main/examples/automated-reports">
+    Generate scheduled reports with Python
+  </Card>
+  
+  <Card title="Data Pipeline" icon="diagram-project" href="https://github.com/duneanalytics/dune-client/tree/main/examples/data-pipeline">
+    ETL blockchain data to your warehouse
+  </Card>
+  
+  <Card title="Trading Bot" icon="robot" href="https://github.com/duneanalytics/dune-client/tree/main/examples/trading-bot">
+    Monitor on-chain data for trading signals
+  </Card>
+</CardGroup>
+
+## Resources
+
+<CardGroup cols={3}>
+  <Card title="GitHub Repository" icon="github" href="https://github.com/duneanalytics/dune-client">
+    View source code and examples
+  </Card>
+  
+  <Card title="PyPI Package" icon="python" href="https://pypi.org/project/dune-client/">
+    Install from PyPI
+  </Card>
+  
+  <Card title="Report Issues" icon="bug" href="https://github.com/duneanalytics/dune-client/issues">
+    Report bugs or request features
+  </Card>
+</CardGroup>
+
+## Getting Help
+
+<CardGroup cols={2}>
+  <Card title="Community Discord" icon="discord" href="https://discord.gg/duneanalytics">
+    Get help from the Dune community
+  </Card>
+  
+  <Card title="API Reference" icon="book" href="/api-reference/executions/execution-object">
+    View complete API documentation
+  </Card>
+</CardGroup>
+

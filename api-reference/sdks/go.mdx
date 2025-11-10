@@ -1,0 +1,445 @@
+---
+title: "Go"
+icon: "golang"
+description: "Official Go SDK for Dune Analytics API"
+---
+
+<Note>
+**New:** The Go SDK now includes an `Execute()` function that automatically handles:
+- Query execution submission
+- Polling for completion
+- Automatic pagination for large result sets
+- Error handling and retries
+- Idiomatic Go patterns with context support
+
+No more manual polling or pagination logic!
+</Note>
+
+## Overview
+
+The [Go SDK](https://github.com/duneanalytics/duneapi-client-go) provides idiomatic Go access to Dune's API with full support for contexts, goroutines, and error handling.
+
+### Installation
+
+```bash
+go get github.com/duneanalytics/duneapi-client-go
+```
+
+## Quick Start
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+    
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+func main() {
+    // Initialize client
+    client := duneapi.New(os.Getenv("DUNE_API_KEY"))
+    
+    // Execute a query
+    results, err := client.Execute(3493826)
+    if err != nil {
+        panic(err)
+    }
+    
+    fmt.Printf("Got %d rows\n", len(results.Rows))
+}
+```
+
+## The Execute() Function
+
+<CodeGroup>
+```go Execute by Query ID
+package main
+
+import (
+    "fmt"
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+func main() {
+    client := duneapi.New("YOUR_API_KEY")
+    
+    // Execute a saved query
+    results, err := client.ExecuteQuery(duneapi.ExecuteQueryParams{
+        QueryID:     3493826,
+        Performance: "medium",
+        Parameters: map[string]interface{}{
+            "blockchain": "ethereum",
+            "min_volume": 1000,
+        },
+    })
+    
+    if err != nil {
+        panic(err)
+    }
+    
+    for _, row := range results.Rows {
+        fmt.Printf("%+v\n", row)
+    }
+}
+```
+
+```go Execute Raw SQL
+package main
+
+import (
+    "fmt"
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+func main() {
+    client := duneapi.New("YOUR_API_KEY")
+    
+    sql := `
+        SELECT 
+            blockchain,
+            SUM(amount_usd) as volume
+        FROM dex.trades
+        WHERE block_time > now() - interval '24' hour
+        GROUP BY 1
+        ORDER BY 2 DESC
+    `
+    
+    results, err := client.ExecuteSQL(duneapi.ExecuteSQLParams{
+        SQL:         sql,
+        Performance: "medium",
+    })
+    
+    if err != nil {
+        panic(err)
+    }
+    
+    for _, row := range results.Rows {
+        fmt.Printf("%s: $%.2f\n", row["blockchain"], row["volume"])
+    }
+}
+```
+
+```go With Context and Timeouts
+package main
+
+import (
+    "context"
+    "fmt"
+    "time"
+    
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+func main() {
+    client := duneapi.New("YOUR_API_KEY")
+    
+    // Create context with timeout
+    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+    defer cancel()
+    
+    // Execute with context
+    results, err := client.ExecuteWithContext(ctx, 3493826)
+    if err != nil {
+        if err == context.DeadlineExceeded {
+            fmt.Println("Query timed out")
+        } else {
+            panic(err)
+        }
+        return
+    }
+    
+    fmt.Printf("Got %d rows\n", len(results.Rows))
+}
+```
+</CodeGroup>
+
+## Advanced Features
+
+### Concurrent Queries
+
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+    
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+func main() {
+    client := duneapi.New("YOUR_API_KEY")
+    
+    queries := []int{3493826, 3493827, 3493828}
+    
+    var wg sync.WaitGroup
+    results := make([]duneapi.ExecutionResult, len(queries))
+    
+    for i, queryID := range queries {
+        wg.Add(1)
+        go func(index int, id int) {
+            defer wg.Done()
+            
+            result, err := client.Execute(id)
+            if err != nil {
+                fmt.Printf("Error executing query %d: %v\n", id, err)
+                return
+            }
+            
+            results[index] = result
+        }(i, queryID)
+    }
+    
+    wg.Wait()
+    
+    for _, result := range results {
+        fmt.Printf("Query completed with %d rows\n", len(result.Rows))
+    }
+}
+```
+
+### Error Handling
+
+```go
+package main
+
+import (
+    "errors"
+    "fmt"
+    
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+func main() {
+    client := duneapi.New("YOUR_API_KEY")
+    
+    results, err := client.Execute(3493826)
+    if err != nil {
+        // Handle different error types
+        var apiErr *duneapi.APIError
+        if errors.As(err, &apiErr) {
+            fmt.Printf("API Error %d: %s\n", apiErr.StatusCode, apiErr.Message)
+            return
+        }
+        
+        var execErr *duneapi.ExecutionError
+        if errors.As(err, &execErr) {
+            fmt.Printf("Execution Error: %s\n", execErr.Message)
+            return
+        }
+        
+        // Unknown error
+        panic(err)
+    }
+    
+    fmt.Printf("Success! Got %d rows\n", len(results.Rows))
+}
+```
+
+### Structured Data Processing
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+// Define struct for your query results
+type Trade struct {
+    Blockchain string  `json:"blockchain"`
+    Protocol   string  `json:"project"`
+    AmountUSD  float64 `json:"amount_usd"`
+    BlockTime  string  `json:"block_time"`
+}
+
+func main() {
+    client := duneapi.New("YOUR_API_KEY")
+    
+    results, err := client.Execute(3493826)
+    if err != nil {
+        panic(err)
+    }
+    
+    // Process results into structs
+    var trades []Trade
+    for _, row := range results.Rows {
+        trade := Trade{
+            Blockchain: row["blockchain"].(string),
+            Protocol:   row["project"].(string),
+            AmountUSD:  row["amount_usd"].(float64),
+            BlockTime:  row["block_time"].(string),
+        }
+        trades = append(trades, trade)
+    }
+    
+    // Analyze
+    totalVolume := 0.0
+    for _, trade := range trades {
+        totalVolume += trade.AmountUSD
+    }
+    
+    fmt.Printf("Total volume: $%.2f\n", totalVolume)
+}
+```
+
+### Integration with Chi Router
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "net/http"
+    "os"
+    
+    "github.com/duneanalytics/duneapi-client-go"
+    "github.com/go-chi/chi/v5"
+)
+
+var duneClient *duneapi.Client
+
+func main() {
+    duneClient = duneapi.New(os.Getenv("DUNE_API_KEY"))
+    
+    r := chi.NewRouter()
+    r.Get("/api/dex-volume", getDEXVolume)
+    
+    http.ListenAndServe(":3000", r)
+}
+
+func getDEXVolume(w http.ResponseWriter, r *http.Request) {
+    results, err := duneClient.Execute(3493826)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(map[string]interface{}{
+        "success": true,
+        "data":    results.Rows,
+    })
+}
+```
+
+## API Reference
+
+<AccordionGroup>
+  <Accordion title="Execute()">
+    Execute a query and wait for results.
+    
+    **Parameters:**
+    - `queryID` (int): Query ID to execute
+    
+    **Returns:** `(*ExecutionResult, error)`
+  </Accordion>
+
+  <Accordion title="ExecuteQuery()">
+    Execute a query with full options.
+    
+    **Parameters:**
+    - `params` (ExecuteQueryParams): Struct with QueryID, Performance, Parameters
+    
+    **Returns:** `(*ExecutionResult, error)`
+  </Accordion>
+
+  <Accordion title="ExecuteSQL()">
+    Execute raw SQL.
+    
+    **Parameters:**
+    - `params` (ExecuteSQLParams): Struct with SQL, Performance
+    
+    **Returns:** `(*ExecutionResult, error)`
+  </Accordion>
+
+  <Accordion title="ExecuteWithContext()">
+    Execute a query with context support.
+    
+    **Parameters:**
+    - `ctx` (context.Context): Context for cancellation
+    - `queryID` (int): Query ID to execute
+    
+    **Returns:** `(*ExecutionResult, error)`
+  </Accordion>
+
+  <Accordion title="GetLatestResult()">
+    Get most recent results without re-executing.
+    
+    **Parameters:**
+    - `queryID` (int): Query ID
+    - `opts` (*GetResultOptions): Optional filters, columns, sort
+    
+    **Returns:** `(*ResultsResponse, error)`
+  </Accordion>
+
+  <Accordion title="GetStatus()">
+    Check execution status.
+    
+    **Parameters:**
+    - `executionID` (string): Execution ID
+    
+    **Returns:** `(*ExecutionStatus, error)`
+  </Accordion>
+
+  <Accordion title="CancelExecution()">
+    Cancel a running execution.
+    
+    **Parameters:**
+    - `executionID` (string): Execution ID
+    
+    **Returns:** `error`
+  </Accordion>
+</AccordionGroup>
+
+## Example Projects
+
+<CardGroup cols={2}>
+  <Card title="REST API Server" icon="server" href="https://github.com/duneanalytics/duneapi-client-go/tree/main/examples/api-server">
+    Build a REST API with Go and Chi
+  </Card>
+  
+  <Card title="CLI Tool" icon="terminal" href="https://github.com/duneanalytics/duneapi-client-go/tree/main/examples/cli">
+    Command-line tool for Dune queries
+  </Card>
+  
+  <Card title="Data Pipeline" icon="diagram-project" href="https://github.com/duneanalytics/duneapi-client-go/tree/main/examples/pipeline">
+    ETL pipeline with concurrent processing
+  </Card>
+  
+  <Card title="Monitoring Service" icon="chart-line" href="https://github.com/duneanalytics/duneapi-client-go/tree/main/examples/monitor">
+    Real-time monitoring with goroutines
+  </Card>
+</CardGroup>
+
+## Resources
+
+<CardGroup cols={3}>
+  <Card title="GitHub Repository" icon="github" href="https://github.com/duneanalytics/duneapi-client-go">
+    View source code and examples
+  </Card>
+  
+  <Card title="Go Package" icon="golang" href="https://pkg.go.dev/github.com/duneanalytics/duneapi-client-go">
+    View on pkg.go.dev
+  </Card>
+  
+  <Card title="Report Issues" icon="bug" href="https://github.com/duneanalytics/duneapi-client-go/issues">
+    Report bugs or request features
+  </Card>
+</CardGroup>
+
+## Getting Help
+
+<CardGroup cols={2}>
+  <Card title="Community Discord" icon="discord" href="https://discord.gg/duneanalytics">
+    Get help from the Dune community
+  </Card>
+  
+  <Card title="API Reference" icon="book" href="/api-reference/executions/execution-object">
+    View complete API documentation
+  </Card>
+</CardGroup>
+

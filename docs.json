@@ -3064,11 +3064,13 @@
             "icon": "plug"
           },
           {
-            "group": "SDKs",
+            "group": "Client-side SDKs",
             "pages": [
-              "api-reference/overview/sdks"
+              "api-reference/sdks/python",
+              "api-reference/sdks/typescript",
+              "api-reference/sdks/go"
             ],
-            "icon": "box"
+            "icon": "code"
           },
           {
             "group": "Resources",

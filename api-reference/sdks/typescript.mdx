@@ -1,0 +1,334 @@
+---
+title: "TypeScript"
+icon: "js"
+description: "Official TypeScript/JavaScript SDK for Dune Analytics API"
+---
+
+<Note>
+**New:** The TypeScript SDK now includes an `execute()` function that automatically handles:
+- Query execution submission
+- Polling for completion
+- Automatic pagination for large result sets
+- Error handling and retries
+- Result formatting with full type safety
+
+No more manual polling or pagination logic!
+</Note>
+
+## Overview
+
+The [TypeScript SDK](https://www.npmjs.com/package/@duneanalytics/client-sdk) provides type-safe access to Dune's API with full TypeScript support.
+
+### Installation
+
+```bash
+npm install @duneanalytics/client-sdk
+# or
+yarn add @duneanalytics/client-sdk
+```
+
+## Quick Start
+
+```typescript
+import { DuneClient, QueryParameter } from '@duneanalytics/client-sdk';
+
+// Initialize client
+const dune = new DuneClient(process.env.DUNE_API_KEY!);
+
+// Execute a query
+const results = await dune.execute({ queryId: 3493826 });
+
+// Access results
+console.log(`Got ${results.rows.length} rows`);
+results.rows.forEach(row => console.log(row));
+```
+
+## The execute() Function
+
+<CodeGroup>
+```typescript Execute by Query ID
+import { DuneClient, QueryParameter } from '@duneanalytics/client-sdk';
+
+const dune = new DuneClient(process.env.DUNE_API_KEY!);
+
+// Execute a saved query with parameters
+const results = await dune.execute({
+  queryId: 3493826,
+  parameters: [
+    QueryParameter.text("blockchain", "ethereum"),
+    QueryParameter.number("min_volume", 1000)
+  ],
+  performance: 'medium'
+});
+
+console.log(`Total rows: ${results.rows.length}`);
+```
+
+```typescript Execute Raw SQL
+import { DuneClient } from '@duneanalytics/client-sdk';
+
+const dune = new DuneClient(process.env.DUNE_API_KEY!);
+
+// Execute arbitrary SQL
+const sql = `
+  SELECT 
+    blockchain,
+    SUM(amount_usd) as volume
+  FROM dex.trades
+  WHERE block_time > now() - interval '24' hour
+  GROUP BY 1
+  ORDER BY 2 DESC
+`;
+
+const results = await dune.execute({ sql, performance: 'medium' });
+
+results.rows.forEach(row => {
+  console.log(`${row.blockchain}: $${row.volume.toLocaleString()}`);
+});
+```
+
+```typescript With Filters
+import { DuneClient } from '@duneanalytics/client-sdk';
+
+const dune = new DuneClient(process.env.DUNE_API_KEY!);
+
+// Get latest results with server-side filtering
+const results = await dune.getLatestResults({
+  queryId: 3493826,
+  filters: "amount_usd > 10000 AND blockchain = 'ethereum'",
+  columns: ["tx_hash", "amount_usd", "block_time"],
+  sortBy: ["amount_usd desc"],
+  limit: 100
+});
+
+console.log(results.rows);
+```
+</CodeGroup>
+
+## Advanced Features
+
+### Type-Safe Query Parameters
+
+```typescript
+import { DuneClient, QueryParameter } from '@duneanalytics/client-sdk';
+
+const dune = new DuneClient(process.env.DUNE_API_KEY!);
+
+const results = await dune.execute({
+  queryId: 1215383,
+  parameters: [
+    QueryParameter.text("TextField", "Plain Text"),
+    QueryParameter.number("NumberField", 3.1415926535),
+    QueryParameter.date("DateField", "2022-05-04 00:00:00"),
+    QueryParameter.enum("ListField", "Option 1"),
+  ]
+});
+```
+
+### Async/Await Pattern
+
+```typescript
+import { DuneClient } from '@duneanalytics/client-sdk';
+
+const dune = new DuneClient(process.env.DUNE_API_KEY!);
+
+async function fetchDEXMetrics() {
+  try {
+    // Execute multiple queries in parallel
+    const [volume, users, protocols] = await Promise.all([
+      dune.execute({ 
+        sql: "SELECT SUM(amount_usd) as total FROM dex.trades WHERE block_time > now() - interval '24' hour" 
+      }),
+      dune.execute({ 
+        sql: "SELECT COUNT(DISTINCT trader) as total FROM dex.trades WHERE block_time > now() - interval '24' hour" 
+      }),
+      dune.execute({ 
+        sql: "SELECT project, SUM(amount_usd) as volume FROM dex.trades WHERE block_time > now() - interval '24' hour GROUP BY 1" 
+      })
+    ]);
+    
+    return {
+      totalVolume: volume.rows[0].total,
+      uniqueUsers: users.rows[0].total,
+      topProtocols: protocols.rows
+    };
+  } catch (error) {
+    console.error('Failed to fetch metrics:', error);
+    throw error;
+  }
+}
+
+// Use it
+const metrics = await fetchDEXMetrics();
+console.log(metrics);
+```
+
+### React Integration
+
+```typescript
+import { useState, useEffect } from 'react';
+import { DuneClient } from '@duneanalytics/client-sdk';
+
+function useDuneQuery(queryId: number) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    const dune = new DuneClient(process.env.REACT_APP_DUNE_API_KEY!);
+    
+    dune.execute({ queryId })
+      .then(results => {
+        setData(results.rows);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, [queryId]);
+  
+  return { data, loading, error };
+}
+
+// Usage in component
+function DashboardWidget() {
+  const { data, loading, error } = useDuneQuery(3493826);
+  
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  
+  return (
+    <div>
+      {data?.map((row, i) => (
+        <div key={i}>{row.protocol}: ${row.volume}</div>
+      ))}
+    </div>
+  );
+}
+```
+
+### Next.js Integration
+
+```typescript
+// pages/api/dune-data.ts
+import { DuneClient } from '@duneanalytics/client-sdk';
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+const dune = new DuneClient(process.env.DUNE_API_KEY!);
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  try {
+    const results = await dune.execute({ queryId: 3493826 });
+    
+    res.status(200).json({
+      success: true,
+      data: results.rows
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+}
+```
+
+## API Reference
+
+<AccordionGroup>
+  <Accordion title="execute()">
+    Execute a query and wait for results.
+    
+    **Parameters:**
+    - `queryId` (number, optional): ID of saved query
+    - `sql` (string, optional): Raw SQL to execute
+    - `parameters` (QueryParameter[], optional): Query parameters
+    - `performance` ("medium" | "large", optional): Performance tier
+    
+    **Returns:** `Promise<ExecutionResult>`
+  </Accordion>
+
+  <Accordion title="getLatestResults()">
+    Get most recent results without re-executing.
+    
+    **Parameters:**
+    - `queryId` (number): Query ID
+    - `filters` (string, optional): Server-side filters
+    - `columns` (string[], optional): Columns to include
+    - `sortBy` (string[], optional): Sort order
+    - `limit` (number, optional): Max rows
+    
+    **Returns:** `Promise<ResultsResponse>`
+  </Accordion>
+
+  <Accordion title="getStatus()">
+    Check execution status.
+    
+    **Parameters:**
+    - `executionId` (string): Execution ID
+    
+    **Returns:** `Promise<ExecutionStatus>`
+  </Accordion>
+
+  <Accordion title="cancelExecution()">
+    Cancel a running execution.
+    
+    **Parameters:**
+    - `executionId` (string): Execution ID
+    
+    **Returns:** `Promise<boolean>`
+  </Accordion>
+</AccordionGroup>
+
+## Example Projects
+
+<CardGroup cols={2}>
+  <Card title="React Dashboard" icon="react" href="https://github.com/duneanalytics/client-sdk/tree/main/examples/react-dashboard">
+    Build a React dashboard with Dune data
+  </Card>
+  
+  <Card title="Next.js App" icon="js" href="https://github.com/duneanalytics/client-sdk/tree/main/examples/nextjs">
+    Full-stack Next.js application
+  </Card>
+  
+  <Card title="Node.js API" icon="node" href="https://github.com/duneanalytics/client-sdk/tree/main/examples/nodejs-api">
+    Build a REST API with Dune data
+  </Card>
+  
+  <Card title="Real-time Monitor" icon="chart-line" href="https://github.com/duneanalytics/client-sdk/tree/main/examples/realtime">
+    Live data monitoring application
+  </Card>
+</CardGroup>
+
+## Resources
+
+<CardGroup cols={3}>
+  <Card title="GitHub Repository" icon="github" href="https://github.com/duneanalytics/client-sdk">
+    View source code and examples
+  </Card>
+  
+  <Card title="NPM Package" icon="npm" href="https://www.npmjs.com/package/@duneanalytics/client-sdk">
+    Install from NPM
+  </Card>
+  
+  <Card title="Report Issues" icon="bug" href="https://github.com/duneanalytics/client-sdk/issues">
+    Report bugs or request features
+  </Card>
+</CardGroup>
+
+## Getting Help
+
+<CardGroup cols={2}>
+  <Card title="Community Discord" icon="discord" href="https://discord.gg/duneanalytics">
+    Get help from the Dune community
+  </Card>
+  
+  <Card title="API Reference" icon="book" href="/api-reference/executions/execution-object">
+    View complete API documentation
+  </Card>
+</CardGroup>
+
