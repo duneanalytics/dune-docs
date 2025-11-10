@@ -1,0 +1,701 @@
+---
+title: "Build Custom Dashboards & Reports"
+icon: "desktop"
+description: "Fetch query results, manage executions, and create dynamic visualizations in your own applications"
+---
+
+## Overview
+
+Perfect for product teams embedding analytics into their applications, creating white-label solutions, or building custom reporting tools on top of Dune's data.
+
+## What You'll Learn
+
+- Fetch and display query results
+- Build interactive visualizations
+- Manage query executions
+- Create parameterized dashboards
+- Handle real-time updates
+- Export data in multiple formats
+
+## Prerequisites
+
+- A Dune account ([create one free](https://dune.com/auth/register))
+- An API key ([get your API key](https://dune.com/apis?tab=keys))
+- Basic knowledge of your frontend framework (React, Vue, etc.)
+
+## Quick Start
+
+### 1. Fetch Query Results
+
+Start by fetching results from an existing Dune query:
+
+<CodeGroup>
+```javascript React
+import { useEffect, useState } from 'react';
+import { DuneClient } from '@duneanalytics/client';
+
+function DashboardWidget() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  const dune = new DuneClient(process.env.DUNE_API_KEY);
+  
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Execute query and get results
+        const results = await dune.execute({ queryId: 3493826 });
+        setData(results.rows);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchData();
+  }, []);
+  
+  if (loading) return <div>Loading...</div>;
+  
+  return (
+    <div>
+      <h2>DEX Volume (24h)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((row, i) => (
+            <tr key={i}>
+              <td>{row.protocol}</td>
+              <td>${row.volume.toLocaleString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default DashboardWidget;
+```
+
+```python Python (Flask)
+from flask import Flask, jsonify, render_template
+from dune_client import DuneClient
+import os
+
+app = Flask(__name__)
+dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+
+@app.route('/api/dashboard/dex-volume')
+def get_dex_volume():
+    """API endpoint for DEX volume data"""
+    results = dune.execute(query_id=3493826)
+    return jsonify({
+        'data': results.rows,
+        'metadata': {
+            'execution_id': results.execution_id,
+            'row_count': len(results.rows)
+        }
+    })
+
+@app.route('/dashboard')
+def dashboard():
+    """Render dashboard page"""
+    return render_template('dashboard.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+```python Python (Streamlit)
+import streamlit as st
+from dune_client import DuneClient
+import pandas as pd
+import plotly.express as px
+import os
+
+# Initialize Dune client
+dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+
+st.set_page_config(page_title="DEX Analytics", layout="wide")
+
+# Dashboard title
+st.title("📊 DEX Analytics Dashboard")
+
+# Fetch data
+@st.cache_data(ttl=300)  # Cache for 5 minutes
+def load_data():
+    results = dune.execute(query_id=3493826)
+    return pd.DataFrame(results.rows)
+
+df = load_data()
+
+# Display metrics
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.metric("Total Volume", f"${df['volume'].sum():,.0f}")
+with col2:
+    st.metric("Total Trades", f"{df['trade_count'].sum():,}")
+with col3:
+    st.metric("Protocols", len(df))
+
+# Visualization
+fig = px.bar(df, x='protocol', y='volume', title='Volume by Protocol')
+st.plotly_chart(fig, use_container_width=True)
+
+# Data table
+st.dataframe(df, use_container_width=True)
+```
+</CodeGroup>
+
+### 2. Build Interactive Visualizations
+
+Create charts using popular visualization libraries:
+
+<CodeGroup>
+```javascript Chart.js
+import { Line } from 'react-chartjs-2';
+import { DuneClient } from '@duneanalytics/client';
+import { useEffect, useState } from 'react';
+
+function VolumeChart() {
+  const [chartData, setChartData] = useState(null);
+  const dune = new DuneClient(process.env.DUNE_API_KEY);
+  
+  useEffect(() => {
+    async function fetchData() {
+      const sql = `
+        SELECT 
+          DATE_TRUNC('hour', block_time) as time,
+          SUM(amount_usd) as volume
+        FROM dex.trades
+        WHERE block_time > now() - interval '24' hour
+        GROUP BY 1
+        ORDER BY 1
+      `;
+      
+      const results = await dune.execute({ sql });
+      
+      setChartData({
+        labels: results.rows.map(r => new Date(r.time).toLocaleTimeString()),
+        datasets: [{
+          label: 'DEX Volume',
+          data: results.rows.map(r => r.volume),
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      });
+    }
+    
+    fetchData();
+  }, []);
+  
+  if (!chartData) return <div>Loading chart...</div>;
+  
+  return (
+    <Line 
+      data={chartData}
+      options={{
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: '24h DEX Volume'
+          }
+        }
+      }}
+    />
+  );
+}
+```
+
+```python Plotly
+from dune_client import DuneClient
+import plotly.graph_objects as go
+import pandas as pd
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Fetch data
+sql = """
+SELECT 
+  DATE_TRUNC('hour', block_time) as time,
+  blockchain,
+  SUM(amount_usd) as volume
+FROM dex.trades
+WHERE block_time > now() - interval '24' hour
+GROUP BY 1, 2
+ORDER BY 1
+"""
+
+results = dune.execute(sql=sql)
+df = pd.DataFrame(results.rows)
+
+# Create interactive chart
+fig = go.Figure()
+
+for blockchain in df['blockchain'].unique():
+    chain_data = df[df['blockchain'] == blockchain]
+    fig.add_trace(go.Scatter(
+        x=chain_data['time'],
+        y=chain_data['volume'],
+        name=blockchain,
+        mode='lines'
+    ))
+
+fig.update_layout(
+    title='DEX Volume by Chain',
+    xaxis_title='Time',
+    yaxis_title='Volume (USD)',
+    hovermode='x unified'
+)
+
+fig.show()
+```
+</CodeGroup>
+
+### 3. Parameterized Dashboards
+
+Create dashboards with user-configurable filters:
+
+```typescript
+import { useState, useEffect } from 'react';
+import { DuneClient } from '@duneanalytics/client';
+
+interface DashboardFilters {
+  blockchain: string;
+  protocol: string;
+  timeRange: string;
+}
+
+function ParameterizedDashboard() {
+  const [filters, setFilters] = useState<DashboardFilters>({
+    blockchain: 'ethereum',
+    protocol: 'all',
+    timeRange: '24h'
+  });
+  const [data, setData] = useState(null);
+  
+  const dune = new DuneClient(process.env.DUNE_API_KEY!);
+  
+  useEffect(() => {
+    async function fetchData() {
+      const intervals = {
+        '24h': '24 hour',
+        '7d': '7 day',
+        '30d': '30 day'
+      };
+      
+      const sql = `
+        SELECT 
+          project,
+          blockchain,
+          SUM(amount_usd) as volume,
+          COUNT(*) as trades
+        FROM dex.trades
+        WHERE block_time > now() - interval '${intervals[filters.timeRange]}'
+        ${filters.blockchain !== 'all' ? `AND blockchain = '${filters.blockchain}'` : ''}
+        ${filters.protocol !== 'all' ? `AND project = '${filters.protocol}'` : ''}
+        GROUP BY 1, 2
+        ORDER BY 3 DESC
+      `;
+      
+      const results = await dune.execute({ sql });
+      setData(results.rows);
+    }
+    
+    fetchData();
+  }, [filters]);
+  
+  return (
+    <div>
+      <div className="filters">
+        <select 
+          value={filters.blockchain}
+          onChange={(e) => setFilters({...filters, blockchain: e.target.value})}
+        >
+          <option value="all">All Chains</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="polygon">Polygon</option>
+          <option value="arbitrum">Arbitrum</option>
+        </select>
+        
+        <select 
+          value={filters.timeRange}
+          onChange={(e) => setFilters({...filters, timeRange: e.target.value})}
+        >
+          <option value="24h">Last 24 Hours</option>
+          <option value="7d">Last 7 Days</option>
+          <option value="30d">Last 30 Days</option>
+        </select>
+      </div>
+      
+      <div className="data-display">
+        {data && <VolumeTable data={data} />}
+      </div>
+    </div>
+  );
+}
+```
+
+### 4. Real-time Dashboard Updates
+
+Implement automatic data refreshes:
+
+```javascript
+import { useEffect, useState, useCallback } from 'react';
+import { DuneClient } from '@duneanalytics/client';
+
+function RealtimeDashboard() {
+  const [data, setData] = useState(null);
+  const [lastUpdate, setLastUpdate] = useState(null);
+  const [autoRefresh, setAutoRefresh] = useState(true);
+  
+  const dune = new DuneClient(process.env.DUNE_API_KEY);
+  
+  const fetchData = useCallback(async () => {
+    try {
+      const results = await dune.execute({ 
+        queryId: 3493826,
+        performance: 'medium'
+      });
+      
+      setData(results.rows);
+      setLastUpdate(new Date());
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    }
+  }, []);
+  
+  useEffect(() => {
+    // Initial fetch
+    fetchData();
+    
+    // Set up auto-refresh
+    let interval;
+    if (autoRefresh) {
+      interval = setInterval(fetchData, 60000); // Refresh every minute
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [fetchData, autoRefresh]);
+  
+  return (
+    <div>
+      <div className="controls">
+        <button onClick={fetchData}>Refresh Now</button>
+        <label>
+          <input
+            type="checkbox"
+            checked={autoRefresh}
+            onChange={(e) => setAutoRefresh(e.target.checked)}
+          />
+          Auto-refresh
+        </label>
+        {lastUpdate && (
+          <span>Last updated: {lastUpdate.toLocaleTimeString()}</span>
+        )}
+      </div>
+      
+      <div className="dashboard-content">
+        {data && <DashboardContent data={data} />}
+      </div>
+    </div>
+  );
+}
+```
+
+## Advanced Patterns
+
+### Multi-Query Dashboard
+
+Combine data from multiple queries:
+
+```python
+from dune_client import DuneClient
+import asyncio
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+async def build_comprehensive_dashboard():
+    """Fetch data from multiple queries in parallel"""
+    
+    queries = {
+        'volume': "SELECT SUM(amount_usd) as total FROM dex.trades WHERE block_time > now() - interval '24' hour",
+        'users': "SELECT COUNT(DISTINCT trader) as total FROM dex.trades WHERE block_time > now() - interval '24' hour",
+        'protocols': "SELECT project, SUM(amount_usd) as volume FROM dex.trades WHERE block_time > now() - interval '24' hour GROUP BY 1",
+        'chains': "SELECT blockchain, COUNT(*) as trades FROM dex.trades WHERE block_time > now() - interval '24' hour GROUP BY 1"
+    }
+    
+    # Execute all queries in parallel
+    tasks = [
+        dune.execute(sql=sql) 
+        for sql in queries.values()
+    ]
+    
+    results = await asyncio.gather(*tasks)
+    
+    # Build dashboard data structure
+    dashboard = {
+        name: result.rows 
+        for name, result in zip(queries.keys(), results)
+    }
+    
+    return dashboard
+
+# Run async function
+dashboard_data = asyncio.run(build_comprehensive_dashboard())
+```
+
+### Export Data
+
+Provide data export functionality:
+
+```typescript
+import { DuneClient } from '@duneanalytics/client';
+
+class DataExporter {
+  private dune: DuneClient;
+  
+  constructor(apiKey: string) {
+    this.dune = new DuneClient(apiKey);
+  }
+  
+  async exportToCSV(queryId: number, filename: string) {
+    // Use Dune's CSV endpoint
+    const response = await fetch(
+      `https://api.dune.com/api/v1/query/${queryId}/results/csv`,
+      {
+        headers: {
+          'X-DUNE-API-KEY': process.env.DUNE_API_KEY!
+        }
+      }
+    );
+    
+    const csv = await response.text();
+    
+    // Trigger download
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+  }
+  
+  async exportToJSON(queryId: number) {
+    const results = await this.dune.execute({ queryId });
+    
+    const json = JSON.stringify(results.rows, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'data.json';
+    a.click();
+  }
+}
+
+// Usage
+function ExportButton({ queryId }: { queryId: number }) {
+  const exporter = new DataExporter(process.env.DUNE_API_KEY!);
+  
+  return (
+    <div>
+      <button onClick={() => exporter.exportToCSV(queryId, 'data.csv')}>
+        Export CSV
+      </button>
+      <button onClick={() => exporter.exportToJSON(queryId)}>
+        Export JSON
+      </button>
+    </div>
+  );
+}
+```
+
+### Caching Strategy
+
+Implement smart caching for better performance:
+
+```python
+from flask import Flask, jsonify
+from flask_caching import Cache
+from dune_client import DuneClient
+import os
+
+app = Flask(__name__)
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+
+@app.route('/api/data/<int:query_id>')
+@cache.cached(timeout=300)  # Cache for 5 minutes
+def get_query_data(query_id):
+    """Cached endpoint for query results"""
+    results = dune.execute(query_id=query_id)
+    return jsonify({
+        'data': results.rows,
+        'cached': False,  # First request
+        'execution_id': results.execution_id
+    })
+
+@app.route('/api/data/<int:query_id>/refresh')
+def refresh_data(query_id):
+    """Force refresh cached data"""
+    cache.delete(f'view//api/data/{query_id}')
+    results = dune.execute(query_id=query_id)
+    return jsonify({
+        'data': results.rows,
+        'cached': False,
+        'refreshed': True
+    })
+```
+
+## Dashboard Templates
+
+### Analytics Dashboard
+
+```javascript
+// Complete analytics dashboard example
+import { useEffect, useState } from 'react';
+import { DuneClient } from '@duneanalytics/client';
+import { LineChart, BarChart, PieChart } from 'recharts';
+
+function AnalyticsDashboard() {
+  const [metrics, setMetrics] = useState({
+    totalVolume: 0,
+    activeUsers: 0,
+    avgTransactionSize: 0,
+    topProtocols: []
+  });
+  
+  const dune = new DuneClient(process.env.DUNE_API_KEY);
+  
+  useEffect(() => {
+    async function loadDashboard() {
+      // Fetch key metrics
+      const volumeQuery = `SELECT SUM(amount_usd) as total FROM dex.trades WHERE block_time > now() - interval '24' hour`;
+      const usersQuery = `SELECT COUNT(DISTINCT trader) as total FROM dex.trades WHERE block_time > now() - interval '24' hour`;
+      const protocolsQuery = `SELECT project, SUM(amount_usd) as volume FROM dex.trades WHERE block_time > now() - interval '24' hour GROUP BY 1 ORDER BY 2 DESC LIMIT 10`;
+      
+      const [volume, users, protocols] = await Promise.all([
+        dune.execute({ sql: volumeQuery }),
+        dune.execute({ sql: usersQuery }),
+        dune.execute({ sql: protocolsQuery })
+      ]);
+      
+      setMetrics({
+        totalVolume: volume.rows[0].total,
+        activeUsers: users.rows[0].total,
+        avgTransactionSize: volume.rows[0].total / users.rows[0].total,
+        topProtocols: protocols.rows
+      });
+    }
+    
+    loadDashboard();
+    
+    // Refresh every 5 minutes
+    const interval = setInterval(loadDashboard, 300000);
+    return () => clearInterval(interval);
+  }, []);
+  
+  return (
+    <div className="dashboard">
+      <h1>DEX Analytics</h1>
+      
+      <div className="metrics-grid">
+        <MetricCard 
+          title="24h Volume" 
+          value={`$${metrics.totalVolume.toLocaleString()}`} 
+        />
+        <MetricCard 
+          title="Active Users" 
+          value={metrics.activeUsers.toLocaleString()} 
+        />
+        <MetricCard 
+          title="Avg Transaction" 
+          value={`$${metrics.avgTransactionSize.toLocaleString()}`} 
+        />
+      </div>
+      
+      <div className="charts-grid">
+        <BarChart data={metrics.topProtocols} />
+      </div>
+    </div>
+  );
+}
+```
+
+## Performance Tips
+
+<AccordionGroup>
+  <Accordion title="Use appropriate cache durations">
+    - Real-time metrics: 1-5 minutes
+    - Historical data: 1-24 hours
+    - Static reference data: Days or weeks
+  </Accordion>
+
+  <Accordion title="Optimize query complexity">
+    - Pre-aggregate data in saved queries
+    - Use materialized views for complex calculations
+    - Limit result sets to necessary rows
+  </Accordion>
+
+  <Accordion title="Implement progressive loading">
+    ```javascript
+    // Load critical metrics first, then details
+    async function loadDashboard() {
+      // 1. Show key metrics immediately
+      const metrics = await fetchKeyMetrics();
+      setKeyMetrics(metrics);
+      
+      // 2. Load detailed charts in background
+      const charts = await fetchChartData();
+      setChartData(charts);
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Handle loading states gracefully">
+    - Show skeleton screens while loading
+    - Display cached data immediately, refresh in background
+    - Indicate when data was last updated
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Execute Queries API" icon="play" href="/api-reference/executions/endpoint/execute-sql">
+    Full API reference for query execution
+  </Card>
+  
+  <Card title="Result Filtering" icon="filter" href="/api-reference/executions/filtering">
+    Filter and transform data efficiently
+  </Card>
+  
+  <Card title="CSV Export" icon="file-csv" href="/api-reference/executions/endpoint/get-execution-result-csv">
+    Export data in CSV format
+  </Card>
+  
+  <Card title="Webhooks" icon="webhook" href="/api-reference/webhooks/webhook">
+    Get notified when queries complete
+  </Card>
+</CardGroup>
+
+## Example Use Cases
+
+- **Internal Analytics:** Build custom dashboards for your team
+- **White-label Solutions:** Embed Dune-powered analytics in your product
+- **Client Reporting:** Generate automated reports for clients
+- **Portfolio Trackers:** Create personalized portfolio dashboards
+- **Protocol Dashboards:** Build public dashboards for your protocol
+- **BI Tool Integration:** Feed Dune data into Tableau, PowerBI, etc.
+

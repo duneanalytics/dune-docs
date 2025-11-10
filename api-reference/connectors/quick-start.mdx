@@ -1,0 +1,429 @@
+---
+title: "Connectors Quick Start"
+icon: "plug"
+description: "Connect Dune's data directly to your environment using Trino REST API or DBT"
+---
+
+## Overview
+
+Dune's connectors allow you to query blockchain data directly in your own environment, giving you maximum flexibility to integrate with existing data infrastructure and BI tools.
+
+## Available Connectors
+
+<CardGroup cols={2}>
+  <Card title="Trino REST API Connector" icon="database" href="/api-reference/overview/dunesql-trino-connector">
+    Connect to Dune's data warehouse using standard Trino REST API protocol
+    
+    **Perfect for:**
+    - Enterprise teams with existing data infrastructure
+    - BI tools (Tableau, PowerBI, Looker, etc.)
+    - Data warehouses and ETL pipelines
+    - Custom SQL clients
+    
+    [View full documentation →](/api-reference/overview/dunesql-trino-connector)
+  </Card>
+  
+  <Card title="DBT Connector" icon="code-branch" href="https://github.com/duneanalytics/dbt-dune">
+    Use DBT to build data transformation pipelines on top of Dune data
+    
+    **Perfect for:**
+    - Data engineering teams using DBT
+    - Complex data transformation workflows
+    - Version-controlled analytics
+    - Collaborative data modeling
+    
+    [View on GitHub →](https://github.com/duneanalytics/dbt-dune)
+  </Card>
+</CardGroup>
+
+## Choosing the Right Connector
+
+| Feature | Trino REST API | DBT | Analytics API |
+|---------|---------------|-----|---------------|
+| **Use Case** | Direct SQL queries in your tools | Data transformation pipelines | Programmatic access |
+| **Query Language** | Standard SQL | DBT + SQL | SQL via HTTP |
+| **Integration** | BI tools, SQL clients | DBT workflows | Applications, scripts |
+| **Latency** | Low (direct connection) | Batch processing | Medium (async) |
+| **Cost** | Credit-based per query | Credit-based per query | Credit-based per query |
+
+## Trino Connector Quick Start
+
+The Trino connector lets you query Dune data using any Trino-compatible client.
+
+### 1. Get Your API Key
+
+Get your API key from [dune.com/apis](https://dune.com/apis?tab=keys)
+
+### 2. Configure Your Client
+
+<CodeGroup>
+```python Python (Trino Client)
+from trino.dbapi import connect
+
+conn = connect(
+    host='sql.dune.com',
+    port=443,
+    http_scheme='https',
+    auth=trino.auth.BasicAuthentication('x', 'YOUR_API_KEY'),
+    catalog='dune',
+    schema='ethereum'
+)
+
+cursor = conn.cursor()
+cursor.execute('SELECT * FROM transactions LIMIT 10')
+rows = cursor.fetchall()
+```
+
+```bash DBeaver / SQL Client
+# Connection settings:
+Host: sql.dune.com
+Port: 443
+Database: dune
+Schema: ethereum
+Username: x
+Password: YOUR_API_KEY
+```
+
+```python Tableau
+# In Tableau, select "Presto" connector
+# (Trino is compatible with Presto protocol)
+
+Server: sql.dune.com
+Port: 443
+Username: x
+Password: YOUR_API_KEY
+Catalog: dune
+Schema: ethereum
+```
+</CodeGroup>
+
+### 3. Run Queries
+
+Query Dune data just like any other SQL database:
+
+```sql
+-- Get recent DEX trades
+SELECT 
+    blockchain,
+    project,
+    trader,
+    amount_usd,
+    block_time
+FROM dex.trades
+WHERE block_time > NOW() - INTERVAL '24' HOUR
+LIMIT 100;
+
+-- Analyze NFT sales
+SELECT 
+    collection,
+    COUNT(*) as sales,
+    SUM(amount_usd) as volume
+FROM nft.trades
+WHERE block_time > NOW() - INTERVAL '7' DAY
+GROUP BY collection
+ORDER BY volume DESC;
+```
+
+<Tip>
+All of Dune's curated tables are available through the Trino connector. Browse available tables in the [Data Catalog](/data-catalog/overview).
+</Tip>
+
+### 4. Connect Your BI Tool
+
+<AccordionGroup>
+  <Accordion title="Tableau">
+    1. Open Tableau and select "Presto" as your connector
+    2. Enter connection details:
+       - Server: `sql.dune.com`
+       - Port: `443`
+       - Username: `x`
+       - Password: Your API key
+       - Catalog: `dune`
+       - Schema: `ethereum` (or your target chain)
+    3. Select tables and start building visualizations
+  </Accordion>
+
+  <Accordion title="PowerBI">
+    1. Get Data → More → Presto
+    2. Configure connection:
+       - Server: `sql.dune.com:443`
+       - Catalog: `dune`
+       - Schema: `ethereum`
+    3. Advanced options → Add header:
+       - `Authorization: Basic` (base64 encode `x:YOUR_API_KEY`)
+    4. Load data and create reports
+  </Accordion>
+
+  <Accordion title="Looker">
+    1. Create new connection with Presto dialect
+    2. Configure:
+       - Host: `sql.dune.com`
+       - Port: `443`
+       - Username: `x`
+       - Password: Your API key
+       - Database: `dune`
+    3. Define LookML models and start exploring
+  </Accordion>
+
+  <Accordion title="Metabase">
+    1. Add database → Presto
+    2. Settings:
+       - Host: `sql.dune.com`
+       - Port: `443`
+       - Username: `x`
+       - Password: Your API key
+       - Catalog: `dune`
+       - Schema: `ethereum`
+    3. Save and start querying
+  </Accordion>
+
+  <Accordion title="DBeaver / SQL Clients">
+    1. Create new connection → Presto/Trino
+    2. Connection settings:
+       - URL: `https://sql.dune.com:443`
+       - Username: `x`
+       - Password: Your API key
+       - Database: `dune`
+       - Schema: `ethereum`
+    3. Test connection and start writing SQL
+  </Accordion>
+</AccordionGroup>
+
+## DBT Connector Quick Start
+
+Use DBT to build transformation pipelines on Dune data.
+
+### 1. Install the DBT Dune Adapter
+
+```bash
+pip install dbt-dune
+```
+
+### 2. Configure Your Profile
+
+Create or update `~/.dbt/profiles.yml`:
+
+```yaml
+dune:
+  target: prod
+  outputs:
+    prod:
+      type: dune
+      api_key: YOUR_API_KEY
+      schema: dune
+```
+
+### 3. Create a DBT Project
+
+```bash
+# Initialize new DBT project
+dbt init my_dune_project
+
+# Navigate to project
+cd my_dune_project
+```
+
+### 4. Build Models
+
+Create models that transform Dune data:
+
+```sql
+-- models/daily_dex_metrics.sql
+{{
+  config(
+    materialized='table'
+  )
+}}
+
+SELECT 
+    DATE_TRUNC('day', block_time) as date,
+    blockchain,
+    project,
+    SUM(amount_usd) as daily_volume,
+    COUNT(*) as daily_trades,
+    COUNT(DISTINCT trader) as unique_traders
+FROM {{ source('dex', 'trades') }}
+WHERE block_time > NOW() - INTERVAL '90' DAY
+GROUP BY 1, 2, 3
+```
+
+### 5. Run Your Pipeline
+
+```bash
+# Run all models
+dbt run
+
+# Test your models
+dbt test
+
+# Generate documentation
+dbt docs generate
+dbt docs serve
+```
+
+## Common Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Enterprise BI Dashboards" icon="chart-mixed">
+    Connect Tableau, PowerBI, or Looker to build enterprise dashboards on blockchain data
+  </Card>
+  
+  <Card title="Data Warehouse Integration" icon="database">
+    ETL blockchain data into Snowflake, BigQuery, or Redshift for combined analytics
+  </Card>
+  
+  <Card title="Custom SQL Analytics" icon="code">
+    Use your favorite SQL client (DBeaver, DataGrip) to explore and analyze blockchain data
+  </Card>
+  
+  <Card title="DBT Pipelines" icon="diagram-project">
+    Build sophisticated data transformation pipelines with version control and testing
+  </Card>
+</CardGroup>
+
+## Example: Building a BI Dashboard
+
+Here's a complete example of connecting Tableau to Dune:
+
+### Step 1: Connect to Dune
+
+```
+Connector: Presto
+Server: sql.dune.com
+Port: 443
+Catalog: dune
+Schema: ethereum
+Username: x
+Password: [YOUR_API_KEY]
+```
+
+### Step 2: Create Custom SQL
+
+```sql
+-- Custom SQL in Tableau
+SELECT 
+    DATE_TRUNC('day', block_time) as date,
+    project as protocol,
+    blockchain,
+    SUM(amount_usd) as volume,
+    COUNT(*) as trades,
+    COUNT(DISTINCT trader) as users
+FROM dex.trades
+WHERE block_time > NOW() - INTERVAL '30' DAY
+GROUP BY 1, 2, 3
+```
+
+### Step 3: Build Visualizations
+
+- **Line chart:** Volume over time by protocol
+- **Bar chart:** Top protocols by volume
+- **Heatmap:** Activity by day of week
+- **KPI cards:** Total volume, trades, unique users
+
+### Step 4: Publish
+
+Publish your dashboard to Tableau Server or Tableau Online for your team to access.
+
+## Performance Tips
+
+<AccordionGroup>
+  <Accordion title="Use appropriate schemas">
+    Connect to the specific blockchain schema you need (ethereum, polygon, etc.) to improve query performance
+  </Accordion>
+
+  <Accordion title="Leverage curated tables">
+    Use Dune's pre-processed curated tables (like `dex.trades`, `nft.trades`) instead of raw tables when possible
+  </Accordion>
+
+  <Accordion title="Apply filters early">
+    Always filter by `block_time` to limit the amount of data scanned:
+    ```sql
+    WHERE block_time > NOW() - INTERVAL '7' DAY
+    ```
+  </Accordion>
+
+  <Accordion title="Use materialized views">
+    For frequently-run queries, create materialized views to cache results
+  </Accordion>
+
+  <Accordion title="Optimize aggregations">
+    Pre-aggregate data in your queries or DBT models before visualization
+  </Accordion>
+</AccordionGroup>
+
+## Pricing
+
+Both connectors use the same credit system as the Analytics API:
+
+- **Query Execution:** 10-20 credits per execution (based on performance tier)
+- **Data Transfer:** Included
+- **Connection:** Free (no connection fees)
+
+Track your usage via the [Usage API](/api-reference/usage/endpoint/get-usage).
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection refused or timeout">
+    - Verify your API key is correct
+    - Check that you're using port 443 (not 8080)
+    - Ensure your firewall allows HTTPS connections
+    - Try using `x` as username (not your email)
+  </Accordion>
+
+  <Accordion title="Authentication failed">
+    - Double-check your API key
+    - Make sure there are no extra spaces or characters
+    - Try regenerating your API key
+  </Accordion>
+
+  <Accordion title="Table not found">
+    - Verify the schema name (ethereum, polygon, etc.)
+    - Check table exists in [Data Catalog](/data-catalog/overview)
+    - Use fully qualified table names: `dune.ethereum.transactions`
+  </Accordion>
+
+  <Accordion title="Query timeout">
+    - Add time filters to reduce data scanned
+    - Use curated tables instead of raw data
+    - Consider using `LIMIT` for exploratory queries
+    - Upgrade to large performance tier for complex queries
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Trino Connector Documentation" icon="database" href="/api-reference/overview/dunesql-trino-connector">
+    Complete setup guide for Trino REST API
+  </Card>
+  
+  <Card title="DBT on GitHub" icon="code-branch" href="https://github.com/duneanalytics/dbt-dune">
+    DBT adapter source code and examples
+  </Card>
+  
+  <Card title="Data Catalog" icon="table" href="/data-catalog/overview">
+    Browse available tables and schemas
+  </Card>
+  
+  <Card title="Rate Limits" icon="gauge" href="/api-reference/overview/rate-limits">
+    Understand connector rate limits
+  </Card>
+</CardGroup>
+
+## Getting Help
+
+<CardGroup cols={3}>
+  <Card title="Community Discord" icon="discord" href="https://discord.gg/duneanalytics">
+    Get help from the community
+  </Card>
+  
+  <Card title="Support" icon="life-ring" href="https://support.dune.com">
+    Contact Dune support
+  </Card>
+  
+  <Card title="GitHub Issues" icon="github" href="https://github.com/duneanalytics/dbt-dune/issues">
+    Report DBT connector issues
+  </Card>
+</CardGroup>
+
