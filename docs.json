@@ -2996,6 +2996,7 @@
                   {
                     "group": "Data Uploads",
                     "pages": [
+                      "api-reference/tables/endpoint/overview",
                       "api-reference/tables/endpoint/upload",
                       "api-reference/tables/endpoint/create",
                       "api-reference/tables/endpoint/insert",
@@ -3072,7 +3073,6 @@
           {
             "group": "Resources",
             "pages": [
-              "api-reference/tables/endpoint/overview",
               "api-reference/overview/rate-limits",
               "api-reference/overview/troubleshooting",
               "api-reference/overview/billing",
