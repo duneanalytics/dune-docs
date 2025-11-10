@@ -1223,6 +1223,35 @@
           ]
         },
         {
+          "group": "Henesys",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "data-catalog/evm/heneysis/overview",
+            {
+              "group": "Raw",
+              "pages": [
+                "data-catalog/evm/heneysis/raw/blocks",
+                "data-catalog/evm/heneysis/raw/creation-traces",
+                "data-catalog/evm/heneysis/raw/logs",
+                "data-catalog/evm/heneysis/raw/transactions",
+                "data-catalog/evm/heneysis/raw/traces"
+              ]
+            },
+            {
+              "group": "Decoded",
+              "pages": [
+                "data-catalog/evm/heneysis/decoded/overview",
+                "data-catalog/evm/heneysis/decoded/call-tables",
+                "data-catalog/evm/heneysis/decoded/event-logs",
+                "data-catalog/evm/heneysis/decoded/contracts",
+                "data-catalog/evm/heneysis/decoded/logs-decoded",
+                "data-catalog/evm/heneysis/decoded/traces-decoded"
+              ]
+            }
+          ]
+        },
+        {
           "group": "HyperEVM",
           "icon": "database",
           "iconType": "solid",
