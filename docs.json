@@ -2941,7 +2941,7 @@
         "tab": "APIs & Connectors",
         "pages": [
           {
-            "group": "Overview",
+            "group": "APIs & Connectors",
             "pages": [
               "api-reference/overview/introduction",
               "api-reference/overview/getting-started"
