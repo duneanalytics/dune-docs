@@ -3064,7 +3064,7 @@
             "icon": "plug"
           },
           {
-            "group": "Client-side SDKs",
+            "group": "Client SDKs",
             "pages": [
               "api-reference/sdks/python",
               "api-reference/sdks/typescript",
