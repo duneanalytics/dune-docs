@@ -2967,6 +2967,7 @@
                   {
                     "group": "Execute Queries",
                     "pages": [
+                      "api-reference/executions/execution-object",
                       "api-reference/executions/endpoint/execute-sql",
                       "api-reference/executions/endpoint/execute-query",
                       "api-reference/executions/endpoint/get-execution-status",
@@ -3075,7 +3076,6 @@
           {
             "group": "Resources",
             "pages": [
-              "api-reference/executions/execution-object",
               "api-reference/queries/endpoint/query-object",
               "api-reference/tables/endpoint/overview",
               "api-reference/overview/rate-limits",
