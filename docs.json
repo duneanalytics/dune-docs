@@ -3017,36 +3017,31 @@
                     "icon": "diagram-project"
                   },
                   {
-                    "group": "Result Operations",
+                    "group": "Account Management",
                     "pages": [
-                      "api-reference/executions/filtering",
-                      "api-reference/executions/pagination",
-                      "api-reference/executions/sorting",
-                      "api-reference/executions/sampling"
+                      "api-reference/usage/endpoint/get-usage"
                     ],
-                    "icon": "filter"
-                  },
-                  {
-                    "group": "Webhooks",
-                    "pages": [
-                      "api-reference/webhooks/webhook"
-                    ],
-                    "icon": "webhook"
+                    "icon": "user"
                   }
                 ],
                 "icon": "code"
               },
               {
-                "group": "Account Management",
+                "group": "Result Operations",
                 "pages": [
-                  {
-                    "group": "Usage",
-                    "pages": [
-                      "api-reference/usage/endpoint/get-usage"
-                    ]
-                  }
+                  "api-reference/executions/filtering",
+                  "api-reference/executions/pagination",
+                  "api-reference/executions/sorting",
+                  "api-reference/executions/sampling"
                 ],
-                "icon": "user"
+                "icon": "filter"
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "api-reference/webhooks/webhook"
+                ],
+                "icon": "webhook"
               }
             ],
             "icon": "code"
