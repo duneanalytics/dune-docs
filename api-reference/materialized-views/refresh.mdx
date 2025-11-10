@@ -1,8 +1,9 @@
 ---
-title: 'Refresh Materialized View'
-openapi: 'POST /v1/materialized-views/{name}/refresh'
+title: "Refresh Materialized View"
+openapi: "POST /v1/materialized-views/{name}/refresh"
 ---
 
+This endpoint refreshes a materialized view, triggering a new execution to update its data.
 
 <Note>
 - By default, the refresh runs on the `medium` engine. To boost performance, pass in a JSON body with `{{"performance": "large"}}`. Credits are consumed based on actual compute resources used for the refresh operation.
@@ -10,32 +11,120 @@ openapi: 'POST /v1/materialized-views/{name}/refresh'
 - You must own the materialized view to refresh it.
 </Note>
 
-<Tip>
-- After triggering the refresh, you can check the status by passing the returned `execution_id` into the [Get Execution Status endpoint](/api-reference/executions/endpoint/get-execution-status).
-- To find the name of a materialized view:
-    <div
-    style={{
-        position: "relative",
-        paddingBottom: "69.583%", // Aspect ratio of 1200 by 835
-        height: 0,
-        width: "100%",
-    }}
-    >
-    <iframe
-        src="https://demo.arcade.software/z3uWy6IbZUhKdXRyExL0?embed"
-        title="Parameter demo"
-        frameBorder={0}
-        loading="lazy"
-        webkitallowfullscreen=""
-        mozallowfullscreen=""
-        allowFullScreen=""
-        style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        }}
-    />
-    </div>
-</Tip>
+## Path Parameters
+
+<ParamField path="name" type="string" required>
+  The name of the materialized view to refresh
+</ParamField>
+
+## Request Body
+
+<ParamField body="performance" type="string">
+  Performance level of the refresh. Available options: `medium`, `large`. Defaults to `medium`.
+  
+  - `medium`: 10 credits per execution
+  - `large`: 20 credits per execution
+</ParamField>
+
+## Response
+
+<ResponseField name="execution_id" type="string">
+  Unique identifier for the execution triggered to refresh the materialized view
+  
+  Example: `01HZ065JVE23C23FM2HKWQP2RT`
+</ResponseField>
+
+<ResponseField name="sql_id" type="string">
+  Unique identifier for the materialized view
+  
+  Example: `dune.dune.result_erc_20_token_summary`
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://api.dune.com/api/v1/materialized-views/my_matview/refresh" \
+  -H "X-Dune-Api-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "performance": "medium"
+  }'
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/materialized-views/my_matview/refresh"
+headers = {
+    "X-Dune-Api-Key": "YOUR_API_KEY",
+    "Content-Type": "application/json"
+}
+data = {
+    "performance": "medium"
+}
+
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+```javascript JavaScript
+const response = await fetch(
+  'https://api.dune.com/api/v1/materialized-views/my_matview/refresh',
+  {
+    method: 'POST',
+    headers: {
+      'X-Dune-Api-Key': 'YOUR_API_KEY',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      performance: 'medium'
+    })
+  }
+);
+
+const data = await response.json();
+console.log(data);
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "execution_id": "01HZ065JVE23C23FM2HKWQP2RT",
+  "sql_id": "dune.dune.result_erc_20_token_summary"
+}
+```
+
+```json 400 Bad Request
+{
+  "error": "Bad Request"
+}
+```
+
+```json 401 Unauthorized
+{
+  "error": "Invalid API Key"
+}
+```
+
+```json 404 Not Found
+{
+  "error": "Object not found"
+}
+```
+
+```json 500 Internal Server Error
+{
+  "error": "Internal error"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Refreshing a materialized view triggers a query execution to update the view with the latest data
+- Use the returned `execution_id` to check the status of the refresh operation
+- The refresh consumes credits based on the performance level selected
