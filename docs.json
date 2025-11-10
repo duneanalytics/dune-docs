@@ -3006,15 +3006,15 @@
                     "icon": "upload"
                   },
                   {
-                    "group": "Query Pipelines",
+                    "group": "Materialized Views",
                     "pages": [
-                      "api-reference/materialized-views/create",
-                      "api-reference/materialized-views/refresh",
                       "api-reference/materialized-views/get",
+                      "api-reference/materialized-views/create",
+                      "api-reference/materialized-views/delete",
                       "api-reference/materialized-views/list",
-                      "api-reference/materialized-views/delete"
+                      "api-reference/materialized-views/refresh"
                     ],
-                    "icon": "diagram-project"
+                    "icon": "layer-group"
                   },
                   {
                     "group": "Account Management",
