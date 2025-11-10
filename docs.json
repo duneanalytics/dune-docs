@@ -3064,6 +3064,15 @@
           {
             "group": "Client SDKs",
             "pages": [
+              {
+                "group": "Quickstart",
+                "pages": [
+                  "api-reference/quickstart/results-eg",
+                  "api-reference/quickstart/queries-eg",
+                  "api-reference/quickstart/tables-eg"
+                ],
+                "icon": "rocket"
+              },
               "api-reference/sdks/python",
               "api-reference/sdks/typescript",
               "api-reference/sdks/go"
