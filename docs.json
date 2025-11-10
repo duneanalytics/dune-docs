@@ -2982,6 +2982,7 @@
                   {
                     "group": "Query Management",
                     "pages": [
+                      "api-reference/queries/endpoint/query-object",
                       "api-reference/queries/endpoint/create",
                       "api-reference/queries/endpoint/update",
                       "api-reference/queries/endpoint/read",
@@ -3076,7 +3077,6 @@
           {
             "group": "Resources",
             "pages": [
-              "api-reference/queries/endpoint/query-object",
               "api-reference/tables/endpoint/overview",
               "api-reference/overview/rate-limits",
               "api-reference/overview/troubleshooting",
