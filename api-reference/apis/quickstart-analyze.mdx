@@ -57,36 +57,14 @@ Let's start by executing a query to analyze recent DEX trading volume:
   print(df.head())
   ```
 
-  ```typescript TypeScript theme={null}
-  import { DuneClient } from '@duneanalytics/client';
-
-  // Initialize client
-  const dune = new DuneClient('YOUR_API_KEY');
-
-  // Execute SQL query
-  const sql = `
-    SELECT 
-      blockchain,
-      DATE_TRUNC('hour', block_time) as hour,
-      SUM(amount_usd) as volume_usd,
-      COUNT(*) as trade_count
-    FROM dex.trades
-    WHERE block_time > now() - interval '24' hour
-    GROUP BY 1, 2
-    ORDER BY 2 DESC
-  `;
-
-  const results = await dune.execute({ sql });
-  console.log(results.rows);
-  ```
-
   ```bash cURL theme={null}
   # Step 1: Execute query
   curl -X POST "https://api.dune.com/api/v1/sql/execute" \
     -H "Content-Type: application/json" \
-    -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+    -H "X-Dune-Api-Key: YOUR_API_KEY" \
     -d '{
-      "sql": "SELECT blockchain, DATE_TRUNC('\''hour'\'', block_time) as hour, SUM(amount_usd) as volume_usd, COUNT(*) as trade_count FROM dex.trades WHERE block_time > now() - interval '\''24'\'' hour GROUP BY 1, 2 ORDER BY 2 DESC"
+      "sql": "SELECT blockchain, DATE_TRUNC('\''hour'\'', block_time) as hour, SUM(amount_usd) as volume_usd, COUNT(*) as trade_count FROM dex.trades WHERE block_time > now() - interval '\''24'\'' hour GROUP BY 1, 2 ORDER BY 2 DESC",
+      "performance": "medium"
     }'
 
   # Response includes execution_id
@@ -94,13 +72,15 @@ Let's start by executing a query to analyze recent DEX trading volume:
 
   # Step 2: Get results (after query completes)
   curl "https://api.dune.com/api/v1/execution/{execution_id}/results" \
-    -H "X-DUNE-API-KEY: YOUR_API_KEY"
+    -H "X-Dune-Api-Key: YOUR_API_KEY"
   ```
 
 </CodeGroup>
 
 <Note>
   The `run_sql()` function in our Python SDK automatically handles query execution and polling for completion. With cURL, you'll need to poll the execution status endpoint and then fetch results manually.
+  
+  **Note:** The TypeScript SDK (`@duneanalytics/client-sdk`) does not support direct SQL execution. Use Python SDK or cURL for arbitrary SQL queries.
 </Note>
 
 ### 2. Use Parameterized Queries
@@ -130,26 +110,29 @@ For reusable analytics, create queries with parameters:
   ```
 
   ```typescript TypeScript theme={null}
-  import { DuneClient } from '@duneanalytics/client';
+  import { DuneClient, QueryParameter } from '@duneanalytics/client-sdk';
 
-  const dune = new DuneClient('YOUR_API_KEY');
+  const client = new DuneClient(process.env.DUNE_API_KEY ?? '');
 
   // Execute a saved query with parameters
   const queryId = 3493826;
 
-  const results = await dune.execute({
-    queryId,
-    params: {
-      blockchain: 'ethereum',
-      min_volume: 1000,
-      days: 7
-    }
-  });
+  const params = {
+    query_parameters: [
+      QueryParameter.text("blockchain", "ethereum"),
+      QueryParameter.number("min_volume", 1000),
+      QueryParameter.number("days", 7),
+    ]
+  };
 
-  // Process results
-  results.rows.forEach(row => {
-    console.log(`${row.protocol}: $${row.volume.toLocaleString()}`);
-  });
+  client
+    .runQuery(queryId, params)
+    .then((executionResult) => {
+      // Process results
+      executionResult.result?.rows.forEach(row => {
+        console.log(`${row.protocol}: $${row.volume.toLocaleString()}`);
+      });
+    });
   ```
 
 </CodeGroup>
@@ -255,25 +238,10 @@ Use Dune's powerful filtering to refine results:
       print(row)
   ```
 
-  ```typescript TypeScript theme={null}
-  import { DuneClient } from '@duneanalytics/client';
-
-  const dune = new DuneClient('YOUR_API_KEY');
-
-  // Execute query with filters
-  const results = await dune.execute({
-    queryId: 3493826,
-    filters: "blockchain = 'ethereum' AND volume_usd > 1000000"
-  });
-
-  // Results are already filtered server-side
-  results.rows.forEach(row => console.log(row));
-  ```
-
   ```bash cURL theme={null}
   # Execute query, then filter results
   curl "https://api.dune.com/api/v1/execution/{execution_id}/results?filters=blockchain%20%3D%20%27ethereum%27%20AND%20volume_usd%20%3E%201000000" \
-    -H "X-DUNE-API-KEY: YOUR_API_KEY"
+    -H "X-Dune-Api-Key: YOUR_API_KEY"
   ```
 
 </CodeGroup>
