@@ -3049,7 +3049,7 @@
           {
             "group": "Connectors",
             "pages": [
-              "api-reference/connectors/quick-start",
+              "api-reference/connectors/overview",
               {
                 "group": "Trino Connector",
                 "pages": [
