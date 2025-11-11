@@ -2955,7 +2955,6 @@
                 "group": "Quick Start",
                 "pages": [
                   "api-reference/apis/quickstart-analyze",
-                  "api-reference/apis/quickstart-realtime",
                   "api-reference/apis/quickstart-dashboards"
                 ],
                 "icon": "rocket"
@@ -3078,6 +3077,13 @@
               "api-reference/sdks/go"
             ],
             "icon": "code"
+          },
+          {
+            "group": "Real-time APIs",
+            "pages": [
+              "api-reference/realtime/overview"
+            ],
+            "icon": "bolt"
           },
           {
             "group": "Resources",
