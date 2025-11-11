@@ -12,7 +12,6 @@ In order to generate a new API key, go to settings -> API -> create new API key.
     - Dune has two types of account: `user` account and `team` account. A team can have many users. A user can join many teams.
     - Each user or team account has its own context. Queries created under a team account can only be managed within the team account context.
     - An API key belongs to a specific context, and is either associated with a user account or a team account.
-    - **New**: Scoped API keys can now be created to allow access only to specific endpoints. See the section below on "Scope of a Key."
 </Note>
 
 <Tabs>
@@ -61,16 +60,6 @@ In order to generate a new API key, go to settings -> API -> create new API key.
 <Warning>
 Never share your secret API keys in public repositories or other accessible areas.
 </Warning>
-
-## Permissions
-When creating an API key, you can now choose between two permission levels to control which endpoints the key can access:
-- All endpoints: This option grants full access to all API endpoints, including Developer APIs, executions, results, queries, tables, and materialized views. This is the default setting.
-- Only Developer APIs: Limits access to only [Dune's real-time APIs](/echo), such as the Tokens API and Balances API.
-
-You can select the appropriate level of access when creating a new API key in the settings under API -> Create API key.
-
-## Context of a key
-As mentioned above, a team API key only has access to team account resources and not user account resources. This can be especially relevant when you use Query endpoints.
 
 ## Authentication & making API calls
 
