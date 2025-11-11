@@ -2963,6 +2963,7 @@
               {
                 "group": "API Reference",
                 "pages": [
+                  "api-reference/api-overview",
                   {
                     "group": "Executions and Results",
                     "pages": [
