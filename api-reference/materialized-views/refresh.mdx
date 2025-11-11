@@ -22,8 +22,8 @@ This endpoint refreshes a materialized view, triggering a new execution to updat
 <ParamField body="performance" type="string">
   Performance level of the refresh. Available options: `medium`, `large`. Defaults to `medium`.
   
-  - `medium`: 10 credits per execution
-  - `large`: 20 credits per execution
+  - `medium`: Extended timeout, 1x compute, priority queue. Best for most queries.
+  - `large`: Extended timeout, 2x compute, priority queue. For complex queries.
 </ParamField>
 
 ## Response
@@ -127,4 +127,4 @@ console.log(data);
 
 - Refreshing a materialized view triggers a query execution to update the view with the latest data
 - Use the returned `execution_id` to check the status of the refresh operation
-- The refresh consumes credits based on the performance level selected
+- Credits are consumed based on actual compute resources used and the performance tier selected
