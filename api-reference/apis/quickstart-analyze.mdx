@@ -318,64 +318,6 @@ while True:
     time.sleep(300)  # Check every 5 minutes
 ```
 
-## Performance Tips
-
-<AccordionGroup>
-
-  <Accordion title="Use the appropriate performance tier">
-    * **Medium:** Extended timeout, 1x compute, priority queue. Best for most queries.
-    * **Large:** Extended timeout, 2x compute, priority queue. For complex queries with joins across large tables.
-
-    ```python  theme={null}
-    results = dune.run_sql(query_sql=sql, performance="large")
-    ```
-  </Accordion>
-
-  <Accordion title="Leverage materialized views">
-    For frequently-run analytics, create materialized views:
-
-    ```python  theme={null}
-    # Create materialized view
-    dune.create_materialized_view(
-        name="daily_dex_volume",
-        sql=daily_volume_query
-    )
-
-    # Query it directly (much faster!)
-    results = dune.run_sql(query_sql="SELECT * FROM daily_dex_volume")
-    ```
-  </Accordion>
-
-  <Accordion title="Use filters to reduce data transfer">
-    Apply filters server-side to minimize bandwidth:
-
-    ```python  theme={null}
-    # Use SQL WHERE clauses for filtering
-    sql = """
-    SELECT * FROM dex.trades
-    WHERE blockchain = 'ethereum'
-    AND block_time > now() - interval '24' hour
-    """
-    results = dune.run_sql(query_sql=sql)
-    ```
-  </Accordion>
-
-  <Accordion title="Limit result sets for large queries">
-    For queries returning many rows, use LIMIT:
-
-    ```python  theme={null}
-    # Fetch first 10,000 rows
-    sql = """
-    SELECT * FROM dex.trades
-    WHERE block_time > now() - interval '24' hour
-    LIMIT 10000
-    """
-    results = dune.run_sql(query_sql=sql)
-    ```
-  </Accordion>
-
-</AccordionGroup>
-
 ## Next Steps
 
 <CardGroup cols={2}>
