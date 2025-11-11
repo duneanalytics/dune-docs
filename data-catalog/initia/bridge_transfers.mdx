@@ -1,0 +1,38 @@
+---
+title: Bridge Transfers
+description: Initia blockchain cross-chain bridge transfer data
+---
+
+# Table Description
+
+This table contains data about cross-chain bridge transfers in the Initia blockchain, including transfer details, source and destination chains, and transfer status.
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **block_date**       | date      | The date of the block.                                         |
+| **block_height**     | bigint    | The height of the block where the transfer occurred.           |
+| **block_timestamp**  | timestamp(3) with time zone | Timestamp when the block was validated.                        |
+| **tx_id**            | varchar   | The unique ID of the transaction.                              |
+| **tx_index**         | bigint    | The index of the transaction in the block.                     |
+| **message_index**    | bigint    | The index of the message in the transaction.                   |
+| **event_index**      | bigint    | The index of the event in the message.                         |
+| **action_index**     | bigint    | The index of the action in the event.                          |
+| **sender**           | varchar   | The address of the sender.                                     |
+| **receiver**         | varchar   | The address of the receiver.                                   |
+| **token_amount**     | decimal(38, 0) | The amount of tokens transferred.                              |
+| **token_denom**      | varchar   | The denomination of the token.                                 |
+| **src_domain**       | varchar   | The source domain of the transfer.                             |
+| **dst_domain**       | varchar   | The destination domain of the transfer.                        |
+| **protocol**         | varchar   | The protocol used for the transfer.                            |
+| **protocol_metadata** | varchar   | Additional metadata related to the protocol.                  |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="initia" tableName="bridge_transfers" />
+

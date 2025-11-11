@@ -1,0 +1,43 @@
+---
+title: Yominet Data
+sidebarTitle: "Overview"
+icon: "star"
+description: Yominet blockchain data on Dune
+---
+
+## What is Yominet?
+
+Yominet is a blockchain network that serves as the foundation for applications like Kamigotchi and other decentralized applications. Yominet uses $ETH as gas, making it easy for users familiar with Ethereum to interact with the network. Users can bridge $ETH to Yominet using Initia's official bridge or gas.zip.
+
+Yominet features a flat 0.005 gwei gas fee, providing predictable and low-cost transactions. The network supports popular wallets including Metamask and Rabby, making it accessible to a wide range of users.
+
+## Key Features
+
+- **Ethereum-Compatible Gas**: Uses $ETH as gas, familiar to Ethereum users
+- **Low Gas Fees**: Flat 0.005 gwei gas fee for predictable transaction costs
+- **Wallet Support**: Compatible with Metamask and Rabby wallets
+- **Easy Bridging**: Bridge $ETH using Initia's official bridge or gas.zip
+- **Application Platform**: Supports various decentralized applications including gaming platforms like Kamigotchi
+
+## Yominet Data on Dune
+
+Yominet blockchain data is organized into several key tables that capture different aspects of on-chain activity:
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/yominet/blocks">
+    <p>Contains each validated block in the chain</p>
+  </Card>
+  <Card title="Block Events" icon="bolt" href="/data-catalog/yominet/block_events">
+    <p>Contains all block-level events and attributes in the chain, partitioned by event_index</p>
+  </Card>
+  <Card title="Message Events" icon="message" href="/data-catalog/yominet/message_events">
+    <p>Contains all events and their corresponding attributes partitioned by message_index</p>
+  </Card>
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/yominet/transactions">
+    <p>Contains relevant data associated with each transaction</p>
+  </Card>
+  <Card title="Transaction Messages" icon="envelope" href="/data-catalog/yominet/tx_messages">
+    <p>Contains all messages submitted to the blockchain</p>
+  </Card>
+</CardGroup>
+

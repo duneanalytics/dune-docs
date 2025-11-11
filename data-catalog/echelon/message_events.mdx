@@ -1,0 +1,33 @@
+---
+title: Message Events
+description: Echelon blockchain message events data
+---
+
+# Table Description
+
+This table contains data about message-related events in the Echelon blockchain, including message types, attributes, and associated metadata. Because block events run on initia, this table is empty by design at this point.
+## Table Schema
+
+| Column name       | Description                                                   | Type                              |
+| ---------------- | ------------------------------------------------------------- | --------------------------------- |
+| **block_date**       | The date of the block.                                         | date                              |
+| **block_height**     | The height of the block where the event occurred.              | bigint                            |
+| **block_timestamp**  | Timestamp when the block was validated.                        | timestamp(3) with time zone       |
+| **chain_id**         | The ID of the chain where the block belongs.                   | varchar                           |
+| **tx_id**          | The hash of the transaction where the event occurred.          | varchar                           |
+| **tx_index**         | The index of the transaction in the block.                     | bigint                            |
+| **message_index**    | The index of the message in the transaction.                   | bigint                            |
+| **event_index**      | A unique index for events within the message.                  | bigint                            |
+| **event_type**       | The type of event that was triggered.                          | varchar                           |
+| **attribute_key**    | The key of the event attribute.                                | varchar                           |
+| **attribute_value**  | The value of the event attribute.                              | varchar                           |
+| **attribute_index**  | A unique index for attributes within the event.                | bigint                            |
+| **updated_at**       | Timestamp of when the record was last updated.                 | timestamp(3) with time zone       |
+| **ingested_at**      | Timestamp of when the record was ingested into Dune.           | timestamp(3) with time zone       |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="echelon" tableName="message_events" />
+

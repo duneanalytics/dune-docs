@@ -1,0 +1,37 @@
+---
+title: Swaps
+description: Initia blockchain token swap transactions data
+---
+
+# Table Description
+
+This table contains data about token swap transactions in the Initia blockchain, including swap details, token pairs, and execution status.
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **block_date**       | date      | The date of the block.                                         |
+| **block_height**     | bigint    | The height of the block where the swap occurred.               |
+| **block_timestamp**  | timestamp(3) with time zone | Timestamp when the block was validated.                        |
+| **tx_id**            | varchar   | The unique ID of the transaction.                              |
+| **tx_index**         | bigint    | The index of the transaction in the block.                     |
+| **message_index**    | bigint    | The index of the message in the transaction.                   |
+| **event_index**      | bigint    | The index of the event in the message.                         |
+| **action_index**     | bigint    | The index of the action in the event.                          |
+| **sender**           | varchar   | The address of the sender.                                     |
+| **token_amount_in**  | decimal(38, 0) | The amount of tokens swapped in.                               |
+| **token_denom_in**   | varchar   | The denomination of the token swapped in.                      |
+| **token_amount_out** | decimal(38, 0) | The amount of tokens swapped out.                              |
+| **token_denom_out**  | varchar   | The denomination of the token swapped out.                     |
+| **routes**           | varchar   | The routes used for the swap.                                  |
+| **fees**             | varchar   | The fees associated with the swap.                             |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="initia" tableName="swaps" />
+
