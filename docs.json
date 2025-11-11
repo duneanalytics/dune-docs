@@ -3061,6 +3061,13 @@
             "icon": "plug"
           },
           {
+            "group": "Real-time APIs",
+            "pages": [
+              "api-reference/realtime/overview"
+            ],
+            "icon": "bolt"
+          },
+          {
             "group": "Client SDKs",
             "pages": [
               {
@@ -3077,13 +3084,6 @@
               "api-reference/sdks/go"
             ],
             "icon": "code"
-          },
-          {
-            "group": "Real-time APIs",
-            "pages": [
-              "api-reference/realtime/overview"
-            ],
-            "icon": "bolt"
           },
           {
             "group": "Resources",
