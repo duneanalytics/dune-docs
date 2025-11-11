@@ -100,7 +100,8 @@ export default DashboardWidget;
 
 ```python Python (Flask)
 from flask import Flask, jsonify, render_template
-from dune_client import DuneClient
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
 import os
 
 app = Flask(__name__)
@@ -109,7 +110,8 @@ dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
 @app.route('/api/dashboard/dex-volume')
 def get_dex_volume():
     """API endpoint for DEX volume data"""
-    results = dune.run_query(query_id=3493826)
+    query = QueryBase(query_id=3493826)
+    results = dune.run_query(query)
     return jsonify({
         'data': results.get_rows(),
         'metadata': {
@@ -129,7 +131,8 @@ if __name__ == '__main__':
 
 ```python Python (Streamlit)
 import streamlit as st
-from dune_client import DuneClient
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
 import pandas as pd
 import plotly.express as px
 import os
@@ -145,7 +148,8 @@ st.title("📊 DEX Analytics Dashboard")
 # Fetch data
 @st.cache_data(ttl=300)  # Cache for 5 minutes
 def load_data():
-    results = dune.run_query(query_id=3493826)
+    query = QueryBase(query_id=3493826)
+    results = dune.run_query(query)
     return pd.DataFrame(results.get_rows())
 
 df = load_data()
@@ -173,7 +177,7 @@ st.dataframe(df, use_container_width=True)
 Create charts using popular visualization libraries:
 
 ```python Plotly
-from dune_client import DuneClient
+from dune_client.client import DuneClient
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -221,7 +225,7 @@ fig.show()
   
   - **TypeScript SDK:** The TypeScript SDK (`@duneanalytics/client-sdk`) only supports saved queries, not direct SQL execution. For JavaScript/TypeScript applications, create a saved query on Dune and use `dune.runQuery({ queryId })`.
   
-  - **Python SDK:** Direct SQL execution with `dune.run_sql()` requires a Dune Plus subscription. For most users, use saved queries with `dune.run_query(query_id=123)`.
+  - **Python SDK:** Direct SQL execution with `dune.run_sql()` requires a Dune Plus subscription. For most users, use saved queries with `query = QueryBase(query_id=123)` and `dune.run_query(query)`.
   
   The example above shows SQL execution using the Python SDK (Plus subscription required).
 </Note>
@@ -373,6 +377,7 @@ Combine data from multiple queries:
 
 ```python
 from dune_client.client import DuneClient
+from dune_client.query import QueryBase
 from concurrent.futures import ThreadPoolExecutor
 
 dune = DuneClient(api_key="YOUR_API_KEY")
@@ -390,7 +395,10 @@ def build_comprehensive_dashboard():
     # Use ThreadPoolExecutor for parallel execution
     with ThreadPoolExecutor(max_workers=4) as executor:
         futures = {
-            name: executor.submit(dune.run_query, query_id=query_id)
+            name: executor.submit(
+                lambda qid: dune.run_query(QueryBase(query_id=qid)),
+                query_id
+            )
             for name, query_id in query_ids.items()
         }
         
@@ -483,7 +491,8 @@ Implement smart caching for better performance:
 ```python
 from flask import Flask, jsonify
 from flask_caching import Cache
-from dune_client import DuneClient
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
 import os
 
 app = Flask(__name__)
@@ -494,7 +503,8 @@ dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
 @cache.cached(timeout=300)  # Cache for 5 minutes
 def get_query_data(query_id):
     """Cached endpoint for query results"""
-    results = dune.run_query(query_id=query_id)
+    query = QueryBase(query_id=query_id)
+    results = dune.run_query(query)
     return jsonify({
         'data': results.get_rows(),
         'cached': False,  # First request
@@ -505,7 +515,8 @@ def get_query_data(query_id):
 def refresh_data(query_id):
     """Force refresh cached data"""
     cache.delete(f'view//api/data/{query_id}')
-    results = dune.run_query(query_id=query_id)
+    query = QueryBase(query_id=query_id)
+    results = dune.run_query(query)
     return jsonify({
         'data': results.get_rows(),
         'cached': False,
