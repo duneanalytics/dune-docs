@@ -599,43 +599,6 @@ function AnalyticsDashboard() {
 }
 ```
 
-## Performance Tips
-
-<AccordionGroup>
-  <Accordion title="Use appropriate cache durations">
-    - Real-time metrics: 1-5 minutes
-    - Historical data: 1-24 hours
-    - Static reference data: Days or weeks
-  </Accordion>
-
-  <Accordion title="Optimize query complexity">
-    - Pre-aggregate data in saved queries
-    - Use materialized views for complex calculations
-    - Limit result sets to necessary rows
-  </Accordion>
-
-  <Accordion title="Implement progressive loading">
-    ```javascript
-    // Load critical metrics first, then details
-    async function loadDashboard() {
-      // 1. Show key metrics immediately
-      const metrics = await fetchKeyMetrics();
-      setKeyMetrics(metrics);
-      
-      // 2. Load detailed charts in background
-      const charts = await fetchChartData();
-      setChartData(charts);
-    }
-    ```
-  </Accordion>
-
-  <Accordion title="Handle loading states gracefully">
-    - Show skeleton screens while loading
-    - Display cached data immediately, refresh in background
-    - Indicate when data was last updated
-  </Accordion>
-</AccordionGroup>
-
 ## Next Steps
 
 <CardGroup cols={2}>
@@ -663,5 +626,4 @@ function AnalyticsDashboard() {
 - **Client Reporting:** Generate automated reports for clients
 - **Portfolio Trackers:** Create personalized portfolio dashboards
 - **Protocol Dashboards:** Build public dashboards for your protocol
-- **BI Tool Integration:** Feed Dune data into Tableau, PowerBI, etc.
 
