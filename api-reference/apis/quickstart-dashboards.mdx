@@ -32,7 +32,7 @@ Start by fetching results from an existing Dune query:
 <CodeGroup>
 ```javascript React
 import { useEffect, useState } from 'react';
-import { DuneClient } from '@duneanalytics/client';
+import { DuneClient } from '@duneanalytics/client-sdk';
 
 function DashboardWidget() {
   const [data, setData] = useState(null);
@@ -44,8 +44,8 @@ function DashboardWidget() {
     async function fetchData() {
       try {
         // Execute query and get results
-        const results = await dune.execute({ queryId: 3493826 });
-        setData(results.rows);
+        const executionResult = await dune.runQuery(3493826);
+        setData(executionResult.result?.rows);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -158,63 +158,6 @@ st.dataframe(df, use_container_width=True)
 
 Create charts using popular visualization libraries:
 
-<CodeGroup>
-```javascript Chart.js
-import { Line } from 'react-chartjs-2';
-import { DuneClient } from '@duneanalytics/client';
-import { useEffect, useState } from 'react';
-
-function VolumeChart() {
-  const [chartData, setChartData] = useState(null);
-  const dune = new DuneClient(process.env.DUNE_API_KEY);
-  
-  useEffect(() => {
-    async function fetchData() {
-      const sql = `
-        SELECT 
-          DATE_TRUNC('hour', block_time) as time,
-          SUM(amount_usd) as volume
-        FROM dex.trades
-        WHERE block_time > now() - interval '24' hour
-        GROUP BY 1
-        ORDER BY 1
-      `;
-      
-      const results = await dune.execute({ sql });
-      
-      setChartData({
-        labels: results.rows.map(r => new Date(r.time).toLocaleTimeString()),
-        datasets: [{
-          label: 'DEX Volume',
-          data: results.rows.map(r => r.volume),
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        }]
-      });
-    }
-    
-    fetchData();
-  }, []);
-  
-  if (!chartData) return <div>Loading chart...</div>;
-  
-  return (
-    <Line 
-      data={chartData}
-      options={{
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: '24h DEX Volume'
-          }
-        }
-      }}
-    />
-  );
-}
-```
-
 ```python Plotly
 from dune_client import DuneClient
 import plotly.graph_objects as go
@@ -258,15 +201,18 @@ fig.update_layout(
 
 fig.show()
 ```
-</CodeGroup>
+
+<Note>
+  **Note:** The TypeScript SDK (`@duneanalytics/client-sdk`) only supports saved queries, not direct SQL execution. For SQL queries in JavaScript/TypeScript, use saved queries with `dune.runQuery(queryId)` or use the REST API directly with `fetch()`.
+</Note>
 
 ### 3. Parameterized Dashboards
 
-Create dashboards with user-configurable filters:
+Create dashboards with user-configurable filters using saved queries:
 
 ```typescript
 import { useState, useEffect } from 'react';
-import { DuneClient } from '@duneanalytics/client';
+import { DuneClient, QueryParameter } from '@duneanalytics/client-sdk';
 
 interface DashboardFilters {
   blockchain: string;
@@ -286,28 +232,18 @@ function ParameterizedDashboard() {
   
   useEffect(() => {
     async function fetchData() {
-      const intervals = {
-        '24h': '24 hour',
-        '7d': '7 day',
-        '30d': '30 day'
+      // Use a saved query with parameters instead of SQL
+      const queryId = 3493826; // Your parameterized query ID
+      
+      const params = {
+        query_parameters: [
+          QueryParameter.text("blockchain", filters.blockchain),
+          QueryParameter.text("time_range", filters.timeRange),
+        ]
       };
       
-      const sql = `
-        SELECT 
-          project,
-          blockchain,
-          SUM(amount_usd) as volume,
-          COUNT(*) as trades
-        FROM dex.trades
-        WHERE block_time > now() - interval '${intervals[filters.timeRange]}'
-        ${filters.blockchain !== 'all' ? `AND blockchain = '${filters.blockchain}'` : ''}
-        ${filters.protocol !== 'all' ? `AND project = '${filters.protocol}'` : ''}
-        GROUP BY 1, 2
-        ORDER BY 3 DESC
-      `;
-      
-      const results = await dune.execute({ sql });
-      setData(results.rows);
+      const executionResult = await dune.runQuery(queryId, params);
+      setData(executionResult.result?.rows);
     }
     
     fetchData();
@@ -350,7 +286,7 @@ Implement automatic data refreshes:
 
 ```javascript
 import { useEffect, useState, useCallback } from 'react';
-import { DuneClient } from '@duneanalytics/client';
+import { DuneClient } from '@duneanalytics/client-sdk';
 
 function RealtimeDashboard() {
   const [data, setData] = useState(null);
@@ -361,12 +297,9 @@ function RealtimeDashboard() {
   
   const fetchData = useCallback(async () => {
     try {
-      const results = await dune.execute({ 
-        queryId: 3493826,
-        performance: 'medium'
-      });
+      const executionResult = await dune.runQuery(3493826);
       
-      setData(results.rows);
+      setData(executionResult.result?.rows);
       setLastUpdate(new Date());
     } catch (error) {
       console.error('Failed to fetch data:', error);
@@ -460,7 +393,7 @@ dashboard_data = asyncio.run(build_comprehensive_dashboard())
 Provide data export functionality:
 
 ```typescript
-import { DuneClient } from '@duneanalytics/client';
+import { DuneClient } from '@duneanalytics/client-sdk';
 
 class DataExporter {
   private dune: DuneClient;
@@ -475,7 +408,7 @@ class DataExporter {
       `https://api.dune.com/api/v1/query/${queryId}/results/csv`,
       {
         headers: {
-          'X-DUNE-API-KEY': process.env.DUNE_API_KEY!
+          'X-Dune-Api-Key': process.env.DUNE_API_KEY!
         }
       }
     );
@@ -492,9 +425,9 @@ class DataExporter {
   }
   
   async exportToJSON(queryId: number) {
-    const results = await this.dune.execute({ queryId });
+    const executionResult = await this.dune.runQuery(queryId);
     
-    const json = JSON.stringify(results.rows, null, 2);
+    const json = JSON.stringify(executionResult.result?.rows, null, 2);
     const blob = new Blob([json], { type: 'application/json' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -563,9 +496,9 @@ def refresh_data(query_id):
 ### Analytics Dashboard
 
 ```javascript
-// Complete analytics dashboard example
+// Complete analytics dashboard example using saved queries
 import { useEffect, useState } from 'react';
-import { DuneClient } from '@duneanalytics/client';
+import { DuneClient } from '@duneanalytics/client-sdk';
 import { LineChart, BarChart, PieChart } from 'recharts';
 
 function AnalyticsDashboard() {
@@ -580,22 +513,22 @@ function AnalyticsDashboard() {
   
   useEffect(() => {
     async function loadDashboard() {
-      // Fetch key metrics
-      const volumeQuery = `SELECT SUM(amount_usd) as total FROM dex.trades WHERE block_time > now() - interval '24' hour`;
-      const usersQuery = `SELECT COUNT(DISTINCT trader) as total FROM dex.trades WHERE block_time > now() - interval '24' hour`;
-      const protocolsQuery = `SELECT project, SUM(amount_usd) as volume FROM dex.trades WHERE block_time > now() - interval '24' hour GROUP BY 1 ORDER BY 2 DESC LIMIT 10`;
+      // Use saved query IDs for each metric
+      const volumeQueryId = 123456;   // Your volume query ID
+      const usersQueryId = 123457;    // Your users query ID
+      const protocolsQueryId = 123458; // Your protocols query ID
       
       const [volume, users, protocols] = await Promise.all([
-        dune.execute({ sql: volumeQuery }),
-        dune.execute({ sql: usersQuery }),
-        dune.execute({ sql: protocolsQuery })
+        dune.runQuery(volumeQueryId),
+        dune.runQuery(usersQueryId),
+        dune.runQuery(protocolsQueryId)
       ]);
       
       setMetrics({
-        totalVolume: volume.rows[0].total,
-        activeUsers: users.rows[0].total,
-        avgTransactionSize: volume.rows[0].total / users.rows[0].total,
-        topProtocols: protocols.rows
+        totalVolume: volume.result?.rows[0].total,
+        activeUsers: users.result?.rows[0].total,
+        avgTransactionSize: volume.result?.rows[0].total / users.result?.rows[0].total,
+        topProtocols: protocols.result?.rows
       });
     }
     
