@@ -10,17 +10,17 @@ Perfect for data teams, researchers, and analysts who need to programmatically a
 
 ## What You'll Learn
 
-- Execute SQL queries via API
-- Retrieve and process results
-- Handle query parameters
-- Build analytics pipelines
-- Filter and transform data
+* Execute SQL queries via API
+* Retrieve and process results
+* Handle query parameters
+* Build analytics pipelines
+* Filter and transform data
 
 ## Prerequisites
 
-- A Dune account ([create one free](https://dune.com/auth/register))
-- An API key ([get your API key](https://dune.com/apis?tab=keys))
-- Basic familiarity with SQL
+* A Dune account ([create one free](https://dune.com/auth/register))
+* An API key ([get your API key](https://dune.com/apis?tab=keys))
+* Basic familiarity with SQL
 
 ## Quick Start
 
@@ -29,76 +29,78 @@ Perfect for data teams, researchers, and analysts who need to programmatically a
 Let's start by executing a query to analyze recent DEX trading volume:
 
 <CodeGroup>
-```python Python
-from dune_client import DuneClient
-import pandas as pd
 
-# Initialize client
-dune = DuneClient(api_key="YOUR_API_KEY")
+  ```python Python theme={null}
+  from dune_client.client import DuneClient
+  import pandas as pd
 
-# Execute SQL query
-sql = """
-SELECT 
-    blockchain,
-    DATE_TRUNC('hour', block_time) as hour,
-    SUM(amount_usd) as volume_usd,
-    COUNT(*) as trade_count
-FROM dex.trades
-WHERE block_time > now() - interval '24' hour
-GROUP BY 1, 2
-ORDER BY 2 DESC
-"""
+  # Initialize client
+  dune = DuneClient(api_key="YOUR_API_KEY")
 
-results = dune.execute(sql=sql)
-
-# Convert to pandas DataFrame for analysis
-df = pd.DataFrame(results.rows)
-print(df.head())
-```
-
-```typescript TypeScript
-import { DuneClient } from '@duneanalytics/client';
-
-// Initialize client
-const dune = new DuneClient('YOUR_API_KEY');
-
-// Execute SQL query
-const sql = `
+  # Execute SQL query
+  sql = """
   SELECT 
-    blockchain,
-    DATE_TRUNC('hour', block_time) as hour,
-    SUM(amount_usd) as volume_usd,
-    COUNT(*) as trade_count
+      blockchain,
+      DATE_TRUNC('hour', block_time) as hour,
+      SUM(amount_usd) as volume_usd,
+      COUNT(*) as trade_count
   FROM dex.trades
   WHERE block_time > now() - interval '24' hour
   GROUP BY 1, 2
   ORDER BY 2 DESC
-`;
+  """
+  
+  results = dune.run_sql(query_sql=sql)
 
-const results = await dune.execute({ sql });
-console.log(results.rows);
-```
+  # Convert to pandas DataFrame for analysis
+  df = pd.DataFrame(results.result.rows)
+  print(df.head())
+  ```
 
-```bash cURL
-# Step 1: Execute query
-curl -X POST "https://api.dune.com/api/v1/sql/execute" \
-  -H "Content-Type: application/json" \
-  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
-  -d '{
-    "sql": "SELECT blockchain, DATE_TRUNC('\''hour'\'', block_time) as hour, SUM(amount_usd) as volume_usd, COUNT(*) as trade_count FROM dex.trades WHERE block_time > now() - interval '\''24'\'' hour GROUP BY 1, 2 ORDER BY 2 DESC"
-  }'
+  ```typescript TypeScript theme={null}
+  import { DuneClient } from '@duneanalytics/client';
 
-# Response includes execution_id
-# {"execution_id":"01JA...","state":"QUERY_STATE_EXECUTING"}
+  // Initialize client
+  const dune = new DuneClient('YOUR_API_KEY');
 
-# Step 2: Get results (after query completes)
-curl "https://api.dune.com/api/v1/execution/{execution_id}/results" \
-  -H "X-DUNE-API-KEY: YOUR_API_KEY"
-```
+  // Execute SQL query
+  const sql = `
+    SELECT 
+      blockchain,
+      DATE_TRUNC('hour', block_time) as hour,
+      SUM(amount_usd) as volume_usd,
+      COUNT(*) as trade_count
+    FROM dex.trades
+    WHERE block_time > now() - interval '24' hour
+    GROUP BY 1, 2
+    ORDER BY 2 DESC
+  `;
+
+  const results = await dune.execute({ sql });
+  console.log(results.rows);
+  ```
+
+  ```bash cURL theme={null}
+  # Step 1: Execute query
+  curl -X POST "https://api.dune.com/api/v1/sql/execute" \
+    -H "Content-Type: application/json" \
+    -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+    -d '{
+      "sql": "SELECT blockchain, DATE_TRUNC('\''hour'\'', block_time) as hour, SUM(amount_usd) as volume_usd, COUNT(*) as trade_count FROM dex.trades WHERE block_time > now() - interval '\''24'\'' hour GROUP BY 1, 2 ORDER BY 2 DESC"
+    }'
+
+  # Response includes execution_id
+  # {"execution_id":"01JA...","state":"QUERY_STATE_EXECUTING"}
+
+  # Step 2: Get results (after query completes)
+  curl "https://api.dune.com/api/v1/execution/{execution_id}/results" \
+    -H "X-DUNE-API-KEY: YOUR_API_KEY"
+  ```
+
 </CodeGroup>
 
 <Note>
-The `execute()` function in our SDKs automatically handles polling for query completion and pagination. With cURL, you'll need to poll the execution status endpoint and then fetch results manually.
+  The `run_sql()` function in our Python SDK automatically handles query execution and polling for completion. With cURL, you'll need to poll the execution status endpoint and then fetch results manually.
 </Note>
 
 ### 2. Use Parameterized Queries
@@ -106,59 +108,58 @@ The `execute()` function in our SDKs automatically handles polling for query com
 For reusable analytics, create queries with parameters:
 
 <CodeGroup>
-```python Python
-from dune_client import DuneClient
-from datetime import datetime, timedelta
 
-dune = DuneClient(api_key="YOUR_API_KEY")
+  ```python Python theme={null}
+  from dune_client.client import DuneClient
+  from dune_client.query import QueryBase
+  from datetime import datetime, timedelta
 
-# Execute a saved query with parameters
-query_id = 3493826  # Example: Popular DEX analysis query
+  dune = DuneClient(api_key="YOUR_API_KEY")
 
-results = dune.execute(
-    query_id=query_id,
-    params={
-        "blockchain": "ethereum",
-        "min_volume": 1000,
-        "days": 7
+  # Execute a saved query with parameters
+  query_id = 3493826  # Example: Popular DEX analysis query
+  
+  query = QueryBase(query_id=query_id)
+  results = dune.run_query(query=query)
+
+  # Process results
+  for row in results.result.rows:
+      protocol = row.get('protocol') or row.get('project', 'Unknown')
+      volume = row.get('volume') or row.get('volume_usd', 0)
+      print(f"{protocol}: ${volume:,.2f}")
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { DuneClient } from '@duneanalytics/client';
+
+  const dune = new DuneClient('YOUR_API_KEY');
+
+  // Execute a saved query with parameters
+  const queryId = 3493826;
+
+  const results = await dune.execute({
+    queryId,
+    params: {
+      blockchain: 'ethereum',
+      min_volume: 1000,
+      days: 7
     }
-)
+  });
 
-# Process results
-for row in results.rows:
-    print(f"{row['protocol']}: ${row['volume']:,.2f}")
-```
+  // Process results
+  results.rows.forEach(row => {
+    console.log(`${row.protocol}: $${row.volume.toLocaleString()}`);
+  });
+  ```
 
-```typescript TypeScript
-import { DuneClient } from '@duneanalytics/client';
-
-const dune = new DuneClient('YOUR_API_KEY');
-
-// Execute a saved query with parameters
-const queryId = 3493826;
-
-const results = await dune.execute({
-  queryId,
-  params: {
-    blockchain: 'ethereum',
-    min_volume: 1000,
-    days: 7
-  }
-});
-
-// Process results
-results.rows.forEach(row => {
-  console.log(`${row.protocol}: $${row.volume.toLocaleString()}`);
-});
-```
 </CodeGroup>
 
 ### 3. Build an Analytics Pipeline
 
 Create a pipeline that runs multiple queries and combines results:
 
-```python
-from dune_client import DuneClient
+```python  theme={null}
+from dune_client.client import DuneClient
 import pandas as pd
 from datetime import datetime
 
@@ -171,11 +172,11 @@ def daily_dex_analysis():
     volume_query = """
     SELECT 
         SUM(amount_usd) as total_volume,
-        COUNT(DISTINCT trader) as unique_traders
+        COUNT(DISTINCT taker) as unique_traders
     FROM dex.trades
     WHERE block_time > now() - interval '24' hour
     """
-    volume_data = dune.execute(sql=volume_query)
+    volume_data = dune.run_sql(query_sql=volume_query)
     
     # 2. Get top protocols
     protocol_query = """
@@ -189,7 +190,7 @@ def daily_dex_analysis():
     ORDER BY 2 DESC
     LIMIT 10
     """
-    protocol_data = dune.execute(sql=protocol_query)
+    protocol_data = dune.run_sql(query_sql=protocol_query)
     
     # 3. Get chain breakdown
     chain_query = """
@@ -201,15 +202,15 @@ def daily_dex_analysis():
     GROUP BY 1
     ORDER BY 2 DESC
     """
-    chain_data = dune.execute(sql=chain_query)
+    chain_data = dune.run_sql(query_sql=chain_query)
     
     # Combine and process results
     report = {
         'timestamp': datetime.now(),
-        'total_volume': volume_data.rows[0]['total_volume'],
-        'unique_traders': volume_data.rows[0]['unique_traders'],
-        'top_protocols': pd.DataFrame(protocol_data.rows),
-        'chain_breakdown': pd.DataFrame(chain_data.rows)
+        'total_volume': volume_data.result.rows[0]['total_volume'],
+        'unique_traders': volume_data.result.rows[0]['unique_traders'],
+        'top_protocols': pd.DataFrame(protocol_data.result.rows),
+        'chain_breakdown': pd.DataFrame(chain_data.result.rows)
     }
     
     return report
@@ -227,46 +228,58 @@ print(report['top_protocols'])
 Use Dune's powerful filtering to refine results:
 
 <CodeGroup>
-```python Python
-from dune_client import DuneClient
 
-dune = DuneClient(api_key="YOUR_API_KEY")
+  ```python Python theme={null}
+  from dune_client.client import DuneClient
 
-# Execute query with filters
-results = dune.execute(
-    query_id=3493826,
-    filters="blockchain = 'ethereum' AND volume_usd > 1000000"
-)
+  dune = DuneClient(api_key="YOUR_API_KEY")
 
-# Results are already filtered server-side
-for row in results.rows:
-    print(row)
-```
+  # Execute query with SQL-based filtering
+  sql = """
+  SELECT 
+      blockchain,
+      project,
+      SUM(amount_usd) as volume_usd
+  FROM dex.trades
+  WHERE block_time > now() - interval '24' hour
+      AND blockchain = 'ethereum'
+      AND amount_usd > 1000000
+  GROUP BY 1, 2
+  ORDER BY 3 DESC
+  """
+  
+  results = dune.run_sql(query_sql=sql)
 
-```typescript TypeScript
-import { DuneClient } from '@duneanalytics/client';
+  # Results are already filtered server-side
+  for row in results.result.rows:
+      print(row)
+  ```
 
-const dune = new DuneClient('YOUR_API_KEY');
+  ```typescript TypeScript theme={null}
+  import { DuneClient } from '@duneanalytics/client';
 
-// Execute query with filters
-const results = await dune.execute({
-  queryId: 3493826,
-  filters: "blockchain = 'ethereum' AND volume_usd > 1000000"
-});
+  const dune = new DuneClient('YOUR_API_KEY');
 
-// Results are already filtered server-side
-results.rows.forEach(row => console.log(row));
-```
+  // Execute query with filters
+  const results = await dune.execute({
+    queryId: 3493826,
+    filters: "blockchain = 'ethereum' AND volume_usd > 1000000"
+  });
 
-```bash cURL
-# Execute query, then filter results
-curl "https://api.dune.com/api/v1/execution/{execution_id}/results?filters=blockchain%20%3D%20%27ethereum%27%20AND%20volume_usd%20%3E%201000000" \
-  -H "X-DUNE-API-KEY: YOUR_API_KEY"
-```
+  // Results are already filtered server-side
+  results.rows.forEach(row => console.log(row));
+  ```
+
+  ```bash cURL theme={null}
+  # Execute query, then filter results
+  curl "https://api.dune.com/api/v1/execution/{execution_id}/results?filters=blockchain%20%3D%20%27ethereum%27%20AND%20volume_usd%20%3E%201000000" \
+    -H "X-DUNE-API-KEY: YOUR_API_KEY"
+  ```
+
 </CodeGroup>
 
 <Tip>
-Server-side filtering with Dune's SQL-like WHERE clause syntax is unique to Dune's API! It saves bandwidth and processing time compared to filtering client-side.
+  Server-side filtering with Dune's SQL-like WHERE clause syntax is unique to Dune's API! It saves bandwidth and processing time compared to filtering client-side.
 </Tip>
 
 ## Common Patterns
@@ -275,10 +288,10 @@ Server-side filtering with Dune's SQL-like WHERE clause syntax is unique to Dune
 
 Run analytics on a schedule (e.g., with cron, Airflow, or cloud scheduler):
 
-```python
+```python  theme={null}
 import schedule
 import time
-from dune_client import DuneClient
+from dune_client.client import DuneClient
 
 dune = DuneClient(api_key="YOUR_API_KEY")
 
@@ -294,10 +307,10 @@ def hourly_report():
     ORDER BY 2 DESC
     """
     
-    results = dune.execute(sql=sql)
+    results = dune.run_sql(query_sql=sql)
     
     # Send to your dashboard/database/Slack
-    send_to_dashboard(results)
+    send_to_dashboard(results.result.rows)
 
 # Run every hour
 schedule.every().hour.at(":00").do(hourly_report)
@@ -311,14 +324,16 @@ while True:
 
 Export Dune results to your own data warehouse:
 
-```python
-from dune_client import DuneClient
+```python  theme={null}
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
 import psycopg2
 
 dune = DuneClient(api_key="YOUR_API_KEY")
 
 # Fetch from Dune
-results = dune.execute(query_id=3493826)
+query = QueryBase(query_id=3493826)
+results = dune.run_query(query=query)
 
 # Connect to your warehouse (PostgreSQL example)
 conn = psycopg2.connect(
@@ -330,7 +345,7 @@ conn = psycopg2.connect(
 
 # Insert data
 with conn.cursor() as cur:
-    for row in results.rows:
+    for row in results.result.rows:
         cur.execute(
             "INSERT INTO dex_analytics VALUES (%s, %s, %s)",
             (row['blockchain'], row['volume'], row['timestamp'])
@@ -342,8 +357,8 @@ with conn.cursor() as cur:
 
 Monitor specific metrics and trigger alerts:
 
-```python
-from dune_client import DuneClient
+```python  theme={null}
+from dune_client.client import DuneClient
 import time
 
 dune = DuneClient(api_key="YOUR_API_KEY")
@@ -358,10 +373,10 @@ def monitor_large_trades(threshold=1000000):
     ORDER BY block_time DESC
     """
     
-    results = dune.execute(sql=sql)
+    results = dune.run_sql(query_sql=sql)
     
-    if results.rows:
-        for trade in results.rows:
+    if results.result.rows:
+        for trade in results.result.rows:
             send_alert(f"Large trade: ${trade['amount_usd']:,.2f} on {trade['blockchain']}")
 
 # Run continuously
@@ -373,81 +388,99 @@ while True:
 ## Performance Tips
 
 <AccordionGroup>
+
   <Accordion title="Use the appropriate performance tier">
-    - **Medium (10 credits):** Most queries complete in seconds
-    - **Large (20 credits):** Complex queries with joins across large tables
-    
-    ```python
-    results = dune.execute(sql=sql, performance="large")
+    * **Medium (10 credits):** Most queries complete in seconds
+    * **Large (20 credits):** Complex queries with joins across large tables
+
+    ```python  theme={null}
+    results = dune.run_sql(query_sql=sql, performance="large")
     ```
   </Accordion>
 
   <Accordion title="Leverage materialized views">
     For frequently-run analytics, create materialized views:
-    
-    ```python
+
+    ```python  theme={null}
     # Create materialized view
     dune.create_materialized_view(
         name="daily_dex_volume",
         sql=daily_volume_query
     )
-    
+
     # Query it directly (much faster!)
-    results = dune.execute(sql="SELECT * FROM daily_dex_volume")
+    results = dune.run_sql(query_sql="SELECT * FROM daily_dex_volume")
     ```
   </Accordion>
 
   <Accordion title="Use filters to reduce data transfer">
     Apply filters server-side to minimize bandwidth:
-    
-    ```python
-    # Only fetch Ethereum data
-    results = dune.execute(
-        query_id=query_id,
-        filters="blockchain = 'ethereum'"
-    )
+
+    ```python  theme={null}
+    # Use SQL WHERE clauses for filtering
+    sql = """
+    SELECT * FROM dex.trades
+    WHERE blockchain = 'ethereum'
+    AND block_time > now() - interval '24' hour
+    """
+    results = dune.run_sql(query_sql=sql)
     ```
   </Accordion>
 
-  <Accordion title="Paginate large result sets">
-    For queries returning millions of rows, use pagination:
-    
-    ```python
+  <Accordion title="Limit result sets for large queries">
+    For queries returning many rows, use LIMIT:
+
+    ```python  theme={null}
     # Fetch first 10,000 rows
-    results = dune.execute(
-        query_id=query_id,
-        limit=10000,
-        offset=0
-    )
+    sql = """
+    SELECT * FROM dex.trades
+    WHERE block_time > now() - interval '24' hour
+    LIMIT 10000
+    """
+    results = dune.run_sql(query_sql=sql)
     ```
   </Accordion>
+
 </AccordionGroup>
+
+## Important Schema Notes
+
+<Note>
+  **Database Schema Updates:** The Dune database schema is continuously updated to provide better data. Key changes to be aware of:
+  
+  * In `dex.trades` table, use `taker` instead of `trader` for identifying the trade taker
+  * Column `maker` identifies the trade maker
+  * Column `tx_from` can also be used to identify the transaction originator
+  
+  Always verify column names using the [Dune Data Explorer](https://dune.com/docs/app/query-editor/data-explorer/) before building queries.
+</Note>
 
 ## Next Steps
 
 <CardGroup cols={2}>
+
   <Card title="Execute Queries API" icon="play" href="/api-reference/executions/endpoint/execute-sql">
     Full API reference for query execution
   </Card>
-  
+
   <Card title="Result Filtering" icon="filter" href="/api-reference/executions/filtering">
     Advanced filtering techniques
   </Card>
-  
+
   <Card title="Materialized Views" icon="layer-group" href="/api-reference/materialized-views/create">
     Create and manage materialized views
   </Card>
-  
+
   <Card title="DuneSQL Reference" icon="database" href="/query-engine/index">
     Learn DuneSQL syntax and functions
   </Card>
+
 </CardGroup>
 
 ## Example Use Cases
 
-- **Research Reports:** Generate daily/weekly reports on DeFi protocols, NFT markets, or chain activity
-- **Automated Dashboards:** Feed data to custom dashboards or BI tools
-- **Data Exports:** Export blockchain data to your data warehouse
-- **Alert Systems:** Monitor metrics and trigger alerts when thresholds are met
-- **Comparative Analysis:** Compare metrics across chains, protocols, or time periods
-
+* **Research Reports:** Generate daily/weekly reports on DeFi protocols, NFT markets, or chain activity
+* **Automated Dashboards:** Feed data to custom dashboards or BI tools
+* **Data Exports:** Export blockchain data to your data warehouse
+* **Alert Systems:** Monitor metrics and trigger alerts when thresholds are met
+* **Comparative Analysis:** Compare metrics across chains, protocols, or time periods
