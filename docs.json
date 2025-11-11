@@ -2965,7 +2965,7 @@
                 "group": "Endpoints",
                 "pages": [
                   {
-                    "group": "Execute Queries",
+                    "group": "Executions and Results",
                     "pages": [
                       "api-reference/executions/execution-object",
                       "api-reference/executions/endpoint/execute-sql",
