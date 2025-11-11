@@ -320,39 +320,6 @@ while True:
     time.sleep(60)
 ```
 
-### Export to Data Warehouse
-
-Export Dune results to your own data warehouse:
-
-```python  theme={null}
-from dune_client.client import DuneClient
-from dune_client.query import QueryBase
-import psycopg2
-
-dune = DuneClient(api_key="YOUR_API_KEY")
-
-# Fetch from Dune
-query = QueryBase(query_id=3493826)
-results = dune.run_query(query=query)
-
-# Connect to your warehouse (PostgreSQL example)
-conn = psycopg2.connect(
-    host="your-warehouse.com",
-    database="analytics",
-    user="user",
-    password="password"
-)
-
-# Insert data
-with conn.cursor() as cur:
-    for row in results.result.rows:
-        cur.execute(
-            "INSERT INTO dex_analytics VALUES (%s, %s, %s)",
-            (row['blockchain'], row['volume'], row['timestamp'])
-        )
-    conn.commit()
-```
-
 ### Onchain Monitoring
 
 Monitor specific metrics and trigger alerts:
@@ -469,6 +436,5 @@ while True:
 
 * **Research Reports:** Generate daily/weekly reports on DeFi protocols, NFT markets, or chain activity
 * **Automated Dashboards:** Feed data to custom dashboards or BI tools
-* **Data Exports:** Export onchain data to your data warehouse
 * **Alert Systems:** Monitor metrics and trigger alerts when thresholds are met
 * **Comparative Analysis:** Compare metrics across chains, protocols, or time periods
