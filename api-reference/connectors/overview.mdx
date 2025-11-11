@@ -1,7 +1,7 @@
 ---
 title: "Connectors Overview"
 icon: "plug"
-description: "Connect Dune's data directly to your environment using Trino REST API or DBT"
+description: "Connect Dune's data directly to your environment using Trino Connector or DBT Connector"
 ---
 
 ## Overview
@@ -11,8 +11,8 @@ Dune's connectors allow you to query blockchain data directly in your own enviro
 ## Available Connectors
 
 <CardGroup cols={2}>
-  <Card title="Trino REST API Connector" icon="database" href="/api-reference/overview/dunesql-trino-connector">
-    Connect to Dune's data warehouse using standard Trino REST API protocol
+  <Card title="Trino Connector" icon="database" href="/api-reference/overview/dunesql-trino-connector">
+    Connect to Dune's data warehouse using standard Trino protocol
     
     **Perfect for:**
     - Enterprise teams with existing data infrastructure
@@ -24,7 +24,7 @@ Dune's connectors allow you to query blockchain data directly in your own enviro
   </Card>
   
   <Card title="DBT Connector" icon="code-branch" href="https://github.com/duneanalytics/dbt-dune">
-    Use DBT to build data transformation pipelines on top of Dune data
+    Use DBT Connector to build data transformation pipelines on top of Dune data
     
     **Perfect for:**
     - Data engineering teams using DBT
@@ -38,7 +38,7 @@ Dune's connectors allow you to query blockchain data directly in your own enviro
 
 ## Choosing the Right Connector
 
-| Feature | Trino REST API | DBT | Analytics API |
+| Feature | Trino Connector | DBT Connector | Analytics API |
 |---------|---------------|-----|---------------|
 | **Use Case** | Direct SQL queries in your tools | Data transformation pipelines | Programmatic access |
 | **Query Language** | Standard SQL | DBT + SQL | SQL via HTTP |
