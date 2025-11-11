@@ -2586,6 +2586,36 @@
                 ]
               },
               {
+                "group": "Echelon",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/echelon/overview",
+                  "data-catalog/echelon/blocks",
+                  "data-catalog/echelon/block_events",
+                  "data-catalog/echelon/message_events",
+                  "data-catalog/echelon/transactions",
+                  "data-catalog/echelon/tx_messages"
+                ]
+              },
+              {
+                "group": "Initia",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/initia/overview",
+                  "data-catalog/initia/balances",
+                  "data-catalog/initia/blocks",
+                  "data-catalog/initia/block_events",
+                  "data-catalog/initia/bridge_transfers",
+                  "data-catalog/initia/message_events",
+                  "data-catalog/initia/swaps",
+                  "data-catalog/initia/transactions",
+                  "data-catalog/initia/tx_messages",
+                  "data-catalog/initia/validators"
+                ]
+              },
+              {
                 "group": "Noble",
                 "icon": "database",
                 "iconType": "solid",
@@ -2761,6 +2791,19 @@
                       "data-catalog/tron/tokens/transfers/erc721-transfers"
                     ]
                   }
+                ]
+              },
+              {
+                "group": "Yominet",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/yominet/overview",
+                  "data-catalog/yominet/blocks",
+                  "data-catalog/yominet/block_events",
+                  "data-catalog/yominet/message_events",
+                  "data-catalog/yominet/transactions",
+                  "data-catalog/yominet/tx_messages"
                 ]
               }
             ]

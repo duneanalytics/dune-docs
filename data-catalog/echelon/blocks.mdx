@@ -1,0 +1,28 @@
+---
+title: Blocks
+description: Echelon blockchain blocks data
+---
+
+# Table Description
+
+This table contains data about blocks in the Echelon blockchain, including block headers, consensus data, and transaction information.
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **block_date**       | date      | The date of the block.                                         |
+| **block_height**     | bigint    | The height of the block, a unique identifier for each block.   |
+| **block_timestamp**  | timestamp(3) with time zone | Timestamp when the block was validated.                        |
+| **chain_id**         | varchar   | The ID of the chain where the block belongs.                   |
+| **proposer_address** | varchar   | The address of the validator proposing the block.              |
+| **validators_hash**  | varchar   | The hash of the validators set for the block.                  |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="echelon" tableName="blocks" />
+
