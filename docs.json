@@ -2955,6 +2955,7 @@
                 "group": "Quick Start",
                 "pages": [
                   "api-reference/apis/quickstart-analyze",
+                  "api-reference/apis/quickstart-realtime",
                   "api-reference/apis/quickstart-dashboards"
                 ],
                 "icon": "rocket"
