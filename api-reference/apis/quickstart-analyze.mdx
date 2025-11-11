@@ -390,8 +390,8 @@ while True:
 <AccordionGroup>
 
   <Accordion title="Use the appropriate performance tier">
-    * **Medium (10 credits):** Most queries complete in seconds
-    * **Large (20 credits):** Complex queries with joins across large tables
+    * **Medium:** Extended timeout, 1x compute, priority queue. Best for most queries.
+    * **Large:** Extended timeout, 2x compute, priority queue. For complex queries with joins across large tables.
 
     ```python  theme={null}
     results = dune.run_sql(query_sql=sql, performance="large")
