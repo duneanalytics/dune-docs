@@ -3008,6 +3008,7 @@
                   {
                     "group": "Materialized Views",
                     "pages": [
+                      "api-reference/materialized-views/overview",
                       "api-reference/materialized-views/get",
                       "api-reference/materialized-views/create",
                       "api-reference/materialized-views/delete",
@@ -3019,6 +3020,7 @@
                   {
                     "group": "Account Management",
                     "pages": [
+                      "api-reference/usage/overview",
                       "api-reference/usage/endpoint/get-usage"
                     ],
                     "icon": "user"

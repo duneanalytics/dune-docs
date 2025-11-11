@@ -1,0 +1,55 @@
+---
+title: 'Overview'
+icon: "star"
+---
+
+The materialized views endpoints allow you to create, manage, and refresh materialized views programmatically via the API.
+
+## What are Materialized Views?
+
+Materialized views store the results of a query in a table that can be queried like any other table. This is useful when you have a query that takes a long time to run, or when you want to use the results of a query in another query.
+
+Instead of running the same query pattern over and over again, you can run it once and then use the results in other queries, building your own simple data pipeline inside of Dune.
+
+## When to Use Materialized Views
+
+You should consider using materialized views when you encounter:
+
+- Using the same query pattern across multiple queries
+- Query timeouts (running longer than 30 minutes)
+- Execution errors due to stage limits (when joining many tables)
+- Memory limit errors (when using too many large tables)
+
+<Note>
+Materialized views contribute to your storage quota. On the free tier you can only create a 1MB materialized view. Learn more at [dune.com/pricing](https://dune.com/pricing)
+</Note>
+
+## Naming Convention
+
+Materialized view names must follow these rules:
+
+- The full name qualifier is `dune.<your_team>.<name>`
+- The name (last part) must be prefixed with `result_`
+- Example: `dune.myteam.result_daily_volume`
+
+## Endpoints
+
+Below is an overview of each endpoint for managing materialized views.
+
+| Endpoint Title | Endpoint | Description |
+|----------------|----------|-------------|
+| [Get Materialized View](./get) | `GET /v1/materialized-views/{name}` | Retrieves details about a specific materialized view |
+| [Upsert Materialized View](./create) | `POST /v1/materialized-views` | Creates a new materialized view or updates an existing one |
+| [Delete Materialized View](./delete) | `DELETE /v1/materialized-views/{name}` | Removes a materialized view |
+| [List Materialized Views](./list) | `GET /v1/materialized-views` | Lists all materialized views for your account |
+| [Refresh Materialized View](./refresh) | `POST /v1/materialized-views/{name}/refresh` | Triggers a refresh to update the materialized view with latest data |
+
+## Refresh and Credits
+
+Each refresh of a materialized view triggers a query execution and consumes credits based on the performance level:
+
+- **Medium**: 10 credits per execution
+- **Large**: 20 credits per execution
+
+You can set a refresh schedule using cron expressions (minimum 15 minutes, maximum weekly) when creating or updating a materialized view.
+
