@@ -2575,17 +2575,6 @@
                 ]
               },
               {
-                "group": "Fuel",
-                "icon": "database",
-                "iconType": "solid",
-                "pages": [
-                  "data-catalog/fuel/overview",
-                  "data-catalog/fuel/blocks",
-                  "data-catalog/fuel/transactions",
-                  "data-catalog/fuel/receipts"
-                ]
-              },
-              {
                 "group": "Echelon",
                 "icon": "database",
                 "iconType": "solid",
@@ -2596,6 +2585,17 @@
                   "data-catalog/echelon/message_events",
                   "data-catalog/echelon/transactions",
                   "data-catalog/echelon/tx_messages"
+                ]
+              },
+              {
+                "group": "Fuel",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/fuel/overview",
+                  "data-catalog/fuel/blocks",
+                  "data-catalog/fuel/transactions",
+                  "data-catalog/fuel/receipts"
                 ]
               },
               {
