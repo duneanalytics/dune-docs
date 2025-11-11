@@ -443,18 +443,6 @@ while True:
 
 </AccordionGroup>
 
-## Important Schema Notes
-
-<Note>
-  **Database Schema Updates:** The Dune database schema is continuously updated to provide better data. Key changes to be aware of:
-  
-  * In `dex.trades` table, use `taker` instead of `trader` for identifying the trade taker
-  * Column `maker` identifies the trade maker
-  * Column `tx_from` can also be used to identify the transaction originator
-  
-  Always verify column names using the [Dune Data Explorer](https://dune.com/docs/app/query-editor/data-explorer/) before building queries.
-</Note>
-
 ## Next Steps
 
 <CardGroup cols={2}>
