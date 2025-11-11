@@ -50,7 +50,7 @@ Dune's connectors allow you to query blockchain data directly in your own enviro
 
 <CardGroup cols={2}>
   <Card title="Enterprise BI Dashboards" icon="chart-mixed">
-    Connect Tableau, PowerBI, or Looker to build enterprise dashboards on blockchain data
+    Connect PowerBI or Looker to build enterprise dashboards on blockchain data
   </Card>
   
   <Card title="Data Warehouse Integration" icon="database">
@@ -63,82 +63,6 @@ Dune's connectors allow you to query blockchain data directly in your own enviro
   
   <Card title="DBT Pipelines" icon="diagram-project">
     Build sophisticated data transformation pipelines with version control and testing
-  </Card>
-</CardGroup>
-
-## Pricing
-
-Both connectors use the same credit system as the Analytics API:
-
-- **Query Execution:** 10-20 credits per execution (based on performance tier)
-- **Data Transfer:** Included
-- **Connection:** Free (no connection fees)
-
-Track your usage via the [Usage API](/api-reference/usage/endpoint/get-usage).
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="Connection refused or timeout">
-    - Verify your API key is correct
-    - Check that you're using port 443 (not 8080)
-    - Ensure your firewall allows HTTPS connections
-    - Try using `x` as username (not your email)
-  </Accordion>
-
-  <Accordion title="Authentication failed">
-    - Double-check your API key
-    - Make sure there are no extra spaces or characters
-    - Try regenerating your API key
-  </Accordion>
-
-  <Accordion title="Table not found">
-    - Verify the schema name (ethereum, polygon, etc.)
-    - Check table exists in [Data Catalog](/data-catalog/overview)
-    - Use fully qualified table names: `dune.ethereum.transactions`
-  </Accordion>
-
-  <Accordion title="Query timeout">
-    - Add time filters to reduce data scanned
-    - Use curated tables instead of raw data
-    - Consider using `LIMIT` for exploratory queries
-    - Upgrade to large performance tier for complex queries
-  </Accordion>
-</AccordionGroup>
-
-## Next Steps
-
-<CardGroup cols={2}>
-  <Card title="Trino Connector Documentation" icon="database" href="/api-reference/overview/dunesql-trino-connector">
-    Complete setup guide for Trino Connector
-  </Card>
-  
-  <Card title="DBT on GitHub" icon="code-branch" href="https://github.com/duneanalytics/dbt-dune">
-    DBT adapter source code and examples
-  </Card>
-  
-  <Card title="Data Catalog" icon="table" href="/data-catalog/overview">
-    Browse available tables and schemas
-  </Card>
-  
-  <Card title="Rate Limits" icon="gauge" href="/api-reference/overview/rate-limits">
-    Understand connector rate limits
-  </Card>
-</CardGroup>
-
-## Getting Help
-
-<CardGroup cols={3}>
-  <Card title="Community Discord" icon="discord" href="https://discord.gg/duneanalytics">
-    Get help from the community
-  </Card>
-  
-  <Card title="Support" icon="life-ring" href="mailto:support@dune.com">
-    Contact Dune support
-  </Card>
-  
-  <Card title="GitHub Issues" icon="github" href="https://github.com/duneanalytics/dbt-dune/issues">
-    Report DBT connector issues
   </Card>
 </CardGroup>
 
