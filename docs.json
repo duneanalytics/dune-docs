@@ -3053,13 +3053,7 @@
             "group": "Connectors",
             "pages": [
               "api-reference/connectors/overview",
-              {
-                "group": "Trino Connector",
-                "pages": [
-                  "api-reference/overview/dunesql-trino-connector"
-                ],
-                "icon": "database"
-              }
+              "api-reference/overview/dunesql-trino-connector"
             ],
             "icon": "plug"
           },
