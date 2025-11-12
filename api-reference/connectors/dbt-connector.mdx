@@ -4,11 +4,40 @@ description: Run production-grade dbt projects directly on Dune with full increm
 icon: "cube"
 ---
 
-## Overview
-
 The dbt Connector enables you to run production-grade dbt projects directly against Dune's data warehouse using the [dbt-trino adapter](https://docs.getdbt.com/docs/core/connect-data-platform/trino-setup). Build, test, and deploy transformation pipelines with full support for incremental models, testing frameworks, and CI/CD orchestration.
 
 This connector provides **write access to DuneSQL** via a Trino API endpoint, enabling you to create, update, and manage tables in your private namespace while reading from Dune's comprehensive blockchain datasets.
+
+
+<Card title="dbt Template Repository" icon="github" href="https://github.com/duneanalytics/dune-dbt-template">
+  Get started quickly with our official dbt template repository, featuring example models for all incremental strategies and CI/CD workflows.
+</Card>
+
+
+<Warning>
+The dbt Connector is currently only available to Enterprise customers with Data Transformations enabled.
+</Warning>
+
+
+
+## What is dbt?
+
+[dbt (data build tool)](https://www.getdbt.com/) is the industry-standard framework for analytics engineering. It enables data teams to transform raw data into analysis-ready datasets using SQL and software engineering best practices.
+
+**Key capabilities:**
+- **SQL-based transformations**: Write SELECT statements, dbt handles the DDL/DML
+- **Incremental models**: Efficiently update large tables with merge, append, or delete+insert strategies
+- **Testing & documentation**: Built-in data quality tests and auto-generated documentation
+- **Version control**: Manage transformation logic in Git with code review workflows
+- **Dependency management**: Define relationships between models with automatic execution ordering
+
+dbt has become the de facto standard for data transformation pipelines, used by thousands of data teams to build reliable, maintainable analytics infrastructure.
+
+
+<Card title="dbt Documentation" icon="book" href="https://docs.getdbt.com/">
+  Learn more about dbt's features, best practices, and advanced capabilities in the official dbt documentation.
+</Card>
+
 
 ## Why dbt on Dune?
 
@@ -169,6 +198,47 @@ uv run dbt run
 # Run tests
 uv run dbt test
 ```
+
+
+## How It Works
+
+### Namespace Isolation
+
+All tables and views you create are organized into your team's namespace:
+
+- **Production schema**: `{your_team}` - For production tables
+- **Development schemas**: `{your_team}__tmp_*` - For development and testing
+
+This ensures complete isolation between teams and between development/production environments.
+
+### Write Operations
+
+Execute SQL statements to create and manage your data:
+
+1. **Create tables and views** in your namespace
+2. **Insert, update, or merge** data using standard SQL
+3. **Drop tables** when no longer needed
+4. **Optimize and vacuum** tables for performance
+
+All operations are authenticated via your Dune API key and restricted to your team's namespace.
+
+### Data Access
+
+**What You Can Read:**
+- **All public Dune datasets**: Full access to blockchain data across all supported chains
+- **Your uploaded data**: Private datasets you've uploaded to Dune
+- **Your transformation outputs**: Tables and views created in your namespace
+
+**What You Can Write:**
+- **Your team namespace**: `{team_name}` for production tables
+- **Development namespaces**: `{team_name}__tmp_*` for dev and testing
+- **Private by default**: All created tables are private unless explicitly made public
+
+**Access Control:**
+- Write operations are restricted to your team's namespaces only
+- Cannot write to public schemas or other teams' namespaces
+- Schema naming rules enforced: no `__tmp_` in team handles
+
 
 ## Project Structure
 
@@ -424,44 +494,6 @@ SELECT ...
 
 **Note**: Maintenance operations consume credits based on compute and data written.
 
-## How It Works
-
-### Namespace Isolation
-
-All tables and views you create are organized into your team's namespace:
-
-- **Production schema**: `{your_team}` - For production tables
-- **Development schemas**: `{your_team}__tmp_*` - For development and testing
-
-This ensures complete isolation between teams and between development/production environments.
-
-### Write Operations
-
-Execute SQL statements to create and manage your data:
-
-1. **Create tables and views** in your namespace
-2. **Insert, update, or merge** data using standard SQL
-3. **Drop tables** when no longer needed
-4. **Optimize and vacuum** tables for performance
-
-All operations are authenticated via your Dune API key and restricted to your team's namespace.
-
-### Data Access
-
-**What You Can Read:**
-- **All public Dune datasets**: Full access to blockchain data across all supported chains
-- **Your uploaded data**: Private datasets you've uploaded to Dune
-- **Your transformation outputs**: Tables and views created in your namespace
-
-**What You Can Write:**
-- **Your team namespace**: `{team_name}` for production tables
-- **Development namespaces**: `{team_name}__tmp_*` for dev and testing
-- **Private by default**: All created tables are private unless explicitly made public
-
-**Access Control:**
-- Write operations are restricted to your team's namespaces only
-- Cannot write to public schemas or other teams' namespaces
-- Schema naming rules enforced: no `__tmp_` in team handles
 
 ## Dropping Tables
 
@@ -486,7 +518,7 @@ Use any Trino-compatible client (Hex, Jupyter, DBeaver) to execute:
 DROP TABLE IF EXISTS dune.your_team.old_model;
 ```
 
-See the [SQL Operations Reference](/api-reference/data-transformations/sql-operations) for details.
+See the [SQL Operations Reference](/api-reference/connectors/sql-operations) for details.
 
 ## Querying dbt Models on Dune
 
@@ -728,9 +760,9 @@ Complete examples are available in the template repository:
 ### Documentation
 
 - [dbt Template Repository](https://github.com/duneanalytics/dune-dbt-template)
-- [SQL Operations Reference](/api-reference/data-transformations/sql-operations)
+- [SQL Operations Reference](/api-reference/connectors/sql-operations)
 - [Query Engine Overview](/query-engine/overview) - DuneSQL capabilities and read operations
-- [DuneSQL Trino Connector](/api-reference/overview/dunesql-trino-connector) - General Trino connection guide
+- [Trino Connector](/api-reference/connectors/trino-connector) - General Trino connection guide
 - [dbt Documentation](https://docs.getdbt.com/)
 - [dbt-trino Setup Guide](https://docs.getdbt.com/docs/core/connect-data-platform/trino-setup)
 

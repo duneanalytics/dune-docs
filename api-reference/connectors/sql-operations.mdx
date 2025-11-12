@@ -6,9 +6,13 @@ icon: "code"
 
 ## Overview
 
-This page documents all SQL statements supported via the Data Transformations API. These operations enable you to create, manage, and manipulate tables and views in your private namespace on Dune.
+This page documents **write operations** supported via the Data Transformations connector. These operations enable you to create, manage, and manipulate tables and views in your private namespace on Dune.
 
-While dbt is the recommended tool for data transformations, these SQL operations work with any Trino-compatible client including Hex, Jupyter notebooks, SQLMesh, or direct Trino connections.
+Both read and write operations use the same Trino endpoint (`trino.api.dune.com`), but write operations require the `transformations=true` session property.
+
+**Standard read operations** (SELECT, JOIN, WHERE, etc.) are documented in the [Query Engine](/query-engine/overview) section and work without any special session properties.
+
+While [dbt](/api-reference/connectors/dbt-connector) is the recommended tool for data transformations, these SQL operations work with any Trino-compatible client including Hex, Jupyter notebooks, SQLMesh, or direct Trino connections.
 
 <Note>
 All write operations require the `transformations=true` session property to be set. Without this property, DDL and DML statements will be rejected.
@@ -782,8 +786,8 @@ See the `/models/templates/` directory for:
 
 ## Related Documentation
 
-- [Data Transformations Overview](/api-reference/data-transformations/overview)
-- [DuneSQL Trino Connector](/api-reference/overview/dunesql-trino-connector)
+- [dbt Connector](/api-reference/connectors/dbt-connector)
+- [Trino Connector](/api-reference/connectors/trino-connector)
 - [Query Engine Overview](/query-engine/overview)
 - [DuneSQL Functions & Operators](/query-engine/Functions-and-operators/index)
 - [Rate Limits](/api-reference/overview/rate-limits)

@@ -3053,7 +3053,9 @@
             "group": "Connectors",
             "pages": [
               "api-reference/connectors/overview",
-              "api-reference/overview/dunesql-trino-connector"
+              "api-reference/connectors/trino-connector",
+              "api-reference/connectors/dbt-connector",
+              "api-reference/connectors/sql-operations"
             ],
             "icon": "plug"
           },
