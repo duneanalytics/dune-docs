@@ -1,0 +1,785 @@
+---
+title: Supported SQL Operations
+description: Comprehensive reference of DDL and DML statements supported for data transformations
+icon: "code"
+---
+
+## Overview
+
+This page documents **write operations** supported via the Data Transformations connector. These operations enable you to create, manage, and manipulate tables and views in your private namespace on Dune.
+
+Both read and write operations use the same Trino endpoint (`trino.api.dune.com`), but write operations require the `transformations=true` session property.
+
+**Standard read operations** (SELECT, JOIN, WHERE, etc.) are documented in the [Query Engine](/query-engine/overview) section and work without any special session properties.
+
+While [dbt](/api-reference/connectors/dbt-connector) is the recommended tool for data transformations, these SQL operations work with any Trino-compatible client including Hex, Jupyter notebooks, SQLMesh, or direct Trino connections.
+
+<Note>
+All write operations require the `transformations=true` session property to be set. Without this property, DDL and DML statements will be rejected.
+</Note>
+
+## Prerequisites
+
+- Dune Enterprise account with Data Transformations enabled
+- Valid Dune API key with write permissions
+- Queries must target the `dune` catalog
+
+## DDL Operations
+
+### Schema Management
+
+Create and manage schemas within your namespace.
+
+#### CREATE SCHEMA
+
+**``CREATE SCHEMA [IF NOT EXISTS] schema_name``**
+
+Create a new schema in your team namespace.
+
+**Examples:**
+
+```sql
+CREATE SCHEMA IF NOT EXISTS your_team;
+CREATE SCHEMA IF NOT EXISTS your_team__tmp_dev;
+```
+
+**Access control**: You can only create schemas matching your team handle or temporary schemas with the pattern `{team}__tmp_*`.
+
+#### SHOW SCHEMAS
+
+**``SHOW SCHEMAS [FROM catalog]``**
+
+List all schemas you have access to.
+
+**Example:**
+
+```sql
+SHOW SCHEMAS FROM dune;
+```
+
+**Returns**: All public schemas plus your own schemas.
+
+#### Query Information Schema
+
+**``SELECT ... FROM dune.information_schema.schemata``**
+
+Get detailed schema metadata using information schema queries.
+
+**Example:**
+
+```sql
+SELECT schema_name, catalog_name
+FROM dune.information_schema.schemata
+WHERE schema_name LIKE 'your_team%'
+ORDER BY schema_name;
+```
+
+### Table Management
+
+#### CREATE TABLE
+
+**``CREATE TABLE [IF NOT EXISTS] table_name (column_definitions)``**
+
+Create a new table with explicit column definitions.
+
+**Example:**
+
+```sql
+CREATE TABLE IF NOT EXISTS your_team.users (
+    user_id BIGINT,
+    address VARBINARY,
+    created_at TIMESTAMP,
+    total_volume DOUBLE
+);
+```
+
+**Supported column types**: All DuneSQL data types including `BIGINT`, `DOUBLE`, `VARCHAR`, `VARBINARY`, `TIMESTAMP`, `BOOLEAN`, `ARRAY`, `MAP`, and custom types like [`UINT256` and `INT256`](https://docs.dune.com/query-engine/datatypes#uint256-dune-sql).
+
+#### CREATE TABLE AS SELECT (CTAS)
+
+**``CREATE TABLE table_name AS query``**
+
+Create a table from a query result.
+
+**Example:**
+
+```sql
+CREATE TABLE your_team.daily_volumes AS
+SELECT
+    DATE_TRUNC('day', block_time) as day,
+    COUNT(*) as tx_count,
+    SUM(value) as total_volume
+FROM ethereum.transactions
+WHERE block_time >= NOW() - INTERVAL '7' DAY
+GROUP BY 1;
+```
+
+#### CREATE OR REPLACE TABLE
+
+**``CREATE OR REPLACE TABLE table_name AS query``**
+
+Create or replace an existing table atomically.
+
+**Example:**
+
+```sql
+CREATE OR REPLACE TABLE your_team.latest_prices AS
+SELECT
+    contract_address,
+    symbol,
+    price_usd,
+    MAX(minute) as last_updated
+FROM prices.usd
+WHERE minute >= NOW() - INTERVAL '1' HOUR
+GROUP BY 1, 2, 3;
+```
+
+**Note**: This completely replaces the table. For incremental updates, use `MERGE` instead.
+
+#### DROP TABLE
+
+**``DROP TABLE [IF EXISTS] table_name``**
+
+Delete a table and its data.
+
+**Examples:**
+
+```sql
+DROP TABLE IF EXISTS your_team.old_analysis;
+DROP TABLE IF EXISTS your_team__tmp_pr123.test_model;
+```
+
+**Access control**: You can only drop tables in your own namespaces.
+
+#### SHOW TABLES
+
+**``SHOW TABLES [FROM schema]``**
+
+List all tables in a schema.
+
+**Examples:**
+
+```sql
+SHOW TABLES FROM your_team;
+SHOW TABLES FROM your_team__tmp_;
+```
+
+#### SHOW CREATE TABLE
+
+**``SHOW CREATE TABLE table_name``**
+
+View the DDL for a table.
+
+**Example:**
+
+```sql
+SHOW CREATE TABLE your_team.users;
+```
+
+**Returns**: The full `CREATE TABLE` statement that can recreate the table.
+
+### View Management
+
+#### CREATE OR REPLACE VIEW
+
+**``CREATE OR REPLACE VIEW view_name AS query``**
+
+Create or update a view definition.
+
+**Example:**
+
+```sql
+CREATE OR REPLACE VIEW your_team.active_traders AS
+SELECT
+    trader_address,
+    COUNT(*) as trade_count,
+    SUM(amount_usd) as total_volume
+FROM your_team.dex_trades
+WHERE block_time >= NOW() - INTERVAL '30' DAY
+GROUP BY 1
+HAVING COUNT(*) >= 10;
+```
+
+**Benefits**: Views don't store data, so they don't consume storage credits. They're computed on-the-fly when queried.
+
+#### DROP VIEW
+
+**``DROP VIEW [IF EXISTS] view_name``**
+
+Delete a view definition.
+
+**Example:**
+
+```sql
+DROP VIEW IF EXISTS your_team.old_view;
+```
+
+#### SHOW CREATE VIEW
+
+**``SHOW CREATE VIEW view_name``**
+
+View the SQL definition of a view.
+
+**Example:**
+
+```sql
+SHOW CREATE VIEW your_team.active_traders;
+```
+
+### Column Operations
+
+#### SHOW COLUMNS
+
+**``SHOW COLUMNS FROM table_name``**
+
+List all columns in a table.
+
+**Example:**
+
+```sql
+SHOW COLUMNS FROM your_team.users;
+```
+
+#### DESCRIBE
+
+**``DESCRIBE table_name``**
+
+Get detailed column information including names, types, and metadata.
+
+**Example:**
+
+```sql
+DESCRIBE your_team.users;
+```
+
+**Returns**: Column names, data types, nullability, and additional metadata.
+
+#### Query Information Schema for Columns
+
+**``SELECT ... FROM dune.information_schema.columns``**
+
+Get detailed column metadata using information schema queries.
+
+**Example:**
+
+```sql
+SELECT
+    table_schema,
+    table_name,
+    column_name,
+    data_type,
+    is_nullable
+FROM dune.information_schema.columns
+WHERE table_schema = 'your_team'
+    AND table_name = 'users'
+ORDER BY ordinal_position;
+```
+
+## DML Operations
+
+### Insert Operations
+
+#### INSERT INTO with VALUES
+
+**``INSERT INTO table_name (columns) VALUES (values)``**
+
+Insert specific rows into a table.
+
+**Example:**
+
+```sql
+INSERT INTO your_team.config (key, value, updated_at)
+VALUES
+    ('max_slippage', '0.5', NOW()),
+    ('min_liquidity', '1000', NOW());
+```
+
+#### INSERT INTO with SELECT
+
+**``INSERT INTO table_name SELECT ...``**
+
+Insert query results into a table.
+
+**Example:**
+
+```sql
+INSERT INTO your_team.daily_aggregates
+SELECT
+    DATE_TRUNC('day', block_time) as day,
+    protocol,
+    COUNT(*) as transaction_count,
+    SUM(amount_usd) as volume_usd
+FROM your_team.decoded_events
+WHERE block_time >= CURRENT_DATE
+GROUP BY 1, 2;
+```
+
+**Use case**: Append-only incremental models, historical snapshots, event logging.
+
+### Update Operations
+
+#### MERGE INTO
+
+**``MERGE INTO target USING source ON condition WHEN MATCHED THEN UPDATE ... WHEN NOT MATCHED THEN INSERT ...``**
+
+Upsert data - update existing rows and insert new ones in a single operation.
+
+**Example:**
+
+```sql
+MERGE INTO your_team.user_stats t
+USING (
+    SELECT
+        user_address,
+        COUNT(*) as trade_count,
+        SUM(volume_usd) as total_volume,
+        MAX(block_time) as last_trade
+    FROM ethereum.dex_trades
+    WHERE block_time >= CURRENT_DATE - INTERVAL '1' DAY
+    GROUP BY 1
+) s
+ON t.user_address = s.user_address
+WHEN MATCHED THEN
+    UPDATE SET
+        trade_count = t.trade_count + s.trade_count,
+        total_volume = t.total_volume + s.total_volume,
+        last_trade = GREATEST(t.last_trade, s.last_trade)
+WHEN NOT MATCHED THEN
+    INSERT (user_address, trade_count, total_volume, last_trade)
+    VALUES (s.user_address, s.trade_count, s.total_volume, s.last_trade);
+```
+
+**Use case**: Incremental models that update existing records and insert new ones (dbt merge strategy).
+
+**Performance**: More efficient than delete+insert for partial updates of large tables.
+
+### Delete Operations
+
+#### DELETE FROM
+
+**``DELETE FROM table_name WHERE condition``**
+
+Delete rows matching a condition.
+
+**Example:**
+
+```sql
+DELETE FROM your_team.staging_data
+WHERE created_at < NOW() - INTERVAL '7' DAY;
+```
+
+#### TRUNCATE TABLE
+
+**``TRUNCATE TABLE table_name``**
+
+Remove all rows from a table efficiently.
+
+**Example:**
+
+```sql
+TRUNCATE TABLE your_team.temp_calculations;
+```
+
+**Performance**: `TRUNCATE` is faster than `DELETE FROM table` for removing all rows as it doesn't scan individual rows.
+
+## Maintenance Operations
+
+These operations optimize table performance and manage metadata. They consume credits based on compute and data written.
+
+### OPTIMIZE
+
+**``ALTER TABLE table_name EXECUTE OPTIMIZE``**
+
+Compact small files and optimize table layout for better query performance.
+
+**Example:**
+
+```sql
+ALTER TABLE your_team.large_dataset EXECUTE OPTIMIZE;
+```
+
+**When to use**:
+- After many small writes
+- Before running complex queries
+- Periodically for frequently-updated tables
+
+**Effect**: Combines small data files into larger ones, improving query performance by reducing file overhead.
+
+### VACUUM
+
+**``ALTER TABLE table_name EXECUTE VACUUM``**
+
+Remove old data files and reclaim storage space.
+
+**Example:**
+
+```sql
+ALTER TABLE your_team.historical_data EXECUTE VACUUM;
+```
+
+**When to use**:
+- After major updates or deletes
+- To reclaim storage space
+- Based on your retention policies
+
+**Effect**: Removes old file versions that are no longer needed, reducing storage costs.
+
+<Tip>
+VACUUM is most effective when run after OPTIMIZE, as it can remove the redundant small files replaced during compaction.
+</Tip>
+
+### Automating Maintenance in dbt
+
+Use dbt post-hooks to automate maintenance:
+
+```yaml
+models:
+  your_project:
+    large_model:
+      +post-hook:
+        - "ALTER TABLE {{ this }} EXECUTE OPTIMIZE"
+        - "ALTER TABLE {{ this }} EXECUTE VACUUM"
+```
+
+## Information Schema Queries
+
+Query metadata about your tables and schemas.
+
+### List All Tables
+
+```sql
+SELECT
+    table_schema,
+    table_name,
+    table_type
+FROM dune.information_schema.tables
+WHERE table_schema = 'your_team'
+ORDER BY table_name;
+```
+
+### Find Tables by Pattern
+
+```sql
+SELECT
+    table_schema,
+    table_name
+FROM dune.information_schema.tables
+WHERE table_schema LIKE 'your_team%'
+    AND table_name LIKE 'user_%'
+ORDER BY table_schema, table_name;
+```
+
+### Get Table Column Details
+
+```sql
+SELECT
+    column_name,
+    data_type,
+    is_nullable,
+    ordinal_position
+FROM dune.information_schema.columns
+WHERE table_schema = 'your_team'
+    AND table_name = 'users'
+ORDER BY ordinal_position;
+```
+
+### Check Table Existence
+
+```sql
+SELECT COUNT(*) > 0 as table_exists
+FROM dune.information_schema.tables
+WHERE table_schema = 'your_team'
+    AND table_name = 'my_model';
+```
+
+## Permissions & Access Control
+
+### What You Can Do
+
+#### Read Permissions
+- All public Dune datasets
+- Your team's private uploaded data
+- Your transformation tables and views
+
+#### Write Permissions
+- Create schemas: `{team_name}` and `{team_name}__tmp_*`
+- Create tables/views in your schemas only
+- Insert, update, delete data in your tables only
+- Drop your own tables and views
+
+### What You Cannot Do
+
+- Write to public schemas (e.g., `ethereum`, `prices`, etc.)
+- Write to other teams' namespaces
+- Modify tables you don't own
+
+### Schema Naming Rules
+
+Valid namespace patterns:
+- `your_team` - Production schema
+- `your_team__tmp_` - Default development schema
+- `your_team__tmp_alice` - Personal development schema
+- `your_team__tmp_pr123` - CI/CD schema for PR #123
+
+Invalid patterns:
+- `eth__tmp_` - Cannot use reserved prefixes
+- `another_team` - Cannot use other team names
+- `public__tmp_` - Cannot use system schemas
+
+## Session Properties
+
+### Required Property
+
+```sql
+SET SESSION transformations = true;
+```
+
+**Purpose**: Enables write operations. Without this, all DDL/DML statements will be rejected.
+
+**How to set**:
+- **dbt**: Add to `profiles.yml` under `session_properties`
+- **Python**: Set in connection parameters
+- **SQL client**: Execute `SET SESSION` before other statements
+
+### Optional Properties
+
+#### Join Distribution Type
+
+Optimize join performance:
+
+```sql
+SET SESSION join_distribution_type = 'PARTITIONED';
+```
+
+**Options**:
+- `AUTOMATIC` (default) - Let Trino choose
+- `PARTITIONED` - Repartition both tables
+- `BROADCAST` - Broadcast smaller table
+
+**When to use**: For complex joins on large tables.
+
+## Common Patterns
+
+### Incremental Model Pattern (Merge)
+
+```sql
+-- Check if target table exists
+CREATE TABLE IF NOT EXISTS your_team.user_daily_stats (
+    date DATE,
+    user_address VARBINARY,
+    tx_count BIGINT,
+    volume_usd DOUBLE,
+    PRIMARY KEY (date, user_address)
+);
+
+-- Merge new data
+MERGE INTO your_team.user_daily_stats t
+USING (
+    SELECT
+        DATE_TRUNC('day', block_time) as date,
+        "from" as user_address,
+        COUNT(*) as tx_count,
+        SUM(value) as volume_usd
+    FROM ethereum.transactions
+    WHERE block_time >= CURRENT_DATE - INTERVAL '1' DAY
+    GROUP BY 1, 2
+) s
+ON t.date = s.date AND t.user_address = s.user_address
+WHEN MATCHED THEN
+    UPDATE SET
+        tx_count = s.tx_count,
+        volume_usd = s.volume_usd
+WHEN NOT MATCHED THEN
+    INSERT (date, user_address, tx_count, volume_usd)
+    VALUES (s.date, s.user_address, s.tx_count, s.volume_usd);
+```
+
+### Delete+Insert Pattern
+
+```sql
+-- Delete existing data for update period
+DELETE FROM your_team.hourly_metrics
+WHERE hour >= DATE_TRUNC('hour', NOW() - INTERVAL '24' HOUR);
+
+-- Insert fresh data
+INSERT INTO your_team.hourly_metrics
+SELECT
+    DATE_TRUNC('hour', block_time) as hour,
+    protocol,
+    COUNT(*) as event_count,
+    SUM(amount_usd) as total_volume
+FROM your_team.decoded_events
+WHERE block_time >= DATE_TRUNC('hour', NOW() - INTERVAL '24' HOUR)
+GROUP BY 1, 2;
+```
+
+### Append-Only Pattern with Deduplication
+
+```sql
+-- Insert new records only
+INSERT INTO your_team.event_log
+SELECT DISTINCT
+    evt_tx_hash,
+    evt_block_time,
+    evt_block_number,
+    user_address,
+    action_type
+FROM ethereum.decoded_events
+WHERE evt_block_time >= (
+    SELECT COALESCE(MAX(evt_block_time), TIMESTAMP '2020-01-01')
+    FROM your_team.event_log
+)
+AND NOT EXISTS (
+    SELECT 1
+    FROM your_team.event_log existing
+    WHERE existing.evt_tx_hash = ethereum.decoded_events.evt_tx_hash
+);
+```
+
+### Staging Table Pattern
+
+```sql
+-- Create staging table
+CREATE TABLE your_team__tmp_.staging_new_users AS
+SELECT
+    user_id,
+    address,
+    first_seen,
+    tx_count
+FROM your_source.raw_users
+WHERE created_at >= CURRENT_DATE;
+
+-- Validate staging data
+SELECT
+    COUNT(*) as total_rows,
+    COUNT(DISTINCT user_id) as unique_users,
+    COUNT(*) FILTER (WHERE address IS NULL) as null_addresses
+FROM your_team__tmp_.staging_new_users;
+
+-- Promote to production
+INSERT INTO your_team.users
+SELECT * FROM your_team__tmp_.staging_new_users;
+
+-- Clean up staging
+DROP TABLE your_team__tmp_.staging_new_users;
+```
+
+## Best Practices
+
+### Use Appropriate Incremental Strategy
+
+- **Merge**: When you need to update existing rows (e.g., daily aggregations)
+- **Delete+Insert**: When recomputing entire partitions (e.g., hourly metrics)
+- **Append**: For immutable event logs
+
+### Optimize Write Operations
+
+- Batch inserts instead of single-row inserts
+- Use CTAS for bulk table creation
+- Partition large tables by date for efficient updates
+
+### Manage Table Lifecycle
+
+- Drop temporary tables in `__tmp_` schemas regularly
+- Use views for derived data that doesn't need persistence
+- Run OPTIMIZE periodically on frequently-updated tables
+
+### Monitor Credit Usage
+
+- Track write operations in large tables
+- Use incremental models to minimize data written
+
+## Limitations & Considerations
+
+### No Direct ALTER TABLE Support
+
+You cannot alter table structure directly. Instead:
+
+```sql
+-- Create new table with desired schema
+CREATE TABLE your_team.users_new AS
+SELECT
+    user_id,
+    address,
+    created_at,
+    -- Add new columns or modify types
+    CAST(total_volume AS DECIMAL(38, 2)) as total_volume_precise
+FROM your_team.users;
+
+-- Drop old table
+DROP TABLE your_team.users;
+
+-- Rename new table (via re-create)
+CREATE TABLE your_team.users AS
+SELECT * FROM your_team.users_new;
+
+DROP TABLE your_team.users_new;
+```
+
+### No SCHEMA DROP
+
+Empty schemas are automatically managed. You cannot explicitly drop schemas.
+
+### Transaction Behavior
+
+Each statement is auto-committed. There is no multi-statement transaction support.
+
+### Concurrent Writes
+
+Writing to the same table from multiple processes simultaneously may cause conflicts. Use:
+- Separate staging tables
+- Partitioned writes
+- Sequential execution
+
+## Troubleshooting
+
+### "Access Denied" Errors
+
+**Problem**: Cannot create table in schema.
+
+**Solution**: Verify you're using the correct team namespace and have Data Transformations enabled.
+
+### "Session Property Required" Error
+
+**Problem**: Write operation rejected.
+
+**Solution**: Ensure `transformations=true` is set in session properties.
+
+### Slow MERGE Operations
+
+**Problem**: MERGE takes too long on large tables.
+
+**Solution**:
+- Add filters to reduce rows matched
+- Run OPTIMIZE before MERGE
+- Consider delete+insert for full partition updates
+
+### Table Not Visible in Dune App
+
+**Problem**: Created table doesn't appear in queries.
+
+**Solution**: Remember to use the `dune.` catalog prefix:
+```sql
+SELECT * FROM dune.your_team.your_table;
+```
+
+## Examples
+
+Complete examples and templates are available in the [dune-dbt-template repository](https://github.com/duneanalytics/dune-dbt-template).
+
+See the `/models/templates/` directory for:
+- View model example
+- Table model example
+- Merge incremental model
+- Delete+insert incremental model
+- Append incremental model with deduplication
+
+## Related Documentation
+
+- [dbt Connector](/api-reference/connectors/dbt-connector)
+- [Trino Connector](/api-reference/connectors/trino-connector)
+- [Query Engine Overview](/query-engine/overview)
+- [DuneSQL Functions & Operators](/query-engine/Functions-and-operators/index)
+- [Rate Limits](/api-reference/overview/rate-limits)
+- [Billing](/api-reference/overview/billing)
+
