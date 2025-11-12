@@ -4,15 +4,18 @@
   "name": "Dune Docs",
   "description": "Official documentation for building with Dune's data platform, query engine, and API.",
   "logo": {
-    "light": "/logo/dune-logo-light.png",
-    "dark": "/logo/dune-logo-dark.png",
+    "light": "/logo/dune-logo-light.svg",
+    "dark": "/logo/dune-logo-dark.svg",
     "href": "https://dune.com"
   },
-  "favicon": "/dune.png",
+  "favicon": "/Dune_Favicon.svg",
   "colors": {
-    "primary": "#F4603E",
-    "light": "#F49282",
-    "dark": "#F4603E"
+    "primary": "#0f0f15",
+    "light": "#ffffff",
+    "dark": "#0f0f15"
+  },
+  "fonts": {
+    "family": "Geist"
   },
   "navbar": {
     "links": [
@@ -78,6 +81,7 @@
               "learning/how-tos/create-and-manage-teams",
               "learning/how-tos/credit-system-on-dune",
               "learning/how-tos/credit-system",
+              "learning/how-tos/pricing-faqs",
               "learning/how-tos/search-for-content",
               "learning/how-tos/share-dune-content",
               "learning/how-tos/share-your-query",
@@ -1237,6 +1241,35 @@
                           "data-catalog/evm/hemi/curated-data/dex/dex-trades"
                         ]
                       }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Henesys",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/henesys/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/henesys/raw/blocks",
+                      "data-catalog/evm/henesys/raw/creation-traces",
+                      "data-catalog/evm/henesys/raw/logs",
+                      "data-catalog/evm/henesys/raw/transactions",
+                      "data-catalog/evm/henesys/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/henesys/decoded/overview",
+                      "data-catalog/evm/henesys/decoded/call-tables",
+                      "data-catalog/evm/henesys/decoded/event-logs",
+                      "data-catalog/evm/henesys/decoded/contracts",
+                      "data-catalog/evm/henesys/decoded/logs-decoded",
+                      "data-catalog/evm/henesys/decoded/traces-decoded"
                     ]
                   }
                 ]
@@ -2542,6 +2575,19 @@
                 ]
               },
               {
+                "group": "Echelon",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/echelon/overview",
+                  "data-catalog/echelon/blocks",
+                  "data-catalog/echelon/block_events",
+                  "data-catalog/echelon/message_events",
+                  "data-catalog/echelon/transactions",
+                  "data-catalog/echelon/tx_messages"
+                ]
+              },
+              {
                 "group": "Fuel",
                 "icon": "database",
                 "iconType": "solid",
@@ -2550,6 +2596,23 @@
                   "data-catalog/fuel/blocks",
                   "data-catalog/fuel/transactions",
                   "data-catalog/fuel/receipts"
+                ]
+              },
+              {
+                "group": "Initia",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/initia/overview",
+                  "data-catalog/initia/balances",
+                  "data-catalog/initia/blocks",
+                  "data-catalog/initia/block_events",
+                  "data-catalog/initia/bridge_transfers",
+                  "data-catalog/initia/message_events",
+                  "data-catalog/initia/swaps",
+                  "data-catalog/initia/transactions",
+                  "data-catalog/initia/tx_messages",
+                  "data-catalog/initia/validators"
                 ]
               },
               {
@@ -2729,6 +2792,19 @@
                     ]
                   }
                 ]
+              },
+              {
+                "group": "Yominet",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/yominet/overview",
+                  "data-catalog/yominet/blocks",
+                  "data-catalog/yominet/block_events",
+                  "data-catalog/yominet/message_events",
+                  "data-catalog/yominet/transactions",
+                  "data-catalog/yominet/tx_messages"
+                ]
               }
             ]
           },
@@ -2784,6 +2860,14 @@
                   "data-catalog/community/farcaster/user_data",
                   "data-catalog/community/farcaster/verifications",
                   "data-catalog/community/farcaster/power_badge"
+                ]
+              },
+              {
+                "group": "Hyperliquid",
+                "icon": "droplet",
+                "pages": [
+                  "data-catalog/community/hyperliquid/overview",
+                  "data-catalog/community/hyperliquid/market-data"
                 ]
               },
               {
@@ -2896,6 +2980,7 @@
                 "pages": [
                   "api-reference/executions/execution-object",
                   "api-reference/executions/endpoint/execute-query",
+                  "api-reference/executions/endpoint/execute-sql",
                   "api-reference/executions/endpoint/cancel-execution",
                   "api-reference/executions/endpoint/get-execution-status",
                   "api-reference/executions/endpoint/get-execution-result",
@@ -2942,11 +3027,23 @@
                 "group": "Tables",
                 "pages": [
                   "api-reference/tables/endpoint/overview",
+                  "api-reference/tables/endpoint/list",
                   "api-reference/tables/endpoint/create",
                   "api-reference/tables/endpoint/insert",
                   "api-reference/tables/endpoint/upload",
                   "api-reference/tables/endpoint/clear",
                   "api-reference/tables/endpoint/delete"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Account Management",
+            "pages": [
+              {
+                "group": "Usage",
+                "pages": [
+                  "api-reference/usage/endpoint/get-usage"
                 ]
               }
             ]

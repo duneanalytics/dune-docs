@@ -4176,26 +4176,14 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "performance",
-            "in": "query",
-            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Credits are consumed based on actual compute resources used. Medium is the default, large provides more resources for complex queries.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "medium",
-                "large"
-              ]
-            }
           }
         ],
         "requestBody": {
-          "description": "Raw SQL query to execute",
+          "description": "SQL query and performance configuration",
           "content": {
-            "*/*": {
+            "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/models.ExecuteSQLRequest"
               }
             }
           },
@@ -4353,6 +4341,91 @@
           }
         },
         "x-codegen-request-body-name": "payload"
+      }
+    },
+    "/v1/tables": {
+      "get": {
+        "summary": "List all tables owned by the account tied to the API key",
+        "description": "List all tables owned by the account tied to the API key",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of tables to return on a page. Default: 50, max: 10000",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset used for pagination. Negative values are treated as 0",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.TableListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/tables/create": {
@@ -4912,6 +4985,95 @@
           }
         }
       }
+    },
+    "/v1/usage": {
+      "post": {
+        "summary": "Get Usage Data",
+        "description": "Get usage data for the authenticated customer including private queries, dashboards,\nbytes used/allowed, and billing periods",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload with optional start_date and end_date",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/models.GetUsageRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetUsageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "payload"
+      }
     }
   },
   "components": {
@@ -5050,6 +5212,27 @@
             "type": "string",
             "description": "Unique identifier for the materialized view",
             "example": "dune.dune.result_erc_20_token_summary"
+          }
+        }
+      },
+      "models.BillingPeriod": {
+        "type": "object",
+        "properties": {
+          "credits_included": {
+            "type": "number",
+            "description": "Float value"
+          },
+          "credits_used": {
+            "type": "number",
+            "description": "Float value"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD format"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD format"
           }
         }
       },
@@ -5221,6 +5404,23 @@
           "state": {
             "type": "string",
             "example": "QUERY_STATE_PENDING"
+          }
+        }
+      },
+      "models.ExecuteSQLRequest": {
+        "type": "object",
+        "required": ["sql"],
+        "properties": {
+          "sql": {
+            "type": "string",
+            "description": "The SQL query to execute",
+            "example": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10"
+          },
+          "performance": {
+            "type": "string",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
+            "enum": ["medium", "large"],
+            "default": "medium"
           }
         }
       },
@@ -5443,6 +5643,42 @@
           }
         }
       },
+      "models.GetUsageRequest": {
+        "type": "object",
+        "properties": {
+          "end_date": {
+            "type": "string",
+            "description": "Optional field in YYYY-MM-DD format"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "Optional field in YYYY-MM-DD format"
+          }
+        }
+      },
+      "models.GetUsageResponse": {
+        "type": "object",
+        "properties": {
+          "billing_periods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.BillingPeriod"
+            }
+          },
+          "bytes_allowed": {
+            "type": "integer"
+          },
+          "bytes_used": {
+            "type": "integer"
+          },
+          "private_dashboards": {
+            "type": "integer"
+          },
+          "private_queries": {
+            "type": "integer"
+          }
+        }
+      },
       "models.Parameter": {
         "type": "object",
         "properties": {
@@ -5655,6 +5891,28 @@
           }
         }
       },
+      "models.TableColumnInfo": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Additional column metadata"
+          },
+          "name": {
+            "type": "string",
+            "description": "Column name"
+          },
+          "nullable": {
+            "type": "boolean",
+            "description": "Whether the column can contain null values"
+          },
+          "type": {
+            "type": "string",
+            "description": "Column data type"
+          }
+        }
+      },
       "models.TableCreateResponse": {
         "type": "object",
         "properties": {
@@ -5683,6 +5941,79 @@
         "properties": {
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "models.TableListElement": {
+        "type": "object",
+        "properties": {
+          "columns": {
+            "type": "array",
+            "description": "List of table columns",
+            "items": {
+              "$ref": "#/components/schemas/models.TableColumnInfo"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp of table creation"
+          },
+          "full_name": {
+            "type": "string",
+            "description": "Fully qualified table name (catalog.schema.table)"
+          },
+          "is_private": {
+            "type": "boolean",
+            "description": "Whether the table is private"
+          },
+          "owner": {
+            "type": "object",
+            "description": "Owner information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.TableOwner"
+              }
+            ]
+          },
+          "purged_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp of when table was purged"
+          },
+          "table_size_bytes": {
+            "type": "string",
+            "description": "Size of the table in bytes"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp of last update"
+          }
+        }
+      },
+      "models.TableListResponse": {
+        "type": "object",
+        "properties": {
+          "next_offset": {
+            "type": "integer",
+            "description": "Offset for next page of results"
+          },
+          "tables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.TableListElement"
+            }
+          }
+        }
+      },
+      "models.TableOwner": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string",
+            "description": "User or team identifier"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of entity that created the table"
           }
         }
       },

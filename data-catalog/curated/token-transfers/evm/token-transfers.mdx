@@ -33,7 +33,7 @@ The transfers table provides a comprehensive view of token movement across netwo
 ### Pricing Methodology
 
 <Warning>
-**Important**: The USD values in `tokens.transfers` are calculated using `prices_coinpaprika.hour`, **not** the hybrid `prices.hour` table.
+**Important**: The USD values in `tokens.transfers` are calculated using `prices_external.hour`, **not** the hybrid `prices.hour` table.
 </Warning>
 
 The `amount_usd` column in the transfers table uses Coinpaprika-sourced pricing data exclusively, which provides:
@@ -99,7 +99,7 @@ This query calculates the daily transfer volume for a specific ERC20 token.
 
 Please be aware that token volumes are not necessarily indicative of anything. These metrics can be misleading if the token is not well-known or if there are a lot of small transfers. Token transfers can be mints, burns, transfers, flash loans and anything in between, trying to read into the data can lead to misleading results.
 
-Note: The `amount_usd` values are calculated using Coinpaprika pricing data (`prices_coinpaprika.hour`) for stable, exchange-validated pricing.
+Note: The `amount_usd` values are calculated using Coinpaprika pricing data (`prices_external.hour`) for stable, exchange-validated pricing.
 
 ```sql
 SELECT

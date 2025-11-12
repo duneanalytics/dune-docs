@@ -39,7 +39,7 @@ The hourly prices are built through these steps:
 
 ### Source-Specific Variants
 
-#### `prices_coinpaprika.hour`
+#### `prices_external.hour`
 For purely coinpaprika-based hourly prices:
 - **Coverage**: Only tokens with Coinpaprika listings (~2,000 tokens)
 - **Source**: External exchange-aggregated hourly pricing
@@ -102,5 +102,5 @@ ORDER BY 1
 - Prices are calculated using volume-weighted averages for more accurate representation
 - **Quality Filtering**: The system includes filtering mechanisms to reduce the impact of anomalous trades
 - **DEX-derived limitations**: DEX-derived prices can contain errors due to low liquidity, market manipulation, or anomalous trades
-- **Fallback option**: For critical applications, consider using `prices_coinpaprika.hour` for more reliable pricing where available
+- **Fallback option**: For critical applications, consider using `prices_external.hour` for more reliable pricing where available
 - **Data validation**: Always validate prices for critical applications, especially for lesser-known tokens 

@@ -1,0 +1,41 @@
+---
+title: Transactions
+description: Yominet blockchain transactions data
+---
+
+# Table Description
+
+This table contains data about transactions in the Yominet blockchain, including transaction details, gas usage, and execution status.
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **block_height**     | bigint    | The height of the block where the transaction occurred.        |
+| **chain_id**         | varchar   | The ID of the chain where the transaction occurred.            |
+| **tx_id**            | varchar   | The unique ID of the transaction.                              |
+| **tx_info**          | varchar   | Information related to the transaction.                        |
+| **tx_log_message**   | varchar   | The log message associated with the transaction.               |
+| **memo**             | varchar   | A memo associated with the transaction.                        |
+| **fee**              | varchar   | The fee associated with the transaction.                       |
+| **tx_code**          | bigint    | The result code of the transaction.                            |
+| **tx_index**         | bigint    | The index of the transaction within the block.                 |
+| **gas_used**         | bigint    | The amount of gas used by the transaction.                     |
+| **gas_wanted**       | bigint    | The amount of gas requested by the transaction.                |
+| **schema_version**   | bigint    | The schema version for the transaction data.                   |
+| **fee_coins**        | varchar   | The coins used to pay the transaction fee.                     |
+| **fee_granter**      | varchar   | The address granting the fee for the transaction.              |
+| **fee_payer**        | varchar   | The address paying the fee for the transaction.                |
+| **gas_limit**        | bigint    | The gas limit set for the transaction.                         |
+| **single_sign_mode** | bigint    | The signing mode for single-signature transactions.            |
+| **multi_sign_json**  | varchar   | JSON structure for multi-signature transactions.               |
+| **timeout_height**   | varchar   | The timeout height set for the transaction.                    |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="yominet" tableName="transactions" />
+

@@ -1,0 +1,29 @@
+#topbar-cta-button > a > span,
+#navigation-items .sidebar-group > li > a,
+#sidebar-group > li > a,
+#search-bar-entry,
+.chat-assistant-floating-input > div {
+    border-radius: 9999px;
+}
+
+.dark #topbar-cta-button > a > span {
+    background-color: #fff;
+}
+
+.dark #topbar-cta-button > a > span + div > span {
+    color: #0f0f15
+}
+
+.dark #topbar-cta-button > a > span + div > svg {
+    color: #0f0f15
+}
+
+#page-context-menu > button:first-child {
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+}
+
+#page-context-menu > button:last-child {
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+}

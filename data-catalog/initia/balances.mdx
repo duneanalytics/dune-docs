@@ -1,0 +1,28 @@
+---
+title: Balances
+description: Initia blockchain account balances data
+---
+
+# Table Description
+
+This table contains data about account balances in the Initia blockchain, including token holdings and balance snapshots.
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **block_date**       | date      | The date of the block.                                         |
+| **block_height**     | bigint    | The height of the block where the balance was recorded.         |
+| **block_timestamp**  | timestamp(3) with time zone | Timestamp when the block was validated.                        |
+| **address**          | varchar   | The account address.                                            |
+| **denom**            | varchar   | The denomination of the token.                                  |
+| **amount**           | decimal(38, 0) | The balance amount.                                            |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="initia" tableName="balances" />
+
