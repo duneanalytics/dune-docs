@@ -1,5 +1,6 @@
 ---
 title: Sampling
+icon: "dice"
 ---
 
 Our API supports sampling on all `/results` endpoints to provide a uniform sample of the dataset for efficient data analysis and visualization. This feature is particularly useful for use cases like charting (if you only have 4 000 pixels on the chart, then 10 000 datapoints are plenty), where analyzing a full dataset isn't necessary. Sampling returns a subset (with a uniform distribution) of data, optimizing usage of very large results with reduced latency and costs. You can apply sampling to the following endpoints:
