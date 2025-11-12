@@ -1,0 +1,203 @@
+---
+title: "Getting Started"
+icon: "flag-checkered"
+description: "Learn how to authenticate and make your first API request to Dune"
+---
+
+This guide will walk you through everything you need to get started with Dune's APIs, from creating an API key to making your first request.
+
+## 1. Sign Up
+
+Create your account at [dune.com/auth/register](https://dune.com/auth/register)
+
+New accounts come with free credits to get you started.
+
+## 2. Generate API Key
+
+1. Navigate to [API settings page](https://dune.com/apis?tab=keys)
+2. Click **Create API Key**
+3. Give your key a descriptive name (e.g., "Production API", "Development")
+4. Copy and securely store your API key
+
+<Note>
+- Dune has two types of account: **user** account and **team** account. A team can have many users. A user can join many teams.
+- Each user or team account has its own context. Queries created under a team account can only be managed within the team account context.
+- An API key belongs to a specific context, and is either associated with a user account or a team account.
+</Note>
+
+<div style={{position: "relative", paddingBottom: "calc(51.1628% + 41px)", height: 0, width: "100%"}}>
+  <iframe 
+    src="https://demo.arcade.software/J3MdgJJsH2EmVkeTJPO8?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" 
+    title="Create a New API Key in Dune" 
+    frameBorder="0" 
+    loading="lazy" 
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen={true}
+    allow="clipboard-write" 
+    style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}}
+  />
+</div>
+
+<Note>
+**Keep your API key secure!** Treat it like a password. Never commit it to version control or share it publicly. Anyone with your API key can make requests on your behalf and consume your credits.
+</Note>
+
+## 3. Authenticate
+
+Use your API key to authenticate requests to Dune's APIs. Include it in your request headers:
+
+```bash
+X-DUNE-API-KEY: your-api-key-here
+```
+
+### Initialize the SDK
+
+<CodeGroup>
+```python Python
+from dune_client import DuneClient
+
+# DuneClient will read the DUNE_API_KEY environment variable
+dune = DuneClient()
+```
+
+```typescript TypeScript
+import { DuneClient } from '@duneanalytics/client-sdk';
+
+// Use environment variable for security
+const dune = new DuneClient(process.env.DUNE_API_KEY);
+```
+
+```go Go
+import "github.com/duneanalytics/duneapi-client-go"
+import "os"
+
+// Use environment variable for security
+client := duneapi.New(os.Getenv("DUNE_API_KEY"))
+```
+</CodeGroup>
+
+<Tip>
+**Best practices:**
+- Store API keys in environment variables
+- Create separate keys for development and production
+- Rotate keys periodically
+- Revoke keys immediately if compromised
+</Tip>
+
+## 4. Start Building
+
+Use your API key to make requests to Dune's APIs. Here's a simple example to get recent DEX trades:
+
+<CodeGroup>
+```bash cURL
+# Execute a SQL query
+curl -X POST "https://api.dune.com/api/v1/sql/execute" \
+  -H "Content-Type: application/json" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+  -d '{
+    "sql": "SELECT * FROM dex.trades WHERE block_time > now() - interval '\''1'\'' day LIMIT 10",
+    "performance": "medium"
+  }'
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Execute a SQL query
+sql = """
+SELECT * FROM dex.trades 
+WHERE block_time > now() - interval '1' day 
+LIMIT 10
+"""
+
+results = dune.run_sql(query_sql=sql)
+print(results.get_rows())
+```
+
+```typescript TypeScript
+import { DuneClient } from '@duneanalytics/client-sdk';
+
+const dune = new DuneClient('YOUR_API_KEY');
+
+// Execute a saved query
+const executionResult = await dune.runQuery({ queryId: 3493826 });
+console.log(executionResult.result?.rows);
+```
+</CodeGroup>
+
+### Understanding the Response
+
+The API returns an execution object with your query status:
+
+```json
+{
+  "execution_id": "01K9AHMWSJZD59KAGB3WY45895",
+  "state": "QUERY_STATE_EXECUTING",
+  "submitted_at": "2025-11-05T17:39:48.146829Z",
+  "expires_at": "2026-02-03T17:39:48.329665Z"
+}
+```
+
+<Note>
+Queries execute asynchronously. Use the `execution_id` to check status and retrieve results. Our SDKs handle polling automatically.
+</Note>
+
+### Getting Results
+
+Once execution completes, fetch the results:
+
+```bash
+curl "https://api.dune.com/api/v1/execution/{execution_id}/results" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+---
+
+## Next Steps
+
+Now that you've made your first request, explore common use cases:
+
+<CardGroup cols={2}>
+  <Card title="Analyze onchain data" icon="chart-line" href="/api-reference/apis/quickstart-analyze">
+    Build custom analytics pipelines and reports
+  </Card>
+  
+  <Card title="Use connectors" icon="server" href="/api-reference/connectors/overview">
+    Connect with Trino Connector or DBT Connector for maximum flexibility
+  </Card>
+</CardGroup>
+
+## Additional Resources
+
+<CardGroup cols={3}>
+  <Card title="API Reference" icon="book" href="/api-reference/executions/execution-object">
+    Complete endpoint documentation
+  </Card>
+  
+  <Card title="Rate Limits" icon="gauge" href="/api-reference/overview/rate-limits">
+    Understand API rate limits
+  </Card>
+  
+  <Card title="Troubleshooting" icon="triangle-exclamation" href="/api-reference/overview/troubleshooting">
+    Common issues and solutions
+  </Card>
+</CardGroup>
+
+## Getting Help
+
+<CardGroup cols={3}>
+  <Card title="Community Discord" icon="discord" href="https://discord.gg/duneanalytics">
+    Get help from the Dune community
+  </Card>
+  
+  <Card title="Support" icon="life-ring" href="mailto:support@dune.com">
+    Contact our support team
+  </Card>
+  
+  <Card title="Status Page" icon="signal" href="https://status.dune.com">
+    Check API status and uptime
+  </Card>
+</CardGroup>

@@ -1,0 +1,42 @@
+---
+title: Validators
+description: Initia blockchain validators data
+---
+
+# Table Description
+
+This table contains data about validators in the Initia blockchain, including their performance metrics, voting power, and status.
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **operator_address** | varchar   | The operator address of the validator.                        |
+| **account_address**  | varchar   | The account address of the validator.                         |
+| **consensus_pubkey** | varchar   | The consensus public key of the validator.                    |
+| **jailed**           | boolean   | Indicates whether the validator is jailed.                    |
+| **status**           | varchar   | The status of the validator (e.g., active, inactive).         |
+| **tokens**           | varchar   | The number of tokens held by the validator.                   |
+| **moniker**          | varchar   | The moniker or name of the validator.                         |
+| **identity**         | varchar   | The identity information of the validator.                    |
+| **website**          | varchar   | The website of the validator.                                 |
+| **security_contact** | varchar   | The security contact information for the validator.           |
+| **details**          | varchar   | Additional details about the validator.                       |
+| **unbonding_height** | bigint    | The block height at which the validator started unbonding.    |
+| **unbonding_time**   | varchar   | The time when the validator will complete unbonding.          |
+| **commission_rate**  | double    | The commission rate charged by the validator.                 |
+| **commission_max_rate** | double | The maximum commission rate allowed for the validator.     |
+| **commission_max_change_rate** | double | The maximum rate at which the validator can change its commission. |
+| **commission_update_time** | varchar | The time when the validator last updated its commission.  |
+| **min_self_delegation** | varchar | The minimum self-delegation required for the validator.    |
+| **snapshot_height**   | bigint    | The block height at which the snapshot was taken.            |
+| **snapshot_time**     | varchar   | The time when the snapshot was taken.                        |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.               |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.         |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="initia" tableName="validators" />
+

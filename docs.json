@@ -48,7 +48,7 @@
       "url": "data-catalog"
     },
     {
-      "name": "Analytics API",
+      "name": "APIs & Connectors",
       "url": "api-reference"
     },
     {
@@ -1241,6 +1241,35 @@
                           "data-catalog/evm/hemi/curated-data/dex/dex-trades"
                         ]
                       }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Henesys",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/henesys/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/henesys/raw/blocks",
+                      "data-catalog/evm/henesys/raw/creation-traces",
+                      "data-catalog/evm/henesys/raw/logs",
+                      "data-catalog/evm/henesys/raw/transactions",
+                      "data-catalog/evm/henesys/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/henesys/decoded/overview",
+                      "data-catalog/evm/henesys/decoded/call-tables",
+                      "data-catalog/evm/henesys/decoded/event-logs",
+                      "data-catalog/evm/henesys/decoded/contracts",
+                      "data-catalog/evm/henesys/decoded/logs-decoded",
+                      "data-catalog/evm/henesys/decoded/traces-decoded"
                     ]
                   }
                 ]
@@ -2546,6 +2575,19 @@
                 ]
               },
               {
+                "group": "Echelon",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/echelon/overview",
+                  "data-catalog/echelon/blocks",
+                  "data-catalog/echelon/block_events",
+                  "data-catalog/echelon/message_events",
+                  "data-catalog/echelon/transactions",
+                  "data-catalog/echelon/tx_messages"
+                ]
+              },
+              {
                 "group": "Fuel",
                 "icon": "database",
                 "iconType": "solid",
@@ -2554,6 +2596,23 @@
                   "data-catalog/fuel/blocks",
                   "data-catalog/fuel/transactions",
                   "data-catalog/fuel/receipts"
+                ]
+              },
+              {
+                "group": "Initia",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/initia/overview",
+                  "data-catalog/initia/balances",
+                  "data-catalog/initia/blocks",
+                  "data-catalog/initia/block_events",
+                  "data-catalog/initia/bridge_transfers",
+                  "data-catalog/initia/message_events",
+                  "data-catalog/initia/swaps",
+                  "data-catalog/initia/transactions",
+                  "data-catalog/initia/tx_messages",
+                  "data-catalog/initia/validators"
                 ]
               },
               {
@@ -2733,6 +2792,19 @@
                     ]
                   }
                 ]
+              },
+              {
+                "group": "Yominet",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/yominet/overview",
+                  "data-catalog/yominet/blocks",
+                  "data-catalog/yominet/block_events",
+                  "data-catalog/yominet/message_events",
+                  "data-catalog/yominet/transactions",
+                  "data-catalog/yominet/tx_messages"
+                ]
               }
             ]
           },
@@ -2866,174 +2938,159 @@
         ]
       },
       {
-        "tab": "Analytics API",
+        "tab": "APIs & Connectors",
         "pages": [
           {
-            "group": "Analytics API",
+            "group": "APIs & Connectors",
             "pages": [
               "api-reference/overview/introduction",
+              "api-reference/overview/getting-started"
+            ],
+            "icon": "house"
+          },
+          {
+            "group": "Analytics APIs",
+            "pages": [
               {
-                "group": "API Quickstart",
+                "group": "Quick Start",
                 "pages": [
-                  "api-reference/quickstart/results-eg",
-                  "api-reference/quickstart/queries-eg",
-                  "api-reference/quickstart/tables-eg"
+                  "api-reference/apis/quickstart-analyze",
+                  "api-reference/apis/quickstart-dashboards"
                 ],
-                "icon": "forward-fast"
+                "icon": "rocket"
               },
               "api-reference/overview/authentication",
-              "api-reference/overview/sdks",
-              "api-reference/overview/dunesql-trino-connector",
               {
-                "group": "Result Filtering",
+                "group": "API Reference",
                 "pages": [
-                  "api-reference/executions/pagination",
+                  "api-reference/api-overview",
+                  {
+                    "group": "Executions and Results",
+                    "pages": [
+                      "api-reference/executions/execution-object",
+                      "api-reference/executions/endpoint/execute-sql",
+                      "api-reference/executions/endpoint/execute-query",
+                      "api-reference/executions/endpoint/get-execution-status",
+                      "api-reference/executions/endpoint/get-execution-result",
+                      "api-reference/executions/endpoint/get-execution-result-csv",
+                      "api-reference/executions/endpoint/get-query-result",
+                      "api-reference/executions/endpoint/get-query-result-csv",
+                      "api-reference/executions/endpoint/cancel-execution"
+                    ],
+                    "icon": "play"
+                  },
+                  {
+                    "group": "Query Management",
+                    "pages": [
+                      "api-reference/queries/endpoint/query-object",
+                      "api-reference/queries/endpoint/create",
+                      "api-reference/queries/endpoint/update",
+                      "api-reference/queries/endpoint/read",
+                      "api-reference/queries/endpoint/archive",
+                      "api-reference/queries/endpoint/unarchive",
+                      "api-reference/queries/endpoint/private",
+                      "api-reference/queries/endpoint/unprivate"
+                    ],
+                    "icon": "pen-to-square"
+                  },
+                  {
+                    "group": "Data Uploads",
+                    "pages": [
+                      "api-reference/tables/endpoint/overview",
+                      "api-reference/tables/endpoint/upload",
+                      "api-reference/tables/endpoint/create",
+                      "api-reference/tables/endpoint/insert",
+                      "api-reference/tables/endpoint/list",
+                      "api-reference/tables/endpoint/clear",
+                      "api-reference/tables/endpoint/delete"
+                    ],
+                    "icon": "upload"
+                  },
+                  {
+                    "group": "Materialized Views",
+                    "pages": [
+                      "api-reference/materialized-views/overview",
+                      "api-reference/materialized-views/get",
+                      "api-reference/materialized-views/create",
+                      "api-reference/materialized-views/delete",
+                      "api-reference/materialized-views/list",
+                      "api-reference/materialized-views/refresh"
+                    ],
+                    "icon": "layer-group"
+                  },
+                  {
+                    "group": "Account Management",
+                    "pages": [
+                      "api-reference/usage/overview",
+                      "api-reference/usage/endpoint/get-usage"
+                    ],
+                    "icon": "user"
+                  }
+                ],
+                "icon": "code"
+              },
+              {
+                "group": "Post-processing",
+                "pages": [
                   "api-reference/executions/filtering",
+                  "api-reference/executions/pagination",
                   "api-reference/executions/sorting",
                   "api-reference/executions/sampling"
                 ],
                 "icon": "filter"
               },
-              "api-reference/overview/rate-limits",
-              "api-reference/overview/troubleshooting",
-              "api-reference/overview/billing",
-              "api-reference/overview/faq"
-            ]
-          },
-          {
-            "group": "Data Transformations",
-            "pages": [
-              "api-reference/data-transformations/overview",
-              "api-reference/data-transformations/dbt-connector",
-              "api-reference/data-transformations/sql-operations"
-            ],
-            "icon": "arrows-rotate"
-          },
-          {
-            "group": "SQL Endpoints",
-            "pages": [
-              {
-                "group": "Executions and Results",
-                "pages": [
-                  "api-reference/executions/execution-object",
-                  "api-reference/executions/endpoint/execute-query",
-                  "api-reference/executions/endpoint/execute-sql",
-                  "api-reference/executions/endpoint/cancel-execution",
-                  "api-reference/executions/endpoint/get-execution-status",
-                  "api-reference/executions/endpoint/get-execution-result",
-                  "api-reference/executions/endpoint/get-execution-result-csv",
-                  "api-reference/executions/endpoint/get-query-result",
-                  "api-reference/executions/endpoint/get-query-result-csv"
-                ]
-              },
-              {
-                "group": "Queries",
-                "pages": [
-                  "api-reference/queries/endpoint/query-object",
-                  "api-reference/queries/endpoint/create",
-                  "api-reference/queries/endpoint/read",
-                  "api-reference/queries/endpoint/update",
-                  "api-reference/queries/endpoint/archive",
-                  "api-reference/queries/endpoint/unarchive",
-                  "api-reference/queries/endpoint/private",
-                  "api-reference/queries/endpoint/unprivate"
-                ]
-              },
-              {
-                "group": "Materialized Views",
-                "pages": [
-                  "api-reference/materialized-views/get",
-                  "api-reference/materialized-views/create",
-                  "api-reference/materialized-views/delete",
-                  "api-reference/materialized-views/list",
-                  "api-reference/materialized-views/refresh"
-                ]
-              },
               {
                 "group": "Webhooks",
                 "pages": [
                   "api-reference/webhooks/webhook"
-                ]
+                ],
+                "icon": "webhook"
               }
-            ]
+            ],
+            "icon": "code"
           },
           {
-            "group": "Data Management Endpoints",
+            "group": "Connectors",
             "pages": [
-              {
-                "group": "Tables",
-                "pages": [
-                  "api-reference/tables/endpoint/overview",
-                  "api-reference/tables/endpoint/list",
-                  "api-reference/tables/endpoint/create",
-                  "api-reference/tables/endpoint/insert",
-                  "api-reference/tables/endpoint/upload",
-                  "api-reference/tables/endpoint/clear",
-                  "api-reference/tables/endpoint/delete"
-                ]
-              }
-            ]
+              "api-reference/connectors/overview",
+              "api-reference/overview/dunesql-trino-connector"
+            ],
+            "icon": "plug"
           },
           {
-            "group": "Account Management",
+            "group": "Real-time APIs",
             "pages": [
-              {
-                "group": "Usage",
-                "pages": [
-                  "api-reference/usage/endpoint/get-usage"
-                ]
-              }
-            ]
+              "api-reference/realtime/overview"
+            ],
+            "icon": "bolt"
           },
           {
-            "group": "Preset Endpoints",
+            "group": "Client SDKs",
             "pages": [
               {
-                "group": "DEX",
+                "group": "Quickstart",
                 "pages": [
-                  "api-reference/dex/endpoint/dex_pair"
-                ]
+                  "api-reference/quickstart/results-eg",
+                  "api-reference/quickstart/queries-eg",
+                  "api-reference/quickstart/tables-eg"
+                ],
+                "icon": "rocket"
               },
-              {
-                "group": "EigenLayer",
-                "pages": [
-                  "api-reference/eigenlayer/introduction",
-                  "api-reference/eigenlayer/endpoint/avs_metadata",
-                  "api-reference/eigenlayer/endpoint/avs_metrics",
-                  "api-reference/eigenlayer/endpoint/operator_metadata",
-                  "api-reference/eigenlayer/endpoint/operator_metrics",
-                  "api-reference/eigenlayer/endpoint/operator_to_avs_mapping"
-                ]
-              },
-              {
-                "group": "EVM Contracts",
-                "pages": [
-                  "api-reference/evm/endpoint/contracts"
-                ]
-              },
-              {
-                "group": "Farcaster",
-                "pages": [
-                  "api-reference/farcaster/introduction",
-                  "api-reference/farcaster/endpoint/farcaster_channels",
-                  "api-reference/farcaster/endpoint/farcaster_memecoins",
-                  "api-reference/farcaster/endpoint/farcaster_users"
-                ]
-              },
-              {
-                "group": "Markets",
-                "pages": [
-                  "api-reference/markets/endpoint/marketplace_marketshare"
-                ]
-              },
-              {
-                "group": "Projects",
-                "pages": [
-                  "api-reference/projects/introduction",
-                  "api-reference/projects/endpoint/linea_lxp"
-                ]
-              }
-            ]
+              "api-reference/sdks/python",
+              "api-reference/sdks/typescript",
+              "api-reference/sdks/go"
+            ],
+            "icon": "cube"
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "api-reference/overview/rate-limits",
+              "api-reference/overview/troubleshooting",
+              "api-reference/overview/billing",
+              "api-reference/overview/faq"
+            ],
+            "icon": "book"
           }
         ]
       },

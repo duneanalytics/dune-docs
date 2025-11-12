@@ -1,0 +1,41 @@
+---
+title: 'Overview'
+icon: "star"
+---
+
+The account management endpoints allow you to monitor and track your API usage, credit consumption, and billing information.
+
+## Usage Tracking
+
+The usage endpoint provides detailed information about your account's resource consumption, including:
+
+- Credits consumed
+- Query executions
+- Dashboard usage
+- Storage utilization
+
+This data helps you monitor your usage patterns and manage your billing effectively.
+
+## Billing Periods
+
+Usage data can be retrieved for specific time periods by providing start and end dates. When no timeframe is specified, the endpoint returns data for the current billing period.
+
+<Note>
+The usage endpoint is a metadata endpoint and does not consume credits when called.
+</Note>
+
+## Endpoints
+
+Below is an overview of the account management endpoint.
+
+| Endpoint Title | Endpoint | Description |
+|----------------|----------|-------------|
+| [Get Usage](./endpoint/get-usage) | `POST /v1/usage` | Retrieves customer usage data including credits, queries, dashboards, and storage for specified billing periods |
+
+## Use Cases
+
+- **Monitor Credit Consumption:** Track how many credits your API calls are consuming
+- **Billing Transparency:** Review usage data to understand your monthly charges
+- **Usage Analytics:** Analyze patterns in your API usage over time
+- **Budget Management:** Set up alerts based on usage thresholds
+

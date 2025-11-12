@@ -1,0 +1,32 @@
+---
+title: Block Events
+description: Initia blockchain block events data
+---
+
+# Table Description
+
+This table contains data about block-level events and attributes in the Initia blockchain, including event types, sources, and associated metadata. The schema is modeled after Cosmos block events.
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **block_date**       | date      | The date of the block.                                         |
+| **block_height**     | bigint    | The height of the block where the event occurred.              |
+| **block_timestamp**  | timestamp(3) with time zone | Timestamp when the block was validated.                        |
+| **chain_id**         | varchar   | The ID of the chain where the block belongs.                   |
+| **event_index**      | bigint    | A unique index for events within the block.                    |
+| **event_type**       | varchar   | The type of event that was triggered.                          |
+| **event_source**     | varchar   | The source of the event.                                       |
+| **attribute_key**    | varchar   | The key of the event attribute.                                |
+| **attribute_value**  | varchar   | The value of the event attribute.                              |
+| **attribute_index**  | bigint    | A unique index for attributes within the event.                |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="initia" tableName="block_events" />
+

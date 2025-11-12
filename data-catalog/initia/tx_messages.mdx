@@ -1,0 +1,39 @@
+---
+title: Transaction Messages
+description: Initia blockchain transaction messages data
+---
+
+# Table Description
+
+This table contains data about messages contained within transactions in the Initia blockchain, including message types, content, and associated metadata.
+
+<Tip>
+On execution, transactions from Cosmos emit data in two formats:
+- Messages (`initia.tx_messages`): These provide a high-level, readable summary of actions, such as "send money" or "execute contract." They are easier to understand and track transaction types.
+- Events (`initia.message_events`): These capture detailed, low-level changes at the chain level, including underlying blockchain modifications that may not always be directly related to state changes.
+- Use Messages for a general overview and Events when you need detailed insights. The two tables are complementary.
+</Tip>
+
+## Column Descriptions
+
+| Column name       | Data Type | Description                                                   |
+| ---------------- | --------- | ------------------------------------------------------------- |
+| **block_date**       | date      | The date of the block.                                         |
+| **block_height**     | bigint    | The height of the block where the message occurred.            |
+| **block_timestamp**  | timestamp(3) with time zone | Timestamp when the block was validated.                        |
+| **chain_id**         | varchar   | The ID of the chain where the message belongs.                 |
+| **tx_id**            | varchar   | The hash of the transaction containing the message.            |
+| **tx_index**         | bigint    | The index of the transaction in the block.                     |
+| **message_index**    | bigint    | The index of the message in the transaction.                   |
+| **message_type**     | varchar   | The type of message.                                           |
+| **message**          | varchar   | The value/content of the message.                              |
+| **schema_version**   | bigint    | The version of the schema in provider database.                |
+| **updated_at**       | timestamp(3) with time zone | Timestamp of when the record was last updated.                 |
+| **ingested_at**      | timestamp(3) with time zone | Timestamp of when the record was ingested into Dune.           |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="initia" tableName="tx_messages" />
+

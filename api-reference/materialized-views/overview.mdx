@@ -1,0 +1,40 @@
+---
+title: 'Overview'
+icon: "star"
+---
+
+The materialized views endpoints allow you to create, manage, and refresh materialized views programmatically via the API.
+
+<Note>
+Materialized views contribute to your storage quota. On the free tier you can only create a 1MB materialized view. Learn more at [dune.com/pricing](https://dune.com/pricing)
+</Note>
+
+## Naming Convention
+
+Materialized view names must follow these rules:
+
+- The full name qualifier is `dune.<your_team>.<name>`
+- The name (last part) must be prefixed with `result_`
+- Example: `dune.myteam.result_daily_volume`
+
+## Endpoints
+
+Below is an overview of each endpoint for managing materialized views.
+
+| Endpoint Title | Endpoint | Description |
+|----------------|----------|-------------|
+| [Get Materialized View](./get) | `GET /v1/materialized-views/{name}` | Retrieves details about a specific materialized view |
+| [Upsert Materialized View](./create) | `POST /v1/materialized-views` | Creates a new materialized view or updates an existing one |
+| [Delete Materialized View](./delete) | `DELETE /v1/materialized-views/{name}` | Removes a materialized view |
+| [List Materialized Views](./list) | `GET /v1/materialized-views` | Lists all materialized views for your account |
+| [Refresh Materialized View](./refresh) | `POST /v1/materialized-views/{name}/refresh` | Triggers a refresh to update the materialized view with latest data |
+
+## Refresh and Performance Tiers
+
+Each refresh of a materialized view triggers a query execution and consumes credits based on the performance level:
+
+- **Medium**: Extended timeout, 1x compute, priority queue. Best for most queries.
+- **Large**: Extended timeout, 2x compute, priority queue. For complex queries with joins across large tables.
+
+You can set a refresh schedule using cron expressions (minimum 15 minutes, maximum weekly) when creating or updating a materialized view.
+
