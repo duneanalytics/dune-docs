@@ -35,10 +35,9 @@ Always use the latest release. Check [releases page](https://github.com/duneanal
 
 ```python
 from dune_client import DuneClient
-import os
 
-# Initialize client
-dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+# DuneClient will read the DUNE_API_KEY environment variable
+dune = DuneClient()
 
 # Execute a query by ID
 results = dune.execute(query_id=3493826)

@@ -56,10 +56,9 @@ X-DUNE-API-KEY: your-api-key-here
 <CodeGroup>
 ```python Python
 from dune_client import DuneClient
-import os
 
-# Use environment variable for security
-dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+# DuneClient will read the DUNE_API_KEY environment variable
+dune = DuneClient()
 ```
 
 ```typescript TypeScript

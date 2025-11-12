@@ -102,10 +102,9 @@ export default DashboardWidget;
 from flask import Flask, jsonify, render_template
 from dune_client.client import DuneClient
 from dune_client.query import QueryBase
-import os
-
 app = Flask(__name__)
-dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+# DuneClient will read the DUNE_API_KEY environment variable
+dune = DuneClient()
 
 @app.route('/api/dashboard/dex-volume')
 def get_dex_volume():
@@ -135,10 +134,9 @@ from dune_client.client import DuneClient
 from dune_client.query import QueryBase
 import pandas as pd
 import plotly.express as px
-import os
 
-# Initialize Dune client
-dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+# DuneClient will read the DUNE_API_KEY environment variable
+dune = DuneClient()
 
 st.set_page_config(page_title="DEX Analytics", layout="wide")
 
@@ -497,7 +495,8 @@ import os
 
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
-dune = DuneClient(api_key=os.environ.get("DUNE_API_KEY"))
+# DuneClient will read the DUNE_API_KEY environment variable
+dune = DuneClient()
 
 @app.route('/api/data/<int:query_id>')
 @cache.cached(timeout=300)  # Cache for 5 minutes
