@@ -57,7 +57,7 @@ List all schemas you have access to.
 SHOW SCHEMAS FROM dune;
 ```
 
-**Returns**: All public schemas plus your private schemas.
+**Returns**: All public schemas plus your own schemas.
 
 #### Query Information Schema
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS your_team.users (
 );
 ```
 
-**Supported column types**: All DuneSQL data types including `BIGINT`, `DOUBLE`, `VARCHAR`, `VARBINARY`, `TIMESTAMP`, `BOOLEAN`, `ARRAY`, `MAP`, etc.
+**Supported column types**: All DuneSQL data types including `BIGINT`, `DOUBLE`, `VARCHAR`, `VARBINARY`, `TIMESTAMP`, `BOOLEAN`, `ARRAY`, `MAP`, and custom types like [`UINT256` and `INT256`](https://docs.dune.com/query-engine/datatypes#uint256-dune-sql).
 
 #### CREATE TABLE AS SELECT (CTAS)
 
@@ -424,19 +424,9 @@ ALTER TABLE your_team.historical_data EXECUTE VACUUM;
 
 **Effect**: Removes old file versions that are no longer needed, reducing storage costs.
 
-### Sync Partition Metadata
-
-**``CALL system.sync_partition_metadata(catalog, schema, table)``**
-
-Synchronize partition information for a table.
-
-**Example:**
-
-```sql
-CALL system.sync_partition_metadata('dune', 'your_team', 'partitioned_table');
-```
-
-**When to use**: Rarely needed. Used when partition metadata becomes inconsistent.
+<Tip>
+VACUUM is most effective when run after OPTIMIZE, as it can remove the redundant small files replaced during compaction.
+</Tip>
 
 ### Automating Maintenance in dbt
 

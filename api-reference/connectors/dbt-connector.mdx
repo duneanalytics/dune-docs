@@ -10,7 +10,7 @@ This connector provides **write access to DuneSQL** via a Trino API endpoint, en
 
 
 <Card title="dbt Template Repository" icon="github" href="https://github.com/duneanalytics/dune-dbt-template">
-  Get started quickly with our official dbt template repository, featuring example models for all incremental strategies and CI/CD workflows.
+  Get started quickly with our official dbt template repository, featuring example models for all model strategies and CI/CD workflows.
 </Card>
 
 
@@ -97,7 +97,7 @@ We provide a complete dbt project template to get started quickly:
 
 The template includes:
 - Pre-configured dbt profiles for dev and prod environments
-- Sample models demonstrating all incremental strategies
+- Sample models demonstrating all model types
 - GitHub Actions workflows for CI/CD
 - Cursor AI rules for dbt best practices on Dune
 - Example project structure following dbt conventions
@@ -218,7 +218,7 @@ Execute SQL statements to create and manage your data:
 1. **Create tables and views** in your namespace
 2. **Insert, update, or merge** data using standard SQL
 3. **Drop tables** when no longer needed
-4. **Optimize and vacuum** tables for performance
+4. **Optimize and vacuum** tables for optimal performance when querying these tables
 
 All operations are authenticated via your Dune API key and restricted to your team's namespace.
 
@@ -228,6 +228,7 @@ All operations are authenticated via your Dune API key and restricted to your te
 - **All public Dune datasets**: Full access to blockchain data across all supported chains
 - **Your uploaded data**: Private datasets you've uploaded to Dune
 - **Your transformation outputs**: Tables and views created in your namespace
+- **Materialized views**: Views that are materialized as tables in your namespace via the APP
 
 **What You Can Write:**
 - **Your team namespace**: `{team_name}` for production tables
@@ -462,6 +463,10 @@ Runs hourly on main branch:
 
 ## Table Maintenance
 
+Maintenance operations consume credits based on compute and data written. These operations are neccessary to keep your tables performant and to reclaim storage space.
+
+
+
 ### Manual Maintenance
 
 Run OPTIMIZE and VACUUM to improve performance and reduce storage costs:
@@ -474,7 +479,7 @@ uv run dbt run-operation optimize_table --args '{table_name: "my_model"}'
 uv run dbt run-operation vacuum_table --args '{table_name: "my_model"}'
 ```
 
-### Automated Maintenance with Post-Hooks
+### Automated Maintenance with dbt post-hooks
 
 Add post-hooks to your model configuration:
 
@@ -492,7 +497,18 @@ Add post-hooks to your model configuration:
 SELECT ...
 ```
 
-**Note**: Maintenance operations consume credits based on compute and data written.
+### Project level post-hooks
+
+Add post-hooks to your project configuration:
+
+```yaml
+# dbt_project.yml
+post-hooks:
+  - "ALTER TABLE {{ this }} EXECUTE OPTIMIZE"
+  - "ALTER TABLE {{ this }} EXECUTE VACUUM"
+```
+
+The [template repository](https://github.com/duneanalytics/dune-dbt-template) includes a default post-hook that runs OPTIMIZE and VACUUM on all tables.
 
 
 ## Dropping Tables
@@ -612,7 +628,7 @@ Build sophisticated multi-stage data pipelines:
 - Create reusable intermediate datasets for downstream analytics
 - Chain multiple transformations into complex data products
 
-### Alternative to Spellbook
+### Alternative to [Spellbook](https://github.com/duneanalytics/spellbook)
 
 Build and maintain custom datasets without community review processes:
 - Deploy transformations on your own schedule
@@ -680,7 +696,7 @@ Tables and views are available for querying immediately after creation, but cata
 
 Rate limits for Data Transformations align with the Dune Analytics API:
 - Requests are subject to the same rate limiting as API executions
-- Large query operations run on the Large Query Engine tier
+- Large query operations run on the [Large Query Engine tier](/query-engine/query-executions#large-engine-size)
 - See [Rate Limits](/api-reference/overview/rate-limits) for detailed information
 
 ## Best Practices
@@ -705,8 +721,8 @@ models/
 
 - Use incremental models for large datasets
 - Partition by date fields when possible
-- Run OPTIMIZE and VACUUM periodically on large tables
-- Add appropriate indexes via dbt configurations
+- Add appropriate partitions via dbt configurations
+- Run OPTIMIZE and VACUUM on large tables
 
 ### Credit Management
 
