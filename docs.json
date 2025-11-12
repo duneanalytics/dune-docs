@@ -3030,7 +3030,7 @@
                 "icon": "code"
               },
               {
-                "group": "Result Operations",
+                "group": "Post-processing",
                 "pages": [
                   "api-reference/executions/filtering",
                   "api-reference/executions/pagination",
