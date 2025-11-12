@@ -12,6 +12,221 @@
     }
   ],
   "paths": {
+    "/v1/datasets": {
+      "get": {
+        "summary": "List datasets",
+        "description": "Retrieve a paginated list of datasets with optional filtering by owner and type",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return (default 50, max 250)",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "owner_handle",
+            "in": "query",
+            "description": "Filter by owner handle",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by dataset types (comma-separated: transformation_view, transformation_table, uploaded_table, decoded_table, spell, dune_table)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ListDatasetsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/datasets/{slug}": {
+      "get": {
+        "summary": "Get a dataset by slug",
+        "description": "Retrieve dataset information including columns, metadata, and ownership details",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "Dataset slug (e.g., 'dex.trades')",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.DatasetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/dex/pairs/{chain}": {
       "get": {
         "summary": "DEX Pair Stats",
@@ -2871,6 +3086,92 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/pipelines/executions/{pipeline_execution_id}/status": {
+      "get": {
+        "summary": "Get pipeline execution status",
+        "description": "Retrieves the status of a pipeline execution, including the status of each node in the pipeline.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pipeline_execution_id",
+            "in": "path",
+            "description": "Unique identifier of the pipeline execution",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetPipelineExecutionStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/points/linea/lxp": {
       "get": {
         "summary": "Linea LXP",
@@ -3859,6 +4160,112 @@
         }
       }
     },
+    "/v1/query/{query_id}/pipeline/execute": {
+      "post": {
+        "summary": "Execute a query pipeline",
+        "description": "Builds a query pipeline from the specified query and executes it. A pipeline allows you to chain multiple queries together and execute them as a single unit.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query_id",
+            "in": "path",
+            "description": "Unique identifier of the query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "performance",
+            "in": "query",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Credits are consumed based on actual compute resources used. Medium is the default, large provides more resources for complex queries.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "medium",
+                "large"
+              ]
+            }
+          },
+          {
+            "name": "query_parameters",
+            "in": "query",
+            "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ExecuteQueryPipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/query/{query_id}/results": {
       "get": {
         "summary": "Get Latest Query Result",
@@ -4179,9 +4586,9 @@
           }
         ],
         "requestBody": {
-          "description": "SQL query and performance configuration",
+          "description": "ExecuteSQLRequest",
           "content": {
-            "application/json": {
+            "*/*": {
               "schema": {
                 "$ref": "#/components/schemas/models.ExecuteSQLRequest"
               }
@@ -4261,7 +4668,7 @@
             }
           }
         },
-        "x-codegen-request-body-name": "sql"
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/table/upload/csv": {
@@ -5297,7 +5704,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the createc query."
+            "description": "The name of the created query."
           },
           "parameters": {
             "type": "array",
@@ -5326,6 +5733,77 @@
             "type": "integer",
             "description": "The Unique ID of the created query",
             "example": 1
+          }
+        }
+      },
+      "models.DatasetColumn": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/models.DatasetColumnMetadata"
+          },
+          "name": {
+            "type": "string"
+          },
+          "nullable": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "models.DatasetColumnMetadata": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "filtering_column": {
+            "type": "boolean"
+          }
+        }
+      },
+      "models.DatasetOwner": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "models.DatasetResponse": {
+        "type": "object",
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.DatasetColumn"
+            }
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/models.DatasetOwner"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
           }
         }
       },
@@ -5394,6 +5872,16 @@
           }
         }
       },
+      "models.ExecuteQueryPipelineResponse": {
+        "type": "object",
+        "properties": {
+          "pipeline_execution_id": {
+            "type": "string",
+            "description": "Unique identifier for the pipeline execution. Use this ID to check the status\nand retrieve results of the pipeline execution.",
+            "example": "01HKZJ2683PHF9Q9PHHQ8FW4Q1"
+          }
+        }
+      },
       "models.ExecuteQueryResponse": {
         "type": "object",
         "properties": {
@@ -5408,19 +5896,22 @@
         }
       },
       "models.ExecuteSQLRequest": {
+        "required": [
+          "sql"
+        ],
         "type": "object",
-        "required": ["sql"],
         "properties": {
-          "sql": {
-            "type": "string",
-            "description": "The SQL query to execute",
-            "example": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10"
-          },
           "performance": {
             "type": "string",
-            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
-            "enum": ["medium", "large"],
-            "default": "medium"
+            "description": "The performance engine tier the execution will be run on",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          },
+          "sql": {
+            "type": "string",
+            "description": "The SQL query to execute"
           }
         }
       },
@@ -5574,6 +6065,26 @@
           }
         }
       },
+      "models.GetPipelineExecutionStatusResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message if the pipeline execution failed"
+          },
+          "node_executions": {
+            "type": "array",
+            "description": "List of node executions in the pipeline.",
+            "items": {
+              "$ref": "#/components/schemas/models.PipelineNodeExecution"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Overall status of the pipeline execution"
+          }
+        }
+      },
       "models.GetQueryResponse": {
         "type": "object",
         "properties": {
@@ -5679,6 +6190,20 @@
           }
         }
       },
+      "models.ListDatasetsResponse": {
+        "type": "object",
+        "properties": {
+          "datasets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.DatasetResponse"
+            }
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
       "models.Parameter": {
         "type": "object",
         "properties": {
@@ -5714,6 +6239,75 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "models.PipelineMaterializedViewRefreshStatus": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message if the refresh failed"
+          },
+          "execution_id": {
+            "type": "string",
+            "description": "Unique identifier of the execution, if available"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the materialized view"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the materialized view refresh"
+          }
+        }
+      },
+      "models.PipelineNodeExecution": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the node in the pipeline"
+          },
+          "materialized_view_refresh_status": {
+            "type": "object",
+            "description": "Status of the materialized view refresh, if this node is a materialized view refresh node",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineMaterializedViewRefreshStatus"
+              }
+            ]
+          },
+          "query_execution_status": {
+            "type": "object",
+            "description": "Status of the query execution, if this node is a query execution node",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineQueryExecutionStatus"
+              }
+            ]
+          }
+        }
+      },
+      "models.PipelineQueryExecutionStatus": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message, if the execution failed"
+          },
+          "execution_id": {
+            "type": "string",
+            "description": "Unique identifier of the execution, if available"
+          },
+          "query_id": {
+            "type": "integer",
+            "description": "Unique identifier of the query"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the query execution"
           }
         }
       },
