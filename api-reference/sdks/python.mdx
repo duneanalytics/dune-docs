@@ -1,0 +1,105 @@
+---
+title: "Python"
+icon: "python"
+description: "Official Python SDK for Dune Analytics API"
+---
+
+We currently support a [Python SDK](https://github.com/duneanalytics/dune-client) for working with our API. You'll find `Python SDK` snippets on all endpoint pages. If you want to go deeper into the code, check out [these files](https://github.com/duneanalytics/dune-client/tree/main/dune_client/api).
+
+## Installation
+
+To install the SDK, run the following command in your terminal:
+
+```bash
+pip install dune-client
+```
+
+<Warning>
+Be sure you are using the latest release. You can find all release versions [here](https://github.com/duneanalytics/dune-client/releases) - there may be code added to the repo that has not been put into a release yet.
+</Warning>
+
+## Quick Start
+
+Initialize the client with your API key:
+
+```python
+from dune_client.client import DuneClient
+
+# Initialize client
+dune = DuneClient(api_key="YOUR_API_KEY")
+```
+
+## Working with Queries
+
+You will commonly work with the `QueryBase` class which can be created like this:
+
+```python
+from dune_client.query import QueryBase
+from dune_client.types import QueryParameter
+
+query = QueryBase(
+    name="Sample Query",
+    query_id=1215383,
+    params=[
+        QueryParameter.text_type(name="TextField", value="Word"),
+        QueryParameter.number_type(name="NumberField", value=3.1415926535),
+        QueryParameter.date_type(name="DateField", value="2022-05-04 00:00:00"),
+        QueryParameter.enum_type(name="EnumField", value="Option 1"),
+    ],
+)
+print("Results available at", query.url())
+```
+
+The query object is defined as `QueryBase` and all properties can be found [in this file](https://github.com/duneanalytics/dune-client/blob/main/dune_client/query.py).
+
+## Executing Queries
+
+Execute a query and get results:
+
+```python
+from dune_client.client import DuneClient
+from dune_client.query import QueryBase
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+query = QueryBase(
+    name="Sample Query",
+    query_id=1215383,
+)
+
+# Execute the query
+results = dune.run_query(query)
+```
+
+## Working with Results
+
+Other classes such as execution results can be [found here](https://github.com/duneanalytics/dune-client/blob/main/dune_client/models.py#L244C7-L244C22), detailing operations like `ResultsResponse.get_rows()` for getting the data out of a GET request.
+
+### Using Pandas DataFrames
+
+If you are trying to load data into a Pandas DataFrame, you can use the following function from the SDK:
+
+```python
+# Get results as a DataFrame
+results_df = dune.run_query_dataframe(query)
+```
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="GitHub Repository" icon="github" href="https://github.com/duneanalytics/dune-client">
+    View source code, examples, and full documentation
+  </Card>
+  
+  <Card title="API Files" icon="code" href="https://github.com/duneanalytics/dune-client/tree/main/dune_client/api">
+    Explore the API implementation
+  </Card>
+  
+  <Card title="Releases" icon="tag" href="https://github.com/duneanalytics/dune-client/releases">
+    Check the latest release versions
+  </Card>
+  
+  <Card title="Report Issues" icon="bug" href="https://github.com/duneanalytics/dune-client/issues">
+    Report bugs or request features
+  </Card>
+</CardGroup>
