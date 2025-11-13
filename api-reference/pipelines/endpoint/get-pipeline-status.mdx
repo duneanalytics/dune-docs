@@ -16,10 +16,9 @@ Each node has its own status and can be tracked independently.
 ## Pipeline States
 
 The overall pipeline can be in one of the following states:
-- `PENDING`: Pipeline execution has been queued but not yet started
-- `EXECUTING`: Pipeline is currently running
-- `COMPLETED`: All nodes in the pipeline have completed successfully
-- `FAILED`: One or more nodes in the pipeline failed
+- `pending`: Pipeline execution has been queued but not yet started
+- `executing`: Pipeline is currently running
+- `completed`: All nodes in the pipeline have completed successfully
 
 ## Node Status
 
@@ -31,9 +30,9 @@ Each node in the pipeline includes:
 ## Response Structure
 
 The response includes:
-- `status`: Overall pipeline execution status
+- `status`: Overall pipeline execution status (pending, executing, or completed)
 - `node_executions`: Array of individual node executions with their status
-- `error`: Error message if the pipeline execution failed
+- `error`: Error message if applicable
 
 ## Example Usage
 
@@ -56,6 +55,6 @@ You can use this endpoint to:
 - Monitor overall pipeline health
 
 <Note>
-Once a pipeline execution completes (successfully or with failures), you can retrieve the results of individual queries using their respective execution IDs from the node status.
+Once a pipeline execution completes, you can retrieve the results of individual queries using their respective execution IDs from the node status.
 </Note>
 
