@@ -38,7 +38,7 @@
   },
   "tabs": [
     {
-      "name": "Analytics Studio",
+      "name": "Analytics Hub",
       "url": "web-app"
     },
     {
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "group": "Analytics Studio",
+      "group": "Analytics Hub",
       "pages": [
         "web-app/overview",
         {
