@@ -1544,6 +1544,89 @@
         }
       }
     },
+    "/v1/queries": {
+      "get": {
+        "summary": "List queries",
+        "description": "Retrieve a paginated list of queries owned by the account tied to the API key",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of queries to return on a page. Default: 20",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset used for pagination. Default: 0",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ListQueriesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/query": {
       "post": {
         "summary": "Create and save a query on Dune",
@@ -3877,6 +3960,9 @@
         }
       },
       "models.ExecuteQueryPipelineRequest": {
+        "required": [
+          "performance"
+        ],
         "type": "object",
         "properties": {
           "performance": {
@@ -3888,9 +3974,8 @@
           },
           "query_parameters": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
+            "properties": {},
+            "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys."
           }
         }
       },
@@ -4226,6 +4311,23 @@
           }
         }
       },
+      "models.ListQueriesResponse": {
+        "type": "object",
+        "properties": {
+          "queries": {
+            "type": "array",
+            "description": "List of queries",
+            "items": {
+              "$ref": "#/components/schemas/models.ResolvedQueryOverview"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of queries available",
+            "example": 100
+          }
+        }
+      },
       "models.Parameter": {
         "type": "object",
         "properties": {
@@ -4397,9 +4499,7 @@
           },
           "query_parameters": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            },
+            "properties": {},
             "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys."
           }
         }
@@ -4549,6 +4649,41 @@
             "type": "string",
             "description": "Timestamp of when the query was submitted.",
             "example": "2024-12-20T11:04:18.724658237Z"
+          }
+        }
+      },
+      "models.ResolvedQueryOverview": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the query"
+          },
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the query"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the query",
+            "example": "My Query"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner handle (username or team handle)"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags associated with the query",
+            "items": {
+              "type": "string"
+            }
+          },
+          "updated_at": {
+            "type": "string"
           }
         }
       },
