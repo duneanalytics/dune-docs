@@ -1,0 +1,19 @@
+---
+title: "Get Dataset"
+openapi: "GET /v1/datasets/{slug}"
+---
+
+<Note>
+  - Retrieve detailed information about a specific dataset by its slug - Returns
+  complete schema including all columns with data types - Includes ownership
+  details and metadata - Example slugs: `dex.trades`, `tokens.erc20`,
+  `ethereum.transactions`
+</Note>
+
+# Use Cases
+
+- **Schema Discovery**: Retrieve the complete schema of a dataset including column names, data types, and nullability.
+- **Table Exploration**: Understand the structure of a dataset before writing queries against it.
+- **Data Integration**: Programmatically fetch table schemas for ETL pipelines and data integration tools.
+- **Documentation Generation**: Automatically generate documentation for datasets based on their schemas.
+- **Validation**: Verify dataset structure and columns before building queries or applications.

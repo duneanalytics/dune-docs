@@ -3007,6 +3007,15 @@
                     "icon": "upload"
                   },
                   {
+                    "group": "Datasets",
+                    "pages": [
+                      "api-reference/datasets/introduction",
+                      "api-reference/datasets/endpoint/list",
+                      "api-reference/datasets/endpoint/get"
+                    ],
+                    "icon": "database"
+                  },
+                  {
                     "group": "Materialized Views",
                     "pages": [
                       "api-reference/materialized-views/overview",
