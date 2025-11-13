@@ -3032,6 +3032,7 @@
                     "group": "Pipelines",
                     "pages": [
                       "api-reference/pipelines/overview",
+                      "api-reference/pipelines/endpoint/execute-pipeline",
                       "api-reference/pipelines/endpoint/execute-query-pipeline",
                       "api-reference/pipelines/endpoint/get-pipeline-status"
                     ],

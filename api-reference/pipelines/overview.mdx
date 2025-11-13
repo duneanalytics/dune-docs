@@ -55,7 +55,8 @@ Process data incrementally through multiple dependent steps:
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| [Execute Query Pipeline](./endpoint/execute-query-pipeline) | `POST /v1/query/{query_id}/pipeline/execute` | Executes a query pipeline starting from the specified query |
+| [Execute Pipeline](./endpoint/execute-pipeline) | `POST /v1/pipelines/execute` | Builds and executes a pipeline including all materialized views in the query's lineage |
+| [Execute Query Pipeline](./endpoint/execute-query-pipeline) | `POST /v1/query/{query_id}/pipeline/execute` | Executes a predefined query pipeline starting from the specified query |
 | [Get Pipeline Execution Status](./endpoint/get-pipeline-status) | `GET /v1/pipelines/executions/{pipeline_execution_id}/status` | Retrieves the status of a pipeline execution including all nodes |
 
 ## Pipeline vs. Regular Query Execution
@@ -69,7 +70,7 @@ Process data incrementally through multiple dependent steps:
 | **Use Case** | Independent analysis | Complex workflows |
 
 <Tip>
-Start with the [Execute Query Pipeline](./endpoint/execute-query-pipeline) endpoint to trigger your pipeline, then use the returned `pipeline_execution_id` to monitor progress with the [Get Pipeline Execution Status](./endpoint/get-pipeline-status) endpoint.
+Use [Execute Pipeline](./endpoint/execute-pipeline) for automatic lineage-based execution or [Execute Query Pipeline](./endpoint/execute-query-pipeline) for predefined pipelines. Then monitor progress with the [Get Pipeline Execution Status](./endpoint/get-pipeline-status) endpoint using the returned `pipeline_execution_id`.
 </Tip>
 
 ## Credits and Performance

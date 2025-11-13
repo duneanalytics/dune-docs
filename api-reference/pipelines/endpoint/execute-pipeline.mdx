@@ -1,0 +1,88 @@
+---
+title: 'Execute Pipeline'
+openapi: 'POST /v1/pipelines/execute'
+---
+
+This endpoint builds an execution pipeline from a specified query and executes it. The pipeline will automatically include all materialized views in the query's lineage, ensuring coordinated execution of dependent queries.
+
+## How It Works
+
+When you execute a pipeline using this endpoint:
+
+1. **Lineage Detection**: Dune analyzes the query to identify all materialized views it depends on
+2. **Pipeline Construction**: A pipeline is automatically built that includes all dependencies in the correct order
+3. **Coordinated Execution**: All queries and materialized view refreshes are executed as a single unit
+4. **Status Tracking**: Returns a `pipeline_execution_id` for monitoring progress
+
+## Key Differences from Query Pipeline Execute
+
+This endpoint differs from the [Execute Query Pipeline](/api-reference/pipelines/endpoint/execute-query-pipeline) endpoint:
+
+| Feature | Execute Pipeline | Execute Query Pipeline |
+|---------|------------------|------------------------|
+| **Endpoint** | `POST /v1/pipelines/execute` | `POST /v1/query/{query_id}/pipeline/execute` |
+| **Query ID** | In request body | In URL path |
+| **Lineage** | Automatically includes all materialized views | Executes predefined pipeline |
+| **Use Case** | Dynamic pipeline based on query dependencies | Predefined pipeline execution |
+
+## Request Body
+
+The request body accepts:
+- `query_id` (required): The unique identifier of the query to execute
+- `performance` (optional): Execution tier - `medium` (default) or `large`
+- `query_parameters` (optional): SQL query parameters as JSON key-value pairs
+
+## Use Cases
+
+This endpoint is ideal for:
+- **Dependency Management**: Automatically refreshing all materialized views a query depends on
+- **Consistent Updates**: Ensuring all dependent data is fresh before query execution
+- **Dynamic Pipelines**: When you want to execute based on runtime query dependencies
+- **Simplified Workflow**: No need to manually define pipeline structure
+
+## Monitoring Pipeline Execution
+
+After executing the pipeline:
+
+1. Save the returned `pipeline_execution_id`
+2. Use the [Get Pipeline Execution Status](/api-reference/pipelines/endpoint/get-pipeline-status) endpoint to monitor progress
+3. Track the status of each materialized view refresh and query execution
+4. Retrieve results once the pipeline completes
+
+## Example Workflow
+
+```bash
+# 1. Execute pipeline for query ID 1234567
+curl -X POST "https://api.dune.com/api/v1/pipelines/execute" \
+  -H "X-Dune-Api-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query_id": 1234567,
+    "performance": "medium",
+    "query_parameters": {
+      "start_date": "2024-01-01",
+      "end_date": "2024-12-31"
+    }
+  }'
+
+# Response: { "pipeline_execution_id": "01HZABC123..." }
+
+# 2. Check pipeline status
+curl "https://api.dune.com/api/v1/pipelines/executions/01HZABC123.../status" \
+  -H "X-Dune-Api-Key: YOUR_API_KEY"
+```
+
+<Note>
+This endpoint automatically determines which materialized views need to be refreshed based on the query's lineage. You don't need to manually specify dependencies.
+</Note>
+
+## Performance Considerations
+
+- **Medium tier**: Best for most queries with standard dependencies
+- **Large tier**: Use for complex queries with many dependencies or large materialized views
+- Credits are consumed based on actual compute resources used for each node in the pipeline
+
+<Tip>
+If your query depends on multiple materialized views, this endpoint will refresh all of them in the correct order before executing your query, ensuring data consistency.
+</Tip>
+
