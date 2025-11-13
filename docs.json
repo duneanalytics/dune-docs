@@ -36,7 +36,7 @@
       "url": "home"
     },
     {
-      "name": "Analytics Studio",
+      "name": "Analytics Hub",
       "url": "web-app"
     },
     {
@@ -92,10 +92,10 @@
         ]
       },
       {
-        "tab": "Analytics Studio",
+        "tab": "Analytics Hub",
         "pages": [
           {
-            "group": "Analytics Studio",
+            "group": "Analytics Hub",
             "pages": [
               "web-app/overview",
               {
@@ -3128,7 +3128,6 @@
     "options": [
       "chatgpt",
       "claude",
-      "perplexity",
       "copy",
       "view"
     ]
