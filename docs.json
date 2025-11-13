@@ -3128,7 +3128,6 @@
     "options": [
       "chatgpt",
       "claude",
-      "perplexity",
       "copy",
       "view"
     ]
