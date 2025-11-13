@@ -1,0 +1,61 @@
+---
+title: 'Get Pipeline Execution Status'
+openapi: 'GET /v1/pipelines/executions/{pipeline_execution_id}/status'
+---
+
+This endpoint retrieves the status of a pipeline execution, including the status of each node (query or materialized view refresh) in the pipeline.
+
+## Understanding Pipeline Status
+
+A pipeline execution contains multiple nodes, each representing either:
+- **Query Execution**: A query that's part of the pipeline
+- **Materialized View Refresh**: A materialized view that's refreshed as part of the pipeline
+
+Each node has its own status and can be tracked independently.
+
+## Pipeline States
+
+The overall pipeline can be in one of the following states:
+- `PENDING`: Pipeline execution has been queued but not yet started
+- `EXECUTING`: Pipeline is currently running
+- `COMPLETED`: All nodes in the pipeline have completed successfully
+- `FAILED`: One or more nodes in the pipeline failed
+
+## Node Status
+
+Each node in the pipeline includes:
+- `node_id`: Unique identifier for the node
+- `status`: Current state of the node execution
+- `query_execution_status` or `materialized_view_refresh_status`: Detailed status information
+
+## Response Structure
+
+The response includes:
+- `status`: Overall pipeline execution status
+- `node_executions`: Array of individual node executions with their status
+- `error`: Error message if the pipeline execution failed
+
+## Example Usage
+
+```bash
+# Check pipeline status
+curl "https://api.dune.com/api/v1/pipelines/executions/01HZABC123.../status" \
+  -H "X-Dune-Api-Key: YOUR_API_KEY"
+```
+
+<Tip>
+Poll this endpoint periodically to monitor pipeline execution progress. Each node's status will update as the pipeline progresses through its execution.
+</Tip>
+
+## Monitoring Pipeline Progress
+
+You can use this endpoint to:
+- Track which nodes have completed and which are still running
+- Identify any nodes that have failed
+- Retrieve execution IDs for individual queries to fetch their results
+- Monitor overall pipeline health
+
+<Note>
+Once a pipeline execution completes (successfully or with failures), you can retrieve the results of individual queries using their respective execution IDs from the node status.
+</Note>
+

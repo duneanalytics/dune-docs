@@ -1,0 +1,87 @@
+---
+title: 'Overview'
+icon: "diagram-project"
+---
+
+The pipeline endpoints enable you to execute and monitor query pipelines - a powerful feature that allows you to chain multiple queries together and execute them as a coordinated workflow.
+
+## What are Query Pipelines?
+
+Query pipelines are sequences of related queries that execute in a specific order based on their dependencies. Instead of executing individual queries separately, pipelines allow you to:
+
+- **Define Dependencies**: Specify which queries depend on the results of other queries
+- **Atomic Execution**: Execute all queries in the pipeline as a single unit
+- **Coordinated Updates**: Ensure related queries are always executed together
+- **Track Progress**: Monitor the status of each query in the pipeline
+
+## How Pipelines Work
+
+1. **Create a Pipeline**: Define your pipeline by specifying dependencies between queries in the Dune UI
+2. **Execute the Pipeline**: Use the [Execute Query Pipeline](./endpoint/execute-query-pipeline) endpoint with the root query ID
+3. **Monitor Progress**: Poll the [Get Pipeline Execution Status](./endpoint/get-pipeline-status) endpoint to track execution
+4. **Retrieve Results**: Once complete, access results for each query using their individual execution IDs
+
+## Pipeline Components
+
+A pipeline execution consists of multiple **nodes**, where each node can be:
+- **Query Execution**: A DuneSQL query that runs as part of the pipeline
+- **Materialized View Refresh**: A materialized view that gets refreshed during pipeline execution
+
+Each node has its own execution status and can be tracked independently.
+
+## Common Use Cases
+
+### Data Transformation Pipelines
+Build multi-stage data processing workflows where each stage depends on the previous one:
+- Stage 1: Extract raw data
+- Stage 2: Transform and clean data
+- Stage 3: Aggregate results
+- Stage 4: Generate final metrics
+
+### Coordinated Dashboard Updates
+Ensure all queries powering a dashboard are executed together with fresh data:
+- Execute all dependent queries in the correct order
+- Maintain consistency across related metrics
+- Update materialized views that feed into dashboard queries
+
+### Incremental Data Processing
+Process data incrementally through multiple dependent steps:
+- Process new transactions
+- Update aggregated tables
+- Refresh summary statistics
+- Update trend indicators
+
+## Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| [Execute Query Pipeline](./endpoint/execute-query-pipeline) | `POST /v1/query/{query_id}/pipeline/execute` | Executes a query pipeline starting from the specified query |
+| [Get Pipeline Execution Status](./endpoint/get-pipeline-status) | `GET /v1/pipelines/executions/{pipeline_execution_id}/status` | Retrieves the status of a pipeline execution including all nodes |
+
+## Pipeline vs. Regular Query Execution
+
+| Feature | Regular Execution | Pipeline Execution |
+|---------|-------------------|-------------------|
+| **Queries** | Single query | Multiple dependent queries |
+| **Coordination** | Manual | Automatic |
+| **Dependencies** | None | Enforced by pipeline |
+| **Monitoring** | Per-query | Unified view of all nodes |
+| **Use Case** | Independent analysis | Complex workflows |
+
+<Tip>
+Start with the [Execute Query Pipeline](./endpoint/execute-query-pipeline) endpoint to trigger your pipeline, then use the returned `pipeline_execution_id` to monitor progress with the [Get Pipeline Execution Status](./endpoint/get-pipeline-status) endpoint.
+</Tip>
+
+## Credits and Performance
+
+Pipeline executions consume credits based on:
+- The performance tier selected (medium or large)
+- Actual compute resources used by each query in the pipeline
+- Number of queries and complexity of operations
+
+You can specify the performance tier when executing the pipeline to optimize for speed or cost.
+
+<Note>
+Pipelines are created and configured in the Dune web application. The API endpoints allow you to execute and monitor existing pipelines programmatically.
+</Note>
+

@@ -3019,6 +3019,15 @@
                     "icon": "layer-group"
                   },
                   {
+                    "group": "Pipelines",
+                    "pages": [
+                      "api-reference/pipelines/overview",
+                      "api-reference/pipelines/endpoint/execute-query-pipeline",
+                      "api-reference/pipelines/endpoint/get-pipeline-status"
+                    ],
+                    "icon": "diagram-project"
+                  },
+                  {
                     "group": "Account Management",
                     "pages": [
                       "api-reference/usage/overview",
