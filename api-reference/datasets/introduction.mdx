@@ -1,0 +1,34 @@
+---
+title: "Overview"
+icon: "star"
+---
+
+Leverage Dune's Datasets API for programmatic access to explore all queryable tables on Dune. Discover schemas, metadata, and ownership details without writing SQL—perfect for building data catalogs, discovery tools, and data integration pipelines.
+
+## Use Cases
+
+- **Data Discovery**: Programmatically browse and search through all available datasets on Dune
+- **AI Agents**: Allow AI agents to understand the available tables and schemas before constructing the SQL query.
+- **Schema Exploration**: Retrieve column names, data types, and metadata for any table
+- **Access Management**: Filter datasets by owner to understand team data assets
+
+<CardGroup cols={2}>
+  <Card
+    title="List Datasets"
+    icon="list"
+    href="/api-reference/datasets/endpoint/list"
+  >
+    Retrieve a paginated list of datasets with optional filtering by owner and
+    type.
+  </Card>
+  <Card
+    title="Get Dataset"
+    icon="table"
+    href="/api-reference/datasets/endpoint/get"
+  >
+    Get detailed information about a specific dataset including columns and
+    metadata.
+  </Card>
+</CardGroup>
+
+<br />
