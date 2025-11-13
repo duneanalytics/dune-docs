@@ -1,0 +1,159 @@
+---
+title: 'List Queries'
+openapi: 'GET /v1/queries'
+---
+
+<Note>
+To access Query endpoints, an [Analyst plan](https://dune.com/pricing) or higher is required.
+</Note>
+
+Retrieve a paginated list of queries owned by the account associated with the API key. This endpoint is useful for:
+
+- Discovering all queries in your account
+- Building custom query management interfaces
+- Auditing query ownership and metadata
+- Syncing query information to external systems
+
+## Response
+
+The endpoint returns a list of query overview objects containing:
+- `id`: Unique identifier of the query
+- `name`: Name of the query
+- `description`: Description of the query
+- `owner`: Owner handle (username or team handle)
+- `tags`: Tags associated with the query
+- `created_at`: Timestamp of when the query was created
+- `updated_at`: Timestamp of when the query was last updated
+- `total`: Total number of queries available (for pagination)
+
+## Pagination
+
+Use the `limit` and `offset` parameters to paginate through large result sets:
+- `limit`: Number of queries to return per page (default: 20)
+- `offset`: Number of queries to skip (default: 0)
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url 'https://api.dune.com/api/v1/queries?limit=20&offset=0' \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>'
+```
+
+```python Python SDK
+from dune_client.client import DuneClient
+
+dune = DuneClient()
+
+# List all queries (first page)
+queries = dune.list_queries(limit=20, offset=0)
+
+print(f"Total queries: {queries['total']}")
+for query in queries['queries']:
+    print(f"Query {query['id']}: {query['name']}")
+```
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/queries"
+params = {
+    "limit": 20,
+    "offset": 0
+}
+
+headers = {"X-DUNE-API-KEY": "<x-dune-api-key>"}
+
+response = requests.get(url, headers=headers, params=params)
+
+data = response.json()
+print(f"Total queries: {data['total']}")
+for query in data['queries']:
+    print(f"Query {query['id']}: {query['name']}")
+```
+
+```javascript JavaScript
+const url = new URL('https://api.dune.com/api/v1/queries');
+url.searchParams.append('limit', '20');
+url.searchParams.append('offset', '0');
+
+const options = {
+  method: 'GET',
+  headers: {'X-DUNE-API-KEY': '<x-dune-api-key>'}
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Total queries: ${data.total}`);
+    data.queries.forEach(query => {
+      console.log(`Query ${query.id}: ${query.name}`);
+    });
+  })
+  .catch(err => console.error(err));
+```
+
+```go Go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+	url := "https://api.dune.com/api/v1/queries?limit=20&offset=0"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-DUNE-API-KEY", "<x-dune-api-key>")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+}
+```
+
+```php PHP
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.dune.com/api/v1/queries?limit=20&offset=0",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => [
+    "X-DUNE-API-KEY: <x-dune-api-key>"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+```java Java
+HttpResponse<String> response = Unirest.get("https://api.dune.com/api/v1/queries?limit=20&offset=0")
+  .header("X-DUNE-API-KEY", "<x-dune-api-key>")
+  .asString();
+```
+
+</RequestExample>
+
