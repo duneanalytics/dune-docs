@@ -1369,6 +1369,95 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/pipelines/execute": {
+      "post": {
+        "summary": "Execute a pipeline",
+        "description": "Builds an execution pipeline from the specified query and executes it. The pipeline will consist of all the materialized views in the queries lineage. A pipeline allows you to chain multiple queries together and execute them as a single unit.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pipeline execution request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/models.ExecutePipelineRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ExecutePipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/pipelines/executions/{pipeline_execution_id}/status": {
       "get": {
         "summary": "Get pipeline execution status",
@@ -2304,28 +2393,19 @@
             "schema": {
               "type": "integer"
             }
-          },
-          {
-            "name": "performance",
-            "in": "query",
-            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Credits are consumed based on actual compute resources used. Medium is the default, large provides more resources for complex queries.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "medium",
-                "large"
-              ]
-            }
-          },
-          {
-            "name": "query_parameters",
-            "in": "query",
-            "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys. Partial submission of parameters is allowed. For example, if the query expects three parameters and you only pass in two, the third one will automatically use its default value as defined in the Query Parameter Editor page.",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
+        "requestBody": {
+          "description": "Query pipeline execution request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/models.ExecuteQueryPipelineRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -2377,7 +2457,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/query/{query_id}/results": {
@@ -3771,6 +3852,48 @@
           }
         }
       },
+      "models.ExecutePipelineRequest": {
+        "type": "object",
+        "properties": {
+          "pipeline": {
+            "type": "object",
+            "description": "The pipeline definition containing nodes to execute",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.Pipeline"
+              }
+            ]
+          }
+        }
+      },
+      "models.ExecutePipelineResponse": {
+        "type": "object",
+        "properties": {
+          "pipeline_execution_id": {
+            "type": "string",
+            "description": "Unique identifier for the pipeline execution. Use this ID to check the status\nand retrieve results of the pipeline execution.",
+            "example": "01HKZJ2683PHF9Q9PHHQ8FW4Q1"
+          }
+        }
+      },
+      "models.ExecuteQueryPipelineRequest": {
+        "type": "object",
+        "properties": {
+          "performance": {
+            "type": "string",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          },
+          "query_parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
       "models.ExecuteQueryPipelineResponse": {
         "type": "object",
         "properties": {
@@ -4141,6 +4264,37 @@
           }
         }
       },
+      "models.Pipeline": {
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "type": "array",
+            "description": "List of nodes in the pipeline. Nodes are executed in dependency order.",
+            "items": {
+              "$ref": "#/components/schemas/models.PipelineNode"
+            }
+          }
+        }
+      },
+      "models.PipelineMaterializedViewRefreshNode": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the materialized view to refresh",
+            "example": "mv_1"
+          },
+          "performance": {
+            "type": "string",
+            "description": "The performance engine tier the refresh will be run on. Can be either `medium` or `large`.",
+            "example": "medium",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          }
+        }
+      },
       "models.PipelineMaterializedViewRefreshStatus": {
         "type": "object",
         "properties": {
@@ -4159,6 +4313,41 @@
           "status": {
             "type": "string",
             "description": "Status of the materialized view refresh"
+          }
+        }
+      },
+      "models.PipelineNode": {
+        "type": "object",
+        "properties": {
+          "dependencies": {
+            "type": "array",
+            "description": "List of node IDs that this node depends on. Nodes are executed in dependency order.",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the node in the pipeline",
+            "example": 1
+          },
+          "materialized_view_refresh": {
+            "type": "object",
+            "description": "Materialized view refresh node configuration. Required if this node refreshes a materialized view.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineMaterializedViewRefreshNode"
+              }
+            ]
+          },
+          "query_execution": {
+            "type": "object",
+            "description": "Query execution node configuration. Required if this node executes a query.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineQueryExecutionNode"
+              }
+            ]
           }
         }
       },
@@ -4186,6 +4375,32 @@
                 "$ref": "#/components/schemas/models.PipelineQueryExecutionStatus"
               }
             ]
+          }
+        }
+      },
+      "models.PipelineQueryExecutionNode": {
+        "type": "object",
+        "properties": {
+          "performance": {
+            "type": "string",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`.",
+            "example": "medium",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          },
+          "query_id": {
+            "type": "integer",
+            "description": "Unique identifier of the query to execute",
+            "example": 1234
+          },
+          "query_parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            },
+            "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys."
           }
         }
       },
