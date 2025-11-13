@@ -1,0 +1,33 @@
+---
+title: 'Clear Data'
+openapi: 'POST /v1/uploads/{namespace}/{table_name}/clear'
+---
+
+The `Clear` endpoint removes all the data in the specified table, but does not delete the table.
+
+<Tip>
+**Migrating from the old API?** See the [Migration Guide](./migration) for help updating your code.
+</Tip>
+
+<RequestExample>
+
+```bash curl
+curl --request POST \
+  --url https://api.dune.com/api/v1/uploads/my_user/interest_rates/clear \
+  --header 'X-DUNE-API-KEY: <x-dune-api-key>'
+```
+
+
+```python Python
+import requests
+
+url = "https://api.dune.com/api/v1/uploads/my_user/interest_rates/clear"
+
+headers = {
+    "X-DUNE-API-KEY": "<x-dune-api-key>"
+}
+
+response = requests.request("POST", url, headers=headers)
+```
+
+</RequestExample>
