@@ -1,0 +1,192 @@
+---
+title: "Migration Guide"
+icon: "arrow-right"
+description: "Migrate from deprecated /v1/table/* endpoints to /v1/uploads/*"
+---
+
+# Endpoint Migration Guide
+
+The table endpoints have been migrated from `/v1/table/*` to `/v1/uploads/*` for better discoverability and consistency. The old endpoints are deprecated but remain functional for backward compatibility.
+
+<Warning>
+  **Deprecated endpoints will be removed in a future version.** Please migrate
+  to the new endpoints as soon as possible.
+</Warning>
+
+## Endpoint Mapping
+
+| Old Endpoint (Deprecated)                      | New Endpoint                                                         |
+| ---------------------------------------------- | -------------------------------------------------------------------- |
+| `POST /v1/table/create`                        | [`POST /v1/uploads`](./uploads-create)                               |
+| `POST /v1/table/:namespace/:table_name/insert` | [`POST /v1/uploads/:namespace/:table_name/insert`](./uploads-insert) |
+| `POST /v1/table/upload/csv`                    | [`POST /v1/uploads/csv`](./uploads-csv)                              |
+| `POST /v1/table/:namespace/:table_name/clear`  | [`POST /v1/uploads/:namespace/:table_name/clear`](./uploads-clear)   |
+| `DELETE /v1/table/:namespace/:table_name`      | [`DELETE /v1/uploads/:namespace/:table_name`](./uploads-delete)      |
+| `GET /v1/tables`                               | [`GET /v1/uploads`](./uploads-list)                                  |
+
+## What Changed?
+
+### URL Structure
+
+All table management endpoints now use the `/v1/uploads` base path instead of `/v1/table` or `/v1/tables`. This change makes it clearer that these endpoints are specifically for managing uploaded tables.
+
+## Migration Examples
+
+### Create Table
+
+**Before:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/table/create" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "namespace": "my_user",
+    "table_name": "interest_rates",
+    "schema": [
+      {"name": "date", "type": "timestamp"},
+      {"name": "rate", "type": "double"}
+    ]
+  }'
+```
+
+**After:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/uploads" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "namespace": "my_user",
+    "table_name": "interest_rates",
+    "schema": [
+      {"name": "date", "type": "timestamp"},
+      {"name": "rate", "type": "double"}
+    ]
+  }'
+```
+
+### Insert Data
+
+**Before:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/table/my_user/interest_rates/insert" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+  -H "Content-Type: text/csv" \
+  --upload-file data.csv
+```
+
+**After:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/uploads/my_user/interest_rates/insert" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+  -H "Content-Type: text/csv" \
+  --upload-file data.csv
+```
+
+### Upload CSV
+
+**Before:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/table/upload/csv" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "table_name": "my_table",
+    "data": "col1,col2\nval1,val2",
+    "is_private": false
+  }'
+```
+
+**After:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/uploads/csv" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "table_name": "my_table",
+    "data": "col1,col2\nval1,val2",
+    "is_private": false
+  }'
+```
+
+### Clear Table
+
+**Before:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/table/my_user/interest_rates/clear" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+**After:**
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/uploads/my_user/interest_rates/clear" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+### Delete Table
+
+**Before:**
+
+```bash
+curl -X DELETE "https://api.dune.com/api/v1/table/my_user/interest_rates" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+**After:**
+
+```bash
+curl -X DELETE "https://api.dune.com/api/v1/uploads/my_user/interest_rates" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+### List Tables
+
+**Before:**
+
+```bash
+curl -X GET "https://api.dune.com/api/v1/tables?limit=10&offset=0" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+**After:**
+
+```bash
+curl -X GET "https://api.dune.com/api/v1/uploads?limit=10&offset=0" \
+  -H "X-DUNE-API-KEY: YOUR_API_KEY"
+```
+
+## SDK Support
+
+### Python SDK
+
+The Dune Python SDK will be updated to support the new endpoints. Check the [Python SDK documentation](https://github.com/duneanalytics/dune-client) for the latest version and migration guidance.
+
+### TypeScript SDK
+
+The Dune TypeScript SDK will be updated to support the new endpoints. Check the [TypeScript SDK documentation](https://github.com/duneanalytics/dune-client-ts) for the latest version and migration guidance.
+
+## Backward Compatibility
+
+All deprecated endpoints continue to function and will remain available for a transition period. However, we strongly recommend migrating to the new endpoints to ensure compatibility with future versions of the API.
+
+## Timeline
+
+- **Backend Migration**: ✅ Complete
+- **Documentation Migration**: ✅ Complete
+- **Deprecation Period**: 3 months (until March 1, 2026)
+- **Old Endpoint Removal**: **March 1, 2026**
+
+## Need Help?
+
+If you encounter any issues during migration, please:
+
+- Check the [current endpoint documentation](./uploads-list)
+- Review the [API reference overview](./overview)
+- Contact [Dune support](mailto:support@dune.com)

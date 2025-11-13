@@ -1,14 +1,7 @@
 ---
 title: 'Delete Table'
-openapi: 'DELETE /v1/table/{namespace}/{table_name}'
+openapi: 'DELETE /v1/uploads/{namespace}/{table_name}'
 ---
-
-<Warning>
-**DEPRECATED**: This endpoint has been deprecated and will be removed on **March 1, 2026**.
-Please use the new endpoint: [`DELETE /v1/uploads/:namespace/:table_name`](./uploads-delete)
-
-See the [Migration Guide](./migration) for details on migrating to the new endpoints.
-</Warning>
 
 <Note>
 - You must be an admin to delete the table.
@@ -16,11 +9,15 @@ See the [Migration Guide](./migration) for details on migrating to the new endpo
 - Deleting a table does not incur credits.
 </Note>
 
+<Tip>
+**Migrating from the old API?** See the [Migration Guide](./migration) for help updating your code.
+</Tip>
+
 <RequestExample>
 
 ```bash curl
 curl --request DELETE \
-  --url https://api.dune.com/api/v1/table/my_user/interest_rates \
+  --url https://api.dune.com/api/v1/uploads/my_user/interest_rates \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>'
 ```
 
@@ -48,7 +45,7 @@ const result = await client.table.delete({
 ```python Python
 import requests
 
-url = "https://api.dune.com/api/v1/table/my_user/interest_rates"
+url = "https://api.dune.com/api/v1/uploads/my_user/interest_rates"
 
 headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>"
@@ -58,7 +55,7 @@ response = requests.request("DELETE", url, headers=headers)
 ```
 
 ```javascript Javascript
-const url = "https://api.dune.com/api/v1/table/my_user/interest_rates";
+const url = "https://api.dune.com/api/v1/uploads/my_user/interest_rates";
 
 const headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>"

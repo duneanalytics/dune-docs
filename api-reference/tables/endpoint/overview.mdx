@@ -3,6 +3,21 @@ title: 'Overview'
 icon: "star"
 ---
 
+<Note>
+**Endpoint Migration Notice**: The table upload endpoints have been updated from `/v1/table/*` to `/v1/uploads/*`. The old endpoints are deprecated but still fully functional and **will be removed on March 1, 2026**. **Request parameters and response bodies remain unchanged.**
+
+| Old Endpoint (Deprecated) | New Endpoint |
+|---------------------------|--------------|
+| `POST /v1/table/create` | `POST /v1/uploads` |
+| `POST /v1/table/:namespace/:table_name/insert` | `POST /v1/uploads/:namespace/:table_name/insert` |
+| `POST /v1/table/upload/csv` | `POST /v1/uploads/csv` |
+| `POST /v1/table/:namespace/:table_name/clear` | `POST /v1/uploads/:namespace/:table_name/clear` |
+| `DELETE /v1/table/:namespace/:table_name` | `DELETE /v1/uploads/:namespace/:table_name` |
+| `GET /v1/tables` | `GET /v1/uploads` |
+
+For detailed migration examples, see the [Migration Guide](./migration).
+</Note>
+
 # Table Upload Methods: Two Approaches
 
 Dune provides two distinct methods for uploading data to create queryable tables. Each method serves different use cases and offers unique advantages and trade-offs.
@@ -13,7 +28,7 @@ The CSV upload method is the most straightforward way to get data into Dune, des
 
 ### How It Works
 - **UI Upload**: Click "Upload Data" in Dune interface, select CSV file, name your table, add description, and save
-- **API Upload**: Use the [`/upload endpoint`](./upload) to programmatically upload CSV files
+- **API Upload**: Use the [`/upload endpoint`](./uploads-csv) to programmatically upload CSV files
 - **Schema**: Automatically inferred from CSV data (no manual schema definition required)
 - **Table Naming**: Results in `dune.team_name.dataset_name` format
 
@@ -42,35 +57,36 @@ The CSV upload method is the most straightforward way to get data into Dune, des
 - Users without programming experience
 
 ### Credit Usage
-- Plus Plan: 5,000 data points per credit
-- Premium Plan: 25,000 data points per credit
+- Free Plan: 1,000 data points per credit (2,500 credits total)
+- Analyst Plan: 1,000 data points per credit (4,000 credits total)
+- Plus Plan: 5,000 data points per credit (25,000 credits total)
 
 ---
 
 ## Method 2: Programmatic Table Management - Flexible but Complex
 
-The programmatic approach uses a combination of four API endpoints ([`create`](./create), [`insert`](./insert), [`clear`](./clear), [`delete`](./delete)) to provide full control over table lifecycle and data management.
+The programmatic approach uses a combination of four API endpoints ([`create`](./uploads-create), [`insert`](./uploads-insert), [`clear`](./uploads-clear), [`delete`](./uploads-delete)) to provide full control over table lifecycle and data management.
 
 ### Core Operations
 
-#### 1. **Create Table** ([`POST /v1/table/create`](./create))
+#### 1. **Create Table** ([`POST /v1/uploads`](./uploads-create))
 - Define table schema explicitly with column names, types, and nullability
 - Set table as public or private
 - Specify namespace and table name
 - **Cost**: 10 credits per successful table creation
 
-#### 2. **Insert Data** ([`POST /v1/table/insert`](./insert))
+#### 2. **Insert Data** ([`POST /v1/uploads/:namespace/:table_name/insert`](./uploads-insert))
 - Add new rows to existing tables
 - Support for incremental data loading
 - Append operations without replacing existing data
 - JSON payload with structured data
 
-#### 3. **Clear Data** ([`POST /v1/table/clear`](./clear))
+#### 3. **Clear Data** ([`POST /v1/uploads/:namespace/:table_name/clear`](./uploads-clear))
 - Remove all data from table while preserving schema
 - Useful for complete data refreshes
 - Table structure remains intact
 
-#### 4. **Delete Table** ([`DELETE /v1/table/delete`](./delete))
+#### 4. **Delete Table** ([`DELETE /v1/uploads/:namespace/:table_name`](./uploads-delete))
 - Permanently remove table and all its data
 - Complete cleanup operation
 - Irreversible action

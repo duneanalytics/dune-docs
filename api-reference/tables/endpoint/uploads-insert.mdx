@@ -1,22 +1,19 @@
 ---
 title: 'Insert Data'
-openapi: 'POST /v1/table/{namespace}/{table_name}/insert'
+openapi: 'POST /v1/uploads/{namespace}/{table_name}/insert'
 ---
 
-<Warning>
-**DEPRECATED**: This endpoint has been deprecated and will be removed on **March 1, 2026**.
-Please use the new endpoint: [`POST /v1/uploads/:namespace/:table_name/insert`](./uploads-insert)
-
-See the [Migration Guide](./migration) for details on migrating to the new endpoints.
-</Warning>
-
-To be able to insert into a table, it must have been created with the [/create endpoint](./create).
+To be able to insert into a table, it must have been created with the [/create endpoint](./uploads-create).
 
 <Note>
 - The data in the files must conform to the schema, and must use the same column names as the schema.
 - One successful `/insert` request consumes 1 credits.
 - The maximum request size is 1.2GB
 </Note>
+
+<Tip>
+**Migrating from the old API?** See the [Migration Guide](./migration) for help updating your code.
+</Tip>
 
 ## Consistency
 A request to this endpoint has two possible outcomes: Either all of the data in the request was inserted, or none of it was.
@@ -54,7 +51,7 @@ Example: `{"varbinary_column":"0x92b7d1031988c7af"}`
 <RequestExample>
 ```bash curl
 curl --request POST \
-  --url https://api.dune.com/api/v1/table/my_user/interest_rates/insert \
+  --url https://api.dune.com/api/v1/uploads/my_user/interest_rates/insert \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
   --header 'Content-Type: text/csv' \
   --upload-file interest_rates.csv
@@ -94,7 +91,7 @@ const result = await client.table.insert({
 ```python Python
 import requests
 
-url = "https://api.dune.com/api/v1/table/my_user/interest_rates/insert"
+url = "https://api.dune.com/api/v1/uploads/my_user/interest_rates/insert"
 
 headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>",
@@ -107,7 +104,7 @@ with open("./interest_rates.csv", "rb") as data:
 
 
 ```javascript Javascript
-const url = "https://api.dune.com/api/v1/table/my_user/interest_rates/insert";
+const url = "https://api.dune.com/api/v1/uploads/my_user/interest_rates/insert";
 
 const headers = {
     "X-DUNE-API-KEY": "<x-dune-api-key>",
