@@ -2970,6 +2970,7 @@
                       "api-reference/executions/execution-object",
                       "api-reference/executions/endpoint/execute-sql",
                       "api-reference/executions/endpoint/execute-query",
+                      "api-reference/executions/endpoint/execute-query-pipeline",
                       "api-reference/executions/endpoint/get-execution-status",
                       "api-reference/executions/endpoint/get-execution-result",
                       "api-reference/executions/endpoint/get-execution-result-csv",
@@ -2984,6 +2985,7 @@
                     "pages": [
                       "api-reference/queries/endpoint/query-object",
                       "api-reference/queries/endpoint/list",
+                      "api-reference/queries/endpoint/get-query-pipeline",
                       "api-reference/queries/endpoint/create",
                       "api-reference/queries/endpoint/update",
                       "api-reference/queries/endpoint/read",
@@ -3033,9 +3035,7 @@
                     "group": "Pipelines",
                     "pages": [
                       "api-reference/pipelines/overview",
-                      "api-reference/pipelines/endpoint/get-query-pipeline",
                       "api-reference/pipelines/endpoint/execute-pipeline",
-                      "api-reference/pipelines/endpoint/execute-query-pipeline",
                       "api-reference/pipelines/endpoint/get-pipeline-status"
                     ],
                     "icon": "diagram-project"
