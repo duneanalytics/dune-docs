@@ -1,78 +1,19 @@
 ---
 title: "Get Query Pipeline"
-api: "GET /v1/query/{query_id}/pipeline"
+openapi: "GET /v1/query/{query_id}/pipeline"
 ---
 
-Retrieve the pipeline definition for a specific query, including all queries and materialized view refreshes that would be executed.
+Retrieve the pipeline definition for a specific query, including all nested materialized views that the query depends on.
 
 ## Overview
 
 This endpoint returns the pipeline structure that would be executed for a given query, allowing you to inspect the lineage and execution order before running the pipeline. This is useful for understanding dependencies and planning pipeline executions.
 
-## Request
+The pipeline definition contains all the nodes (queries and materialized view refreshes) in the correct dependency order.
 
-### Path Parameters
-
-<ParamField path="query_id" type="integer" required>
-  The ID of the query to retrieve the pipeline for
-</ParamField>
-
-### Request Body
-
-<ParamField body="performance" type="string" required>
-  The performance tier to use for query execution. Available options:
-  - `medium`: Standard execution (default timeout: 30 minutes)
-  - `large`: Extended execution for complex queries (timeout: 60 minutes)
-</ParamField>
-
-<ParamField body="query_parameters" type="array">
-  Optional array of query parameters to pass to the pipeline queries.
-  
-  Each parameter object should have:
-  - `key`: The parameter name
-  - `value`: The parameter value
-  - `type`: The parameter type (`text`, `number`, `date`, or `enum`)
-</ParamField>
-
-## Response
-
-Returns a pipeline definition object containing:
-
-<ResponseField name="pipeline" type="object">
-  The complete pipeline definition
-  
-  <Expandable title="Pipeline Object">
-    <ResponseField name="nodes" type="array">
-      Array of pipeline nodes representing queries and materialized view refreshes
-      
-      <Expandable title="Node Object">
-        <ResponseField name="id" type="string">
-          Unique identifier for the node
-        </ResponseField>
-        
-        <ResponseField name="type" type="string">
-          Type of node: `query` or `materialized_view`
-        </ResponseField>
-        
-        <ResponseField name="query_id" type="integer">
-          The query ID (for query nodes)
-        </ResponseField>
-        
-        <ResponseField name="materialized_view_id" type="string">
-          The materialized view ID (for materialized view nodes)
-        </ResponseField>
-        
-        <ResponseField name="dependencies" type="array">
-          Array of node IDs that this node depends on
-        </ResponseField>
-      </Expandable>
-    </ResponseField>
-    
-    <ResponseField name="execution_order" type="array">
-      Array of node IDs in the order they will be executed
-    </ResponseField>
-  </Expandable>
-</ResponseField>
+<Note>
+The `query_parameters` should be passed as a URL-encoded JSON string in the query parameter, where keys are parameter names and values are parameter values.
+</Note>
 
 ## Use Cases
 
@@ -81,54 +22,47 @@ Returns a pipeline definition object containing:
 Check what queries and materialized views will be executed:
 
 ```bash
-curl -X GET "https://api.dune.com/api/v1/query/3493826/pipeline" \
-  -H "X-Dune-Api-Key: $DUNE_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "performance": "medium"
-  }'
+curl "https://api.dune.com/api/v1/query/3493826/pipeline?performance=medium" \
+  -H "X-Dune-Api-Key: $DUNE_API_KEY"
 ```
 
-### Validate Dependencies
+### Validate Dependencies with Parameters
 
-Understand query dependencies before running a pipeline:
+Understand query dependencies before running a pipeline with specific parameters:
 
 ```bash
-curl -X GET "https://api.dune.com/api/v1/query/3493826/pipeline" \
-  -H "X-Dune-Api-Key: $DUNE_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "performance": "large",
-    "query_parameters": [
-      {
-        "key": "blockchain",
-        "value": "ethereum",
-        "type": "text"
-      }
-    ]
-  }'
+# Query parameters as JSON string
+curl "https://api.dune.com/api/v1/query/3493826/pipeline?performance=large&query_parameters=%7B%22blockchain%22%3A%22ethereum%22%7D" \
+  -H "X-Dune-Api-Key: $DUNE_API_KEY"
 ```
 
-## Response Example
+## Response Structure
+
+The response contains a `pipeline` object with a `nodes` array. Each node represents either a query execution or materialized view refresh, along with its dependencies.
+
+Example response:
 
 ```json
 {
   "pipeline": {
     "nodes": [
       {
-        "id": "node_1",
-        "type": "materialized_view",
-        "materialized_view_id": "dune.analyst.mv_base_data",
-        "dependencies": []
+        "id": 1,
+        "dependencies": [],
+        "materialized_view_refresh": {
+          "name": "dune.analyst.mv_base_data",
+          "performance": "medium"
+        }
       },
       {
-        "id": "node_2",
-        "type": "query",
-        "query_id": 3493826,
-        "dependencies": ["node_1"]
+        "id": 2,
+        "dependencies": [1],
+        "query_execution": {
+          "query_id": 3493826,
+          "performance": "medium"
+        }
       }
-    ],
-    "execution_order": ["node_1", "node_2"]
+    ]
   }
 }
 ```
