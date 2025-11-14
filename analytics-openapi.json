@@ -61,7 +61,7 @@
           {
             "name": "type",
             "in": "query",
-            "description": "Filter by dataset types (comma-separated: transformation_view, transformation_table, uploaded_table, decoded_table, spell, dune_table)",
+            "description": "Filter by dataset types (comma-separated: transformation_view, transformation_table, uploaded_table, decoded_table, spell, dune_table, materialized_view)",
             "schema": {
               "type": "string"
             }
