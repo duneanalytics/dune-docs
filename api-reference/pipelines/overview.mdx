@@ -55,6 +55,7 @@ Process data incrementally through multiple dependent steps:
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
+| [Get Query Pipeline](./endpoint/get-query-pipeline) | `GET /v1/query/{query_id}/pipeline` | Retrieves the pipeline definition for a query, including all dependencies and execution order |
 | [Execute Pipeline](./endpoint/execute-pipeline) | `POST /v1/pipelines/execute` | Builds and executes a pipeline including all materialized views in the query's lineage |
 | [Execute Query Pipeline](./endpoint/execute-query-pipeline) | `POST /v1/query/{query_id}/pipeline/execute` | Executes a predefined query pipeline starting from the specified query |
 | [Get Pipeline Execution Status](./endpoint/get-pipeline-status) | `GET /v1/pipelines/executions/{pipeline_execution_id}/status` | Retrieves the status of a pipeline execution including all nodes |
