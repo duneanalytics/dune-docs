@@ -51,3 +51,31 @@ When calculating datapoints based on total bytes, cells that exceed 100 bytes wi
 **API Usage Billing**
 
 Any API usage billing will be based on what account the API key is associated with. If you use your team API key to call a public query belonging to yourself, the billing will be associated to the team (and vice versa).
+
+## Data Transformations Billing
+
+Data Transformations is an Enterprise-only feature with usage-based credit consumption.
+
+### Credit Consumption
+
+#### Compute Credits
+- Same as Fluid Engine credits for query execution
+- Charged based on actual compute resources used
+- Depends on query complexity and execution time
+
+#### Write Operations
+- **Minimum 3 credits** per write operation
+- Scales with data volume (GB written)
+- Applied to INSERT, MERGE, CREATE TABLE AS SELECT, etc.
+
+#### Storage Credits
+- **4 credits per GB per month**
+- Calculated based on end-of-day storage usage
+- Encourages efficient data management and cleanup
+
+#### Maintenance Operations
+- OPTIMIZE, VACUUM, and ANALYZE operations consume credits
+- Based on compute resources and data written during maintenance
+- Can be automated with dbt post-hooks
+
+See [dbt Connector documentation](/api-reference/connectors/dbt-connector) for more details.

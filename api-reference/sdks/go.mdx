@@ -1,0 +1,84 @@
+---
+title: "Go"
+icon: "golang"
+description: "Go SDK for Dune Analytics API"
+---
+
+We have a Go client available at [github.com/duneanalytics/duneapi-client-go](https://github.com/duneanalytics/duneapi-client-go).
+
+## Installation
+
+To install the SDK, run the following command:
+
+```bash
+go get github.com/duneanalytics/duneapi-client-go
+```
+
+## Quick Start
+
+Initialize the client and execute a query:
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+    
+    "github.com/duneanalytics/duneapi-client-go"
+)
+
+func main() {
+    // Initialize client with API key
+    client := duneapi.New(os.Getenv("DUNE_API_KEY"))
+    
+    // Execute a query
+    queryID := 1215383
+    results, err := client.ExecuteQuery(queryID)
+    if err != nil {
+        panic(err)
+    }
+    
+    // Process results
+    fmt.Printf("Got %d rows\n", len(results.Rows))
+    for _, row := range results.Rows {
+        fmt.Printf("%+v\n", row)
+    }
+}
+```
+
+## Error Handling
+
+The Go client follows idiomatic Go error handling patterns:
+
+```go
+results, err := client.ExecuteQuery(queryID)
+if err != nil {
+    // Handle error
+    log.Printf("Error executing query: %v", err)
+    return
+}
+
+// Use results
+fmt.Println(results)
+```
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="GitHub Repository" icon="github" href="https://github.com/duneanalytics/duneapi-client-go">
+    View source code and documentation
+  </Card>
+  
+  <Card title="Go Package" icon="golang" href="https://pkg.go.dev/github.com/duneanalytics/duneapi-client-go">
+    View on pkg.go.dev
+  </Card>
+  
+  <Card title="Report Issues" icon="bug" href="https://github.com/duneanalytics/duneapi-client-go/issues">
+    Report bugs or request features
+  </Card>
+  
+  <Card title="API Reference" icon="book" href="/api-reference/executions/execution-object">
+    View full API documentation
+  </Card>
+</CardGroup>

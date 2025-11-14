@@ -1,0 +1,51 @@
+---
+title: "Overview"
+icon: "plug"
+description: "Connect Dune's data directly to your environment using Trino Connector or DBT Connector"
+---
+
+## Overview
+
+Dune's connectors allow you to access blockchain data directly in your own environment, giving you maximum flexibility to integrate with existing data infrastructure and BI tools.
+
+Both connectors use the same Trino endpoint (`trino.api.dune.com`), but serve different purposes:
+- **Trino Connector**: Read-only access for querying Dune's data
+- **dbt Connector**: Write-enabled access for data transformations (requires `transformations=true` session property)
+
+## Available Connectors
+
+<CardGroup cols={2}>
+  <Card title="Trino Connector (Read-Only)" icon="database" href="/api-reference/connectors/trino-connector">
+    Query Dune's data warehouse using standard Trino protocol
+    
+    **Perfect for connecting to BI tools (Tableau, PowerBI, Looker, etc.) or data warehouses and ETL pipelines
+    
+  </Card>
+  
+  <Card title="dbt Connector (Write-Enabled)" icon="code-branch" href="/api-reference/connectors/dbt-connector">
+    Build data transformation pipelines on top of Dune data
+    
+    **Perfect for data engineering teams using dbt or complex data transformation workflows
+  </Card>
+</CardGroup>
+
+## Common Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Enterprise BI Dashboards" icon="chart-mixed">
+    Connect PowerBI to build enterprise dashboards on blockchain data
+  </Card>
+  
+  <Card title="Notebook Analytics" icon="book-open">
+    Connect Hex or Metabase for notebook-native analytics and interactive BI dashboards
+  </Card>
+  
+  <Card title="Custom SQL Analytics" icon="code">
+    Use your favorite SQL client like DBeaver to explore and analyze blockchain data
+  </Card>
+  
+  <Card title="DBT Pipelines" icon="diagram-project">
+    Build sophisticated data transformation pipelines with version control and testing
+  </Card>
+</CardGroup>
+

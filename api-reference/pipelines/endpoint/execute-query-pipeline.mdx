@@ -1,0 +1,49 @@
+---
+title: 'Execute Query Pipeline'
+openapi: 'POST /v1/query/{query_id}/pipeline/execute'
+---
+
+This endpoint builds a query pipeline from the specified query and executes it. A pipeline allows you to chain multiple queries together and execute them as a single unit.
+
+## What is a Query Pipeline?
+
+A query pipeline enables you to create a chain of dependencies between queries, where:
+- Each query in the pipeline can depend on the results of previous queries
+- The pipeline executes queries in the correct order based on their dependencies
+- All queries are executed as a single atomic operation
+
+## Use Cases
+
+Query pipelines are ideal for:
+- **Complex Data Transformations**: Breaking down complex analysis into smaller, manageable queries
+- **Data Lineage**: Maintaining clear dependencies between related queries
+- **Coordinated Updates**: Ensuring multiple queries are executed together
+- **Incremental Processing**: Building data pipelines where each step depends on the previous one
+
+## Response
+
+The endpoint returns a `pipeline_execution_id` which you can use to:
+1. Check the status of the pipeline execution using the [Get Pipeline Execution Status](/api-reference/pipelines/endpoint/get-pipeline-status) endpoint
+2. Monitor the progress of individual nodes in the pipeline
+3. Retrieve results from each query in the pipeline once execution completes
+
+<Note>
+- Credits are consumed based on actual compute resources used for each query in the pipeline
+- Use the `performance` parameter to specify execution tier (medium or large)
+- Query parameters can be passed to parameterize queries in the pipeline
+</Note>
+
+## Example Workflow
+
+```bash
+# 1. Execute the pipeline
+curl -X POST "https://api.dune.com/api/v1/query/1234567/pipeline/execute" \
+  -H "X-Dune-Api-Key: YOUR_API_KEY"
+
+# Response: { "pipeline_execution_id": "01HZABC123..." }
+
+# 2. Check pipeline status
+curl "https://api.dune.com/api/v1/pipelines/executions/01HZABC123.../status" \
+  -H "X-Dune-Api-Key: YOUR_API_KEY"
+```
+

@@ -1,23 +1,20 @@
 ---
 title: 'Create Table'
-openapi: 'POST /v1/table/create'
+openapi: 'POST /v1/uploads'
 ---
 
-<Warning>
-**DEPRECATED**: This endpoint has been deprecated and will be removed on **March 1, 2026**.
-Please use the new endpoint: [`POST /v1/uploads`](./uploads-create)
-
-See the [Migration Guide](./migration) for details on migrating to the new endpoints.
-</Warning>
-
-The resulting table will be empty, and can be inserted into with the [/insert endpoint](./insert).
+The resulting table will be empty, and can be inserted into with the [/insert endpoint](./uploads-insert).
 
 <Note>
 - If a table already exists with the same name, the request will fail.
 - Column names in the table can't start with a special character or a digit.
 - Each successful table creation consumes 10 credits.
-- To delete a table, you can go to `user settings (dune.com) -> data -> delete` or use the [/delete endpoint](./delete).
+- To delete a table, you can go to `user settings (dune.com) -> data -> delete` or use the [/delete endpoint](./uploads-delete).
 </Note>
+
+<Tip>
+**Migrating from the old API?** See the [Migration Guide](./migration) for help updating your code.
+</Tip>
 
 ## Schema
 You need to define the schema of your data by providing `schema` array of columns in the request. Each column has three parameters:
@@ -33,7 +30,7 @@ You need to define the schema of your data by providing `schema` array of column
 
 ```bash curl
 curl --request POST \
-  --url https://api.dune.com/api/v1/table/create \
+  --url https://api.dune.com/api/v1/uploads \
   --header 'X-DUNE-API-KEY: <x-dune-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -79,7 +76,7 @@ const result = await client.table.create({
 ```python Python
 import requests
 
-url = "https://api.dune.com/api/v1/table/create"
+url = "https://api.dune.com/api/v1/uploads"
 
 payload = {
     "namespace": "my_user",
@@ -99,7 +96,7 @@ response = requests.request("POST", url, json=payload, headers=headers)
 ```
 
 ```javascript Javascript
-const url = "https://api.dune.com/api/v1/table/create";
+const url = "https://api.dune.com/api/v1/uploads";
 
 const payload = {
     "namespace": "my_user",

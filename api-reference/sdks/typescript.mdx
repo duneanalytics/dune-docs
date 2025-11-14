@@ -1,0 +1,78 @@
+---
+title: "TypeScript"
+icon: "js"
+description: "TypeScript/JavaScript SDK for Dune Analytics API"
+---
+
+We have a community client that can be [found here](https://www.npmjs.com/package/@duneanalytics/client-sdk).
+
+## Installation
+
+To install, run this command:
+
+```bash
+yarn add @duneanalytics/client-sdk
+```
+
+Or with npm:
+
+```bash
+npm install @duneanalytics/client-sdk
+```
+
+<Note>
+Currently this client only supports the execution based endpoints, and not Query Endpoints or uploads.
+</Note>
+
+## Quick Start
+
+Initialize the client and run a query:
+
+```typescript
+import { QueryParameter, DuneClient } from "@duneanalytics/client-sdk";
+const { DUNE_API_KEY } = process.env;
+
+const client = new DuneClient(DUNE_API_KEY ?? "");
+const queryID = 1215383;
+const params = {
+  query_parameters: [
+    QueryParameter.text("TextField", "Plain Text"),
+    QueryParameter.number("NumberField", 3.1415926535),
+    QueryParameter.date("DateField", "2022-05-04 00:00:00"),
+    QueryParameter.enum("ListField", "Option 1"),
+  ]
+};
+
+client
+  .runQuery(queryID, params)
+  .then((executionResult) => console.log(executionResult.result?.rows));
+```
+
+## Working with Query Parameters
+
+The SDK provides helper functions for creating typed query parameters:
+
+- `QueryParameter.text(name, value)` - For text parameters
+- `QueryParameter.number(name, value)` - For number parameters
+- `QueryParameter.date(name, value)` - For date parameters
+- `QueryParameter.enum(name, value)` - For enum/list parameters
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="NPM Package" icon="npm" href="https://www.npmjs.com/package/@duneanalytics/client-sdk">
+    View package on NPM
+  </Card>
+  
+  <Card title="GitHub Repository" icon="github" href="https://github.com/duneanalytics/ts-dune-client">
+    View source code and documentation
+  </Card>
+  
+  <Card title="Report Issues" icon="bug" href="https://github.com/duneanalytics/ts-dune-client/issues">
+    Report bugs or request features
+  </Card>
+  
+  <Card title="API Reference" icon="book" href="/api-reference/executions/execution-object">
+    View full API documentation
+  </Card>
+</CardGroup>

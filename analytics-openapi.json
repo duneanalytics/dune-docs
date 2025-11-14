@@ -12,10 +12,10 @@
     }
   ],
   "paths": {
-    "/v1/dex/pairs/{chain}": {
+    "/v1/datasets": {
       "get": {
-        "summary": "DEX Pair Stats",
-        "description": "Given a blockchain, retrieves essential metadata and statistical data for token pairs.\nMetadata encompasses all pool addresses associated with the token pair, the DEXs or\nprojects where they are available, and their token addresses. Key statistics provided\ninclude one-day, seven-day, and thirty-day trading volumes, USD liquidity,\nand the seven-day volume-to-liquidity ratio.",
+        "summary": "List datasets",
+        "description": "Retrieve a paginated list of datasets with optional filtering by owner and type",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -35,82 +35,129 @@
             }
           },
           {
-            "name": "chain",
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return (default 50, max 250)",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "owner_handle",
+            "in": "query",
+            "description": "Filter by owner handle",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by dataset types (comma-separated: transformation_view, transformation_table, uploaded_table, decoded_table, spell, dune_table)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ListDatasetsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/datasets/{slug}": {
+      "get": {
+        "summary": "Get a dataset by slug",
+        "description": "Retrieve dataset information including columns, metadata, and ownership details",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
             "in": "path",
-            "description": "The blockchain where the token pair is traded",
+            "description": "Dataset slug (e.g., 'dex.trades')",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
             "schema": {
               "type": "string"
             }
@@ -122,7 +169,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                  "$ref": "#/components/schemas/models.DatasetResponse"
                 }
               }
             }
@@ -143,861 +190,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/eigenlayer/avs-metadata": {
-      "get": {
-        "summary": "AVS Metadata",
-        "description": "Get metadata for all registered AVSs on Eigenlayer,\nincluding `avs_name`, `avs_contract_address`, `website`, `twitter`, `logo`, `description`",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/eigenlayer/avs-stats": {
-      "get": {
-        "summary": "AVS Metrics",
-        "description": "Get metrics for AVSs, including `num_operators`, `total_TVL`, `num_stakers`,\nand TVL for each strategy like cbETH, stETH etc.",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/eigenlayer/operator-metadata": {
-      "get": {
-        "summary": "Operator Metadata",
-        "description": "Get metadata for all registered operators on Eigenlayer, including\n`operator_name`, `operator_contract_address`, `website`, `twitter`, `logo`, `description`",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/eigenlayer/operator-stats": {
-      "get": {
-        "summary": "Operator Metrics",
-        "description": "Get metrics for operators, including `operator_name`, `operator_contract_address`,\n`total_TVL`, `num_stakers`, and TVL for each strategy like cbETH, stETH etc.",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/eigenlayer/operator-to-avs-mapping": {
-      "get": {
-        "summary": "Operator <> AVS Mapping",
-        "description": "Get a mapping of which operator is registered on which AVS, including the time of registration",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
                 }
               }
             }
@@ -1710,700 +902,6 @@
         }
       }
     },
-    "/v1/farcaster/trends/channels": {
-      "get": {
-        "summary": "Farcaster Channels",
-        "description": "Get trending farcaster channels that have had casts in the last 14 days",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/farcaster/trends/memecoins": {
-      "get": {
-        "summary": "Farcaster Memecoins",
-        "description": "Get trending farcaster memecoins that have been casted",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/farcaster/trends/users": {
-      "get": {
-        "summary": "Farcaster Users",
-        "description": "Get trending farcaster users who have casted in the last 14 days",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/marketshare/{market}/{chain}": {
-      "get": {
-        "summary": "Marketplace Market Share",
-        "description": "Given a chain, get the market share in terms of USD transacting\nvolume and number of trades for either `dex` or `nft` sector.",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "market",
-            "in": "path",
-            "description": "Sector of the marketshare, either 'dex' or 'nft'",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "chain",
-            "in": "path",
-            "description": "Chain name (use Dune namespace, e.g. ethereum, solana, bnb, polygon, etc)",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/materialized-views": {
       "get": {
         "summary": "This lists all materialized view owned by the account tied to the API key",
@@ -2871,10 +1369,10 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/points/linea/lxp": {
-      "get": {
-        "summary": "Linea LXP",
-        "description": "Get Linea LXP balance for wallet, along with Farcaster social stats and onchain behavior metrics",
+    "/v1/pipelines/execute": {
+      "post": {
+        "summary": "Execute a pipeline",
+        "description": "Builds an execution pipeline from the specified query and executes it. The pipeline will consist of all the materialized views in the queries lineage. A pipeline allows you to chain multiple queries together and execute them as a single unit.",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -2888,91 +1386,30 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "description": "Pipeline execution request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/models.ExecutePipelineRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                  "$ref": "#/components/schemas/models.ExecutePipelineResponse"
                 }
               }
             }
@@ -2997,22 +1434,89 @@
               }
             }
           },
-          "402": {
-            "description": "Payment Required",
+          "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
+                  "$ref": "#/components/schemas/models.Error404"
                 }
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/pipelines/executions/{pipeline_execution_id}/status": {
+      "get": {
+        "summary": "Get pipeline execution status",
+        "description": "Retrieves the status of a pipeline execution, including the status of each node in the pipeline.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pipeline_execution_id",
+            "in": "path",
+            "description": "Unique identifier of the pipeline execution",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetPipelineExecutionStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -3023,6 +1527,89 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/queries": {
+      "get": {
+        "summary": "List queries",
+        "description": "Retrieve a paginated list of queries owned by the account tied to the API key",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of queries to return on a page. Default: 20",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset used for pagination. Default: 0",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ListQueriesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -3859,6 +2446,104 @@
         }
       }
     },
+    "/v1/query/{query_id}/pipeline/execute": {
+      "post": {
+        "summary": "Execute a query pipeline",
+        "description": "Builds a query pipeline from the specified query and executes it. A pipeline allows you to chain multiple queries together and execute them as a single unit.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query_id",
+            "in": "path",
+            "description": "Unique identifier of the query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Query pipeline execution request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/models.ExecuteQueryPipelineRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.ExecuteQueryPipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/query/{query_id}/results": {
       "get": {
         "summary": "Get Latest Query Result",
@@ -4179,9 +2864,9 @@
           }
         ],
         "requestBody": {
-          "description": "SQL query and performance configuration",
+          "description": "ExecuteSQLRequest",
           "content": {
-            "application/json": {
+            "*/*": {
               "schema": {
                 "$ref": "#/components/schemas/models.ExecuteSQLRequest"
               }
@@ -4261,92 +2946,13 @@
             }
           }
         },
-        "x-codegen-request-body-name": "sql"
+        "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/table/upload/csv": {
-      "post": {
-        "summary": "Upload CSV",
-        "description": "This API allows for anyone to upload a CSV as a table in Dune. The size limit\nper upload is currently 200MB. Your storage is limited by plan, 1MB on free,\n15GB on plus, and 50GB on premium.",
-        "parameters": [
-          {
-            "name": "X-Dune-Api-Key",
-            "in": "header",
-            "description": "API Key for the service",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "Alternative to using the X-Dune-Api-Key header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "payload",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/models.CSVUploadRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.CSVUploadResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "payload"
-      }
-    },
-    "/v1/tables": {
+    "/v1/uploads": {
       "get": {
-        "summary": "List all tables owned by the account tied to the API key",
-        "description": "List all tables owned by the account tied to the API key",
+        "summary": "List all tables owned by the account",
+        "description": "Returns a paginated list of all tables owned by the authenticated account.",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -4426,12 +3032,10 @@
             }
           }
         }
-      }
-    },
-    "/v1/tables/create": {
+      },
       "post": {
-        "summary": "TableCreate is the /v1/table endpoint which creates an empty table.",
-        "description": "Execute, or run a query for the specified query ID",
+        "summary": "Create an empty uploaded table with a defined schema",
+        "description": "Creates an empty uploaded table that can be inserted into with the /insert endpoint.\nEach successful table creation consumes 10 credits.",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -4449,36 +3053,19 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "description",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "is_private",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "namespace",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "table_name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
+        "requestBody": {
+          "description": "payload",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/models.TableCreateRequest"
+              }
+            }
+          },
+          "required": false
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -4530,13 +3117,14 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "payload"
       }
     },
-    "/v1/tables/{namespace}/{table_name}": {
+    "/v1/uploads/csv": {
       "post": {
-        "summary": "Insert the data in a file into a table.",
-        "description": "TableInsert is the /v1/table/:namespace/:table_name/insert endpoint which insert into a table.",
+        "summary": "Upload CSV file as a table",
+        "description": "Upload a CSV file to create a table with automatic schema inference.\nThe size limit per upload is 200MB. Storage limits: 1MB (free), 15GB (plus), 50GB (premium).",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -4554,69 +3142,46 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "namespace",
-            "in": "path",
-            "description": "The namespace of the table to delete",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "table_name",
-            "in": "path",
-            "description": "The table name of the table to delete",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "namespace",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tableName",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
+        "requestBody": {
+          "description": "payload",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/models.CSVUploadRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.TableDeleteResponse"
+                  "$ref": "#/components/schemas/models.CSVUploadResponse"
                 }
               }
             }
           },
-          "201": {
-            "description": "Created",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.TableDeleteResponse"
+                  "$ref": "#/components/schemas/models.Error400"
                 }
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -4626,16 +3191,19 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/models.Error500"
                 }
               }
             }
           }
-        }
-      },
+        },
+        "x-codegen-request-body-name": "payload"
+      }
+    },
+    "/v1/uploads/{namespace}/{table_name}": {
       "delete": {
-        "summary": "Delete a Dune table with the specified name and namespace.",
-        "description": "Delete a Dune table with the specified name and namespace.",
+        "summary": "Delete an uploaded table",
+        "description": "Permanently deletes the specified uploaded table and all its data.",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -4684,16 +3252,6 @@
               }
             }
           },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.TableDeleteResponse"
-                }
-              }
-            }
-          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -4717,10 +3275,10 @@
         }
       }
     },
-    "/v1/tables/{namespace}/{table_name}/clear": {
+    "/v1/uploads/{namespace}/{table_name}/clear": {
       "post": {
-        "summary": "Clear data in a table.",
-        "description": "Clear data in a table. It removes all the data in the specified table, but does not delete the table.",
+        "summary": "Clear all data from an uploaded table",
+        "description": "Removes all data from the specified uploaded table while preserving the table structure and schema.",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -4752,22 +3310,6 @@
             "name": "table_name",
             "in": "path",
             "description": "The table name of the table to clear",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "namespace",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tableName",
-            "in": "query",
             "required": true,
             "schema": {
               "type": "string"
@@ -4808,10 +3350,10 @@
         }
       }
     },
-    "/v1/trends/evm/contracts/{chain}": {
-      "get": {
-        "summary": "Trending Contracts",
-        "description": "Get trending contracts deployed on any EVM chain based on activity in last 30 days",
+    "/v1/uploads/{namespace}/{table_name}/insert": {
+      "post": {
+        "summary": "Insert data into an uploaded table",
+        "description": "Inserts data into an existing table. Accepts CSV (text/csv) or\nNDJSON (application/x-ndjson) content types.",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -4825,100 +3367,57 @@
           {
             "name": "api_key",
             "in": "query",
-            "description": "API Key, alternative to using the HTTP header X-Dune-Api-Key",
+            "description": "Alternative to using the X-Dune-Api-Key header",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "chain",
+            "name": "namespace",
             "in": "path",
-            "description": "The blockchain where the token pair is traded",
+            "description": "The namespace of the table",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "allow_partial_results",
-            "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "columns",
-            "in": "query",
-            "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ignore_max_datapoints_per_request",
-            "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit number of rows to return. This together with 'offset' allows easy pagination through\nresults in an incremental and efficient way. This parameter is incompatible\nwith sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset row number to start (inclusive, first row means offset=0) returning results\nfrom. This together with 'limit' allows easy pagination through results in an\nincremental and efficient way. This parameter is incompatible with sampling (sample_count).",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "queryID",
-            "in": "query",
+            "name": "table_name",
+            "in": "path",
+            "description": "The table name",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           },
           {
-            "name": "sample_count",
-            "in": "query",
-            "description": "Number of rows to return from the result by sampling the data. This is useful when you\nwant to get a uniform sample instead of the entire result. If the result has less\nthan the sample count, the entire result is returned. Note that this will return a\nrandomized sample, so not every call will return the same result. This parameter is\nincompatible with `offset`, `limit`, and `filters` parameters.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "description": "Expression to define the order in which the results should be returned. This expression\nis similar to a SQL ORDER BY clause. More details about it in the Sorting section of the doc.",
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content type: text/csv or application/x-ndjson",
+            "required": true,
             "schema": {
               "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "description": "The data to insert (CSV or NDJSON format)",
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.ReadExecutionResultResponse"
+                  "$ref": "#/components/schemas/models.TableInsertResponse"
                 }
               }
             }
@@ -4928,37 +3427,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.Error400"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error401"
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Payment Required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error402"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/models.Error403"
+                  "type": "object"
                 }
               }
             }
@@ -4968,7 +3437,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.Error404"
+                  "type": "object"
                 }
               }
             }
@@ -4978,12 +3447,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/models.Error500"
+                  "type": "object"
                 }
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "data"
       }
     },
     "/v1/usage": {
@@ -5297,7 +3767,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the createc query."
+            "description": "The name of the created query."
           },
           "parameters": {
             "type": "array",
@@ -5326,6 +3796,77 @@
             "type": "integer",
             "description": "The Unique ID of the created query",
             "example": 1
+          }
+        }
+      },
+      "models.DatasetColumn": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/models.DatasetColumnMetadata"
+          },
+          "name": {
+            "type": "string"
+          },
+          "nullable": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "models.DatasetColumnMetadata": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "filtering_column": {
+            "type": "boolean"
+          }
+        }
+      },
+      "models.DatasetOwner": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "models.DatasetResponse": {
+        "type": "object",
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.DatasetColumn"
+            }
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/models.DatasetOwner"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
           }
         }
       },
@@ -5394,6 +3935,60 @@
           }
         }
       },
+      "models.ExecutePipelineRequest": {
+        "type": "object",
+        "properties": {
+          "pipeline": {
+            "type": "object",
+            "description": "The pipeline definition containing nodes to execute",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.Pipeline"
+              }
+            ]
+          }
+        }
+      },
+      "models.ExecutePipelineResponse": {
+        "type": "object",
+        "properties": {
+          "pipeline_execution_id": {
+            "type": "string",
+            "description": "Unique identifier for the pipeline execution. Use this ID to check the status\nand retrieve results of the pipeline execution.",
+            "example": "01HKZJ2683PHF9Q9PHHQ8FW4Q1"
+          }
+        }
+      },
+      "models.ExecuteQueryPipelineRequest": {
+        "required": [
+          "performance"
+        ],
+        "type": "object",
+        "properties": {
+          "performance": {
+            "type": "string",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          },
+          "query_parameters": {
+            "type": "object",
+            "properties": {},
+            "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys."
+          }
+        }
+      },
+      "models.ExecuteQueryPipelineResponse": {
+        "type": "object",
+        "properties": {
+          "pipeline_execution_id": {
+            "type": "string",
+            "description": "Unique identifier for the pipeline execution. Use this ID to check the status\nand retrieve results of the pipeline execution.",
+            "example": "01HKZJ2683PHF9Q9PHHQ8FW4Q1"
+          }
+        }
+      },
       "models.ExecuteQueryResponse": {
         "type": "object",
         "properties": {
@@ -5408,19 +4003,22 @@
         }
       },
       "models.ExecuteSQLRequest": {
+        "required": [
+          "sql"
+        ],
         "type": "object",
-        "required": ["sql"],
         "properties": {
-          "sql": {
-            "type": "string",
-            "description": "The SQL query to execute",
-            "example": "SELECT * FROM dex.trades WHERE block_time > now() - interval '1' day LIMIT 10"
-          },
           "performance": {
             "type": "string",
-            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`. Medium consumes 10 credits, and large consumes 20 credits, per run. Default is `medium`.",
-            "enum": ["medium", "large"],
-            "default": "medium"
+            "description": "The performance engine tier the execution will be run on",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          },
+          "sql": {
+            "type": "string",
+            "description": "The SQL query to execute"
           }
         }
       },
@@ -5574,6 +4172,26 @@
           }
         }
       },
+      "models.GetPipelineExecutionStatusResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message if the pipeline execution failed"
+          },
+          "node_executions": {
+            "type": "array",
+            "description": "List of node executions in the pipeline.",
+            "items": {
+              "$ref": "#/components/schemas/models.PipelineNodeExecution"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Overall status of the pipeline execution"
+          }
+        }
+      },
       "models.GetQueryResponse": {
         "type": "object",
         "properties": {
@@ -5679,6 +4297,37 @@
           }
         }
       },
+      "models.ListDatasetsResponse": {
+        "type": "object",
+        "properties": {
+          "datasets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.DatasetResponse"
+            }
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "models.ListQueriesResponse": {
+        "type": "object",
+        "properties": {
+          "queries": {
+            "type": "array",
+            "description": "List of queries",
+            "items": {
+              "$ref": "#/components/schemas/models.ResolvedQueryOverview"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of queries available",
+            "example": 100
+          }
+        }
+      },
       "models.Parameter": {
         "type": "object",
         "properties": {
@@ -5714,6 +4363,165 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "models.Pipeline": {
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "type": "array",
+            "description": "List of nodes in the pipeline. Nodes are executed in dependency order.",
+            "items": {
+              "$ref": "#/components/schemas/models.PipelineNode"
+            }
+          }
+        }
+      },
+      "models.PipelineMaterializedViewRefreshNode": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the materialized view to refresh",
+            "example": "mv_1"
+          },
+          "performance": {
+            "type": "string",
+            "description": "The performance engine tier the refresh will be run on. Can be either `medium` or `large`.",
+            "example": "medium",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          }
+        }
+      },
+      "models.PipelineMaterializedViewRefreshStatus": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message if the refresh failed"
+          },
+          "execution_id": {
+            "type": "string",
+            "description": "Unique identifier of the execution, if available"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the materialized view"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the materialized view refresh"
+          }
+        }
+      },
+      "models.PipelineNode": {
+        "type": "object",
+        "properties": {
+          "dependencies": {
+            "type": "array",
+            "description": "List of node IDs that this node depends on. Nodes are executed in dependency order.",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the node in the pipeline",
+            "example": 1
+          },
+          "materialized_view_refresh": {
+            "type": "object",
+            "description": "Materialized view refresh node configuration. Required if this node refreshes a materialized view.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineMaterializedViewRefreshNode"
+              }
+            ]
+          },
+          "query_execution": {
+            "type": "object",
+            "description": "Query execution node configuration. Required if this node executes a query.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineQueryExecutionNode"
+              }
+            ]
+          }
+        }
+      },
+      "models.PipelineNodeExecution": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the node in the pipeline"
+          },
+          "materialized_view_refresh_status": {
+            "type": "object",
+            "description": "Status of the materialized view refresh, if this node is a materialized view refresh node",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineMaterializedViewRefreshStatus"
+              }
+            ]
+          },
+          "query_execution_status": {
+            "type": "object",
+            "description": "Status of the query execution, if this node is a query execution node",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.PipelineQueryExecutionStatus"
+              }
+            ]
+          }
+        }
+      },
+      "models.PipelineQueryExecutionNode": {
+        "type": "object",
+        "properties": {
+          "performance": {
+            "type": "string",
+            "description": "The performance engine tier the execution will be run on. Can be either `medium` or `large`.",
+            "example": "medium",
+            "enum": [
+              "medium",
+              "large"
+            ]
+          },
+          "query_id": {
+            "type": "integer",
+            "description": "Unique identifier of the query to execute",
+            "example": 1234
+          },
+          "query_parameters": {
+            "type": "object",
+            "properties": {},
+            "description": "SQL Query parameters in json key-value pairs. Each parameter is to be provided in key-value pairs. This enables you to execute a parameterized query with the provided values for your parameter keys."
+          }
+        }
+      },
+      "models.PipelineQueryExecutionStatus": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message, if the execution failed"
+          },
+          "execution_id": {
+            "type": "string",
+            "description": "Unique identifier of the execution, if available"
+          },
+          "query_id": {
+            "type": "integer",
+            "description": "Unique identifier of the query"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the query execution"
           }
         }
       },
@@ -5844,6 +4652,41 @@
           }
         }
       },
+      "models.ResolvedQueryOverview": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the query"
+          },
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the query"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the query",
+            "example": "My Query"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner handle (username or team handle)"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags associated with the query",
+            "items": {
+              "type": "string"
+            }
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        }
+      },
       "models.Row": {
         "type": "object",
         "additionalProperties": {
@@ -5913,6 +4756,29 @@
           }
         }
       },
+      "models.TableCreateRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "boolean"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/models.TableColumn"
+            }
+          },
+          "table_name": {
+            "type": "string"
+          }
+        }
+      },
       "models.TableCreateResponse": {
         "type": "object",
         "properties": {
@@ -5941,6 +4807,20 @@
         "properties": {
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "models.TableInsertResponse": {
+        "type": "object",
+        "properties": {
+          "bytes_written": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "rows_written": {
+            "type": "integer"
           }
         }
       },

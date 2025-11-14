@@ -1,19 +1,18 @@
 ---
-title: "List Tables"
-openapi: "GET /v1/tables"
+title: "List Uploaded Tables"
+openapi: "GET /v1/uploads"
 description: "Get a paginated list of uploaded tables"
 ---
-
-<Warning>
-**DEPRECATED**: This endpoint has been deprecated and will be removed on **March 1, 2026**.
-Please use the new endpoint: [`GET /v1/uploads`](./uploads-list)
-
-See the [Migration Guide](./migration) for details on migrating to the new endpoints.
-</Warning>
 
 ## Description
 
 Retrieves a paginated list of tables uploaded by the user or their team.
+
+<Tip>
+**Migrating from the old API?** This endpoint replaces the deprecated `GET /v1/tables`. See the [Migration Guide](./migration) for details.
+
+For broader dataset discovery including Dune community datasets, use the `/v1/datasets` endpoint.
+</Tip>
 
 ## Pagination
 
@@ -30,21 +29,21 @@ This is a metadata endpoint and does not consume credits.
 
 ## Related Endpoints
 
-- [Create Table](/api-reference/tables/endpoint/create) - Create a new table
-- [Upload Data](/api-reference/tables/endpoint/upload) - Upload data to a table
-- [Delete Table](/api-reference/tables/endpoint/delete) - Delete a table
+- [Create Table](/api-reference/tables/endpoint/uploads-create) - Create a new table
+- [Upload Data](/api-reference/tables/endpoint/uploads-csv) - Upload data to a table
+- [Delete Table](/api-reference/tables/endpoint/uploads-delete) - Delete a table
 
 <RequestExample>
 
 ```bash cURL
-curl -X GET "https://api.dune.com/api/v1/tables?limit=10&offset=0" \
+curl -X GET "https://api.dune.com/api/v1/uploads?limit=10&offset=0" \
   -H "X-DUNE-API-KEY: YOUR_API_KEY"
 ```
 
 ```python Python
 import requests
 
-url = "https://api.dune.com/api/v1/tables"
+url = "https://api.dune.com/api/v1/uploads"
 params = {
     "limit": 10,
     "offset": 0
@@ -56,7 +55,7 @@ print(response.json())
 ```
 
 ```javascript JavaScript
-const url = 'https://api.dune.com/api/v1/tables';
+const url = 'https://api.dune.com/api/v1/uploads';
 const params = new URLSearchParams({
   limit: 10,
   offset: 0

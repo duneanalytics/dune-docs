@@ -27,3 +27,20 @@
     border-top-right-radius: 9999px;
     border-bottom-right-radius: 9999px;
 }
+
+/* White underlines for CTA links in Note blocks */
+.cta-links a,
+.cta-links a:visited,
+.cta-links a:hover,
+.cta-links a:active,
+aside a,
+.note-container a,
+[class*="note"] a,
+[class*="Note"] a,
+[class*="callout"] a,
+div[class*="admonition"] a,
+div[role="note"] a {
+    text-decoration-color: white !important;
+    text-decoration-thickness: 2px !important;
+    text-decoration-line: underline !important;
+}

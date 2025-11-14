@@ -1,124 +1,165 @@
 ---
-title: "Dune API Overview"
+title: "Overview"
 icon: "connectdevelop"
 ---
 
-Dune API provides a variety of endpoints for developers, ranging from low-level, customizable options to high-level, preset endpoints ready for immediate use.
+Build blockchain analytics workflows with Dune's comprehensive API suite. Access the same data that powers thousands of Dune dashboards, available programmatically for your data pattern needs.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bobGOetmAa4?si=XR9eS3HrnBQqXEnL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Dune API provides a variety of endpoints for **analysts**, **data engineers**, and **data scientists**, ranging from low-level, customizable options to connectors ready for immediate use.
 
-## Sim APIs
+Queries saved in the Dune App UI can be executed via API and results retrieved in your environment, enabling bulk data extraction and automated workflows.
 
-Sim APIs are a dedicated, high-performance suite of developer-focused APIs by Dune, designed for building realtime, multichain apps with exceptional developer experience.
-Sim APIs offer fast and reliable access to EVM and SVM blockchain data.
+<Note>
+<span className="cta-links">**New to Dune?** **[Create a free account](https://dune.com/auth/register)** or **[get your API key](https://dune.com/apis?tab=keys)** to start building.</span>
+</Note>
+
+## What do you want to build?
 
 <CardGroup cols={2}>
-  <Card
-    title="Visit Sim Website"
-    icon="globe"
-    href="https://sim.dune.com"
-  >
-    Explore the official Sim website to learn more about its features, capabilities, and how it can power your apps.
+  <Card title="Analyze onchain data programmatically" icon="chart-line" href="/api-reference/apis/quickstart-analyze">
+    Execute SQL queries, retrieve results, and build custom analytics pipelines with Dune's query execution engine. Perfect for data teams and analysts.
+    
+    → Start with query execution
   </Card>
-  <Card
-    title="View Sim Docs"
-    icon="book-open"
-    href="https://docs.sim.dune.com"
-  >
-    Dive into the comprehensive Sim API docs, including quickstarts, detailed API references, and guides.
+  
+  <Card title="Run queries in your environment" icon="server" href="/api-reference/connectors/overview">
+    Connect directly to Dune's data warehouse using Trino Connector for maximum flexibility. Perfect for enterprise teams with existing BI tools.
+
+    → Set up Trino connector
+  </Card>
+  
+  <Card title="Build custom dashboards & reports" icon="desktop" href="/api-reference/apis/quickstart-dashboards">
+    Fetch query results, manage executions, and create dynamic visualizations in your own applications. Perfect for teams embedding analytics.
+    
+    → Create your first dashboard
+  </Card>
+  
+  <Card title="Build real-time applications" icon="bolt" href="https://docs.sim.dune.com/evm/build-a-realtime-wallet">
+    Create a multichain wallet with realtime balances, transactions, and NFTs using Sim by Dune. Perfect for mobile developers and DeFi applications.
+    
+    → Build a realtime wallet with Sim
+  </Card>
+  
+  <Card title="Transform data with dbt" icon="code-branch" href="/api-reference/connectors/dbt-connector">
+    Build production-grade data transformation pipelines with write access to DuneSQL. Perfect for data engineering teams using dbt.
+    
+    → Set up dbt connector
+  </Card>
+</CardGroup>
+
+<Card title="Get started with the basics" icon="rocket" href="/api-reference/overview/getting-started">
+  New to APIs? Start here to make your first request and see results in minutes.
+  
+  Learn how to execute a simple SQL query, authenticate your requests, and retrieve blockchain data programmatically.
+  
+  → Make your first request
+</Card>
+
+## Quick Start with SDKs
+
+Our SDKs handle authentication, polling, pagination, and error handling automatically. The new `execute()` function manages the entire workflow for you.
+
+<CardGroup cols={1}>
+  <Card title="Python" icon="python" href="/api-reference/overview/sdks#python">
+    ```bash
+    pip install dune-client
+    ```
+    
+    ```python
+    from dune_client import DuneClient
+    
+    dune = DuneClient(api_key="your-key")
+    results = dune.execute(query_id=3493826)
+    ```
+    
+    [Full Python documentation →](/api-reference/overview/sdks#python)
+  </Card>
+  
+  <Card title="TypeScript" icon="js" href="/api-reference/overview/sdks#typescript">
+    ```bash
+    npm install @duneanalytics/client
+    ```
+    
+    ```typescript
+    import { DuneClient } from '@duneanalytics/client';
+    
+    const dune = new DuneClient('your-key');
+    const results = await dune.execute({ queryId: 3493826 });
+    ```
+    
+    [Full TypeScript documentation →](/api-reference/overview/sdks#typescript)
+  </Card>
+  
+  <Card title="Go" icon="golang" href="/api-reference/overview/sdks#go">
+    ```bash
+    go get github.com/duneanalytics/duneapi-client-go
+    ```
+    
+    ```go
+    client := duneapi.New("your-key")
+    results := client.Execute(3493826)
+    ```
+    
+    [Full Go documentation →](/api-reference/overview/sdks#go)
   </Card>
 </CardGroup>
 
 <Note>
-**Sim APIs are an upgraded version of what was previously known as Dune Echo**.
-They offer improved performance and a broader set of features for developers.
+  **New:** All SDKs now include an `execute()` function that handles polling and pagination automatically. No more managing multiple API calls!
 </Note>
 
-## SQL Endpoints
-They help you manage and execute queries, as well as fetch data from these queries.
+## Additional Resources
 
-<CardGroup cols={3}>
-  <Card
-    title="Executions and Results"
-    icon="cloud-arrow-down"
-    href="/api-reference/executions/execution-object"
-  >
-    Execute queries and retrieve results in JSON or CSV format.
+<CardGroup cols={2}>
+  <Card title="API Reference" icon="book" href="/api-reference/api-overview">
+    Complete documentation for all endpoints, parameters, response formats, and status codes.
+    
+    - Execute & Results endpoints
+    - Query management
+    - Dataset metadata
+    - Usage & billing
+    - Webhooks
   </Card>
-  <Card
-    title="Query Management"
-    icon="floppy-disk"
-    href="/api-reference/queries/endpoint/query-object"
-  >
-    Manage your queries through the API, ideal for integration with GitHub.
+  
+  <Card title="Troubleshooting Errors" icon="triangle-exclamation" href="/api-reference/overview/errors">
+    Common API errors and how to resolve them.
+    
+    - Authentication issues
+    - Rate limit errors
+    - Query execution failures
+    - Response format errors
   </Card>
-  <Card title="Webhooks" icon="webhook" href="/api-reference/webhooks/webhook">
-    Push Dune data to your webhooks on a custom schedule.
+  
+  <Card title="API Pricing" icon="credit-card" href="/api-reference/overview/billing">
+    Understand credit consumption and costs for different endpoints.
+    
+    - Execution endpoints: Credit-based
+    - Metadata endpoints: Free
+    - Usage tracking available via API
+  </Card>
+  
+  <Card title="Authentication" icon="key" href="/api-reference/overview/authentication">
+    Get started with API keys and authentication.
+    
+    - Auto-generated keys for new teams
+    - Manage keys in settings
+    - Best practices for key security
   </Card>
 </CardGroup>
 
-## Data Management Endpoints
-They help you upload and manage data on Dune.
 
-<CardGroup cols={1}>
-  <Card
-    title="Table Management"
-    icon="upload"
-    href="/api-reference/tables/endpoint/overview"
-  >
-    Upload data to Dune to create queryable tables.
-  </Card>
-</CardGroup>
-
-## Preset Endpoints
-These are curated endpoints built by Dune, ready for immediate use. No SQL required. Developers can use these endpoints to access data on popular topics.
+## Getting Help
 
 <CardGroup cols={3}>
-  <Card
-    title="Contracts"
-    icon="file-contract"
-    href="/api-reference/evm/endpoint/contracts"
-  >
-    Get trending EVM contracts by type, project, name, users, and value.
+  <Card title="Quickstarts" icon="rocket" href="/api-reference/overview/getting-started">
+    Step-by-step guides for common use cases
   </Card>
-
-  <Card
-    title="DEX"
-    icon="money-bill-trend-up"
-    href="/api-reference/dex/endpoint/dex_pair"
-  >
-    Get statistics for token pairs.
+  
+  <Card title="Community" icon="discord" href="https://discord.gg/duneanalytics">
+    Get help from the Dune community
   </Card>
-
-  <Card
-    title="EigenLayer"
-    icon="layer-group"
-    href="/api-reference/eigenlayer/introduction"
-  >
-    Get metadata and metrics for EigenLayer AVSs and operators.
-  </Card>
-
-  <Card
-    title="Farcaster"
-    icon="thumbs-up"
-    href="/api-reference/farcaster/introduction"
-  >
-    Get trending users, channels, and memecoins.
-  </Card>
-
-  <Card
-    title="Markets"
-    icon="shop"
-    href="/api-reference/markets/endpoint/marketplace_marketshare"
-  >
-    Track DEX and NFT market share.
-  </Card>
-
-  <Card
-    title="Projects"
-    icon="diagram-project"
-    href="/api-reference/projects/introduction"
-  >
-    Access API endpoints specific to various projects and protocols.
+  
+  <Card title="Support" icon="life-ring" href="mailto:support@dune.com">
+    Contact our support team
   </Card>
 </CardGroup>

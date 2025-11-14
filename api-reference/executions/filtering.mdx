@@ -1,8 +1,24 @@
 ---
-title: Filtering
+title: "Result Filtering"
+icon: "filter"
+description: "Filter query results server-side using SQL-like WHERE clauses - unique to Dune's API"
 ---
 
-Our API supports filtering on all `/results` endpoints to refine query results. You can apply filters on both rows and columns to narrow down the data returned by the API. This feature is available for the following endpoints:
+<Note>
+**Unique to Dune:** Server-side result filtering is a powerful feature that sets Dune's API apart. Filter millions of rows using SQL-like WHERE clauses without transferring unnecessary data or processing client-side.
+</Note>
+
+## Overview
+
+Dune's API supports sophisticated filtering on all `/results` endpoints, allowing you to refine query results server-side. Apply filters on rows and columns to dramatically reduce bandwidth and processing time.
+
+**Benefits:**
+- **Reduce bandwidth:** Only transfer the data you need
+- **Save processing time:** Filter server-side before data transfer
+- **Simplify client code:** No need for complex client-side filtering logic
+- **Lower costs:** Minimize data transfer and API calls
+
+**Available on these endpoints:**
 
 - [Get Execution Results](./endpoint/get-execution-result)
 - [Get Execution Results CSV](./endpoint/get-execution-result-csv)
@@ -218,9 +234,217 @@ Filtering can be effectively used in conjunction with [pagination](./pagination)
 - Specifying columns helps limit the results to essential data, reducing the data cost of the call.
 </Note>
 
+## Common Filtering Patterns
 
+### Filter by Time Range
 
-### Filtered Response
+```bash
+# Last 24 hours
+filters="block_time > '2024-03-05'"
+
+# Specific time range
+filters="block_time >= '2024-03-01' AND block_time < '2024-04-01'"
+
+# Recent data (note: relative time expressions are NOT supported in filters)
+# Instead, calculate the date client-side
+filters="block_time > '2024-03-10 15:30'"
+```
+
+### Filter by Value Thresholds
+
+```bash
+# Transactions above $1000
+filters="amount_usd > 1000"
+
+# Volume between ranges
+filters="volume_usd >= 10000 AND volume_usd <= 100000"
+
+# Non-null values
+filters="amount_usd IS NOT NULL"
+```
+
+### Filter by Category
+
+```bash
+# Single protocol
+filters="project = 'uniswap'"
+
+# Multiple protocols (using OR)
+filters="project = 'uniswap' OR project = 'sushiswap'"
+
+# Using IN operator
+filters="project IN ('uniswap', 'sushiswap', 'curve')"
+
+# Specific blockchain
+filters="blockchain = 'ethereum'"
+```
+
+### Complex Conditions
+
+```bash
+# Combine multiple conditions
+filters="blockchain = 'ethereum' AND amount_usd > 1000 AND block_time > '2024-03-01'"
+
+# Use parentheses for grouping
+filters="(project = 'uniswap' OR project = 'sushiswap') AND amount_usd > 10000"
+
+# Filter with pattern matching
+filters="token_symbol LIKE 'WETH%'"
+
+# Address filtering
+filters="tx_to IN ('0x6a3e4b7e23661108aaec70266c468e6c679ae022', '0xdbf89389504e39f03fbb6bdd601aabb6bfbbed71')"
+```
+
+### Filter with Column Selection
+
+```python
+# Python SDK example: Get only specific columns for large trades
+results = dune.get_latest_result_dataframe(
+    query=3493826,
+    filters="amount_usd > 10000 AND blockchain = 'ethereum'",
+    columns="tx_hash,tx_from,tx_to,amount_usd,block_time"
+)
+```
+
+<Tip>
+**Performance tip:** Combine filtering with column selection to minimize data transfer. For example, instead of fetching all 50 columns for millions of rows, fetch only the 5 columns you need for 1000 filtered rows.
+</Tip>
+
+## Real-World Examples
+
+### Example 1: Whale Transactions
+
+```python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Get large USDC transfers in the last day
+results = dune.get_latest_result_dataframe(
+    query=3493826,
+    filters="token_symbol = 'USDC' AND amount_usd > 1000000 AND block_time > '2024-03-10'",
+    columns="tx_hash,tx_from,tx_to,amount_usd,block_time",
+    sort_by="amount_usd desc"
+)
+
+print(f"Found {len(results)} whale transactions")
+```
+
+### Example 2: Protocol-Specific Analytics
+
+```typescript
+import { DuneClient } from '@duneanalytics/client';
+
+const dune = new DuneClient('YOUR_API_KEY');
+
+// Get Uniswap V3 trades on Arbitrum
+const results = await dune.getLatestResults({
+  queryId: 3493826,
+  filters: "project = 'uniswap' AND version = '3' AND blockchain = 'arbitrum'",
+  columns: "trader,token_bought_symbol,token_sold_symbol,amount_usd",
+  limit: 100
+});
+```
+
+### Example 3: Token-Specific Monitoring
+
+```bash
+# Monitor recent trades for a specific token pair
+curl -X GET \
+  'https://api.dune.com/api/v1/query/3493826/results?filters=token_bought_symbol%20%3D%20%27WETH%27%20AND%20token_sold_symbol%20%3D%20%27USDC%27%20AND%20block_time%20%3E%20%272024-03-10%27&columns=amount_usd%2Cprice%2Cblock_time&sort_by=block_time%20desc' \
+  -H 'X-DUNE-API-KEY: YOUR_API_KEY'
+```
+
+### Example 4: Multi-Chain Analysis
+
+```python
+# Compare volumes across chains for the same protocol
+blockchains = ['ethereum', 'polygon', 'arbitrum', 'optimism']
+
+for chain in blockchains:
+    results = dune.get_latest_result_dataframe(
+        query=3493826,
+        filters=f"blockchain = '{chain}' AND project = 'uniswap'",
+        columns="blockchain,amount_usd"
+    )
+    total_volume = results['amount_usd'].sum()
+    print(f"{chain}: ${total_volume:,.2f}")
+```
+
+## Filtering Best Practices
+
+<AccordionGroup>
+  <Accordion title="Always filter time ranges">
+    Reduce the amount of data scanned by filtering by `block_time`:
+    
+    ```bash
+    # ✅ Good - filters recent data
+    filters="block_time > '2024-03-01' AND amount_usd > 1000"
+    
+    # ❌ Less efficient - scans all historical data
+    filters="amount_usd > 1000"
+    ```
+  </Accordion>
+
+  <Accordion title="Combine filters with column selection">
+    Minimize bandwidth by only requesting needed columns:
+    
+    ```bash
+    # ✅ Optimal - filtered rows, selected columns
+    filters="amount_usd > 10000"&columns="tx_hash,amount_usd,block_time"
+    
+    # ❌ Wasteful - fetches all columns
+    filters="amount_usd > 10000"
+    ```
+  </Accordion>
+
+  <Accordion title="Use IN for multiple values">
+    More efficient than multiple OR conditions:
+    
+    ```bash
+    # ✅ Better
+    filters="blockchain IN ('ethereum', 'polygon', 'arbitrum')"
+    
+    # ✅ Also valid but longer
+    filters="blockchain = 'ethereum' OR blockchain = 'polygon' OR blockchain = 'arbitrum'"
+    ```
+  </Accordion>
+
+  <Accordion title="Be specific with data types">
+    Use proper quoting for strings, no quotes for numbers:
+    
+    ```bash
+    # ✅ Correct
+    filters="blockchain = 'ethereum' AND amount_usd > 1000"
+    
+    # ❌ Wrong - amount_usd should not be quoted
+    filters="blockchain = 'ethereum' AND amount_usd > '1000'"
+    ```
+  </Accordion>
+
+  <Accordion title="Handle special column names">
+    Use double quotes for columns with special characters:
+    
+    ```bash
+    # ✅ Correct for special characters
+    filters="\"token.symbol\" = 'USDC'"
+    
+    # ✅ No quotes needed for normal names
+    filters="token_symbol = 'USDC'"
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Limitations
+
+<Warning>
+- **No SQL expressions:** Filters must use literal values. Expressions like `now() - interval '1' day` are not supported. Calculate values client-side instead.
+- **No NOT operator:** `NOT IN` and `NOT LIKE` are not supported. Use positive conditions instead.
+- **No subqueries:** Filters cannot contain subqueries. Use parameterized queries for complex logic.
+- **String and number values only:** Filters only support string and numeric literals.
+</Warning>
+
+## Filtered Response
 
 
 <Accordion title="Example filtered response">
