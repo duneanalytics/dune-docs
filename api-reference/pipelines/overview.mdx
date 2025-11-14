@@ -16,8 +16,8 @@ Query pipelines are sequences of related queries that execute in a specific orde
 
 ## How Pipelines Work
 
-1. **Create a Pipeline**: Define your pipeline by specifying dependencies between queries in the Dune UI
-2. **Execute the Pipeline**: Use the [Execute Query Pipeline](./endpoint/execute-query-pipeline) endpoint with the root query ID
+1. **Inspect Pipeline**: Use the [Get Query Pipeline](/api-reference/queries/endpoint/get-query-pipeline) endpoint to view the pipeline structure
+2. **Execute Pipeline**: Use the [Execute Pipeline](./endpoint/execute-pipeline) endpoint or [Execute Query Pipeline](/api-reference/executions/endpoint/execute-query-pipeline) endpoint
 3. **Monitor Progress**: Poll the [Get Pipeline Execution Status](./endpoint/get-pipeline-status) endpoint to track execution
 4. **Retrieve Results**: Once complete, access results for each query using their individual execution IDs
 
@@ -55,8 +55,15 @@ Process data incrementally through multiple dependent steps:
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| [Execute Query Pipeline](./endpoint/execute-query-pipeline) | `POST /v1/query/{query_id}/pipeline/execute` | Executes a query pipeline starting from the specified query |
+| [Execute Pipeline](./endpoint/execute-pipeline) | `POST /v1/pipelines/execute` | Builds and executes a pipeline including all materialized views in the query's lineage |
 | [Get Pipeline Execution Status](./endpoint/get-pipeline-status) | `GET /v1/pipelines/executions/{pipeline_execution_id}/status` | Retrieves the status of a pipeline execution including all nodes |
+
+## Related Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| [Get Query Pipeline](/api-reference/queries/endpoint/get-query-pipeline) | `GET /v1/query/{query_id}/pipeline` | Retrieves the pipeline definition for a query, including all dependencies and execution order |
+| [Execute Query Pipeline](/api-reference/executions/endpoint/execute-query-pipeline) | `POST /v1/query/{query_id}/pipeline/execute` | Executes a predefined query pipeline starting from the specified query |
 
 ## Pipeline vs. Regular Query Execution
 
@@ -69,7 +76,7 @@ Process data incrementally through multiple dependent steps:
 | **Use Case** | Independent analysis | Complex workflows |
 
 <Tip>
-Start with the [Execute Query Pipeline](./endpoint/execute-query-pipeline) endpoint to trigger your pipeline, then use the returned `pipeline_execution_id` to monitor progress with the [Get Pipeline Execution Status](./endpoint/get-pipeline-status) endpoint.
+Use [Execute Pipeline](./endpoint/execute-pipeline) for automatic lineage-based execution or [Execute Query Pipeline](/api-reference/executions/endpoint/execute-query-pipeline) for predefined pipelines. Then monitor progress with the [Get Pipeline Execution Status](./endpoint/get-pipeline-status) endpoint using the returned `pipeline_execution_id`.
 </Tip>
 
 ## Credits and Performance
