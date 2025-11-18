@@ -1708,7 +1708,7 @@
                   {
                     "group": "Decoded",
                     "pages": [
-                      "data-catalog/evm/peaqdecoded/overview",
+                      "data-catalog/evm/peaq/decoded/overview",
                       "data-catalog/evm/peaq/decoded/call-tables",
                       "data-catalog/evm/peaq/decoded/event-logs",
                       "data-catalog/evm/peaq/decoded/contracts",
