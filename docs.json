@@ -1574,6 +1574,46 @@
                 ]
               },
               {
+                "group": "Mezo",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/mezo/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/mezo/raw/blocks",
+                      "data-catalog/evm/mezo/raw/creation-traces",
+                      "data-catalog/evm/mezo/raw/logs",
+                      "data-catalog/evm/mezo/raw/transactions",
+                      "data-catalog/evm/mezo/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/mezo/decoded/overview",
+                      "data-catalog/evm/mezo/decoded/call-tables",
+                      "data-catalog/evm/mezo/decoded/event-logs",
+                      "data-catalog/evm/mezo/decoded/contracts",
+                      "data-catalog/evm/mezo/decoded/logs-decoded",
+                      "data-catalog/evm/mezo/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/mezo/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "Monad Testnet",
                 "icon": "database",
                 "iconType": "solid",
@@ -1643,6 +1683,46 @@
                         "group": "NFT",
                         "pages": [
                           "data-catalog/evm/opbnb/curated-data/nft/nft-trades"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "peaq-evm",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/peaq-evm/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/peaq-evm/raw/blocks",
+                      "data-catalog/evm/peaq-evm/raw/creation-traces",
+                      "data-catalog/evm/peaq-evm/raw/logs",
+                      "data-catalog/evm/peaq-evm/raw/transactions",
+                      "data-catalog/evm/peaq-evm/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/peaq-evm/decoded/overview",
+                      "data-catalog/evm/peaq-evm/decoded/call-tables",
+                      "data-catalog/evm/peaq-evm/decoded/event-logs",
+                      "data-catalog/evm/peaq-evm/decoded/contracts",
+                      "data-catalog/evm/peaq-evm/decoded/logs-decoded",
+                      "data-catalog/evm/peaq-evm/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/peaq-evm/curated-data/dex/dex-trades"
                         ]
                       }
                     ]
@@ -2203,6 +2283,46 @@
                         "group": "NFT",
                         "pages": [
                           "data-catalog/evm/sophon/curated-data/nft/nft-trades"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Story",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/story/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/story/raw/blocks",
+                      "data-catalog/evm/story/raw/creation-traces",
+                      "data-catalog/evm/story/raw/logs",
+                      "data-catalog/evm/story/raw/transactions",
+                      "data-catalog/evm/story/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/story/decoded/overview",
+                      "data-catalog/evm/story/decoded/call-tables",
+                      "data-catalog/evm/story/decoded/event-logs",
+                      "data-catalog/evm/story/decoded/contracts",
+                      "data-catalog/evm/story/decoded/logs-decoded",
+                      "data-catalog/evm/story/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/story/curated-data/dex/dex-trades"
                         ]
                       }
                     ]
