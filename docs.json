@@ -1690,30 +1690,30 @@
                 ]
               },
               {
-                "group": "peaq-evm",
+                "group": "Peaq EVM",
                 "icon": "database",
                 "iconType": "solid",
                 "pages": [
-                  "data-catalog/evm/peaq-evm/overview",
+                  "data-catalog/evm/peaq/overview",
                   {
                     "group": "Raw",
                     "pages": [
-                      "data-catalog/evm/peaq-evm/raw/blocks",
-                      "data-catalog/evm/peaq-evm/raw/creation-traces",
-                      "data-catalog/evm/peaq-evm/raw/logs",
-                      "data-catalog/evm/peaq-evm/raw/transactions",
-                      "data-catalog/evm/peaq-evm/raw/traces"
+                      "data-catalog/evm/peaq/raw/blocks",
+                      "data-catalog/evm/peaq/raw/creation-traces",
+                      "data-catalog/evm/peaq/raw/logs",
+                      "data-catalog/evm/peaq/raw/transactions",
+                      "data-catalog/evm/peaq/raw/traces"
                     ]
                   },
                   {
                     "group": "Decoded",
                     "pages": [
-                      "data-catalog/evm/peaq-evm/decoded/overview",
-                      "data-catalog/evm/peaq-evm/decoded/call-tables",
-                      "data-catalog/evm/peaq-evm/decoded/event-logs",
-                      "data-catalog/evm/peaq-evm/decoded/contracts",
-                      "data-catalog/evm/peaq-evm/decoded/logs-decoded",
-                      "data-catalog/evm/peaq-evm/decoded/traces-decoded"
+                      "data-catalog/evm/peaqdecoded/overview",
+                      "data-catalog/evm/peaq/decoded/call-tables",
+                      "data-catalog/evm/peaq/decoded/event-logs",
+                      "data-catalog/evm/peaq/decoded/contracts",
+                      "data-catalog/evm/peaq/decoded/logs-decoded",
+                      "data-catalog/evm/peaq/decoded/traces-decoded"
                     ]
                   },
                   {
@@ -1722,7 +1722,7 @@
                       {
                         "group": "DEX",
                         "pages": [
-                          "data-catalog/evm/peaq-evm/curated-data/dex/dex-trades"
+                          "data-catalog/evm/peaq/curated-data/dex/dex-trades"
                         ]
                       }
                     ]
