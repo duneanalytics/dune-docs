@@ -2932,6 +2932,16 @@
             "group": "Protocols",
             "pages": [
               {
+                "group": "Kalshi",
+                "icon": "chart-line",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/kalshi/overview",
+                  "data-catalog/kalshi/market_report",
+                  "data-catalog/kalshi/trade_report"
+                ]
+              },
+              {
                 "group": "LayerZero",
                 "icon": "circles-overlap",
                 "iconType": "solid",
