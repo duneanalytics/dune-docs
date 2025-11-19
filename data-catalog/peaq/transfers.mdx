@@ -1,0 +1,44 @@
+---
+title: peaq.transfers
+sidebarTitle: "Transfers"
+description: Description of the peaq.transfers table on Dune
+---
+
+## Table description
+Stores complete ledger of asset transfers across the Peaq network, capturing the movement of tokens between accounts. This table is partitioned by `year`, `month`, and `day` for efficient querying.
+
+Each transfer record includes information about the sender and recipient (in both SS58 and public key formats), the asset being transferred, the amount in both processed (double) and raw (decimal) formats, and the event and extrinsic that triggered the transfer.
+
+## Column Descriptions
+
+| **Column**        | **Description**                                                              | **Type**                              |
+| ------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **year**          | The year when the transfer occurred, used for partitioning.                  | int                                   |
+| **month**         | The month when the transfer occurred, used for partitioning.                 | int                                   |
+| **day**           | The day when the transfer occurred, used for partitioning.                   | int                                   |
+| **block_time**    | The timestamp when the block containing this transfer was created.           | timestamp                             |
+| **block_number**  | The block number where this transfer occurred.                               | long                                  |
+| **event_id**      | The unique identifier of the event that represents this transfer.           | string                                |
+| **extrinsic_id**  | The unique identifier of the extrinsic that triggered this transfer.         | string                                |
+| **section**       | The pallet section (module) that emitted the transfer event.                | string                                |
+| **method**        | The method name within the pallet section that identifies the transfer type. | string                                |
+| **extrinsic_hash**| The hash of the extrinsic that triggered this transfer, in binary format.    | binary                                |
+| **block_hash**    | The hash of the block containing this transfer, in binary format.           | binary                                |
+| **from_ss58**     | The SS58-encoded address of the sender account, in human-readable format.   | string                                |
+| **from_pub_key**  | The public key of the sender account, in binary format.                     | binary                                |
+| **to_ss58**       | The SS58-encoded address of the recipient account, in human-readable format. | string                               |
+| **to_pub_key**    | The public key of the recipient account, in binary format.                  | binary                                |
+| **asset**         | The asset identifier or address being transferred.                           | string                                |
+| **symbol**        | The symbol of the asset being transferred (e.g., "PEAQ").                   | string                                |
+| **decimals**       | The number of decimal places for the asset.                                  | long                                  |
+| **amount**        | The transfer amount in processed format (double).                           | double                                |
+| **raw_amount**    | The transfer amount in raw format, preserving full precision (decimal 38,9). | decimal(38,9)                        |
+| **_updated_at**   | The time when the transfer record was last updated.                          | timestamp                             |
+| **_ingested_at**  | The time when the transfer data was ingested into the system.                | timestamp                             |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="peaq" tableName="transfers" />
+

@@ -2753,6 +2753,20 @@
                 ]
               },
               {
+                "group": "Peaq",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/peaq/overview",
+                  "data-catalog/peaq/blocks",
+                  "data-catalog/peaq/extrinsics",
+                  "data-catalog/peaq/events",
+                  "data-catalog/peaq/calls",
+                  "data-catalog/peaq/transfers",
+                  "data-catalog/peaq/balances"
+                ]
+              },
+              {
                 "group": "NEAR",
                 "icon": "database",
                 "iconType": "solid",
