@@ -7,3 +7,23 @@ description: Description of the kalshi.market_report table on Dune
 import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
 import { TableSample } from "/snippets/table-sample.mdx";
 
+The `kalshi.market_report` table contains market data and information about event contracts on Kalshi. Each row represents market statistics and metrics for a specific event contract ticker.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| block_volume | double | Trading volume for the block period |
+| category | string | Category of the event contract (e.g., Politics, Economics, Sports, etc.) |
+| daily_volume | double | Total trading volume for the day |
+| date | string | Date of the market report |
+| high | double | Highest price reached during the reporting period |
+| low | double | Lowest price reached during the reporting period |
+| open_interest | double | Total number of outstanding contracts |
+| payout_type | string | Type of payout for the event contract |
+| report_ticker | string | Unique ticker identifier for the market report |
+| status | string | Current status of the event contract market |
+| ticker_name | string | Name or description of the event contract ticker |
+| _updated_at | timestamp | Last update timestamp |
+| _ingested_at | timestamp | Ingestion timestamp |
+
