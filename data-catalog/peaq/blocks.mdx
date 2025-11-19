@@ -1,0 +1,42 @@
+---
+title: peaq.blocks
+sidebarTitle: "Blocks"
+description: Description of the peaq.blocks table on Dune
+---
+
+## Table description
+Stores basic information about Peaq blocks, with one record per block, including the block hash and statistics on the number of extrinsics, events, and transfers contained in each block. This table is partitioned by `year`, `month`, and `day` for efficient querying.
+
+Each block record includes metadata such as block number, specification version, relay chain block number, block hashes (hash, parent hash, state root, extrinsics root), block author information, and counts of various operations (extrinsics, events, transfers, traces).
+
+## Column Descriptions
+
+| **Column**            | **Description**                                                              | **Type**                              |
+| ----------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **year**              | The year when the block was created, used for partitioning.                 | int                                   |
+| **month**             | The month when the block was created, used for partitioning.                 | int                                   |
+| **day**               | The day when the block was created, used for partitioning.                   | int                                   |
+| **block_time**        | The timestamp when the block was created.                                    | timestamp                             |
+| **number**            | The block number (sequence number) of the block.                             | long                                  |
+| **spec_version**      | The specification version of the runtime when this block was created.       | long                                  |
+| **relay_block_number**| The block number of the relay chain block associated with this block.       | long                                  |
+| **hash**              | The hash of the current block, in binary format.                              | binary                                |
+| **parent_hash**       | The hash of the parent block, in binary format.                             | binary                                |
+| **state_root**        | The Merkle root of the state trie after applying all transactions in this block. | binary                             |
+| **extrinsics_root**   | The Merkle root of the extrinsics included in this block.                   | binary                                |
+| **author_ss58**       | The SS58-encoded address of the block author (validator) in human-readable format. | string                            |
+| **author_pub_key**    | The public key of the block author (validator) in binary format.            | binary                                |
+| **relay_state_root**  | The state root of the relay chain associated with this block.               | binary                                |
+| **extrinsic_count**   | The number of extrinsics (transactions) included in this block.             | long                                  |
+| **event_count**       | The number of events emitted in this block.                                  | long                                  |
+| **transfer_count**    | The number of transfers executed in this block.                              | long                                  |
+| **trace_count**       | The number of traces generated in this block.                                | long                                  |
+| **_updated_at**       | The time when the block record was last updated.                             | timestamp                             |
+| **_ingested_at**      | The time when the block data was ingested into the system.                  | timestamp                             |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="peaq" tableName="blocks" />
+

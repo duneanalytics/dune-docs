@@ -1,0 +1,38 @@
+---
+title: peaq.events
+sidebarTitle: "Events"
+description: Description of the peaq.events table on Dune
+---
+
+## Table description
+Holds all events that occur on the Peaq chain, including their pallet `section` and `method`, as well as the decoded data involved in the event. This table is partitioned by `year`, `month`, `section`, and `method` for efficient querying.
+
+Events are emitted by the runtime and pallets to signal state changes, transaction results, and other important occurrences on the chain. Each event record includes the pallet section and method that emitted it, the block and extrinsic it belongs to, and event data in both raw and decoded formats.
+
+Common queries on the `events` table will typically filter on `block_time`, `section` and `method` and extract JSON encoded information from `data` or `data_decoded`.
+
+## Column Descriptions
+
+| **Column**        | **Description**                                                              | **Type**                              |
+| ------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **year**          | The year when the event was emitted, used for partitioning.                 | int                                   |
+| **month**         | The month when the event was emitted, used for partitioning.                 | int                                   |
+| **section**       | The pallet section (module) that emitted the event (e.g., "balances", "system"). | string                            |
+| **method**        | The method name within the pallet section that identifies the event type.    | string                                |
+| **block_time**    | The timestamp when the block containing this event was created.              | timestamp                             |
+| **block_number**  | The block number where this event was emitted.                                | bigint                                |
+| **extrinsic_id**  | The unique identifier of the extrinsic that triggered this event.             | string                                |
+| **event_id**      | The unique identifier for the event record.                                  | string                                |
+| **data**          | The raw event data in JSON format.                                            | string                                |
+| **extrinsic_hash**| The hash of the extrinsic that triggered this event, in binary format.        | binary                                |
+| **block_hash**    | The hash of the block containing this event, in binary format.               | binary                                |
+| **data_decoded**  | The decoded event data with type information and human-readable values.      | string                                |
+| **_updated_at**   | The time when the event record was last updated.                              | timestamp                             |
+| **_ingested_at**  | The time when the event data was ingested into the system.                   | timestamp                             |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="peaq" tableName="events" />
+
