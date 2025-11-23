@@ -75,3 +75,17 @@ If you are using bytearrays/binary (`0x1234...`), then you will still pass it as
 <Tip>
 If you're using the Dune Python SDK, check out the [sdk doc page](/api-reference/overview/sdks) for an example.
 </Tip>
+
+## Endpoints
+
+| Endpoint Title | Endpoint | Description |
+|----------------|----------|-------------|
+| [List Queries](./list) | `GET /v1/queries` | Retrieves a paginated list of queries |
+| [Get Query Pipeline](./get-query-pipeline) | `GET /v1/query/{query_id}/pipeline` | Retrieves the pipeline definition for a query, including dependencies and execution order |
+| [Read Query](./read) | `GET /v1/query/{query_id}` | Fetches details of a specific query by ID |
+| [Create Query](./create) | `POST /v1/query` | Creates a new query with specified parameters |
+| [Update Query](./update) | `PATCH /v1/query/{query_id}` | Updates an existing query's properties |
+| [Archive Query](./archive) | `PATCH /v1/query/{query_id}/archive` | Archives a query, preventing it from being run or edited |
+| [Unarchive Query](./unarchive) | `PATCH /v1/query/{query_id}/unarchive` | Unarchives a previously archived query |
+| [Make Query Private](./private) | `PATCH /v1/query/{query_id}/private` | Makes a query private, restricting access |
+| [Make Query Public](./unprivate) | `PATCH /v1/query/{query_id}/unprivate` | Makes a private query public |

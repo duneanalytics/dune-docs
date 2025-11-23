@@ -548,14 +548,6 @@
             }
           },
           {
-            "name": "execution_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "filters",
             "in": "query",
             "description": "Expression to filter out rows from the results to return. This expression is similar to\na SQL WHERE clause. More details about it in the Filtering section of the doc.\nThis parameter is incompatible with sample_count.",
@@ -701,14 +693,6 @@
             "name": "columns",
             "in": "query",
             "description": "Specifies a comma-separated list of column names to return. If omitted, all columns are included.\nTip: use this to limit the result to specific columns, reducing datapoints cost of the call.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "execution_id",
-            "in": "query",
-            "required": true,
             "schema": {
               "type": "string"
             }
@@ -1372,7 +1356,7 @@
     "/v1/pipelines/execute": {
       "post": {
         "summary": "Execute a pipeline",
-        "description": "Builds an execution pipeline from the specified query and executes it. The pipeline will consist of all the materialized views in the queries lineage. A pipeline allows you to chain multiple queries together and execute them as a single unit.",
+        "description": "Executes a specified pipeline. A pipeline allows you to chain multiple queries and materialized view refreshes together and execute them as a single unit.",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -2419,6 +2403,108 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/models.Error403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/query/{query_id}/pipeline": {
+      "get": {
+        "summary": "Get query pipeline",
+        "description": "Builds a query pipeline from the specified query and returns the pipeline definition containing all the nested materialized views that the query depends on. A pipeline allows you to chain multiple queries together and execute them as a single unit.",
+        "parameters": [
+          {
+            "name": "X-Dune-Api-Key",
+            "in": "header",
+            "description": "API Key for the service",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Alternative to using the X-Dune-Api-Key header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query_id",
+            "in": "path",
+            "description": "Unique identifier of the query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "performance",
+            "in": "query",
+            "description": "The performance engine tier. Can be either `medium` or `large`.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query_parameters",
+            "in": "query",
+            "description": "SQL Query parameters in json key-value pairs",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.GetQueryPipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Error401"
                 }
               }
             }
@@ -4189,6 +4275,20 @@
           "status": {
             "type": "string",
             "description": "Overall status of the pipeline execution"
+          }
+        }
+      },
+      "models.GetQueryPipelineResponse": {
+        "type": "object",
+        "properties": {
+          "pipeline": {
+            "type": "object",
+            "description": "The pipeline definition containing nodes to execute",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/models.Pipeline"
+              }
+            ]
           }
         }
       },

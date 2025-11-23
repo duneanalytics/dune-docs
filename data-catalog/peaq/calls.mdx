@@ -1,0 +1,52 @@
+---
+title: peaq.calls
+sidebarTitle: "Calls"
+description: Description of the peaq.calls table on Dune
+---
+
+## Table description
+Compared to the `extrinsics` table, which only has a top-level call, the `calls` table represents _internal_ calls, including recursive internal calls of `proxy` and `utility` (batch) pallets, and provides detailed call arguments at each level of the call tree.
+
+This table is partitioned by `year`, `month`, `call_section`, and `call_method` for efficient querying. Common queries on the `calls` table will typically filter on `block_time`, `call_section` and `call_method` and extract JSON encoded information from `call_args` or `call_args_def`.
+
+Each call record includes information about the pallet section and method being called, the extrinsic it belongs to, call hierarchy (root/leaf), fee and weight information, signer details, and call arguments in both raw and decoded formats.
+
+## Column Descriptions
+
+| **Column**            | **Description**                                                              | **Type**                              |
+| ----------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **year**              | The year when the call was executed, used for partitioning.                 | int                                   |
+| **month**             | The month when the call was executed, used for partitioning.                 | int                                   |
+| **call_section**      | The pallet section (module) where the call originates (e.g., "balances", "system"). | string                            |
+| **call_method**       | The method name within the pallet section being called.                      | string                                |
+| **block_number**      | The block number where this call was executed.                               | bigint                                |
+| **block_time**        | The timestamp when the block containing this call was created.               | timestamp                             |
+| **extrinsic_id**      | The unique identifier of the extrinsic that contains this call.             | string                                |
+| **relay_chain**       | The name of the relay chain associated with this call.                      | string                                |
+| **para_id**           | The parachain ID associated with this call, if applicable.                 | long                                  |
+| **id**                | The unique identifier for the call record.                                  | string                                |
+| **block_hash**        | The hash of the block containing this call, in binary format.              | binary                                |
+| **extrinsic_hash**    | The hash of the extrinsic containing this call, in binary format.           | binary                                |
+| **extrinsic_section** | The pallet section of the top-level extrinsic.                               | string                                |
+| **extrinsic_method**  | The method name of the top-level extrinsic.                                  | string                                |
+| **call_id**           | The unique identifier for this specific call within the call tree.          | string                                |
+| **call_index**        | The index of this call within the call hierarchy, in binary format.         | binary                                |
+| **call_args**         | The raw call arguments in JSON format.                                       | string                                |
+| **call_args_def**     | The decoded call arguments definition with type information.                 | string                                |
+| **root**              | Indicates whether this is a root-level call (top of the call tree).         | boolean                               |
+| **leaf**              | Indicates whether this is a leaf-level call (bottom of the call tree).      | boolean                               |
+| **fee**               | The fee charged for executing this call, in processed format.              | double                                |
+| **weight**            | The computational weight consumed by this call.                              | long                                  |
+| **signed**            | Indicates whether the extrinsic containing this call was signed.           | boolean                               |
+| **signer_ss58**       | The SS58-encoded address of the account that signed the extrinsic, in human-readable format. | string                        |
+| **signer_pub_key**    | The public key of the account that signed the extrinsic, in binary format.  | binary                                |
+| **lifetime**          | The lifetime or validity period of the call, if applicable.                 | string                                |
+| **_updated_at**       | The time when the call record was last updated.                              | timestamp                             |
+| **_ingested_at**      | The time when the call data was ingested into the system.                    | timestamp                             |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="peaq" tableName="calls" />
+

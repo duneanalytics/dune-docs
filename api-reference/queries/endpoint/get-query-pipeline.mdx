@@ -1,0 +1,91 @@
+---
+title: "Get Query Pipeline"
+openapi: "GET /v1/query/{query_id}/pipeline"
+---
+
+Retrieve the pipeline definition for a specific query, including all nested materialized views that the query depends on.
+
+## Overview
+
+This endpoint returns the pipeline structure that would be executed for a given query, allowing you to inspect the lineage and execution order before running the pipeline. This is useful for understanding dependencies and planning pipeline executions.
+
+The pipeline definition contains all the nodes (queries and materialized view refreshes) in the correct dependency order.
+
+<Note>
+The `query_parameters` should be passed as a URL-encoded JSON string in the query parameter, where keys are parameter names and values are parameter values.
+</Note>
+
+## Use Cases
+
+### Inspect Pipeline Before Execution
+
+Check what queries and materialized views will be executed:
+
+```bash
+curl "https://api.dune.com/api/v1/query/3493826/pipeline?performance=medium" \
+  -H "X-Dune-Api-Key: $DUNE_API_KEY"
+```
+
+### Validate Dependencies with Parameters
+
+Understand query dependencies before running a pipeline with specific parameters:
+
+```bash
+# Query parameters as JSON string
+curl "https://api.dune.com/api/v1/query/3493826/pipeline?performance=large&query_parameters=%7B%22blockchain%22%3A%22ethereum%22%7D" \
+  -H "X-Dune-Api-Key: $DUNE_API_KEY"
+```
+
+## Response Structure
+
+The response contains a `pipeline` object with a `nodes` array. Each node represents either a query execution or materialized view refresh, along with its dependencies.
+
+Example response:
+
+```json
+{
+  "pipeline": {
+    "nodes": [
+      {
+        "id": 1,
+        "dependencies": [],
+        "materialized_view_refresh": {
+          "name": "dune.analyst.mv_base_data",
+          "performance": "medium"
+        }
+      },
+      {
+        "id": 2,
+        "dependencies": [1],
+        "query_execution": {
+          "query_id": 3493826,
+          "performance": "medium"
+        }
+      }
+    ]
+  }
+}
+```
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Before Pipeline Execution">
+    Call this endpoint before executing a pipeline to understand what will be executed and in what order. This helps with planning and cost estimation.
+  </Accordion>
+  
+  <Accordion title="Validate Complex Dependencies">
+    For queries with many dependencies, use this endpoint to visualize the execution graph and identify potential bottlenecks.
+  </Accordion>
+  
+  <Accordion title="Test with Parameters">
+    When using query parameters, test the pipeline structure with different parameter values to ensure the lineage is resolved correctly.
+  </Accordion>
+</AccordionGroup>
+
+## Related Endpoints
+
+- [Execute Query Pipeline](/api-reference/executions/endpoint/execute-query-pipeline) - Execute a query's pipeline
+- [Execute Pipeline](/api-reference/pipelines/endpoint/execute-pipeline) - Execute a pipeline based on lineage
+- [Get Pipeline Status](/api-reference/pipelines/endpoint/get-pipeline-status) - Check pipeline execution status
+

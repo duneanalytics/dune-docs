@@ -1,0 +1,47 @@
+---
+title: peaq.balances
+sidebarTitle: "Balances"
+description: Description of the peaq.balances table on Dune
+---
+
+## Table description
+Tracks account balance snapshots on the Peaq network, capturing the state of user assets at specific timestamps. This table is partitioned by `year`, `month`, and `day` for efficient querying.
+
+Each record includes balance information in both processed (double) and raw (string) formats, allowing for precise balance tracking. The table tracks multiple balance types including free balances, reserved balances, and various frozen balance states (misc_frozen and frozen).
+
+Accounts are identified using SS58 addresses (`address_ss58`) and public keys (`address_pubkey`), supporting both human-readable and binary address formats. The table also includes chain and asset metadata such as `symbol`, `chain_name`, `asset`, and `para_id` for multi-chain support.
+
+## Column Descriptions
+
+| **Column**          | **Description**                                                              | **Type**                              |
+| --------------------|------------------------------------------------------------------------------| ------------------------------------- |
+| **year**            | The year when the balance snapshot was taken, used for partitioning.       | int                                   |
+| **month**           | The month when the balance snapshot was taken, used for partitioning.       | int                                   |
+| **day**             | The day when the balance snapshot was taken, used for partitioning.         | int                                   |
+| **ts**              | The timestamp when the balance snapshot was taken.                          | timestamp                             |
+| **symbol**          | The symbol of the asset (e.g., "PEAQ").                                     | string                                |
+| **address_ss58**    | The SS58-encoded address of the account in human-readable format.          | string                                |
+| **address_pubkey**  | The public key of the account in binary format.                             | binary                                |
+| **id**              | The unique identifier for the balance record.                               | string                                |
+| **chain_name**      | The name of the chain where the balance exists.                              | string                                |
+| **asset**           | The asset identifier or symbol.                                             | string                                |
+| **para_id**         | The parachain ID associated with the balance, if applicable.                | long                                  |
+| **free**            | The free balance available to the account, in processed format.             | double                                |
+| **reserved**        | The reserved balance that is locked but still owned by the account.        | double                                |
+| **misc_frozen**     | The miscellaneous frozen balance that cannot be used for certain operations. | double                                |
+| **frozen**          | The total frozen balance that cannot be used.                                | double                                |
+| **nonce**           | The account nonce, representing the number of transactions from this account. | long                                |
+| **free_raw**        | The free balance in raw string format, preserving full precision.           | string                                |
+| **reserved_raw**    | The reserved balance in raw string format, preserving full precision.      | string                                |
+| **misc_frozen_raw** | The miscellaneous frozen balance in raw string format, preserving full precision. | string                            |
+| **frozen_raw**     | The frozen balance in raw string format, preserving full precision.        | string                                |
+| **flags_raw**       | The raw flags associated with the account balance state.                    | string                                |
+| **_updated_at**     | The time when the balance record was last updated.                           | timestamp                             |
+| **_ingested_at**    | The time when the balance data was ingested into the system.                | timestamp                             |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="peaq" tableName="balances" />
+

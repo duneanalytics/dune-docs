@@ -1,0 +1,23 @@
+---
+title: kalshi.trade_report
+sidebarTitle: "Trade Report"
+description: Description of the kalshi.trade_report table on Dune
+---
+
+import { ColumnDescriptions } from "/snippets/column-descriptions.mdx";
+import { TableSample } from "/snippets/table-sample.mdx";
+
+The `kalshi.trade_report` table contains trade execution data and transaction information for event contracts on Kalshi. Each row represents a trade execution for a specific event contract ticker.
+
+## Table Schema
+
+| Column Name | Data Type | Description |
+|------------|-----------|-------------|
+| contracts_traded | double | Number of contracts traded in the transaction |
+| date | string | Date of the trade report |
+| price | double | Price at which the contracts were traded |
+| report_ticker | string | Unique ticker identifier for the trade report |
+| ticker_name | string | Name or description of the event contract ticker |
+| _updated_at | timestamp | Last update timestamp |
+| _ingested_at | timestamp | Ingestion timestamp |
+

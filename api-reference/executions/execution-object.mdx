@@ -59,6 +59,7 @@ Below is an overview of each endpoint, providing a high-level understanding of t
 |--------------------------|-----------------------------------|-----------------------------------------------------------------------------------------------|
 | [Execute SQL](./endpoint/execute-sql)    | `POST /v1/sql/execute` | Executes arbitrary SQL queries directly. Returns an `execution_id` to track the query execution. |
 | [Execute Query](./endpoint/execute-query)       | `POST /v1/query/{query_id}/execute` | Triggers an execution based on the `query_id`. Returns an `execution_id`. |
+| [Execute Query Pipeline](./endpoint/execute-query-pipeline) | `POST /v1/query/{query_id}/pipeline/execute` | Executes a query pipeline with all its dependencies. Returns a `pipeline_execution_id`. |
 | [Get Execution Status](./endpoint/get-execution-status) | `GET /v1/execution/{execution_id}/status` | Provides the status of a query execution given an `execution_id`. |
 | [Get Execution Result](./endpoint/get-execution-result) | `GET /v1/execution/{execution_id}/results` | Fetches the execution status, metadata, and results in JSON format. Similar data handling as CSV endpoint. |
 | [Get Execution Result in CSV](./endpoint/get-execution-result-csv) | `GET /v1/execution/{execution_id}/results/csv` | Retrieves the status, metadata, and results in CSV format. Includes data retention and limit information. |
