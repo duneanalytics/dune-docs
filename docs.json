@@ -1614,6 +1614,35 @@
                 ]
               },
               {
+                "group": "Monad",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/monad/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/monad/raw/blocks",
+                      "data-catalog/evm/monad/raw/creation-traces",
+                      "data-catalog/evm/monad/raw/logs",
+                      "data-catalog/evm/monad/raw/transactions",
+                      "data-catalog/evm/monad/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/monad/decoded/overview",
+                      "data-catalog/evm/monad/decoded/call-tables",
+                      "data-catalog/evm/monad/decoded/event-logs",
+                      "data-catalog/evm/monad/decoded/contracts",
+                      "data-catalog/evm/monad/decoded/logs-decoded",
+                      "data-catalog/evm/monad/decoded/traces-decoded"
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "Monad Testnet",
                 "icon": "database",
                 "iconType": "solid",
