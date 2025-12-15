@@ -3379,6 +3379,7 @@
       "destination": "/catalyst/hosted"
     },
     {
+      "source": "/overview",
       "source": "/guides/replace-a-sample-api.md",
       "destination": "/"
     }
