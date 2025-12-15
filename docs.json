@@ -3377,6 +3377,10 @@
     {
       "source": "/api-reference/tables/blockchain/delete",
       "destination": "/catalyst/hosted"
+    },
+    {
+      "source": "/overview",
+      "destination": "/"
     }
   ]
 }
