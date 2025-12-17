@@ -1574,6 +1574,46 @@
                 ]
               },
               {
+                "group": "MegaETH",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/megaeth/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/megaeth/raw/blocks",
+                      "data-catalog/evm/megaeth/raw/creation-traces",
+                      "data-catalog/evm/megaeth/raw/logs",
+                      "data-catalog/evm/megaeth/raw/transactions",
+                      "data-catalog/evm/megaeth/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/megaeth/decoded/overview",
+                      "data-catalog/evm/megaeth/decoded/call-tables",
+                      "data-catalog/evm/megaeth/decoded/event-logs",
+                      "data-catalog/evm/megaeth/decoded/contracts",
+                      "data-catalog/evm/megaeth/decoded/logs-decoded",
+                      "data-catalog/evm/megaeth/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/megaeth/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "Mezo",
                 "icon": "database",
                 "iconType": "solid",
