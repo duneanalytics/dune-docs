@@ -3482,6 +3482,10 @@
       "destination": "/data-catalog/:slug*"
     },
     {
+      "source": "/data-catalog/thorchain",
+      "destination": "/data-catalog/thorchain/overview"
+    },
+    {
       "source": "/api-reference/tables/blockchain/overview",
       "destination": "/catalyst/hosted"
     },
