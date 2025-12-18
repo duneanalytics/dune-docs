@@ -1,0 +1,64 @@
+---
+title: thorchain.defi_daily_pool_stats
+sidebarTitle: "Daily Pool Stats"
+description: Description of the thorchain.defi_daily_pool_stats table on Dune
+---
+
+## Table Description
+Daily statistics for Continuous Liquidity Pools (CLPs) on THORChain. CLPs are THORChain's advanced AMM mechanism that allows for native asset swaps without wrapped tokens. This table tracks daily pool statistics including liquidity, swaps, fees, and rewards. This table is partitioned by day.
+
+This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_daily_pool_stats.sql).
+
+## Column Descriptions
+
+| **Column**                    | **Type**      | **Description**                                   |
+|-------------------------------|---------------|---------------------------------------------------|
+| **fact_daily_pool_stats_id** | varchar       | Surrogate key for the daily pool stats            |
+| **day**                       | date          | Date of the statistics                             |
+| **pool_name**                 | varchar       | Name of the liquidity pool (e.g., ETH.RUNE)       |
+| **system_rewards**            | decimal(38,0) | System rewards for the day                         |
+| **system_rewards_usd**       | decimal(20,6) | USD value of system rewards                        |
+| **asset_liquidity**           | decimal(38,0) | Asset liquidity in the pool                        |
+| **asset_price**               | decimal(20,6) | Asset price                                         |
+| **asset_price_usd**           | decimal(20,6) | Asset price in USD                                  |
+| **rune_liquidity**            | decimal(38,0) | RUNE liquidity in the pool                         |
+| **rune_price**                | decimal(20,6) | RUNE price                                         |
+| **rune_price_usd**            | decimal(20,6) | RUNE price in USD                                  |
+| **add_liquidity_count**       | bigint        | Number of add liquidity actions                    |
+| **add_asset_liquidity**       | decimal(38,0) | Total asset added as liquidity                     |
+| **add_asset_liquidity_usd**   | decimal(20,6) | USD value of asset added                           |
+| **add_rune_liquidity**        | decimal(38,0) | Total RUNE added as liquidity                     |
+| **add_rune_liquidity_usd**    | decimal(20,6) | USD value of RUNE added                            |
+| **withdraw_count**            | bigint        | Number of withdraw liquidity actions               |
+| **withdraw_asset_liquidity**  | decimal(38,0) | Total asset withdrawn from liquidity               |
+| **withdraw_asset_liquidity_usd** | decimal(20,6) | USD value of asset withdrawn                       |
+| **withdraw_rune_liquidity**   | decimal(38,0) | Total RUNE withdrawn from liquidity                |
+| **withdraw_rune_liquidity_usd** | decimal(20,6) | USD value of RUNE withdrawn                        |
+| **il_protection_paid**         | decimal(38,0) | Impermanent loss protection paid                   |
+| **il_protection_paid_usd**    | decimal(20,6) | USD value of IL protection paid                    |
+| **average_slip**              | decimal(20,6) | Average slippage                                   |
+| **to_asset_average_slip**     | decimal(20,6) | Average slippage for swaps to asset                |
+| **to_rune_average_slip**      | decimal(20,6) | Average slippage for swaps to RUNE                 |
+| **swap_count**                | bigint        | Total number of swaps                              |
+| **to_asset_swap_count**       | bigint        | Number of swaps to asset                            |
+| **to_rune_swap_count**        | bigint        | Number of swaps to RUNE                            |
+| **swap_volume_rune**          | decimal(38,0) | Swap volume in RUNE                                |
+| **swap_volume_rune_usd**      | decimal(20,6) | USD value of swap volume                           |
+| **to_asset_swap_volume**      | decimal(38,0) | Swap volume to asset                               |
+| **to_rune_swap_volume**       | decimal(38,0) | Swap volume to RUNE                                |
+| **total_swap_fees_rune**      | decimal(38,0) | Total swap fees in RUNE                            |
+| **total_swap_fees_usd**       | decimal(20,6) | USD value of total swap fees                       |
+| **total_asset_swap_fees**     | decimal(38,0) | Total swap fees in asset                           |
+| **total_asset_rune_fees**     | decimal(38,0) | Total asset fees in RUNE                           |
+| **unique_member_count**       | bigint        | Unique liquidity provider count                    |
+| **unique_swapper_count**      | bigint        | Unique swapper count                               |
+| **liquidity_units**           | decimal(38,0) | Total liquidity units (LP tokens)                 |
+| **inserted_timestamp**        | timestamp     | Time when the record was inserted                  |
+| **modified_timestamp**        | timestamp     | Time when the record was last modified             |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_daily_pool_stats" />
+

@@ -1,0 +1,45 @@
+---
+title: thorchain.defi_liquidity_actions
+sidebarTitle: "Liquidity Actions"
+description: Description of the thorchain.defi_liquidity_actions table on Dune
+---
+
+## Table Description
+Records of liquidity provision and withdrawal actions on THORChain. This table tracks when users add or remove liquidity from Continuous Liquidity Pools (CLPs). This table is partitioned by day.
+
+This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_liquidity_actions.sql).
+
+## Column Descriptions
+
+| **Column**                    | **Type**      | **Description**                                   |
+|-------------------------------|---------------|---------------------------------------------------|
+| **fact_liquidity_actions_id** | varchar       | Surrogate key for the liquidity action            |
+| **day**                       | date          | Date of when the liquidity action was executed    |
+| **block_timestamp**           | timestamp     | Timestamp of when the liquidity action was executed |
+| **dim_block_id**              | varchar       | Reference to the block dimension                  |
+| **tx_id**                     | varchar       | Transaction ID                                    |
+| **lp_action**                 | varchar       | Type of action (add, withdraw)                    |
+| **pool_name**                 | varchar       | Name of the liquidity pool                         |
+| **from_address**              | varchar       | Address that initiated the action                  |
+| **to_address**                | varchar       | Address receiving the action                      |
+| **rune_amount**               | decimal(38,0) | Amount of RUNE added or removed                    |
+| **rune_amount_usd**           | decimal(20,6) | USD value of RUNE amount                           |
+| **asset_amount**              | decimal(38,0) | Amount of asset added or removed                    |
+| **asset_amount_usd**          | decimal(20,6) | USD value of asset amount                          |
+| **stake_units**               | decimal(38,0) | Pool units (LP tokens) received or burned         |
+| **asset_tx_id**               | varchar       | Transaction ID on the asset's blockchain          |
+| **asset_address**             | varchar       | Address on the asset's blockchain                 |
+| **asset_blockchain**          | varchar       | Blockchain of the asset                           |
+| **il_protection**             | decimal(38,0) | Impermanent loss protection amount                 |
+| **il_protection_usd**         | decimal(20,6) | USD value of impermanent loss protection           |
+| **unstake_asymmetry**         | decimal(38,0) | Asymmetry in unstaking (if applicable)            |
+| **unstake_basis_points**      | bigint        | Unstake basis points                              |
+| **inserted_timestamp**        | timestamp     | Time when the record was inserted                  |
+| **modified_timestamp**        | timestamp     | Time when the record was last modified             |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_liquidity_actions" />
+
