@@ -1,0 +1,35 @@
+---
+title: thorchain.core_block
+sidebarTitle: "Core Block"
+description: Description of the thorchain.core_block table on Dune
+---
+
+## Table Description
+Contains block-level data from the THORChain blockchain including block headers, timestamps, and block statistics. This table is partitioned by block_month.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **block_id** | bigint | Identifier |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_date** | timestamp | Date of when the block was created |
+| **block_hour** | timestamp | Block Hour |
+| **block_week** | timestamp | Block Week |
+| **block_month** | timestamp | Block Month |
+| **block_quarter** | timestamp | Block Quarter |
+| **block_year** | timestamp | Block Year |
+| **block_dayofmonth** | timestamp | Block Dayofmonth |
+| **block_dayofweek** | timestamp | Block Dayofweek |
+| **block_dayofyear** | timestamp | Block Dayofyear |
+| **timestamp** | timestamp | Timestamp of the record |
+| **hash** | varchar | Hash |
+| **agg_state** | varchar | Agg State |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="core_block" />

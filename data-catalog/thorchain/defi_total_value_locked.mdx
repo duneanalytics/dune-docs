@@ -1,0 +1,25 @@
+---
+title: thorchain.defi_total_value_locked
+sidebarTitle: "Defi Total Value Locked"
+description: Description of the thorchain.defi_total_value_locked table on Dune
+---
+
+## Table Description
+Data for defi total value locked on THORChain.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **day** | date | Date of the record |
+| **total_value_pooled** | varchar | Total Value Pooled |
+| **total_value_bonded** | varchar | Total Value Bonded |
+| **total_value_locked** | varchar | Total Value Locked |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_total_value_locked_id** | bigint | Surrogate key for the fact record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_total_value_locked" />

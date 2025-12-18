@@ -1,0 +1,34 @@
+---
+title: thorchain.defi_pool_balance_change_events
+sidebarTitle: "Defi Pool Balance Change Events"
+description: Description of the thorchain.defi_pool_balance_change_events table on Dune
+---
+
+## Table Description
+Event data for pool balance change on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **asset** | varchar | Asset identifier |
+| **rune_amt** | varchar | Rune Amt |
+| **rune_add** | varchar | Rune Add |
+| **asset_amt** | varchar | Asset Amt |
+| **asset_add** | varchar | Asset Add |
+| **reason** | varchar | Reason |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **rune_amount** | decimal(38,0) | Amount in RUNE |
+| **asset_amount** | decimal(38,0) | Amount of asset |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_pool_balance_change_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_pool_balance_change_events" />

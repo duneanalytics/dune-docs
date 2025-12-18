@@ -1,0 +1,58 @@
+---
+title: thorchain.defi_pool_block_statistics
+sidebarTitle: "Defi Pool Block Statistics"
+description: Description of the thorchain.defi_pool_block_statistics table on Dune
+---
+
+## Table Description
+Block-level data for pool statistics on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **day** | date | Date of the record |
+| **add_asset_liquidity_volume** | varchar | Identifier |
+| **add_liquidity_count** | varchar | Identifier |
+| **add_liquidity_volume** | varchar | Identifier |
+| **add_rune_liquidity_volume** | varchar | Identifier |
+| **asset** | varchar | Asset identifier |
+| **asset_depth** | varchar | Asset Depth |
+| **asset_price** | varchar | Asset Price |
+| **asset_price_usd** | decimal(20,6) | Asset Price Usd |
+| **average_slip** | varchar | Average Slip |
+| **impermanent_loss_protection_paid** | varchar | Identifier |
+| **rune_depth** | varchar | Rune Depth |
+| **status** | varchar | Status |
+| **swap_count** | varchar | Swap Count |
+| **swap_volume** | varchar | Swap Volume |
+| **to_asset_average_slip** | varchar | To Asset Average Slip |
+| **to_asset_count** | varchar | To Asset Count |
+| **to_asset_fees** | varchar | To Asset Fees |
+| **to_asset_volume** | varchar | To Asset Volume |
+| **to_rune_average_slip** | varchar | To Rune Average Slip |
+| **to_rune_count** | varchar | To Rune Count |
+| **to_rune_fees** | varchar | To Rune Fees |
+| **to_rune_volume** | varchar | To Rune Volume |
+| **totalfees** | varchar | Totalfees |
+| **unique_member_count** | varchar | Unique Member Count |
+| **unique_swapper_count** | varchar | Unique Swapper Count |
+| **units** | varchar | Units |
+| **withdraw_asset_volume** | varchar | Withdraw Asset Volume |
+| **withdraw_count** | varchar | Withdraw Count |
+| **withdraw_rune_volume** | varchar | Withdraw Rune Volume |
+| **withdraw_volume** | varchar | Withdraw Volume |
+| **total_stake** | varchar | Total Stake |
+| **depth_product** | varchar | Depth Product |
+| **synth_units** | varchar | Synth Units |
+| **pool_units** | varchar | Pool Units |
+| **liquidity_unit_value_index** | varchar | Identifier |
+| **prev_liquidity_unit_value_index** | varchar | Identifier |
+| **_unique_key** | varchar |  Unique Key |
+| **fact_pool_block_statistics_id** | bigint | Surrogate key for the fact record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_pool_block_statistics" />

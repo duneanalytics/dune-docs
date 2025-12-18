@@ -1,0 +1,31 @@
+---
+title: thorchain.gov_set_node_keys_events
+sidebarTitle: "Gov Set Node Keys Events"
+description: Description of the thorchain.gov_set_node_keys_events table on Dune
+---
+
+## Table Description
+Event data for set node keys on THORChain. This table is partitioned by block_month.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **node_addr** | varchar | Node Addr |
+| **secp256k1** | varchar | Secp256K1 |
+| **ed25519** | varchar | Ed25519 |
+| **validator_consensus** | varchar | Identifier |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **node_address** | varchar | Address |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_set_node_keys_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="gov_set_node_keys_events" />

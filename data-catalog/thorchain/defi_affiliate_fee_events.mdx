@@ -1,0 +1,34 @@
+---
+title: thorchain.defi_affiliate_fee_events
+sidebarTitle: "Defi Affiliate Fee Events"
+description: Description of the thorchain.defi_affiliate_fee_events table on Dune
+---
+
+## Table Description
+Event data for affiliate fee on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **tx_id** | bigint | Transaction ID |
+| **fee_amt** | varchar | Fee Amt |
+| **gross_amt** | varchar | Gross Amt |
+| **fee_bps** | varchar | Fee Bps |
+| **memo** | varchar | Transaction memo |
+| **asset** | varchar | Asset identifier |
+| **rune_address** | varchar | Address |
+| **thorname** | varchar | Thorname |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_affiliate_fee_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_affiliate_fee_events" />

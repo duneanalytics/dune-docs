@@ -1,0 +1,27 @@
+---
+title: thorchain.defi_active_vault_events
+sidebarTitle: "Defi Active Vault Events"
+description: Description of the thorchain.defi_active_vault_events table on Dune
+---
+
+## Table Description
+Event data for active vault on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **add_asgard_addr** | varchar | Add Asgard Addr |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_active_vault_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_active_vault_events" />

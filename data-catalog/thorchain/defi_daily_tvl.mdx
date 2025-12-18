@@ -1,0 +1,27 @@
+---
+title: thorchain.defi_daily_tvl
+sidebarTitle: "Defi Daily Tvl"
+description: Description of the thorchain.defi_daily_tvl table on Dune
+---
+
+## Table Description
+Daily total value locked (TVL) statistics for THORChain. This table tracks the total value locked across all pools on a daily basis. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **day** | date | Date of the record |
+| **total_value_pooled** | varchar | Total Value Pooled |
+| **total_value_pooled_usd** | decimal(20,6) | Total Value Pooled Usd |
+| **total_value_bonded** | varchar | Total Value Bonded |
+| **total_value_bonded_usd** | decimal(20,6) | Total Value Bonded Usd |
+| **total_value_locked** | varchar | Total Value Locked |
+| **total_value_locked_usd** | decimal(20,6) | Total Value Locked Usd |
+| **fact_daily_tvl_id** | bigint | Surrogate key for the fact record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_daily_tvl" />

@@ -1,0 +1,32 @@
+---
+title: thorchain.defi_bond_actions
+sidebarTitle: "Defi Bond Actions"
+description: Description of the thorchain.defi_bond_actions table on Dune
+---
+
+## Table Description
+Records of bond actions on THORChain. This table tracks bonding and unbonding actions for validators and includes asset amounts and USD values.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **fact_bond_actions_id** | varchar | Surrogate key for the bond action record |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **dim_block_id** | varchar | Reference to the block dimension table |
+| **tx_id** | varchar | Transaction ID |
+| **from_address** | varchar | Source address |
+| **to_address** | varchar | Destination address |
+| **asset** | varchar | Asset identifier |
+| **blockchain** | varchar | Source blockchain identifier |
+| **bond_type** | varchar | Type of bond action |
+| **asset_amount** | decimal(38,0) | Amount of asset |
+| **asset_usd** | decimal(20,6) | USD value of asset amount |
+| **memo** | varchar | Transaction memo |
+| **_TX_TYPE** | varchar | Transaction type |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_bond_actions" />

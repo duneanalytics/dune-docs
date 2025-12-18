@@ -1,0 +1,60 @@
+---
+title: thorchain.defi_daily_pool_stats
+sidebarTitle: "Defi Daily Pool Stats"
+description: Description of the thorchain.defi_daily_pool_stats table on Dune
+---
+
+## Table Description
+Daily statistics for Continuous Liquidity Pools (CLPs) on THORChain. CLPs are THORChain's advanced AMM mechanism that allows for native asset swaps without wrapped tokens. This table tracks daily pool statistics including liquidity, swaps, fees, and rewards. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **DAY** | date | Date of the record |
+| **pool_name** | varchar | Name of the liquidity pool |
+| **system_rewards** | varchar | System Rewards |
+| **system_rewards_usd** | decimal(20,6) | System Rewards Usd |
+| **asset_liquidity** | varchar | Identifier |
+| **asset_price** | varchar | Asset Price |
+| **asset_price_usd** | decimal(20,6) | Asset Price Usd |
+| **rune_liquidity** | varchar | Identifier |
+| **rune_price** | varchar | Rune Price |
+| **rune_price_usd** | decimal(20,6) | Rune Price Usd |
+| **add_liquidity_count** | varchar | Identifier |
+| **add_asset_liquidity** | varchar | Identifier |
+| **add_asset_liquidity_usd** | decimal(20,6) | Identifier |
+| **add_rune_liquidity** | varchar | Identifier |
+| **add_rune_liquidity_usd** | decimal(20,6) | Identifier |
+| **withdraw_count** | varchar | Withdraw Count |
+| **withdraw_asset_liquidity** | varchar | Identifier |
+| **withdraw_asset_liquidity_usd** | decimal(20,6) | Identifier |
+| **withdraw_rune_liquidity** | varchar | Identifier |
+| **withdraw_rune_liquidity_usd** | decimal(20,6) | Identifier |
+| **il_protection_paid** | varchar | Identifier |
+| **il_protection_paid_usd** | decimal(20,6) | Identifier |
+| **average_slip** | varchar | Average Slip |
+| **to_asset_average_slip** | varchar | To Asset Average Slip |
+| **to_rune_average_slip** | varchar | To Rune Average Slip |
+| **swap_count** | varchar | Swap Count |
+| **to_asset_swap_count** | varchar | To Asset Swap Count |
+| **to_rune_swap_count** | varchar | To Rune Swap Count |
+| **swap_volume_rune** | varchar | Swap Volume Rune |
+| **swap_volume_rune_usd** | decimal(20,6) | Swap Volume Rune Usd |
+| **to_asset_swap_volume** | varchar | To Asset Swap Volume |
+| **to_rune_swap_volume** | varchar | To Rune Swap Volume |
+| **total_swap_fees_rune** | varchar | Total Swap Fees Rune |
+| **total_swap_fees_usd** | decimal(20,6) | Total Swap Fees Usd |
+| **total_asset_swap_fees** | varchar | Total Asset Swap Fees |
+| **total_asset_rune_fees** | varchar | Total Asset Rune Fees |
+| **unique_member_count** | varchar | Unique Member Count |
+| **unique_swapper_count** | varchar | Unique Swapper Count |
+| **liquidity_units** | varchar | Identifier |
+| **_unique_key** | varchar |  Unique Key |
+| **fact_daily_pool_stats_id** | bigint | Surrogate key for the daily pool stats record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_daily_pool_stats" />

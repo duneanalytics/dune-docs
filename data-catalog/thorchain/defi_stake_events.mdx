@@ -1,0 +1,35 @@
+---
+title: thorchain.defi_stake_events
+sidebarTitle: "Defi Stake Events"
+description: Description of the thorchain.defi_stake_events table on Dune
+---
+
+## Table Description
+Event data for stake on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **pool_name** | varchar | Name of the liquidity pool |
+| **asset_tx_id** | bigint | Identifier |
+| **asset_blockchain** | varchar | Asset Blockchain |
+| **asset_address** | varchar | Address |
+| **asset_e8** | bigint | Asset amount in e8 units |
+| **stake_units** | varchar | Pool units (LP tokens) received or burned |
+| **rune_tx_id** | bigint | Identifier |
+| **rune_address** | varchar | Address |
+| **rune_e8** | bigint | RUNE amount in e8 units |
+| **_ASSET_IN_RUNE_E8** | bigint |  Asset In Rune E8 |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **_INSERTED_TIMESTAMP** | timestamp | Timestamp of the record |
+| **fact_stake_events_id** | bigint | Surrogate key for the fact record |
+| **day** | timestamp | Date of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_stake_events" />

@@ -1,0 +1,28 @@
+---
+title: thorchain.defi_tcy_distribution_events
+sidebarTitle: "Defi Tcy Distribution Events"
+description: Description of the thorchain.defi_tcy_distribution_events table on Dune
+---
+
+## Table Description
+Event data for tcy distribution on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **rune_address** | varchar | Address |
+| **rune_amt** | varchar | Rune Amt |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_tcy_distribution_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_tcy_distribution_events" />

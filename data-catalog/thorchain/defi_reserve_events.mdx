@@ -1,0 +1,36 @@
+---
+title: thorchain.defi_reserve_events
+sidebarTitle: "Defi Reserve Events"
+description: Description of the thorchain.defi_reserve_events table on Dune
+---
+
+## Table Description
+Event data for reserve on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **tx_id** | bigint | Transaction ID |
+| **blockchain** | varchar | Source blockchain identifier |
+| **from_address** | varchar | Source address |
+| **to_address** | varchar | Destination address |
+| **asset** | varchar | Asset identifier |
+| **asset_e8** | bigint | Asset amount in e8 units |
+| **memo** | varchar | Transaction memo |
+| **address** | varchar | Address |
+| **e8** | varchar | E8 |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **_tx_type** | varchar |  Tx Type |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_reserve_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_reserve_events" />

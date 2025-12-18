@@ -1,0 +1,25 @@
+---
+title: thorchain.defi_rewards_events
+sidebarTitle: "Defi Rewards Events"
+description: Description of the thorchain.defi_rewards_events table on Dune
+---
+
+## Table Description
+Event data for rewards on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **bond_e8** | bigint | Bond E8 |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **fact_rewards_events_id** | bigint | Surrogate key for the fact record |
+| **day** | timestamp | Date of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_rewards_events" />

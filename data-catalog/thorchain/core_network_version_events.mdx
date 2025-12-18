@@ -1,0 +1,26 @@
+---
+title: thorchain.core_network_version_events
+sidebarTitle: "Core Network Version Events"
+description: Description of the thorchain.core_network_version_events table on Dune
+---
+
+## Table Description
+Event data for network version on THORChain. This table is partitioned by block_month.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **version** | varchar | Version |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="core_network_version_events" />

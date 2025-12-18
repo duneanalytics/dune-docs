@@ -1,0 +1,29 @@
+---
+title: thorchain.defi_pool_block_fees
+sidebarTitle: "Defi Pool Block Fees"
+description: Description of the thorchain.defi_pool_block_fees table on Dune
+---
+
+## Table Description
+Block-level data for pool fees on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **DAY** | date | Date of the record |
+| **pool_name** | varchar | Name of the liquidity pool |
+| **rewards** | varchar | Rewards |
+| **total_liquidity_fees_rune** | varchar | Identifier |
+| **asset_liquidity_fees** | varchar | Identifier |
+| **rune_liquidity_fees** | varchar | Identifier |
+| **earnings** | varchar | Earnings |
+| **_unique_key** | varchar |  Unique Key |
+| **_INSERTED_TIMESTAMP** | timestamp | Timestamp of the record |
+| **fact_pool_block_fees_id** | bigint | Surrogate key for the fact record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_pool_block_fees" />
