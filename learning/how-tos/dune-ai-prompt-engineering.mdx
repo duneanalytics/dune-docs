@@ -20,7 +20,7 @@ Before we dive into the examples, it's important to understand the basics of pro
 Dune AI offers a range of capabilities, especially suited for blockchain analytics. Key features include:
 
 - **Parsing smart contracts addresses** and identifying the relevant functions and their tables.
-- **Identifying and categorizing project names** and mapping them to their respective contract tables and spells (expertly curated datasets)
+- **Identifying and categorizing project names** and mapping them to their respective contract tables and curated tables (expertly curated datasets)
 - **Identifying token symbols** and identifying their contract addresses and contract types.
 - **Injecting your wallet address** (when linked in profile) to provide personalized insights and analytics.
 
@@ -35,12 +35,12 @@ Include a smart contract address. Given the contract address `0xcf205808ed36593a
 
 ![dune-ai-function-example.png](/learning/how-tos/images/dune-ai-function-example.png)
 
-### Identifying project names and finding their respective "spells" or crafted datasets
+### Identifying project names and finding their respective curated tables
 
 **Prompt**: "list of wallets that have traded more than 2500 usd on blur"
 
 **Prompt Engineering Tip**: 
-Include project names or schemas in your prompt. Below including `blur` in the prompt will help Dune AI identify all spells under that schema. Blur has many spells but the LLM selects the most relevant one (`blur.trades`) based on the context of the prompt.
+Include project names or schemas in your prompt. Below including `blur` in the prompt will help Dune AI identify all curated tables under that schema. Blur has many curated tables but the LLM selects the most relevant one (`blur.trades`) based on the context of the prompt.
 If you want to validate the spelling of the project name, all schemas are listed in the [data explorer](https://dune.com/queries?category=abstraction)
 
 ![dune-ai-spells-example.png](/learning/how-tos/images/dune-ai-spells-example.png)
@@ -50,7 +50,7 @@ If you want to validate the spelling of the project name, all schemas are listed
 **Prompt**: "top transfer receiver on lido on base"
 
 **Prompt Engineering Tip**: 
-Include project names or schemas in your prompt. Similar to finding relevant spells, including project names in your prompt will help Dune AI identify the relevant functions and tables. In this example for `lido`, the LLM selects the most relevant event `Transfer` and the `lido_base.wsteth_evt_Transfer` based on the context of the prompt.
+Include project names or schemas in your prompt. Similar to finding relevant curated tables, including project names in your prompt will help Dune AI identify the relevant functions and tables. In this example for `lido`, the LLM selects the most relevant event `Transfer` and the `lido_base.wsteth_evt_Transfer` based on the context of the prompt.
 
 ![dune-ai-project-decoded-example.png](/learning/how-tos/images/dune-ai-project-decoded-example.png)
 
