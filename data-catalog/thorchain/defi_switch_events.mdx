@@ -5,16 +5,26 @@ description: Description of the thorchain.defi_switch_events table on Dune
 ---
 
 ## Table Description
-Event data for defi switch on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_switch_events.sql).
+Event data for switch on THORChain. This table is partitioned by day.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **tx_id** | bigint | Transaction ID |
+| **from_address** | varchar | Source address |
+| **to_address** | varchar | Destination address |
+| **burn_asset** | varchar | Burn Asset |
+| **burn_e8** | bigint | Burn E8 |
+| **mint_e8** | bigint | Mint E8 |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_switch_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

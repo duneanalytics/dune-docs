@@ -1,46 +1,42 @@
 ---
 title: thorchain.defi_swap_events
-sidebarTitle: "Swap Events"
+sidebarTitle: "Defi Swap Events"
 description: Description of the thorchain.defi_swap_events table on Dune
 ---
 
 ## Table Description
-Event-level data for swaps executed on THORChain. This table captures detailed swap events including amounts, fees, slippage, and streaming swap information. This table provides granular event data for swap transactions.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_swap_events.sql).
+Event-level data for swaps executed on THORChain. This table captures detailed swap events including amounts, fees, slippage, and streaming swap information.
 
 ## Column Descriptions
-
-| **Column**                    | **Type**      | **Description**                                   |
-|-------------------------------|---------------|---------------------------------------------------|
-| **fact_swap_events_id**       | varchar       | Surrogate key for the swap event                  |
-| **block_timestamp**           | timestamp     | Timestamp of when the swap event occurred         |
-| **dim_block_id**              | varchar       | Reference to the block dimension                  |
-| **tx_id**                     | varchar       | Transaction ID                                    |
-| **blockchain**                | varchar       | Source blockchain (e.g., ETH, BTC, BNB)           |
-| **from_address**              | varchar       | Address that initiated the swap                    |
-| **to_address**                | varchar       | Address receiving the swap                        |
-| **from_asset**                | varchar       | Source asset identifier                           |
-| **from_e8**                   | bigint        | Amount of source asset in e8 (1e8 = 1 unit)        |
-| **to_asset**                  | varchar       | Destination asset identifier                      |
-| **to_e8**                     | bigint        | Amount of destination asset in e8                  |
-| **memo**                      | varchar       | Swap memo containing swap details                  |
-| **pool_name**                 | varchar       | Name of the liquidity pool used                   |
-| **to_e8_min**                 | bigint        | Minimum amount expected in e8 (slippage protection) |
-| **swap_slip_bp**              | bigint        | Swap slippage in basis points                      |
-| **liq_fee_e8**                | bigint        | Liquidity fee in e8                                |
-| **liq_fee_in_rune_e8**        | bigint        | Liquidity fee in RUNE (e8)                        |
-| **_DIRECTION**                | varchar       | Direction of the swap                              |
-| **event_id**                  | varchar       | Unique event identifier                            |
-| **streaming_count**           | bigint        | Number of streaming swap parts                    |
-| **streaming_quantity**        | decimal(38,0) | Total quantity in streaming swap                   |
-| **_TX_TYPE**                  | varchar       | Transaction type                                   |
-| **inserted_timestamp**        | timestamp     | Time when the record was inserted                  |
-| **modified_timestamp**        | timestamp     | Time when the record was last modified             |
-
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **tx_id** | bigint | Transaction ID |
+| **blockchain** | varchar | Source blockchain identifier |
+| **from_address** | varchar | Source address |
+| **to_address** | varchar | Destination address |
+| **from_asset** | varchar | Source asset identifier |
+| **from_e8** | bigint | From E8 |
+| **to_asset** | varchar | Destination asset identifier |
+| **to_e8** | bigint | To E8 |
+| **memo** | varchar | Transaction memo |
+| **pool_name** | varchar | Name of the liquidity pool |
+| **to_e8_min** | bigint | To E8 Min |
+| **swap_slip_bp** | varchar | Swap slippage in basis points |
+| **liq_fee_e8** | bigint | Liq Fee E8 |
+| **liq_fee_in_rune_e8** | bigint | Liq Fee In Rune E8 |
+| **_DIRECTION** | varchar |  Direction |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **streaming_count** | varchar | Streaming Count |
+| **streaming_quantity** | varchar | Streaming Quantity |
+| **_TX_TYPE** | varchar |  Tx Type |
+| **_INSERTED_TIMESTAMP** | timestamp | Timestamp of the record |
+| **fact_swap_events_id** | bigint | Surrogate key for the swap event record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
 <TableSample tableSchema="thorchain" tableName="defi_swap_events" />
-

@@ -5,16 +5,34 @@ description: Description of the thorchain.defi_streaming_swap_details_events tab
 ---
 
 ## Table Description
-Event data for defi streaming swap details on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_streaming_swap_details_events.sql).
+Event data for streaming swap details on THORChain. This table captures detailed information about streaming swaps including intervals, quantities, and success metrics.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_date** | date | Date of when the block was created |
+| **block_month** | timestamp | Month of when the block was created |
+| **block_height** | bigint | Block height |
+| **tx_id** | varchar | Transaction ID |
+| **event_id** | varchar | Event identifier |
+| **interval** | varchar | Streaming swap interval |
+| **quantity** | bigint | Quantity in the streaming swap |
+| **count** | bigint | Count of swaps in the streaming |
+| **last_height** | bigint | Last block height |
+| **deposit_asset** | varchar | Deposit asset identifier |
+| **deposit_e8** | bigint | Deposit amount in e8 units |
+| **in_asset** | varchar | Input asset identifier |
+| **in_e8** | bigint | Input amount in e8 units |
+| **out_asset** | varchar | Output asset identifier |
+| **out_e8** | bigint | Output amount in e8 units |
+| **failed_swaps** | array(varchar) | Array of failed swap information |
+| **failed_swap_reasons** | array(varchar) | Array of reasons for failed swaps |
+| **is_successful** | boolean | Whether the streaming swap was successful |
+| **failed_swap_count** | bigint | Number of failed swaps |
+| **trade_direction** | varchar | Trade direction (sell_rune, buy_rune, asset_to_asset) |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

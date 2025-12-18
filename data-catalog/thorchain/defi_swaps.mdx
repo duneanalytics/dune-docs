@@ -1,55 +1,53 @@
 ---
 title: thorchain.defi_swaps
-sidebarTitle: "Swaps"
+sidebarTitle: "Defi Swaps"
 description: Description of the thorchain.defi_swaps table on Dune
 ---
 
 ## Table Description
 Records all cross-chain native asset swaps executed on THORChain. This table captures swap transactions that allow users to swap native assets across multiple chains without wrapped or pegged tokens.
 
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_swaps.sql).
-
 ## Column Descriptions
-
-| **Column**                    | **Type**      | **Description**                                   |
-|-------------------------------|---------------|---------------------------------------------------|
-| **fact_swaps_id**             | varchar       | Surrogate key for the swap                        |
-| **block_timestamp**           | timestamp     | Timestamp of when the swap was executed           |
-| **dim_block_id**              | varchar       | Reference to the block dimension                  |
-| **tx_id**                     | varchar       | Transaction ID                                    |
-| **blockchain**                | varchar       | Source blockchain (e.g., ETH, BTC, BNB)           |
-| **pool_name**                 | varchar       | Name of the liquidity pool used                   |
-| **from_address**              | varchar       | Address that initiated the swap                    |
-| **native_to_address**         | varchar       | Native address receiving the swap                 |
-| **to_pool_address**          | varchar       | Pool address receiving the swap                   |
-| **affiliate_address**         | varchar       | Affiliate address (if applicable)                 |
-| **affiliate_fee_basis_points** | bigint      | Affiliate fee in basis points                      |
-| **affiliate_addresses_array** | array(varchar) | Array of affiliate addresses                      |
-| **affiliate_fee_basis_points_array** | array(bigint) | Array of affiliate fee basis points                |
-| **from_asset**                | varchar       | Source asset identifier                           |
-| **to_asset**                  | varchar       | Destination asset identifier                      |
-| **from_amount**               | decimal(38,0) | Amount of source asset swapped                     |
-| **to_amount**                 | decimal(38,0) | Amount of destination asset received               |
-| **min_to_amount**             | decimal(38,0) | Minimum amount expected (slippage protection)      |
-| **from_amount_usd**           | decimal(20,6) | USD value of source asset amount                   |
-| **to_amount_usd**             | decimal(20,6) | USD value of destination asset amount              |
-| **rune_usd**                  | decimal(20,6) | RUNE price in USD at time of swap                  |
-| **asset_usd**                 | decimal(20,6) | Asset price in USD at time of swap                 |
-| **to_amount_min_usd**         | decimal(20,6) | Minimum USD value expected                        |
-| **swap_slip_bp**              | bigint        | Swap slippage in basis points                      |
-| **liq_fee_rune**              | decimal(38,0) | Liquidity fee in RUNE                             |
-| **liq_fee_rune_usd**          | decimal(20,6) | USD value of liquidity fee in RUNE                 |
-| **liq_fee_asset**             | decimal(38,0) | Liquidity fee in asset                             |
-| **liq_fee_asset_usd**         | decimal(20,6) | USD value of liquidity fee in asset               |
-| **streaming_count**           | bigint        | Number of streaming swap parts                    |
-| **streaming_quantity**        | decimal(38,0) | Total quantity in streaming swap                   |
-| **_TX_TYPE**                  | varchar       | Transaction type                                   |
-| **inserted_timestamp**        | timestamp     | Time when the record was inserted                  |
-| **modified_timestamp**        | timestamp     | Time when the record was last modified             |
-
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_id** | bigint | Identifier |
+| **tx_id** | bigint | Transaction ID |
+| **blockchain** | varchar | Source blockchain identifier |
+| **pool_name** | varchar | Name of the liquidity pool |
+| **from_address** | varchar | Source address |
+| **native_to_address** | varchar | Address |
+| **to_pool_address** | varchar | Address |
+| **affiliate_address** | varchar | Address |
+| **affiliate_fee_basis_points** | int | Affiliate Fee Basis Points |
+| **affiliate_addresses_array** | array(varchar) | Address |
+| **affiliate_fee_basis_points_array** | int | Affiliate Fee Basis Points Array |
+| **from_asset** | varchar | Source asset identifier |
+| **to_asset** | varchar | Destination asset identifier |
+| **from_amount** | decimal(38,0) | Amount of source asset |
+| **to_amount** | decimal(38,0) | Amount of destination asset |
+| **min_to_amount** | decimal(38,0) | Amount value |
+| **from_amount_usd** | decimal(20,6) | USD value |
+| **to_amount_usd** | decimal(20,6) | USD value |
+| **rune_usd** | decimal(20,6) | Rune Usd |
+| **asset_usd** | decimal(20,6) | Asset Usd |
+| **to_amount_min_usd** | decimal(20,6) | USD value |
+| **swap_slip_bp** | varchar | Swap slippage in basis points |
+| **liq_fee_rune** | varchar | Liquidity fee in RUNE |
+| **liq_fee_rune_usd** | decimal(20,6) | USD value of liquidity fee in RUNE |
+| **liq_fee_asset** | varchar | Liq Fee Asset |
+| **liq_fee_asset_usd** | decimal(20,6) | Liq Fee Asset Usd |
+| **streaming_count** | varchar | Streaming Count |
+| **streaming_quantity** | varchar | Streaming Quantity |
+| **_TX_TYPE** | varchar |  Tx Type |
+| **_unique_key** | varchar |  Unique Key |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_swaps_id** | bigint | Surrogate key for the swap record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
 <TableSample tableSchema="thorchain" tableName="defi_swaps" />
-

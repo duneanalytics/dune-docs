@@ -5,16 +5,27 @@ description: Description of the thorchain.defi_upgrades table on Dune
 ---
 
 ## Table Description
-Data for defi upgrades on THORChain. 
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_upgrades.sql).
+Data for defi upgrades on THORChain.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **block_id** | bigint | Identifier |
+| **tx_id** | bigint | Transaction ID |
+| **from_address** | varchar | Source address |
+| **to_address** | varchar | Destination address |
+| **burn_asset** | varchar | Burn Asset |
+| **rune_amount** | decimal(38,0) | Amount in RUNE |
+| **rune_amount_usd** | decimal(20,6) | USD value of RUNE amount |
+| **mint_amount** | decimal(38,0) | Amount value |
+| **mint_amount_usd** | decimal(20,6) | USD value |
+| **_unique_key** | varchar |  Unique Key |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_upgrades_id** | bigint | Surrogate key for the fact record |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

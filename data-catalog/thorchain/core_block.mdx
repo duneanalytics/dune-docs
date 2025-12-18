@@ -1,40 +1,35 @@
 ---
 title: thorchain.core_block
-sidebarTitle: "Blocks"
+sidebarTitle: "Core Block"
 description: Description of the thorchain.core_block table on Dune
 ---
 
 ## Table Description
 Contains block-level data from the THORChain blockchain including block headers, timestamps, and block statistics. This table is partitioned by block_month.
 
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_core_block.sql).
-
 ## Column Descriptions
-
-| **Column**                    | **Type**      | **Description**                                   |
-|-------------------------------|---------------|---------------------------------------------------|
-| **dim_block_id**              | varchar       | Surrogate key for the block                       |
-| **block_id**                  | bigint        | Block height/ID                                  |
-| **block_time**                | timestamp     | Timestamp of when the block was created           |
-| **block_timestamp**           | timestamp     | Timestamp of when the block was created           |
-| **block_date**                | date          | Date of when the block was created                |
-| **block_hour**                | timestamp     | Hour of when the block was created                |
-| **block_week**                | timestamp     | Week of when the block was created                |
-| **block_month**               | timestamp     | Month of when the block was created               |
-| **block_quarter**             | int           | Quarter of when the block was created             |
-| **block_year**                | int           | Year of when the block was created                |
-| **block_dayofmonth**          | int           | Day of month when the block was created           |
-| **block_dayofweek**           | int           | Day of week when the block was created            |
-| **block_dayofyear**           | int           | Day of year when the block was created            |
-| **timestamp**                 | bigint        | Raw timestamp from the block                       |
-| **hash**                      | varchar       | Hash of the block                                 |
-| **agg_state**                 | varchar       | Aggregated state information                       |
-| **inserted_timestamp**        | timestamp     | Time when the record was inserted                  |
-| **modified_timestamp**        | timestamp     | Time when the record was last modified            |
-
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **block_id** | bigint | Identifier |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_date** | timestamp | Date of when the block was created |
+| **block_hour** | timestamp | Block Hour |
+| **block_week** | timestamp | Block Week |
+| **block_month** | timestamp | Block Month |
+| **block_quarter** | timestamp | Block Quarter |
+| **block_year** | timestamp | Block Year |
+| **block_dayofmonth** | timestamp | Block Dayofmonth |
+| **block_dayofweek** | timestamp | Block Dayofweek |
+| **block_dayofyear** | timestamp | Block Dayofyear |
+| **timestamp** | timestamp | Timestamp of the record |
+| **hash** | varchar | Hash |
+| **agg_state** | varchar | Agg State |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
 
 <TableSample tableSchema="thorchain" tableName="core_block" />
-

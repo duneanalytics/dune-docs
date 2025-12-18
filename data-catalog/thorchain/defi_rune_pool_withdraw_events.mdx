@@ -5,16 +5,30 @@ description: Description of the thorchain.defi_rune_pool_withdraw_events table o
 ---
 
 ## Table Description
-Event data for defi rune pool withdraw on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_rune_pool_withdraw_events.sql).
+Event data for rune pool withdraw on THORChain. This table is partitioned by day.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **tx_id** | bigint | Transaction ID |
+| **rune_addr** | varchar | Rune Addr |
+| **amount_e8** | bigint | Amount in e8 units (1e8 = 1 unit) |
+| **units** | varchar | Units |
+| **basis_points** | int | Basis Points |
+| **affiliate_basis_pts** | varchar | Affiliate Basis Pts |
+| **affiliate_amount_e8** | bigint | Amount value |
+| **affiliate_addr** | varchar | Affiliate Addr |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **rune_address** | varchar | Address |
+| **affiliate_basis_points** | int | Affiliate Basis Points |
+| **affiliate_address** | varchar | Address |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

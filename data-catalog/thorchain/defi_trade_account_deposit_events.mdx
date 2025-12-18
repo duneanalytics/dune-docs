@@ -5,16 +5,25 @@ description: Description of the thorchain.defi_trade_account_deposit_events tabl
 ---
 
 ## Table Description
-Event data for defi trade account deposit on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_trade_account_deposit_events.sql).
+Event data for trade account deposit on THORChain. This table is partitioned by day.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **amount_e8** | bigint | Amount in e8 units (1e8 = 1 unit) |
+| **asset** | varchar | Asset identifier |
+| **asset_address** | varchar | Address |
+| **rune_address** | varchar | Address |
+| **tx_id** | bigint | Transaction ID |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_trade_account_deposit_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

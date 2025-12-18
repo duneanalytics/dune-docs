@@ -5,16 +5,20 @@ description: Description of the thorchain.defi_pool_events table on Dune
 ---
 
 ## Table Description
-Event data for defi pool on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_pool_events.sql).
+Event data for pool-related events on THORChain. This table captures various pool events including balance changes and pool operations.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **asset** | varchar | Asset identifier |
+| **status** | varchar | Status |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **fact_pool_events_id** | bigint | Surrogate key for the fact record |
+| **day** | timestamp | Date of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

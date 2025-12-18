@@ -5,16 +5,25 @@ description: Description of the thorchain.core_tss_keygen_failure_events table o
 ---
 
 ## Table Description
-Event data for core tss keygen failure on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_core_tss_keygen_failure_events.sql).
+Event data for tss keygen failure on THORChain. This table is partitioned by block_month.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **fail_reason** | varchar | Fail Reason |
+| **is_unicast** | varchar | Is Unicast |
+| **blame_nodes** | varchar | Blame Nodes |
+| **round** | varchar | Round |
+| **height** | varchar | Height |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_tss_keygen_failure_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

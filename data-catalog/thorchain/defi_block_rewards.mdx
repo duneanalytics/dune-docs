@@ -5,16 +5,21 @@ description: Description of the thorchain.defi_block_rewards table on Dune
 ---
 
 ## Table Description
-Block-level data for defi rewards on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_block_rewards.sql).
+Block-level data for block rewards on THORChain. This table is partitioned by day.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **day** | date | Date of the record |
+| **liquidity_fee** | varchar | Identifier |
+| **block_rewards** | varchar | Block Rewards |
+| **earnings** | varchar | Earnings |
+| **bonding_earnings** | varchar | Bonding Earnings |
+| **liquidity_earnings** | varchar | Identifier |
+| **avg_node_count** | varchar | Avg Node Count |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

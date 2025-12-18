@@ -5,16 +5,27 @@ description: Description of the thorchain.defi_daily_earnings table on Dune
 ---
 
 ## Table Description
-Daily aggregated statistics for defi earnings on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_daily_earnings.sql).
+Daily earnings statistics for THORChain. This table tracks liquidity fees, block rewards, and total earnings distributed to nodes and pools. This table is partitioned by day.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **day** | date | Date of the record |
+| **liquidity_fees** | varchar | Identifier |
+| **liquidity_fees_usd** | decimal(20,6) | Identifier |
+| **block_rewards** | varchar | Block Rewards |
+| **block_rewards_usd** | decimal(20,6) | Block Rewards Usd |
+| **total_earnings** | varchar | Total Earnings |
+| **total_earnings_usd** | decimal(20,6) | Total Earnings Usd |
+| **earnings_to_nodes** | varchar | Earnings To Nodes |
+| **earnings_to_nodes_usd** | decimal(20,6) | Earnings To Nodes Usd |
+| **earnings_to_pools** | varchar | Earnings To Pools |
+| **earnings_to_pools_usd** | decimal(20,6) | Earnings To Pools Usd |
+| **avg_node_count** | varchar | Avg Node Count |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_daily_earnings_id** | bigint | Surrogate key for the fact record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

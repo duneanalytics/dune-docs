@@ -5,16 +5,20 @@ description: Description of the thorchain.defi_update_node_account_status_events
 ---
 
 ## Table Description
-Event data for defi update node account status on THORChain. 
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_update_node_account_status_events.sql).
+Event data for update node account status on THORChain. This table is partitioned by day.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **former_status** | varchar | Former Status |
+| **current_status** | varchar | Current Status |
+| **node_address** | varchar | Address |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_update_node_account_status_events_id** | date | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";

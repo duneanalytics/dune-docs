@@ -5,16 +5,22 @@ description: Description of the thorchain.defi_fee_events table on Dune
 ---
 
 ## Table Description
-Event data for defi fee on THORChain. This table is partitioned.
-
-This table is created using [this SQL](https://github.com/duneanalytics/spellbook/blob/main/dbt_subprojects/daily_spellbook/models/thorchain/gold/thorchain_defi_fee_events.sql).
+Event data for fee events on THORChain. This table captures fee-related events including pool deductions and asset fees.
 
 ## Column Descriptions
-
 | **Column** | **Type** | **Description** |
 |------------|----------|-----------------|
-| _Columns will be documented based on the actual table structure_ | | |
-
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_date** | date | Date of when the block was created |
+| **block_month** | timestamp | Month of when the block was created |
+| **block_height** | bigint | Block height |
+| **tx_id** | varchar | Transaction ID |
+| **event_id** | varchar | Event identifier |
+| **asset** | varchar | Asset identifier |
+| **pool_deduct** | varchar | Pool deduction information |
+| **asset_e8** | bigint | Asset amount in e8 units |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
 ## Table Sample
 
 import { TableSample } from "/snippets/table-sample.mdx";
