@@ -1574,6 +1574,46 @@
                 ]
               },
               {
+                "group": "MegaETH",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/megaeth/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/megaeth/raw/blocks",
+                      "data-catalog/evm/megaeth/raw/creation-traces",
+                      "data-catalog/evm/megaeth/raw/logs",
+                      "data-catalog/evm/megaeth/raw/transactions",
+                      "data-catalog/evm/megaeth/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/megaeth/decoded/overview",
+                      "data-catalog/evm/megaeth/decoded/call-tables",
+                      "data-catalog/evm/megaeth/decoded/event-logs",
+                      "data-catalog/evm/megaeth/decoded/contracts",
+                      "data-catalog/evm/megaeth/decoded/logs-decoded",
+                      "data-catalog/evm/megaeth/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/megaeth/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "Mezo",
                 "icon": "database",
                 "iconType": "solid",
@@ -1609,6 +1649,35 @@
                           "data-catalog/evm/mezo/curated-data/dex/dex-trades"
                         ]
                       }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Monad",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/monad/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/monad/raw/blocks",
+                      "data-catalog/evm/monad/raw/creation-traces",
+                      "data-catalog/evm/monad/raw/logs",
+                      "data-catalog/evm/monad/raw/transactions",
+                      "data-catalog/evm/monad/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/monad/decoded/overview",
+                      "data-catalog/evm/monad/decoded/call-tables",
+                      "data-catalog/evm/monad/decoded/event-logs",
+                      "data-catalog/evm/monad/decoded/contracts",
+                      "data-catalog/evm/monad/decoded/logs-decoded",
+                      "data-catalog/evm/monad/decoded/traces-decoded"
                     ]
                   }
                 ]
@@ -3348,6 +3417,11 @@
     {
       "source": "/api-reference/tables/blockchain/delete",
       "destination": "/catalyst/hosted"
+    },
+    {
+      "source": "/overview",
+      "source": "/guides/replace-a-sample-api.md",
+      "destination": "/"
     }
   ]
 }
