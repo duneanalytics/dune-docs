@@ -1,16 +1,16 @@
 ---
 title: "Okta SSO setup"
-description: "Configure Okta SSO (OIDC) for your Dune workspace, including domain verification and redirect URLs."
+description: "Configure Okta SSO (OIDC) for your Dune team, including domain verification and redirect URLs."
 ---
 
-This guide walks you through enabling **Okta SSO** for your Dune workspace using **OIDC**.
+This guide walks you through enabling **Okta SSO** for your Dune team using **OIDC**.
 
 ## Prerequisites
 
 You’ll need:
 
-- Admin access in your **Dune workspace**
-- Admin access in **Okta**
+- Admin access for your **Dune team**
+- Admin access for your **Okta tenant**
 - Access to your domain’s **DNS provider** (to add TXT records)
 
 ## Step 1 — Add and verify your SSO domain(s)
@@ -51,7 +51,7 @@ In Okta:
 
 ## Step 3 — Copy Okta credentials into Dune
 
-Back in Dune (**Workspace settings → Okta authentication**), fill in:
+Back in Dune (**Settings → Security & Privacy → Okta authentication**), fill in:
 
 - **Client ID**: from your Okta OIDC application
 - **Client secret**: from your Okta OIDC application
