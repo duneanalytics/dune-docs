@@ -135,7 +135,9 @@
               "web-app/search",
               "web-app/alerts",
               "web-app/bug-bounty",
-              "web-app/user-activity"
+              "web-app/user-activity",
+              "web-app/google-sso-domain-restriction",
+              "web-app/okta-sso"
             ]
           }
         ]
