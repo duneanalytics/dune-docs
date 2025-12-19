@@ -1,0 +1,40 @@
+---
+title: "Google SSO domain restriction"
+description: "Restrict workspace join requests via Google SSO to the admin’s email domain."
+---
+
+Dune can restrict **Google SSO join requests** so that only users with an email address on an approved domain can join your workspace.
+
+## How the allowed domain is determined
+
+The **allowed domain is automatically set to the email domain of the workspace admin** who enables the setting.
+
+Example:
+
+- If the admin enabling the setting has `admin@dune.com`, then the allowed domain will be `dune.com`.
+
+## What this setting does
+
+When enabled:
+
+- Only users signing in with Google SSO using the **allowed domain** can join the workspace.
+- Users attempting to join with a different email domain will be blocked.
+
+This is useful to prevent personal Gmail accounts (or other unapproved domains) from joining your workspace.
+
+## Before you enable this
+
+> **Important** You must remove any existing workspace members whose email domain does **not** match the admin’s domain **before** enabling this setting.
+
+Also note:
+
+- While enabled, **users cannot change their email address** in Dune.
+- Users who previously used **email/password** will be prompted to sign in using **Google SSO**.
+
+## Enable Google SSO domain restriction
+
+1. Go to **Settings → Security & Privacy → Google SSO domain restriction**.
+3. Toggle **Restrict Google SSO to approved domain** on.
+4. Confirm the **Allowed domain** shown matches the admin’s email domain.
+
+Once enabled, Dune will display the allowed domain (for example: `dune.com`) in the setting.

@@ -1,0 +1,71 @@
+---
+title: "Okta SSO setup"
+description: "Configure Okta SSO (OIDC) for your Dune workspace, including domain verification and redirect URLs."
+---
+
+This guide walks you through enabling **Okta SSO** for your Dune workspace using **OIDC**.
+
+## Prerequisites
+
+You’ll need:
+
+- Admin access in your **Dune workspace**
+- Admin access in **Okta**
+- Access to your domain’s **DNS provider** (to add TXT records)
+
+## Step 1 — Add and verify your SSO domain(s)
+
+1. In Dune, go to **Settings → Security & Privacy → Okta authentication**.
+2. Under **Configure SSO domains**, click **Add domains**.
+3. Enter the email domain(s) your team uses (for example, `company.com`).
+
+### Verify the domain (DNS TXT record)
+
+After adding a domain, it may show as **Pending**. Dune will display DNS instructions like:
+
+- **Host**: `dune-verification`
+- **Type**: `TXT`
+- **Value**: a unique verification token
+
+Add a TXT record in your DNS provider:
+
+- **Name / Host**: `dune-verification` (some providers require the full name like `dune-verification.company.com`)
+- **Type**: `TXT`
+- **Value**: (paste the token from Dune exactly)
+
+Then return to Dune and click **Verify** next to the domain.
+
+> **Tip** DNS changes can take time to propagate. If verification fails, double-check the host/name formatting in your DNS provider and try again after propagation.
+
+## Step 2 — Create an Okta OIDC app (Web)
+
+In Okta:
+
+1. Go to **Applications → Create App Integration**.
+2. Choose **OIDC - OpenID Connect**.
+3. Choose **Web Application**.
+4. In the app settings, add the **Sign-in redirect URIs** shown in Dune.
+5. Save the app.
+
+> **Note** Use the redirect URIs **exactly** as shown in Dune. A mismatch is the most common cause of Okta sign-in errors.
+
+## Step 3 — Copy Okta credentials into Dune
+
+Back in Dune (**Workspace settings → Okta authentication**), fill in:
+
+- **Client ID**: from your Okta OIDC application
+- **Client secret**: from your Okta OIDC application
+- **Okta domain**: your Okta org URL, for example:
+  - `https://your-domain.okta.com`
+
+## Step 4 — Enable Okta SSO
+
+1. Make sure at least one domain shows as **Verified**.
+2. Toggle **Enable Okta SSO** on.
+3. Click **Enable**.
+
+> **Important**
+>
+> - Existing members with **non-matching domains must be removed** before enabling.
+> - Users **cannot change their email** while Okta SSO is enforced.
+> - Users with **email/password** accounts will be prompted to log in with Okta SSO.
