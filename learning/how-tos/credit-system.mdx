@@ -126,6 +126,10 @@ a monthly extra credit limit (account-level ceiling).
   <Accordion title="Can I run bigger queries now?">
     Yes more complex queries and higher data volumes with longer timeouts for Enterprise clients.
   </Accordion>
+
+  <Accordion title="What is a system user? Is that for scheduled jobs?">
+    Yes, the system user represents automated executions on the Dune platform. This includes scheduled query runs, materialized view refreshes, and other background jobs that run without direct user interaction. When you see credit usage attributed to a system user, it typically means those credits were consumed by your scheduled queries or automated data refresh processes rather than manual query executions.
+  </Accordion>
 </AccordionGroup>
 
 ### Optimization & Support
