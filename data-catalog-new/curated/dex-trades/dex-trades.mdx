@@ -1,0 +1,111 @@
+---
+title: "dex.trades"
+description: "DEX swap trades across all supported chains and protocols"
+---
+
+# dex.trades
+
+Aggregated DEX swap data across all supported chains and protocols.
+
+## Quick Example
+
+```sql
+SELECT * FROM dex.trades 
+WHERE block_time > now() - interval '7' day
+LIMIT 100
+```
+
+## Methodology
+
+### Data Sources
+[TODO: Document which protocols/contracts feed this table]
+
+### Transformation Logic
+[TODO: Document how raw data becomes this curated table]
+
+### What's Included
+[TODO: List of chains, protocols, time range]
+
+### What's NOT Included
+[TODO: Known gaps, exclusions, edge cases]
+
+### Known Limitations
+[TODO: Freshness, performance considerations]
+
+## Schema
+
+| Column | Type | Description |
+|--------|------|-------------|
+| blockchain | varchar | Chain identifier (e.g., 'ethereum', 'base') |
+| project | varchar | DEX protocol name |
+| version | varchar | Protocol version |
+| block_time | timestamp | Block timestamp |
+| block_number | bigint | Block number |
+| block_date | date | Block date (for partitioning) |
+| token_bought_symbol | varchar | Symbol of purchased token |
+| token_sold_symbol | varchar | Symbol of sold token |
+| token_pair | varchar | Trading pair |
+| token_bought_amount | double | Amount of tokens bought |
+| token_sold_amount | double | Amount of tokens sold |
+| token_bought_amount_raw | uint256 | Raw amount bought (no decimals) |
+| token_sold_amount_raw | uint256 | Raw amount sold (no decimals) |
+| amount_usd | double | Trade value in USD |
+| token_bought_address | varbinary | Contract address of bought token |
+| token_sold_address | varbinary | Contract address of sold token |
+| taker | varbinary | Address initiating the trade |
+| maker | varbinary | Liquidity provider address |
+| project_contract_address | varbinary | DEX contract address |
+| tx_hash | varbinary | Transaction hash |
+| tx_from | varbinary | Transaction sender |
+| tx_to | varbinary | Transaction recipient |
+| evt_index | integer | Event log index |
+
+## Maintenance
+
+| Attribute | Value |
+|-----------|-------|
+| **Maintainer** | Dune Data Team |
+| **Source Code** | [Spellbook](https://github.com/duneanalytics/spellbook) |
+| **Update Frequency** | ~10 minutes |
+| **Status** | Production |
+
+## Related Tables
+
+- [dex.aggregator_trades](/data-catalog/curated/dex-trades/dex-aggregator-trades)
+- [prices.usd](/data-catalog/curated/prices/prices-day)
+
+## Example Queries
+
+### Daily Volume by DEX
+
+```sql
+SELECT 
+    date_trunc('day', block_time) as day,
+    project,
+    SUM(amount_usd) as volume_usd
+FROM dex.trades
+WHERE block_time > now() - interval '30' day
+GROUP BY 1, 2
+ORDER BY 1 DESC, 3 DESC
+```
+
+### Top Trading Pairs
+
+```sql
+SELECT 
+    token_pair,
+    COUNT(*) as trade_count,
+    SUM(amount_usd) as total_volume
+FROM dex.trades
+WHERE block_time > now() - interval '7' day
+GROUP BY 1
+ORDER BY 3 DESC
+LIMIT 20
+```
+
+---
+
+**Status:** 🚧 Stub — Methodology pending from Data Team
+**Owner:** [TBD]
+**Priority:** High
+

@@ -1,0 +1,41 @@
+---
+title: "Building dbt Models"
+description: "Create data models with dbt on Dune"
+---
+
+# Building dbt Models
+
+Create and manage data transformations using dbt models.
+
+## Model Structure
+
+[TODO: Basic model structure]
+
+## Source Configuration
+
+[TODO: How to reference Dune tables as sources]
+
+## Example Model
+
+```sql
+-- models/daily_dex_volume.sql
+SELECT 
+    date_trunc('day', block_time) as day,
+    blockchain,
+    project,
+    SUM(amount_usd) as volume_usd
+FROM {{ source('dex', 'trades') }}
+WHERE block_time > current_date - interval '30' day
+GROUP BY 1, 2, 3
+```
+
+## Running Models
+
+[TODO: dbt run commands]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

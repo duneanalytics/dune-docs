@@ -1,0 +1,35 @@
+---
+title: "Query Parameters"
+description: "Make queries dynamic with parameters"
+---
+
+# Query Parameters
+
+Add dynamic inputs to your queries that users can modify without editing SQL.
+
+## Creating Parameters
+
+[TODO: Syntax for adding parameters]
+
+## Parameter Types
+
+[TODO: Text, number, date, dropdown]
+
+## Default Values
+
+[TODO: Setting defaults]
+
+## Example
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE "from" = {{wallet_address}}
+  AND block_time > {{start_date}}
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

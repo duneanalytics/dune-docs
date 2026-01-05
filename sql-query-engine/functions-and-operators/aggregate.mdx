@@ -1,0 +1,51 @@
+---
+title: "Aggregate Functions"
+description: "Functions for aggregating data"
+---
+
+# Aggregate Functions
+
+Functions that compute a single result from a set of values.
+
+## Basic Aggregates
+
+| Function | Description |
+|----------|-------------|
+| `count(*)` | Count rows |
+| `count(x)` | Count non-null values |
+| `sum(x)` | Sum of values |
+| `avg(x)` | Average of values |
+| `min(x)` | Minimum value |
+| `max(x)` | Maximum value |
+
+## Approximate Aggregates
+
+| Function | Description |
+|----------|-------------|
+| `approx_distinct(x)` | Approximate distinct count |
+| `approx_percentile(x, p)` | Approximate percentile |
+
+## Array Aggregates
+
+| Function | Description |
+|----------|-------------|
+| `array_agg(x)` | Collect into array |
+| `set_agg(x)` | Collect unique into array |
+
+## Examples
+
+```sql
+SELECT 
+    COUNT(*) as total_txns,
+    SUM(value / 1e18) as total_eth,
+    approx_distinct("from") as unique_senders
+FROM ethereum.transactions
+WHERE block_date = current_date - interval '1' day
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

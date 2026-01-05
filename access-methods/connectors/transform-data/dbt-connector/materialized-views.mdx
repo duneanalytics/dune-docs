@@ -1,0 +1,40 @@
+---
+title: "Materialized Views via dbt"
+description: "Create materialized views using dbt"
+---
+
+# Materialized Views via dbt
+
+Use dbt to create and manage materialized views on Dune.
+
+## Configuration
+
+[TODO: Materialization config in dbt]
+
+## Refresh Strategies
+
+[TODO: How refreshes work]
+
+## Example
+
+```sql
+-- models/mv_daily_volumes.sql
+{{ config(materialized='materialized_view') }}
+
+SELECT 
+    date_trunc('day', block_time) as day,
+    SUM(amount_usd) as volume_usd
+FROM {{ source('dex', 'trades') }}
+GROUP BY 1
+```
+
+## Best Practices
+
+[TODO: When to use materialized views]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

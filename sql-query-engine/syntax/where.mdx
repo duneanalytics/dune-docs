@@ -1,0 +1,59 @@
+---
+title: "WHERE"
+description: "WHERE clause for filtering"
+---
+
+# WHERE
+
+Filter rows based on conditions.
+
+## Basic Filtering
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE block_number > 18000000
+```
+
+## Multiple Conditions
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE block_number > 18000000
+  AND value > 0
+  AND success = true
+```
+
+## OR Conditions
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE "to" = 0x... OR "from" = 0x...
+```
+
+## IN Operator
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE "to" IN (0x..., 0x..., 0x...)
+```
+
+## BETWEEN
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE block_time BETWEEN timestamp '2024-01-01' AND timestamp '2024-01-31'
+```
+
+## IS NULL / IS NOT NULL
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE "to" IS NOT NULL
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

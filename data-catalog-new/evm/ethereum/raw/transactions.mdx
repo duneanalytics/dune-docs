@@ -1,0 +1,37 @@
+---
+title: "ethereum.transactions"
+description: "Ethereum transactions"
+---
+
+# ethereum.transactions
+
+All transactions on Ethereum mainnet.
+
+## Quick Example
+
+```sql
+SELECT * FROM ethereum.transactions
+WHERE block_time > now() - interval '1' hour
+LIMIT 100
+```
+
+## Schema
+
+| Column | Type | Description |
+|--------|------|-------------|
+| block_time | timestamp | Block timestamp |
+| block_number | bigint | Block number |
+| hash | varbinary | Transaction hash |
+| from | varbinary | Sender address |
+| to | varbinary | Recipient address |
+| value | uint256 | ETH value in wei |
+| gas_price | bigint | Gas price |
+| gas_used | bigint | Gas consumed |
+| [TODO: Complete schema] | | |
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

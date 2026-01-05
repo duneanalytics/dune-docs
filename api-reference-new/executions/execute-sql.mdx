@@ -1,0 +1,89 @@
+---
+title: "Execute SQL"
+description: "Execute a raw SQL query"
+api: "POST /api/v1/query/execute"
+---
+
+# Execute SQL
+
+Execute a raw SQL query and retrieve the execution ID to poll for results.
+
+## Endpoint
+
+`POST /api/v1/query/execute`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Request Body
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_sql | string | Yes | The SQL query to execute |
+| performance | enum | No | Engine tier: `medium` (default) or `large` |
+
+```json
+{
+  "query_sql": "SELECT * FROM ethereum.transactions LIMIT 10",
+  "performance": "medium"
+}
+```
+
+## Example Request
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/query/execute" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"query_sql": "SELECT * FROM ethereum.transactions LIMIT 10"}'
+```
+
+## Response
+
+### Success Response (200)
+
+```json
+{
+  "execution_id": "01HKZJ2683PHF9Q9PHHQ8FW4Q1",
+  "state": "QUERY_STATE_PENDING"
+}
+```
+
+### Error Responses
+
+| Status Code | Description |
+|-------------|-------------|
+| 400 | Invalid SQL or request parameters |
+| 401 | Invalid or missing API key |
+| 402 | Payment required (credit limit exceeded) |
+| 500 | Internal server error |
+
+## SDK Examples
+
+### Python
+```python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="YOUR_API_KEY")
+result = dune.run_sql("SELECT * FROM ethereum.transactions LIMIT 10")
+```
+
+### TypeScript
+```typescript
+import { DuneClient } from '@duneanalytics/client';
+
+const dune = new DuneClient('YOUR_API_KEY');
+const result = await dune.runSql('SELECT * FROM ethereum.transactions LIMIT 10');
+```
+
+## Next Steps
+
+After executing, use [Get Execution Status](/api-reference/executions/get-execution-status) to poll for completion.
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** High
+

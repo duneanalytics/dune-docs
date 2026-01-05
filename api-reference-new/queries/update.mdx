@@ -1,0 +1,55 @@
+---
+title: "Update Query"
+description: "Update an existing query"
+api: "PATCH /api/v1/query/{query_id}"
+---
+
+# Update Query
+
+Update an existing saved query.
+
+## Endpoint
+
+`PATCH /api/v1/query/{query_id}`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_id | integer | Yes | The query ID to update |
+
+## Request Body
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| name | string | No | New query name |
+| query_sql | string | No | New SQL |
+| description | string | No | New description |
+
+## Example Request
+
+```bash
+curl -X PATCH "https://api.dune.com/api/v1/query/1234" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Updated Query Name"}'
+```
+
+## Response
+
+```json
+{
+  "query_id": 1234
+}
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

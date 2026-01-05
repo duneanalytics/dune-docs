@@ -1,0 +1,49 @@
+---
+title: "Varbinary Functions"
+description: "Functions for working with binary data"
+---
+
+# Varbinary Functions
+
+Functions for working with addresses, hashes, and other binary data.
+
+## from_hex
+
+Convert hex string to varbinary.
+
+```sql
+SELECT from_hex('0x1234abcd')
+```
+
+## to_hex
+
+Convert varbinary to hex string.
+
+```sql
+SELECT to_hex(hash) FROM ethereum.transactions
+```
+
+## bytearray_substring
+
+Extract portion of binary data.
+
+```sql
+SELECT bytearray_substring(data, 1, 20) -- First 20 bytes
+```
+
+## bytearray_concat
+
+Concatenate binary values.
+
+```sql
+SELECT bytearray_concat(prefix, suffix)
+```
+
+## [TODO: Additional varbinary functions]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

@@ -1,0 +1,38 @@
+---
+title: "prices.day"
+description: "Daily token prices"
+---
+
+# prices.day
+
+Daily OHLC token prices.
+
+## Quick Example
+
+```sql
+SELECT * FROM prices.day
+WHERE symbol = 'ETH'
+  AND day > now() - interval '30' day
+```
+
+## Methodology
+
+[TODO: Price calculation methodology]
+
+## Schema
+
+| Column | Type | Description |
+|--------|------|-------------|
+| day | date | Price date |
+| blockchain | varchar | Chain identifier |
+| contract_address | varbinary | Token contract |
+| symbol | varchar | Token symbol |
+| price | double | Daily close price (USD) |
+| [TODO: Complete schema] | | |
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

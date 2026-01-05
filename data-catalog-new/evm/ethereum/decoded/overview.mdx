@@ -1,0 +1,36 @@
+---
+title: "Ethereum Decoded Tables"
+description: "Decoded contract events and functions for Ethereum"
+---
+
+# Ethereum Decoded Tables
+
+Human-readable decoded data from Ethereum smart contracts.
+
+## How It Works
+
+[TODO: Brief explanation of decoding, link to main decoded docs]
+
+## Finding Decoded Tables
+
+[TODO: How to discover available decoded tables for Ethereum]
+
+## Example
+
+```sql
+-- Uniswap V3 swaps
+SELECT * FROM uniswap_v3_ethereum.Pair_evt_Swap
+WHERE evt_block_time > now() - interval '1' day
+LIMIT 100
+```
+
+## Submit a Contract
+
+[TODO: Link to contract submission process]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

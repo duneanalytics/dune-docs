@@ -1,0 +1,51 @@
+---
+title: "Conditional Functions"
+description: "Conditional expressions and functions"
+---
+
+# Conditional Functions
+
+Conditional logic in SQL.
+
+## CASE Expression
+
+```sql
+SELECT 
+    CASE 
+        WHEN value > 1e18 THEN 'large'
+        WHEN value > 1e15 THEN 'medium'
+        ELSE 'small'
+    END as size_category
+FROM ethereum.transactions
+```
+
+## Coalesce
+
+Return first non-null value:
+
+```sql
+SELECT coalesce(name, 'Unknown') FROM ...
+```
+
+## Nullif
+
+Return null if values match:
+
+```sql
+SELECT nullif(value, 0) -- Returns null if value is 0
+```
+
+## If
+
+Shorthand conditional:
+
+```sql
+SELECT if(value > 0, 'positive', 'non-positive')
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

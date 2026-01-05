@@ -1,0 +1,60 @@
+---
+title: "Python SDK"
+description: "Official Python client for the Dune API"
+---
+
+# Python SDK
+
+The official Python client for the Dune API.
+
+## Installation
+
+```bash
+pip install dune-client
+```
+
+## Quick Start
+
+```python
+from dune_client import DuneClient
+
+# Initialize client
+dune = DuneClient(api_key="YOUR_API_KEY")
+
+# Execute a query
+result = dune.run_query(query_id=1234)
+
+# Access results
+for row in result.rows:
+    print(row)
+```
+
+## Running SQL Directly
+
+```python
+result = dune.run_sql("SELECT * FROM ethereum.transactions LIMIT 10")
+```
+
+## With Parameters
+
+```python
+result = dune.run_query(
+    query_id=1234,
+    parameters={"wallet_address": "0x..."}
+)
+```
+
+## Async Support
+
+[TODO: Async usage]
+
+## Reference
+
+[TODO: Full API reference]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** High
+
