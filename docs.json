@@ -2639,6 +2639,46 @@
                 ]
               },
               {
+                "group": "X Layer",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/xlayer/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/xlayer/raw/blocks",
+                      "data-catalog/evm/xlayer/raw/creation-traces",
+                      "data-catalog/evm/xlayer/raw/logs",
+                      "data-catalog/evm/xlayer/raw/transactions",
+                      "data-catalog/evm/xlayer/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/xlayer/decoded/overview",
+                      "data-catalog/evm/xlayer/decoded/call-tables",
+                      "data-catalog/evm/xlayer/decoded/event-logs",
+                      "data-catalog/evm/xlayer/decoded/contracts",
+                      "data-catalog/evm/xlayer/decoded/logs-decoded",
+                      "data-catalog/evm/xlayer/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/xlayer/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "zkSync",
                 "icon": "database",
                 "iconType": "solid",
