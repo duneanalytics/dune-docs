@@ -60,27 +60,27 @@
       "url": "catalyst"
     },
     {
-      "name": "📋 Welcome (NEW)",
+      "name": "NEW: Welcome",
       "url": "welcome"
     },
     {
-      "name": "📋 Data Catalog (NEW)",
+      "name": "NEW: Data Catalog",
       "url": "data-catalog-new"
     },
     {
-      "name": "📋 Access Methods (NEW)",
+      "name": "NEW: Access Methods",
       "url": "access-methods"
     },
     {
-      "name": "📋 API Reference (NEW)",
+      "name": "NEW: API Reference",
       "url": "api-reference-new"
     },
     {
-      "name": "📋 SQL Engine (NEW)",
+      "name": "NEW: SQL Engine",
       "url": "sql-query-engine"
     },
     {
-      "name": "📋 Resources (NEW)",
+      "name": "NEW: Resources",
       "url": "resources"
     }
   ],
@@ -3503,7 +3503,7 @@
         ]
       },
       {
-        "tab": "📋 Welcome (NEW)",
+        "tab": "NEW: Welcome",
         "pages": [
           "welcome/index",
           "welcome/introduction",
@@ -3543,7 +3543,7 @@
         ]
       },
       {
-        "tab": "📋 Data Catalog (NEW)",
+        "tab": "NEW: Data Catalog",
         "pages": [
           "data-catalog-new/index",
           "data-catalog-new/how-our-data-works",
@@ -3654,7 +3654,7 @@
         ]
       },
       {
-        "tab": "📋 Access Methods (NEW)",
+        "tab": "NEW: Access Methods",
         "pages": [
           "access-methods/index",
           {
@@ -3764,7 +3764,7 @@
         ]
       },
       {
-        "tab": "📋 API Reference (NEW)",
+        "tab": "NEW: API Reference",
         "pages": [
           "api-reference-new/index",
           "api-reference-new/getting-started",
@@ -3862,7 +3862,7 @@
         ]
       },
       {
-        "tab": "📋 SQL Engine (NEW)",
+        "tab": "NEW: SQL Engine",
         "pages": [
           "sql-query-engine/index",
           {
@@ -3915,7 +3915,7 @@
         ]
       },
       {
-        "tab": "📋 Resources (NEW)",
+        "tab": "NEW: Resources",
         "pages": [
           "resources/index",
           {
