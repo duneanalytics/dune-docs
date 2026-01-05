@@ -1,0 +1,71 @@
+---
+title: X Layer Overview
+icon: "star"
+sidebarTitle: "Overview"
+description: X Layer data on Dune
+---
+
+## What is X Layer?
+
+X Layer is an Ethereum Layer 2 (L2) network, built by OKX on an enhanced Optimism Stack, designed to provide developers with a superior environment for scaling applications. It uses an optimistic rollup architecture where transactions are considered valid by default, with a 7-day challenge period for fraud proofs.
+
+## Key Features and Advantages
+
+### Full EVM Equivalence
+- Deploy existing Ethereum applications without any code modifications
+- Complete compatibility with standard Ethereum development tools
+- Seamless migration from Ethereum mainnet
+
+### Exceptional Performance
+- Support for up to 5,000 transactions per second (TPS)
+- Negligible gas fees for cost-effective transactions
+- 1-second block times for fast execution
+- Immediate transaction finality on L2 for most operations
+
+### Battle-Tested Security
+- Leverages robust optimistic rollup architecture
+- Inherits security guarantees of Ethereum
+- Cryptographic fraud proofs when needed
+- All L2 data published to L1, ensuring trustless and censorship-resistant operation
+
+### Enterprise-Grade Reliability
+- Conductor high-availability cluster ensures sequencer redundancy
+- 99.9% uptime for production-ready dApps
+- Continuous synchronization between L2 and L1
+
+### Network Specifications
+- **Technology Stack**: Enhanced OP Stack
+- **Gas Token**: OKB
+- **Network Type**: EVM-compatible Layer 2
+- **Base Chain**: Ethereum
+- **Consensus**: Optimistic Rollup with 7-day challenge period
+
+### Architecture Components
+- **Virtual Machine**: EVM-equivalent
+- **Sequencer**: Trusted (op-node in sequencer mode with op-geth via Engine API)
+- **Bridge Service**: Monitors and syncs L1/L2 contract events
+- **AggLayer Integration**: ZK proof generation for cross-chain settlement
+
+<CardGroup cols={1}>
+  <Card title="X Layer Documentation" icon="link" href="https://web3.okx.com/xlayer/docs/developer/build-on-xlayer/about-xlayer">
+    Official documentation for developers building on X Layer
+  </Card>
+</CardGroup>
+
+## Data Catalog
+
+<CardGroup cols={2}>
+  <Card title="Logs" icon="bolt" href="./raw/logs">
+    Insights into smart contract interactions through event logs
+  </Card>
+  <Card title="Blocks" icon="cubes" href="./raw/blocks">
+    Information on blocks processed on X Layer
+  </Card>
+  <Card title="Transactions" icon="message-arrow-up" href="./raw/transactions">
+    Detailed data on transactions
+  </Card>
+  <Card title="Decoded" icon="file" href="./decoded/overview">
+    Decoded transaction information for enhanced analysis
+  </Card>
+</CardGroup>
+
