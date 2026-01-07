@@ -1157,6 +1157,17 @@
                       "data-catalog/evm/flow-evm/decoded/logs-decoded",
                       "data-catalog/evm/flow-evm/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/flow-evm/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -1297,6 +1308,17 @@
                       "data-catalog/evm/hyperevm/decoded/event-logs",
                       "data-catalog/evm/hyperevm/decoded/contracts",
                       "data-catalog/evm/hyperevm/decoded/logs-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/hyperevm/curated-data/dex/dex-trades"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1681,6 +1703,17 @@
                       "data-catalog/evm/monad/decoded/logs-decoded",
                       "data-catalog/evm/monad/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/monad/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -1912,6 +1945,17 @@
                       "data-catalog/evm/plasma/decoded/contracts",
                       "data-catalog/evm/plasma/decoded/logs-decoded",
                       "data-catalog/evm/plasma/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/plasma/curated-data/dex/dex-trades"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -2310,6 +2354,17 @@
                       "data-catalog/evm/somnia/decoded/logs-decoded",
                       "data-catalog/evm/somnia/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/somnia/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -2466,6 +2521,17 @@
                       "data-catalog/evm/tac/decoded/logs-decoded",
                       "data-catalog/evm/tac/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/tac/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -2494,6 +2560,17 @@
                       "data-catalog/evm/taiko/decoded/contracts",
                       "data-catalog/evm/taiko/decoded/logs-decoded",
                       "data-catalog/evm/taiko/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/taiko/curated-data/dex/dex-trades"
+                        ]
+                      }
                     ]
                   }
                 ]
