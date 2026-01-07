@@ -1,0 +1,29 @@
+---
+title: thorchain.gov_slash_points_events
+sidebarTitle: "Slash Points Events"
+description: Description of the thorchain.gov_slash_points_events table on Dune
+---
+
+## Table Description
+Event data for slash points on THORChain. This table is partitioned by block_month.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **node_address** | varchar | Address |
+| **slash_points** | int | Slash Points |
+| **reason** | varchar | Reason |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_slash_points_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="gov_slash_points_events" />

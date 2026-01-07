@@ -1,0 +1,30 @@
+---
+title: thorchain.defi_loan_repayment_events
+sidebarTitle: "Loan Repayment Events"
+description: Description of the thorchain.defi_loan_repayment_events table on Dune
+---
+
+## Table Description
+Event data for loan repayment on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **owner** | varchar | Owner |
+| **collateral_asset** | varchar | Collateral Asset |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **collateral_withdrawn** | varchar | Collateral Withdrawn |
+| **debt_repaid** | varchar | Identifier |
+| **tx_id** | bigint | Transaction ID |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | varchar | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_loan_repayment_events" />

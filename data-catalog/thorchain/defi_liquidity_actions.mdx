@@ -1,0 +1,43 @@
+---
+title: thorchain.defi_liquidity_actions
+sidebarTitle: "Liquidity Actions"
+description: Description of the thorchain.defi_liquidity_actions table on Dune
+---
+
+## Table Description
+Records of liquidity provision and withdrawal actions on THORChain. This table tracks when users add or remove liquidity from Continuous Liquidity Pools (CLPs). This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **block_id** | bigint | Identifier |
+| **tx_id** | bigint | Transaction ID |
+| **lp_action** | varchar | Type of liquidity action (add or withdraw) |
+| **pool_name** | varchar | Name of the liquidity pool |
+| **from_address** | varchar | Source address |
+| **to_address** | varchar | Destination address |
+| **rune_amount** | decimal(38,0) | Amount in RUNE |
+| **rune_amount_usd** | decimal(20,6) | USD value of RUNE amount |
+| **asset_amount** | decimal(38,0) | Amount of asset |
+| **asset_amount_usd** | decimal(20,6) | USD value of asset amount |
+| **stake_units** | varchar | Pool units (LP tokens) received or burned |
+| **asset_tx_id** | bigint | Identifier |
+| **asset_address** | varchar | Address |
+| **asset_blockchain** | varchar | Asset Blockchain |
+| **il_protection** | varchar | Il Protection |
+| **il_protection_usd** | decimal(20,6) | Il Protection Usd |
+| **unstake_asymmetry** | varchar | Unstake Asymmetry |
+| **unstake_basis_points** | int | Unstake Basis Points |
+| **_unique_key** | varchar |  Unique Key |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_liquidity_actions_id** | bigint | Surrogate key for the liquidity action record |
+| **day** | timestamp | Date of the record |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_liquidity_actions" />

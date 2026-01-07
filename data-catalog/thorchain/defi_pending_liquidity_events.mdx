@@ -1,0 +1,39 @@
+---
+title: thorchain.defi_pending_liquidity_events
+sidebarTitle: "Pending Liquidity Events"
+description: Description of the thorchain.defi_pending_liquidity_events table on Dune
+---
+
+## Table Description
+Event data for pending liquidity on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **pool_name** | varchar | Name of the liquidity pool |
+| **asset_tx_id** | bigint | Identifier |
+| **asset_blockchain** | varchar | Asset Blockchain |
+| **asset_address** | varchar | Address |
+| **asset_e8** | bigint | Asset amount in e8 units |
+| **asset_amount** | decimal(38,0) | Amount of asset |
+| **rune_tx_id** | bigint | Identifier |
+| **rune_address** | varchar | Address |
+| **rune_e8** | bigint | RUNE amount in e8 units |
+| **rune_amount** | decimal(38,0) | Amount in RUNE |
+| **pending_type** | varchar | Pending Type |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | varchar | Block Month |
+| **pool_chain** | varchar | Pool Chain |
+| **pool_asset** | varchar | Pool Asset |
+| **fact_pending_liquidity_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_pending_liquidity_events" />

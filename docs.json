@@ -135,7 +135,9 @@
               "web-app/search",
               "web-app/alerts",
               "web-app/bug-bounty",
-              "web-app/user-activity"
+              "web-app/user-activity",
+              "web-app/google-sso-domain-restriction",
+              "web-app/okta-sso"
             ]
           }
         ]
@@ -1155,6 +1157,17 @@
                       "data-catalog/evm/flow-evm/decoded/logs-decoded",
                       "data-catalog/evm/flow-evm/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/flow-evm/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -1295,6 +1308,17 @@
                       "data-catalog/evm/hyperevm/decoded/event-logs",
                       "data-catalog/evm/hyperevm/decoded/contracts",
                       "data-catalog/evm/hyperevm/decoded/logs-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/hyperevm/curated-data/dex/dex-trades"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1679,6 +1703,17 @@
                       "data-catalog/evm/monad/decoded/logs-decoded",
                       "data-catalog/evm/monad/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/monad/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -1910,6 +1945,17 @@
                       "data-catalog/evm/plasma/decoded/contracts",
                       "data-catalog/evm/plasma/decoded/logs-decoded",
                       "data-catalog/evm/plasma/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/plasma/curated-data/dex/dex-trades"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -2308,6 +2354,17 @@
                       "data-catalog/evm/somnia/decoded/logs-decoded",
                       "data-catalog/evm/somnia/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/somnia/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -2464,6 +2521,17 @@
                       "data-catalog/evm/tac/decoded/logs-decoded",
                       "data-catalog/evm/tac/decoded/traces-decoded"
                     ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/tac/curated-data/dex/dex-trades"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -2492,6 +2560,17 @@
                       "data-catalog/evm/taiko/decoded/contracts",
                       "data-catalog/evm/taiko/decoded/logs-decoded",
                       "data-catalog/evm/taiko/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/taiko/curated-data/dex/dex-trades"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -2630,6 +2709,46 @@
                         "group": "NFT",
                         "pages": [
                           "data-catalog/evm/worldchain/curated-data/nft/nft-trades"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "X Layer",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/evm/xlayer/overview",
+                  {
+                    "group": "Raw",
+                    "pages": [
+                      "data-catalog/evm/xlayer/raw/blocks",
+                      "data-catalog/evm/xlayer/raw/creation-traces",
+                      "data-catalog/evm/xlayer/raw/logs",
+                      "data-catalog/evm/xlayer/raw/transactions",
+                      "data-catalog/evm/xlayer/raw/traces"
+                    ]
+                  },
+                  {
+                    "group": "Decoded",
+                    "pages": [
+                      "data-catalog/evm/xlayer/decoded/overview",
+                      "data-catalog/evm/xlayer/decoded/call-tables",
+                      "data-catalog/evm/xlayer/decoded/event-logs",
+                      "data-catalog/evm/xlayer/decoded/contracts",
+                      "data-catalog/evm/xlayer/decoded/logs-decoded",
+                      "data-catalog/evm/xlayer/decoded/traces-decoded"
+                    ]
+                  },
+                  {
+                    "group": "Curated",
+                    "pages": [
+                      {
+                        "group": "DEX",
+                        "pages": [
+                          "data-catalog/evm/xlayer/curated-data/dex/dex-trades"
                         ]
                       }
                     ]
@@ -2949,6 +3068,85 @@
                   "data-catalog/ton/nft_events",
                   "data-catalog/ton/nft_metadata",
                   "data-catalog/ton/prices_daily"
+                ]
+              },
+              {
+                "group": "THORChain",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/thorchain/overview",
+                  "data-catalog/thorchain/core_instantiate_events",
+                  "data-catalog/thorchain/core_network_version_events",
+                  "data-catalog/thorchain/core_set_mimir_events",
+                  "data-catalog/thorchain/core_thorname_change_events",
+                  "data-catalog/thorchain/core_transfer_events",
+                  "data-catalog/thorchain/core_tss_keygen_failure_events",
+                  "data-catalog/thorchain/core_tss_keygen_success_events",
+                  "data-catalog/thorchain/core_wasm_contracts_events",
+                  "data-catalog/thorchain/core_block",
+                  "data-catalog/thorchain/core_transfers",
+                  "data-catalog/thorchain/defi_active_vault_events",
+                  "data-catalog/thorchain/defi_add_events",
+                  "data-catalog/thorchain/defi_affiliate_fee_events",
+                  "data-catalog/thorchain/defi_asgard_fund_yggdrasil_events",
+                  "data-catalog/thorchain/defi_block_pool_depths",
+                  "data-catalog/thorchain/defi_block_rewards",
+                  "data-catalog/thorchain/defi_bond_actions",
+                  "data-catalog/thorchain/defi_bond_events",
+                  "data-catalog/thorchain/defi_daily_earnings",
+                  "data-catalog/thorchain/defi_daily_tvl",
+                  "data-catalog/thorchain/defi_errata_events",
+                  "data-catalog/thorchain/defi_failed_deposit_messages",
+                  "data-catalog/thorchain/defi_fee_events",
+                  "data-catalog/thorchain/defi_gas_events",
+                  "data-catalog/thorchain/defi_inactive_vault_events",
+                  "data-catalog/thorchain/defi_loan_open_events",
+                  "data-catalog/thorchain/defi_loan_repayment_events",
+                  "data-catalog/thorchain/defi_mint_burn_events",
+                  "data-catalog/thorchain/defi_outbound_events",
+                  "data-catalog/thorchain/defi_pending_liquidity_events",
+                  "data-catalog/thorchain/defi_pool_balance_change_events",
+                  "data-catalog/thorchain/defi_pool_block_balances",
+                  "data-catalog/thorchain/defi_pool_block_fees",
+                  "data-catalog/thorchain/defi_pool_block_statistics",
+                  "data-catalog/thorchain/defi_pool_events",
+                  "data-catalog/thorchain/defi_refund_events",
+                  "data-catalog/thorchain/defi_reserve_events",
+                  "data-catalog/thorchain/defi_rewards_event_entries",
+                  "data-catalog/thorchain/defi_rewards_events",
+                  "data-catalog/thorchain/defi_rune_pool_deposit_events",
+                  "data-catalog/thorchain/defi_rune_pool_withdraw_events",
+                  "data-catalog/thorchain/defi_scheduled_outbound_events",
+                  "data-catalog/thorchain/defi_secure_asset_deposit_events",
+                  "data-catalog/thorchain/defi_secure_asset_withdraw_events",
+                  "data-catalog/thorchain/defi_send_messages",
+                  "data-catalog/thorchain/defi_stake_events",
+                  "data-catalog/thorchain/defi_streaming_swap_details_events",
+                  "data-catalog/thorchain/defi_switch_events",
+                  "data-catalog/thorchain/defi_tcy_claim_events",
+                  "data-catalog/thorchain/defi_tcy_distribution_events",
+                  "data-catalog/thorchain/defi_tcy_stake_events",
+                  "data-catalog/thorchain/defi_tcy_unstake_events",
+                  "data-catalog/thorchain/defi_total_block_rewards",
+                  "data-catalog/thorchain/defi_total_value_locked",
+                  "data-catalog/thorchain/defi_trade_account_deposit_events",
+                  "data-catalog/thorchain/defi_trade_account_withdraw_events",
+                  "data-catalog/thorchain/defi_update_node_account_status_events",
+                  "data-catalog/thorchain/defi_upgrades",
+                  "data-catalog/thorchain/defi_withdraw_events",
+                  "data-catalog/thorchain/defi_swaps",
+                  "data-catalog/thorchain/defi_daily_pool_stats",
+                  "data-catalog/thorchain/defi_liquidity_actions",
+                  "data-catalog/thorchain/defi_swap_events",
+                  "data-catalog/thorchain/gov_new_node_events",
+                  "data-catalog/thorchain/gov_set_ip_address_events",
+                  "data-catalog/thorchain/gov_set_node_keys_events",
+                  "data-catalog/thorchain/gov_set_node_mimir_events",
+                  "data-catalog/thorchain/gov_set_version_events",
+                  "data-catalog/thorchain/gov_slash_events",
+                  "data-catalog/thorchain/gov_slash_points_events",
+                  "data-catalog/thorchain/gov_validator_request_leave_events"
                 ]
               },
               {
@@ -3401,6 +3599,10 @@
     {
       "source": "/data-tables/:slug*",
       "destination": "/data-catalog/:slug*"
+    },
+    {
+      "source": "/data-catalog/thorchain",
+      "destination": "/data-catalog/thorchain/overview"
     },
     {
       "source": "/api-reference/tables/blockchain/overview",

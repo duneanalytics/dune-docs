@@ -1,0 +1,32 @@
+---
+title: thorchain.defi_tcy_claim_events
+sidebarTitle: "Tcy Claim Events"
+description: Description of the thorchain.defi_tcy_claim_events table on Dune
+---
+
+## Table Description
+Event data for tcy claim on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **tx_id** | bigint | Transaction ID |
+| **rune_address** | varchar | Address |
+| **l1_address** | varchar | Address |
+| **asset** | varchar | Asset identifier |
+| **tcy_amt** | varchar | Tcy Amt |
+| **memo** | varchar | Transaction memo |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_tcy_claim_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_tcy_claim_events" />

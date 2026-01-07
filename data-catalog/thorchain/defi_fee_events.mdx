@@ -1,0 +1,28 @@
+---
+title: thorchain.defi_fee_events
+sidebarTitle: "Fee Events"
+description: Description of the thorchain.defi_fee_events table on Dune
+---
+
+## Table Description
+Event data for fee events on THORChain. This table captures fee-related events including pool deductions and asset fees.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_date** | date | Date of when the block was created |
+| **block_month** | timestamp | Month of when the block was created |
+| **block_height** | bigint | Block height |
+| **tx_id** | varchar | Transaction ID |
+| **event_id** | varchar | Event identifier |
+| **asset** | varchar | Asset identifier |
+| **pool_deduct** | varchar | Pool deduction information |
+| **asset_e8** | bigint | Asset amount in e8 units |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_fee_events" />

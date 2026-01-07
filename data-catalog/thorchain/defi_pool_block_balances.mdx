@@ -1,0 +1,30 @@
+---
+title: thorchain.defi_pool_block_balances
+sidebarTitle: "Pool Block Balances"
+description: Description of the thorchain.defi_pool_block_balances table on Dune
+---
+
+## Table Description
+Block-level balances for Continuous Liquidity Pools (CLPs) on THORChain. This table tracks RUNE, asset, and synthetic asset balances in pools at each block. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **fact_pool_block_balances_id** | varchar | Surrogate key for the pool block balance record |
+| **day** | date | Date of the record |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **dim_block_id** | varchar | Reference to the block dimension table |
+| **pool_name** | varchar | Name of the liquidity pool |
+| **rune_amount** | decimal(38,0) | RUNE balance in the pool |
+| **rune_amount_usd** | decimal(20,6) | USD value of RUNE balance |
+| **asset_amount** | decimal(38,0) | Asset balance in the pool |
+| **asset_amount_usd** | decimal(20,6) | USD value of asset balance |
+| **synth_amount** | decimal(38,0) | Synthetic asset amount in the pool |
+| **synth_amount_usd** | decimal(20,6) | USD value of synthetic asset amount |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_pool_block_balances" />

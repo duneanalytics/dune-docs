@@ -1,0 +1,30 @@
+---
+title: thorchain.defi_errata_events
+sidebarTitle: "Errata Events"
+description: Description of the thorchain.defi_errata_events table on Dune
+---
+
+## Table Description
+Event data for errata on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **in_tx** | varchar | In Tx |
+| **asset** | varchar | Asset identifier |
+| **asset_e8** | bigint | Asset amount in e8 units |
+| **rune_e8** | bigint | RUNE amount in e8 units |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_errata_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_errata_events" />

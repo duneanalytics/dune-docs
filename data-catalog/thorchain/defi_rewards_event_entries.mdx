@@ -1,0 +1,27 @@
+---
+title: thorchain.defi_rewards_event_entries
+sidebarTitle: "Rewards Event Entries"
+description: Description of the thorchain.defi_rewards_event_entries table on Dune
+---
+
+## Table Description
+Data for defi rewards event entries on THORChain.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **pool_name** | varchar | Name of the liquidity pool |
+| **rune_e8** | bigint | RUNE amount in e8 units |
+| **saver_e8** | bigint | Saver E8 |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_rewards_event_entries_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_rewards_event_entries" />

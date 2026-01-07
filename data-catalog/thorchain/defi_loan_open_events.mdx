@@ -1,0 +1,32 @@
+---
+title: thorchain.defi_loan_open_events
+sidebarTitle: "Loan Open Events"
+description: Description of the thorchain.defi_loan_open_events table on Dune
+---
+
+## Table Description
+Event data for loan open on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **owner** | varchar | Owner |
+| **collateralization_ratio** | varchar | Collateralization Ratio |
+| **collateral_asset** | varchar | Collateral Asset |
+| **target_asset** | varchar | Target Asset |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **collateral_deposited** | varchar | Collateral Deposited |
+| **debt_issued** | varchar | Debt Issued |
+| **tx_id** | bigint | Transaction ID |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | varchar | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_loan_open_events" />

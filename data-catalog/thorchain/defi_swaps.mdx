@@ -1,0 +1,53 @@
+---
+title: thorchain.defi_swaps
+sidebarTitle: "Swaps"
+description: Description of the thorchain.defi_swaps table on Dune
+---
+
+## Table Description
+Records all cross-chain native asset swaps executed on THORChain. This table captures swap transactions that allow users to swap native assets across multiple chains without wrapped or pegged tokens.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_id** | bigint | Identifier |
+| **tx_id** | bigint | Transaction ID |
+| **blockchain** | varchar | Source blockchain identifier |
+| **pool_name** | varchar | Name of the liquidity pool |
+| **from_address** | varchar | Source address |
+| **native_to_address** | varchar | Address |
+| **to_pool_address** | varchar | Address |
+| **affiliate_address** | varchar | Address |
+| **affiliate_fee_basis_points** | int | Affiliate Fee Basis Points |
+| **affiliate_addresses_array** | array(varchar) | Address |
+| **affiliate_fee_basis_points_array** | int | Affiliate Fee Basis Points Array |
+| **from_asset** | varchar | Source asset identifier |
+| **to_asset** | varchar | Destination asset identifier |
+| **from_amount** | decimal(38,0) | Amount of source asset |
+| **to_amount** | decimal(38,0) | Amount of destination asset |
+| **min_to_amount** | decimal(38,0) | Amount value |
+| **from_amount_usd** | decimal(20,6) | USD value |
+| **to_amount_usd** | decimal(20,6) | USD value |
+| **rune_usd** | decimal(20,6) | Rune Usd |
+| **asset_usd** | decimal(20,6) | Asset Usd |
+| **to_amount_min_usd** | decimal(20,6) | USD value |
+| **swap_slip_bp** | varchar | Swap slippage in basis points |
+| **liq_fee_rune** | varchar | Liquidity fee in RUNE |
+| **liq_fee_rune_usd** | decimal(20,6) | USD value of liquidity fee in RUNE |
+| **liq_fee_asset** | varchar | Liq Fee Asset |
+| **liq_fee_asset_usd** | decimal(20,6) | Liq Fee Asset Usd |
+| **streaming_count** | varchar | Streaming Count |
+| **streaming_quantity** | varchar | Streaming Quantity |
+| **_TX_TYPE** | varchar |  Tx Type |
+| **_unique_key** | varchar |  Unique Key |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_swaps_id** | bigint | Surrogate key for the swap record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_swaps" />

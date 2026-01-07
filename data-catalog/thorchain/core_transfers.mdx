@@ -1,0 +1,31 @@
+---
+title: thorchain.core_transfers
+sidebarTitle: "Transfers"
+description: Description of the thorchain.core_transfers table on Dune
+---
+
+## Table Description
+Records all native asset transfers on THORChain. This table tracks RUNE and other asset transfers between addresses on the THORChain network. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **block_id** | bigint | Identifier |
+| **from_address** | varchar | Source address |
+| **to_address** | varchar | Destination address |
+| **asset** | varchar | Asset identifier |
+| **rune_amount** | decimal(38,0) | Amount in RUNE |
+| **rune_amount_usd** | decimal(20,6) | USD value of RUNE amount |
+| **_unique_key** | varchar |  Unique Key |
+| **_INSERTED_TIMESTAMP** | timestamp | Timestamp of the record |
+| **fact_transfers_id** | bigint | Surrogate key for the fact record |
+| **day** | timestamp | Date of the record |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="core_transfers" />

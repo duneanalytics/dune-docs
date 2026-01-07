@@ -1,0 +1,29 @@
+---
+title: thorchain.defi_mint_burn_events
+sidebarTitle: "Mint Burn Events"
+description: Description of the thorchain.defi_mint_burn_events table on Dune
+---
+
+## Table Description
+Event data for mint burn on THORChain. This table is partitioned by day.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **asset** | varchar | Asset identifier |
+| **asset_e8** | bigint | Asset amount in e8 units |
+| **supply** | varchar | Supply |
+| **reason** | varchar | Reason |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="defi_mint_burn_events" />

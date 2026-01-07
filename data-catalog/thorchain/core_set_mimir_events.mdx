@@ -1,0 +1,28 @@
+---
+title: thorchain.core_set_mimir_events
+sidebarTitle: "Set Mimir Events"
+description: Description of the thorchain.core_set_mimir_events table on Dune
+---
+
+## Table Description
+Event data for set mimir on THORChain. This table is partitioned by block_month.
+
+## Column Descriptions
+| **Column** | **Type** | **Description** |
+|------------|----------|-----------------|
+| **key** | varchar | Key |
+| **value** | varchar | Value |
+| **event_id** | bigint | Event identifier |
+| **block_timestamp** | timestamp | Timestamp of when the block was created |
+| **block_time** | timestamp | Timestamp of when the block was created |
+| **block_month** | timestamp | Block Month |
+| **_inserted_timestamp** | timestamp | Timestamp of the record |
+| **fact_set_mimir_events_id** | bigint | Surrogate key for the fact record |
+| **dim_block_id** | bigint | Reference to the block dimension table |
+| **inserted_timestamp** | timestamp | Time when the record was inserted |
+| **modified_timestamp** | timestamp | Time when the record was last modified |
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="thorchain" tableName="core_set_mimir_events" />
