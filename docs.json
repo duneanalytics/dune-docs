@@ -48,6 +48,10 @@
       "url": "query-engine"
     },
     {
+      "name": "Enterprise",
+      "url": "enterprise"
+    },
+    {
       "name": "Resources",
       "url": "learning"
     }
@@ -3408,6 +3412,33 @@
       },
       {
         "tab": "SQL Query Engine"
+      },
+      {
+        "tab": "Enterprise",
+        "pages": [
+          "enterprise/overview",
+          {
+            "group": "Analytics Hub",
+            "pages": [
+              "enterprise/analytics-hub/overview",
+              "enterprise/analytics-hub/teams",
+              "enterprise/analytics-hub/sso",
+              "enterprise/analytics-hub/permissions"
+            ]
+          },
+          {
+            "group": "Datashare",
+            "pages": [
+              "enterprise/datashare/overview"
+            ]
+          },
+          {
+            "group": "Catalyst",
+            "pages": [
+              "enterprise/catalyst/overview"
+            ]
+          }
+        ]
       },
       {
         "tab": "Resources",
