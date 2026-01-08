@@ -53,6 +53,48 @@
     }
   ],
   "navigation": {
+    "dropdowns": [
+      {
+        "dropdown": "Select Access Method",
+        "icon": "grid-2",
+        "groups": [
+          {
+            "group": "EXPLORE AND ANALYZE",
+            "pages": [
+              "access-methods/analytics-hub/index"
+            ]
+          },
+          {
+            "group": "PROGRAMMATIC ACCESS",
+            "pages": [
+              "access-methods/api-reference/index",
+              "access-methods/client-sdks/index",
+              "access-methods/real-time-apis/index",
+              "access-methods/webhooks/index"
+            ]
+          },
+          {
+            "group": "DATA DELIVERY",
+            "pages": [
+              "access-methods/datashare/index"
+            ]
+          },
+          {
+            "group": "INTEGRATIONS",
+            "pages": [
+              "access-methods/trino-connector/index",
+              "access-methods/dbt-connector/index"
+            ]
+          },
+          {
+            "group": "FOR BLOCKCHAINS",
+            "pages": [
+              "access-methods/catalyst/index"
+            ]
+          }
+        ]
+      }
+    ],
     "tabs": [
       {
         "tab": "Get Started",
@@ -3226,80 +3268,87 @@
       },
       {
         "tab": "Access Methods",
+        "pages": [
+          "access-methods/index"
+        ],
         "groups": [
           {
-            "group": "Access Methods",
+            "group": "Analytics Hub",
             "pages": [
-              "access-methods/index"
+              "access-methods/analytics-hub/index",
+              "access-methods/analytics-hub/query-editor/index",
+              "access-methods/analytics-hub/visualizations/index",
+              "access-methods/analytics-hub/dashboards/index",
+              "access-methods/analytics-hub/teams",
+              "access-methods/analytics-hub/dune-ai"
             ]
-          }
-        ],
-        "dropdowns": [
+          },
           {
-            "dropdown": "Select Product",
-            "icon": "grid-2",
-            "groups": [
-              {
-                "group": "EXPLORE AND ANALYZE",
-                "pages": [
-                  {
-                    "page": "Analytics Hub",
-                    "href": "/access-methods/analytics-hub/index"
-                  }
-                ]
-              },
-              {
-                "group": "PROGRAMMATIC ACCESS",
-                "pages": [
-                  {
-                    "page": "API Reference",
-                    "href": "/access-methods/api-reference/index"
-                  },
-                  {
-                    "page": "Client SDKs",
-                    "href": "/access-methods/client-sdks/index"
-                  },
-                  {
-                    "page": "Real-Time APIs",
-                    "href": "/access-methods/real-time-apis/index"
-                  },
-                  {
-                    "page": "Webhooks",
-                    "href": "/access-methods/webhooks/index"
-                  }
-                ]
-              },
-              {
-                "group": "DATA DELIVERY",
-                "pages": [
-                  {
-                    "page": "Datashare",
-                    "href": "/access-methods/datashare/index"
-                  }
-                ]
-              },
-              {
-                "group": "INTEGRATIONS",
-                "pages": [
-                  {
-                    "page": "Trino Connector",
-                    "href": "/access-methods/trino-connector/index"
-                  },
-                  {
-                    "page": "dbt Connector",
-                    "href": "/access-methods/dbt-connector/index"
-                  }
-                ]
-              },
-              {
-                "group": "FOR BLOCKCHAINS",
-                "pages": [
-                  {
-                    "page": "Catalyst",
-                    "href": "/access-methods/catalyst/index"
-                  }
-                ]
-              }
+            "group": "API Reference",
+            "pages": [
+              "access-methods/api-reference/index",
+              "access-methods/api-reference/getting-started",
+              "access-methods/api-reference/authentication",
+              "access-methods/api-reference/executions/index",
+              "access-methods/api-reference/queries/index"
+            ]
+          },
+          {
+            "group": "Client SDKs",
+            "pages": [
+              "access-methods/client-sdks/index",
+              "access-methods/client-sdks/python",
+              "access-methods/client-sdks/typescript",
+              "access-methods/client-sdks/go"
+            ]
+          },
+          {
+            "group": "Real-Time APIs",
+            "pages": [
+              "access-methods/real-time-apis/index",
+              "access-methods/real-time-apis/sim-apis"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "access-methods/webhooks/index",
+              "access-methods/webhooks/setup",
+              "access-methods/webhooks/events"
+            ]
+          },
+          {
+            "group": "Datashare",
+            "pages": [
+              "access-methods/datashare/index",
+              "access-methods/datashare/getting-started",
+              "access-methods/datashare/snowflake/index",
+              "access-methods/datashare/bigquery/index"
+            ]
+          },
+          {
+            "group": "Trino Connector",
+            "pages": [
+              "access-methods/trino-connector/index",
+              "access-methods/trino-connector/connection-parameters",
+              "access-methods/trino-connector/hex",
+              "access-methods/trino-connector/metabase"
+            ]
+          },
+          {
+            "group": "dbt Connector",
+            "pages": [
+              "access-methods/dbt-connector/index",
+              "access-methods/dbt-connector/setup",
+              "access-methods/dbt-connector/building-models"
+            ]
+          },
+          {
+            "group": "Catalyst",
+            "pages": [
+              "access-methods/catalyst/index",
+              "access-methods/catalyst/hosted-blockchain",
+              "access-methods/catalyst/integration-routes/evm-chains"
             ]
           }
         ]
@@ -3322,8 +3371,7 @@
             "group": "Learning",
             "pages": [
               "learning-resources",
-              "learning/how-tos/create-your-first-query",
-              "learning/how-tos/query-templates"
+              "learning/how-tos/create-your-first-query"
             ]
           }
         ]
