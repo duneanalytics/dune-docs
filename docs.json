@@ -32,8 +32,8 @@
   },
   "tabs": [
     {
-      "name": "Get Started",
-      "url": "home"
+      "name": "Docs",
+      "url": "docs"
     },
     {
       "name": "Data Catalog",
@@ -53,36 +53,43 @@
     },
     {
       "name": "Resources",
-      "url": "learning"
+      "url": "resources"
     }
   ],
   "navigation": {
     "tabs": [
       {
-        "tab": "Get Started",
+        "tab": "Docs",
         "pages": [
-          "home",
-          "quickstart",
-          "learning-resources",
+          "docs/overview",
+          "docs/architecture-overview",
+          "docs/data-coverage",
           {
-            "group": "Jump right in",
+            "group": "Quick Start",
             "pages": [
-              "learning/how-tos/create-your-first-query",
-              "learning/how-tos/query-templates",
-              "learning/how-tos/create-new-content",
-              "learning/how-tos/create-your-first-visualization",
-              "learning/how-tos/navigate-query-editor",
-              "learning/how-tos/find-datasets",
-              "learning/how-tos/export-data-out",
-              "learning/how-tos/create-and-manage-teams",
-              "learning/how-tos/credit-system-on-dune",
-              "learning/how-tos/credit-system",
-              "learning/how-tos/pricing-faqs",
-              "learning/how-tos/search-for-content",
-              "learning/how-tos/share-dune-content",
-              "learning/how-tos/share-your-query",
-              "learning/how-tos/transfer-ownership",
-              "learning/flipside-migration-guide"
+              "docs/quick-start/create-account",
+              "docs/quick-start/first-query",
+              "docs/quick-start/choose-access-method"
+            ]
+          },
+          {
+            "group": "Solutions",
+            "pages": [
+              "docs/use-cases/protocol-analytics",
+              "docs/use-cases/trading-intelligence",
+              "docs/use-cases/stablecoin-payments",
+              "docs/use-cases/investor-reporting",
+              "docs/use-cases/build-applications"
+            ]
+          },
+          {
+            "group": "For Your Business",
+            "pages": [
+              "docs/for-your-business/financial-institutions",
+              "docs/for-your-business/asset-managers",
+              "docs/for-your-business/protocols-daos",
+              "docs/for-your-business/blockchains",
+              "docs/for-your-business/regulators-compliance"
             ]
           }
         ]
@@ -3446,21 +3453,46 @@
       {
         "tab": "Resources",
         "pages": [
+          "resources/overview",
           {
             "group": "Credits & Billing",
             "pages": [
-              "learning/how-tos/credit-system-on-dune",
-              "learning/how-tos/credit-system",
-              "learning/how-tos/pricing-faqs"
+              "resources/credits-billing/overview",
+              "resources/credits-billing/how-credits-work",
+              "resources/credits-billing/pricing",
+              "resources/credits-billing/managing-plan",
+              "resources/credits-billing/enterprise"
             ]
           },
           {
             "group": "Learning",
             "pages": [
-              "learning-resources",
-              "learning/how-tos/create-your-first-query"
+              "resources/learning/overview",
+              "resources/learning/video-tutorials",
+              "resources/learning/example-queries",
+              "resources/learning/example-dashboards",
+              "resources/learning/analyst-roadmap"
             ]
-          }
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "resources/support/overview",
+              "resources/support/faq",
+              "resources/support/troubleshooting",
+              "resources/support/contact"
+            ]
+          },
+          {
+            "group": "Community",
+            "pages": [
+              "resources/community/overview",
+              "resources/community/discord",
+              "resources/community/bounties-grants",
+              "resources/community/wizards-program"
+            ]
+          },
+          "resources/changelog"
         ]
       }
     ]
