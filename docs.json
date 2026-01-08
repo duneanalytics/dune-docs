@@ -61,18 +61,9 @@
       {
         "tab": "Docs",
         "pages": [
-          "docs/overview",
-          "docs/architecture-overview",
-          "docs/data-coverage",
+          "docs/introduction",
+          "docs/quickstart",
           "resources/changelog",
-          {
-            "group": "Quick Start",
-            "pages": [
-              "docs/quick-start/create-account",
-              "docs/quick-start/first-query",
-              "docs/quick-start/choose-access-method"
-            ]
-          },
           {
             "group": "Use Cases",
             "pages": [
@@ -3506,6 +3497,7 @@
         "tab": "Resources",
         "pages": [
           "resources/overview",
+          "resources/web3-data-resources",
           {
             "group": "Credits & Billing",
             "pages": [
