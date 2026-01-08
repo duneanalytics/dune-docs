@@ -1,6 +1,7 @@
 /**
  * Custom Access Method Dropdown - Coinbase Style
  * Styles for the dropdown selector at the top of the Access Methods sidebar
+ * Uses SVG line icons matching Mintlify's style
  */
 
 /* Container */
@@ -38,7 +39,17 @@
 }
 
 .access-dropdown-trigger-icon {
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #888;
+}
+
+.access-dropdown-trigger-icon svg {
+  width: 16px;
+  height: 16px;
 }
 
 .access-dropdown-trigger-name {
@@ -121,9 +132,22 @@
 }
 
 .access-dropdown-item-icon {
-  font-size: 1rem;
-  width: 1.25rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #888;
+}
+
+.access-dropdown-item-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.access-dropdown-item:hover .access-dropdown-item-icon,
+.access-dropdown-item.active .access-dropdown-item-icon {
+  color: #F8B44C;
 }
 
 .access-dropdown-item-name {
