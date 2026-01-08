@@ -52,20 +52,39 @@ div[role="note"] a {
 /* Container - tight spacing like Coinbase */
 .access-dropdown-container {
   position: relative;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   padding: 0;
   z-index: 100;
 }
 
-/* Remove extra spacing from sidebar when dropdown is present */
-.access-dropdown-container + * {
+/* Force tight spacing on elements after dropdown */
+#access-method-dropdown + *,
+#access-method-dropdown ~ * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* First actual content after dropdown gets minimal spacing */
+#access-method-dropdown + nav,
+#access-method-dropdown + ul,
+#access-method-dropdown + div:not(:empty) {
   margin-top: 0.5rem !important;
 }
 
-/* Hide any empty divs that create extra spacing */
-#access-method-dropdown + div:empty,
-.access-dropdown-container + div:empty {
+/* Hide any empty elements that create spacing */
+aside div:empty,
+#sidebar div:empty,
+nav > div:empty {
   display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Collapse any wrapper divs */
+#access-method-dropdown + div + div,
+#access-method-dropdown + div + nav {
+  margin-top: 0 !important;
 }
 
 /* Trigger Button - matches Coinbase styling */

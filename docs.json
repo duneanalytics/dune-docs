@@ -3374,34 +3374,13 @@
             "pages": [
               "access-methods/trino-connector/index",
               "access-methods/trino-connector/connection-parameters",
-              {
-                "page": "access-methods/trino-connector/hex",
-                "icon": "hexagon"
-              },
-              {
-                "page": "access-methods/trino-connector/metabase",
-                "icon": "chart-bar"
-              },
-              {
-                "page": "access-methods/trino-connector/tableau",
-                "icon": "table-cells"
-              },
-              {
-                "page": "access-methods/trino-connector/power-bi",
-                "icon": "chart-pie"
-              },
-              {
-                "page": "access-methods/trino-connector/looker",
-                "icon": "magnifying-glass-chart"
-              },
-              {
-                "page": "access-methods/trino-connector/dbeaver",
-                "icon": "database"
-              },
-              {
-                "page": "access-methods/trino-connector/other-tools",
-                "icon": "puzzle-piece"
-              }
+              "access-methods/trino-connector/hex",
+              "access-methods/trino-connector/metabase",
+              "access-methods/trino-connector/tableau",
+              "access-methods/trino-connector/power-bi",
+              "access-methods/trino-connector/looker",
+              "access-methods/trino-connector/dbeaver",
+              "access-methods/trino-connector/other-tools"
             ]
           },
           {

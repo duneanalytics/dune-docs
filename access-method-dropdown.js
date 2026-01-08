@@ -163,6 +163,30 @@
     if (existing) existing.remove();
   }
 
+  // Remove extra spacing elements
+  function removeExtraSpacing() {
+    // Remove empty divs and elements that create spacing
+    const emptyElements = document.querySelectorAll('aside div:empty, #sidebar div:empty, nav div:empty');
+    emptyElements.forEach(el => {
+      if (!el.closest('#access-method-dropdown') && !el.querySelector('*')) {
+        el.style.display = 'none';
+      }
+    });
+    
+    // Reduce padding/margin on sidebar elements
+    const sidebar = findSidebar();
+    if (sidebar) {
+      const firstChild = sidebar.firstElementChild;
+      if (firstChild && firstChild.id === 'access-method-dropdown') {
+        const nextSibling = firstChild.nextElementSibling;
+        if (nextSibling) {
+          nextSibling.style.marginTop = '0.5rem';
+          nextSibling.style.paddingTop = '0';
+        }
+      }
+    }
+  }
+
   // Insert dropdown
   function insertDropdown() {
     if (!isAccessMethodsPage()) {
@@ -174,6 +198,7 @@
     hideDefaultAnchorSelector();
 
     if (document.getElementById('access-method-dropdown')) {
+      removeExtraSpacing();
       return;
     }
 
@@ -187,6 +212,7 @@
     dropdownWrapper.innerHTML = createDropdownHTML();
     sidebar.insertBefore(dropdownWrapper.firstElementChild, sidebar.firstChild);
     setupEventListeners();
+    removeExtraSpacing();
   }
 
   // Setup event listeners
