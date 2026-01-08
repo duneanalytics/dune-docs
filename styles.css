@@ -267,3 +267,8 @@ div[role="note"] a {
 .access-dropdown-menu::-webkit-scrollbar-thumb:hover {
   background: #3a3a4f;
 }
+
+/* Hide non-matching sidebar groups */
+.access-dropdown-hidden {
+  display: none !important;
+}
