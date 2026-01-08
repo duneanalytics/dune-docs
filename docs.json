@@ -101,7 +101,8 @@
                 "pages": [
                   "data-catalog/curated/dex-trades/overview",
                   "data-catalog/curated/dex-trades/evm/dex-trades",
-                  "data-catalog/curated/dex-trades/evm/dex-aggregator-trades"
+                  "data-catalog/curated/dex-trades/evm/dex-aggregator-trades",
+                  "data-catalog/curated/dex-trades/solana/overview"
                 ]
               },
               {
@@ -120,8 +121,7 @@
                 "pages": [
                   "data-catalog/curated/nft-trades/overview",
                   "data-catalog/curated/nft-trades/evm/nft-trades",
-                  "data-catalog/curated/nft-trades/evm/nft-mints",
-                  "data-catalog/curated/nft-trades/evm/nft-transfers"
+                  "data-catalog/curated/nft-trades/evm/nft-mints"
                 ]
               },
               {
@@ -192,103 +192,67 @@
           {
             "dropdown": "Explore and Analyze",
             "icon": "chart-line",
-            "pages": [
-              "web-app/overview",
+            "groups": [
               {
-                "group": "Query Editor",
+                "group": "ANALYTICS HUB",
+                "pages": [
+                  "web-app/overview",
+                  "web-app/dashboards",
+                  "web-app/dune-ai",
+                  "web-app/alerts",
+                  "web-app/search"
+                ]
+              },
+              {
+                "group": "QUERY EDITOR",
                 "pages": [
                   "web-app/query-editor/query-window",
                   "web-app/query-editor/data-explorer",
                   "web-app/query-editor/parameters",
-                  "web-app/query-editor/query-scheduler",
-                  "web-app/query-editor/query-lineage",
-                  "web-app/query-editor/version-history"
+                  "web-app/query-editor/query-scheduler"
                 ]
               },
               {
-                "group": "Visualizations",
+                "group": "VISUALIZATIONS",
                 "pages": [
                   "web-app/visualizations/charts-graphs",
                   "web-app/visualizations/counters",
                   "web-app/visualizations/tables"
                 ]
-              },
-              "web-app/dashboards",
-              "web-app/dune-ai",
-              "web-app/alerts",
-              "web-app/search",
-              "web-app/embeds",
-              "web-app/upload-data"
+              }
             ]
           },
           {
             "dropdown": "Programmatic Access",
             "icon": "code",
-            "pages": [
-              "api-reference/overview/introduction",
-              "api-reference/overview/getting-started",
-              "api-reference/overview/authentication",
+            "groups": [
               {
-                "group": "Executions & Results",
+                "group": "API REFERENCE",
+                "pages": [
+                  "api-reference/overview/introduction",
+                  "api-reference/overview/getting-started",
+                  "api-reference/overview/authentication"
+                ]
+              },
+              {
+                "group": "EXECUTIONS",
                 "pages": [
                   "api-reference/executions/endpoint/execute-sql",
                   "api-reference/executions/endpoint/execute-query",
                   "api-reference/executions/endpoint/get-execution-status",
-                  "api-reference/executions/endpoint/get-execution-result",
-                  "api-reference/executions/endpoint/get-execution-result-csv",
-                  "api-reference/executions/endpoint/cancel-execution"
+                  "api-reference/executions/endpoint/get-execution-result"
                 ]
               },
               {
-                "group": "Query Management",
-                "pages": [
-                  "api-reference/queries/endpoint/list",
-                  "api-reference/queries/endpoint/read",
-                  "api-reference/queries/endpoint/create",
-                  "api-reference/queries/endpoint/update",
-                  "api-reference/queries/endpoint/archive"
-                ]
-              },
-              {
-                "group": "Data Uploads",
-                "pages": [
-                  "api-reference/tables/endpoint/upload",
-                  "api-reference/tables/endpoint/create",
-                  "api-reference/tables/endpoint/insert",
-                  "api-reference/tables/endpoint/clear",
-                  "api-reference/tables/endpoint/delete"
-                ]
-              },
-              {
-                "group": "Client SDKs",
+                "group": "CLIENT SDKS",
                 "pages": [
                   "api-reference/overview/sdks"
                 ]
               },
               {
-                "group": "Webhooks",
+                "group": "WEBHOOKS",
                 "pages": [
                   "api-reference/webhooks/webhook"
-                ]
-              },
-              {
-                "group": "Materialized Views",
-                "pages": [
-                  "api-reference/materialized-views/overview",
-                  "api-reference/materialized-views/get",
-                  "api-reference/materialized-views/create",
-                  "api-reference/materialized-views/delete",
-                  "api-reference/materialized-views/list",
-                  "api-reference/materialized-views/refresh"
-                ]
-              },
-              {
-                "group": "Resources",
-                "pages": [
-                  "api-reference/overview/rate-limits",
-                  "api-reference/overview/troubleshooting",
-                  "api-reference/overview/billing",
-                  "api-reference/overview/faq"
                 ]
               }
             ]
@@ -296,28 +260,46 @@
           {
             "dropdown": "Datashare",
             "icon": "database",
-            "pages": [
-              "datashare/datashare",
-              "datashare/datashare-snowflake",
-              "datashare/datashare-bigquery",
-              "datashare/datashare-trial",
-              "datashare/datashare-faqs"
+            "groups": [
+              {
+                "group": "DATA WAREHOUSE DELIVERY",
+                "pages": [
+                  "datashare/datashare",
+                  "datashare/datashare-snowflake",
+                  "datashare/datashare-bigquery"
+                ]
+              }
             ]
           },
           {
             "dropdown": "Connect your Tools",
             "icon": "plug",
-            "pages": [
-              "api-reference/connectors/overview",
-              "api-reference/connectors/trino-connector",
-              "api-reference/connectors/dbt-connector"
+            "groups": [
+              {
+                "group": "TRINO CONNECTORS",
+                "pages": [
+                  "api-reference/connectors/overview",
+                  "api-reference/connectors/trino-connector"
+                ]
+              },
+              {
+                "group": "TRANSFORM DATA",
+                "pages": [
+                  "api-reference/connectors/dbt-connector"
+                ]
+              }
             ]
           },
           {
             "dropdown": "For Blockchains",
             "icon": "cube",
-            "pages": [
-              "catalyst/overview"
+            "groups": [
+              {
+                "group": "CATALYST",
+                "pages": [
+                  "catalyst/overview"
+                ]
+              }
             ]
           }
         ]
@@ -327,37 +309,62 @@
         "pages": [
           "query-engine/overview",
           {
-            "group": "Query Features",
+            "group": "Functionality",
             "pages": [
               "query-engine/query-executions",
               "query-engine/query-a-query",
-              "query-engine/materialized-views",
-              "query-engine/writing-efficient-queries",
-              "query-engine/dunesql-architecture"
+              "query-engine/materialized-views"
             ]
           },
           {
-            "group": "Data Types",
+            "group": "DuneSQL",
             "pages": [
+              "query-engine/dunesql-architecture",
+              "query-engine/writing-efficient-queries",
               "query-engine/datatypes",
               "query-engine/reserved-keywords"
             ]
           },
           {
-            "group": "Functions & Operators",
+            "group": "Functions and Operators",
             "pages": [
               "query-engine/Functions-and-operators/index",
               "query-engine/Functions-and-operators/aggregate",
               "query-engine/Functions-and-operators/array",
-              "query-engine/Functions-and-operators/datetime",
-              "query-engine/Functions-and-operators/string",
-              "query-engine/Functions-and-operators/math",
-              "query-engine/Functions-and-operators/json",
-              "query-engine/Functions-and-operators/varbinary",
-              "query-engine/Functions-and-operators/window",
+              "query-engine/Functions-and-operators/asof-join",
+              "query-engine/Functions-and-operators/base58",
+              "query-engine/Functions-and-operators/binary",
+              "query-engine/Functions-and-operators/bitwise",
               "query-engine/Functions-and-operators/chain-utility-functions",
+              "query-engine/Functions-and-operators/comparison",
+              "query-engine/Functions-and-operators/conditional",
+              "query-engine/Functions-and-operators/conversion",
+              "query-engine/Functions-and-operators/datetime",
+              "query-engine/Functions-and-operators/decimal",
               "query-engine/Functions-and-operators/evm-decoding-functions",
-              "query-engine/Functions-and-operators/live-fetch"
+              "query-engine/Functions-and-operators/hyperloglog",
+              "query-engine/Functions-and-operators/json",
+              "query-engine/Functions-and-operators/lambda",
+              "query-engine/Functions-and-operators/live-fetch",
+              "query-engine/Functions-and-operators/logical",
+              "query-engine/Functions-and-operators/map",
+              "query-engine/Functions-and-operators/math",
+              "query-engine/Functions-and-operators/ml",
+              "query-engine/Functions-and-operators/qdigest",
+              "query-engine/Functions-and-operators/regexp",
+              "query-engine/Functions-and-operators/setdigest",
+              "query-engine/Functions-and-operators/ss58",
+              "query-engine/Functions-and-operators/tonaddress",
+              "query-engine/Functions-and-operators/tronaddress",
+              "query-engine/Functions-and-operators/string",
+              "query-engine/Functions-and-operators/system",
+              "query-engine/Functions-and-operators/tdigest",
+              "query-engine/Functions-and-operators/teradata",
+              "query-engine/Functions-and-operators/url",
+              "query-engine/Functions-and-operators/uuid",
+              "query-engine/Functions-and-operators/varbinary",
+              "query-engine/Functions-and-operators/varchar-utility-functions",
+              "query-engine/Functions-and-operators/window"
             ]
           }
         ]
@@ -368,27 +375,52 @@
           {
             "dropdown": "Analytics Hub",
             "icon": "chart-line",
-            "pages": [
-              "web-app/teams",
-              "web-app/okta-sso",
-              "web-app/google-sso-domain-restriction",
-              "web-app/user-activity"
+            "groups": [
+              {
+                "group": "TEAM MANAGEMENT",
+                "pages": [
+                  "web-app/teams"
+                ]
+              },
+              {
+                "group": "SECURITY",
+                "pages": [
+                  "web-app/okta-sso",
+                  "web-app/google-sso-domain-restriction"
+                ]
+              },
+              {
+                "group": "ACTIVITY",
+                "pages": [
+                  "web-app/user-activity"
+                ]
+              }
             ]
           },
           {
             "dropdown": "Datashare",
             "icon": "database",
-            "pages": [
-              "datashare/datashare",
-              "datashare/datashare-snowflake",
-              "datashare/datashare-bigquery"
+            "groups": [
+              {
+                "group": "ENTERPRISE DATA DELIVERY",
+                "pages": [
+                  "datashare/datashare",
+                  "datashare/datashare-snowflake",
+                  "datashare/datashare-bigquery"
+                ]
+              }
             ]
           },
           {
             "dropdown": "Catalyst",
             "icon": "cube",
-            "pages": [
-              "catalyst/overview"
+            "groups": [
+              {
+                "group": "BLOCKCHAIN INTEGRATION",
+                "pages": [
+                  "catalyst/overview"
+                ]
+              }
             ]
           }
         ]
