@@ -3226,234 +3226,80 @@
       },
       {
         "tab": "Access Methods",
+        "groups": [
+          {
+            "group": "Access Methods",
+            "pages": [
+              "access-methods/index"
+            ]
+          }
+        ],
         "dropdowns": [
           {
-            "dropdown": "Analytics Hub",
-            "icon": "chart-line",
-            "pages": [
-              "access-methods/analytics-hub/index",
+            "dropdown": "Select Product",
+            "icon": "grid-2",
+            "groups": [
               {
-                "group": "Query Editor",
+                "group": "EXPLORE AND ANALYZE",
                 "pages": [
-                  "access-methods/analytics-hub/query-editor/index",
-                  "access-methods/analytics-hub/query-editor/data-explorer",
-                  "access-methods/analytics-hub/query-editor/parameters",
-                  "access-methods/analytics-hub/query-editor/scheduling",
-                  "access-methods/analytics-hub/query-editor/query-lineage",
-                  "access-methods/analytics-hub/query-editor/version-history"
+                  {
+                    "page": "Analytics Hub",
+                    "href": "/access-methods/analytics-hub/index"
+                  }
                 ]
               },
               {
-                "group": "Visualizations",
+                "group": "PROGRAMMATIC ACCESS",
                 "pages": [
-                  "access-methods/analytics-hub/visualizations/index",
-                  "access-methods/analytics-hub/visualizations/charts-graphs",
-                  "access-methods/analytics-hub/visualizations/counters",
-                  "access-methods/analytics-hub/visualizations/tables"
+                  {
+                    "page": "API Reference",
+                    "href": "/access-methods/api-reference/index"
+                  },
+                  {
+                    "page": "Client SDKs",
+                    "href": "/access-methods/client-sdks/index"
+                  },
+                  {
+                    "page": "Real-Time APIs",
+                    "href": "/access-methods/real-time-apis/index"
+                  },
+                  {
+                    "page": "Webhooks",
+                    "href": "/access-methods/webhooks/index"
+                  }
                 ]
               },
               {
-                "group": "Dashboards",
+                "group": "DATA DELIVERY",
                 "pages": [
-                  "access-methods/analytics-hub/dashboards/index",
-                  "access-methods/analytics-hub/dashboards/embedding",
-                  "access-methods/analytics-hub/dashboards/permissions"
+                  {
+                    "page": "Datashare",
+                    "href": "/access-methods/datashare/index"
+                  }
                 ]
               },
               {
-                "group": "Decoding Contracts",
+                "group": "INTEGRATIONS",
                 "pages": [
-                  "access-methods/analytics-hub/decoding/index",
-                  "access-methods/analytics-hub/decoding/best-practices",
-                  "access-methods/analytics-hub/decoding/multichain",
-                  "access-methods/analytics-hub/decoding/faqs"
-                ]
-              },
-              "access-methods/analytics-hub/teams",
-              "access-methods/analytics-hub/dune-ai",
-              "access-methods/analytics-hub/upload-data",
-              "access-methods/analytics-hub/share-work",
-              "access-methods/analytics-hub/search-content",
-              "access-methods/analytics-hub/alerts",
-              "access-methods/analytics-hub/bug-bounty"
-            ]
-          },
-          {
-            "dropdown": "API Reference",
-            "icon": "code",
-            "pages": [
-              "access-methods/api-reference/index",
-              "access-methods/api-reference/getting-started",
-              "access-methods/api-reference/authentication",
-              {
-                "group": "Executions",
-                "pages": [
-                  "access-methods/api-reference/executions/index",
-                  "access-methods/api-reference/executions/execute-sql",
-                  "access-methods/api-reference/executions/execute-query",
-                  "access-methods/api-reference/executions/execute-query-pipeline",
-                  "access-methods/api-reference/executions/get-execution-status",
-                  "access-methods/api-reference/executions/get-execution-result",
-                  "access-methods/api-reference/executions/get-execution-result-csv",
-                  "access-methods/api-reference/executions/get-query-result",
-                  "access-methods/api-reference/executions/get-query-result-csv",
-                  "access-methods/api-reference/executions/cancel-execution"
+                  {
+                    "page": "Trino Connector",
+                    "href": "/access-methods/trino-connector/index"
+                  },
+                  {
+                    "page": "dbt Connector",
+                    "href": "/access-methods/dbt-connector/index"
+                  }
                 ]
               },
               {
-                "group": "Query Management",
+                "group": "FOR BLOCKCHAINS",
                 "pages": [
-                  "access-methods/api-reference/queries/index",
-                  "access-methods/api-reference/queries/list-queries",
-                  "access-methods/api-reference/queries/get-query-pipeline",
-                  "access-methods/api-reference/queries/create",
-                  "access-methods/api-reference/queries/update",
-                  "access-methods/api-reference/queries/read",
-                  "access-methods/api-reference/queries/archive",
-                  "access-methods/api-reference/queries/unarchive",
-                  "access-methods/api-reference/queries/private",
-                  "access-methods/api-reference/queries/unprivate"
-                ]
-              },
-              {
-                "group": "Data Uploads",
-                "pages": [
-                  "access-methods/api-reference/tables/index",
-                  "access-methods/api-reference/tables/upload-csv",
-                  "access-methods/api-reference/tables/create-table",
-                  "access-methods/api-reference/tables/insert-data",
-                  "access-methods/api-reference/tables/clear-data",
-                  "access-methods/api-reference/tables/delete-table",
-                  "access-methods/api-reference/tables/list-tables"
-                ]
-              },
-              {
-                "group": "Materialized Views",
-                "pages": [
-                  "access-methods/api-reference/materialized-views/index",
-                  "access-methods/api-reference/materialized-views/get",
-                  "access-methods/api-reference/materialized-views/upsert",
-                  "access-methods/api-reference/materialized-views/delete",
-                  "access-methods/api-reference/materialized-views/list",
-                  "access-methods/api-reference/materialized-views/refresh"
-                ]
-              },
-              {
-                "group": "Post-processing",
-                "pages": [
-                  "access-methods/api-reference/post-processing/filtering",
-                  "access-methods/api-reference/post-processing/sorting",
-                  "access-methods/api-reference/post-processing/pagination",
-                  "access-methods/api-reference/post-processing/sampling"
-                ]
-              },
-              {
-                "group": "Resources",
-                "pages": [
-                  "access-methods/api-reference/resources/rate-limits",
-                  "access-methods/api-reference/resources/troubleshooting",
-                  "access-methods/api-reference/resources/billing",
-                  "access-methods/api-reference/resources/faq"
+                  {
+                    "page": "Catalyst",
+                    "href": "/access-methods/catalyst/index"
+                  }
                 ]
               }
-            ]
-          },
-          {
-            "dropdown": "Client SDKs",
-            "icon": "box",
-            "pages": [
-              "access-methods/client-sdks/index",
-              "access-methods/client-sdks/python",
-              "access-methods/client-sdks/typescript",
-              "access-methods/client-sdks/go"
-            ]
-          },
-          {
-            "dropdown": "Real-Time APIs",
-            "icon": "bolt",
-            "pages": [
-              "access-methods/real-time-apis/index",
-              "access-methods/real-time-apis/sim-apis"
-            ]
-          },
-          {
-            "dropdown": "Webhooks",
-            "icon": "bell",
-            "pages": [
-              "access-methods/webhooks/index",
-              "access-methods/webhooks/setup",
-              "access-methods/webhooks/events"
-            ]
-          },
-          {
-            "dropdown": "Datashare",
-            "icon": "database",
-            "pages": [
-              "access-methods/datashare/index",
-              "access-methods/datashare/getting-started",
-              {
-                "group": "Snowflake",
-                "pages": [
-                  "access-methods/datashare/snowflake/index",
-                  "access-methods/datashare/snowflake/setup",
-                  "access-methods/datashare/snowflake/data-types",
-                  "access-methods/datashare/snowflake/query-examples"
-                ]
-              },
-              {
-                "group": "BigQuery",
-                "pages": [
-                  "access-methods/datashare/bigquery/index",
-                  "access-methods/datashare/bigquery/setup",
-                  "access-methods/datashare/bigquery/query-examples"
-                ]
-              },
-              "access-methods/datashare/faqs"
-            ]
-          },
-          {
-            "dropdown": "Trino Connector",
-            "icon": "plug",
-            "pages": [
-              "access-methods/trino-connector/index",
-              "access-methods/trino-connector/connection-parameters",
-              "access-methods/trino-connector/hex",
-              "access-methods/trino-connector/metabase",
-              "access-methods/trino-connector/tableau",
-              "access-methods/trino-connector/power-bi",
-              "access-methods/trino-connector/looker",
-              "access-methods/trino-connector/dbeaver",
-              "access-methods/trino-connector/other-tools"
-            ]
-          },
-          {
-            "dropdown": "dbt Connector",
-            "icon": "arrows-rotate",
-            "pages": [
-              "access-methods/dbt-connector/index",
-              "access-methods/dbt-connector/setup",
-              "access-methods/dbt-connector/building-models",
-              "access-methods/dbt-connector/materialized-views",
-              "access-methods/dbt-connector/supported-operations",
-              "access-methods/dbt-connector/troubleshooting"
-            ]
-          },
-          {
-            "dropdown": "Catalyst",
-            "icon": "cube",
-            "pages": [
-              "access-methods/catalyst/index",
-              "access-methods/catalyst/hosted-blockchain",
-              {
-                "group": "Integration Routes",
-                "pages": [
-                  "access-methods/catalyst/integration-routes/evm-chains",
-                  "access-methods/catalyst/integration-routes/non-evm-rpc",
-                  "access-methods/catalyst/integration-routes/database-route"
-                ]
-              },
-              "access-methods/catalyst/data-latency",
-              "access-methods/catalyst/contact-sales"
             ]
           }
         ]
@@ -3477,28 +3323,7 @@
             "pages": [
               "learning-resources",
               "learning/how-tos/create-your-first-query",
-              "learning/how-tos/query-templates",
-              "learning/how-tos/create-new-content",
-              "learning/how-tos/create-your-first-visualization"
-            ]
-          },
-          {
-            "group": "Guides",
-            "pages": [
-              "learning/how-tos/navigate-query-editor",
-              "learning/how-tos/find-datasets",
-              "learning/how-tos/export-data-out",
-              "learning/how-tos/create-and-manage-teams",
-              "learning/how-tos/search-for-content",
-              "learning/how-tos/share-dune-content",
-              "learning/how-tos/share-your-query",
-              "learning/how-tos/transfer-ownership"
-            ]
-          },
-          {
-            "group": "Migration",
-            "pages": [
-              "learning/flipside-migration-guide"
+              "learning/how-tos/query-templates"
             ]
           }
         ]
