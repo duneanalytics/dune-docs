@@ -1,0 +1,45 @@
+---
+title: "WITH (CTEs)"
+description: "Common Table Expressions"
+---
+
+# WITH (CTEs)
+
+Common Table Expressions for organizing complex queries.
+
+## Basic CTE
+
+```sql
+WITH daily_volumes AS (
+    SELECT 
+        date_trunc('day', block_time) as day,
+        SUM(amount_usd) as volume
+    FROM dex.trades
+    GROUP BY 1
+)
+SELECT * FROM daily_volumes
+WHERE volume > 1000000
+```
+
+## Multiple CTEs
+
+```sql
+WITH 
+    cte1 AS (SELECT ...),
+    cte2 AS (SELECT ... FROM cte1),
+    cte3 AS (SELECT ...)
+SELECT * FROM cte2 JOIN cte3 ON ...
+```
+
+## When to Use CTEs
+
+- Break complex queries into readable parts
+- Reuse subquery results multiple times
+- Improve query organization
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

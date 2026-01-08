@@ -1,0 +1,77 @@
+---
+title: "Execute Query"
+description: "Execute a saved query by ID"
+api: "POST /api/v1/query/{query_id}/execute"
+---
+
+# Execute Query
+
+Execute a saved query and retrieve the execution ID to poll for results.
+
+## Endpoint
+
+`POST /api/v1/query/{query_id}/execute`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_id | integer | Yes | The unique identifier of the query |
+
+## Request Body
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_parameters | object | No | Key-value pairs for query parameters |
+| performance | enum | No | Engine tier: `medium` (default) or `large` |
+
+```json
+{
+  "query_parameters": {
+    "wallet_address": "0x...",
+    "days": 30
+  },
+  "performance": "medium"
+}
+```
+
+## Example Request
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/query/1234/execute" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"query_parameters": {"wallet_address": "0x..."}, "performance": "medium"}'
+```
+
+## Response
+
+### Success Response (200)
+
+```json
+{
+  "execution_id": "01HKZJ2683PHF9Q9PHHQ8FW4Q1",
+  "state": "QUERY_STATE_PENDING"
+}
+```
+
+### Error Responses
+
+| Status Code | Description |
+|-------------|-------------|
+| 400 | Invalid request parameters |
+| 401 | Invalid or missing API key |
+| 402 | Payment required |
+| 403 | No access to query |
+| 404 | Query not found |
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** High
+

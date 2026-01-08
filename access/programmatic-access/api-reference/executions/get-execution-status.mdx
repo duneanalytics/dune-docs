@@ -1,0 +1,59 @@
+---
+title: "Get Execution Status"
+description: "Check the status of a query execution"
+api: "GET /api/v1/execution/{execution_id}/status"
+---
+
+# Get Execution Status
+
+Check whether a query execution has completed.
+
+## Endpoint
+
+`GET /api/v1/execution/{execution_id}/status`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| execution_id | string | Yes | The execution ID returned from execute |
+
+## Example Request
+
+```bash
+curl "https://api.dune.com/api/v1/execution/01HKZJ2683PHF9Q9PHHQ8FW4Q1/status" \
+  -H "X-Dune-API-Key: YOUR_API_KEY"
+```
+
+## Response
+
+```json
+{
+  "execution_id": "01HKZJ2683PHF9Q9PHHQ8FW4Q1",
+  "query_id": 1234,
+  "state": "QUERY_STATE_COMPLETED",
+  "submitted_at": "2024-01-01T00:00:00Z",
+  "completed_at": "2024-01-01T00:00:05Z"
+}
+```
+
+## Execution States
+
+| State | Description |
+|-------|-------------|
+| QUERY_STATE_PENDING | Queued for execution |
+| QUERY_STATE_EXECUTING | Currently running |
+| QUERY_STATE_COMPLETED | Finished successfully |
+| QUERY_STATE_FAILED | Failed with error |
+| QUERY_STATE_CANCELLED | Cancelled by user |
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** High
+

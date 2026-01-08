@@ -1,0 +1,45 @@
+---
+title: "Archive Query"
+description: "Archive a saved query"
+api: "POST /api/v1/query/{query_id}/archive"
+---
+
+# Archive Query
+
+Archive a saved query.
+
+## Endpoint
+
+`POST /api/v1/query/{query_id}/archive`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_id | integer | Yes | The query ID to archive |
+
+## Example Request
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/query/1234/archive" \
+  -H "X-Dune-API-Key: YOUR_API_KEY"
+```
+
+## Response
+
+```json
+{
+  "query_id": 1234
+}
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

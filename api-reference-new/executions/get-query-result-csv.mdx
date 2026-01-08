@@ -1,0 +1,38 @@
+---
+title: "Get Query Result CSV"
+description: "Get the latest cached result for a query as CSV"
+api: "GET /api/v1/query/{query_id}/results/csv"
+---
+
+# Get Query Result CSV
+
+Retrieve the latest cached result for a query as CSV.
+
+## Endpoint
+
+`GET /api/v1/query/{query_id}/results/csv`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_id | integer | Yes | The query ID |
+
+## Example Request
+
+```bash
+curl "https://api.dune.com/api/v1/query/1234/results/csv" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -o results.csv
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

@@ -1,0 +1,46 @@
+---
+title: "Get Execution Result CSV"
+description: "Retrieve query results as CSV"
+api: "GET /api/v1/execution/{execution_id}/results/csv"
+---
+
+# Get Execution Result CSV
+
+Retrieve the results of a completed query execution as CSV.
+
+## Endpoint
+
+`GET /api/v1/execution/{execution_id}/results/csv`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| execution_id | string | Yes | The execution ID |
+
+## Example Request
+
+```bash
+curl "https://api.dune.com/api/v1/execution/01HKZJ2683PHF9Q9PHHQ8FW4Q1/results/csv" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -o results.csv
+```
+
+## Response
+
+```csv
+block_time,value
+2024-01-01T00:00:00Z,100
+2024-01-01T00:01:00Z,200
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

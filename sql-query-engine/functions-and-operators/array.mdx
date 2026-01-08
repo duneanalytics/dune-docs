@@ -1,0 +1,33 @@
+---
+title: "Array Functions"
+description: "Functions for working with arrays"
+---
+
+# Array Functions
+
+Functions for manipulating array data.
+
+## Common Functions
+
+| Function | Description |
+|----------|-------------|
+| `cardinality(x)` | Array length |
+| `contains(x, element)` | Check if element exists |
+| `array_join(x, delimiter)` | Join into string |
+| `slice(x, start, length)` | Extract portion |
+
+## Examples
+
+```sql
+SELECT 
+    cardinality(topics) as topic_count,
+    contains(topics, 0x...) as has_topic
+FROM ethereum.logs
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

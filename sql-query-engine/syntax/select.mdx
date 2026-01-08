@@ -1,0 +1,49 @@
+---
+title: "SELECT"
+description: "SELECT statement syntax"
+---
+
+# SELECT
+
+The SELECT statement retrieves data from tables.
+
+## Basic Syntax
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+```
+
+## Select All Columns
+
+```sql
+SELECT * FROM ethereum.transactions
+```
+
+## Column Aliases
+
+```sql
+SELECT 
+    block_time as time,
+    value / 1e18 as eth_value
+FROM ethereum.transactions
+```
+
+## Distinct Values
+
+```sql
+SELECT DISTINCT "from" FROM ethereum.transactions
+```
+
+## Limit Results
+
+```sql
+SELECT * FROM ethereum.transactions LIMIT 100
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

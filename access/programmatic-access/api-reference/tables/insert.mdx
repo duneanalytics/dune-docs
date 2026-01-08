@@ -1,0 +1,50 @@
+---
+title: "Insert Data"
+description: "Insert rows into a table"
+api: "POST /api/v1/table/{table_name}/insert"
+---
+
+# Insert Data
+
+Insert rows into an existing table.
+
+## Endpoint
+
+`POST /api/v1/table/{table_name}/insert`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| table_name | string | Yes | The table name |
+
+## Request Body
+
+```json
+{
+  "data": [
+    {"address": "0x...", "balance": 100.5},
+    {"address": "0x...", "balance": 200.0}
+  ]
+}
+```
+
+## Example Request
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/table/my_table/insert" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"data": [{"address": "0x...", "balance": 100}]}'
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

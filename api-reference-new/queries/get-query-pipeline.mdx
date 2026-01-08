@@ -1,0 +1,41 @@
+---
+title: "Get Query Pipeline"
+description: "Get query pipeline information"
+api: "GET /api/v1/query/{query_id}/pipeline"
+---
+
+# Get Query Pipeline
+
+Retrieve pipeline configuration for a query.
+
+## Endpoint
+
+`GET /api/v1/query/{query_id}/pipeline`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_id | integer | Yes | The query ID |
+
+## Example Request
+
+```bash
+curl "https://api.dune.com/api/v1/query/1234/pipeline" \
+  -H "X-Dune-API-Key: YOUR_API_KEY"
+```
+
+## Response
+
+[TODO: Response schema]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

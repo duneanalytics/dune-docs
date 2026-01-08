@@ -1,0 +1,57 @@
+---
+title: "TypeScript SDK"
+description: "Official TypeScript client for the Dune API"
+---
+
+# TypeScript SDK
+
+The official TypeScript/JavaScript client for the Dune API.
+
+## Installation
+
+```bash
+npm install @duneanalytics/client
+# or
+yarn add @duneanalytics/client
+```
+
+## Quick Start
+
+```typescript
+import { DuneClient } from '@duneanalytics/client';
+
+// Initialize client
+const dune = new DuneClient('YOUR_API_KEY');
+
+// Execute a query
+const result = await dune.execute({ queryId: 1234 });
+
+// Access results
+console.log(result.result.rows);
+```
+
+## Running SQL Directly
+
+```typescript
+const result = await dune.runSql('SELECT * FROM ethereum.transactions LIMIT 10');
+```
+
+## With Parameters
+
+```typescript
+const result = await dune.execute({
+  queryId: 1234,
+  parameters: { wallet_address: '0x...' }
+});
+```
+
+## Reference
+
+[TODO: Full API reference]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** High
+

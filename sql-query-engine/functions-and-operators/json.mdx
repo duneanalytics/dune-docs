@@ -1,0 +1,36 @@
+---
+title: "JSON Functions"
+description: "Functions for working with JSON data"
+---
+
+# JSON Functions
+
+Functions for parsing and manipulating JSON data.
+
+## Extraction
+
+| Function | Description |
+|----------|-------------|
+| `json_extract(json, path)` | Extract by path |
+| `json_extract_scalar(json, path)` | Extract scalar value |
+
+## Examples
+
+```sql
+SELECT json_extract_scalar(metadata, '$.name') as name
+FROM ...
+```
+
+## Conversion
+
+| Function | Description |
+|----------|-------------|
+| `json_parse(string)` | Parse JSON string |
+| `json_format(json)` | Convert to string |
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

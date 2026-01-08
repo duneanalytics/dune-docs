@@ -1,0 +1,39 @@
+---
+title: "Overview"
+description: "Upload and manage your own data on Dune"
+---
+
+# Data Uploads
+
+Upload your own data to Dune and query it alongside blockchain data.
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | [Upload CSV](/api-reference/tables/upload) | Upload a CSV file |
+| POST | [Create Table](/api-reference/tables/create) | Create an empty table |
+| POST | [Insert Data](/api-reference/tables/insert) | Insert rows |
+| POST | [Clear Data](/api-reference/tables/clear) | Clear all rows |
+| DELETE | [Delete Table](/api-reference/tables/delete) | Delete table |
+| GET | [List Tables](/api-reference/tables/list) | List your tables |
+
+## Use Cases
+
+- Upload address lists for filtering
+- Join external data with blockchain data
+- Create lookup tables
+
+## Table Naming
+
+Tables are created in the `dune.{username}` namespace:
+```sql
+SELECT * FROM dune.my_username.my_table
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** High
+

@@ -1,0 +1,68 @@
+---
+title: "FROM & JOIN"
+description: "FROM clause and JOIN operations"
+---
+
+# FROM & JOIN
+
+Specify data sources and combine tables.
+
+## Basic FROM
+
+```sql
+SELECT * FROM ethereum.transactions
+```
+
+## Table Alias
+
+```sql
+SELECT t.hash, t.value 
+FROM ethereum.transactions t
+```
+
+## INNER JOIN
+
+```sql
+SELECT t.*, b.time
+FROM ethereum.transactions t
+INNER JOIN ethereum.blocks b ON t.block_number = b.number
+```
+
+## LEFT JOIN
+
+```sql
+SELECT t.*, l.name
+FROM ethereum.transactions t
+LEFT JOIN labels.all l ON t."from" = l.address
+```
+
+## RIGHT JOIN
+
+```sql
+SELECT ...
+FROM table1
+RIGHT JOIN table2 ON ...
+```
+
+## FULL OUTER JOIN
+
+```sql
+SELECT ...
+FROM table1
+FULL OUTER JOIN table2 ON ...
+```
+
+## CROSS JOIN
+
+```sql
+SELECT ...
+FROM table1
+CROSS JOIN table2
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

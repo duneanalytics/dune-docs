@@ -1,0 +1,59 @@
+---
+title: "Create Query"
+description: "Create a new saved query"
+api: "POST /api/v1/query"
+---
+
+# Create Query
+
+Create a new saved query.
+
+## Endpoint
+
+`POST /api/v1/query`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Request Body
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| name | string | Yes | Query name |
+| query_sql | string | Yes | SQL query |
+| description | string | No | Query description |
+| is_private | boolean | No | Make private (default: false) |
+
+```json
+{
+  "name": "My New Query",
+  "query_sql": "SELECT * FROM ethereum.transactions LIMIT 10",
+  "description": "Example query",
+  "is_private": false
+}
+```
+
+## Example Request
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/query" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "My Query", "query_sql": "SELECT * FROM ethereum.transactions LIMIT 10"}'
+```
+
+## Response
+
+```json
+{
+  "query_id": 1234
+}
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

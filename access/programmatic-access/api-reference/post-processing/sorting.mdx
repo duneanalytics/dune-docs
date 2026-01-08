@@ -1,0 +1,29 @@
+---
+title: "Sorting Results"
+description: "Sort API results after execution"
+---
+
+# Sorting Results
+
+Apply sorting to API results.
+
+## Sort Parameter
+
+```bash
+curl "https://api.dune.com/api/v1/execution/{id}/results?sort_by=column_name&order=desc" \
+  -H "X-Dune-API-Key: YOUR_API_KEY"
+```
+
+## Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| sort_by | string | Column to sort by |
+| order | enum | `asc` or `desc` |
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

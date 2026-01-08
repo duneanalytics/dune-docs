@@ -1,0 +1,45 @@
+---
+title: "List Tables"
+description: "List your uploaded tables"
+api: "GET /api/v1/table"
+---
+
+# List Tables
+
+Retrieve a list of tables you have created.
+
+## Endpoint
+
+`GET /api/v1/table`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Example Request
+
+```bash
+curl "https://api.dune.com/api/v1/table" \
+  -H "X-Dune-API-Key: YOUR_API_KEY"
+```
+
+## Response
+
+```json
+{
+  "tables": [
+    {
+      "table_name": "dune.username.my_table",
+      "created_at": "2024-01-01T00:00:00Z",
+      "row_count": 1000
+    }
+  ]
+}
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

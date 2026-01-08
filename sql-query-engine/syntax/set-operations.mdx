@@ -1,0 +1,55 @@
+---
+title: "Set Operations"
+description: "UNION, INTERSECT, and EXCEPT"
+---
+
+# Set Operations
+
+Combine results from multiple queries.
+
+## UNION
+
+Combine results, removing duplicates:
+
+```sql
+SELECT address FROM table1
+UNION
+SELECT address FROM table2
+```
+
+## UNION ALL
+
+Combine results, keeping duplicates:
+
+```sql
+SELECT address FROM table1
+UNION ALL
+SELECT address FROM table2
+```
+
+## INTERSECT
+
+Return only rows in both results:
+
+```sql
+SELECT address FROM table1
+INTERSECT
+SELECT address FROM table2
+```
+
+## EXCEPT
+
+Return rows in first but not second:
+
+```sql
+SELECT address FROM table1
+EXCEPT
+SELECT address FROM table2
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

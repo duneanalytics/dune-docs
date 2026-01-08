@@ -1,0 +1,46 @@
+---
+title: "List API Keys"
+description: "List your API keys"
+api: "GET /api/v1/account/api-keys"
+---
+
+# List API Keys
+
+Retrieve a list of your API keys.
+
+## Endpoint
+
+`GET /api/v1/account/api-keys`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Example Request
+
+```bash
+curl "https://api.dune.com/api/v1/account/api-keys" \
+  -H "X-Dune-API-Key: YOUR_API_KEY"
+```
+
+## Response
+
+```json
+{
+  "api_keys": [
+    {
+      "id": "key_abc123",
+      "name": "Production",
+      "created_at": "2024-01-01T00:00:00Z",
+      "last_used_at": "2024-01-15T00:00:00Z"
+    }
+  ]
+}
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Low
+

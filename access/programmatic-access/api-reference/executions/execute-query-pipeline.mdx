@@ -1,0 +1,47 @@
+---
+title: "Execute Query Pipeline"
+description: "Execute a query pipeline"
+api: "POST /api/v1/query/{query_id}/execute/pipeline"
+---
+
+# Execute Query Pipeline
+
+Execute a query as part of a pipeline workflow.
+
+## Endpoint
+
+`POST /api/v1/query/{query_id}/execute/pipeline`
+
+## Authentication
+
+Requires API key in header: `X-Dune-API-Key`
+
+## Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| query_id | integer | Yes | The query ID to execute |
+
+## Request Body
+
+[TODO: Request body schema]
+
+## Example Request
+
+```bash
+curl -X POST "https://api.dune.com/api/v1/query/1234/execute/pipeline" \
+  -H "X-Dune-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+## Response
+
+[TODO: Response schema]
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

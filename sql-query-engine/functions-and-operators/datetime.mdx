@@ -1,0 +1,49 @@
+---
+title: "Date/Time Functions"
+description: "Functions for working with dates and times"
+---
+
+# Date/Time Functions
+
+Functions for manipulating date and time data.
+
+## Current Time
+
+| Function | Description |
+|----------|-------------|
+| `now()` | Current timestamp |
+| `current_date` | Current date |
+| `current_timestamp` | Current timestamp |
+
+## Truncation
+
+| Function | Description |
+|----------|-------------|
+| `date_trunc('day', ts)` | Truncate to day |
+| `date_trunc('hour', ts)` | Truncate to hour |
+
+## Extraction
+
+| Function | Description |
+|----------|-------------|
+| `year(ts)` | Extract year |
+| `month(ts)` | Extract month |
+| `day(ts)` | Extract day |
+| `hour(ts)` | Extract hour |
+
+## Arithmetic
+
+```sql
+SELECT 
+    block_time,
+    block_time + interval '1' day as next_day,
+    block_time - interval '1' hour as prev_hour
+FROM ethereum.transactions
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+

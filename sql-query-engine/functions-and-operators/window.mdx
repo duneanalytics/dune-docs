@@ -1,0 +1,43 @@
+---
+title: "Window Functions"
+description: "Functions for window/analytical operations"
+---
+
+# Window Functions
+
+Perform calculations across rows related to the current row.
+
+## Ranking Functions
+
+| Function | Description |
+|----------|-------------|
+| `row_number()` | Unique row number |
+| `rank()` | Rank with gaps |
+| `dense_rank()` | Rank without gaps |
+
+## Value Functions
+
+| Function | Description |
+|----------|-------------|
+| `lag(x, n)` | Value n rows before |
+| `lead(x, n)` | Value n rows after |
+| `first_value(x)` | First value in window |
+| `last_value(x)` | Last value in window |
+
+## Aggregate Windows
+
+```sql
+SELECT 
+    block_time,
+    value,
+    SUM(value) OVER (ORDER BY block_time) as running_total,
+    AVG(value) OVER (PARTITION BY "from" ORDER BY block_time ROWS BETWEEN 10 PRECEDING AND CURRENT ROW) as moving_avg
+FROM ethereum.transactions
+```
+
+---
+
+**Status:** 🚧 Stub — Content pending
+**Owner:** [TBD]
+**Priority:** Medium
+
