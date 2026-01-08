@@ -48,8 +48,7 @@
   // Check if we're on an Access Methods page
   function isAccessMethodsPage() {
     const path = window.location.pathname;
-    // Only match paths that start with /access-methods/
-    return path.startsWith('/access-methods/') || path === '/access-methods';
+    return path.includes('/access-methods') || path.includes('access-methods');
   }
 
   // Detect current access method from URL
@@ -57,7 +56,7 @@
     const path = window.location.pathname;
     for (const category of Object.values(ACCESS_METHODS)) {
       for (const method of category) {
-        if (path.includes(`/access-methods/${method.id}`)) {
+        if (path.includes(method.id)) {
           return method;
         }
       }
@@ -114,6 +113,50 @@
     }
   }
 
+  // Find the sidebar element using multiple selectors
+  function findSidebar() {
+    // Try various selectors that Mintlify might use
+    const selectors = [
+      '#sidebar-content',
+      '#SidebarContent',
+      '[id*="sidebar-content"]',
+      '[id*="SidebarContent"]',
+      '.sidebar-content',
+      '[class*="SidebarContent"]',
+      '#sidebar > div',
+      '#Sidebar > div',
+      '[id="sidebar"] > div',
+      '[id="Sidebar"] > div',
+      'nav[class*="sidebar"] > div',
+      'aside > nav',
+      'aside > div',
+      '[data-testid="sidebar"]',
+      // Mintlify specific
+      '#navigation-items',
+      '[id="navigation-items"]'
+    ];
+
+    for (const selector of selectors) {
+      const element = document.querySelector(selector);
+      if (element) {
+        console.log('[Access Dropdown] Found sidebar with selector:', selector);
+        return element;
+      }
+    }
+
+    // Last resort: find any nav element in an aside
+    const aside = document.querySelector('aside');
+    if (aside) {
+      const nav = aside.querySelector('nav') || aside.querySelector('div');
+      if (nav) {
+        console.log('[Access Dropdown] Found sidebar via aside element');
+        return nav;
+      }
+    }
+
+    return null;
+  }
+
   // Insert dropdown into the sidebar
   function insertDropdown() {
     // ONLY run on Access Methods pages
@@ -122,22 +165,21 @@
       return;
     }
 
-    // Find the sidebar content area
-    const sidebar = document.querySelector('#sidebar-content') || 
-                    document.querySelector('[class*="SidebarContent"]') ||
-                    document.querySelector('.sidebar-content') ||
-                    document.querySelector('[id*="sidebar"] > div');
-    
-    if (!sidebar) {
-      // Retry after a short delay if sidebar not found
-      setTimeout(insertDropdown, 500);
-      return;
-    }
-
     // Check if dropdown already exists
     if (document.getElementById('access-method-dropdown')) {
       return;
     }
+
+    // Find the sidebar
+    const sidebar = findSidebar();
+    
+    if (!sidebar) {
+      console.log('[Access Dropdown] Sidebar not found, retrying in 500ms...');
+      setTimeout(insertDropdown, 500);
+      return;
+    }
+
+    console.log('[Access Dropdown] Inserting dropdown into sidebar');
 
     // Create dropdown element
     const dropdownWrapper = document.createElement('div');
@@ -194,23 +236,27 @@
 
   // Initialize
   function init() {
-    // Only proceed if on Access Methods page
-    if (!isAccessMethodsPage()) {
-      return;
-    }
+    console.log('[Access Dropdown] Initializing...');
+    console.log('[Access Dropdown] Current path:', window.location.pathname);
+    console.log('[Access Dropdown] Is Access Methods page:', isAccessMethodsPage());
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', insertDropdown);
-    } else {
-      insertDropdown();
-    }
+    // Run immediately and with delays to catch SPA navigation
+    insertDropdown();
+    setTimeout(insertDropdown, 1000);
+    setTimeout(insertDropdown, 2000);
+    setTimeout(insertDropdown, 3000);
 
     // Watch for navigation changes (SPA)
     let lastPath = window.location.pathname;
     const observer = new MutationObserver(() => {
       if (window.location.pathname !== lastPath) {
         lastPath = window.location.pathname;
+        console.log('[Access Dropdown] Path changed to:', lastPath);
         handleNavigation();
+      }
+      // Also check if dropdown needs to be re-inserted
+      if (isAccessMethodsPage() && !document.getElementById('access-method-dropdown')) {
+        insertDropdown();
       }
     });
 
@@ -220,5 +266,10 @@
     window.addEventListener('popstate', handleNavigation);
   }
 
-  init();
+  // Start initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
