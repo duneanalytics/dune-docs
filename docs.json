@@ -73,23 +73,33 @@
             ]
           },
           {
-            "group": "Solutions",
+            "group": "Use Cases",
             "pages": [
-              "docs/use-cases/protocol-analytics",
-              "docs/use-cases/trading-intelligence",
-              "docs/use-cases/stablecoin-payments",
-              "docs/use-cases/investor-reporting",
-              "docs/use-cases/build-applications"
-            ]
-          },
-          {
-            "group": "For Your Business",
-            "pages": [
-              "docs/for-your-business/financial-institutions",
-              "docs/for-your-business/asset-managers",
-              "docs/for-your-business/protocols-daos",
-              "docs/for-your-business/blockchains",
-              "docs/for-your-business/regulators-compliance"
+              "docs/use-cases/overview",
+              {
+                "group": "Protocol Adoption",
+                "pages": [
+                  "docs/use-cases/protocol-adoption/overview",
+                  "docs/use-cases/protocol-adoption/metrics",
+                  "docs/use-cases/protocol-adoption/dashboards"
+                ]
+              },
+              {
+                "group": "Onchain Trading Intelligence",
+                "pages": [
+                  "docs/use-cases/trading-intelligence/overview",
+                  "docs/use-cases/trading-intelligence/signals",
+                  "docs/use-cases/trading-intelligence/api-integration"
+                ]
+              },
+              {
+                "group": "Stablecoin Intelligence",
+                "pages": [
+                  "docs/use-cases/stablecoin-intelligence/overview",
+                  "docs/use-cases/stablecoin-intelligence/flows",
+                  "docs/use-cases/stablecoin-intelligence/market-metrics"
+                ]
+              }
             ]
           }
         ]
