@@ -64,6 +64,7 @@
           "docs/overview",
           "docs/architecture-overview",
           "docs/data-coverage",
+          "resources/changelog",
           {
             "group": "Quick Start",
             "pages": [
@@ -3563,8 +3564,7 @@
               "resources/community/bounties-grants",
               "resources/community/wizards-program"
             ]
-          },
-          "resources/changelog"
+          }
         ]
       }
     ]
