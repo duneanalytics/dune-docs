@@ -3497,7 +3497,6 @@
         "tab": "Resources",
         "pages": [
           "resources/overview",
-          "resources/web3-data-resources",
           {
             "group": "Credits & Billing",
             "pages": [
@@ -3511,6 +3510,7 @@
           {
             "group": "Learning",
             "pages": [
+              "resources/web3-data-resources",
               "resources/learning/overview",
               "resources/learning/video-tutorials",
               "resources/learning/example-queries",
