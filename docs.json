@@ -49,7 +49,7 @@
     },
     {
       "name": "Enterprise",
-      "url": "web-app/teams"
+      "url": "enterprise"
     },
     {
       "name": "Resources",
@@ -59,33 +59,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Docs",
-        "pages": [
-          "home",
-          "quickstart",
-          "learning-resources",
-          {
-            "group": "Jump right in",
-            "pages": [
-              "learning/how-tos/create-your-first-query",
-              "learning/how-tos/query-templates",
-              "learning/how-tos/create-new-content",
-              "learning/how-tos/create-your-first-visualization",
-              "learning/how-tos/navigate-query-editor",
-              "learning/how-tos/find-datasets",
-              "learning/how-tos/export-data-out",
-              "learning/how-tos/create-and-manage-teams",
-              "learning/how-tos/credit-system-on-dune",
-              "learning/how-tos/credit-system",
-              "learning/how-tos/pricing-faqs",
-              "learning/how-tos/search-for-content",
-              "learning/how-tos/share-dune-content",
-              "learning/how-tos/share-your-query",
-              "learning/how-tos/transfer-ownership",
-              "learning/flipside-migration-guide"
-            ]
-          }
-        ]
+        "tab": "Docs"
       },
       {
         "tab": "Data Catalog",
@@ -3230,82 +3204,58 @@
       },
       {
         "tab": "Access",
-        "dropdowns": [
+        "groups": [
           {
-            "dropdown": "Explore and Analyze",
-            "icon": "chart-line",
-            "groups": [
+            "group": "EXPLORE AND ANALYZE",
+            "pages": [
               {
                 "group": "Analytics Hub",
-                "pages": [
-                  {
-                    "group": "Analytics Hub",
-                    "pages": [
-                      "web-app/overview",
-                      {
-                        "group": "Create Queries",
-                        "pages": [
-                          "web-app/query-editor/query-window",
-                          "web-app/query-editor/data-explorer",
-                          "web-app/query-editor/parameters",
-                          "web-app/query-editor/query-scheduler",
-                          "web-app/query-editor/query-lineage",
-                          "web-app/query-editor/version-history"
-                        ]
-                      },
-                      {
-                        "group": "Create Visualizations",
-                        "pages": [
-                          "web-app/visualizations/charts-graphs",
-                          "web-app/visualizations/counters",
-                          "web-app/visualizations/tables"
-                        ]
-                      },
-                      {
-                        "group": "Decoding Contracts",
-                        "pages": [
-                          "web-app/decoding/decoding-contracts",
-                          "web-app/decoding/best-practices",
-                          "web-app/decoding/faqs",
-                          "web-app/decoding/multichain-decoding",
-                          "web-app/decoding/short-guide-contract-submission"
-                        ]
-                      },
-                      "web-app/dashboards",
-                      "web-app/teams",
-                      "web-app/dune-ai",
-                      "web-app/upload-data",
-                      "web-app/embeds",
-                      "web-app/search",
-                      "web-app/alerts",
-                      "web-app/bug-bounty",
-                      "web-app/user-activity",
-                      "web-app/google-sso-domain-restriction",
-                      "web-app/okta-sso"
-                    ]
-                  }
-                ]
+                "icon": "chart-line",
+                "pages": []
               }
             ]
           },
           {
-            "dropdown": "Programmatic Access",
-            "icon": "code",
-            "groups": [
+            "group": "PROGRAMMATIC ACCESS",
+            "pages": [
               {
                 "group": "API Reference",
+                "icon": "code",
                 "pages": [
                   "api-reference/overview/introduction",
                   "api-reference/overview/getting-started",
                   "api-reference/overview/authentication",
-                  "api-reference/overview/rate-limits",
-                  "api-reference/overview/troubleshooting",
-                  "api-reference/overview/billing",
-                  "api-reference/overview/faq"
+                  {
+                    "group": "Executions",
+                    "pages": [
+                      "api-reference/executions/endpoint/execute-sql",
+                      "api-reference/executions/endpoint/execute-query",
+                      "api-reference/executions/endpoint/get-execution-status",
+                      "api-reference/executions/endpoint/get-execution-result"
+                    ]
+                  },
+                  {
+                    "group": "Queries",
+                    "pages": [
+                      "api-reference/queries/endpoint/list",
+                      "api-reference/queries/endpoint/read",
+                      "api-reference/queries/endpoint/create",
+                      "api-reference/queries/endpoint/update"
+                    ]
+                  },
+                  {
+                    "group": "Tables",
+                    "pages": [
+                      "api-reference/tables/endpoint/overview",
+                      "api-reference/tables/endpoint/uploads-create",
+                      "api-reference/tables/endpoint/uploads-insert"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Client SDKs",
+                "icon": "box",
                 "pages": [
                   "api-reference/overview/sdks",
                   "api-reference/sdks/python",
@@ -3315,12 +3265,14 @@
               },
               {
                 "group": "Real-Time APIs",
+                "icon": "bolt",
                 "pages": [
                   "api-reference/realtime/overview"
                 ]
               },
               {
                 "group": "Webhooks",
+                "icon": "webhook",
                 "pages": [
                   "api-reference/webhooks/webhook"
                 ]
@@ -3328,45 +3280,29 @@
             ]
           },
           {
-            "dropdown": "Datashare",
-            "icon": "database",
-            "groups": [
+            "group": "DATA DELIVERY",
+            "pages": [
               {
-                "group": "Data Warehouse Delivery",
-                "pages": [
-                  {
-                    "group": "Datashare",
-                    "pages": [
-                      "datashare/datashare",
-                      "datashare/datashare-snowflake",
-                      "datashare/datashare-bigquery",
-                      "datashare/datashare-trial",
-                      "datashare/datashare-faqs"
-                    ]
-                  }
-                ]
+                "group": "Datashare",
+                "icon": "database",
+                "pages": []
               }
             ]
           },
           {
-            "dropdown": "Connect your Tools",
-            "icon": "plug",
-            "groups": [
+            "group": "INTEGRATIONS",
+            "pages": [
               {
                 "group": "Trino Connectors",
+                "icon": "plug",
                 "pages": [
                   "api-reference/connectors/overview",
                   "api-reference/connectors/trino-connector"
                 ]
-              }
-            ]
-          },
-          {
-            "dropdown": "Transform Data",
-            "icon": "arrows-rotate",
-            "groups": [
+              },
               {
                 "group": "dbt Connector",
+                "icon": "arrows-rotate",
                 "pages": [
                   "api-reference/connectors/dbt-connector"
                 ]
@@ -3374,153 +3310,43 @@
             ]
           },
           {
-            "dropdown": "For Blockchains",
-            "icon": "cube",
-            "groups": [
+            "group": "FOR BLOCKCHAINS",
+            "pages": [
               {
                 "group": "Catalyst",
-                "pages": [
-                  {
-                    "group": "Catalyst",
-                    "pages": [
-                      "catalyst/overview"
-                    ]
-                  }
-                ]
+                "icon": "cube",
+                "pages": []
               }
             ]
           }
         ]
       },
       {
-        "tab": "SQL Query Engine",
-        "pages": [
-          "query-engine/overview",
-          {
-            "group": "Functionality",
-            "pages": [
-              "query-engine/query-executions",
-              "query-engine/query-a-query",
-              "query-engine/materialized-views"
-            ]
-          },
-          {
-            "group": "DuneSQL",
-            "pages": [
-              "query-engine/dunesql-architecture",
-              "query-engine/writing-efficient-queries",
-              "query-engine/datatypes",
-              "query-engine/reserved-keywords"
-            ]
-          },
-          {
-            "group": "Functions and Operators",
-            "pages": [
-              "query-engine/Functions-and-operators/index",
-              "query-engine/Functions-and-operators/aggregate",
-              "query-engine/Functions-and-operators/array",
-              "query-engine/Functions-and-operators/asof-join",
-              "query-engine/Functions-and-operators/base58",
-              "query-engine/Functions-and-operators/binary",
-              "query-engine/Functions-and-operators/bitwise",
-              "query-engine/Functions-and-operators/chain-utility-functions",
-              "query-engine/Functions-and-operators/comparison",
-              "query-engine/Functions-and-operators/conditional",
-              "query-engine/Functions-and-operators/conversion",
-              "query-engine/Functions-and-operators/datetime",
-              "query-engine/Functions-and-operators/decimal",
-              "query-engine/Functions-and-operators/evm-decoding-functions",
-              "query-engine/Functions-and-operators/hyperloglog",
-              "query-engine/Functions-and-operators/json",
-              "query-engine/Functions-and-operators/lambda",
-              "query-engine/Functions-and-operators/live-fetch",
-              "query-engine/Functions-and-operators/logical",
-              "query-engine/Functions-and-operators/map",
-              "query-engine/Functions-and-operators/math",
-              "query-engine/Functions-and-operators/ml",
-              "query-engine/Functions-and-operators/qdigest",
-              "query-engine/Functions-and-operators/regexp",
-              "query-engine/Functions-and-operators/setdigest",
-              "query-engine/Functions-and-operators/ss58",
-              "query-engine/Functions-and-operators/tonaddress",
-              "query-engine/Functions-and-operators/tronaddress",
-              "query-engine/Functions-and-operators/string",
-              "query-engine/Functions-and-operators/system",
-              "query-engine/Functions-and-operators/tdigest",
-              "query-engine/Functions-and-operators/teradata",
-              "query-engine/Functions-and-operators/url",
-              "query-engine/Functions-and-operators/uuid",
-              "query-engine/Functions-and-operators/varbinary",
-              "query-engine/Functions-and-operators/varchar-utility-functions",
-              "query-engine/Functions-and-operators/window"
-            ]
-          }
-        ]
+        "tab": "SQL Query Engine"
       },
       {
         "tab": "Enterprise",
-        "dropdowns": [
+        "pages": [
+          "enterprise/overview",
           {
-            "dropdown": "Analytics Hub",
-            "icon": "chart-line",
-            "groups": [
-              {
-                "group": "Team Management",
-                "pages": [
-                  "web-app/teams"
-                ]
-              },
-              {
-                "group": "Security & SSO",
-                "pages": [
-                  "web-app/okta-sso",
-                  "web-app/google-sso-domain-restriction"
-                ]
-              },
-              {
-                "group": "Activity & Audit",
-                "pages": [
-                  "web-app/user-activity"
-                ]
-              }
+            "group": "ANALYTICS HUB",
+            "pages": [
+              "enterprise/analytics-hub/overview",
+              "enterprise/analytics-hub/teams",
+              "enterprise/analytics-hub/sso",
+              "enterprise/analytics-hub/permissions"
             ]
           },
           {
-            "dropdown": "Datashare",
-            "icon": "database",
-            "groups": [
-              {
-                "group": "Enterprise Data Delivery",
-                "pages": [
-                  {
-                    "group": "Datashare",
-                    "pages": [
-                      "datashare/datashare",
-                      "datashare/datashare-snowflake",
-                      "datashare/datashare-bigquery",
-                      "datashare/datashare-trial",
-                      "datashare/datashare-faqs"
-                    ]
-                  }
-                ]
-              }
+            "group": "DATASHARE",
+            "pages": [
+              "enterprise/datashare/overview"
             ]
           },
           {
-            "dropdown": "Catalyst",
-            "icon": "cube",
-            "groups": [
-              {
-                "group": "Blockchain Integration",
-                "pages": [
-                  {
-                    "group": "Catalyst",
-                    "pages": [
-                      "catalyst/overview"
-                    ]
-                  }
-                ]
-              }
+            "group": "CATALYST",
+            "pages": [
+              "enterprise/catalyst/overview"
             ]
           }
         ]
