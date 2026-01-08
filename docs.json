@@ -33,27 +33,27 @@
   "tabs": [
     {
       "name": "Docs",
-      "url": "docs-new"
+      "url": "home"
     },
     {
       "name": "Data Catalog",
-      "url": "data-catalog-new"
+      "url": "data-catalog"
     },
     {
       "name": "Access",
-      "url": "access"
+      "url": "web-app"
     },
     {
       "name": "SQL Query Engine",
-      "url": "sql-query-engine"
+      "url": "query-engine"
     },
     {
       "name": "Enterprise",
-      "url": "enterprise"
+      "url": "web-app/teams"
     },
     {
       "name": "Resources",
-      "url": "resources"
+      "url": "learning"
     }
   ],
   "navigation": {
@@ -61,35 +61,29 @@
       {
         "tab": "Docs",
         "pages": [
-          "docs-new/overview",
-          "docs-new/architecture-overview",
-          "docs-new/data-coverage",
+          "home",
+          "quickstart",
+          "learning-resources",
           {
             "group": "Quick Start",
             "pages": [
-              "docs-new/quick-start/create-account",
-              "docs-new/quick-start/first-query",
-              "docs-new/quick-start/choose-access-method"
+              "learning/how-tos/create-your-first-query",
+              "learning/how-tos/create-your-first-visualization",
+              "learning/how-tos/navigate-query-editor",
+              "learning/how-tos/find-datasets"
             ]
           },
           {
-            "group": "Solutions",
+            "group": "How-To Guides",
             "pages": [
-              "docs-new/use-cases/protocol-analytics",
-              "docs-new/use-cases/trading-intelligence",
-              "docs-new/use-cases/stablecoin-payments",
-              "docs-new/use-cases/investor-reporting",
-              "docs-new/use-cases/build-applications"
-            ]
-          },
-          {
-            "group": "For Your Business",
-            "pages": [
-              "docs-new/for-your-business/financial-institutions",
-              "docs-new/for-your-business/asset-managers",
-              "docs-new/for-your-business/protocols-daos",
-              "docs-new/for-your-business/blockchains",
-              "docs-new/for-your-business/regulators-compliance"
+              "learning/how-tos/query-templates",
+              "learning/how-tos/create-new-content",
+              "learning/how-tos/export-data-out",
+              "learning/how-tos/search-for-content",
+              "learning/how-tos/share-dune-content",
+              "learning/how-tos/share-your-query",
+              "learning/how-tos/transfer-ownership",
+              "learning/flipside-migration-guide"
             ]
           }
         ]
@@ -97,123 +91,97 @@
       {
         "tab": "Data Catalog",
         "pages": [
-          "data-catalog-new/overview",
-          "data-catalog-new/how-our-data-works",
-          "data-catalog-new/data-quality",
-          "data-catalog-new/data-freshness",
-          "data-catalog-new/coverage-matrix",
+          "data-catalog/overview",
           {
-            "group": "Curated",
+            "group": "Curated Data",
             "pages": [
-              "data-catalog-new/curated/overview",
+              "data-catalog/curated/overview",
               {
                 "group": "DEX Trades",
                 "pages": [
-                  "data-catalog-new/curated/dex-trades/overview",
-                  "data-catalog-new/curated/dex-trades/dex-trades",
-                  "data-catalog-new/curated/dex-trades/dex-aggregator-trades"
+                  "data-catalog/curated/dex-trades/overview",
+                  "data-catalog/curated/dex-trades/evm/dex-trades",
+                  "data-catalog/curated/dex-trades/evm/dex-aggregator-trades"
                 ]
               },
               {
                 "group": "Prices",
                 "pages": [
-                  "data-catalog-new/curated/prices/overview",
-                  "data-catalog-new/curated/prices/prices-day",
-                  "data-catalog-new/curated/prices/prices-hour",
-                  "data-catalog-new/curated/prices/prices-minute",
-                  "data-catalog-new/curated/prices/prices-latest"
+                  "data-catalog/curated/prices/overview",
+                  "data-catalog/curated/prices/prices_usd",
+                  "data-catalog/curated/prices/prices_day",
+                  "data-catalog/curated/prices/prices_hour",
+                  "data-catalog/curated/prices/prices_minute",
+                  "data-catalog/curated/prices/prices_latest"
                 ]
               },
               {
-                "group": "NFT",
+                "group": "NFT Trades",
                 "pages": [
-                  "data-catalog-new/curated/nft/overview",
-                  "data-catalog-new/curated/nft/nft-trades"
+                  "data-catalog/curated/nft-trades/overview",
+                  "data-catalog/curated/nft-trades/evm/nft-trades",
+                  "data-catalog/curated/nft-trades/evm/nft-mints",
+                  "data-catalog/curated/nft-trades/evm/nft-transfers"
                 ]
               },
               {
                 "group": "Labels",
                 "pages": [
-                  "data-catalog-new/curated/labels/overview",
-                  "data-catalog-new/curated/labels/labels-all"
+                  "data-catalog/curated/labels/overview",
+                  "data-catalog/curated/labels/address-labels",
+                  "data-catalog/curated/labels/ens-labels"
                 ]
               },
               {
-                "group": "Tokens & Balances",
+                "group": "Token Transfers",
                 "pages": [
-                  "data-catalog-new/curated/tokens-balances/overview",
-                  "data-catalog-new/curated/tokens-balances/tokens-transfers",
-                  "data-catalog-new/curated/tokens-balances/balances"
+                  "data-catalog/curated/token-transfers/evm/token-transfers",
+                  "data-catalog/curated/token-transfers/evm/balances"
                 ]
               }
             ]
           },
           {
-            "group": "EVM",
+            "group": "EVM Data",
             "pages": [
-              "data-catalog-new/evm/overview",
+              "data-catalog/evm/overview",
               {
                 "group": "Ethereum",
                 "pages": [
-                  "data-catalog-new/evm/ethereum/overview",
-                  {
-                    "group": "Raw",
-                    "pages": [
-                      "data-catalog-new/evm/ethereum/raw/blocks",
-                      "data-catalog-new/evm/ethereum/raw/transactions",
-                      "data-catalog-new/evm/ethereum/raw/logs",
-                      "data-catalog-new/evm/ethereum/raw/traces"
-                    ]
-                  },
-                  {
-                    "group": "Decoded",
-                    "pages": [
-                      "data-catalog-new/evm/ethereum/decoded/overview"
-                    ]
-                  }
+                  "data-catalog/evm/ethereum/overview",
+                  "data-catalog/evm/ethereum/raw/blocks",
+                  "data-catalog/evm/ethereum/raw/transactions",
+                  "data-catalog/evm/ethereum/raw/logs",
+                  "data-catalog/evm/ethereum/raw/traces"
                 ]
-              },
-              "data-catalog-new/evm/base",
-              "data-catalog-new/evm/arbitrum",
-              "data-catalog-new/evm/optimism"
+              }
             ]
           },
           {
-            "group": "Non-EVM",
+            "group": "Non-EVM Data",
             "pages": [
-              "data-catalog-new/non-evm/overview",
-              "data-catalog-new/non-evm/solana",
-              "data-catalog-new/non-evm/bitcoin",
-              "data-catalog-new/non-evm/tron"
+              "data-catalog/solana/overview",
+              "data-catalog/solana/idl-tables",
+              "data-catalog/bitcoin/overview",
+              "data-catalog/tron/overview"
             ]
           },
           {
-            "group": "Decoded",
+            "group": "Decoding",
             "pages": [
-              "data-catalog-new/decoded/overview",
-              "data-catalog-new/decoded/submit-contract",
-              "data-catalog-new/decoded/best-practices",
-              "data-catalog-new/decoded/multichain-decoding",
-              "data-catalog-new/decoded/finding-decoded-tables"
+              "web-app/decoding/decoding-contracts",
+              "web-app/decoding/best-practices",
+              "web-app/decoding/faqs",
+              "web-app/decoding/multichain-decoding"
             ]
           },
           {
             "group": "Community Data",
             "pages": [
-              "data-catalog-new/community-data/overview",
-              "data-catalog-new/community-data/farcaster",
-              "data-catalog-new/community-data/lens",
-              "data-catalog-new/community-data/snapshot",
-              "data-catalog-new/community-data/reservoir"
-            ]
-          },
-          {
-            "group": "Spellbook",
-            "pages": [
-              "data-catalog-new/spellbook/overview",
-              "data-catalog-new/spellbook/browse-tables",
-              "data-catalog-new/spellbook/contribute",
-              "data-catalog-new/spellbook/spellbook-vs-curated"
+              "data-catalog/community/farcaster/overview",
+              "data-catalog/community/lens/overview",
+              "data-catalog/community/snapshot/overview",
+              "data-catalog/community/reservoir/overview"
             ]
           }
         ]
@@ -225,88 +193,102 @@
             "dropdown": "Explore and Analyze",
             "icon": "chart-line",
             "pages": [
-              "access/analytics-hub/overview",
+              "web-app/overview",
               {
-                "group": "Writing Queries",
+                "group": "Query Editor",
                 "pages": [
-                  "access/analytics-hub/writing-queries/overview",
-                  "access/analytics-hub/writing-queries/query-editor",
-                  "access/analytics-hub/writing-queries/parameters",
-                  "access/analytics-hub/writing-queries/scheduling"
+                  "web-app/query-editor/query-window",
+                  "web-app/query-editor/data-explorer",
+                  "web-app/query-editor/parameters",
+                  "web-app/query-editor/query-scheduler",
+                  "web-app/query-editor/query-lineage",
+                  "web-app/query-editor/version-history"
                 ]
               },
               {
                 "group": "Visualizations",
                 "pages": [
-                  "access/analytics-hub/visualizations/overview",
-                  "access/analytics-hub/visualizations/chart-types",
-                  "access/analytics-hub/visualizations/best-practices"
+                  "web-app/visualizations/charts-graphs",
+                  "web-app/visualizations/counters",
+                  "web-app/visualizations/tables"
                 ]
               },
-              {
-                "group": "Dashboards",
-                "pages": [
-                  "access/analytics-hub/dashboards/overview",
-                  "access/analytics-hub/dashboards/creating-dashboards",
-                  "access/analytics-hub/dashboards/embedding-sharing",
-                  "access/analytics-hub/dashboards/permissions"
-                ]
-              },
-              "access/analytics-hub/teams",
-              "access/analytics-hub/alerts",
-              "access/analytics-hub/ai-assistant"
+              "web-app/dashboards",
+              "web-app/dune-ai",
+              "web-app/alerts",
+              "web-app/search",
+              "web-app/embeds",
+              "web-app/upload-data"
             ]
           },
           {
             "dropdown": "Programmatic Access",
             "icon": "code",
             "pages": [
-              "access/programmatic-access/api-reference/overview",
-              "access/programmatic-access/api-reference/getting-started",
-              "access/programmatic-access/api-reference/authentication",
+              "api-reference/overview/introduction",
+              "api-reference/overview/getting-started",
+              "api-reference/overview/authentication",
               {
-                "group": "Executions",
+                "group": "Executions & Results",
                 "pages": [
-                  "access/programmatic-access/api-reference/executions/overview",
-                  "access/programmatic-access/api-reference/executions/execute-sql",
-                  "access/programmatic-access/api-reference/executions/execute-query",
-                  "access/programmatic-access/api-reference/executions/get-execution-status",
-                  "access/programmatic-access/api-reference/executions/get-execution-result",
-                  "access/programmatic-access/api-reference/executions/cancel-execution"
+                  "api-reference/executions/endpoint/execute-sql",
+                  "api-reference/executions/endpoint/execute-query",
+                  "api-reference/executions/endpoint/get-execution-status",
+                  "api-reference/executions/endpoint/get-execution-result",
+                  "api-reference/executions/endpoint/get-execution-result-csv",
+                  "api-reference/executions/endpoint/cancel-execution"
                 ]
               },
               {
-                "group": "Queries",
+                "group": "Query Management",
                 "pages": [
-                  "access/programmatic-access/api-reference/queries/overview",
-                  "access/programmatic-access/api-reference/queries/list-queries",
-                  "access/programmatic-access/api-reference/queries/create",
-                  "access/programmatic-access/api-reference/queries/update",
-                  "access/programmatic-access/api-reference/queries/read"
+                  "api-reference/queries/endpoint/list",
+                  "api-reference/queries/endpoint/read",
+                  "api-reference/queries/endpoint/create",
+                  "api-reference/queries/endpoint/update",
+                  "api-reference/queries/endpoint/archive"
+                ]
+              },
+              {
+                "group": "Data Uploads",
+                "pages": [
+                  "api-reference/tables/endpoint/upload",
+                  "api-reference/tables/endpoint/create",
+                  "api-reference/tables/endpoint/insert",
+                  "api-reference/tables/endpoint/clear",
+                  "api-reference/tables/endpoint/delete"
                 ]
               },
               {
                 "group": "Client SDKs",
                 "pages": [
-                  "access/programmatic-access/api-reference/sdks/overview",
-                  "access/programmatic-access/api-reference/sdks/python",
-                  "access/programmatic-access/api-reference/sdks/typescript",
-                  "access/programmatic-access/api-reference/sdks/go"
+                  "api-reference/overview/sdks"
                 ]
               },
               {
                 "group": "Webhooks",
                 "pages": [
-                  "access/programmatic-access/api-reference/webhooks/overview"
+                  "api-reference/webhooks/webhook"
+                ]
+              },
+              {
+                "group": "Materialized Views",
+                "pages": [
+                  "api-reference/materialized-views/overview",
+                  "api-reference/materialized-views/get",
+                  "api-reference/materialized-views/create",
+                  "api-reference/materialized-views/delete",
+                  "api-reference/materialized-views/list",
+                  "api-reference/materialized-views/refresh"
                 ]
               },
               {
                 "group": "Resources",
                 "pages": [
-                  "access/programmatic-access/api-reference/resources/rate-limits",
-                  "access/programmatic-access/api-reference/resources/troubleshooting",
-                  "access/programmatic-access/api-reference/resources/billing",
-                  "access/programmatic-access/api-reference/resources/faq"
+                  "api-reference/overview/rate-limits",
+                  "api-reference/overview/troubleshooting",
+                  "api-reference/overview/billing",
+                  "api-reference/overview/faq"
                 ]
               }
             ]
@@ -315,70 +297,27 @@
             "dropdown": "Datashare",
             "icon": "database",
             "pages": [
-              "access/datashare/overview",
-              {
-                "group": "Snowflake",
-                "pages": [
-                  "access/datashare/snowflake/overview",
-                  "access/datashare/snowflake/setup",
-                  "access/datashare/snowflake/query-examples"
-                ]
-              },
-              {
-                "group": "BigQuery",
-                "pages": [
-                  "access/datashare/bigquery/overview",
-                  "access/datashare/bigquery/setup",
-                  "access/datashare/bigquery/query-examples"
-                ]
-              },
-              "access/datashare/databricks"
+              "datashare/datashare",
+              "datashare/datashare-snowflake",
+              "datashare/datashare-bigquery",
+              "datashare/datashare-trial",
+              "datashare/datashare-faqs"
             ]
           },
           {
             "dropdown": "Connect your Tools",
             "icon": "plug",
             "pages": [
-              "access/connectors/overview",
-              {
-                "group": "Trino Connectors",
-                "pages": [
-                  "access/connectors/bi-analytics-tools/overview",
-                  "access/connectors/bi-analytics-tools/hex",
-                  "access/connectors/bi-analytics-tools/metabase",
-                  "access/connectors/bi-analytics-tools/tableau",
-                  "access/connectors/bi-analytics-tools/power-bi",
-                  "access/connectors/bi-analytics-tools/looker",
-                  "access/connectors/bi-analytics-tools/dbeaver",
-                  "access/connectors/bi-analytics-tools/other-trino-tools"
-                ]
-              }
-            ]
-          },
-          {
-            "dropdown": "Transform Data",
-            "icon": "arrows-rotate",
-            "pages": [
-              "access/connectors/transform-data/overview",
-              {
-                "group": "dbt Connector",
-                "pages": [
-                  "access/connectors/transform-data/dbt-connector/overview",
-                  "access/connectors/transform-data/dbt-connector/setup",
-                  "access/connectors/transform-data/dbt-connector/building-models",
-                  "access/connectors/transform-data/dbt-connector/materialized-views",
-                  "access/connectors/transform-data/dbt-connector/supported-operations"
-                ]
-              }
+              "api-reference/connectors/overview",
+              "api-reference/connectors/trino-connector",
+              "api-reference/connectors/dbt-connector"
             ]
           },
           {
             "dropdown": "For Blockchains",
             "icon": "cube",
             "pages": [
-              "access/catalyst/overview",
-              "access/catalyst/whats-included",
-              "access/catalyst/integration-process"
+              "catalyst/overview"
             ]
           }
         ]
@@ -386,49 +325,39 @@
       {
         "tab": "SQL Query Engine",
         "pages": [
-          "sql-query-engine/overview",
+          "query-engine/overview",
           {
             "group": "Query Features",
             "pages": [
-              "sql-query-engine/query-features/executions",
-              "sql-query-engine/query-features/query-views",
-              "sql-query-engine/query-features/materialized-views",
-              "sql-query-engine/query-features/writing-efficient-queries",
-              "sql-query-engine/query-features/dunesql-architecture"
+              "query-engine/query-executions",
+              "query-engine/query-a-query",
+              "query-engine/materialized-views",
+              "query-engine/writing-efficient-queries",
+              "query-engine/dunesql-architecture"
             ]
           },
           {
-            "group": "Datatypes",
+            "group": "Data Types",
             "pages": [
-              "sql-query-engine/datatypes/overview",
-              "sql-query-engine/datatypes/reserved-keywords"
+              "query-engine/datatypes",
+              "query-engine/reserved-keywords"
             ]
           },
           {
-            "group": "Functions and Operators",
+            "group": "Functions & Operators",
             "pages": [
-              "sql-query-engine/functions-and-operators/overview",
-              "sql-query-engine/functions-and-operators/aggregate",
-              "sql-query-engine/functions-and-operators/array",
-              "sql-query-engine/functions-and-operators/datetime",
-              "sql-query-engine/functions-and-operators/string",
-              "sql-query-engine/functions-and-operators/math",
-              "sql-query-engine/functions-and-operators/json",
-              "sql-query-engine/functions-and-operators/varbinary",
-              "sql-query-engine/functions-and-operators/window"
-            ]
-          },
-          {
-            "group": "Syntax",
-            "pages": [
-              "sql-query-engine/syntax/overview",
-              "sql-query-engine/syntax/select",
-              "sql-query-engine/syntax/from-join",
-              "sql-query-engine/syntax/where",
-              "sql-query-engine/syntax/group-by",
-              "sql-query-engine/syntax/order-by",
-              "sql-query-engine/syntax/with-ctes",
-              "sql-query-engine/syntax/set-operations"
+              "query-engine/Functions-and-operators/index",
+              "query-engine/Functions-and-operators/aggregate",
+              "query-engine/Functions-and-operators/array",
+              "query-engine/Functions-and-operators/datetime",
+              "query-engine/Functions-and-operators/string",
+              "query-engine/Functions-and-operators/math",
+              "query-engine/Functions-and-operators/json",
+              "query-engine/Functions-and-operators/varbinary",
+              "query-engine/Functions-and-operators/window",
+              "query-engine/Functions-and-operators/chain-utility-functions",
+              "query-engine/Functions-and-operators/evm-decoding-functions",
+              "query-engine/Functions-and-operators/live-fetch"
             ]
           }
         ]
@@ -440,24 +369,26 @@
             "dropdown": "Analytics Hub",
             "icon": "chart-line",
             "pages": [
-              "enterprise/analytics-hub/overview",
-              "enterprise/analytics-hub/teams",
-              "enterprise/analytics-hub/sso",
-              "enterprise/analytics-hub/permissions"
+              "web-app/teams",
+              "web-app/okta-sso",
+              "web-app/google-sso-domain-restriction",
+              "web-app/user-activity"
             ]
           },
           {
             "dropdown": "Datashare",
             "icon": "database",
             "pages": [
-              "enterprise/datashare/overview"
+              "datashare/datashare",
+              "datashare/datashare-snowflake",
+              "datashare/datashare-bigquery"
             ]
           },
           {
             "dropdown": "Catalyst",
             "icon": "cube",
             "pages": [
-              "enterprise/catalyst/overview"
+              "catalyst/overview"
             ]
           }
         ]
@@ -465,46 +396,29 @@
       {
         "tab": "Resources",
         "pages": [
-          "resources/overview",
           {
             "group": "Credits & Billing",
             "pages": [
-              "resources/credits-billing/overview",
-              "resources/credits-billing/how-credits-work",
-              "resources/credits-billing/pricing",
-              "resources/credits-billing/managing-plan",
-              "resources/credits-billing/enterprise"
+              "learning/how-tos/credit-system-on-dune",
+              "learning/how-tos/credit-system",
+              "learning/how-tos/pricing-faqs",
+              "learning/how-tos/create-and-manage-teams"
             ]
           },
           {
             "group": "Learning",
             "pages": [
-              "resources/learning/overview",
-              "resources/learning/video-tutorials",
-              "resources/learning/example-queries",
-              "resources/learning/example-dashboards",
-              "resources/learning/analyst-roadmap"
+              "learning-resources",
+              "learning/how-tos/create-your-first-query",
+              "learning/how-tos/create-your-first-visualization"
             ]
           },
           {
             "group": "Support",
             "pages": [
-              "resources/support/overview",
-              "resources/support/faq",
-              "resources/support/troubleshooting",
-              "resources/support/contact"
+              "web-app/bug-bounty"
             ]
-          },
-          {
-            "group": "Community",
-            "pages": [
-              "resources/community/overview",
-              "resources/community/discord",
-              "resources/community/bounties-grants",
-              "resources/community/wizards-program"
-            ]
-          },
-          "resources/changelog"
+          }
         ]
       }
     ]
