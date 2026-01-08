@@ -3204,120 +3204,41 @@
       },
       {
         "tab": "Access",
-        "groups": [
+        "dropdowns": [
           {
-            "group": "EXPLORE AND ANALYZE",
+            "dropdown": "Analytics Hub",
+            "icon": "chart-line",
+            "pages": []
+          },
+          {
+            "dropdown": "API Reference",
+            "icon": "code",
+            "pages": []
+          },
+          {
+            "dropdown": "Datashare",
+            "icon": "database",
+            "pages": []
+          },
+          {
+            "dropdown": "Trino Connectors",
+            "icon": "plug",
             "pages": [
-              {
-                "group": "Analytics Hub",
-                "icon": "chart-line",
-                "pages": []
-              }
+              "api-reference/connectors/overview",
+              "api-reference/connectors/trino-connector"
             ]
           },
           {
-            "group": "PROGRAMMATIC ACCESS",
+            "dropdown": "dbt Connector",
+            "icon": "arrows-rotate",
             "pages": [
-              {
-                "group": "API Reference",
-                "icon": "code",
-                "pages": [
-                  "api-reference/overview/introduction",
-                  "api-reference/overview/getting-started",
-                  "api-reference/overview/authentication",
-                  {
-                    "group": "Executions",
-                    "pages": [
-                      "api-reference/executions/endpoint/execute-sql",
-                      "api-reference/executions/endpoint/execute-query",
-                      "api-reference/executions/endpoint/get-execution-status",
-                      "api-reference/executions/endpoint/get-execution-result"
-                    ]
-                  },
-                  {
-                    "group": "Queries",
-                    "pages": [
-                      "api-reference/queries/endpoint/list",
-                      "api-reference/queries/endpoint/read",
-                      "api-reference/queries/endpoint/create",
-                      "api-reference/queries/endpoint/update"
-                    ]
-                  },
-                  {
-                    "group": "Tables",
-                    "pages": [
-                      "api-reference/tables/endpoint/overview",
-                      "api-reference/tables/endpoint/uploads-create",
-                      "api-reference/tables/endpoint/uploads-insert"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Client SDKs",
-                "icon": "box",
-                "pages": [
-                  "api-reference/overview/sdks",
-                  "api-reference/sdks/python",
-                  "api-reference/sdks/typescript",
-                  "api-reference/sdks/go"
-                ]
-              },
-              {
-                "group": "Real-Time APIs",
-                "icon": "bolt",
-                "pages": [
-                  "api-reference/realtime/overview"
-                ]
-              },
-              {
-                "group": "Webhooks",
-                "icon": "webhook",
-                "pages": [
-                  "api-reference/webhooks/webhook"
-                ]
-              }
+              "api-reference/connectors/dbt-connector"
             ]
           },
           {
-            "group": "DATA DELIVERY",
-            "pages": [
-              {
-                "group": "Datashare",
-                "icon": "database",
-                "pages": []
-              }
-            ]
-          },
-          {
-            "group": "INTEGRATIONS",
-            "pages": [
-              {
-                "group": "Trino Connectors",
-                "icon": "plug",
-                "pages": [
-                  "api-reference/connectors/overview",
-                  "api-reference/connectors/trino-connector"
-                ]
-              },
-              {
-                "group": "dbt Connector",
-                "icon": "arrows-rotate",
-                "pages": [
-                  "api-reference/connectors/dbt-connector"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "FOR BLOCKCHAINS",
-            "pages": [
-              {
-                "group": "Catalyst",
-                "icon": "cube",
-                "pages": []
-              }
-            ]
+            "dropdown": "Catalyst",
+            "icon": "cube",
+            "pages": []
           }
         ]
       },
@@ -3326,10 +3247,10 @@
       },
       {
         "tab": "Enterprise",
-        "pages": [
-          "enterprise/overview",
+        "dropdowns": [
           {
-            "group": "ANALYTICS HUB",
+            "dropdown": "Analytics Hub",
+            "icon": "chart-line",
             "pages": [
               "enterprise/analytics-hub/overview",
               "enterprise/analytics-hub/teams",
@@ -3338,13 +3259,15 @@
             ]
           },
           {
-            "group": "DATASHARE",
+            "dropdown": "Datashare",
+            "icon": "database",
             "pages": [
               "enterprise/datashare/overview"
             ]
           },
           {
-            "group": "CATALYST",
+            "dropdown": "Catalyst",
+            "icon": "cube",
             "pages": [
               "enterprise/catalyst/overview"
             ]
