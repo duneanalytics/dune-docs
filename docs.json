@@ -32,7 +32,7 @@
   },
   "tabs": [
     {
-      "name": "Docs",
+      "name": "Get Started",
       "url": "home"
     },
     {
@@ -40,16 +40,12 @@
       "url": "data-catalog"
     },
     {
-      "name": "Access",
-      "url": "web-app"
+      "name": "Access Methods",
+      "url": "access-methods"
     },
     {
       "name": "SQL Query Engine",
       "url": "query-engine"
-    },
-    {
-      "name": "Enterprise",
-      "url": "enterprise"
     },
     {
       "name": "Resources",
@@ -59,7 +55,33 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Docs"
+        "tab": "Get Started",
+        "pages": [
+          "home",
+          "quickstart",
+          "learning-resources",
+          {
+            "group": "Jump right in",
+            "pages": [
+              "learning/how-tos/create-your-first-query",
+              "learning/how-tos/query-templates",
+              "learning/how-tos/create-new-content",
+              "learning/how-tos/create-your-first-visualization",
+              "learning/how-tos/navigate-query-editor",
+              "learning/how-tos/find-datasets",
+              "learning/how-tos/export-data-out",
+              "learning/how-tos/create-and-manage-teams",
+              "learning/how-tos/credit-system-on-dune",
+              "learning/how-tos/credit-system",
+              "learning/how-tos/pricing-faqs",
+              "learning/how-tos/search-for-content",
+              "learning/how-tos/share-dune-content",
+              "learning/how-tos/share-your-query",
+              "learning/how-tos/transfer-ownership",
+              "learning/flipside-migration-guide"
+            ]
+          }
+        ]
       },
       {
         "tab": "Data Catalog",
@@ -3203,73 +3225,306 @@
         ]
       },
       {
-        "tab": "Access",
-        "dropdowns": [
+        "tab": "Access Methods",
+        "groups": [
           {
-            "dropdown": "Analytics Hub",
-            "icon": "chart-line",
-            "pages": []
-          },
-          {
-            "dropdown": "API Reference",
-            "icon": "code",
-            "pages": []
-          },
-          {
-            "dropdown": "Datashare",
-            "icon": "database",
-            "pages": []
-          },
-          {
-            "dropdown": "Trino Connectors",
-            "icon": "plug",
+            "group": "Access Methods",
             "pages": [
-              "api-reference/connectors/overview",
-              "api-reference/connectors/trino-connector"
+              "access-methods/index"
             ]
           },
           {
-            "dropdown": "dbt Connector",
-            "icon": "arrows-rotate",
+            "group": "Analytics Hub",
+            "version": "Analytics Hub",
             "pages": [
-              "api-reference/connectors/dbt-connector"
+              "access-methods/analytics-hub/index",
+              {
+                "group": "Query Editor",
+                "pages": [
+                  "access-methods/analytics-hub/query-editor/index",
+                  "access-methods/analytics-hub/query-editor/data-explorer",
+                  "access-methods/analytics-hub/query-editor/parameters",
+                  "access-methods/analytics-hub/query-editor/scheduling",
+                  "access-methods/analytics-hub/query-editor/query-lineage",
+                  "access-methods/analytics-hub/query-editor/version-history"
+                ]
+              },
+              {
+                "group": "Visualizations",
+                "pages": [
+                  "access-methods/analytics-hub/visualizations/index",
+                  "access-methods/analytics-hub/visualizations/charts-graphs",
+                  "access-methods/analytics-hub/visualizations/counters",
+                  "access-methods/analytics-hub/visualizations/tables"
+                ]
+              },
+              {
+                "group": "Dashboards",
+                "pages": [
+                  "access-methods/analytics-hub/dashboards/index",
+                  "access-methods/analytics-hub/dashboards/embedding",
+                  "access-methods/analytics-hub/dashboards/permissions"
+                ]
+              },
+              {
+                "group": "Decoding Contracts",
+                "pages": [
+                  "access-methods/analytics-hub/decoding/index",
+                  "access-methods/analytics-hub/decoding/best-practices",
+                  "access-methods/analytics-hub/decoding/multichain",
+                  "access-methods/analytics-hub/decoding/faqs"
+                ]
+              },
+              "access-methods/analytics-hub/teams",
+              "access-methods/analytics-hub/dune-ai",
+              "access-methods/analytics-hub/upload-data",
+              "access-methods/analytics-hub/share-work",
+              "access-methods/analytics-hub/search-content",
+              "access-methods/analytics-hub/alerts",
+              "access-methods/analytics-hub/bug-bounty"
             ]
           },
           {
-            "dropdown": "Catalyst",
-            "icon": "cube",
-            "pages": []
+            "group": "API Reference",
+            "version": "API Reference",
+            "pages": [
+              "access-methods/api-reference/index",
+              "access-methods/api-reference/getting-started",
+              "access-methods/api-reference/authentication",
+              {
+                "group": "Executions",
+                "pages": [
+                  "access-methods/api-reference/executions/index",
+                  "access-methods/api-reference/executions/execute-sql",
+                  "access-methods/api-reference/executions/execute-query",
+                  "access-methods/api-reference/executions/execute-query-pipeline",
+                  "access-methods/api-reference/executions/get-execution-status",
+                  "access-methods/api-reference/executions/get-execution-result",
+                  "access-methods/api-reference/executions/get-execution-result-csv",
+                  "access-methods/api-reference/executions/get-query-result",
+                  "access-methods/api-reference/executions/get-query-result-csv",
+                  "access-methods/api-reference/executions/cancel-execution"
+                ]
+              },
+              {
+                "group": "Query Management",
+                "pages": [
+                  "access-methods/api-reference/queries/index",
+                  "access-methods/api-reference/queries/list-queries",
+                  "access-methods/api-reference/queries/get-query-pipeline",
+                  "access-methods/api-reference/queries/create",
+                  "access-methods/api-reference/queries/update",
+                  "access-methods/api-reference/queries/read",
+                  "access-methods/api-reference/queries/archive",
+                  "access-methods/api-reference/queries/unarchive",
+                  "access-methods/api-reference/queries/private",
+                  "access-methods/api-reference/queries/unprivate"
+                ]
+              },
+              {
+                "group": "Data Uploads",
+                "pages": [
+                  "access-methods/api-reference/tables/index",
+                  "access-methods/api-reference/tables/upload-csv",
+                  "access-methods/api-reference/tables/create-table",
+                  "access-methods/api-reference/tables/insert-data",
+                  "access-methods/api-reference/tables/clear-data",
+                  "access-methods/api-reference/tables/delete-table",
+                  "access-methods/api-reference/tables/list-tables"
+                ]
+              },
+              {
+                "group": "Materialized Views",
+                "pages": [
+                  "access-methods/api-reference/materialized-views/index",
+                  "access-methods/api-reference/materialized-views/get",
+                  "access-methods/api-reference/materialized-views/upsert",
+                  "access-methods/api-reference/materialized-views/delete",
+                  "access-methods/api-reference/materialized-views/list",
+                  "access-methods/api-reference/materialized-views/refresh"
+                ]
+              },
+              {
+                "group": "Post-processing",
+                "pages": [
+                  "access-methods/api-reference/post-processing/filtering",
+                  "access-methods/api-reference/post-processing/sorting",
+                  "access-methods/api-reference/post-processing/pagination",
+                  "access-methods/api-reference/post-processing/sampling"
+                ]
+              },
+              {
+                "group": "Resources",
+                "pages": [
+                  "access-methods/api-reference/resources/rate-limits",
+                  "access-methods/api-reference/resources/troubleshooting",
+                  "access-methods/api-reference/resources/billing",
+                  "access-methods/api-reference/resources/faq"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Client SDKs",
+            "version": "Client SDKs",
+            "pages": [
+              "access-methods/client-sdks/index",
+              "access-methods/client-sdks/python",
+              "access-methods/client-sdks/typescript",
+              "access-methods/client-sdks/go"
+            ]
+          },
+          {
+            "group": "Real-Time APIs",
+            "version": "Real-Time APIs",
+            "pages": [
+              "access-methods/real-time-apis/index",
+              "access-methods/real-time-apis/sim-apis"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "version": "Webhooks",
+            "pages": [
+              "access-methods/webhooks/index",
+              "access-methods/webhooks/setup",
+              "access-methods/webhooks/events"
+            ]
+          },
+          {
+            "group": "Datashare",
+            "version": "Datashare",
+            "pages": [
+              "access-methods/datashare/index",
+              "access-methods/datashare/getting-started",
+              {
+                "group": "Snowflake",
+                "pages": [
+                  "access-methods/datashare/snowflake/index",
+                  "access-methods/datashare/snowflake/setup",
+                  "access-methods/datashare/snowflake/data-types",
+                  "access-methods/datashare/snowflake/query-examples"
+                ]
+              },
+              {
+                "group": "BigQuery",
+                "pages": [
+                  "access-methods/datashare/bigquery/index",
+                  "access-methods/datashare/bigquery/setup",
+                  "access-methods/datashare/bigquery/query-examples"
+                ]
+              },
+              "access-methods/datashare/faqs"
+            ]
+          },
+          {
+            "group": "Trino Connector",
+            "version": "Trino Connector",
+            "pages": [
+              "access-methods/trino-connector/index",
+              "access-methods/trino-connector/connection-parameters",
+              "access-methods/trino-connector/hex",
+              "access-methods/trino-connector/metabase",
+              "access-methods/trino-connector/tableau",
+              "access-methods/trino-connector/power-bi",
+              "access-methods/trino-connector/looker",
+              "access-methods/trino-connector/dbeaver",
+              "access-methods/trino-connector/other-tools"
+            ]
+          },
+          {
+            "group": "dbt Connector",
+            "version": "dbt Connector",
+            "pages": [
+              "access-methods/dbt-connector/index",
+              "access-methods/dbt-connector/setup",
+              "access-methods/dbt-connector/building-models",
+              "access-methods/dbt-connector/materialized-views",
+              "access-methods/dbt-connector/supported-operations",
+              "access-methods/dbt-connector/troubleshooting"
+            ]
+          },
+          {
+            "group": "Catalyst",
+            "version": "Catalyst",
+            "pages": [
+              "access-methods/catalyst/index",
+              "access-methods/catalyst/hosted-blockchain",
+              {
+                "group": "Integration Routes",
+                "pages": [
+                  "access-methods/catalyst/integration-routes/evm-chains",
+                  "access-methods/catalyst/integration-routes/non-evm-rpc",
+                  "access-methods/catalyst/integration-routes/database-route"
+                ]
+              },
+              "access-methods/catalyst/data-latency",
+              "access-methods/catalyst/contact-sales"
+            ]
           }
         ]
       },
       {
-        "tab": "SQL Query Engine"
-      },
-      {
-        "tab": "Enterprise",
-        "dropdowns": [
+        "tab": "SQL Query Engine",
+        "pages": [
+          "query-engine/overview",
           {
-            "dropdown": "Analytics Hub",
-            "icon": "chart-line",
+            "group": "Functionality",
             "pages": [
-              "enterprise/analytics-hub/overview",
-              "enterprise/analytics-hub/teams",
-              "enterprise/analytics-hub/sso",
-              "enterprise/analytics-hub/permissions"
+              "query-engine/query-executions",
+              "query-engine/query-a-query",
+              "query-engine/materialized-views"
             ]
           },
           {
-            "dropdown": "Datashare",
-            "icon": "database",
+            "group": "DuneSQL",
             "pages": [
-              "enterprise/datashare/overview"
+              "query-engine/dunesql-architecture",
+              "query-engine/writing-efficient-queries",
+              "query-engine/datatypes",
+              "query-engine/reserved-keywords"
             ]
           },
           {
-            "dropdown": "Catalyst",
-            "icon": "cube",
+            "group": "Functions and Operators",
             "pages": [
-              "enterprise/catalyst/overview"
+              "query-engine/Functions-and-operators/index",
+              "query-engine/Functions-and-operators/aggregate",
+              "query-engine/Functions-and-operators/array",
+              "query-engine/Functions-and-operators/asof-join",
+              "query-engine/Functions-and-operators/base58",
+              "query-engine/Functions-and-operators/binary",
+              "query-engine/Functions-and-operators/bitwise",
+              "query-engine/Functions-and-operators/chain-utility-functions",
+              "query-engine/Functions-and-operators/comparison",
+              "query-engine/Functions-and-operators/conditional",
+              "query-engine/Functions-and-operators/conversion",
+              "query-engine/Functions-and-operators/datetime",
+              "query-engine/Functions-and-operators/decimal",
+              "query-engine/Functions-and-operators/evm-decoding-functions",
+              "query-engine/Functions-and-operators/hyperloglog",
+              "query-engine/Functions-and-operators/json",
+              "query-engine/Functions-and-operators/lambda",
+              "query-engine/Functions-and-operators/live-fetch",
+              "query-engine/Functions-and-operators/logical",
+              "query-engine/Functions-and-operators/map",
+              "query-engine/Functions-and-operators/math",
+              "query-engine/Functions-and-operators/ml",
+              "query-engine/Functions-and-operators/qdigest",
+              "query-engine/Functions-and-operators/regexp",
+              "query-engine/Functions-and-operators/setdigest",
+              "query-engine/Functions-and-operators/ss58",
+              "query-engine/Functions-and-operators/tonaddress",
+              "query-engine/Functions-and-operators/tronaddress",
+              "query-engine/Functions-and-operators/string",
+              "query-engine/Functions-and-operators/system",
+              "query-engine/Functions-and-operators/tdigest",
+              "query-engine/Functions-and-operators/teradata",
+              "query-engine/Functions-and-operators/url",
+              "query-engine/Functions-and-operators/uuid",
+              "query-engine/Functions-and-operators/varbinary",
+              "query-engine/Functions-and-operators/varchar-utility-functions",
+              "query-engine/Functions-and-operators/window"
             ]
           }
         ]
@@ -3290,13 +3545,28 @@
             "pages": [
               "learning-resources",
               "learning/how-tos/create-your-first-query",
+              "learning/how-tos/query-templates",
+              "learning/how-tos/create-new-content",
               "learning/how-tos/create-your-first-visualization"
             ]
           },
           {
-            "group": "Support",
+            "group": "Guides",
             "pages": [
-              "web-app/bug-bounty"
+              "learning/how-tos/navigate-query-editor",
+              "learning/how-tos/find-datasets",
+              "learning/how-tos/export-data-out",
+              "learning/how-tos/create-and-manage-teams",
+              "learning/how-tos/search-for-content",
+              "learning/how-tos/share-dune-content",
+              "learning/how-tos/share-your-query",
+              "learning/how-tos/transfer-ownership"
+            ]
+          },
+          {
+            "group": "Migration",
+            "pages": [
+              "learning/flipside-migration-guide"
             ]
           }
         ]
@@ -3366,5 +3636,16 @@
       "source": "/api-reference/tables/blockchain/delete",
       "destination": "/catalyst/hosted"
     }
+  ],
+  "versions": [
+    "Analytics Hub",
+    "API Reference",
+    "Client SDKs",
+    "Real-Time APIs",
+    "Webhooks",
+    "Datashare",
+    "Trino Connector",
+    "dbt Connector",
+    "Catalyst"
   ]
 }

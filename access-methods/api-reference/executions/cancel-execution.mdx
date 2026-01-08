@@ -1,0 +1,41 @@
+---
+title: "Cancel Execution"
+api: "POST /api/v1/executions-cancel-execution"
+description: "Cancel a running execution"
+---
+
+# Cancel Execution
+
+Cancel a running execution
+
+## Request
+
+<ParamField path="param_name" type="string" required>
+  Description of the parameter
+</ParamField>
+
+## Response
+
+<ResponseField name="result" type="object">
+  The response data
+</ResponseField>
+
+## Code Examples
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://api.dune.com/api/v1/executions-cancel-execution" \
+  -H "X-DUNE-API-KEY: your_api_key"
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="your_api_key")
+result = dune.post("executions-cancel-execution")
+```
+</CodeGroup>
+
+---
+
+**Status:** 🚧 Stub — Content pending

@@ -1,0 +1,41 @@
+---
+title: "Refresh Materialized View"
+api: "POST /api/v1/materialized-views-refresh"
+description: "Refresh view data"
+---
+
+# Refresh Materialized View
+
+Refresh view data
+
+## Request
+
+<ParamField path="param_name" type="string" required>
+  Description of the parameter
+</ParamField>
+
+## Response
+
+<ResponseField name="result" type="object">
+  The response data
+</ResponseField>
+
+## Code Examples
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://api.dune.com/api/v1/materialized-views-refresh" \
+  -H "X-DUNE-API-KEY: your_api_key"
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="your_api_key")
+result = dune.post("materialized-views-refresh")
+```
+</CodeGroup>
+
+---
+
+**Status:** 🚧 Stub — Content pending

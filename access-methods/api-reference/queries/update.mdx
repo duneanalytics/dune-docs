@@ -1,0 +1,41 @@
+---
+title: "Update Query"
+api: "PATCH /api/v1/queries-update"
+description: "Update an existing query"
+---
+
+# Update Query
+
+Update an existing query
+
+## Request
+
+<ParamField path="param_name" type="string" required>
+  Description of the parameter
+</ParamField>
+
+## Response
+
+<ResponseField name="result" type="object">
+  The response data
+</ResponseField>
+
+## Code Examples
+
+<CodeGroup>
+```bash cURL
+curl -X PATCH "https://api.dune.com/api/v1/queries-update" \
+  -H "X-DUNE-API-KEY: your_api_key"
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="your_api_key")
+result = dune.patch("queries-update")
+```
+</CodeGroup>
+
+---
+
+**Status:** 🚧 Stub — Content pending

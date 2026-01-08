@@ -1,0 +1,41 @@
+---
+title: "Make Query Private"
+api: "POST /api/v1/queries-private"
+description: "Make a query private"
+---
+
+# Make Query Private
+
+Make a query private
+
+## Request
+
+<ParamField path="param_name" type="string" required>
+  Description of the parameter
+</ParamField>
+
+## Response
+
+<ResponseField name="result" type="object">
+  The response data
+</ResponseField>
+
+## Code Examples
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://api.dune.com/api/v1/queries-private" \
+  -H "X-DUNE-API-KEY: your_api_key"
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="your_api_key")
+result = dune.post("queries-private")
+```
+</CodeGroup>
+
+---
+
+**Status:** 🚧 Stub — Content pending

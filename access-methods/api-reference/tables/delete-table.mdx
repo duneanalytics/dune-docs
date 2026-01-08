@@ -1,0 +1,41 @@
+---
+title: "Delete Table"
+api: "DELETE /api/v1/tables-delete-table"
+description: "Delete a table"
+---
+
+# Delete Table
+
+Delete a table
+
+## Request
+
+<ParamField path="param_name" type="string" required>
+  Description of the parameter
+</ParamField>
+
+## Response
+
+<ResponseField name="result" type="object">
+  The response data
+</ResponseField>
+
+## Code Examples
+
+<CodeGroup>
+```bash cURL
+curl -X DELETE "https://api.dune.com/api/v1/tables-delete-table" \
+  -H "X-DUNE-API-KEY: your_api_key"
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="your_api_key")
+result = dune.delete("tables-delete-table")
+```
+</CodeGroup>
+
+---
+
+**Status:** 🚧 Stub — Content pending

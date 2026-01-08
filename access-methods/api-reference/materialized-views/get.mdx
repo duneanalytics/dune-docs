@@ -1,0 +1,41 @@
+---
+title: "Get Materialized View"
+api: "GET /api/v1/materialized-views-get"
+description: "Get view details"
+---
+
+# Get Materialized View
+
+Get view details
+
+## Request
+
+<ParamField path="param_name" type="string" required>
+  Description of the parameter
+</ParamField>
+
+## Response
+
+<ResponseField name="result" type="object">
+  The response data
+</ResponseField>
+
+## Code Examples
+
+<CodeGroup>
+```bash cURL
+curl -X GET "https://api.dune.com/api/v1/materialized-views-get" \
+  -H "X-DUNE-API-KEY: your_api_key"
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="your_api_key")
+result = dune.get("materialized-views-get")
+```
+</CodeGroup>
+
+---
+
+**Status:** 🚧 Stub — Content pending
