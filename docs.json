@@ -3232,7 +3232,7 @@
         "tab": "Access",
         "dropdowns": [
           {
-            "dropdown": "Explore and Analyze",
+            "dropdown": "Analytics Hub",
             "icon": "chart-line",
             "pages": [
               {
@@ -3284,7 +3284,7 @@
             ]
           },
           {
-            "dropdown": "Programmatic Access",
+            "dropdown": "API Reference",
             "icon": "code",
             "pages": [
               {
@@ -3482,7 +3482,7 @@
             ]
           },
           {
-            "dropdown": "For Blockchains",
+            "dropdown": "Catalyst",
             "icon": "cube",
             "pages": [
               {
@@ -3611,17 +3611,13 @@
             "pages": [
               "learning/how-tos/credit-system-on-dune",
               "learning/how-tos/credit-system",
-              "learning/how-tos/pricing-faqs",
-              "learning/how-tos/create-and-manage-teams"
+              "learning/how-tos/pricing-faqs"
             ]
           },
           {
             "group": "Learning",
             "pages": [
-              "learning-resources",
-              "learning/how-tos/create-your-first-query",
-              "learning/how-tos/create-your-first-visualization",
-              "learning/how-tos/navigate-query-editor"
+              "learning-resources"
             ]
           },
           {
