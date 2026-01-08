@@ -3421,7 +3421,69 @@
         ]
       },
       {
-        "tab": "SQL Query Engine"
+        "tab": "SQL Query Engine",
+        "pages": [
+          "query-engine/overview",
+          {
+            "group": "Functionality",
+            "pages": [
+              "query-engine/query-executions",
+              "query-engine/query-a-query",
+              "query-engine/materialized-views"
+            ]
+          },
+          {
+            "group": "DuneSQL",
+            "pages": [
+              "query-engine/dunesql-architecture",
+              "query-engine/writing-efficient-queries",
+              "query-engine/datatypes",
+              "query-engine/reserved-keywords"
+            ]
+          },
+          {
+            "group": "Functions and Operators",
+            "pages": [
+              "query-engine/Functions-and-operators/index",
+              "query-engine/Functions-and-operators/aggregate",
+              "query-engine/Functions-and-operators/array",
+              "query-engine/Functions-and-operators/asof-join",
+              "query-engine/Functions-and-operators/base58",
+              "query-engine/Functions-and-operators/binary",
+              "query-engine/Functions-and-operators/bitwise",
+              "query-engine/Functions-and-operators/chain-utility-functions",
+              "query-engine/Functions-and-operators/comparison",
+              "query-engine/Functions-and-operators/conditional",
+              "query-engine/Functions-and-operators/conversion",
+              "query-engine/Functions-and-operators/datetime",
+              "query-engine/Functions-and-operators/decimal",
+              "query-engine/Functions-and-operators/evm-decoding-functions",
+              "query-engine/Functions-and-operators/hyperloglog",
+              "query-engine/Functions-and-operators/json",
+              "query-engine/Functions-and-operators/lambda",
+              "query-engine/Functions-and-operators/live-fetch",
+              "query-engine/Functions-and-operators/logical",
+              "query-engine/Functions-and-operators/map",
+              "query-engine/Functions-and-operators/math",
+              "query-engine/Functions-and-operators/ml",
+              "query-engine/Functions-and-operators/qdigest",
+              "query-engine/Functions-and-operators/regexp",
+              "query-engine/Functions-and-operators/setdigest",
+              "query-engine/Functions-and-operators/ss58",
+              "query-engine/Functions-and-operators/tonaddress",
+              "query-engine/Functions-and-operators/tronaddress",
+              "query-engine/Functions-and-operators/string",
+              "query-engine/Functions-and-operators/system",
+              "query-engine/Functions-and-operators/tdigest",
+              "query-engine/Functions-and-operators/teradata",
+              "query-engine/Functions-and-operators/url",
+              "query-engine/Functions-and-operators/uuid",
+              "query-engine/Functions-and-operators/varbinary",
+              "query-engine/Functions-and-operators/varchar-utility-functions",
+              "query-engine/Functions-and-operators/window"
+            ]
+          }
+        ]
       },
       {
         "tab": "Enterprise",

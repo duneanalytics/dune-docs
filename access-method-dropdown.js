@@ -163,27 +163,12 @@
     if (existing) existing.remove();
   }
 
-  // Remove extra spacing elements
-  function removeExtraSpacing() {
-    // Remove empty divs and elements that create spacing
-    const emptyElements = document.querySelectorAll('aside div:empty, #sidebar div:empty, nav div:empty');
-    emptyElements.forEach(el => {
-      if (!el.closest('#access-method-dropdown') && !el.querySelector('*')) {
-        el.style.display = 'none';
-      }
-    });
-    
-    // Reduce padding/margin on sidebar elements
-    const sidebar = findSidebar();
-    if (sidebar) {
-      const firstChild = sidebar.firstElementChild;
-      if (firstChild && firstChild.id === 'access-method-dropdown') {
-        const nextSibling = firstChild.nextElementSibling;
-        if (nextSibling) {
-          nextSibling.style.marginTop = '0.5rem';
-          nextSibling.style.paddingTop = '0';
-        }
-      }
+  // Add/remove body class for page-specific styling
+  function updateBodyClass() {
+    if (isAccessMethodsPage()) {
+      document.body.classList.add('access-methods-page');
+    } else {
+      document.body.classList.remove('access-methods-page');
     }
   }
 
@@ -198,7 +183,6 @@
     hideDefaultAnchorSelector();
 
     if (document.getElementById('access-method-dropdown')) {
-      removeExtraSpacing();
       return;
     }
 
@@ -212,7 +196,7 @@
     dropdownWrapper.innerHTML = createDropdownHTML();
     sidebar.insertBefore(dropdownWrapper.firstElementChild, sidebar.firstChild);
     setupEventListeners();
-    removeExtraSpacing();
+    updateBodyClass();
   }
 
   // Setup event listeners
@@ -244,6 +228,7 @@
 
   // Handle navigation
   function handleNavigation() {
+    updateBodyClass();
     if (isAccessMethodsPage()) {
       insertDropdown();
       hideDefaultAnchorSelector();
@@ -254,6 +239,7 @@
 
   // Initialize
   function init() {
+    updateBodyClass();
     insertDropdown();
     setTimeout(insertDropdown, 500);
     setTimeout(insertDropdown, 1000);
