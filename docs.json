@@ -76,10 +76,7 @@
           {
             "group": "Use Cases",
             "pages": [
-              {
-                "page": "docs/use-cases/overview",
-                "icon": "star"
-              },
+              "docs/use-cases/overview",
               "docs/use-cases/protocol-adoption/overview",
               "docs/use-cases/trading-intelligence/overview",
               "docs/use-cases/stablecoin-intelligence/overview"
