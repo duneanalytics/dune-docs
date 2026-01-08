@@ -38,7 +38,7 @@
       { id: 'datashare', name: 'Datashare', href: '/access-methods/datashare/index' }
     ],
     'CONNECT YOUR TOOLS': [
-      { id: 'trino-connector', name: 'Trino Connector', href: '/access-methods/trino-connector/index' }
+      { id: 'trino-connector', name: 'Trino Connectors', href: '/access-methods/trino-connector/index' }
     ],
     'TRANSFORM DATA': [
       { id: 'dbt-connector', name: 'dbt Connector', href: '/access-methods/dbt-connector/index' }
