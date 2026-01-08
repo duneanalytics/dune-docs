@@ -1,9 +1,9 @@
 /**
  * Custom Access Method Dropdown - Coinbase Style
- * This script creates a dropdown selector at the top of the Access Methods sidebar
- * with category headers like Coinbase's documentation.
  * 
- * When a product is selected, ONLY that product's sidebar content is shown.
+ * Replaces Mintlify's default anchor selector with a Coinbase-style dropdown
+ * that has category headers. Works with the anchors-based navigation structure.
+ * 
  * ONLY runs on /access-methods/ pages
  */
 
@@ -21,19 +21,6 @@
     'trino-connector': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
     'dbt-connector': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
     'catalyst': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>'
-  };
-
-  // Map of sidebar group names to their IDs
-  const SIDEBAR_GROUPS = {
-    'analytics-hub': ['Analytics Hub', 'Query Editor', 'Visualizations', 'Dashboards', 'Decoding'],
-    'api-reference': ['API Reference', 'Executions', 'Query Management', 'Data Uploads', 'Materialized Views', 'Post-processing', 'Resources'],
-    'client-sdks': ['Client SDKs'],
-    'real-time-apis': ['Real-Time APIs'],
-    'webhooks': ['Webhooks'],
-    'datashare': ['Datashare', 'Snowflake', 'BigQuery'],
-    'trino-connector': ['Trino Connector'],
-    'dbt-connector': ['dbt Connector'],
-    'catalyst': ['Catalyst', 'Integration Routes']
   };
 
   // Configuration: Define access methods with categories
@@ -75,89 +62,12 @@
         }
       }
     }
-    return ACCESS_METHODS['EXPLORE AND ANALYZE'][0]; // Default to Analytics Hub
+    return ACCESS_METHODS['EXPLORE AND ANALYZE'][0];
   }
 
   // Get icon for a method
   function getIcon(methodId) {
     return ICONS[methodId] || ICONS['api-reference'];
-  }
-
-  // Hide sidebar groups that don't belong to the current method
-  function filterSidebarGroups() {
-    const currentMethod = getCurrentMethod();
-    const allowedGroups = SIDEBAR_GROUPS[currentMethod.id] || [];
-    
-    console.log('[Access Dropdown] Filtering sidebar for:', currentMethod.name);
-    console.log('[Access Dropdown] Allowed groups:', allowedGroups);
-
-    // Find all sidebar groups/sections
-    const sidebarGroups = document.querySelectorAll('[class*="sidebar-group"], [class*="SidebarGroup"], [id*="sidebar-group"], .sidebar-nav-group, nav ul > li, aside nav > div > div');
-    
-    sidebarGroups.forEach(group => {
-      // Get the group header/title text
-      const header = group.querySelector('button, h3, h4, span, [class*="header"], [class*="title"]');
-      const headerText = header ? header.textContent.trim() : '';
-      
-      // Check if this group should be visible
-      const shouldShow = allowedGroups.some(allowed => 
-        headerText.toLowerCase().includes(allowed.toLowerCase()) ||
-        allowed.toLowerCase().includes(headerText.toLowerCase())
-      );
-      
-      // Also check if the group contains links to the current method's pages
-      const links = group.querySelectorAll('a');
-      const hasRelevantLinks = Array.from(links).some(link => 
-        link.href && link.href.includes(currentMethod.id)
-      );
-      
-      if (shouldShow || hasRelevantLinks) {
-        group.style.display = '';
-        group.classList.remove('access-dropdown-hidden');
-      } else if (headerText && !headerText.includes('Access Methods')) {
-        // Hide groups that don't match, but don't hide the main "Access Methods" link
-        group.style.display = 'none';
-        group.classList.add('access-dropdown-hidden');
-      }
-    });
-
-    // Alternative approach: hide by matching href patterns
-    const allNavItems = document.querySelectorAll('nav a, aside a');
-    allNavItems.forEach(link => {
-      const href = link.getAttribute('href') || '';
-      const parentLi = link.closest('li');
-      const parentDiv = link.closest('div[class*="group"]');
-      
-      // Skip the dropdown itself
-      if (link.closest('#access-method-dropdown')) return;
-      
-      // Skip if it's the Access Methods index
-      if (href === '/access-methods/index' || href === '/access-methods') return;
-      
-      // Check if this link belongs to a different access method
-      const belongsToDifferentMethod = Object.keys(SIDEBAR_GROUPS).some(methodId => {
-        if (methodId === currentMethod.id) return false;
-        return href.includes(`/access-methods/${methodId}`);
-      });
-      
-      if (belongsToDifferentMethod) {
-        const container = parentLi || parentDiv;
-        if (container && !container.closest('#access-method-dropdown')) {
-          container.style.display = 'none';
-          container.classList.add('access-dropdown-hidden');
-        }
-      }
-    });
-    
-    // Hide group headers that have no visible children
-    setTimeout(() => {
-      document.querySelectorAll('[class*="sidebar-group"], [class*="SidebarGroup"]').forEach(group => {
-        const visibleChildren = group.querySelectorAll('a:not([style*="display: none"]), li:not([style*="display: none"]):not(.access-dropdown-hidden)');
-        if (visibleChildren.length === 0) {
-          group.style.display = 'none';
-        }
-      });
-    }, 100);
   }
 
   // Create the dropdown HTML
@@ -196,67 +106,76 @@
     `;
   }
 
-  // Remove any existing dropdown
-  function removeDropdown() {
-    const existing = document.getElementById('access-method-dropdown');
-    if (existing) {
-      existing.remove();
-    }
-    // Also restore hidden elements
-    document.querySelectorAll('.access-dropdown-hidden').forEach(el => {
-      el.style.display = '';
-      el.classList.remove('access-dropdown-hidden');
+  // Hide Mintlify's default anchor selector
+  function hideDefaultAnchorSelector() {
+    // Find and hide Mintlify's anchor/dropdown elements
+    const selectors = [
+      '[class*="nav-anchor"]',
+      '[class*="NavAnchor"]',
+      '[class*="anchor-selector"]',
+      '[class*="AnchorSelector"]',
+      '#nav-anchors',
+      '[id*="nav-anchor"]',
+      // Also hide any existing dropdown triggers at the top
+      '.nav-dropdown-trigger:not(#access-dropdown-trigger)',
+      '[class*="DropdownTrigger"]:not(#access-dropdown-trigger)'
+    ];
+
+    selectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        if (!el.closest('#access-method-dropdown')) {
+          el.style.display = 'none';
+        }
+      });
     });
   }
 
-  // Find the sidebar element using multiple selectors
+  // Find the sidebar
   function findSidebar() {
     const selectors = [
       '#sidebar-content',
-      '#SidebarContent',
       '[id*="sidebar-content"]',
-      '[id*="SidebarContent"]',
       '.sidebar-content',
       '[class*="SidebarContent"]',
       '#sidebar > div',
-      '#Sidebar > div',
-      'nav[class*="sidebar"] > div',
       'aside > nav',
       'aside > div',
-      '#navigation-items',
-      '[id="navigation-items"]'
+      '#navigation-items'
     ];
 
     for (const selector of selectors) {
       const element = document.querySelector(selector);
-      if (element) {
-        return element;
-      }
+      if (element) return element;
     }
 
     const aside = document.querySelector('aside');
     if (aside) {
       return aside.querySelector('nav') || aside.querySelector('div');
     }
-
     return null;
   }
 
-  // Insert dropdown into the sidebar
+  // Remove existing dropdown
+  function removeDropdown() {
+    const existing = document.getElementById('access-method-dropdown');
+    if (existing) existing.remove();
+  }
+
+  // Insert dropdown
   function insertDropdown() {
     if (!isAccessMethodsPage()) {
       removeDropdown();
       return;
     }
 
+    // Hide the default anchor selector
+    hideDefaultAnchorSelector();
+
     if (document.getElementById('access-method-dropdown')) {
-      // Dropdown exists, just filter the sidebar
-      filterSidebarGroups();
       return;
     }
 
     const sidebar = findSidebar();
-    
     if (!sidebar) {
       setTimeout(insertDropdown, 500);
       return;
@@ -264,19 +183,14 @@
 
     const dropdownWrapper = document.createElement('div');
     dropdownWrapper.innerHTML = createDropdownHTML();
-    
     sidebar.insertBefore(dropdownWrapper.firstElementChild, sidebar.firstChild);
     setupEventListeners();
-    
-    // Filter sidebar after inserting dropdown
-    setTimeout(filterSidebarGroups, 100);
   }
 
-  // Setup dropdown event listeners
+  // Setup event listeners
   function setupEventListeners() {
     const trigger = document.getElementById('access-dropdown-trigger');
     const menu = document.getElementById('access-dropdown-menu');
-    
     if (!trigger || !menu) return;
 
     trigger.addEventListener('click', (e) => {
@@ -300,11 +214,11 @@
     });
   }
 
-  // Handle navigation changes
+  // Handle navigation
   function handleNavigation() {
     if (isAccessMethodsPage()) {
       insertDropdown();
-      filterSidebarGroups();
+      hideDefaultAnchorSelector();
     } else {
       removeDropdown();
     }
@@ -313,8 +227,12 @@
   // Initialize
   function init() {
     insertDropdown();
+    setTimeout(insertDropdown, 500);
     setTimeout(insertDropdown, 1000);
     setTimeout(insertDropdown, 2000);
+
+    // Keep hiding the default anchor selector
+    setInterval(hideDefaultAnchorSelector, 1000);
 
     let lastPath = window.location.pathname;
     const observer = new MutationObserver(() => {
@@ -323,11 +241,10 @@
         handleNavigation();
       }
       if (isAccessMethodsPage()) {
+        hideDefaultAnchorSelector();
         if (!document.getElementById('access-method-dropdown')) {
           insertDropdown();
         }
-        // Re-apply filtering in case DOM changed
-        filterSidebarGroups();
       }
     });
 
