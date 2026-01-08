@@ -172,6 +172,32 @@
     }
   }
 
+  // Fix spacing after dropdown insertion
+  function fixSpacing() {
+    const dropdown = document.getElementById('access-method-dropdown');
+    if (!dropdown) return;
+
+    // Fix spacing on sibling elements
+    let sibling = dropdown.nextElementSibling;
+    while (sibling) {
+      if (sibling.tagName) {
+        sibling.style.marginTop = '0.5rem';
+        sibling.style.paddingTop = '0';
+      }
+      sibling = sibling.nextElementSibling;
+    }
+
+    // Hide empty divs in sidebar
+    const sidebar = findSidebar();
+    if (sidebar) {
+      sidebar.querySelectorAll('div:empty').forEach(el => {
+        if (!el.closest('#access-method-dropdown')) {
+          el.style.display = 'none';
+        }
+      });
+    }
+  }
+
   // Insert dropdown
   function insertDropdown() {
     if (!isAccessMethodsPage()) {
@@ -197,6 +223,7 @@
     sidebar.insertBefore(dropdownWrapper.firstElementChild, sidebar.firstChild);
     setupEventListeners();
     updateBodyClass();
+    fixSpacing();
   }
 
   // Setup event listeners
@@ -245,8 +272,13 @@
     setTimeout(insertDropdown, 1000);
     setTimeout(insertDropdown, 2000);
 
-    // Keep hiding the default anchor selector
-    setInterval(hideDefaultAnchorSelector, 1000);
+    // Keep hiding the default anchor selector and fixing spacing
+    setInterval(() => {
+      hideDefaultAnchorSelector();
+      if (isAccessMethodsPage()) {
+        fixSpacing();
+      }
+    }, 1000);
 
     let lastPath = window.location.pathname;
     const observer = new MutationObserver(() => {

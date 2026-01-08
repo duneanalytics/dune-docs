@@ -273,3 +273,37 @@ div[role="note"] a {
 .access-dropdown-hidden {
   display: none !important;
 }
+
+/* ============================================
+   Spacing fixes - ONLY on Access Methods pages
+   ============================================ */
+
+/* Tight spacing after dropdown - only on access methods pages */
+body.access-methods-page #access-method-dropdown + *,
+body.access-methods-page #access-method-dropdown ~ * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* First actual content after dropdown gets minimal spacing */
+body.access-methods-page #access-method-dropdown + nav,
+body.access-methods-page #access-method-dropdown + ul,
+body.access-methods-page #access-method-dropdown + div:not(:empty) {
+  margin-top: 0.5rem !important;
+}
+
+/* Hide empty elements that create spacing - only on access methods pages */
+body.access-methods-page aside div:empty,
+body.access-methods-page #sidebar div:empty,
+body.access-methods-page nav > div:empty {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Collapse wrapper divs after dropdown - only on access methods pages */
+body.access-methods-page #access-method-dropdown + div + div,
+body.access-methods-page #access-method-dropdown + div + nav {
+  margin-top: 0 !important;
+}
