@@ -1,53 +1,7 @@
-#topbar-cta-button > a > span,
-#navigation-items .sidebar-group > li > a,
-#sidebar-group > li > a,
-#search-bar-entry,
-.chat-assistant-floating-input > div {
-    border-radius: 9999px;
-}
-
-.dark #topbar-cta-button > a > span {
-    background-color: #fff;
-}
-
-.dark #topbar-cta-button > a > span + div > span {
-    color: #0f0f15
-}
-
-.dark #topbar-cta-button > a > span + div > svg {
-    color: #0f0f15
-}
-
-#page-context-menu > button:first-child {
-    border-top-left-radius: 9999px;
-    border-bottom-left-radius: 9999px;
-}
-
-#page-context-menu > button:last-child {
-    border-top-right-radius: 9999px;
-    border-bottom-right-radius: 9999px;
-}
-
-/* White underlines for CTA links in Note blocks */
-.cta-links a,
-.cta-links a:visited,
-.cta-links a:hover,
-.cta-links a:active,
-aside a,
-.note-container a,
-[class*="note"] a,
-[class*="Note"] a,
-[class*="callout"] a,
-div[class*="admonition"] a,
-div[role="note"] a {
-    text-decoration-color: white !important;
-    text-decoration-thickness: 2px !important;
-    text-decoration-line: underline !important;
-}
-
-/* ============================================
-   Custom Access Method Dropdown - Coinbase Style
-   ============================================ */
+/**
+ * Custom Access Method Dropdown - Coinbase Style
+ * Styles for the dropdown selector at the top of the Access Methods sidebar
+ */
 
 /* Container */
 .access-dropdown-container {
@@ -64,23 +18,23 @@ div[role="note"] a {
   gap: 0.5rem;
   width: 100%;
   padding: 0.75rem 1rem;
-  background: #1a1a1f;
-  border: 1px solid #2a2a2f;
+  background: var(--background-secondary, #1a1a1f);
+  border: 1px solid var(--border-color, #2a2a2f);
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #fff;
+  color: var(--text-primary, #fff);
   transition: all 0.15s ease;
 }
 
 .access-dropdown-trigger:hover {
-  background: #252530;
-  border-color: #3a3a4f;
+  background: var(--background-tertiary, #252530);
+  border-color: var(--border-hover, #3a3a4f);
 }
 
 .access-dropdown-trigger.open {
-  border-color: #F8B44C;
+  border-color: var(--primary, #F8B44C);
 }
 
 .access-dropdown-trigger-icon {
@@ -95,7 +49,7 @@ div[role="note"] a {
 .access-dropdown-trigger-chevron {
   display: flex;
   align-items: center;
-  color: #888;
+  color: var(--text-secondary, #888);
   transition: transform 0.2s ease;
 }
 
@@ -109,8 +63,8 @@ div[role="note"] a {
   top: calc(100% + 4px);
   left: 0.5rem;
   right: 0.5rem;
-  background: #0f0f15;
-  border: 1px solid #2a2a2f;
+  background: var(--background-primary, #0f0f15);
+  border: 1px solid var(--border-color, #2a2a2f);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   max-height: 400px;
@@ -133,7 +87,7 @@ div[role="note"] a {
 }
 
 .access-dropdown-category:not(:last-child) {
-  border-bottom: 1px solid #2a2a2f;
+  border-bottom: 1px solid var(--border-color, #2a2a2f);
 }
 
 /* Category Header */
@@ -141,7 +95,7 @@ div[role="note"] a {
   padding: 0.5rem 1rem;
   font-size: 0.7rem;
   font-weight: 600;
-  color: #666;
+  color: var(--text-tertiary, #666);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -152,14 +106,14 @@ div[role="note"] a {
   align-items: center;
   gap: 0.75rem;
   padding: 0.625rem 1rem;
-  color: #fff;
+  color: var(--text-primary, #fff);
   text-decoration: none;
   font-size: 0.9rem;
   transition: background 0.1s ease;
 }
 
 .access-dropdown-item:hover {
-  background: #1a1a1f;
+  background: var(--background-secondary, #1a1a1f);
 }
 
 .access-dropdown-item.active {
@@ -177,52 +131,44 @@ div[role="note"] a {
 }
 
 .access-dropdown-item-check {
-  color: #F8B44C;
+  color: var(--primary, #F8B44C);
   font-weight: bold;
 }
 
 /* Light Mode Overrides */
-:root:not(.dark) .access-dropdown-trigger,
 .light .access-dropdown-trigger {
   background: #f5f5f5;
   border-color: #e0e0e0;
   color: #1a1a1a;
 }
 
-:root:not(.dark) .access-dropdown-trigger:hover,
 .light .access-dropdown-trigger:hover {
   background: #ebebeb;
   border-color: #d0d0d0;
 }
 
-:root:not(.dark) .access-dropdown-menu,
 .light .access-dropdown-menu {
   background: #fff;
   border-color: #e0e0e0;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-:root:not(.dark) .access-dropdown-category:not(:last-child),
 .light .access-dropdown-category:not(:last-child) {
   border-bottom-color: #e0e0e0;
 }
 
-:root:not(.dark) .access-dropdown-category-header,
 .light .access-dropdown-category-header {
   color: #888;
 }
 
-:root:not(.dark) .access-dropdown-item,
 .light .access-dropdown-item {
   color: #1a1a1a;
 }
 
-:root:not(.dark) .access-dropdown-item:hover,
 .light .access-dropdown-item:hover {
   background: #f5f5f5;
 }
 
-:root:not(.dark) .access-dropdown-item.active,
 .light .access-dropdown-item.active {
   background: rgba(248, 180, 76, 0.15);
 }
@@ -237,10 +183,25 @@ div[role="note"] a {
 }
 
 .access-dropdown-menu::-webkit-scrollbar-thumb {
-  background: #2a2a2f;
+  background: var(--border-color, #2a2a2f);
   border-radius: 3px;
 }
 
 .access-dropdown-menu::-webkit-scrollbar-thumb:hover {
-  background: #3a3a4f;
+  background: var(--border-hover, #3a3a4f);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .access-dropdown-menu {
+    max-height: 300px;
+  }
+  
+  .access-dropdown-trigger {
+    padding: 0.625rem 0.875rem;
+  }
+  
+  .access-dropdown-item {
+    padding: 0.5rem 0.875rem;
+  }
 }

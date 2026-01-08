@@ -53,48 +53,6 @@
     }
   ],
   "navigation": {
-    "dropdowns": [
-      {
-        "dropdown": "Select Access Method",
-        "icon": "grid-2",
-        "groups": [
-          {
-            "group": "EXPLORE AND ANALYZE",
-            "pages": [
-              "access-methods/analytics-hub/index"
-            ]
-          },
-          {
-            "group": "PROGRAMMATIC ACCESS",
-            "pages": [
-              "access-methods/api-reference/index",
-              "access-methods/client-sdks/index",
-              "access-methods/real-time-apis/index",
-              "access-methods/webhooks/index"
-            ]
-          },
-          {
-            "group": "DATA DELIVERY",
-            "pages": [
-              "access-methods/datashare/index"
-            ]
-          },
-          {
-            "group": "INTEGRATIONS",
-            "pages": [
-              "access-methods/trino-connector/index",
-              "access-methods/dbt-connector/index"
-            ]
-          },
-          {
-            "group": "FOR BLOCKCHAINS",
-            "pages": [
-              "access-methods/catalyst/index"
-            ]
-          }
-        ]
-      }
-    ],
     "tabs": [
       {
         "tab": "Get Started",
@@ -3269,9 +3227,7 @@
       {
         "tab": "Access Methods",
         "pages": [
-          "access-methods/index"
-        ],
-        "groups": [
+          "access-methods/index",
           {
             "group": "Analytics Hub",
             "pages": [
@@ -3290,7 +3246,8 @@
               "access-methods/api-reference/getting-started",
               "access-methods/api-reference/authentication",
               "access-methods/api-reference/executions/index",
-              "access-methods/api-reference/queries/index"
+              "access-methods/api-reference/queries/index",
+              "access-methods/api-reference/tables/index"
             ]
           },
           {
