@@ -25,7 +25,7 @@
   // Note: Analytics Hub, Datashare, Catalyst, and Real-Time APIs are now under Docs tab
   const ACCESS_METHODS = {
     'OVERVIEW': [
-      { id: 'overview', name: 'Access Overview', href: '/access-methods/index' }
+      { id: 'overview', name: 'APIs & Connectors Overview', href: '/access-methods/index' }
     ],
     'PROGRAMMATIC ACCESS': [
       { id: 'api-reference', name: 'API Reference', href: '/access-methods/api-reference/index' },
