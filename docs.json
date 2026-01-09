@@ -40,7 +40,7 @@
       "url": "data-catalog"
     },
     {
-      "name": "Access Methods",
+      "name": "Access",
       "url": "access-methods"
     },
     {
@@ -3217,7 +3217,7 @@
         ]
       },
       {
-        "tab": "Access Methods",
+        "tab": "Access",
         "anchors": [
           {
             "anchor": "Analytics Hub",
