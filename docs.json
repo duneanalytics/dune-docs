@@ -63,67 +63,67 @@
           {
             "group": "Use Cases",
             "pages": [
-              { "page": "docs/use-cases/overview", "icon": "star" },
-              { "page": "docs/use-cases/protocol-adoption/overview", "icon": "chart-line" },
-              { "page": "docs/use-cases/trading-intelligence/overview", "icon": "chart-candlestick" },
-              { "page": "docs/use-cases/stablecoin-intelligence/overview", "icon": "coins" }
+              "docs/use-cases/overview",
+              "docs/use-cases/protocol-adoption/overview",
+              "docs/use-cases/trading-intelligence/overview",
+              "docs/use-cases/stablecoin-intelligence/overview"
             ]
           },
           {
             "group": "Analytics Hub",
             "pages": [
-              { "page": "web-app/overview", "icon": "circle-info" },
+              "web-app/overview",
               {
                 "group": "Working with Queries",
                 "pages": [
-                  { "page": "web-app/query-editor/index", "icon": "code" },
-                  { "page": "web-app/query-editor/data-explorer", "icon": "magnifying-glass" },
-                  { "page": "web-app/query-editor/parameters", "icon": "sliders" },
-                  { "page": "web-app/query-editor/query-scheduler", "icon": "clock" },
-                  { "page": "web-app/query-editor/query-lineage", "icon": "sitemap" },
-                  { "page": "web-app/query-editor/version-history", "icon": "clock-rotate-left" }
+                  "web-app/query-editor/index",
+                  "web-app/query-editor/data-explorer",
+                  "web-app/query-editor/parameters",
+                  "web-app/query-editor/query-scheduler",
+                  "web-app/query-editor/query-lineage",
+                  "web-app/query-editor/version-history"
                 ]
               },
               {
                 "group": "Visualizations",
                 "pages": [
-                  { "page": "web-app/visualizations/charts-graphs", "icon": "chart-bar" },
-                  { "page": "web-app/visualizations/counters", "icon": "hashtag" },
-                  { "page": "web-app/visualizations/tables", "icon": "table" }
+                  "web-app/visualizations/charts-graphs",
+                  "web-app/visualizations/counters",
+                  "web-app/visualizations/tables"
                 ]
               },
               {
                 "group": "Dashboards",
                 "pages": [
-                  { "page": "web-app/dashboards", "icon": "grid-2" },
-                  { "page": "web-app/embeds", "icon": "code" }
+                  "web-app/dashboards",
+                  "web-app/embeds"
                 ]
               },
               {
                 "group": "Decoding Contracts",
                 "pages": [
-                  { "page": "web-app/decoding/decoding-contracts", "icon": "file-code" },
-                  { "page": "web-app/decoding/best-practices", "icon": "check" },
-                  { "page": "web-app/decoding/multichain-decoding", "icon": "link" },
-                  { "page": "web-app/decoding/faqs", "icon": "circle-question" }
+                  "web-app/decoding/decoding-contracts",
+                  "web-app/decoding/best-practices",
+                  "web-app/decoding/multichain-decoding",
+                  "web-app/decoding/faqs"
                 ]
               },
               {
                 "group": "AI & Alerts",
                 "pages": [
-                  { "page": "web-app/dune-ai", "icon": "robot" },
-                  { "page": "web-app/alerts", "icon": "bell" }
+                  "web-app/dune-ai",
+                  "web-app/alerts"
                 ]
               },
-              { "page": "web-app/search", "icon": "magnifying-glass" },
-              { "page": "web-app/upload-data", "icon": "upload" },
-              { "page": "web-app/teams", "icon": "users" },
+              "web-app/search",
+              "web-app/upload-data",
+              "web-app/teams",
               {
                 "group": "Enterprise",
                 "pages": [
-                  { "page": "enterprise/analytics-hub/overview", "icon": "building" },
-                  { "page": "enterprise/analytics-hub/sso", "icon": "key" },
-                  { "page": "enterprise/analytics-hub/permissions", "icon": "shield" }
+                  "enterprise/analytics-hub/overview",
+                  "enterprise/analytics-hub/sso",
+                  "enterprise/analytics-hub/permissions"
                 ]
               }
             ]
@@ -131,14 +131,14 @@
           {
             "group": "Dune Datashare",
             "pages": [
-              { "page": "datashare/datashare", "icon": "circle-info" },
-              { "page": "datashare/datashare-databricks", "icon": "database" },
-              { "page": "datashare/datashare-snowflake", "icon": "snowflake" },
-              { "page": "datashare/datashare-bigquery", "icon": "google" },
+              "datashare/datashare",
+              "datashare/datashare-databricks",
+              "datashare/datashare-snowflake",
+              "datashare/datashare-bigquery",
               {
                 "group": "Enterprise",
                 "pages": [
-                  { "page": "enterprise/datashare/overview", "icon": "building" }
+                  "enterprise/datashare/overview"
                 ]
               }
             ]
@@ -146,7 +146,7 @@
           {
             "group": "Catalyst",
             "pages": [
-              { "page": "catalyst/overview", "icon": "rocket" }
+              "catalyst/overview"
             ]
           }
         ]
@@ -3431,60 +3431,60 @@
           {
             "group": "Functionality",
             "pages": [
-              { "page": "query-engine/query-executions", "icon": "play" },
-              { "page": "query-engine/query-a-query", "icon": "layer-group" },
-              { "page": "query-engine/materialized-views", "icon": "database" }
+              "query-engine/query-executions",
+              "query-engine/query-a-query",
+              "query-engine/materialized-views"
             ]
           },
           {
             "group": "DuneSQL",
             "pages": [
-              { "page": "query-engine/dunesql-architecture", "icon": "sitemap" },
-              { "page": "query-engine/writing-efficient-queries", "icon": "bolt" },
-              { "page": "query-engine/datatypes", "icon": "list" },
-              { "page": "query-engine/reserved-keywords", "icon": "lock" }
+              "query-engine/dunesql-architecture",
+              "query-engine/writing-efficient-queries",
+              "query-engine/datatypes",
+              "query-engine/reserved-keywords"
             ]
           },
           {
             "group": "Functions and Operators",
             "pages": [
-              { "page": "query-engine/Functions-and-operators/index", "icon": "circle-info" },
-              { "page": "query-engine/Functions-and-operators/aggregate", "icon": "calculator" },
-              { "page": "query-engine/Functions-and-operators/array", "icon": "brackets-square" },
-              { "page": "query-engine/Functions-and-operators/asof-join", "icon": "code-merge" },
-              { "page": "query-engine/Functions-and-operators/base58", "icon": "hashtag" },
-              { "page": "query-engine/Functions-and-operators/binary", "icon": "binary" },
-              { "page": "query-engine/Functions-and-operators/bitwise", "icon": "microchip" },
-              { "page": "query-engine/Functions-and-operators/chain-utility-functions", "icon": "link" },
-              { "page": "query-engine/Functions-and-operators/comparison", "icon": "equals" },
-              { "page": "query-engine/Functions-and-operators/conditional", "icon": "code-branch" },
-              { "page": "query-engine/Functions-and-operators/conversion", "icon": "arrows-rotate" },
-              { "page": "query-engine/Functions-and-operators/datetime", "icon": "calendar" },
-              { "page": "query-engine/Functions-and-operators/decimal", "icon": "percent" },
-              { "page": "query-engine/Functions-and-operators/evm-decoding-functions", "icon": "ethereum" },
-              { "page": "query-engine/Functions-and-operators/hyperloglog", "icon": "chart-simple" },
-              { "page": "query-engine/Functions-and-operators/json", "icon": "brackets-curly" },
-              { "page": "query-engine/Functions-and-operators/lambda", "icon": "lambda" },
-              { "page": "query-engine/Functions-and-operators/live-fetch", "icon": "download" },
-              { "page": "query-engine/Functions-and-operators/logical", "icon": "toggle-on" },
-              { "page": "query-engine/Functions-and-operators/map", "icon": "map" },
-              { "page": "query-engine/Functions-and-operators/math", "icon": "plus-minus" },
-              { "page": "query-engine/Functions-and-operators/ml", "icon": "brain" },
-              { "page": "query-engine/Functions-and-operators/qdigest", "icon": "chart-pie" },
-              { "page": "query-engine/Functions-and-operators/regexp", "icon": "asterisk" },
-              { "page": "query-engine/Functions-and-operators/setdigest", "icon": "layer-group" },
-              { "page": "query-engine/Functions-and-operators/ss58", "icon": "hashtag" },
-              { "page": "query-engine/Functions-and-operators/tonaddress", "icon": "diamond" },
-              { "page": "query-engine/Functions-and-operators/tronaddress", "icon": "circle" },
-              { "page": "query-engine/Functions-and-operators/string", "icon": "font" },
-              { "page": "query-engine/Functions-and-operators/system", "icon": "gear" },
-              { "page": "query-engine/Functions-and-operators/tdigest", "icon": "chart-line" },
-              { "page": "query-engine/Functions-and-operators/teradata", "icon": "database" },
-              { "page": "query-engine/Functions-and-operators/url", "icon": "link" },
-              { "page": "query-engine/Functions-and-operators/uuid", "icon": "fingerprint" },
-              { "page": "query-engine/Functions-and-operators/varbinary", "icon": "binary" },
-              { "page": "query-engine/Functions-and-operators/varchar-utility-functions", "icon": "text" },
-              { "page": "query-engine/Functions-and-operators/window", "icon": "window-maximize" }
+              "query-engine/Functions-and-operators/index",
+              "query-engine/Functions-and-operators/aggregate",
+              "query-engine/Functions-and-operators/array",
+              "query-engine/Functions-and-operators/asof-join",
+              "query-engine/Functions-and-operators/base58",
+              "query-engine/Functions-and-operators/binary",
+              "query-engine/Functions-and-operators/bitwise",
+              "query-engine/Functions-and-operators/chain-utility-functions",
+              "query-engine/Functions-and-operators/comparison",
+              "query-engine/Functions-and-operators/conditional",
+              "query-engine/Functions-and-operators/conversion",
+              "query-engine/Functions-and-operators/datetime",
+              "query-engine/Functions-and-operators/decimal",
+              "query-engine/Functions-and-operators/evm-decoding-functions",
+              "query-engine/Functions-and-operators/hyperloglog",
+              "query-engine/Functions-and-operators/json",
+              "query-engine/Functions-and-operators/lambda",
+              "query-engine/Functions-and-operators/live-fetch",
+              "query-engine/Functions-and-operators/logical",
+              "query-engine/Functions-and-operators/map",
+              "query-engine/Functions-and-operators/math",
+              "query-engine/Functions-and-operators/ml",
+              "query-engine/Functions-and-operators/qdigest",
+              "query-engine/Functions-and-operators/regexp",
+              "query-engine/Functions-and-operators/setdigest",
+              "query-engine/Functions-and-operators/ss58",
+              "query-engine/Functions-and-operators/tonaddress",
+              "query-engine/Functions-and-operators/tronaddress",
+              "query-engine/Functions-and-operators/string",
+              "query-engine/Functions-and-operators/system",
+              "query-engine/Functions-and-operators/tdigest",
+              "query-engine/Functions-and-operators/teradata",
+              "query-engine/Functions-and-operators/url",
+              "query-engine/Functions-and-operators/uuid",
+              "query-engine/Functions-and-operators/varbinary",
+              "query-engine/Functions-and-operators/varchar-utility-functions",
+              "query-engine/Functions-and-operators/window"
             ]
           }
         ]
@@ -3496,40 +3496,40 @@
           {
             "group": "Credits & Billing",
             "pages": [
-              { "page": "resources/credits-billing/overview", "icon": "circle-info" },
-              { "page": "resources/credits-billing/how-credits-work", "icon": "coins" },
-              { "page": "resources/credits-billing/pricing", "icon": "tag" },
-              { "page": "resources/credits-billing/managing-plan", "icon": "gear" },
-              { "page": "resources/credits-billing/enterprise", "icon": "building" }
+              "resources/credits-billing/overview",
+              "resources/credits-billing/how-credits-work",
+              "resources/credits-billing/pricing",
+              "resources/credits-billing/managing-plan",
+              "resources/credits-billing/enterprise"
             ]
           },
           {
             "group": "Learning",
             "pages": [
-              { "page": "resources/web3-data-resources", "icon": "book" },
-              { "page": "resources/learning/overview", "icon": "circle-info" },
-              { "page": "resources/learning/video-tutorials", "icon": "video" },
-              { "page": "resources/learning/example-queries", "icon": "code" },
-              { "page": "resources/learning/example-dashboards", "icon": "grid-2" },
-              { "page": "resources/learning/analyst-roadmap", "icon": "road" }
+              "resources/web3-data-resources",
+              "resources/learning/overview",
+              "resources/learning/video-tutorials",
+              "resources/learning/example-queries",
+              "resources/learning/example-dashboards",
+              "resources/learning/analyst-roadmap"
             ]
           },
           {
             "group": "Support",
             "pages": [
-              { "page": "resources/support/overview", "icon": "circle-info" },
-              { "page": "resources/support/faq", "icon": "circle-question" },
-              { "page": "resources/support/troubleshooting", "icon": "wrench" },
-              { "page": "resources/support/contact", "icon": "envelope" }
+              "resources/support/overview",
+              "resources/support/faq",
+              "resources/support/troubleshooting",
+              "resources/support/contact"
             ]
           },
           {
             "group": "Community",
             "pages": [
-              { "page": "resources/community/overview", "icon": "circle-info" },
-              { "page": "resources/community/discord", "icon": "discord" },
-              { "page": "resources/community/bounties-grants", "icon": "trophy" },
-              { "page": "resources/community/wizards-program", "icon": "hat-wizard" }
+              "resources/community/overview",
+              "resources/community/discord",
+              "resources/community/bounties-grants",
+              "resources/community/wizards-program"
             ]
           }
         ]
