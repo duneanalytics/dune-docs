@@ -9,6 +9,14 @@
     "href": "https://dune.com"
   },
   "favicon": "/Dune_Favicon.svg",
+  "head": [
+    {
+      "tag": "script",
+      "attributes": {
+        "src": "/favicon-switcher.js"
+      }
+    }
+  ],
   "colors": {
     "primary": "#0f0f15",
     "light": "#ffffff",
@@ -3474,9 +3482,7 @@
               },
               {
                 "group": "Webhooks",
-                "pages": [
-                  "api-reference/webhooks/webhook"
-                ],
+                "pages": ["api-reference/webhooks/webhook"],
                 "icon": "webhook"
               }
             ],
@@ -3494,9 +3500,7 @@
           },
           {
             "group": "Real-time APIs",
-            "pages": [
-              "api-reference/realtime/overview"
-            ],
+            "pages": ["api-reference/realtime/overview"],
             "icon": "bolt"
           },
           {
@@ -3549,21 +3553,14 @@
         "pages": [
           {
             "group": "Catalyst",
-            "pages": [
-              "catalyst/overview"
-            ]
+            "pages": ["catalyst/overview"]
           }
         ]
       }
     ]
   },
   "contextual": {
-    "options": [
-      "chatgpt",
-      "claude",
-      "copy",
-      "view"
-    ]
+    "options": ["chatgpt", "claude", "copy", "view"]
   },
   "seo": {
     "metatags": {
