@@ -40,10 +40,13 @@
     ]
   };
 
-  // Check if we're on an Access Methods page
+  // Check if we're on an Access Methods page (including api-reference/connectors for dbt)
   function isAccessMethodsPage() {
     const path = window.location.pathname;
-    return path.includes('/access-methods') || path.includes('access-methods');
+    return path.includes('/access-methods') || 
+           path.includes('access-methods') ||
+           path.includes('/api-reference/connectors/dbt-connector') ||
+           path.includes('/api-reference/connectors/sql-operations');
   }
 
   // Detect current access method from URL
@@ -53,6 +56,11 @@
     // Check for overview/index page first
     if (path === '/access-methods' || path === '/access-methods/' || path === '/access-methods/index' || path.endsWith('/access-methods/index')) {
       return ACCESS_METHODS['OVERVIEW'][0];
+    }
+    
+    // Check for dbt connector pages (including api-reference/connectors paths)
+    if (path.includes('/api-reference/connectors/dbt-connector') || path.includes('/api-reference/connectors/sql-operations')) {
+      return ACCESS_METHODS['TRANSFORM DATA'][0];
     }
     
     for (const category of Object.values(ACCESS_METHODS)) {
