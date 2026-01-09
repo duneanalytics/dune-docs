@@ -3307,140 +3307,53 @@
                 "group": "Executions and Results",
                 "pages": [
                   "access-methods/api-reference/executions/index",
-                  {
-                    "page": "access-methods/api-reference/executions/execute-sql",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/execute-query",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/execute-query-pipeline",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/get-execution-status",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/get-execution-result",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/get-execution-result-csv",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/get-query-result",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/get-query-result-csv",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/cancel-execution",
-                    "method": "POST"
-                  }
+                  "access-methods/api-reference/executions/execute-sql",
+                  "access-methods/api-reference/executions/execute-query",
+                  "access-methods/api-reference/executions/execute-query-pipeline",
+                  "access-methods/api-reference/executions/get-execution-status",
+                  "access-methods/api-reference/executions/get-execution-result",
+                  "access-methods/api-reference/executions/get-execution-result-csv",
+                  "access-methods/api-reference/executions/get-query-result",
+                  "access-methods/api-reference/executions/get-query-result-csv",
+                  "access-methods/api-reference/executions/cancel-execution"
                 ]
               },
               {
                 "group": "Query Management",
                 "pages": [
                   "access-methods/api-reference/queries/index",
-                  {
-                    "page": "access-methods/api-reference/queries/list-queries",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/get-query-pipeline",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/create",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/update",
-                    "method": "PATCH"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/read",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/archive",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/unarchive",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/private",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/unprivate",
-                    "method": "POST"
-                  }
+                  "access-methods/api-reference/queries/list-queries",
+                  "access-methods/api-reference/queries/get-query-pipeline",
+                  "access-methods/api-reference/queries/create",
+                  "access-methods/api-reference/queries/update",
+                  "access-methods/api-reference/queries/read",
+                  "access-methods/api-reference/queries/archive",
+                  "access-methods/api-reference/queries/unarchive",
+                  "access-methods/api-reference/queries/private",
+                  "access-methods/api-reference/queries/unprivate"
                 ]
               },
               {
                 "group": "Data Uploads",
                 "pages": [
                   "access-methods/api-reference/tables/index",
-                  {
-                    "page": "access-methods/api-reference/tables/upload-csv",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/tables/create-table",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/tables/insert-data",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/tables/clear-data",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/tables/delete-table",
-                    "method": "DELETE"
-                  },
-                  {
-                    "page": "access-methods/api-reference/tables/list-tables",
-                    "method": "GET"
-                  }
+                  "access-methods/api-reference/tables/upload-csv",
+                  "access-methods/api-reference/tables/create-table",
+                  "access-methods/api-reference/tables/insert-data",
+                  "access-methods/api-reference/tables/clear-data",
+                  "access-methods/api-reference/tables/delete-table",
+                  "access-methods/api-reference/tables/list-tables"
                 ]
               },
               {
                 "group": "Materialized Views",
                 "pages": [
                   "access-methods/api-reference/materialized-views/index",
-                  {
-                    "page": "access-methods/api-reference/materialized-views/get",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/materialized-views/upsert",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/materialized-views/delete",
-                    "method": "DELETE"
-                  },
-                  {
-                    "page": "access-methods/api-reference/materialized-views/list",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/materialized-views/refresh",
-                    "method": "POST"
-                  }
+                  "access-methods/api-reference/materialized-views/get",
+                  "access-methods/api-reference/materialized-views/upsert",
+                  "access-methods/api-reference/materialized-views/delete",
+                  "access-methods/api-reference/materialized-views/list",
+                  "access-methods/api-reference/materialized-views/refresh"
                 ]
               },
               {
