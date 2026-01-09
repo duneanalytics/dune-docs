@@ -208,6 +208,33 @@
     }
   }
 
+  // Update dropdown selection based on current URL
+  function updateDropdownSelection() {
+    const trigger = document.getElementById('access-dropdown-trigger');
+    const menu = document.getElementById('access-dropdown-menu');
+    if (!trigger) return;
+    
+    const currentMethod = getCurrentMethod();
+    const iconSpan = trigger.querySelector('.access-dropdown-trigger-icon');
+    const nameSpan = trigger.querySelector('.access-dropdown-trigger-name');
+    
+    if (iconSpan) iconSpan.innerHTML = getIcon(currentMethod.id);
+    if (nameSpan) nameSpan.textContent = currentMethod.name;
+    
+    // Update active states in menu
+    if (menu) {
+      menu.querySelectorAll('.access-dropdown-item').forEach(item => {
+        const isActive = item.href && item.href.includes(currentMethod.id);
+        item.classList.toggle('active', isActive);
+        const check = item.querySelector('.access-dropdown-item-check');
+        if (check) check.remove();
+        if (isActive) {
+          item.insertAdjacentHTML('beforeend', '<span class="access-dropdown-item-check">✓</span>');
+        }
+      });
+    }
+  }
+
   // Insert dropdown
   function insertDropdown() {
     if (!isAccessMethodsPage()) {
@@ -219,6 +246,8 @@
     hideDefaultAnchorSelector();
 
     if (document.getElementById('access-method-dropdown')) {
+      // Dropdown exists, just update selection
+      updateDropdownSelection();
       return;
     }
 
