@@ -48,10 +48,6 @@
       "url": "query-engine"
     },
     {
-      "name": "Enterprise",
-      "url": "enterprise"
-    },
-    {
       "name": "Resources",
       "url": "resources"
     }
@@ -71,6 +67,125 @@
               "docs/use-cases/protocol-adoption/overview",
               "docs/use-cases/trading-intelligence/overview",
               "docs/use-cases/stablecoin-intelligence/overview"
+            ]
+          },
+          {
+            "group": "Analytics Hub",
+            "icon": "chart-line",
+            "pages": [
+              "access-methods/analytics-hub/index",
+              {
+                "group": "Run Queries",
+                "pages": [
+                  "access-methods/analytics-hub/query-editor/index",
+                  "access-methods/analytics-hub/query-editor/data-explorer",
+                  "access-methods/analytics-hub/query-editor/parameters",
+                  "access-methods/analytics-hub/query-editor/scheduling",
+                  "access-methods/analytics-hub/query-editor/query-lineage",
+                  "access-methods/analytics-hub/query-editor/version-history"
+                ]
+              },
+              {
+                "group": "Visualize Results",
+                "pages": [
+                  "access-methods/analytics-hub/visualizations/index",
+                  "access-methods/analytics-hub/visualizations/charts-graphs",
+                  "access-methods/analytics-hub/visualizations/counters",
+                  "access-methods/analytics-hub/visualizations/tables"
+                ]
+              },
+              "access-methods/analytics-hub/upload-data",
+              {
+                "group": "Manage Your Account",
+                "pages": [
+                  "access-methods/analytics-hub/teams",
+                  "access-methods/analytics-hub/alerts",
+                  "access-methods/analytics-hub/search-content"
+                ]
+              },
+              {
+                "group": "Dashboards",
+                "pages": [
+                  "access-methods/analytics-hub/dashboards/index",
+                  "access-methods/analytics-hub/dashboards/embedding",
+                  "access-methods/analytics-hub/dashboards/permissions"
+                ]
+              },
+              "access-methods/analytics-hub/dune-ai",
+              "access-methods/analytics-hub/share-work",
+              {
+                "group": "Decoding Contracts",
+                "pages": [
+                  "access-methods/analytics-hub/decoding/index",
+                  "access-methods/analytics-hub/decoding/best-practices",
+                  "access-methods/analytics-hub/decoding/multichain",
+                  "access-methods/analytics-hub/decoding/faqs"
+                ]
+              },
+              {
+                "group": "Enterprise",
+                "pages": [
+                  "enterprise/analytics-hub/overview",
+                  "enterprise/analytics-hub/teams",
+                  "enterprise/analytics-hub/sso",
+                  "enterprise/analytics-hub/permissions"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Dune Datashare",
+            "icon": "database",
+            "pages": [
+              "access-methods/datashare/index",
+              {
+                "group": "Snowflake",
+                "pages": [
+                  "access-methods/datashare/snowflake/index",
+                  "access-methods/datashare/snowflake/setup",
+                  "access-methods/datashare/snowflake/data-types",
+                  "access-methods/datashare/snowflake/query-examples"
+                ]
+              },
+              {
+                "group": "BigQuery",
+                "pages": [
+                  "access-methods/datashare/bigquery/index",
+                  "access-methods/datashare/bigquery/setup",
+                  "access-methods/datashare/bigquery/query-examples"
+                ]
+              },
+              "access-methods/datashare/faqs",
+              {
+                "group": "Enterprise",
+                "pages": [
+                  "enterprise/datashare/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Catalyst",
+            "icon": "rocket",
+            "pages": [
+              "access-methods/catalyst/index",
+              "access-methods/catalyst/hosted-blockchain",
+              {
+                "group": "Integration Routes",
+                "pages": [
+                  "access-methods/catalyst/integration-routes/evm-chains",
+                  "access-methods/catalyst/integration-routes/non-evm-rpc",
+                  "access-methods/catalyst/integration-routes/database-route"
+                ]
+              },
+              "access-methods/catalyst/data-latency",
+              "access-methods/catalyst/contact-sales",
+              {
+                "group": "Enterprise",
+                "pages": [
+                  "enterprise/catalyst/overview"
+                ]
+              }
             ]
           }
         ]
@@ -3218,44 +3333,8 @@
       },
       {
         "tab": "Access",
+        "url": "access-methods",
         "anchors": [
-          {
-            "anchor": "Analytics Hub",
-            "icon": "chart-line",
-            "pages": [
-              "access-methods/analytics-hub/index",
-              {
-                "group": "Query Editor",
-                "pages": [
-                  "access-methods/analytics-hub/query-editor/index",
-                  "access-methods/analytics-hub/query-editor/data-explorer",
-                  "access-methods/analytics-hub/query-editor/parameters",
-                  "access-methods/analytics-hub/query-editor/scheduling"
-                ]
-              },
-              {
-                "group": "Visualizations",
-                "pages": [
-                  "access-methods/analytics-hub/visualizations/index",
-                  "access-methods/analytics-hub/visualizations/charts-graphs",
-                  "access-methods/analytics-hub/visualizations/counters",
-                  "access-methods/analytics-hub/visualizations/tables"
-                ]
-              },
-              {
-                "group": "Dashboards",
-                "pages": [
-                  "access-methods/analytics-hub/dashboards/index",
-                  "access-methods/analytics-hub/dashboards/embedding",
-                  "access-methods/analytics-hub/dashboards/permissions"
-                ]
-              },
-              "access-methods/analytics-hub/teams",
-              "access-methods/analytics-hub/dune-ai",
-              "access-methods/analytics-hub/upload-data",
-              "access-methods/analytics-hub/alerts"
-            ]
-          },
           {
             "anchor": "API Reference",
             "icon": "code",
@@ -3264,34 +3343,143 @@
               "access-methods/api-reference/getting-started",
               "access-methods/api-reference/authentication",
               {
-                "group": "Executions",
+                "group": "Executions and Results",
                 "pages": [
                   "access-methods/api-reference/executions/index",
-                  "access-methods/api-reference/executions/execute-sql",
-                  "access-methods/api-reference/executions/execute-query",
-                  "access-methods/api-reference/executions/get-execution-status",
-                  "access-methods/api-reference/executions/get-execution-result",
-                  "access-methods/api-reference/executions/cancel-execution"
+                  {
+                    "page": "access-methods/api-reference/executions/execute-sql",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/execute-query",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/execute-query-pipeline",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/get-execution-status",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/get-execution-result",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/get-execution-result-csv",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/get-query-result",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/get-query-result-csv",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/cancel-execution",
+                    "method": "POST"
+                  }
                 ]
               },
               {
                 "group": "Query Management",
                 "pages": [
                   "access-methods/api-reference/queries/index",
-                  "access-methods/api-reference/queries/create",
-                  "access-methods/api-reference/queries/read",
-                  "access-methods/api-reference/queries/update",
-                  "access-methods/api-reference/queries/archive"
+                  {
+                    "page": "access-methods/api-reference/queries/list-queries",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/get-query-pipeline",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/create",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/update",
+                    "method": "PATCH"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/read",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/archive",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/unarchive",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/private",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/unprivate",
+                    "method": "POST"
+                  }
                 ]
               },
               {
                 "group": "Data Uploads",
                 "pages": [
                   "access-methods/api-reference/tables/index",
-                  "access-methods/api-reference/tables/upload-csv",
-                  "access-methods/api-reference/tables/create-table",
-                  "access-methods/api-reference/tables/insert-data",
-                  "access-methods/api-reference/tables/delete-table"
+                  {
+                    "page": "access-methods/api-reference/tables/upload-csv",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/create-table",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/insert-data",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/clear-data",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/delete-table",
+                    "method": "DELETE"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/list-tables",
+                    "method": "GET"
+                  }
+                ]
+              },
+              {
+                "group": "Materialized Views",
+                "pages": [
+                  "access-methods/api-reference/materialized-views/index",
+                  {
+                    "page": "access-methods/api-reference/materialized-views/get",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/upsert",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/delete",
+                    "method": "DELETE"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/list",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/refresh",
+                    "method": "POST"
+                  }
                 ]
               },
               {
@@ -3299,14 +3487,24 @@
                 "pages": [
                   "access-methods/api-reference/post-processing/filtering",
                   "access-methods/api-reference/post-processing/sorting",
-                  "access-methods/api-reference/post-processing/pagination"
+                  "access-methods/api-reference/post-processing/pagination",
+                  "access-methods/api-reference/post-processing/sampling"
+                ]
+              },
+              {
+                "group": "Resources",
+                "pages": [
+                  "access-methods/api-reference/resources/rate-limits",
+                  "access-methods/api-reference/resources/troubleshooting",
+                  "access-methods/api-reference/resources/billing",
+                  "access-methods/api-reference/resources/faq"
                 ]
               }
             ]
           },
           {
             "anchor": "Client SDKs",
-            "icon": "box",
+            "icon": "package",
             "pages": [
               "access-methods/client-sdks/index",
               "access-methods/client-sdks/python",
@@ -3316,7 +3514,7 @@
           },
           {
             "anchor": "Real-Time APIs",
-            "icon": "bolt",
+            "icon": "zap",
             "pages": [
               "access-methods/real-time-apis/index",
               "access-methods/real-time-apis/sim-apis"
@@ -3329,31 +3527,6 @@
               "access-methods/webhooks/index",
               "access-methods/webhooks/setup",
               "access-methods/webhooks/events"
-            ]
-          },
-          {
-            "anchor": "Datashare",
-            "icon": "database",
-            "pages": [
-              "access-methods/datashare/index",
-              "access-methods/datashare/getting-started",
-              {
-                "group": "Snowflake",
-                "pages": [
-                  "access-methods/datashare/snowflake/index",
-                  "access-methods/datashare/snowflake/setup",
-                  "access-methods/datashare/snowflake/query-examples"
-                ]
-              },
-              {
-                "group": "BigQuery",
-                "pages": [
-                  "access-methods/datashare/bigquery/index",
-                  "access-methods/datashare/bigquery/setup",
-                  "access-methods/datashare/bigquery/query-examples"
-                ]
-              },
-              "access-methods/datashare/faqs"
             ]
           },
           {
@@ -3373,30 +3546,14 @@
           },
           {
             "anchor": "dbt Connector",
-            "icon": "arrows-rotate",
+            "icon": "git-merge",
             "pages": [
               "access-methods/dbt-connector/index",
               "access-methods/dbt-connector/setup",
               "access-methods/dbt-connector/building-models",
-              "access-methods/dbt-connector/materialized-views"
-            ]
-          },
-          {
-            "anchor": "Catalyst",
-            "icon": "cube",
-            "pages": [
-              "access-methods/catalyst/index",
-              "access-methods/catalyst/hosted-blockchain",
-              {
-                "group": "Integration Routes",
-                "pages": [
-                  "access-methods/catalyst/integration-routes/evm-chains",
-                  "access-methods/catalyst/integration-routes/non-evm-rpc",
-                  "access-methods/catalyst/integration-routes/database-route"
-                ]
-              },
-              "access-methods/catalyst/data-latency",
-              "access-methods/catalyst/contact-sales"
+              "access-methods/dbt-connector/materialized-views",
+              "access-methods/dbt-connector/supported-operations",
+              "access-methods/dbt-connector/troubleshooting"
             ]
           }
         ]
@@ -3462,33 +3619,6 @@
               "query-engine/Functions-and-operators/varbinary",
               "query-engine/Functions-and-operators/varchar-utility-functions",
               "query-engine/Functions-and-operators/window"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Enterprise",
-        "pages": [
-          "enterprise/overview",
-          {
-            "group": "Analytics Hub",
-            "pages": [
-              "enterprise/analytics-hub/overview",
-              "enterprise/analytics-hub/teams",
-              "enterprise/analytics-hub/sso",
-              "enterprise/analytics-hub/permissions"
-            ]
-          },
-          {
-            "group": "Datashare",
-            "pages": [
-              "enterprise/datashare/overview"
-            ]
-          },
-          {
-            "group": "Catalyst",
-            "pages": [
-              "enterprise/catalyst/overview"
             ]
           }
         ]
