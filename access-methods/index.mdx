@@ -1,29 +1,61 @@
 ---
-title: "Access Methods"
-description: "Choose how you want to access Dune's blockchain data"
+title: "Access Overview"
+description: "Programmatic access to Dune's blockchain data platform"
 ---
 
-# Access Methods
+# Access Dune Data
 
-Dune provides multiple ways to access blockchain data. Choose the method that best fits your workflow.
+Dune provides multiple ways to programmatically access blockchain data. Choose the method that best fits your use case.
+
+## API Reference
+
+The Dune API allows you to execute queries, retrieve results, and manage your queries programmatically.
+
+<Card title="API Reference" icon="code" href="/access-methods/api-reference/index">
+  Execute queries, get results, and manage data via REST API
+</Card>
+
+## Client SDKs
+
+Official SDKs for popular programming languages make it easy to integrate Dune into your applications.
+
+<CardGroup cols={3}>
+  <Card title="Python" icon="python" href="/access-methods/client-sdks/python">
+    Official Python SDK
+  </Card>
+  <Card title="TypeScript" icon="js" href="/access-methods/client-sdks/typescript">
+    Official TypeScript SDK
+  </Card>
+  <Card title="Go" icon="golang" href="/access-methods/client-sdks/go">
+    Official Go SDK
+  </Card>
+</CardGroup>
+
+## Real-Time APIs
+
+Access real-time blockchain data with low-latency APIs.
+
+<Card title="Real-Time APIs" icon="bolt" href="/access-methods/real-time-apis/index">
+  SIM APIs and real-time data access
+</Card>
+
+## Webhooks
+
+Set up webhooks to receive notifications when query results are ready.
+
+<Card title="Webhooks" icon="bell" href="/access-methods/webhooks/index">
+  Configure webhook notifications
+</Card>
+
+## Connectors
+
+Connect Dune to your existing tools and workflows.
 
 <CardGroup cols={2}>
-  <Card title="Analytics Hub" icon="chart-line" href="/access-methods/analytics-hub">
-    Explore and analyze data with our web-based query editor
+  <Card title="Trino Connectors" icon="link" href="/access-methods/trino-connector/index">
+    Connect BI tools like Hex, Tableau, Power BI
   </Card>
-  <Card title="API Reference" icon="code" href="/access-methods/api-reference">
-    Programmatic access via REST API
-  </Card>
-  <Card title="Client SDKs" icon="package" href="/access-methods/client-sdks">
-    Official client libraries for Python, TypeScript, and Go
-  </Card>
-  <Card title="Datashare" icon="database" href="/access-methods/datashare">
-    Direct access in Snowflake or BigQuery
-  </Card>
-  <Card title="Trino Connector" icon="plug" href="/access-methods/trino-connector">
-    Connect BI tools via Trino/Presto protocol
-  </Card>
-  <Card title="Catalyst" icon="cube" href="/access-methods/catalyst">
-    Get your blockchain indexed on Dune
+  <Card title="dbt Connector" icon="database" href="/access-methods/dbt-connector/index">
+    Transform data with dbt
   </Card>
 </CardGroup>
