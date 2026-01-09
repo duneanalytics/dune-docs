@@ -60,7 +60,10 @@
           "home",
           "quickstart",
           "learning-resources",
-          "docs/sim-real-time-apis",
+          {
+            "page": "Sim Real-Time APIs",
+            "href": "https://docs.sim.dune.com"
+          },
           {
             "group": "Use Cases",
             "pages": [
