@@ -75,6 +75,7 @@
               "web-app/overview",
               {
                 "group": "Working with Queries",
+                "icon": "code",
                 "pages": [
                   "web-app/query-editor/index",
                   "web-app/query-editor/data-explorer",
@@ -86,6 +87,7 @@
               },
               {
                 "group": "Visualizations",
+                "icon": "chart-bar",
                 "pages": [
                   "web-app/visualizations/charts-graphs",
                   "web-app/visualizations/counters",
@@ -94,6 +96,7 @@
               },
               {
                 "group": "Dashboards",
+                "icon": "grid-2",
                 "pages": [
                   "web-app/dashboards",
                   "web-app/embeds"
@@ -101,6 +104,7 @@
               },
               {
                 "group": "Decoding Contracts",
+                "icon": "file-code",
                 "pages": [
                   "web-app/decoding/decoding-contracts",
                   "web-app/decoding/best-practices",
@@ -110,6 +114,7 @@
               },
               {
                 "group": "AI & Alerts",
+                "icon": "robot",
                 "pages": [
                   "web-app/dune-ai",
                   "web-app/alerts"
@@ -120,6 +125,7 @@
               "web-app/teams",
               {
                 "group": "Enterprise",
+                "icon": "building",
                 "pages": [
                   "enterprise/analytics-hub/overview",
                   "enterprise/analytics-hub/sso",
@@ -137,6 +143,7 @@
               "datashare/datashare-bigquery",
               {
                 "group": "Enterprise",
+                "icon": "building",
                 "pages": [
                   "enterprise/datashare/overview"
                 ]
