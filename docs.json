@@ -8,7 +8,6 @@
     "dark": "/logo/dune-logo-dark.svg",
     "href": "https://dune.com"
   },
-  "favicon": "/Dune_Favicon.svg",
   "head": [
     {
       "tag": "script",
