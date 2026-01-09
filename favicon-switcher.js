@@ -1,0 +1,28 @@
+(() => {
+  function updateFavicon() {
+    var isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill="' +
+      (isDark ? "white" : "#171717") +
+      '" d="M15.9992 8.20893C15.9176 11.2697 14.073 14.1438 11.0616 15.3912C8.05018 16.6385 4.71348 15.9106 2.4915 13.804L15.9992 8.20893Z"/><path fill="' +
+      (isDark ? "white" : "#171717") +
+      '" d="M4.93867 0.609096C9.02062 -1.08169 13.7004 0.856723 15.3912 4.93866C15.6218 5.49536 15.7847 6.06322 15.8841 6.63305L1.4587 12.6082C1.12602 12.135 0.839692 11.6183 0.6091 11.0616C-1.08169 6.97965 0.856716 2.2999 4.93867 0.609096Z"/></svg>';
+
+    var existingLinks = document.querySelectorAll("link[rel*='icon']");
+    existingLinks.forEach(function (link) {
+      link.parentNode.removeChild(link);
+    });
+
+    var link = document.createElement("link");
+    link.rel = "icon";
+    link.type = "image/svg+xml";
+    link.href = "data:image/svg+xml," + encodeURIComponent(svg);
+    document.head.appendChild(link);
+  }
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", updateFavicon);
+
+  updateFavicon();
+})();

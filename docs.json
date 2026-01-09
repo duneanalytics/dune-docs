@@ -8,7 +8,14 @@
     "dark": "/logo/dune-logo-dark.svg",
     "href": "https://dune.com"
   },
-  "favicon": "/Dune_Favicon.svg",
+  "head": [
+    {
+      "tag": "script",
+      "attributes": {
+        "src": "/favicon-switcher.js"
+      }
+    }
+  ],
   "colors": {
     "primary": "#0f0f15",
     "light": "#ffffff",
@@ -3548,12 +3555,7 @@
     ]
   },
   "contextual": {
-    "options": [
-      "chatgpt",
-      "claude",
-      "copy",
-      "view"
-    ]
+    "options": ["chatgpt", "claude", "copy", "view"]
   },
   "seo": {
     "metatags": {
