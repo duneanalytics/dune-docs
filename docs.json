@@ -36,6 +36,18 @@
       "url": "home"
     },
     {
+      "name": "Analytics Hub",
+      "url": "web-app"
+    },
+    {
+      "name": "Datashare",
+      "url": "datashare"
+    },
+    {
+      "name": "Catalyst",
+      "url": "catalyst"
+    },
+    {
       "name": "Data Catalog",
       "url": "data-catalog"
     },
@@ -59,6 +71,7 @@
         "pages": [
           "home",
           "quickstart",
+          "learning-resources",
           {
             "group": "Use Cases",
             "pages": [
@@ -67,97 +80,86 @@
               "docs/use-cases/trading-intelligence/overview",
               "docs/use-cases/stablecoin-intelligence/overview"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Analytics Hub",
+        "pages": [
+          "web-app/overview",
           {
-            "group": "Analytics Hub",
-            "icon": "chart-line",
+            "group": "Working with Queries",
             "pages": [
-              "web-app/overview",
-              {
-                "group": "Working with Queries",
-                "pages": [
-                  "web-app/query-editor/index",
-                  "web-app/query-editor/data-explorer",
-                  "web-app/query-editor/parameters",
-                  "web-app/query-editor/query-scheduler",
-                  "web-app/query-editor/query-lineage",
-                  "web-app/query-editor/version-history"
-                ]
-              },
-              {
-                "group": "Visualizations",
-                "pages": [
-                  "web-app/visualizations/charts-graphs",
-                  "web-app/visualizations/counters",
-                  "web-app/visualizations/tables"
-                ]
-              },
-              {
-                "group": "Dashboards",
-                "pages": [
-                  "web-app/dashboards",
-                  "web-app/embeds"
-                ]
-              },
-              {
-                "group": "Decoding Contracts",
-                "pages": [
-                  "web-app/decoding/decoding-contracts",
-                  "web-app/decoding/best-practices",
-                  "web-app/decoding/multichain-decoding",
-                  "web-app/decoding/faqs"
-                ]
-              },
-              {
-                "group": "AI & Alerts",
-                "pages": [
-                  "web-app/dune-ai",
-                  "web-app/alerts"
-                ]
-              },
-              {
-                "group": "Sharing & Export",
-                "pages": [
-                  "web-app/search",
-                  "web-app/upload-data"
-                ]
-              },
-              "web-app/teams",
-              {
-                "group": "Enterprise",
-                "pages": [
-                  "enterprise/analytics-hub/overview",
-                  "enterprise/analytics-hub/sso",
-                  "enterprise/analytics-hub/permissions"
-                ]
-              }
+              "web-app/query-editor/index",
+              "web-app/query-editor/data-explorer",
+              "web-app/query-editor/parameters",
+              "web-app/query-editor/query-scheduler",
+              "web-app/query-editor/query-lineage",
+              "web-app/query-editor/version-history"
             ]
           },
           {
-            "group": "Dune Datashare",
-            "icon": "database",
+            "group": "Visualizations",
             "pages": [
-              "datashare/datashare",
-              {
-                "page": "datashare/datashare-databricks",
-                "icon": "rectangle-terminal"
-              },
-              {
-                "page": "datashare/datashare-snowflake",
-                "icon": "snowflake"
-              },
-              {
-                "page": "datashare/datashare-bigquery",
-                "icon": "google"
-              },
-              {
-                "group": "Enterprise",
-                "pages": [
-                  "enterprise/datashare/overview"
-                ]
-              }
+              "web-app/visualizations/charts-graphs",
+              "web-app/visualizations/counters",
+              "web-app/visualizations/tables"
             ]
           },
+          {
+            "group": "Dashboards",
+            "pages": [
+              "web-app/dashboards",
+              "web-app/embeds"
+            ]
+          },
+          {
+            "group": "Decoding Contracts",
+            "pages": [
+              "web-app/decoding/decoding-contracts",
+              "web-app/decoding/best-practices",
+              "web-app/decoding/multichain-decoding",
+              "web-app/decoding/faqs"
+            ]
+          },
+          {
+            "group": "AI & Alerts",
+            "pages": [
+              "web-app/dune-ai",
+              "web-app/alerts"
+            ]
+          },
+          "web-app/search",
+          "web-app/upload-data",
+          "web-app/teams",
+          {
+            "group": "Enterprise",
+            "pages": [
+              "enterprise/analytics-hub/overview",
+              "enterprise/analytics-hub/sso",
+              "enterprise/analytics-hub/permissions"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Datashare",
+        "pages": [
+          "datashare/datashare",
+          "datashare/datashare-databricks",
+          "datashare/datashare-snowflake",
+          "datashare/datashare-bigquery",
+          {
+            "group": "Enterprise",
+            "pages": [
+              "enterprise/datashare/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Catalyst",
+        "pages": [
           "catalyst/overview"
         ]
       },
@@ -3304,105 +3306,36 @@
       },
       {
         "tab": "Access",
-        "url": "access-methods",
         "pages": [
           "access-methods/index",
           {
             "group": "API Reference",
-            "icon": "code",
             "pages": [
               "access-methods/api-reference/index",
               "access-methods/api-reference/getting-started",
               "access-methods/api-reference/authentication",
               {
-                "group": "Executions and Results",
+                "group": "Executions",
                 "pages": [
-                  "access-methods/api-reference/executions/index",
-                  {
-                    "page": "access-methods/api-reference/executions/execute-sql",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/execute-query",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/get-execution-status",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/get-execution-result",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/executions/cancel-execution",
-                    "method": "POST"
-                  }
+                  "access-methods/api-reference/executions/index"
                 ]
               },
               {
-                "group": "Query Management",
+                "group": "Queries",
                 "pages": [
-                  "access-methods/api-reference/queries/index",
-                  {
-                    "page": "access-methods/api-reference/queries/create",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/read",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/update",
-                    "method": "PATCH"
-                  },
-                  {
-                    "page": "access-methods/api-reference/queries/archive",
-                    "method": "POST"
-                  }
+                  "access-methods/api-reference/queries/index"
                 ]
               },
               {
-                "group": "Data Uploads",
+                "group": "Tables",
                 "pages": [
-                  "access-methods/api-reference/tables/index",
-                  {
-                    "page": "access-methods/api-reference/tables/upload-csv",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/tables/create-table",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/tables/insert-data",
-                    "method": "POST"
-                  }
-                ]
-              },
-              {
-                "group": "Materialized Views",
-                "pages": [
-                  "access-methods/api-reference/materialized-views/index",
-                  {
-                    "page": "access-methods/api-reference/materialized-views/get",
-                    "method": "GET"
-                  },
-                  {
-                    "page": "access-methods/api-reference/materialized-views/upsert",
-                    "method": "POST"
-                  },
-                  {
-                    "page": "access-methods/api-reference/materialized-views/delete",
-                    "method": "DELETE"
-                  }
+                  "access-methods/api-reference/tables/index"
                 ]
               }
             ]
           },
           {
             "group": "Client SDKs",
-            "icon": "box",
             "pages": [
               "access-methods/client-sdks/index",
               "access-methods/client-sdks/python",
@@ -3412,7 +3345,6 @@
           },
           {
             "group": "Real-Time APIs",
-            "icon": "bolt",
             "pages": [
               "access-methods/real-time-apis/index",
               "access-methods/real-time-apis/sim-apis"
@@ -3420,7 +3352,6 @@
           },
           {
             "group": "Webhooks",
-            "icon": "bell",
             "pages": [
               "access-methods/webhooks/index",
               "access-methods/webhooks/setup",
@@ -3429,43 +3360,20 @@
           },
           {
             "group": "Trino Connectors",
-            "icon": "link",
             "pages": [
               "access-methods/trino-connector/index",
               "access-methods/trino-connector/connection-parameters",
-              {
-                "page": "access-methods/trino-connector/hex",
-                "icon": "hexagon"
-              },
-              {
-                "page": "access-methods/trino-connector/metabase",
-                "icon": "chart-bar"
-              },
-              {
-                "page": "access-methods/trino-connector/tableau",
-                "icon": "table"
-              },
-              {
-                "page": "access-methods/trino-connector/power-bi",
-                "icon": "chart-pie"
-              },
-              {
-                "page": "access-methods/trino-connector/looker",
-                "icon": "magnifying-glass"
-              },
-              {
-                "page": "access-methods/trino-connector/dbeaver",
-                "icon": "database"
-              },
-              {
-                "page": "access-methods/trino-connector/other-tools",
-                "icon": "puzzle-piece"
-              }
+              "access-methods/trino-connector/hex",
+              "access-methods/trino-connector/metabase",
+              "access-methods/trino-connector/tableau",
+              "access-methods/trino-connector/power-bi",
+              "access-methods/trino-connector/looker",
+              "access-methods/trino-connector/dbeaver",
+              "access-methods/trino-connector/other-tools"
             ]
           },
           {
             "group": "dbt Connector",
-            "icon": "code-branch",
             "pages": [
               "access-methods/dbt-connector/index",
               "access-methods/dbt-connector/setup",
