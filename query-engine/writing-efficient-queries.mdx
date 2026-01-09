@@ -138,8 +138,19 @@ Leverage Dune's [curated tables](https://docs.dune.com/data-catalog/overview) wh
 
 ### Use Materialized Views
 
-[Materialized views](https://docs.dune.com/query-engine/materialized-views) are a way to store the results of a query in a table that can be queried like any other table. 
+[Materialized views](https://docs.dune.com/query-engine/materialized-views) are a way to store the results of a query in a table that can be queried like any other table.
 This is useful when you have a query that takes a long time to run, as you can re-use the results without having to re-execute your whole query.
+
+### Use Incremental Queries for Recurring Workloads
+
+For scheduled queries or dashboards that refresh regularly, [Incremental Queries](/query-engine/incremental-queries) can reduce costs by up to 100x by only processing new data since your last run.
+
+Instead of rescanning years of historical data on every refresh, incremental queries:
+- Load your previous results automatically
+- Query only the new data since your last checkpoint
+- Combine old + new results efficiently
+
+This is ideal for daily aggregations, hourly metrics, and any time-series analysis that runs on a schedule.
 
 ## Query Performance Troubleshooting
 

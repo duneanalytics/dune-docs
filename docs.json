@@ -3548,7 +3548,8 @@
             "pages": [
               "query-engine/query-executions",
               "query-engine/query-a-query",
-              "query-engine/materialized-views"
+              "query-engine/materialized-views",
+              "query-engine/incremental-queries"
             ]
           },
           {
