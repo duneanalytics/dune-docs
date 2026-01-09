@@ -33,7 +33,7 @@
   "tabs": [
     {
       "name": "Docs",
-      "url": "docs"
+      "url": "home"
     },
     {
       "name": "Data Catalog",
@@ -57,9 +57,8 @@
       {
         "tab": "Docs",
         "pages": [
-          "docs/introduction",
-          "docs/quickstart",
-          "resources/changelog",
+          "home",
+          "quickstart",
           {
             "group": "Use Cases",
             "pages": [
