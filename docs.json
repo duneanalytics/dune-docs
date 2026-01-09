@@ -59,7 +59,6 @@
         "pages": [
           "home",
           "quickstart",
-          "learning-resources",
           "docs/sim-real-time-apis",
           {
             "group": "Use Cases",
