@@ -3304,6 +3304,13 @@
         "url": "access-methods",
         "anchors": [
           {
+            "anchor": "Overview",
+            "icon": "star",
+            "pages": [
+              "access-methods/index"
+            ]
+          },
+          {
             "anchor": "API Reference",
             "icon": "code",
             "pages": [
@@ -3423,6 +3430,8 @@
             "icon": "git-merge",
             "pages": [
               "access-methods/dbt-connector/index",
+              "api-reference/connectors/dbt-connector",
+              "api-reference/connectors/sql-operations",
               "access-methods/dbt-connector/setup",
               "access-methods/dbt-connector/building-models",
               "access-methods/dbt-connector/materialized-views",
