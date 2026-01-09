@@ -41,7 +41,7 @@
     },
     {
       "name": "Access",
-      "url": "api-reference"
+      "url": "access-methods"
     },
     {
       "name": "SQL Query Engine",
@@ -3294,182 +3294,228 @@
       },
       {
         "tab": "Access",
-        "pages": [
+        "url": "access-methods",
+        "anchors": [
           {
-            "group": "Access",
+            "anchor": "API Reference",
+            "icon": "code",
             "pages": [
-              "api-reference/overview/introduction",
-              "api-reference/overview/getting-started"
-            ],
-            "icon": "house"
-          },
-          {
-            "group": "Analytics APIs",
-            "pages": [
+              "access-methods/api-reference/index",
+              "access-methods/api-reference/getting-started",
+              "access-methods/api-reference/authentication",
               {
-                "group": "Quick Start",
+                "group": "Executions and Results",
                 "pages": [
-                  "api-reference/apis/quickstart-analyze",
-                  "api-reference/apis/quickstart-dashboards"
-                ],
-                "icon": "rocket"
-              },
-              "api-reference/overview/authentication",
-              {
-                "group": "API Reference",
-                "pages": [
-                  "api-reference/api-overview",
+                  "access-methods/api-reference/executions/index",
                   {
-                    "group": "Executions and Results",
-                    "pages": [
-                      "api-reference/executions/execution-object",
-                      "api-reference/executions/endpoint/execute-sql",
-                      "api-reference/executions/endpoint/execute-query",
-                      "api-reference/executions/endpoint/execute-query-pipeline",
-                      "api-reference/executions/endpoint/get-execution-status",
-                      "api-reference/executions/endpoint/get-execution-result",
-                      "api-reference/executions/endpoint/get-execution-result-csv",
-                      "api-reference/executions/endpoint/get-query-result",
-                      "api-reference/executions/endpoint/get-query-result-csv",
-                      "api-reference/executions/endpoint/cancel-execution"
-                    ],
-                    "icon": "play"
+                    "page": "access-methods/api-reference/executions/execute-sql",
+                    "method": "POST"
                   },
                   {
-                    "group": "Query Management",
-                    "pages": [
-                      "api-reference/queries/endpoint/query-object",
-                      "api-reference/queries/endpoint/list",
-                      "api-reference/queries/endpoint/get-query-pipeline",
-                      "api-reference/queries/endpoint/create",
-                      "api-reference/queries/endpoint/update",
-                      "api-reference/queries/endpoint/read",
-                      "api-reference/queries/endpoint/archive",
-                      "api-reference/queries/endpoint/unarchive",
-                      "api-reference/queries/endpoint/private",
-                      "api-reference/queries/endpoint/unprivate"
-                    ],
-                    "icon": "pen-to-square"
+                    "page": "access-methods/api-reference/executions/execute-query",
+                    "method": "POST"
                   },
                   {
-                    "group": "Data Uploads",
-                    "pages": [
-                      "api-reference/tables/endpoint/overview",
-                      "api-reference/tables/endpoint/uploads-list",
-                      "api-reference/tables/endpoint/uploads-create",
-                      "api-reference/tables/endpoint/uploads-insert",
-                      "api-reference/tables/endpoint/uploads-csv",
-                      "api-reference/tables/endpoint/uploads-clear",
-                      "api-reference/tables/endpoint/uploads-delete",
-                      "api-reference/tables/endpoint/migration"
-                    ],
-                    "icon": "upload"
+                    "page": "access-methods/api-reference/executions/execute-query-pipeline",
+                    "method": "POST"
                   },
                   {
-                    "group": "Datasets",
-                    "pages": [
-                      "api-reference/datasets/introduction",
-                      "api-reference/datasets/endpoint/list",
-                      "api-reference/datasets/endpoint/get"
-                    ],
-                    "icon": "database"
+                    "page": "access-methods/api-reference/executions/get-execution-status",
+                    "method": "GET"
                   },
                   {
-                    "group": "Materialized Views",
-                    "pages": [
-                      "api-reference/materialized-views/overview",
-                      "api-reference/materialized-views/get",
-                      "api-reference/materialized-views/create",
-                      "api-reference/materialized-views/delete",
-                      "api-reference/materialized-views/list",
-                      "api-reference/materialized-views/refresh"
-                    ],
-                    "icon": "layer-group"
+                    "page": "access-methods/api-reference/executions/get-execution-result",
+                    "method": "GET"
                   },
                   {
-                    "group": "Pipelines",
-                    "pages": [
-                      "api-reference/pipelines/overview",
-                      "api-reference/pipelines/endpoint/execute-pipeline",
-                      "api-reference/pipelines/endpoint/get-pipeline-status"
-                    ],
-                    "icon": "diagram-project"
+                    "page": "access-methods/api-reference/executions/get-execution-result-csv",
+                    "method": "GET"
                   },
                   {
-                    "group": "Account Management",
-                    "pages": [
-                      "api-reference/usage/overview",
-                      "api-reference/usage/endpoint/get-usage"
-                    ],
-                    "icon": "user"
+                    "page": "access-methods/api-reference/executions/get-query-result",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/get-query-result-csv",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/executions/cancel-execution",
+                    "method": "POST"
                   }
-                ],
-                "icon": "code"
+                ]
+              },
+              {
+                "group": "Query Management",
+                "pages": [
+                  "access-methods/api-reference/queries/index",
+                  {
+                    "page": "access-methods/api-reference/queries/list-queries",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/get-query-pipeline",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/create",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/update",
+                    "method": "PATCH"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/read",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/archive",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/unarchive",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/private",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/queries/unprivate",
+                    "method": "POST"
+                  }
+                ]
+              },
+              {
+                "group": "Data Uploads",
+                "pages": [
+                  "access-methods/api-reference/tables/index",
+                  {
+                    "page": "access-methods/api-reference/tables/upload-csv",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/create-table",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/insert-data",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/clear-data",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/delete-table",
+                    "method": "DELETE"
+                  },
+                  {
+                    "page": "access-methods/api-reference/tables/list-tables",
+                    "method": "GET"
+                  }
+                ]
+              },
+              {
+                "group": "Materialized Views",
+                "pages": [
+                  "access-methods/api-reference/materialized-views/index",
+                  {
+                    "page": "access-methods/api-reference/materialized-views/get",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/upsert",
+                    "method": "POST"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/delete",
+                    "method": "DELETE"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/list",
+                    "method": "GET"
+                  },
+                  {
+                    "page": "access-methods/api-reference/materialized-views/refresh",
+                    "method": "POST"
+                  }
+                ]
               },
               {
                 "group": "Post-processing",
                 "pages": [
-                  "api-reference/executions/filtering",
-                  "api-reference/executions/pagination",
-                  "api-reference/executions/sorting",
-                  "api-reference/executions/sampling"
-                ],
-                "icon": "filter"
+                  "access-methods/api-reference/post-processing/filtering",
+                  "access-methods/api-reference/post-processing/sorting",
+                  "access-methods/api-reference/post-processing/pagination",
+                  "access-methods/api-reference/post-processing/sampling"
+                ]
               },
               {
-                "group": "Webhooks",
+                "group": "Resources",
                 "pages": [
-                  "api-reference/webhooks/webhook"
-                ],
-                "icon": "webhook"
+                  "access-methods/api-reference/resources/rate-limits",
+                  "access-methods/api-reference/resources/troubleshooting",
+                  "access-methods/api-reference/resources/billing",
+                  "access-methods/api-reference/resources/faq"
+                ]
               }
-            ],
-            "icon": "code"
+            ]
           },
           {
-            "group": "Connectors",
+            "anchor": "Client SDKs",
+            "icon": "package",
             "pages": [
-              "api-reference/connectors/overview",
-              "api-reference/connectors/trino-connector",
-              "api-reference/connectors/dbt-connector",
-              "api-reference/connectors/sql-operations"
-            ],
-            "icon": "plug"
+              "access-methods/client-sdks/index",
+              "access-methods/client-sdks/python",
+              "access-methods/client-sdks/typescript",
+              "access-methods/client-sdks/go"
+            ]
           },
           {
-            "group": "Real-time APIs",
+            "anchor": "Real-Time APIs",
+            "icon": "zap",
             "pages": [
-              "api-reference/realtime/overview"
-            ],
-            "icon": "bolt"
+              "access-methods/real-time-apis/index",
+              "access-methods/real-time-apis/sim-apis"
+            ]
           },
           {
-            "group": "Client SDKs",
+            "anchor": "Webhooks",
+            "icon": "bell",
             "pages": [
-              {
-                "group": "Quickstart",
-                "pages": [
-                  "api-reference/quickstart/results-eg",
-                  "api-reference/quickstart/queries-eg",
-                  "api-reference/quickstart/tables-eg"
-                ],
-                "icon": "rocket"
-              },
-              "api-reference/sdks/python",
-              "api-reference/sdks/typescript",
-              "api-reference/sdks/go"
-            ],
-            "icon": "cube"
+              "access-methods/webhooks/index",
+              "access-methods/webhooks/setup",
+              "access-methods/webhooks/events"
+            ]
           },
           {
-            "group": "Resources",
+            "anchor": "Trino Connectors",
+            "icon": "link",
             "pages": [
-              "api-reference/overview/rate-limits",
-              "api-reference/overview/troubleshooting",
-              "api-reference/overview/billing",
-              "api-reference/overview/faq"
-            ],
-            "icon": "book"
+              "access-methods/trino-connector/index",
+              "access-methods/trino-connector/connection-parameters",
+              "access-methods/trino-connector/hex",
+              "access-methods/trino-connector/metabase",
+              "access-methods/trino-connector/tableau",
+              "access-methods/trino-connector/power-bi",
+              "access-methods/trino-connector/looker",
+              "access-methods/trino-connector/dbeaver",
+              "access-methods/trino-connector/other-tools"
+            ]
+          },
+          {
+            "anchor": "dbt Connector",
+            "icon": "git-merge",
+            "pages": [
+              "access-methods/dbt-connector/index",
+              "access-methods/dbt-connector/setup",
+              "access-methods/dbt-connector/building-models",
+              "access-methods/dbt-connector/materialized-views",
+              "access-methods/dbt-connector/supported-operations",
+              "access-methods/dbt-connector/troubleshooting"
+            ]
           }
         ]
       },
