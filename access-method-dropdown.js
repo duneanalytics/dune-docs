@@ -40,13 +40,14 @@
     ]
   };
 
-  // Check if we're on an Access Methods page (including api-reference/connectors for dbt)
+  // Check if we're on an Access Methods page (including api-reference pages used in Access)
   function isAccessMethodsPage() {
     const path = window.location.pathname;
     return path.includes('/access-methods') || 
            path.includes('access-methods') ||
            path.includes('/api-reference/connectors/dbt-connector') ||
-           path.includes('/api-reference/connectors/sql-operations');
+           path.includes('/api-reference/connectors/sql-operations') ||
+           path.includes('/api-reference/webhooks/webhook');
   }
 
   // Detect current access method from URL
@@ -61,6 +62,11 @@
     // Check for dbt connector pages (including api-reference/connectors paths)
     if (path.includes('/api-reference/connectors/dbt-connector') || path.includes('/api-reference/connectors/sql-operations')) {
       return ACCESS_METHODS['TRANSFORM DATA'][0];
+    }
+    
+    // Check for webhooks page from api-reference
+    if (path.includes('/api-reference/webhooks/webhook')) {
+      return ACCESS_METHODS['PROGRAMMATIC ACCESS'].find(m => m.id === 'webhooks');
     }
     
     for (const category of Object.values(ACCESS_METHODS)) {
