@@ -3398,13 +3398,14 @@
             "icon": "bell",
             "pages": [
               "access-methods/webhooks/index",
+              "api-reference/webhooks/webhook",
               "access-methods/webhooks/setup",
               "access-methods/webhooks/events"
             ]
           },
           {
-            "anchor": "Trino Connectors",
-            "icon": "link",
+            "anchor": "BI Visualization Tools",
+            "icon": "chart-bar",
             "pages": [
               "access-methods/trino-connector/index",
               "access-methods/trino-connector/connection-parameters",

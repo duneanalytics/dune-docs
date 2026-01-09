@@ -29,7 +29,7 @@
       { id: 'webhooks', name: 'Webhooks', href: '/access-methods/webhooks/index' }
     ],
     'CONNECT YOUR TOOLS': [
-      { id: 'trino-connector', name: 'Trino Connectors', href: '/access-methods/trino-connector/index' }
+      { id: 'trino-connector', name: 'BI Visualization Tools', href: '/access-methods/trino-connector/index' }
     ],
     'TRANSFORM DATA': [
       { id: 'dbt-connector', name: 'dbt Connector', href: '/access-methods/dbt-connector/index' }
