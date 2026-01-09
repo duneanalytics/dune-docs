@@ -11,23 +11,21 @@
   'use strict';
 
   // SVG Icons (Mintlify-style line icons)
-  // Note: Removed analytics-hub, datashare, catalyst (now under Docs tab)
+  // Note: Removed analytics-hub, datashare, catalyst, real-time-apis (now under Docs tab)
   const ICONS = {
     'api-reference': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
     'client-sdks': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
-    'real-time-apis': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
     'webhooks': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>',
     'trino-connector': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
     'dbt-connector': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>'
   };
 
   // Configuration: Define access methods with categories
-  // Note: Analytics Hub, Datashare, and Catalyst are now under Docs tab
+  // Note: Analytics Hub, Datashare, Catalyst, and Real-Time APIs are now under Docs tab
   const ACCESS_METHODS = {
     'PROGRAMMATIC ACCESS': [
       { id: 'api-reference', name: 'API Reference', href: '/access-methods/api-reference/index' },
       { id: 'client-sdks', name: 'Client SDKs', href: '/access-methods/client-sdks/index' },
-      { id: 'real-time-apis', name: 'Real-Time APIs', href: '/access-methods/real-time-apis/index' },
       { id: 'webhooks', name: 'Webhooks', href: '/access-methods/webhooks/index' }
     ],
     'CONNECT YOUR TOOLS': [

@@ -61,6 +61,11 @@
           "quickstart",
           "learning-resources",
           {
+            "page": "Sim Real-Time APIs",
+            "href": "https://docs.sim.dune.com",
+            "icon": "bolt"
+          },
+          {
             "group": "Use Cases",
             "pages": [
               "docs/use-cases/overview",
@@ -3384,14 +3389,6 @@
               "access-methods/client-sdks/python",
               "access-methods/client-sdks/typescript",
               "access-methods/client-sdks/go"
-            ]
-          },
-          {
-            "anchor": "Real-Time APIs",
-            "icon": "zap",
-            "pages": [
-              "access-methods/real-time-apis/index",
-              "access-methods/real-time-apis/sim-apis"
             ]
           },
           {
