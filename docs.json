@@ -3304,16 +3304,10 @@
         "url": "access-methods",
         "anchors": [
           {
-            "anchor": "Overview",
-            "icon": "star",
-            "pages": [
-              "access-methods/index"
-            ]
-          },
-          {
             "anchor": "API Reference",
             "icon": "code",
             "pages": [
+              "access-methods/index",
               "access-methods/api-reference/index",
               "access-methods/api-reference/getting-started",
               "access-methods/api-reference/authentication",

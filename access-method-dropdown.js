@@ -13,7 +13,6 @@
   // SVG Icons (Mintlify-style line icons)
   // Note: Removed analytics-hub, datashare, catalyst, real-time-apis (now under Docs tab)
   const ICONS = {
-    'overview': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
     'api-reference': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
     'client-sdks': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
     'webhooks': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>',
@@ -23,12 +22,10 @@
 
   // Configuration: Define access methods with categories
   // Note: Analytics Hub, Datashare, Catalyst, and Real-Time APIs are now under Docs tab
+  // APIs & Connectors Overview is now the first page in API Reference
   const ACCESS_METHODS = {
-    'OVERVIEW': [
-      { id: 'overview', name: 'APIs & Connectors Overview', href: '/access-methods/index' }
-    ],
     'PROGRAMMATIC ACCESS': [
-      { id: 'api-reference', name: 'API Reference', href: '/access-methods/api-reference/index' },
+      { id: 'api-reference', name: 'API Reference', href: '/access-methods/index' },
       { id: 'client-sdks', name: 'Client SDKs', href: '/access-methods/client-sdks/index' },
       { id: 'webhooks', name: 'Webhooks', href: '/access-methods/webhooks/index' }
     ],
@@ -54,11 +51,6 @@
   function getCurrentMethod() {
     const path = window.location.pathname;
     
-    // Check for overview/index page first
-    if (path === '/access-methods' || path === '/access-methods/' || path === '/access-methods/index' || path.endsWith('/access-methods/index')) {
-      return ACCESS_METHODS['OVERVIEW'][0];
-    }
-    
     // Check for dbt connector pages (including api-reference/connectors paths)
     if (path.includes('/api-reference/connectors/dbt-connector') || path.includes('/api-reference/connectors/sql-operations')) {
       return ACCESS_METHODS['TRANSFORM DATA'][0];
@@ -69,6 +61,11 @@
       return ACCESS_METHODS['PROGRAMMATIC ACCESS'].find(m => m.id === 'webhooks');
     }
     
+    // Check for overview/index page - now part of API Reference
+    if (path === '/access-methods' || path === '/access-methods/' || path === '/access-methods/index' || path.endsWith('/access-methods/index')) {
+      return ACCESS_METHODS['PROGRAMMATIC ACCESS'][0]; // API Reference
+    }
+    
     for (const category of Object.values(ACCESS_METHODS)) {
       for (const method of category) {
         if (path.includes(method.id)) {
@@ -76,8 +73,8 @@
         }
       }
     }
-    // Default to Overview
-    return ACCESS_METHODS['OVERVIEW'][0];
+    // Default to API Reference
+    return ACCESS_METHODS['PROGRAMMATIC ACCESS'][0];
   }
 
   // Get icon for a method
