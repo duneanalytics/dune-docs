@@ -57,9 +57,9 @@
       {
         "tab": "Docs",
         "pages": [
-          { "page": "home", "icon": "house" },
-          { "page": "quickstart", "icon": "rocket" },
-          { "page": "docs/sim-real-time-apis", "icon": "bolt" },
+          "home",
+          "quickstart",
+          "docs/sim-real-time-apis",
           {
             "group": "Use Cases",
             "pages": [
@@ -3427,7 +3427,7 @@
       {
         "tab": "SQL Query Engine",
         "pages": [
-          { "page": "query-engine/overview", "icon": "circle-info" },
+          "query-engine/overview",
           {
             "group": "Functionality",
             "pages": [
@@ -3492,7 +3492,7 @@
       {
         "tab": "Resources",
         "pages": [
-          { "page": "resources/overview", "icon": "circle-info" },
+          "resources/overview",
           {
             "group": "Credits & Billing",
             "pages": [
