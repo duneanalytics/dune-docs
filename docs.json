@@ -36,18 +36,6 @@
       "url": "home"
     },
     {
-      "name": "Analytics Hub",
-      "url": "web-app"
-    },
-    {
-      "name": "Datashare",
-      "url": "datashare"
-    },
-    {
-      "name": "Catalyst",
-      "url": "catalyst"
-    },
-    {
       "name": "Data Catalog",
       "url": "data-catalog"
     },
@@ -80,87 +68,87 @@
               "docs/use-cases/trading-intelligence/overview",
               "docs/use-cases/stablecoin-intelligence/overview"
             ]
+          },
+          {
+            "group": "Analytics Hub",
+            "pages": [
+              "web-app/overview",
+              {
+                "group": "Working with Queries",
+                "pages": [
+                  "web-app/query-editor/index",
+                  "web-app/query-editor/data-explorer",
+                  "web-app/query-editor/parameters",
+                  "web-app/query-editor/query-scheduler",
+                  "web-app/query-editor/query-lineage",
+                  "web-app/query-editor/version-history"
+                ]
+              },
+              {
+                "group": "Visualizations",
+                "pages": [
+                  "web-app/visualizations/charts-graphs",
+                  "web-app/visualizations/counters",
+                  "web-app/visualizations/tables"
+                ]
+              },
+              {
+                "group": "Dashboards",
+                "pages": [
+                  "web-app/dashboards",
+                  "web-app/embeds"
+                ]
+              },
+              {
+                "group": "Decoding Contracts",
+                "pages": [
+                  "web-app/decoding/decoding-contracts",
+                  "web-app/decoding/best-practices",
+                  "web-app/decoding/multichain-decoding",
+                  "web-app/decoding/faqs"
+                ]
+              },
+              {
+                "group": "AI & Alerts",
+                "pages": [
+                  "web-app/dune-ai",
+                  "web-app/alerts"
+                ]
+              },
+              "web-app/search",
+              "web-app/upload-data",
+              "web-app/teams",
+              {
+                "group": "Enterprise",
+                "pages": [
+                  "enterprise/analytics-hub/overview",
+                  "enterprise/analytics-hub/sso",
+                  "enterprise/analytics-hub/permissions"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Dune Datashare",
+            "pages": [
+              "datashare/datashare",
+              "datashare/datashare-databricks",
+              "datashare/datashare-snowflake",
+              "datashare/datashare-bigquery",
+              {
+                "group": "Enterprise",
+                "pages": [
+                  "enterprise/datashare/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Catalyst",
+            "pages": [
+              "catalyst/overview"
+            ]
           }
-        ]
-      },
-      {
-        "tab": "Analytics Hub",
-        "pages": [
-          "web-app/overview",
-          {
-            "group": "Working with Queries",
-            "pages": [
-              "web-app/query-editor/index",
-              "web-app/query-editor/data-explorer",
-              "web-app/query-editor/parameters",
-              "web-app/query-editor/query-scheduler",
-              "web-app/query-editor/query-lineage",
-              "web-app/query-editor/version-history"
-            ]
-          },
-          {
-            "group": "Visualizations",
-            "pages": [
-              "web-app/visualizations/charts-graphs",
-              "web-app/visualizations/counters",
-              "web-app/visualizations/tables"
-            ]
-          },
-          {
-            "group": "Dashboards",
-            "pages": [
-              "web-app/dashboards",
-              "web-app/embeds"
-            ]
-          },
-          {
-            "group": "Decoding Contracts",
-            "pages": [
-              "web-app/decoding/decoding-contracts",
-              "web-app/decoding/best-practices",
-              "web-app/decoding/multichain-decoding",
-              "web-app/decoding/faqs"
-            ]
-          },
-          {
-            "group": "AI & Alerts",
-            "pages": [
-              "web-app/dune-ai",
-              "web-app/alerts"
-            ]
-          },
-          "web-app/search",
-          "web-app/upload-data",
-          "web-app/teams",
-          {
-            "group": "Enterprise",
-            "pages": [
-              "enterprise/analytics-hub/overview",
-              "enterprise/analytics-hub/sso",
-              "enterprise/analytics-hub/permissions"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Datashare",
-        "pages": [
-          "datashare/datashare",
-          "datashare/datashare-databricks",
-          "datashare/datashare-snowflake",
-          "datashare/datashare-bigquery",
-          {
-            "group": "Enterprise",
-            "pages": [
-              "enterprise/datashare/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Catalyst",
-        "pages": [
-          "catalyst/overview"
         ]
       },
       {
