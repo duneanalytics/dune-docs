@@ -54,7 +54,8 @@
         }
       }
     }
-    return ACCESS_METHODS['EXPLORE AND ANALYZE'][0];
+    // Default to API Reference (first item in PROGRAMMATIC ACCESS)
+    return ACCESS_METHODS['PROGRAMMATIC ACCESS'][0];
   }
 
   // Get icon for a method
