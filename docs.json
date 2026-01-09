@@ -20,6 +20,10 @@
   "navbar": {
     "links": [
       {
+        "label": "Sim APIs",
+        "href": "https://docs.sim.dune.com"
+      },
+      {
         "label": "Support",
         "href": "mailto:support@dune.com"
       }
@@ -60,11 +64,6 @@
           "home",
           "quickstart",
           "learning-resources",
-          {
-            "page": "Sim Real-Time APIs",
-            "href": "https://docs.sim.dune.com",
-            "icon": "bolt"
-          },
           {
             "group": "Use Cases",
             "pages": [
