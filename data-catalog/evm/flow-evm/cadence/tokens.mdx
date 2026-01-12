@@ -1,0 +1,31 @@
+---
+title: flow.cadence_tokens
+sidebarTitle: "Tokens"
+description: Description of the flow.cadence_tokens table on Dune
+---
+
+## Table Description
+
+Contains token metadata for NFTs and fungible tokens on the Flow Cadence blockchain.
+
+## Column Descriptions
+
+| Column | Type | Description |
+|--------|------|-------------|
+| block_date | date | The date of the token record |
+| timestamp | timestamp | Timestamp when the token was created/updated |
+| token_id | string | Unique identifier for the token |
+| contract_address | string | Address of the token contract |
+| name | string | Name of the token |
+| description | string | Description of the token |
+| content_url | string | URL to the token content/media |
+| chain_specific | string | Chain-specific metadata in JSON format |
+| _updated_at | timestamp | Timestamp when the record was last updated |
+| _ingested_at | timestamp | Timestamp when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="flow" tableName="cadence_tokens" />
+

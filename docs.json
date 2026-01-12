@@ -1201,6 +1201,20 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "group": "Cadence",
+                    "pages": [
+                      "data-catalog/evm/flow-evm/cadence/blocks",
+                      "data-catalog/evm/flow-evm/cadence/transactions",
+                      "data-catalog/evm/flow-evm/cadence/transaction-receipts",
+                      "data-catalog/evm/flow-evm/cadence/events",
+                      "data-catalog/evm/flow-evm/cadence/contracts",
+                      "data-catalog/evm/flow-evm/cadence/tokens",
+                      "data-catalog/evm/flow-evm/cadence/token-transfers",
+                      "data-catalog/evm/flow-evm/cadence/token-collections",
+                      "data-catalog/evm/flow-evm/cadence/native-token-balances"
+                    ]
                   }
                 ]
               },

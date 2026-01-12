@@ -1,0 +1,34 @@
+---
+title: flow.cadence_token_transfers
+sidebarTitle: "Token Transfers"
+description: Description of the flow.cadence_token_transfers table on Dune
+---
+
+## Table Description
+
+Contains token transfer events on the Flow Cadence blockchain including NFT and fungible token transfers.
+
+## Column Descriptions
+
+| Column | Type | Description |
+|--------|------|-------------|
+| block_date | date | The date of the transfer |
+| timestamp | timestamp | Timestamp when the transfer occurred |
+| block_height | bigint | The block number containing this transfer |
+| block_hash | string | Hash of the block containing this transfer |
+| transaction_hash | string | Hash of the transaction containing this transfer |
+| contract_address | string | Address of the token contract |
+| token_id | string | Identifier of the token being transferred |
+| from | string | Address of the sender |
+| to | string | Address of the recipient |
+| amount | decimal(38,9) | Amount of tokens transferred |
+| chain_specific | string | Chain-specific metadata in JSON format |
+| _updated_at | timestamp | Timestamp when the record was last updated |
+| _ingested_at | timestamp | Timestamp when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="flow" tableName="cadence_token_transfers" />
+

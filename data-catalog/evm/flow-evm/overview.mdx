@@ -5,8 +5,6 @@ icon: "star"
 description: Flow EVM data on Dune
 ---
 
-
-
 ## What is Flow EVM?
 
 Flow EVM is a fast EVM equivalent blockchain with low fees, making it an ideal **Ethereum alternative for apps** that need both performance and affordability. With EVM equivalency, Solidity developers can deploy existing contracts on Flow without rewriting code, instantly gaining access to Flow's ultra-fast transactions, low costs, and mainstream scalability. Builders can tap into Flow's unique IPs and large user base with no implementation risk.
@@ -46,6 +44,8 @@ Flow EVM is a fast EVM equivalent blockchain with low fees, making it an ideal *
 
 ## Data on Dune
 
+### EVM Data
+
 <CardGroup cols={2}>
   <Card title="Raw Data" icon="database" href="/data-catalog/evm/flow-evm/raw/blocks">
     Access to raw blockchain data including blocks, transactions, logs, and traces
@@ -55,10 +55,41 @@ Flow EVM is a fast EVM equivalent blockchain with low fees, making it an ideal *
   </Card>
 </CardGroup>
 
+### Cadence Data
+
+Flow's native Cadence environment data is also available on Dune, providing access to the original Flow blockchain tables:
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/evm/flow-evm/cadence/blocks">
+    Cadence block data including headers and network fees
+  </Card>
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/evm/flow-evm/cadence/transactions">
+    Cadence transaction data with sender and payload info
+  </Card>
+  <Card title="Events" icon="bolt" href="/data-catalog/evm/flow-evm/cadence/events">
+    Events emitted by Cadence smart contracts
+  </Card>
+  <Card title="Contracts" icon="file-code" href="/data-catalog/evm/flow-evm/cadence/contracts">
+    Cadence contract deployments and code
+  </Card>
+  <Card title="Token Transfers" icon="coins" href="/data-catalog/evm/flow-evm/cadence/token-transfers">
+    NFT and fungible token transfers
+  </Card>
+  <Card title="Token Collections" icon="layer-group" href="/data-catalog/evm/flow-evm/cadence/token-collections">
+    Token collection metadata
+  </Card>
+  <Card title="Tokens" icon="tag" href="/data-catalog/evm/flow-evm/cadence/tokens">
+    Individual token metadata
+  </Card>
+  <Card title="Native Balances" icon="wallet" href="/data-catalog/evm/flow-evm/cadence/native-token-balances">
+    FLOW token balance snapshots
+  </Card>
+</CardGroup>
+
 ## Resources
 
 <CardGroup cols={1}>
   <Card title="Flow EVM Documentation" icon="link" href="https://developers.flow.com/build/evm/about">
     Official documentation for developers building on Flow EVM
   </Card>
-</CardGroup> 
+</CardGroup>
