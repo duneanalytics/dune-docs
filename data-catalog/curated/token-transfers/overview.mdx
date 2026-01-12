@@ -5,7 +5,7 @@ description: Comprehensive token and asset tracking across multiple blockchain n
 icon: "star"
 ---
 
-Blockchain networks have become popular platforms for creating, managing, and trading digital assets. These assets are often represented as tokens, which can be transferred between addresses and owned by users. Dune provides comprehensive asset tracking capabilities across multiple blockchain networks through curated tables that simplify the process of monitoring and analyzing token transfers, balances, and metadata across both EVM and Solana ecosystems.
+Blockchain networks have become popular platforms for creating, managing, and trading digital assets. These assets are often represented as tokens, which can be transferred between addresses and owned by users. Dune provides comprehensive token transfer tracking capabilities across multiple blockchain networks through curated tables that simplify the process of monitoring and analyzing token transfers across both EVM and Solana ecosystems.
 
 ## Cross-Chain Token Transfer Coverage
 
@@ -26,42 +26,24 @@ Our token transfer data covers multiple blockchain ecosystems:
   <Card title="NFT Transfers" icon="arrow-left" href="/data-catalog/curated/nft-trades/evm/nft-transfers">
     Transfer events for ERC721 and ERC1155 tokens on EVM networks
   </Card>
-
-  <Card title="Balances" icon="scale-balanced" href="/data-catalog/curated/token-transfers/evm/balances">
-    Current token balances held by addresses on EVM networks
-  </Card>
-
-  <Card title="Token Metadata" icon="tag" href="/data-catalog/curated/token-transfers/evm/tokens-metadata">
-    Comprehensive metadata for ERC20 tokens including name, symbol, decimals
-  </Card>
-
-  <Card title="NFT Metadata" icon="hexagon-vertical-nft" href="/data-catalog/curated/nft-trades/evm/nft-metadata">
-    Metadata and attributes for ERC721 and ERC1155 tokens
-  </Card>
 </CardGroup>
 
 ### Solana Token Transfers
 
 <CardGroup cols={2}>
-  <Card title="Token Accounts" icon="piggy-bank" href="/data-catalog/curated/token-transfers/solana/solana-token-accounts">
-    Information about token accounts on the Solana blockchain
-  </Card>
-
   <Card title="Token Transfers" icon="arrow-right" href="/data-catalog/curated/token-transfers/solana/solana-token-transfers">
     Transfer events for SPL tokens and native SOL on Solana
   </Card>
-
-  <Card title="Token Metadata" icon="tag" href="/data-catalog/curated/token-transfers/solana/solana-token-metadata">
-    Comprehensive metadata for Solana SPL tokens
-  </Card>
 </CardGroup>
+
+<Note>
+Looking for token balances or metadata? See the [Balances](/data-catalog/curated/balances/overview) and [Token Metadata](/data-catalog/curated/token-metadata/overview) sections.
+</Note>
 
 ## Key Features
 
 - **Multi-Chain Coverage**: Track token transfers across EVM and Solana ecosystems
 - **Standardized Schema**: Consistent data structure for cross-chain analysis
-- **Real-time Balances**: Current token holdings and historical balance changes
-- **Comprehensive Metadata**: Token names, symbols, decimals, and additional attributes
 - **Transfer Analytics**: Detailed transfer events with sender, receiver, and amounts
 - **Real-time Updates**: Data is updated continuously as new blocks are processed
 
