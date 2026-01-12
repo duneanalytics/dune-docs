@@ -1,0 +1,109 @@
+---
+title: Flow Overview
+sidebarTitle: "Overview"
+icon: "star"
+description: Flow blockchain data on Dune - EVM and Cadence
+---
+
+## What is Flow?
+
+Flow is a fast, decentralized, and developer-friendly blockchain designed for the next generation of apps, games, and digital assets. Flow features a unique multi-node architecture that enables high throughput while maintaining decentralization and security.
+
+**On Dune, Flow data is available for both execution environments:**
+
+- **Flow EVM** - Ethereum-compatible environment for Solidity developers
+- **Flow Cadence** - Flow's native smart contract environment with resource-oriented programming
+
+## Flow EVM vs Cadence: Key Differences
+
+| Aspect | Flow EVM | Flow Cadence |
+|--------|----------|--------------|
+| **Smart Contract Language** | Solidity | Cadence |
+| **Compatibility** | Full EVM equivalence | Native Flow |
+| **Developer Tooling** | Ethereum toolchain (Hardhat, Foundry, etc.) | Flow CLI, Cadence tools |
+| **Account Model** | EOA + Contract accounts | Resource-oriented accounts |
+| **Gas Token** | FLOW | FLOW |
+| **Interoperability** | Cross-VM bridge to Cadence | Cross-VM bridge to EVM |
+
+Both environments share the same underlying Flow blockchain and use FLOW as the native gas token, enabling seamless cross-VM interactions.
+
+## Flow EVM
+
+Flow EVM is a fast EVM equivalent blockchain with low fees, making it an ideal **Ethereum alternative for apps** that need both performance and affordability. With EVM equivalency, Solidity developers can deploy existing contracts on Flow without rewriting code.
+
+### EVM Key Features
+
+- **EVM Equivalence**: Full compatibility with Ethereum smart contracts and tooling
+- **Ultra-Fast Performance**: Transaction throughput peaked to 2M daily transactions
+- **Low Gas Fees**: Ultra-low cost gas fees with support for gasless experiences
+- **MEV Resilience**: Robust design offering improved market efficiency and fairness
+- **Cross-VM Integration**: Seamless token transfers between EVM and Cadence
+
+### EVM Data on Dune
+
+<CardGroup cols={2}>
+  <Card title="Raw Data" icon="database" href="/data-catalog/flow/raw/blocks">
+    Access to raw EVM blockchain data including blocks, transactions, logs, and traces
+  </Card>
+  <Card title="Decoded Data" icon="code" href="/data-catalog/flow/decoded/overview">
+    Human-readable EVM contract interactions and events
+  </Card>
+</CardGroup>
+
+## Flow Cadence
+
+Flow Cadence is Flow's native smart contract environment using the resource-oriented Cadence programming language. It offers unique capabilities for digital ownership, NFTs, and complex on-chain logic.
+
+### Cadence Key Features
+
+- **Resource-Oriented Programming**: First-class digital ownership at the language level
+- **Account Linking**: Advanced account abstraction enabling smooth user onboarding
+- **Native NFT Support**: Purpose-built for digital collectibles and assets
+- **Upgradeable Contracts**: Safe contract upgrade patterns
+- **Multi-Role Node Architecture**: Heterogeneous node roles ensuring security
+
+### Cadence Data on Dune
+
+<CardGroup cols={2}>
+  <Card title="Blocks" icon="cube" href="/data-catalog/flow/cadence/blocks">
+    Cadence block data including headers and network fees
+  </Card>
+  <Card title="Transactions" icon="arrow-right-arrow-left" href="/data-catalog/flow/cadence/transactions">
+    Cadence transaction data with sender and payload info
+  </Card>
+  <Card title="Transaction Receipts" icon="receipt" href="/data-catalog/flow/cadence/transaction-receipts">
+    Execution status and fee information
+  </Card>
+  <Card title="Events" icon="bolt" href="/data-catalog/flow/cadence/events">
+    Events emitted by Cadence smart contracts
+  </Card>
+  <Card title="Contracts" icon="file-code" href="/data-catalog/flow/cadence/contracts">
+    Cadence contract deployments and code
+  </Card>
+  <Card title="Token Transfers" icon="coins" href="/data-catalog/flow/cadence/token-transfers">
+    NFT and fungible token transfers
+  </Card>
+  <Card title="Token Collections" icon="layer-group" href="/data-catalog/flow/cadence/token-collections">
+    Token collection metadata
+  </Card>
+  <Card title="Tokens" icon="tag" href="/data-catalog/flow/cadence/tokens">
+    Individual token metadata
+  </Card>
+  <Card title="Native Balances" icon="wallet" href="/data-catalog/flow/cadence/native-token-balances">
+    FLOW token balance snapshots
+  </Card>
+</CardGroup>
+
+## Resources
+
+<CardGroup cols={1}>
+  <Card title="Flow Documentation" icon="link" href="https://developers.flow.com">
+    Official Flow developer documentation
+  </Card>
+  <Card title="Flow EVM Documentation" icon="link" href="https://developers.flow.com/build/evm/about">
+    Documentation for building on Flow EVM
+  </Card>
+  <Card title="Cadence Documentation" icon="link" href="https://cadence-lang.org">
+    Cadence programming language documentation
+  </Card>
+</CardGroup>

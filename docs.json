@@ -1165,60 +1165,6 @@
                 ]
               },
               {
-                "group": "Flow EVM",
-                "icon": "database",
-                "iconType": "solid",
-                "pages": [
-                  "data-catalog/evm/flow-evm/overview",
-                  {
-                    "group": "Raw",
-                    "pages": [
-                      "data-catalog/evm/flow-evm/raw/blocks",
-                      "data-catalog/evm/flow-evm/raw/creation-traces",
-                      "data-catalog/evm/flow-evm/raw/logs",
-                      "data-catalog/evm/flow-evm/raw/transactions",
-                      "data-catalog/evm/flow-evm/raw/traces"
-                    ]
-                  },
-                  {
-                    "group": "Decoded",
-                    "pages": [
-                      "data-catalog/evm/flow-evm/decoded/overview",
-                      "data-catalog/evm/flow-evm/decoded/call-tables",
-                      "data-catalog/evm/flow-evm/decoded/event-logs",
-                      "data-catalog/evm/flow-evm/decoded/contracts",
-                      "data-catalog/evm/flow-evm/decoded/logs-decoded",
-                      "data-catalog/evm/flow-evm/decoded/traces-decoded"
-                    ]
-                  },
-                  {
-                    "group": "Curated",
-                    "pages": [
-                      {
-                        "group": "DEX",
-                        "pages": [
-                          "data-catalog/evm/flow-evm/curated-data/dex/dex-trades"
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "group": "Cadence",
-                    "pages": [
-                      "data-catalog/evm/flow-evm/cadence/blocks",
-                      "data-catalog/evm/flow-evm/cadence/transactions",
-                      "data-catalog/evm/flow-evm/cadence/transaction-receipts",
-                      "data-catalog/evm/flow-evm/cadence/events",
-                      "data-catalog/evm/flow-evm/cadence/contracts",
-                      "data-catalog/evm/flow-evm/cadence/tokens",
-                      "data-catalog/evm/flow-evm/cadence/token-transfers",
-                      "data-catalog/evm/flow-evm/cadence/token-collections",
-                      "data-catalog/evm/flow-evm/cadence/native-token-balances"
-                    ]
-                  }
-                ]
-              },
-              {
                 "group": "Gnosis",
                 "icon": "database",
                 "iconType": "solid",
@@ -3059,6 +3005,65 @@
                   "data-catalog/starknet/transactions",
                   "data-catalog/starknet/events",
                   "data-catalog/starknet/calls"
+                ]
+              },
+              {
+                "group": "Flow",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/flow/overview",
+                  {
+                    "group": "EVM",
+                    "pages": [
+                      {
+                        "group": "Raw",
+                        "pages": [
+                          "data-catalog/flow/raw/blocks",
+                          "data-catalog/flow/raw/creation-traces",
+                          "data-catalog/flow/raw/logs",
+                          "data-catalog/flow/raw/transactions",
+                          "data-catalog/flow/raw/traces"
+                        ]
+                      },
+                      {
+                        "group": "Decoded",
+                        "pages": [
+                          "data-catalog/flow/decoded/overview",
+                          "data-catalog/flow/decoded/call-tables",
+                          "data-catalog/flow/decoded/event-logs",
+                          "data-catalog/flow/decoded/contracts",
+                          "data-catalog/flow/decoded/logs-decoded",
+                          "data-catalog/flow/decoded/traces-decoded"
+                        ]
+                      },
+                      {
+                        "group": "Curated",
+                        "pages": [
+                          {
+                            "group": "DEX",
+                            "pages": [
+                              "data-catalog/flow/curated-data/dex/dex-trades"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Cadence",
+                    "pages": [
+                      "data-catalog/flow/cadence/blocks",
+                      "data-catalog/flow/cadence/transactions",
+                      "data-catalog/flow/cadence/transaction-receipts",
+                      "data-catalog/flow/cadence/events",
+                      "data-catalog/flow/cadence/contracts",
+                      "data-catalog/flow/cadence/tokens",
+                      "data-catalog/flow/cadence/token-transfers",
+                      "data-catalog/flow/cadence/token-collections",
+                      "data-catalog/flow/cadence/native-token-balances"
+                    ]
+                  }
                 ]
               },
               {
