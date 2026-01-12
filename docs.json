@@ -165,15 +165,13 @@
           },
           {
             "group": "BI Visualization Tools",
-            "icon": "chart-bar",
             "pages": [
               "access-methods/trino-connector/index",
               "api-reference/connectors/trino-connector"
             ]
           },
           {
-            "group": "dbt Connector",
-            "icon": "git-merge",
+            "group": "Transform your Data",
             "pages": [
               "access-methods/dbt-connector/index",
               "api-reference/connectors/dbt-connector",
