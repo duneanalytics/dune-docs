@@ -142,6 +142,21 @@
             ]
           },
           {
+            "group": "Transform your Data",
+            "pages": [
+              "access-methods/dbt-connector/index",
+              "api-reference/connectors/dbt-connector",
+              "api-reference/connectors/sql-operations"
+            ]
+          },
+          {
+            "group": "BI Visualization Tools",
+            "pages": [
+              "access-methods/trino-connector/index",
+              "api-reference/connectors/trino-connector"
+            ]
+          },
+          {
             "group": "Dune Datashare",
             "pages": [
               "datashare/datashare",
@@ -161,21 +176,6 @@
             "group": "Catalyst",
             "pages": [
               "catalyst/overview"
-            ]
-          },
-          {
-            "group": "BI Visualization Tools",
-            "pages": [
-              "access-methods/trino-connector/index",
-              "api-reference/connectors/trino-connector"
-            ]
-          },
-          {
-            "group": "Transform your Data",
-            "pages": [
-              "access-methods/dbt-connector/index",
-              "api-reference/connectors/dbt-connector",
-              "api-reference/connectors/sql-operations"
             ]
           }
         ]
