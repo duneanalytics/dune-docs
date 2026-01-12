@@ -259,9 +259,7 @@
                     "group": "EVM Token Transfers",
                     "icon": "e",
                     "pages": [
-                      "data-catalog/curated/token-transfers/evm/balances",
-                      "data-catalog/curated/token-transfers/evm/token-transfers",
-                      "data-catalog/curated/token-transfers/evm/tokens-metadata"
+                      "data-catalog/curated/token-transfers/evm/token-transfers"
                     ]
                   },
                   {
@@ -269,22 +267,9 @@
                     "icon": "s",
                     "pages": [
                       "data-catalog/curated/token-transfers/solana/overview",
-                      "data-catalog/curated/token-transfers/solana/solana-token-accounts",
-                      "data-catalog/curated/token-transfers/solana/solana-token-metadata",
                       "data-catalog/curated/token-transfers/solana/solana-token-transfers"
                     ]
                   }
-                ]
-              },
-              {
-                "group": "Labels",
-                "icon": "tag",
-                "pages": [
-                  "data-catalog/curated/labels/overview",
-                  "data-catalog/curated/labels/address-labels",
-                  "data-catalog/curated/labels/ens-labels",
-                  "data-catalog/curated/labels/owner-addresses",
-                  "data-catalog/curated/labels/owner-details"
                 ]
               },
               {
@@ -297,6 +282,47 @@
                   "data-catalog/curated/prices/prices_day",
                   "data-catalog/curated/prices/prices_usd",
                   "data-catalog/curated/prices/prices_latest"
+                ]
+              },
+              {
+                "group": "Token Metadata",
+                "icon": "info",
+                "pages": [
+                  "data-catalog/curated/token-metadata/overview",
+                  {
+                    "group": "EVM",
+                    "icon": "e",
+                    "pages": [
+                      "data-catalog/curated/token-metadata/evm/erc20-metadata"
+                    ]
+                  },
+                  {
+                    "group": "Solana",
+                    "icon": "s",
+                    "pages": [
+                      "data-catalog/curated/token-metadata/solana/token-metadata",
+                      "data-catalog/curated/token-metadata/solana/token-accounts"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Balances",
+                "icon": "scale-balanced",
+                "pages": [
+                  "data-catalog/curated/balances/overview",
+                  "data-catalog/curated/balances/evm-balances"
+                ]
+              },
+              {
+                "group": "Labels",
+                "icon": "tag",
+                "pages": [
+                  "data-catalog/curated/labels/overview",
+                  "data-catalog/curated/labels/address-labels",
+                  "data-catalog/curated/labels/ens-labels",
+                  "data-catalog/curated/labels/owner-addresses",
+                  "data-catalog/curated/labels/owner-details"
                 ]
               },
               {
