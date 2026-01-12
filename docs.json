@@ -162,6 +162,35 @@
             "pages": [
               "catalyst/overview"
             ]
+          },
+          {
+            "group": "BI Visualization Tools",
+            "icon": "chart-bar",
+            "pages": [
+              "access-methods/trino-connector/index",
+              "access-methods/trino-connector/connection-parameters",
+              "access-methods/trino-connector/hex",
+              "access-methods/trino-connector/metabase",
+              "access-methods/trino-connector/tableau",
+              "access-methods/trino-connector/power-bi",
+              "access-methods/trino-connector/looker",
+              "access-methods/trino-connector/dbeaver",
+              "access-methods/trino-connector/other-tools"
+            ]
+          },
+          {
+            "group": "dbt Connector",
+            "icon": "git-merge",
+            "pages": [
+              "access-methods/dbt-connector/index",
+              "api-reference/connectors/dbt-connector",
+              "api-reference/connectors/sql-operations",
+              "access-methods/dbt-connector/setup",
+              "access-methods/dbt-connector/building-models",
+              "access-methods/dbt-connector/materialized-views",
+              "access-methods/dbt-connector/supported-operations",
+              "access-methods/dbt-connector/troubleshooting"
+            ]
           }
         ]
       },
@@ -3307,92 +3336,81 @@
         ]
       },
       {
-        "tab": "APIs & Connectors",
-        "url": "access-methods",
-        "anchors": [
+        "tab": "API Reference",
+        "pages": [
+          "access-methods/index",
+          "access-methods/api-reference/index",
+          "access-methods/api-reference/getting-started",
+          "access-methods/api-reference/authentication",
           {
-            "anchor": "API Reference",
-            "icon": "code",
+            "group": "Executions and Results",
+            "icon": "play",
             "pages": [
-              "access-methods/index",
-              "access-methods/api-reference/index",
-              "access-methods/api-reference/getting-started",
-              "access-methods/api-reference/authentication",
-              {
-                "group": "Executions and Results",
-                "pages": [
-                  "access-methods/api-reference/executions/index",
-                  "access-methods/api-reference/executions/execute-sql",
-                  "access-methods/api-reference/executions/execute-query",
-                  "access-methods/api-reference/executions/execute-query-pipeline",
-                  "access-methods/api-reference/executions/get-execution-status",
-                  "access-methods/api-reference/executions/get-execution-result",
-                  "access-methods/api-reference/executions/get-execution-result-csv",
-                  "access-methods/api-reference/executions/get-query-result",
-                  "access-methods/api-reference/executions/get-query-result-csv",
-                  "access-methods/api-reference/executions/cancel-execution"
-                ]
-              },
-              {
-                "group": "Query Management",
-                "pages": [
-                  "access-methods/api-reference/queries/index",
-                  "access-methods/api-reference/queries/list-queries",
-                  "access-methods/api-reference/queries/get-query-pipeline",
-                  "access-methods/api-reference/queries/create",
-                  "access-methods/api-reference/queries/update",
-                  "access-methods/api-reference/queries/read",
-                  "access-methods/api-reference/queries/archive",
-                  "access-methods/api-reference/queries/unarchive",
-                  "access-methods/api-reference/queries/private",
-                  "access-methods/api-reference/queries/unprivate"
-                ]
-              },
-              {
-                "group": "Data Uploads",
-                "pages": [
-                  "access-methods/api-reference/tables/index",
-                  "access-methods/api-reference/tables/upload-csv",
-                  "access-methods/api-reference/tables/create-table",
-                  "access-methods/api-reference/tables/insert-data",
-                  "access-methods/api-reference/tables/clear-data",
-                  "access-methods/api-reference/tables/delete-table",
-                  "access-methods/api-reference/tables/list-tables"
-                ]
-              },
-              {
-                "group": "Materialized Views",
-                "pages": [
-                  "access-methods/api-reference/materialized-views/index",
-                  "access-methods/api-reference/materialized-views/get",
-                  "access-methods/api-reference/materialized-views/upsert",
-                  "access-methods/api-reference/materialized-views/delete",
-                  "access-methods/api-reference/materialized-views/list",
-                  "access-methods/api-reference/materialized-views/refresh"
-                ]
-              },
-              {
-                "group": "Post-processing",
-                "pages": [
-                  "access-methods/api-reference/post-processing/filtering",
-                  "access-methods/api-reference/post-processing/sorting",
-                  "access-methods/api-reference/post-processing/pagination",
-                  "access-methods/api-reference/post-processing/sampling"
-                ]
-              },
-              {
-                "group": "Resources",
-                "pages": [
-                  "access-methods/api-reference/resources/rate-limits",
-                  "access-methods/api-reference/resources/troubleshooting",
-                  "access-methods/api-reference/resources/billing",
-                  "access-methods/api-reference/resources/faq"
-                ]
-              }
+              "access-methods/api-reference/executions/index",
+              "access-methods/api-reference/executions/execute-sql",
+              "access-methods/api-reference/executions/execute-query",
+              "access-methods/api-reference/executions/execute-query-pipeline",
+              "access-methods/api-reference/executions/get-execution-status",
+              "access-methods/api-reference/executions/get-execution-result",
+              "access-methods/api-reference/executions/get-execution-result-csv",
+              "access-methods/api-reference/executions/get-query-result",
+              "access-methods/api-reference/executions/get-query-result-csv",
+              "access-methods/api-reference/executions/cancel-execution"
             ]
           },
           {
-            "anchor": "Client SDKs",
+            "group": "Query Management",
+            "icon": "code",
+            "pages": [
+              "access-methods/api-reference/queries/index",
+              "access-methods/api-reference/queries/list-queries",
+              "access-methods/api-reference/queries/get-query-pipeline",
+              "access-methods/api-reference/queries/create",
+              "access-methods/api-reference/queries/update",
+              "access-methods/api-reference/queries/read",
+              "access-methods/api-reference/queries/archive",
+              "access-methods/api-reference/queries/unarchive",
+              "access-methods/api-reference/queries/private",
+              "access-methods/api-reference/queries/unprivate"
+            ]
+          },
+          {
+            "group": "Data Uploads",
+            "icon": "upload",
+            "pages": [
+              "access-methods/api-reference/tables/index",
+              "access-methods/api-reference/tables/upload-csv",
+              "access-methods/api-reference/tables/create-table",
+              "access-methods/api-reference/tables/insert-data",
+              "access-methods/api-reference/tables/clear-data",
+              "access-methods/api-reference/tables/delete-table",
+              "access-methods/api-reference/tables/list-tables"
+            ]
+          },
+          {
+            "group": "Materialized Views",
+            "icon": "database",
+            "pages": [
+              "access-methods/api-reference/materialized-views/index",
+              "access-methods/api-reference/materialized-views/get",
+              "access-methods/api-reference/materialized-views/upsert",
+              "access-methods/api-reference/materialized-views/delete",
+              "access-methods/api-reference/materialized-views/list",
+              "access-methods/api-reference/materialized-views/refresh"
+            ]
+          },
+          {
+            "group": "Post-processing",
+            "icon": "filter",
+            "pages": [
+              "access-methods/api-reference/post-processing/filtering",
+              "access-methods/api-reference/post-processing/sorting",
+              "access-methods/api-reference/post-processing/pagination",
+              "access-methods/api-reference/post-processing/sampling"
+            ]
+          },
+          {
+            "group": "Client SDKs",
             "icon": "package",
             "pages": [
               "access-methods/client-sdks/index",
@@ -3402,7 +3420,7 @@
             ]
           },
           {
-            "anchor": "Webhooks",
+            "group": "Webhooks",
             "icon": "bell",
             "pages": [
               "access-methods/webhooks/index",
@@ -3412,32 +3430,13 @@
             ]
           },
           {
-            "anchor": "BI Visualization Tools",
-            "icon": "chart-bar",
+            "group": "Resources",
+            "icon": "circle-info",
             "pages": [
-              "access-methods/trino-connector/index",
-              "access-methods/trino-connector/connection-parameters",
-              "access-methods/trino-connector/hex",
-              "access-methods/trino-connector/metabase",
-              "access-methods/trino-connector/tableau",
-              "access-methods/trino-connector/power-bi",
-              "access-methods/trino-connector/looker",
-              "access-methods/trino-connector/dbeaver",
-              "access-methods/trino-connector/other-tools"
-            ]
-          },
-          {
-            "anchor": "dbt Connector",
-            "icon": "git-merge",
-            "pages": [
-              "access-methods/dbt-connector/index",
-              "api-reference/connectors/dbt-connector",
-              "api-reference/connectors/sql-operations",
-              "access-methods/dbt-connector/setup",
-              "access-methods/dbt-connector/building-models",
-              "access-methods/dbt-connector/materialized-views",
-              "access-methods/dbt-connector/supported-operations",
-              "access-methods/dbt-connector/troubleshooting"
+              "access-methods/api-reference/resources/rate-limits",
+              "access-methods/api-reference/resources/troubleshooting",
+              "access-methods/api-reference/resources/billing",
+              "access-methods/api-reference/resources/faq"
             ]
           }
         ]
