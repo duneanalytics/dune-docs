@@ -168,14 +168,7 @@
             "icon": "chart-bar",
             "pages": [
               "access-methods/trino-connector/index",
-              "access-methods/trino-connector/connection-parameters",
-              "access-methods/trino-connector/hex",
-              "access-methods/trino-connector/metabase",
-              "access-methods/trino-connector/tableau",
-              "access-methods/trino-connector/power-bi",
-              "access-methods/trino-connector/looker",
-              "access-methods/trino-connector/dbeaver",
-              "access-methods/trino-connector/other-tools"
+              "api-reference/connectors/trino-connector"
             ]
           },
           {
@@ -184,12 +177,7 @@
             "pages": [
               "access-methods/dbt-connector/index",
               "api-reference/connectors/dbt-connector",
-              "api-reference/connectors/sql-operations",
-              "access-methods/dbt-connector/setup",
-              "access-methods/dbt-connector/building-models",
-              "access-methods/dbt-connector/materialized-views",
-              "access-methods/dbt-connector/supported-operations",
-              "access-methods/dbt-connector/troubleshooting"
+              "api-reference/connectors/sql-operations"
             ]
           }
         ]
