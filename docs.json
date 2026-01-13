@@ -40,24 +40,16 @@
       "url": "data-catalog"
     },
     {
-      "name": "Analytics Hub",
-      "url": "web-app"
-    },
-    {
-      "name": "Access",
-      "url": "access"
+      "name": "API Reference",
+      "url": "api-reference"
     },
     {
       "name": "SQL Query Engine",
       "url": "query-engine"
     },
     {
-      "name": "API Reference",
-      "url": "api-reference"
-    },
-    {
-      "name": "Enterprise",
-      "url": "enterprise"
+      "name": "Resources",
+      "url": "resources"
     }
   ],
   "navigation": {
@@ -67,22 +59,119 @@
         "pages": [
           "home",
           "quickstart",
-          "learning-resources",
+          "docs/sim-real-time-apis",
           {
-            "group": "Billing & Credits",
+            "group": "Use Cases",
             "pages": [
-              "learning/how-tos/credit-system-on-dune",
-              "learning/how-tos/credit-system",
-              "learning/how-tos/pricing-faqs",
-              "api-reference/overview/billing",
-              "api-reference/overview/rate-limits"
+              "docs/use-cases/overview",
+              "docs/use-cases/protocol-adoption",
+              "docs/use-cases/trading-intelligence",
+              "docs/use-cases/stablecoin-intelligence"
             ]
           },
           {
-            "group": "Resources",
+            "group": "Analytics Hub",
             "pages": [
-              "web-app/bug-bounty",
-              "api-reference/overview/faq"
+              "web-app/overview",
+              {
+                "group": "Working with Queries",
+                "icon": "code",
+                "pages": [
+                  "web-app/query-editor/query-window",
+                  "web-app/query-editor/data-explorer",
+                  "web-app/query-editor/parameters",
+                  "web-app/query-editor/query-scheduler",
+                  "web-app/query-editor/query-lineage",
+                  "web-app/query-editor/version-history"
+                ]
+              },
+              {
+                "group": "Visualizations",
+                "icon": "chart-bar",
+                "pages": [
+                  "web-app/visualizations/charts-graphs",
+                  "web-app/visualizations/counters",
+                  "web-app/visualizations/tables"
+                ]
+              },
+              {
+                "group": "Dashboards",
+                "icon": "grid-2",
+                "pages": [
+                  "web-app/dashboards",
+                  "web-app/embeds"
+                ]
+              },
+              {
+                "group": "Decoding Contracts",
+                "icon": "file-code",
+                "pages": [
+                  "web-app/decoding/decoding-contracts",
+                  "web-app/decoding/best-practices",
+                  "web-app/decoding/multichain-decoding",
+                  "web-app/decoding/faqs"
+                ]
+              },
+              {
+                "group": "AI & Alerts",
+                "icon": "robot",
+                "pages": [
+                  "web-app/dune-ai",
+                  "web-app/alerts"
+                ]
+              },
+              "web-app/search",
+              "web-app/upload-data",
+              "web-app/teams",
+              {
+                "group": "Enterprise",
+                "icon": "building",
+                "pages": [
+                  "enterprise/analytics-hub/overview",
+                  "enterprise/analytics-hub/sso",
+                  "enterprise/analytics-hub/permissions",
+                  "web-app/google-sso-domain-restriction",
+                  "web-app/okta-sso"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Dune Datashare",
+            "pages": [
+              "datashare/datashare",
+              "datashare/datashare-snowflake",
+              "datashare/datashare-bigquery",
+              "datashare/datashare-trial",
+              "datashare/datashare-faqs",
+              {
+                "group": "Enterprise",
+                "icon": "building",
+                "pages": [
+                  "enterprise/datashare/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Transform your Data",
+            "pages": [
+              "api-reference/connectors/dbt-connector",
+              "api-reference/connectors/sql-operations"
+            ]
+          },
+          {
+            "group": "BI Visualization Tools",
+            "pages": [
+              "api-reference/connectors/overview",
+              "api-reference/connectors/trino-connector"
+            ]
+          },
+          {
+            "group": "Catalyst",
+            "pages": [
+              "catalyst/overview",
+              "api-reference/tables/endpoint/migration"
             ]
           }
         ]
@@ -3229,165 +3318,6 @@
         ]
       },
       {
-        "tab": "Analytics Hub",
-        "pages": [
-          "web-app/overview",
-          {
-            "group": "Working with Queries",
-            "pages": [
-              "web-app/query-editor/query-window",
-              "web-app/query-editor/data-explorer",
-              "learning/how-tos/navigate-query-editor",
-              "learning/how-tos/create-your-first-query",
-              "learning/how-tos/query-templates",
-              "web-app/query-editor/parameters",
-              "web-app/query-editor/query-scheduler",
-              "web-app/query-editor/query-lineage",
-              "web-app/query-editor/version-history"
-            ]
-          },
-          {
-            "group": "Visualizations",
-            "pages": [
-              "learning/how-tos/create-your-first-visualization",
-              "web-app/visualizations/charts-graphs",
-              "web-app/visualizations/counters",
-              "web-app/visualizations/tables"
-            ]
-          },
-          {
-            "group": "Dashboards",
-            "pages": [
-              "web-app/dashboards",
-              "learning/how-tos/create-new-content"
-            ]
-          },
-          {
-            "group": "Decoding Contracts",
-            "pages": [
-              "web-app/decoding/decoding-contracts",
-              "web-app/decoding/best-practices",
-              "web-app/decoding/faqs",
-              "web-app/decoding/multichain-decoding",
-              "web-app/decoding/short-guide-contract-submission"
-            ]
-          },
-          {
-            "group": "AI & Alerts",
-            "pages": [
-              "web-app/dune-ai",
-              "web-app/alerts"
-            ]
-          },
-          {
-            "group": "Sharing & Export",
-            "pages": [
-              "learning/how-tos/share-dune-content",
-              "learning/how-tos/share-your-query",
-              "web-app/embeds",
-              "learning/how-tos/export-data-out",
-              "web-app/upload-data"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Access",
-        "pages": [
-          {
-            "group": "Datashare",
-            "pages": [
-              "datashare/datashare",
-              "datashare/datashare-snowflake",
-              "datashare/datashare-bigquery",
-              "datashare/datashare-trial",
-              "datashare/datashare-faqs"
-            ]
-          },
-          {
-            "group": "Catalyst",
-            "pages": [
-              "catalyst/overview",
-              "api-reference/tables/endpoint/migration"
-            ]
-          },
-          {
-            "group": "External Connectors",
-            "pages": [
-              "api-reference/connectors/overview",
-              "api-reference/connectors/trino-connector",
-              "api-reference/connectors/dbt-connector",
-              "api-reference/connectors/sql-operations"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "SQL Query Engine",
-        "pages": [
-          "query-engine/overview",
-          {
-            "group": "Functionality",
-            "pages": [
-              "query-engine/query-executions",
-              "query-engine/query-a-query",
-              "query-engine/materialized-views"
-            ]
-          },
-          {
-            "group": "DuneSQL",
-            "pages": [
-              "query-engine/dunesql-architecture",
-              "query-engine/writing-efficient-queries",
-              "query-engine/datatypes",
-              "query-engine/reserved-keywords"
-            ]
-          },
-          {
-            "group": "Functions and Operators",
-            "pages": [
-              "query-engine/Functions-and-operators/index",
-              "query-engine/Functions-and-operators/aggregate",
-              "query-engine/Functions-and-operators/array",
-              "query-engine/Functions-and-operators/asof-join",
-              "query-engine/Functions-and-operators/base58",
-              "query-engine/Functions-and-operators/binary",
-              "query-engine/Functions-and-operators/bitwise",
-              "query-engine/Functions-and-operators/chain-utility-functions",
-              "query-engine/Functions-and-operators/comparison",
-              "query-engine/Functions-and-operators/conditional",
-              "query-engine/Functions-and-operators/conversion",
-              "query-engine/Functions-and-operators/datetime",
-              "query-engine/Functions-and-operators/decimal",
-              "query-engine/Functions-and-operators/evm-decoding-functions",
-              "query-engine/Functions-and-operators/hyperloglog",
-              "query-engine/Functions-and-operators/json",
-              "query-engine/Functions-and-operators/lambda",
-              "query-engine/Functions-and-operators/live-fetch",
-              "query-engine/Functions-and-operators/logical",
-              "query-engine/Functions-and-operators/map",
-              "query-engine/Functions-and-operators/math",
-              "query-engine/Functions-and-operators/ml",
-              "query-engine/Functions-and-operators/qdigest",
-              "query-engine/Functions-and-operators/regexp",
-              "query-engine/Functions-and-operators/setdigest",
-              "query-engine/Functions-and-operators/ss58",
-              "query-engine/Functions-and-operators/tonaddress",
-              "query-engine/Functions-and-operators/tronaddress",
-              "query-engine/Functions-and-operators/string",
-              "query-engine/Functions-and-operators/system",
-              "query-engine/Functions-and-operators/tdigest",
-              "query-engine/Functions-and-operators/teradata",
-              "query-engine/Functions-and-operators/url",
-              "query-engine/Functions-and-operators/uuid",
-              "query-engine/Functions-and-operators/varbinary",
-              "query-engine/Functions-and-operators/varchar-utility-functions",
-              "query-engine/Functions-and-operators/window"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "API Reference",
         "pages": [
           {
@@ -3547,23 +3477,113 @@
         ]
       },
       {
-        "tab": "Enterprise",
+        "tab": "SQL Query Engine",
         "pages": [
-          "enterprise/overview",
+          "query-engine/overview",
           {
-            "group": "Workspace Management",
+            "group": "Functionality",
             "pages": [
-              "web-app/teams",
-              "learning/how-tos/create-and-manage-teams",
-              "learning/how-tos/transfer-ownership",
-              "web-app/user-activity"
+              "query-engine/query-executions",
+              "query-engine/query-a-query",
+              "query-engine/materialized-views"
             ]
           },
           {
-            "group": "SSO",
+            "group": "DuneSQL",
             "pages": [
-              "web-app/google-sso-domain-restriction",
-              "web-app/okta-sso"
+              "query-engine/dunesql-architecture",
+              "query-engine/writing-efficient-queries",
+              "query-engine/datatypes",
+              "query-engine/reserved-keywords"
+            ]
+          },
+          {
+            "group": "Functions and Operators",
+            "pages": [
+              "query-engine/Functions-and-operators/index",
+              "query-engine/Functions-and-operators/aggregate",
+              "query-engine/Functions-and-operators/array",
+              "query-engine/Functions-and-operators/asof-join",
+              "query-engine/Functions-and-operators/base58",
+              "query-engine/Functions-and-operators/binary",
+              "query-engine/Functions-and-operators/bitwise",
+              "query-engine/Functions-and-operators/chain-utility-functions",
+              "query-engine/Functions-and-operators/comparison",
+              "query-engine/Functions-and-operators/conditional",
+              "query-engine/Functions-and-operators/conversion",
+              "query-engine/Functions-and-operators/datetime",
+              "query-engine/Functions-and-operators/decimal",
+              "query-engine/Functions-and-operators/evm-decoding-functions",
+              "query-engine/Functions-and-operators/hyperloglog",
+              "query-engine/Functions-and-operators/json",
+              "query-engine/Functions-and-operators/lambda",
+              "query-engine/Functions-and-operators/live-fetch",
+              "query-engine/Functions-and-operators/logical",
+              "query-engine/Functions-and-operators/map",
+              "query-engine/Functions-and-operators/math",
+              "query-engine/Functions-and-operators/ml",
+              "query-engine/Functions-and-operators/qdigest",
+              "query-engine/Functions-and-operators/regexp",
+              "query-engine/Functions-and-operators/setdigest",
+              "query-engine/Functions-and-operators/ss58",
+              "query-engine/Functions-and-operators/tonaddress",
+              "query-engine/Functions-and-operators/tronaddress",
+              "query-engine/Functions-and-operators/string",
+              "query-engine/Functions-and-operators/system",
+              "query-engine/Functions-and-operators/tdigest",
+              "query-engine/Functions-and-operators/teradata",
+              "query-engine/Functions-and-operators/url",
+              "query-engine/Functions-and-operators/uuid",
+              "query-engine/Functions-and-operators/varbinary",
+              "query-engine/Functions-and-operators/varchar-utility-functions",
+              "query-engine/Functions-and-operators/window"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "pages": [
+          "resources/overview",
+          {
+            "group": "Credits & Billing",
+            "pages": [
+              "resources/credits-billing/overview",
+              "learning/how-tos/credit-system-on-dune",
+              "learning/how-tos/credit-system",
+              "learning/how-tos/pricing-faqs",
+              "api-reference/overview/billing",
+              "api-reference/overview/rate-limits"
+            ]
+          },
+          {
+            "group": "Learning",
+            "pages": [
+              "learning-resources",
+              "learning/how-tos/navigate-query-editor",
+              "learning/how-tos/create-your-first-query",
+              "learning/how-tos/query-templates",
+              "learning/how-tos/create-your-first-visualization",
+              "learning/how-tos/create-new-content",
+              "learning/how-tos/share-dune-content",
+              "learning/how-tos/share-your-query",
+              "learning/how-tos/export-data-out",
+              "learning/flipside-migration-guide"
+            ]
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "resources/support/overview",
+              "api-reference/overview/faq",
+              "api-reference/overview/troubleshooting"
+            ]
+          },
+          {
+            "group": "Community",
+            "pages": [
+              "resources/community/overview",
+              "web-app/bug-bounty"
             ]
           }
         ]
