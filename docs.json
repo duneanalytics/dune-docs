@@ -3061,7 +3061,8 @@
                       "data-catalog/flow/cadence/tokens",
                       "data-catalog/flow/cadence/token-transfers",
                       "data-catalog/flow/cadence/token-collections",
-                      "data-catalog/flow/cadence/native-token-balances"
+                      "data-catalog/flow/cadence/native-token-balances",
+                      "data-catalog/flow/cadence/participations"
                     ]
                   }
                 ]
