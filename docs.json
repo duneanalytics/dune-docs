@@ -94,9 +94,11 @@
                 "icon": "database",
                 "pages": [
                   "learning/how-tos/find-datasets",
-                  "learning/how-tos/query-templates"
+                  "learning/how-tos/query-templates",
+                  "web-app/search"
                 ]
               },
+              "web-app/upload-data",
               "learning/how-tos/export-data-out",
               {
                 "group": "Working with Queries",
@@ -108,7 +110,8 @@
                   "web-app/query-editor/parameters",
                   "web-app/query-editor/query-scheduler",
                   "web-app/query-editor/query-lineage",
-                  "web-app/query-editor/version-history"
+                  "web-app/query-editor/version-history",
+                  "web-app/alerts"
                 ]
               },
               {
@@ -133,16 +136,7 @@
                   "web-app/decoding/short-guide-contract-submission"
                 ]
               },
-              {
-                "group": "AI & Alerts",
-                "icon": "robot",
-                "pages": [
-                  "web-app/dune-ai",
-                  "web-app/alerts"
-                ]
-              },
-              "web-app/search",
-              "web-app/upload-data",
+              "web-app/dune-ai",
               {
                 "group": "Teams & Collaboration",
                 "icon": "users",
