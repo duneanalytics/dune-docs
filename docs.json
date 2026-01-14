@@ -225,9 +225,7 @@
                     "group": "EVM Token Transfers",
                     "icon": "e",
                     "pages": [
-                      "data-catalog/curated/token-transfers/evm/balances",
-                      "data-catalog/curated/token-transfers/evm/token-transfers",
-                      "data-catalog/curated/token-transfers/evm/tokens-metadata"
+                      "data-catalog/curated/token-transfers/evm/token-transfers"
                     ]
                   },
                   {
@@ -235,22 +233,9 @@
                     "icon": "s",
                     "pages": [
                       "data-catalog/curated/token-transfers/solana/overview",
-                      "data-catalog/curated/token-transfers/solana/solana-token-accounts",
-                      "data-catalog/curated/token-transfers/solana/solana-token-metadata",
                       "data-catalog/curated/token-transfers/solana/solana-token-transfers"
                     ]
                   }
-                ]
-              },
-              {
-                "group": "Labels",
-                "icon": "tag",
-                "pages": [
-                  "data-catalog/curated/labels/overview",
-                  "data-catalog/curated/labels/address-labels",
-                  "data-catalog/curated/labels/ens-labels",
-                  "data-catalog/curated/labels/owner-addresses",
-                  "data-catalog/curated/labels/owner-details"
                 ]
               },
               {
@@ -263,6 +248,47 @@
                   "data-catalog/curated/prices/prices_day",
                   "data-catalog/curated/prices/prices_usd",
                   "data-catalog/curated/prices/prices_latest"
+                ]
+              },
+              {
+                "group": "Token Metadata",
+                "icon": "info",
+                "pages": [
+                  "data-catalog/curated/token-metadata/overview",
+                  {
+                    "group": "EVM",
+                    "icon": "e",
+                    "pages": [
+                      "data-catalog/curated/token-metadata/evm/erc20-metadata"
+                    ]
+                  },
+                  {
+                    "group": "Solana",
+                    "icon": "s",
+                    "pages": [
+                      "data-catalog/curated/token-metadata/solana/token-metadata",
+                      "data-catalog/curated/token-metadata/solana/token-accounts"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Balances",
+                "icon": "scale-balanced",
+                "pages": [
+                  "data-catalog/curated/balances/overview",
+                  "data-catalog/curated/balances/evm-balances"
+                ]
+              },
+              {
+                "group": "Labels",
+                "icon": "tag",
+                "pages": [
+                  "data-catalog/curated/labels/overview",
+                  "data-catalog/curated/labels/address-labels",
+                  "data-catalog/curated/labels/ens-labels",
+                  "data-catalog/curated/labels/owner-addresses",
+                  "data-catalog/curated/labels/owner-details"
                 ]
               },
               {
@@ -1098,46 +1124,6 @@
                         "group": "NFT",
                         "pages": [
                           "data-catalog/evm/flare/curated-data/nft/nft-trades"
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Flow EVM",
-                "icon": "database",
-                "iconType": "solid",
-                "pages": [
-                  "data-catalog/evm/flow-evm/overview",
-                  {
-                    "group": "Raw",
-                    "pages": [
-                      "data-catalog/evm/flow-evm/raw/blocks",
-                      "data-catalog/evm/flow-evm/raw/creation-traces",
-                      "data-catalog/evm/flow-evm/raw/logs",
-                      "data-catalog/evm/flow-evm/raw/transactions",
-                      "data-catalog/evm/flow-evm/raw/traces"
-                    ]
-                  },
-                  {
-                    "group": "Decoded",
-                    "pages": [
-                      "data-catalog/evm/flow-evm/decoded/overview",
-                      "data-catalog/evm/flow-evm/decoded/call-tables",
-                      "data-catalog/evm/flow-evm/decoded/event-logs",
-                      "data-catalog/evm/flow-evm/decoded/contracts",
-                      "data-catalog/evm/flow-evm/decoded/logs-decoded",
-                      "data-catalog/evm/flow-evm/decoded/traces-decoded"
-                    ]
-                  },
-                  {
-                    "group": "Curated",
-                    "pages": [
-                      {
-                        "group": "DEX",
-                        "pages": [
-                          "data-catalog/evm/flow-evm/curated-data/dex/dex-trades"
                         ]
                       }
                     ]
@@ -2985,6 +2971,66 @@
                   "data-catalog/starknet/transactions",
                   "data-catalog/starknet/events",
                   "data-catalog/starknet/calls"
+                ]
+              },
+              {
+                "group": "Flow",
+                "icon": "database",
+                "iconType": "solid",
+                "pages": [
+                  "data-catalog/flow/overview",
+                  {
+                    "group": "EVM",
+                    "pages": [
+                      {
+                        "group": "Raw",
+                        "pages": [
+                          "data-catalog/flow/raw/blocks",
+                          "data-catalog/flow/raw/creation-traces",
+                          "data-catalog/flow/raw/logs",
+                          "data-catalog/flow/raw/transactions",
+                          "data-catalog/flow/raw/traces"
+                        ]
+                      },
+                      {
+                        "group": "Decoded",
+                        "pages": [
+                          "data-catalog/flow/decoded/overview",
+                          "data-catalog/flow/decoded/call-tables",
+                          "data-catalog/flow/decoded/event-logs",
+                          "data-catalog/flow/decoded/contracts",
+                          "data-catalog/flow/decoded/logs-decoded",
+                          "data-catalog/flow/decoded/traces-decoded"
+                        ]
+                      },
+                      {
+                        "group": "Curated",
+                        "pages": [
+                          {
+                            "group": "DEX",
+                            "pages": [
+                              "data-catalog/flow/curated-data/dex/dex-trades"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Cadence",
+                    "pages": [
+                      "data-catalog/flow/cadence/blocks",
+                      "data-catalog/flow/cadence/transactions",
+                      "data-catalog/flow/cadence/transaction-receipts",
+                      "data-catalog/flow/cadence/events",
+                      "data-catalog/flow/cadence/contracts",
+                      "data-catalog/flow/cadence/tokens",
+                      "data-catalog/flow/cadence/token-transfers",
+                      "data-catalog/flow/cadence/token-collections",
+                      "data-catalog/flow/cadence/native-token-balances",
+                      "data-catalog/flow/cadence/participations"
+                    ]
+                  }
                 ]
               },
               {
