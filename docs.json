@@ -98,8 +98,6 @@
                   "web-app/search"
                 ]
               },
-              "web-app/upload-data",
-              "learning/how-tos/export-data-out",
               {
                 "group": "Working with Queries",
                 "icon": "code",
@@ -136,7 +134,6 @@
                   "web-app/decoding/short-guide-contract-submission"
                 ]
               },
-              "web-app/dune-ai",
               {
                 "group": "Teams & Collaboration",
                 "icon": "users",
@@ -146,6 +143,9 @@
                   "learning/how-tos/transfer-ownership"
                 ]
               },
+              "web-app/upload-data",
+              "learning/how-tos/export-data-out",
+              "web-app/dune-ai",
               {
                 "group": "Enterprise",
                 "icon": "building",
