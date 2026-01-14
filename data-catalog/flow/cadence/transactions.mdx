@@ -1,0 +1,36 @@
+---
+title: flow.cadence_transactions
+sidebarTitle: "Transactions"
+description: Description of the flow.cadence_transactions table on Dune
+---
+
+## Table Description
+
+Contains transaction data from the Flow Cadence blockchain including sender, receiver, and transaction payload information.
+
+## Column Descriptions
+
+| Column | Type | Description |
+|--------|------|-------------|
+| block_date | date | The date of the transaction |
+| timestamp | timestamp | Timestamp when the transaction was executed |
+| block_height | bigint | The block number containing this transaction |
+| block_hash | string | Hash of the block containing this transaction |
+| transaction_hash | string | Unique hash identifier for the transaction |
+| transaction_index | bigint | Index of the transaction within the block |
+| from | string | Address of the transaction sender |
+| to | string | Address of the transaction recipient |
+| sequence_number | bigint | Sequence number of the transaction |
+| data | string | Transaction payload data |
+| network_fee_limit | decimal(38,9) | Maximum network fee for this transaction |
+| max_network_fee_unit_price | decimal(38,9) | Maximum price per unit of network fee |
+| chain_specific | string | Chain-specific metadata in JSON format |
+| _updated_at | timestamp | Timestamp when the record was last updated |
+| _ingested_at | timestamp | Timestamp when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="flow" tableName="cadence_transactions" />
+

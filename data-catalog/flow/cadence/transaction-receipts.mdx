@@ -1,0 +1,33 @@
+---
+title: flow.cadence_transaction_receipts
+sidebarTitle: "Transaction Receipts"
+description: Description of the flow.cadence_transaction_receipts table on Dune
+---
+
+## Table Description
+
+Contains transaction receipt data from the Flow Cadence blockchain including execution status and fee information.
+
+## Column Descriptions
+
+| Column | Type | Description |
+|--------|------|-------------|
+| block_date | date | The date of the transaction |
+| timestamp | timestamp | Timestamp when the transaction was executed |
+| block_height | bigint | The block number containing this transaction |
+| block_hash | string | Hash of the block containing this transaction |
+| transaction_hash | string | Unique hash identifier for the transaction |
+| success | boolean | Whether the transaction executed successfully |
+| status_message | string | Status message or error description |
+| network_fee_used | decimal(38,9) | Actual network fee consumed |
+| cost_per_network_fee | decimal(38,9) | Cost per unit of network fee |
+| chain_specific | string | Chain-specific metadata in JSON format |
+| _updated_at | timestamp | Timestamp when the record was last updated |
+| _ingested_at | timestamp | Timestamp when the record was ingested |
+
+## Table Sample
+
+import { TableSample } from "/snippets/table-sample.mdx";
+
+<TableSample tableSchema="flow" tableName="cadence_transaction_receipts" />
+
