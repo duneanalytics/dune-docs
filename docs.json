@@ -131,7 +131,15 @@
               },
               "web-app/search",
               "web-app/upload-data",
-              "web-app/teams",
+              {
+                "group": "Teams & Collaboration",
+                "icon": "users",
+                "pages": [
+                  "web-app/teams",
+                  "learning/how-tos/create-and-manage-teams",
+                  "learning/how-tos/transfer-ownership"
+                ]
+              },
               "web-app/bug-bounty",
               "web-app/user-activity",
               {
@@ -167,10 +175,10 @@
             "group": "Dune Datashare",
             "pages": [
               "datashare/datashare",
+              "datashare/datashare-trial",
               "datashare/datashare-databricks",
               "datashare/datashare-snowflake",
               "datashare/datashare-bigquery",
-              "datashare/datashare-trial",
               "datashare/datashare-faqs",
               {
                 "group": "Enterprise",
@@ -3604,8 +3612,10 @@
         "tab": "Resources",
         "pages": [
           "resources/overview",
+          "learning/how-tos/pricing-faqs",
           {
             "group": "Credits & Billing",
+            "icon": "credit-card",
             "pages": [
               "resources/credits-billing/overview",
               "resources/credits-billing/how-credits-work",
@@ -3616,48 +3626,58 @@
           },
           {
             "group": "Learning",
+            "icon": "graduation-cap",
             "pages": [
               "resources/web3-data-resources",
               "resources/learning/overview",
+              {
+                "group": "Getting Started",
+                "icon": "rocket",
+                "pages": [
+                  "learning/how-tos/create-your-first-query",
+                  "learning/how-tos/create-your-first-visualization",
+                  "learning/how-tos/navigate-query-editor"
+                ]
+              },
+              {
+                "group": "Finding & Using Data",
+                "icon": "database",
+                "pages": [
+                  "learning/how-tos/find-datasets",
+                  "learning/how-tos/query-templates",
+                  "learning/how-tos/export-data-out"
+                ]
+              },
+              {
+                "group": "Creating & Sharing Content",
+                "icon": "share-nodes",
+                "pages": [
+                  "learning/how-tos/create-new-content",
+                  "learning/how-tos/share-your-query",
+                  "learning/how-tos/share-dune-content",
+                  "learning/how-tos/search-for-content"
+                ]
+              },
               "resources/learning/video-tutorials",
               "resources/learning/example-queries",
               "resources/learning/example-dashboards",
-              "resources/learning/analyst-roadmap",
-              {
-                "group": "How-Tos",
-                "icon": "lightbulb",
-                "pages": [
-                  "learning/how-tos/create-your-first-query",
-                  "learning/how-tos/query-templates",
-                  "learning/how-tos/create-new-content",
-                  "learning/how-tos/create-your-first-visualization",
-                  "learning/how-tos/navigate-query-editor",
-                  "learning/how-tos/find-datasets",
-                  "learning/how-tos/export-data-out",
-                  "learning/how-tos/create-and-manage-teams",
-                  "learning/how-tos/credit-system-on-dune",
-                  "learning/how-tos/credit-system",
-                  "learning/how-tos/pricing-faqs",
-                  "learning/how-tos/search-for-content",
-                  "learning/how-tos/share-dune-content",
-                  "learning/how-tos/share-your-query",
-                  "learning/how-tos/transfer-ownership",
-                  "learning/flipside-migration-guide"
-                ]
-              }
+              "resources/learning/analyst-roadmap"
             ]
           },
           {
             "group": "Support",
+            "icon": "life-ring",
             "pages": [
               "resources/support/overview",
               "resources/support/faq",
+              "learning/flipside-migration-guide",
               "resources/support/troubleshooting",
               "resources/support/contact"
             ]
           },
           {
             "group": "Community",
+            "icon": "people-group",
             "pages": [
               "resources/community/overview",
               "resources/community/discord",
