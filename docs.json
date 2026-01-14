@@ -140,7 +140,6 @@
                   "learning/how-tos/transfer-ownership"
                 ]
               },
-              "web-app/bug-bounty",
               "web-app/user-activity",
               {
                 "group": "Enterprise",
@@ -3611,7 +3610,6 @@
       {
         "tab": "Resources",
         "pages": [
-          "resources/overview",
           {
             "group": "Credits & Billing",
             "icon": "credit-card",
@@ -3627,7 +3625,6 @@
             "icon": "graduation-cap",
             "pages": [
               "resources/web3-data-resources",
-              "resources/learning/overview",
               {
                 "group": "Getting Started",
                 "icon": "rocket",
@@ -3657,8 +3654,6 @@
                 ]
               },
               "resources/learning/video-tutorials",
-              "resources/learning/example-queries",
-              "resources/learning/example-dashboards",
               "resources/learning/analyst-roadmap"
             ]
           },
@@ -3669,7 +3664,6 @@
               "resources/support/overview",
               "learning/how-tos/pricing-faqs",
               "learning/flipside-migration-guide",
-              "resources/support/troubleshooting",
               "resources/support/contact"
             ]
           },
@@ -3679,8 +3673,7 @@
             "pages": [
               "resources/community/overview",
               "resources/community/discord",
-              "resources/community/bounties-grants",
-              "resources/community/wizards-program"
+              "web-app/bug-bounty"
             ]
           }
         ]
