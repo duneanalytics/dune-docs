@@ -152,7 +152,6 @@
                   "learning/how-tos/transfer-ownership"
                 ]
               },
-              "web-app/user-activity",
               {
                 "group": "Enterprise",
                 "icon": "building",
@@ -3647,6 +3646,7 @@
                   "learning/how-tos/search-for-content"
                 ]
               },
+              "web-app/user-activity",
               "resources/learning/video-tutorials",
               "resources/learning/analyst-roadmap"
             ]
