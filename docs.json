@@ -65,7 +65,6 @@
         "tab": "Docs",
         "pages": [
           "home",
-          "quickstart",
           "docs/sim-real-time-apis",
           {
             "group": "Use Cases",
@@ -80,6 +79,25 @@
             "group": "Analytics Hub",
             "pages": [
               "web-app/overview",
+              {
+                "group": "Getting Started",
+                "icon": "rocket",
+                "pages": [
+                  "quickstart",
+                  "learning/how-tos/create-your-first-query",
+                  "learning/how-tos/create-your-first-visualization",
+                  "learning/how-tos/navigate-query-editor"
+                ]
+              },
+              {
+                "group": "Finding & Using Data",
+                "icon": "database",
+                "pages": [
+                  "learning/how-tos/find-datasets",
+                  "learning/how-tos/query-templates"
+                ]
+              },
+              "learning/how-tos/export-data-out",
               {
                 "group": "Working with Queries",
                 "icon": "code",
@@ -3625,24 +3643,6 @@
             "icon": "graduation-cap",
             "pages": [
               "resources/web3-data-resources",
-              {
-                "group": "Getting Started",
-                "icon": "rocket",
-                "pages": [
-                  "learning/how-tos/create-your-first-query",
-                  "learning/how-tos/create-your-first-visualization",
-                  "learning/how-tos/navigate-query-editor"
-                ]
-              },
-              {
-                "group": "Finding & Using Data",
-                "icon": "database",
-                "pages": [
-                  "learning/how-tos/find-datasets",
-                  "learning/how-tos/query-templates",
-                  "learning/how-tos/export-data-out"
-                ]
-              },
               {
                 "group": "Creating & Sharing Content",
                 "icon": "share-nodes",
