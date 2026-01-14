@@ -3612,7 +3612,6 @@
         "tab": "Resources",
         "pages": [
           "resources/overview",
-          "learning/how-tos/pricing-faqs",
           {
             "group": "Credits & Billing",
             "icon": "credit-card",
@@ -3669,7 +3668,7 @@
             "icon": "life-ring",
             "pages": [
               "resources/support/overview",
-              "resources/support/faq",
+              "learning/how-tos/pricing-faqs",
               "learning/flipside-migration-guide",
               "resources/support/troubleshooting",
               "resources/support/contact"
