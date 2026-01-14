@@ -1,17 +1,248 @@
 ---
-title: "Pricing"
+title: "Pricing FAQs"
+description: "Frequently asked questions about Dune's pricing, credits, billing, and plans"
 icon: "tag"
-description: "Dune pricing plans and options"
 ---
 
-# Pricing
+# Pricing FAQs
 
-Dune pricing plans and options
+Find answers to common questions about Dune's pricing, credits, billing cycles, and subscription plans.
 
-<Note>
-This page is a stub. Content will be added soon.
-</Note>
+## General Questions
 
----
+<AccordionGroup>
+  <Accordion title="Where can I see my billing history?">
+    Your billing history can be found under "Billing" in your Subscription Settings. Follow the steps below for a complete view:
 
-**Status:** 🚧 Stub — Content pending
+    1. Go to dune.com
+    2. Sign in to your Dune account
+    3. Click your avatar in the middle of the top bar where your user or team badge is
+    4. Click the Settings icon and then "Subscription"
+  </Accordion>
+
+  <Accordion title="How are upgrades and downgrades handled?">
+    Upgrading to a new paid tier resets your billing cycle start date. On the date of your upgrade, you will be billed the full new plan price and refunded a prorated amount corresponding to the number of unused days of your current plan. If you upgrade from Analyst to Plus on day 15 of your billing cycle, you will be billed a month of Plus minus 15 days of Analyst (roughly half the monthly Analyst cost).
+
+    Downgrades to lower tiers are applied at the end of your billing cycle. Benefits from your current tier remain until the end of your billing cycle. At the end of your billing cycle, you will automatically be downgraded to the lower tier of your choice.
+  </Accordion>
+
+  <Accordion title="How do I upgrade, downgrade, or cancel my team's subscription?">
+    Only administrators of teams with paid plans can change team subscriptions. To change your team's subscription:
+
+    1. Go to dune.com
+    2. Sign in to your Dune account
+    3. Click your avatar in the middle of the top bar where your team badge is
+    4. Click the Settings icon and then "Subscription"
+    5. Click the plan you want to upgrade or downgrade to
+
+    To cancel your subscription, follow these steps:
+    1. Go to dune.com
+    2. Sign in to your Dune account
+    3. Click your avatar in the middle of the top bar where your user or team badge is
+    4. Click the Settings icon and then "Subscription"
+    5. Change your plan to Free
+
+    Your subscription will remain active for 30 days after your last payment.
+  </Accordion>
+
+  <Accordion title="Do you offer paid plans for individuals?">
+    If you are a single user with higher requirements than what's offered in the free tier, you can create a team of one to access paid tiers. Note that we hope to change this in the future, so individuals don't need to create a plan to upgrade.
+  </Accordion>
+
+  <Accordion title="What if I have more questions?">
+    For general info on how to use Dune, please see our [docs](https://docs.dune.com). For specific questions on how to do a query, please join our [Discord](https://discord.com/invite/dunecom). If you have other issues or questions not listed on this page, please contact support@dune.com.
+  </Accordion>
+</AccordionGroup>
+
+## Credits and Spending
+
+<AccordionGroup>
+  <Accordion title="What is a credit?">
+    Credits are the measurement unit for usage on Dune. They provide flexibility across query performance, programmatic executions, and API exports. Credits are consumed proportionally to the actual compute resources your queries use—simple queries cost fewer credits while complex ones use more.
+  </Accordion>
+
+  <Accordion title="Can I view my credit usage and balance?">
+    To view your credit usage and balance go to Settings and select Subscription; here you will see used and remaining credits.
+  </Accordion>
+
+  <Accordion title="How do credits and billing cycles work with annual plans?">
+    Annual billing enables customers to pay for their plan yearly at a reduced rate. Customers on this plan will still have their credits reset on a monthly basis, as well as receive monthly charges for any potential extra credits incurred.
+  </Accordion>
+
+  <Accordion title="How do I calculate my potential monthly credit usage?">
+    Credit usage is determined by the actual compute resources your queries consume. Your credit consumption directly reflects each query's complexity and resource requirements.
+
+    **Query Execution (App & API)**
+    - Credits are charged based on CPU-seconds and network resources used
+    - Simple, efficient queries use fewer credits
+    - Complex queries with large data scans require more credits
+    - Queries cost the same whether executed manually or programmatically
+
+    **API Export**
+    - Free and Analyst: 1 credit = 1,000 data points
+    - Plus: 1 credit = 5,000 data points
+    - Premium (legacy): 1 credit = 25,000 data points
+  </Accordion>
+
+  <Accordion title="How can I manage and reduce my credit usage?">
+    There are several ways to control and optimize your credit consumption:
+
+    **Monitor Your Usage**
+    - Check the usage tab regularly to track your credit consumption patterns
+    - Review which queries and users consume the most credits
+    - Set extra credit limits to control how many additional credits can be purchased beyond your plan's included amount
+
+    **Control Spending**
+    - Set query cost caps in Settings to limit the maximum credits any single query can consume
+    - Configure team-level caps to prevent accidental high-usage queries
+    - Use these caps while testing new queries or during development
+
+    **Optimize Your Queries**
+    - Write efficient SQL to dramatically reduce credit consumption
+    - Review our [query optimization guide](https://docs.dune.com/query-engine/writing-efficient-queries) for specific techniques
+  </Accordion>
+
+  <Accordion title="What happens if my credit quota runs out?">
+    Once your monthly credit quota runs out, we'll continue to bill you for additional credits at your plan's extra credit rate. There's no separate "extra credit pricing", you pay the same rate per 100 credits as shown for your plan:
+
+    - Free: $5.00 per 100 credits
+    - Analyst: $1.875 per 100 credits (monthly) / $1.625 per 100 credits (annual)
+    - Plus: $1.596 per 100 credits (monthly) / $1.396 per 100 credits (annual)
+    - Premium (legacy): $0.999 per 100 credits (monthly) / $0.849 per 100 credits (annual)
+    - Enterprise: Custom pricing per your agreement
+
+    You can set query cost caps in Settings to control your credit usage and prevent unexpected charges.
+  </Accordion>
+
+  <Accordion title="Can I purchase extra credits in bulk?">
+    No, once your quota runs out, extra credits will be billed on an ongoing basis as you use Dune. Credits are not available to purchase in bulk once you reach your quota.
+  </Accordion>
+
+  <Accordion title="If I have leftover credits at the end of the billing cycle can I use them later?">
+    Remaining credits at the end of a billing cycle do not rollover to the next month.
+  </Accordion>
+
+  <Accordion title="Can I 'pay as I go' without upgrading?">
+    Yes, you can pay as you go. Both individuals and teams in the free tier can continue using Dune beyond their 2,500 monthly credits by paying $5.00 per 100 additional credits. This allows you to handle occasional larger workloads without committing to a monthly subscription. If you find yourself consistently purchasing additional credits, consider upgrading to a paid plan for better value, paid plans offer significantly lower per-credit rates and additional features like API access and unlimited concurrent executions.
+  </Accordion>
+
+  <Accordion title="How can I limit my spending?">
+    To limit monthly spend, go to your subscription page in Settings and set the limit to the desired amount. Setting your limit to $0 will prevent additional usage billing.
+  </Accordion>
+
+  <Accordion title="What if I lower my spend limit below my current spend level?">
+    If you lower your spend limit below your current spending level, you will not be charged any additional fees beyond your new spend limit. However, any usage that has accrued does not rollover and will still be billed based on the previous spend limit.
+  </Accordion>
+</AccordionGroup>
+
+## Query Engines & Executions
+
+<AccordionGroup>
+  <Accordion title="How is my query execution usage counted?">
+    When you manually trigger an execution by pressing Run in the Query Editor, dashboard, or via the API, we accrue that usage to the user or team account. To ensure you are accruing usage in the correct account, view your selected account in the account switcher located in the middle of the top navigation bar on Dune.
+  </Accordion>
+
+  <Accordion title="What are the differences between query engine sizes?">
+    We have three different query engine sizes that you can use on Dune, each consuming credits based on actual compute resources used:
+
+    **Small Engine (0 credits to run)**
+    - Run simple queries manually in the Dune app for free
+    - Credits consumed from your monthly allowance based on actual usage
+    - 2-minute timeout limit
+    - Maximum of three (3) concurrent executions
+    - No performance guarantees
+
+    **Medium Engine**
+    - Run queries with a larger timeout, manually or programmatically
+    - Credits consumed based on actual compute resources used
+    - No limit on concurrent executions
+    - Suitable for most standard queries and dashboards
+
+    **Large Engine**
+    - Optimized for complex workloads requiring more computational power
+    - Credits consumed based on actual compute resources used (more compute and resource than Medium for the same query)
+    - Best for data-intensive queries and complex analytics
+
+    The Large engine provides approximately 2x the computational capacity of the Medium engine. While both Medium and Large engines charge based on actual usage, the Large engine will typically consume more credits for the same query due to the additional resources allocated, but will complete faster. The Small engine is limited in capacity and has stricter timeout constraints.
+
+    **Note:** Exact credit consumption varies based on query complexity, data volume scanned, and processing required rather than being a fixed rate per execution.
+  </Accordion>
+
+  <Accordion title="What is a programmatic execution?">
+    Programmatic executions are query executions done through the Dune API, scheduled executions, materialized view refreshes, or dashboard runs. Programmatic executions consume credits based on actual compute resources used, just like manual queries. Both manual and programmatic executions are charged based on the complexity and resources required by your query, ensuring consistent and fair pricing across all execution methods.
+  </Accordion>
+
+  <Accordion title="What are the limitations of the Free query engine size?">
+    The Free query engine on Dune is available to anyone at no cost, but it does come with limitations. First, there are no performance or queue priority guarantees, which means executions may take longer to run during times of high demand. Additionally, the Free query engine is limited to manual query editor executions only; automated executions (API, scheduling, refreshing) are not available. Lastly, there is a maximum limit of three (3) ongoing executions (executing or queued) at any given time for Free executions, and executions are timed out at 120 seconds.
+  </Accordion>
+</AccordionGroup>
+
+## Features
+
+<AccordionGroup>
+  <Accordion title="Can I add a private query to a public dashboard?">
+    If you add a private query to a public dashboard, other Dune users will be able to see the visualization in the public dashboard, but won't see your code when they click the query. The results table, other visualizations you might have, and the underlying query are all private.
+  </Accordion>
+
+  <Accordion title="Do archived private queries count towards my limit?">
+    No, you can archive private queries that you no longer need to increase your existing private queries quota. Archived queries are not accessible by anyone else and cannot be run. You can unarchive them later if you change your mind.
+  </Accordion>
+
+  <Accordion title="Can I embed private queries on other websites?">
+    Yes, anyone visiting the website with the embed can see the visualization you chose to embed and nothing else.
+  </Accordion>
+
+  <Accordion title="As an Enterprise team, what will happen to watermarks?">
+    When logged in to the team on Dune, work you've created will not have watermarks. Public dashboards URLs always have watermarks.
+  </Accordion>
+</AccordionGroup>
+
+## Teams
+
+<AccordionGroup>
+  <Accordion title="What is an Editor seat?">
+    Owners of editor seats can create and edit content owned by their team, but they cannot access team management features; those are reserved for admins. Viewers have read-only access to the team's content and can still benefit from their team plan features and quotas.
+  </Accordion>
+
+  <Accordion title="Do my team's benefits apply to all content on Dune?">
+    Yes, team benefits apply to all Dune content, as long as your team is in the correctly selected account which is viewable in the middle of the top navigation bar on Dune.
+  </Accordion>
+
+  <Accordion title="How is a team's usage or feature quota applied?">
+    Quotas are applied to all team usage.
+  </Accordion>
+
+  <Accordion title="Can I invite unlimited collaborators?">
+    Yes, you can invite as many people as you need into your Dune team at no additional cost. All team members will need a Dune account to collaborate with you.
+  </Accordion>
+
+  <Accordion title="Can I create unlimited Free teams?">
+    You can create 1 Free team on Dune.
+  </Accordion>
+</AccordionGroup>
+
+## API
+
+<AccordionGroup>
+  <Accordion title="What is a datapoint?">
+    A datapoint can, in most cases, be thought of as rows * columns with an additional limit of 100 average bytes per cell in a set of results. This can be expressed as:
+
+    `datapoints = max(rows * columns, ceil(total_bytes / 100))`
+  </Accordion>
+
+  <Accordion title="Do I get charged data points for every time I read a result?">
+    Yes, we accrue the resulting datapoints returned from every request to your credit quota.
+  </Accordion>
+
+  <Accordion title="How do query executions work in the API?">
+    Query executions are identical to those triggered on dune.com. Please note: free executions are not supported via the API.
+  </Accordion>
+
+  <Accordion title="Can my team use the API?">
+    Yes, the API is included in all Dune plans. This means that all teams and users, including those in the Free plan, can access the API to trigger executions and export data, provided their spend limit has not been exceeded. Please note: credits still apply for API usage, regardless of the plan you are on.
+  </Accordion>
+
+  <Accordion title="Should I link back to the source when using the API?">
+    We strongly believe Dune analysts should be credited for their work's impact. We encourage you to credit the analyst, or perhaps to link to the original query. Linking to transparent data sources like Dune is a great way of building trust.
+  </Accordion>
+</AccordionGroup>

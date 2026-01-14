@@ -85,6 +85,7 @@
                 "icon": "code",
                 "pages": [
                   "web-app/query-editor/index",
+                  "web-app/query-editor/query-window",
                   "web-app/query-editor/data-explorer",
                   "web-app/query-editor/parameters",
                   "web-app/query-editor/query-scheduler",
@@ -116,7 +117,8 @@
                   "web-app/decoding/decoding-contracts",
                   "web-app/decoding/best-practices",
                   "web-app/decoding/multichain-decoding",
-                  "web-app/decoding/faqs"
+                  "web-app/decoding/faqs",
+                  "web-app/decoding/short-guide-contract-submission"
                 ]
               },
               {
@@ -130,13 +132,17 @@
               "web-app/search",
               "web-app/upload-data",
               "web-app/teams",
+              "web-app/bug-bounty",
+              "web-app/user-activity",
               {
                 "group": "Enterprise",
                 "icon": "building",
                 "pages": [
                   "enterprise/analytics-hub/overview",
                   "enterprise/analytics-hub/sso",
-                  "enterprise/analytics-hub/permissions"
+                  "enterprise/analytics-hub/permissions",
+                  "web-app/google-sso-domain-restriction",
+                  "web-app/okta-sso"
                 ]
               }
             ]
@@ -144,6 +150,7 @@
           {
             "group": "Transform your Data",
             "pages": [
+              "api-reference/connectors/overview",
               "access-methods/dbt-connector/index",
               "api-reference/connectors/dbt-connector",
               "api-reference/connectors/sql-operations"
@@ -163,6 +170,8 @@
               "datashare/datashare-databricks",
               "datashare/datashare-snowflake",
               "datashare/datashare-bigquery",
+              "datashare/datashare-trial",
+              "datashare/datashare-faqs",
               {
                 "group": "Enterprise",
                 "icon": "building",
@@ -3613,7 +3622,29 @@
               "resources/learning/video-tutorials",
               "resources/learning/example-queries",
               "resources/learning/example-dashboards",
-              "resources/learning/analyst-roadmap"
+              "resources/learning/analyst-roadmap",
+              {
+                "group": "How-Tos",
+                "icon": "lightbulb",
+                "pages": [
+                  "learning/how-tos/create-your-first-query",
+                  "learning/how-tos/query-templates",
+                  "learning/how-tos/create-new-content",
+                  "learning/how-tos/create-your-first-visualization",
+                  "learning/how-tos/navigate-query-editor",
+                  "learning/how-tos/find-datasets",
+                  "learning/how-tos/export-data-out",
+                  "learning/how-tos/create-and-manage-teams",
+                  "learning/how-tos/credit-system-on-dune",
+                  "learning/how-tos/credit-system",
+                  "learning/how-tos/pricing-faqs",
+                  "learning/how-tos/search-for-content",
+                  "learning/how-tos/share-dune-content",
+                  "learning/how-tos/share-your-query",
+                  "learning/how-tos/transfer-ownership",
+                  "learning/flipside-migration-guide"
+                ]
+              }
             ]
           },
           {
