@@ -112,18 +112,12 @@
                 ]
               },
               {
-                "group": "Visualizations",
+                "group": "Visualizations & Dashboards",
                 "icon": "chart-bar",
                 "pages": [
                   "web-app/visualizations/charts-graphs",
                   "web-app/visualizations/counters",
-                  "web-app/visualizations/tables"
-                ]
-              },
-              {
-                "group": "Dashboards",
-                "icon": "grid-2",
-                "pages": [
+                  "web-app/visualizations/tables",
                   "web-app/dashboards",
                   "web-app/embeds"
                 ]
