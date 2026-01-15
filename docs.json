@@ -160,6 +160,13 @@
             ]
           },
           {
+            "group": "Analytics API",
+            "icon": "code",
+            "pages": [
+              "api-reference/api-overview"
+            ]
+          },
+          {
             "group": "Transform your Data",
             "pages": [
               "api-reference/connectors/overview",
@@ -3397,7 +3404,6 @@
               "api-reference/overview/introduction",
               "api-reference/overview/getting-started",
               "api-reference/overview/authentication",
-              "api-reference/api-overview",
               "api-reference/overview/troubleshooting"
             ],
             "icon": "house"
