@@ -8,6 +8,10 @@ description: Materialized tables are a way to store the results of a query in a 
 
 The **"Materialized View"** feature on Dune allows you to use an existing query's results as table in another query. This functionality enables you to build your own simple data pipeline inside of Dune. This feature is especially useful when you have a query that takes a long time to run, or when you want to use the results of a query in another query. Instead of running the same query pattern over and over again, you can run it once and then use the results in other queries.
 
+<Info>
+You can also create, manage, and refresh materialized views programmatically using the [Materialized Views API](/api-reference/materialized-views/overview).
+</Info>
+
 You should think of using this feature any time you run into:
 
 1. You use the same query pattern across multiple queries

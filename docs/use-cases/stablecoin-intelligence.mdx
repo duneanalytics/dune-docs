@@ -1,0 +1,105 @@
+---
+title: "Stablecoin Intelligence"
+sidebarTitle: "Stablecoin Intelligence"
+description: "Monitor stablecoin flows, analyze market dynamics, and track cross-chain movements"
+---
+
+# Stablecoin Intelligence
+
+Stablecoins are the lifeblood of crypto markets. Track supply, flows, and market dynamics across all major stablecoins and chains.
+
+## Key Stablecoins Tracked
+
+<CardGroup cols={3}>
+
+<Card title="USDT" icon="dollar-sign">
+  Tether - largest by market cap
+</Card>
+
+<Card title="USDC" icon="dollar-sign">
+  Circle - institutional grade
+</Card>
+
+<Card title="DAI" icon="dollar-sign">
+  MakerDAO - decentralized
+</Card>
+
+</CardGroup>
+
+## Analytics Capabilities
+
+### Total Supply by Chain
+
+```sql
+SELECT 
+    blockchain,
+    symbol,
+    SUM(balance) / 1e6 as total_supply_millions
+FROM tokens.balances_latest
+WHERE symbol IN ('USDT', 'USDC', 'DAI')
+GROUP BY 1, 2
+ORDER BY 3 DESC
+```
+
+### Cross-chain Flows
+
+```sql
+SELECT 
+    date_trunc('day', block_time) as day,
+    blockchain as destination_chain,
+    SUM(amount) / 1e6 as inflow_millions
+FROM tokens.transfers
+WHERE symbol = 'USDC'
+    AND "from" IN (SELECT address FROM labels.addresses WHERE name LIKE '%bridge%')
+    AND block_time > now() - interval '30 days'
+GROUP BY 1, 2
+ORDER BY 1 DESC
+```
+
+### Exchange Net Flows
+
+```sql
+WITH flows AS (
+    SELECT 
+        date_trunc('day', block_time) as day,
+        SUM(CASE WHEN to IN (SELECT address FROM labels.addresses WHERE category = 'exchange') 
+            THEN amount ELSE 0 END) as inflows,
+        SUM(CASE WHEN "from" IN (SELECT address FROM labels.addresses WHERE category = 'exchange') 
+            THEN amount ELSE 0 END) as outflows
+    FROM tokens.transfers
+    WHERE symbol = 'USDT'
+        AND block_time > now() - interval '30 days'
+    GROUP BY 1
+)
+SELECT 
+    day,
+    inflows / 1e6 as inflows_millions,
+    outflows / 1e6 as outflows_millions,
+    (inflows - outflows) / 1e6 as net_flow_millions
+FROM flows
+ORDER BY 1 DESC
+```
+
+## Market Insights
+
+### What Stablecoin Data Reveals
+
+- **Market sentiment** - Exchange inflows often precede selling pressure
+- **DeFi activity** - Stablecoin deposits indicate yield farming activity
+- **Cross-chain trends** - Flow patterns show where activity is moving
+- **Peg stability** - DEX price data reveals de-peg events
+
+## Example Dashboards
+
+Popular stablecoin dashboards on Dune:
+- Stablecoin market cap and dominance
+- Exchange flow monitors
+- Bridge volume trackers
+- Peg stability monitors
+
+## Best Practices
+
+1. **Track net flows, not just volume** - Direction matters more than absolute numbers
+2. **Monitor multiple chains** - Stablecoins are multi-chain by nature
+3. **Watch for unusual patterns** - Sudden flow changes can signal market events
+4. **Combine with price data** - Correlate flows with market movements

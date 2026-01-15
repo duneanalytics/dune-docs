@@ -1,0 +1,81 @@
+---
+title: "Protocol Adoption"
+sidebarTitle: "Protocol Adoption"
+description: "Track protocol growth, user adoption, and ecosystem health"
+---
+
+# Protocol Adoption Analytics
+
+Understanding how users interact with your protocol is critical for growth. Dune provides the tools to track adoption metrics, analyze user behavior, and monitor ecosystem health.
+
+## Key Metrics
+
+<CardGroup cols={2}>
+
+<Card title="User Growth" icon="users">
+  Track new users, returning users, and cohort retention over time.
+</Card>
+
+<Card title="TVL & Deposits" icon="vault">
+  Monitor total value locked, deposit flows, and capital efficiency.
+</Card>
+
+<Card title="Transaction Volume" icon="arrows-rotate">
+  Analyze transaction counts, gas usage, and protocol activity.
+</Card>
+
+<Card title="Revenue & Fees" icon="dollar-sign">
+  Track protocol revenue, fee generation, and economic sustainability.
+</Card>
+
+</CardGroup>
+
+## Common Queries
+
+### Daily Active Users
+
+```sql
+SELECT 
+    date_trunc('day', block_time) as day,
+    COUNT(DISTINCT "from") as daily_active_users
+FROM ethereum.transactions
+WHERE to = 0xYourProtocolAddress
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
+### New vs Returning Users
+
+```sql
+WITH first_interaction AS (
+    SELECT 
+        "from" as user,
+        MIN(date_trunc('day', block_time)) as first_day
+    FROM ethereum.transactions
+    WHERE to = 0xYourProtocolAddress
+    GROUP BY 1
+)
+SELECT 
+    date_trunc('day', t.block_time) as day,
+    COUNT(DISTINCT CASE WHEN date_trunc('day', t.block_time) = f.first_day THEN t."from" END) as new_users,
+    COUNT(DISTINCT CASE WHEN date_trunc('day', t.block_time) > f.first_day THEN t."from" END) as returning_users
+FROM ethereum.transactions t
+JOIN first_interaction f ON t."from" = f.user
+WHERE t.to = 0xYourProtocolAddress
+GROUP BY 1
+ORDER BY 1 DESC
+```
+
+## Example Dashboards
+
+Explore community dashboards for inspiration:
+- Protocol-specific analytics dashboards
+- Cross-chain comparison dashboards
+- Ecosystem health monitors
+
+## Best Practices
+
+1. **Define your key metrics** - Focus on metrics that directly indicate protocol health
+2. **Track cohorts** - Understand how different user segments behave over time
+3. **Monitor trends** - Look for patterns in daily, weekly, and monthly data
+4. **Benchmark against peers** - Compare your metrics to similar protocols
