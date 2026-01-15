@@ -168,8 +168,8 @@
           },
           {
             "group": "Transform your Data",
+            "icon": "code-branch",
             "pages": [
-              "api-reference/connectors/overview",
               "access-methods/dbt-connector/index",
               "api-reference/connectors/dbt-connector",
               "api-reference/connectors/sql-operations"
@@ -177,6 +177,7 @@
           },
           {
             "group": "BI Visualization Tools",
+            "icon": "chart-mixed",
             "pages": [
               "access-methods/trino-connector/index",
               "api-reference/connectors/trino-connector"

@@ -1,19 +1,55 @@
 ---
 title: "dbt Connector Overview"
-description: "Build data models with dbt"
-icon: "star"
+description: "Build data transformation pipelines with write access to DuneSQL"
+icon: "code-branch"
 ---
 
-# dbt Connector Overview
-
-Build data models with dbt
+Build data transformation pipelines on top of Dune's blockchain data with write-enabled access to DuneSQL.
 
 ## Overview
 
+The dbt Connector provides **write-enabled access** to Dune's data warehouse, allowing you to build sophisticated data transformation pipelines using dbt (data build tool). It uses the same Trino endpoint as the read-only connector but with the `transformations=true` session property enabled.
+
 <Note>
-This page is a stub. Content will be added soon.
+The dbt Connector requires an Enterprise plan. [Contact sales](https://dune.com/enterprise) for access.
 </Note>
 
----
+## Key Features
 
-**Status:** 🚧 Stub — Content pending  
+- **Write Access**: Create tables, views, and materialized views directly in DuneSQL
+- **dbt Integration**: Full compatibility with dbt Core and dbt Cloud
+- **Version Control**: Manage your data models with Git-based workflows
+- **Testing**: Built-in data quality testing with dbt's testing framework
+- **Documentation**: Auto-generate documentation for your data models
+
+## Common Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Data Transformation Pipelines" icon="diagram-project">
+    Build complex ETL pipelines that transform raw blockchain data into analytics-ready datasets
+  </Card>
+  
+  <Card title="Custom Metrics & KPIs" icon="chart-line">
+    Create reusable data models for protocol-specific metrics and business KPIs
+  </Card>
+  
+  <Card title="Data Quality Assurance" icon="shield-check">
+    Implement automated testing and validation for your blockchain data models
+  </Card>
+  
+  <Card title="Scheduled Transformations" icon="clock">
+    Automate data refreshes with dbt Cloud or your own orchestration tools
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<CardGroup cols={2}>
+  <Card title="Setup Guide" icon="wrench" href="/api-reference/connectors/dbt-connector">
+    Step-by-step instructions to connect dbt to Dune
+  </Card>
+  
+  <Card title="Supported SQL Operations" icon="code" href="/api-reference/connectors/sql-operations">
+    Reference for supported DDL and DML operations
+  </Card>
+</CardGroup>

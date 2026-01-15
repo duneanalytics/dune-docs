@@ -1,19 +1,50 @@
 ---
 title: "Trino Connector Overview"
-description: "Connect BI tools via Trino"
-icon: "star"
+description: "Query Dune's data warehouse directly from your BI tools and SQL clients"
+icon: "database"
 ---
 
-# Trino Connector Overview
-
-Connect BI tools via Trino
+Connect your favorite BI tools, notebooks, and SQL clients directly to Dune's data warehouse using the standard Trino protocol.
 
 ## Overview
 
+The Trino Connector provides **read-only access** to Dune's comprehensive blockchain data warehouse. Query the same data that powers thousands of Dune dashboards directly from your existing data infrastructure and BI tools.
+
 <Note>
-This page is a stub. Content will be added soon.
+The Trino Connector is available on Plus and Enterprise plans. [View pricing](https://dune.com/pricing) for details.
 </Note>
 
----
+## Key Features
 
-**Status:** 🚧 Stub — Content pending  
+- **Standard Trino Protocol**: Compatible with any tool that supports Trino/Presto
+- **Full Data Access**: Query all of Dune's blockchain data, including raw, decoded, and curated tables
+- **Native SQL**: Use familiar SQL syntax in your preferred environment
+- **Real-time Data**: Access the same fresh data available in the Dune web app
+
+## Common Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Enterprise BI Dashboards" icon="chart-mixed">
+    Connect Tableau, PowerBI, or Looker to build enterprise dashboards on blockchain data
+  </Card>
+  
+  <Card title="Notebook Analytics" icon="book-open">
+    Use Hex, Jupyter, or Deepnote for interactive analysis and data science workflows
+  </Card>
+  
+  <Card title="Custom SQL Clients" icon="terminal">
+    Query with DBeaver, DataGrip, or any SQL IDE that supports Trino
+  </Card>
+  
+  <Card title="Data Warehousing" icon="warehouse">
+    Integrate blockchain data into your existing data warehouse or ETL pipelines
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<CardGroup cols={1}>
+  <Card title="Setup Guide" icon="wrench" href="/api-reference/connectors/trino-connector">
+    Step-by-step instructions to connect your tools to Dune via Trino
+  </Card>
+</CardGroup>
