@@ -24,124 +24,40 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
       </th>
     </tr>
   </thead>
-
-  <tbody>
-    <tr>
-      <td colspan="4" style={{paddingTop: "1.5em", paddingBottom: "0.5em", borderBottom: "1px solid #333"}}>
-        <strong style={{fontSize: "1.1em"}}>Query & Architecture</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td><strong>Query Infra</strong></td>
-      <td>DuneSQL / Trino</td>
-      <td>Snowflake, BigQuery, Databricks</td>
-      <td>-</td>
-    </tr>
-
-    <tr>
-      <td><strong>Query Speed</strong></td>
-      <td>~3 seconds</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-
-    <tr>
-      <td><strong>Engine</strong></td>
-      <td>Custom Trino (Small, Medium, Large)</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-
-    <tr>
-      <td><strong>Architecture</strong></td>
-      <td>Analytics</td>
-      <td>Analytics</td>
-      <td>Real-time</td>
-    </tr>
-
-    <tr>
-      <td colspan="4" style={{paddingTop: "2em", paddingBottom: "0.5em", borderBottom: "1px solid #333"}}>
-        <strong style={{fontSize: "1.1em"}}>Data Coverage</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td><strong>Freshness</strong></td>
-      <td>Raw: ~20 min<br />Decoded: ~25 min<br />Curated: ~30 min - 6 hours</td>
-      <td>1-24 hours</td>
-      <td>&lt; 1 second</td>
-    </tr>
-
-    <tr>
-      <td><strong>Blockchains</strong></td>
-      <td>115+ chains (<a href="/data-catalog/evm/overview" style={{textDecoration: "underline"}}>see more</a>)</td>
-      <td>115+ chains (<a href="/data-catalog/evm/overview" style={{textDecoration: "underline"}}>see more</a>)</td>
-      <td>60+ chains</td>
-    </tr>
-
-    <tr>
-      <td><strong>Schemas</strong></td>
-      <td>Raw, Decoded, Curated (<a href="/data-catalog/curated/dex-trades" style={{textDecoration: "underline"}}>DEX Trades</a>, <a href="/data-catalog/curated/prices" style={{textDecoration: "underline"}}>Prices</a>, <a href="/data-catalog/curated/overview" style={{textDecoration: "underline"}}>and more!</a>)</td>
-      <td>Same as Analytics Hub</td>
-      <td>Curated (Balances, Activity, DeFi, Token Info)</td>
-    </tr>
-
-    <tr>
-      <td colspan="4" style={{paddingTop: "2em", paddingBottom: "0.5em", borderBottom: "1px solid #333"}}>
-        <strong style={{fontSize: "1.1em"}}>Interface & Pricing</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td><strong>Interface</strong></td>
-      <td><a href="https://dune.com" style={{textDecoration: "underline"}}>Dune App</a>, <a href="/api-reference/api-overview" style={{textDecoration: "underline"}}>Analytics API</a>, <a href="/access-methods/trino-connector/index" style={{textDecoration: "underline"}}>External BI Tools</a></td>
-      <td><a href="/datashare/datashare-bigquery" style={{textDecoration: "underline"}}>BigQuery</a>, <a href="/datashare/datashare-snowflake" style={{textDecoration: "underline"}}>Snowflake</a>, <a href="/datashare/datashare-databricks" style={{textDecoration: "underline"}}>Databricks</a></td>
-      <td>APIs (Balances, Activity, Collectibles, DeFi Positions, Transactions, Token Info, Token Holders)</td>
-    </tr>
-
-    <tr>
-      <td><strong>Pricing</strong></td>
-      <td>Credits (compute-based)</td>
-      <td>Number of chains & schemas</td>
-      <td>API Call Volume (CUs)</td>
-    </tr>
-
-    <tr>
-      <td colspan="4" style={{paddingTop: "2em", paddingBottom: "0.5em", borderBottom: "1px solid #333"}}>
-        <strong style={{fontSize: "1.1em"}}>Capabilities</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td><strong>Best For</strong></td>
-      <td>Your primary onchain data warehouse, Analytic workflows, <a href="/access-methods/dbt-connector/index" style={{textDecoration: "underline"}}>Transforming data</a></td>
-      <td>Data warehouse integration & Interoperability</td>
-      <td>Realtime apps, wallet tracking, portfolio apps</td>
-    </tr>
-
-    <tr>
-      <td><strong>SQL Access</strong></td>
-      <td>✓ Full SQL</td>
-      <td>✓ Full SQL</td>
-      <td>REST APIs only</td>
-    </tr>
-
-    <tr>
-      <td><strong>Historical Data</strong></td>
-      <td>✓ Full historical</td>
-      <td>✓ Full historical</td>
-      <td>Realtime</td>
-    </tr>
-
-    <tr>
-      <td><strong>Authentication</strong></td>
-      <td>Dune account, API key</td>
-      <td>Warehouse credentials</td>
-      <td>Sim account, API key</td>
-    </tr>
-  </tbody>
 </table>
+
+### Query & Architecture
+
+| | Analytics Hub | Datashare | Sim-Realtime APIs |
+|:--|:--|:--|:--|
+| **Query Infra** | DuneSQL / Trino | Snowflake, BigQuery, Databricks | - |
+| **Query Speed** | ~3 seconds | - | - |
+| **Engine** | Custom Trino (Small, Medium, Large) | - | - |
+| **Architecture** | Analytics | Analytics | Real-time |
+
+### Data Coverage
+
+| | Analytics Hub | Datashare | Sim-Realtime APIs |
+|:--|:--|:--|:--|
+| **Freshness** | Raw: ~20 min, Decoded: ~25 min, Curated: ~30 min - 6 hours | 1-24 hours | < 1 second |
+| **Blockchains** | 115+ chains ([see more](/data-catalog/evm/overview)) | 115+ chains ([see more](/data-catalog/evm/overview)) | 60+ chains |
+| **Schemas** | [Raw](/data-catalog/evm/ethereum/raw/transactions), [Decoded](/data-catalog/evm/ethereum/decoded/overview), Curated ([DEX Trades](/data-catalog/curated/dex-trades), [Prices](/data-catalog/curated/prices), [Token Transfers](/data-catalog/curated/token-transfers/overview), [and more!](/data-catalog/curated/overview)) | Same as Analytics Hub | Curated (Balances, Activity, DeFi, Token Info) |
+
+### Interface & Pricing
+
+| | Analytics Hub | Datashare | Sim-Realtime APIs |
+|:--|:--|:--|:--|
+| **Interface** | [Dune App](https://dune.com), [Analytics API](/api-reference/api-overview), [External BI Tools](/access-methods/trino-connector/index) | [BigQuery](/datashare/datashare-bigquery), [Snowflake](/datashare/datashare-snowflake), [Databricks](/datashare/datashare-databricks) | APIs (Balances, Activity, Collectibles, DeFi Positions, Transactions, Token Info, Token Holders) |
+| **Pricing** | Credits (compute-based) | Number of chains & schemas | API Call Volume (CUs) |
+
+### Capabilities
+
+| | Analytics Hub | Datashare | Sim-Realtime APIs |
+|:--|:--|:--|:--|
+| **Best For** | Your primary onchain data warehouse, Analytic workflows, [Transforming data](/access-methods/dbt-connector/index) | Data warehouse integration & Interoperability | Realtime apps, wallet tracking, portfolio apps |
+| **SQL Access** | ✓ Full SQL | ✓ Full SQL | REST APIs only |
+| **Historical Data** | ✓ Full historical | ✓ Full historical | Realtime |
+| **Authentication** | Dune account, API key | Warehouse credentials | Sim account, API key |
 
 ---
 
