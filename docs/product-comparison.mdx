@@ -8,6 +8,11 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
 
 | | <Icon icon="chart-line" size={16} /> [Analytics Hub](/web-app/overview) | <Icon icon="database" size={16} /> [Datashare](/datashare/datashare) | <Icon icon="bolt" size={16} /> [Sim-Realtime APIs](https://sim.dune.com) |
 |:--|:--|:--|:--|
+
+### Query & Architecture
+
+| | | | |
+|:--|:--|:--|:--|
 | Query Infra | DuneSQL / Trino | Snowflake, BigQuery, Databricks | - |
 | Query Speed | ~3 seconds | - | - |
 | Engine | Custom Trino (Small, Medium, Large) | - | - |
@@ -15,7 +20,7 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
 
 ### Data Coverage
 
-| | <Icon icon="chart-line" size={16} /> Analytics Hub | <Icon icon="database" size={16} /> Datashare | <Icon icon="bolt" size={16} /> Sim-Realtime APIs |
+| | | | |
 |:--|:--|:--|:--|
 | Freshness | Raw: ~20 min, Decoded: ~25 min, Curated: ~30 min - 6 hours | 1-24 hours | < 1 second |
 | Blockchains | 115+ chains ([see more](/data-catalog/evm/overview)) | 115+ chains ([see more](/data-catalog/evm/overview)) | 60+ chains |
@@ -23,16 +28,16 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
 
 ### Interface & Pricing
 
-| | <Icon icon="chart-line" size={16} /> Analytics Hub | <Icon icon="database" size={16} /> Datashare | <Icon icon="bolt" size={16} /> Sim-Realtime APIs |
+| | | | |
 |:--|:--|:--|:--|
 | Interface | [Dune App](https://dune.com), [Analytics API](/api-reference/api-overview), [External BI Tools](/access-methods/trino-connector/index) | [BigQuery](/datashare/datashare-bigquery), [Snowflake](/datashare/datashare-snowflake), [Databricks](/datashare/datashare-databricks) | APIs (Balances, Activity, Collectibles, DeFi Positions, Transactions, Token Info, Token Holders) |
 | Pricing | Credits (compute-based) | Number of chains & schemas | API Call Volume (CUs) |
 
 ### Capabilities
 
-| | <Icon icon="chart-line" size={16} /> Analytics Hub | <Icon icon="database" size={16} /> Datashare | <Icon icon="bolt" size={16} /> Sim-Realtime APIs |
+| | | | |
 |:--|:--|:--|:--|
-| Best For | Your primary onchain data warehouse, Analytic workflows, Transforming data | Data warehouse integration & Interoperability | Realtime apps, wallet tracking, portfolio apps |
+| Best For | Your primary onchain data warehouse, Analytic workflows, [Transforming data](/access-methods/dbt-connector/index) | Data warehouse integration & Interoperability | Realtime apps, wallet tracking, portfolio apps |
 | SQL Access | ✓ Full SQL | ✓ Full SQL | REST APIs only |
 | Historical Data | ✓ Full historical | ✓ Full historical | Realtime |
 | Authentication | Dune account, API key | Warehouse credentials | Sim account, API key |
