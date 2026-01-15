@@ -4,142 +4,27 @@ description: "Compare Dune's core products: Analytics Hub, Datashare, and Sim-Re
 icon: "table-columns"
 ---
 
-<style>
-{`
-  .product-table a {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .product-table a:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-`}
-</style>
-
 Dune delivers blockchain data via three core products: **Analytics Hub**, **Datashare**, and **Sim-Realtime APIs**.
 
-<div className="product-table">
-<table style={{tableLayout:"fixed", width:"100%"}}>
-  <thead>
-    <tr>
-      <th style={{width: "20%"}} />
-      <th style={{width: "26.6%", textAlign: "center", verticalAlign: "bottom"}}><Icon icon="chart-line" size={16} /><br /><a href="/web-app/overview">Analytics Hub</a></th>
-      <th style={{width: "26.6%", textAlign: "center", verticalAlign: "bottom"}}><Icon icon="database" size={16} /><br /><a href="/datashare/datashare">Datashare</a></th>
-      <th style={{width: "26.6%", textAlign: "center", verticalAlign: "bottom"}}><Icon icon="bolt" size={16} /><br /><a href="https://sim.dune.com">Sim-Realtime APIs</a></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td colSpan="4"><h3 style={{marginTop: "1em"}}>Query & Architecture</h3></td>
-    </tr>
-
-    <tr>
-      <td><strong>Query Infra</strong></td>
-      <td>DuneSQL / Trino</td>
-      <td>Snowflake, BigQuery, Databricks</td>
-      <td>-</td>
-    </tr>
-
-    <tr>
-      <td><strong>Query Speed</strong></td>
-      <td>~3 seconds</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-
-    <tr>
-      <td><strong>Engine</strong></td>
-      <td>Custom Trino (Small, Medium, Large)</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-
-    <tr>
-      <td><strong>Architecture</strong></td>
-      <td>Analytics</td>
-      <td>Analytics</td>
-      <td>Real-time</td>
-    </tr>
-
-    <tr>
-      <td colSpan="4"><h3>Data Coverage</h3></td>
-    </tr>
-
-    <tr>
-      <td><strong>Freshness</strong></td>
-      <td>Raw: ~20 min<br />Decoded: ~25 min<br />Curated: ~30 min - 6 hours</td>
-      <td>1-24 hours</td>
-      <td>&lt; 1 second</td>
-    </tr>
-
-    <tr>
-      <td><strong>Blockchains</strong></td>
-      <td>115+ chains (<a href="/data-catalog/evm/overview">see more</a>)</td>
-      <td>115+ chains (<a href="/data-catalog/evm/overview">see more</a>)</td>
-      <td>60+ chains</td>
-    </tr>
-
-    <tr>
-      <td><strong>Schemas</strong></td>
-      <td>Raw, Decoded, Curated (<a href="/data-catalog/curated/dex-trades">DEX Trades</a>, <a href="/data-catalog/curated/prices">Prices</a>, <a href="/data-catalog/curated/overview">and more!</a>)</td>
-      <td>Same as Analytics Hub</td>
-      <td>Curated (Balances, Activity, DeFi, Token Info)</td>
-    </tr>
-
-    <tr>
-      <td colSpan="4"><h3>Interface & Pricing</h3></td>
-    </tr>
-
-    <tr>
-      <td><strong>Interface</strong></td>
-      <td><a href="https://dune.com">Dune App</a>, <a href="/api-reference/api-overview">Analytics API</a>, <a href="/access-methods/trino-connector/index">External BI Tools</a></td>
-      <td>BigQuery, Snowflake, Databricks</td>
-      <td>APIs (Balances, Activity, Collectibles, DeFi Positions, Transactions, Token Info, Token Holders)</td>
-    </tr>
-
-    <tr>
-      <td><strong>Pricing</strong></td>
-      <td>Credits (compute-based)</td>
-      <td>Number of chains & schemas</td>
-      <td>API Call Volume (CUs)</td>
-    </tr>
-
-    <tr>
-      <td colSpan="4"><h3>Capabilities</h3></td>
-    </tr>
-
-    <tr>
-      <td><strong>Best For</strong></td>
-      <td>Your primary onchain data warehouse, Analytic workflows, Transforming data</td>
-      <td>Data warehouse integration & Interoperability</td>
-      <td>Realtime apps, wallet tracking, portfolio apps</td>
-    </tr>
-
-    <tr>
-      <td><strong>SQL Access</strong></td>
-      <td>✓ Full SQL</td>
-      <td>✓ Full SQL</td>
-      <td>REST APIs only</td>
-    </tr>
-
-    <tr>
-      <td><strong>Historical Data</strong></td>
-      <td>✓ Full historical</td>
-      <td>✓ Full historical</td>
-      <td>Realtime</td>
-    </tr>
-
-    <tr>
-      <td><strong>Authentication</strong></td>
-      <td>Dune account, API key</td>
-      <td>Warehouse credentials</td>
-      <td>Sim account, API key</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| | <Icon icon="chart-line" size={16} /> [Analytics Hub](/web-app/overview) | <Icon icon="database" size={16} /> [Datashare](/datashare/datashare) | <Icon icon="bolt" size={16} /> [Sim-Realtime APIs](https://sim.dune.com) |
+|:--|:--|:--|:--|
+| **Query & Architecture** | | | |
+| Query Infra | DuneSQL / Trino | Snowflake, BigQuery, Databricks | - |
+| Query Speed | ~3 seconds | - | - |
+| Engine | Custom Trino (Small, Medium, Large) | - | - |
+| Architecture | Analytics | Analytics | Real-time |
+| **Data Coverage** | | | |
+| Freshness | Raw: ~20 min, Decoded: ~25 min, Curated: ~30 min - 6 hours | 1-24 hours | < 1 second |
+| Blockchains | 115+ chains ([see more](/data-catalog/evm/overview)) | 115+ chains ([see more](/data-catalog/evm/overview)) | 60+ chains |
+| Schemas | Raw, Decoded, Curated ([DEX Trades](/data-catalog/curated/dex-trades), [Prices](/data-catalog/curated/prices), [and more!](/data-catalog/curated/overview)) | Same as Analytics Hub | Curated (Balances, Activity, DeFi, Token Info) |
+| **Interface & Pricing** | | | |
+| Interface | [Dune App](https://dune.com), [Analytics API](/api-reference/api-overview), [External BI Tools](/access-methods/trino-connector/index) | BigQuery, Snowflake, Databricks | APIs (Balances, Activity, Collectibles, DeFi Positions, Transactions, Token Info, Token Holders) |
+| Pricing | Credits (compute-based) | Number of chains & schemas | API Call Volume (CUs) |
+| **Capabilities** | | | |
+| Best For | Your primary onchain data warehouse, Analytic workflows, Transforming data | Data warehouse integration & Interoperability | Realtime apps, wallet tracking, portfolio apps |
+| SQL Access | ✓ Full SQL | ✓ Full SQL | REST APIs only |
+| Historical Data | ✓ Full historical | ✓ Full historical | Realtime |
+| Authentication | Dune account, API key | Warehouse credentials | Sim account, API key |
 
 ## Quick Selection Guide
 
