@@ -44,3 +44,14 @@ div[role="note"] a {
     text-decoration-thickness: 2px !important;
     text-decoration-line: underline !important;
 }
+
+/* Product comparison table links */
+table a {
+    text-decoration: underline !important;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+}
+
+table a:hover {
+    opacity: 0.7;
+}
