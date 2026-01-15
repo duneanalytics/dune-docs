@@ -3572,42 +3572,96 @@
             "group": "Functions and Operators",
             "pages": [
               "query-engine/Functions-and-operators/index",
-              "query-engine/Functions-and-operators/aggregate",
-              "query-engine/Functions-and-operators/array",
-              "query-engine/Functions-and-operators/asof-join",
-              "query-engine/Functions-and-operators/base58",
-              "query-engine/Functions-and-operators/binary",
-              "query-engine/Functions-and-operators/bitwise",
-              "query-engine/Functions-and-operators/chain-utility-functions",
-              "query-engine/Functions-and-operators/comparison",
-              "query-engine/Functions-and-operators/conditional",
-              "query-engine/Functions-and-operators/conversion",
-              "query-engine/Functions-and-operators/datetime",
-              "query-engine/Functions-and-operators/decimal",
-              "query-engine/Functions-and-operators/evm-decoding-functions",
-              "query-engine/Functions-and-operators/hyperloglog",
-              "query-engine/Functions-and-operators/json",
-              "query-engine/Functions-and-operators/lambda",
-              "query-engine/Functions-and-operators/live-fetch",
-              "query-engine/Functions-and-operators/logical",
-              "query-engine/Functions-and-operators/map",
-              "query-engine/Functions-and-operators/math",
-              "query-engine/Functions-and-operators/ml",
-              "query-engine/Functions-and-operators/qdigest",
-              "query-engine/Functions-and-operators/regexp",
-              "query-engine/Functions-and-operators/setdigest",
-              "query-engine/Functions-and-operators/ss58",
-              "query-engine/Functions-and-operators/tonaddress",
-              "query-engine/Functions-and-operators/tronaddress",
-              "query-engine/Functions-and-operators/string",
-              "query-engine/Functions-and-operators/system",
-              "query-engine/Functions-and-operators/tdigest",
-              "query-engine/Functions-and-operators/teradata",
-              "query-engine/Functions-and-operators/url",
-              "query-engine/Functions-and-operators/uuid",
-              "query-engine/Functions-and-operators/varbinary",
-              "query-engine/Functions-and-operators/varchar-utility-functions",
-              "query-engine/Functions-and-operators/window"
+              {
+                "group": "Core SQL",
+                "icon": "code",
+                "pages": [
+                  "query-engine/Functions-and-operators/comparison",
+                  "query-engine/Functions-and-operators/logical",
+                  "query-engine/Functions-and-operators/conditional",
+                  "query-engine/Functions-and-operators/conversion"
+                ]
+              },
+              {
+                "group": "Aggregate & Window",
+                "icon": "layer-group",
+                "pages": [
+                  "query-engine/Functions-and-operators/aggregate",
+                  "query-engine/Functions-and-operators/window",
+                  "query-engine/Functions-and-operators/asof-join"
+                ]
+              },
+              {
+                "group": "Data Types",
+                "icon": "shapes",
+                "pages": [
+                  "query-engine/Functions-and-operators/array",
+                  "query-engine/Functions-and-operators/map",
+                  "query-engine/Functions-and-operators/json",
+                  "query-engine/Functions-and-operators/binary",
+                  "query-engine/Functions-and-operators/decimal"
+                ]
+              },
+              {
+                "group": "String & Text",
+                "icon": "font",
+                "pages": [
+                  "query-engine/Functions-and-operators/string",
+                  "query-engine/Functions-and-operators/regexp",
+                  "query-engine/Functions-and-operators/lambda",
+                  "query-engine/Functions-and-operators/url",
+                  "query-engine/Functions-and-operators/uuid"
+                ]
+              },
+              {
+                "group": "Math & Statistics",
+                "icon": "calculator",
+                "pages": [
+                  "query-engine/Functions-and-operators/math",
+                  "query-engine/Functions-and-operators/bitwise",
+                  "query-engine/Functions-and-operators/hyperloglog",
+                  "query-engine/Functions-and-operators/qdigest",
+                  "query-engine/Functions-and-operators/tdigest",
+                  "query-engine/Functions-and-operators/setdigest",
+                  "query-engine/Functions-and-operators/ml"
+                ]
+              },
+              {
+                "group": "Date & Time",
+                "icon": "calendar",
+                "pages": [
+                  "query-engine/Functions-and-operators/datetime"
+                ]
+              },
+              {
+                "group": "Blockchain Functions",
+                "icon": "link-simple",
+                "pages": [
+                  "query-engine/Functions-and-operators/varbinary",
+                  "query-engine/Functions-and-operators/evm-decoding-functions",
+                  "query-engine/Functions-and-operators/chain-utility-functions",
+                  "query-engine/Functions-and-operators/base58",
+                  "query-engine/Functions-and-operators/ss58",
+                  "query-engine/Functions-and-operators/tonaddress",
+                  "query-engine/Functions-and-operators/tronaddress",
+                  "query-engine/Functions-and-operators/varchar-utility-functions"
+                ]
+              },
+              {
+                "group": "External Data",
+                "icon": "globe",
+                "pages": [
+                  "query-engine/Functions-and-operators/live-fetch"
+                ]
+              },
+              {
+                "group": "System & Compatibility",
+                "icon": "gear",
+                "pages": [
+                  "query-engine/Functions-and-operators/system",
+                  "query-engine/Functions-and-operators/teradata"
+                ]
+              }
             ]
           }
         ]
