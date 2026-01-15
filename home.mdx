@@ -1,64 +1,119 @@
 ---
 title: Welcome to Dune Docs
 icon: "house"
-description: Dune is a web-based platform that allows you to query public blockchain data and aggregate it into production-ready dashboards.
+description: Dune is the onchain data platform for analytics, data engineering, and application development.
 ---
 
-import DataCatalogIcon from '/snippets/icons/icon--DataCatalog.mdx';
-import AlertIcon from '/snippets/icons/icon--alerts.mdx';
-import APIIcon from '/snippets/icons/icon--API.mdx';
-import WebAppIcon from '/snippets/icons/icon--web-app.mdx';
-import TerminalIcon from '/snippets/icons/icon--terminal-window.mdx';
+Dune is the onchain data platform that makes blockchain data accessible. We provide the infrastructure, data, and tools so your team can focus on insights and products—not wrangling data pipelines.
 
-Blockchains are open and transparent, but each chain is unique—making it difficult to understand, ingest, and aggregate data. Dune gives you the tools to analyze cross-chain data for different tokens, wallets, and protocols. You can also easily share your work with the community, export and integrate data into your own applications, and more.
+With 115+ blockchains indexed, 3+ petabytes of data, and battle-tested by 1,500+ paying customers, Dune powers mission-critical workflows for protocol teams, trading desks, financial institutions, and developers worldwide.
 
-### Get started
+## Products
 
-Ready to get started? Once you have an [account](https://dune.com/auth/register) and you have reviewed the [Quickstart](quickstart), check out these essentials to start using Dune.
+Dune offers multiple products to meet your data needs—whether you're building dashboards, powering applications, or integrating onchain data into your warehouse.
 
-<CardGroup cols={3}>
-  <Card title="Web App" icon={WebAppIcon} href="/web-app/">
-    Learn about the Dune Web App, your portal to creating, viewing, and interacting with blockchain analytics dashboards.
+<CardGroup cols={2}>
+  <Card title="Analytics Hub" icon="chart-line" href="/web-app/overview">
+    Query, visualize, and share blockchain data with our web-based SQL editor and dashboard builder
   </Card>
 
-  <Card title="Data Catalog" icon={DataCatalogIcon} href="/data-catalog/">
-    Explore our comprehensive Data Catalog to find and utilize the exact datasets you need for your queries and analytics.
+  <Card title="Datashare" icon="database" href="/datashare/datashare">
+    Stream Dune's curated blockchain data directly to Snowflake, BigQuery, or Databricks
   </Card>
 
-  <Card title="API" icon={APIIcon} href="/api-reference/">
-    Integrate Dune directly into your workflow with our API, allowing for automated data extraction and analysis.
+  <Card title="Sim-Realtime APIs" icon="bolt" href="https://docs.sim.dune.com">
+    Build applications with sub-second latency APIs for balances, transactions, and DeFi positions
   </Card>
 
-  <Card title="Query Engine" icon={TerminalIcon} href="/query-engine/">
-    Discover the power of the Dune Query Engine to execute advanced SQL queries and analyze blockchain data.
-  </Card>
-
-  <Card title="Alerts" icon={AlertIcon} href="/web-app/alerts/">
-    Set up alerts to be notified when specific conditions are met in the data.
+  <Card title="Catalyst" icon="rocket" href="/catalyst/overview">
+    Dune's blockchain integration toolkit for chains and protocols
   </Card>
 </CardGroup>
 
-<Note>
-  **Quickstart**
-  To get started with Dune in 5 minutes, see the [Quickstart](/quickstart).
-</Note>
+### Extend Your Workflows
 
-### Learn more
+<CardGroup cols={3}>
+  <Card title="Analytics API" icon="code" href="/api-reference/api-overview">
+    Programmatically execute queries, manage data, and integrate Dune into your applications
+  </Card>
 
-If you are new to blockchain or SQL —or want to go deeper on Dune concepts and best practices— check out the following resources:
+  <Card title="dbt Connector" icon="hammer" href="/access-methods/dbt-connector/index">
+    Build transformation pipelines and data models with dbt on top of Dune's data
+  </Card>
 
-*   [Video Tutorials](/resources/learning/video-tutorials) — comprehensive video guides covering all product surfaces of Dune
-*   [Web3 Data Resources](/learning-resources) — curated guides and tips for protocol analysis
-*   Join our community in [Discord](https://discord.gg/FjwGvbgDFS) to get support through the `#🐥︱beginners` and `#🙋︱query-questions` channels
+  <Card title="External BI Tools" icon="chart-mixed" href="/access-methods/trino-connector/index">
+    Connect Hex, Metabase, DBeaver, PowerBI and other tools via Trino
+  </Card>
+</CardGroup>
 
-### Why Dune?
+## Quick Selection Guide
 
-Dune—along with our massive community of users and experts—provides powerful tools and analysis of all onchain data. You can find a [dashboard](https://dune.com/browse/dashboards?q=dex\&order=favorites\&time_range=all) for pretty much anything web3-related, including for EVMs like Ethereum, Polygon, Goerli, and Optimism—and non-EVM chains like Solana and Bitcoin.
+Not sure where to start? Choose based on your primary need:
 
-Examples of real dashboards:
+<CardGroup cols={2}>
+  <Card title="Analytics Hub" icon="chart-line" href="/web-app/overview">
+    **Best for:** Ad-hoc analytics, SQL queries, dashboards, and sharing insights with stakeholders
+  </Card>
 
-*   [NFT marketplaces](https://dune.com/hildobby/ethereum-nfts)
-*   [DEX metrics](https://dune.com/hagaetc/dex-metrics)
-*   [Project metrics](https://dune.com/whale_hunter/unibot-revenue)
-*   [DAO Accounting (Maker)](https://dune.com/steakhouse/makerdao)
-*   [Base Chain Metrics](https://dune.com/optimismfnd/Optimism)
+  <Card title="Datashare" icon="database" href="/datashare/datashare">
+    **Best for:** Streaming blockchain data into your existing data warehouse
+  </Card>
+
+  <Card title="Sim-Realtime APIs" icon="bolt" href="https://docs.sim.dune.com">
+    **Best for:** Building realtime applications with sub-second latency
+  </Card>
+
+  <Card title="Catalyst" icon="rocket" href="/catalyst/overview">
+    **Best for:** Blockchain teams looking to integrate their chain data with Dune
+  </Card>
+</CardGroup>
+
+For a detailed comparison of products, data freshness, and pricing, see the [Product Comparison](/docs/product-comparison) page.
+
+## Use Cases
+
+Explore how teams use Dune to solve real business problems.
+
+<CardGroup cols={3}>
+  <Card title="Protocol Analytics" icon="chart-network" href="/docs/use-cases/protocol-analytics">
+    Track TVL, user activity, revenue, and ecosystem metrics for your protocol
+    
+    **For:** Protocol Teams, Wallet Providers, dApp Developers, L2 & Appchain Teams
+  </Card>
+
+  <Card title="Trading Intelligence" icon="chart-candlestick" href="/docs/use-cases/trading-intelligence">
+    Analyze DEX volumes, token flows, whale movements, and market trends
+    
+    **For:** Traders, Exchanges, Researchers, Data Scientists, Technical Analysts
+  </Card>
+
+  <Card title="Stablecoin & Payments" icon="coins" href="/docs/use-cases/stablecoin-payments">
+    Monitor stablecoin flows, adoption metrics, and compliance requirements
+    
+    **For:** Financial Institutions, Payment Providers, Stablecoin Issuers, Regulators
+  </Card>
+
+  <Card title="Stream to Your Warehouse" icon="arrow-right-to-arc" href="/datashare/datashare">
+    Export blockchain data to Snowflake, BigQuery, or Databricks for unified analytics
+    
+    **For:** Data Engineers, Data Scientists, Analytics Teams
+  </Card>
+
+  <Card title="Transform Your Data" icon="wand-magic-sparkles" href="/access-methods/dbt-connector/index">
+    Build production data pipelines and models with dbt on Dune
+    
+    **For:** Data Engineers, Data Scientists, Product Teams
+  </Card>
+
+  <Card title="Build Applications" icon="mobile" href="https://docs.sim.dune.com">
+    Power wallets, portfolio trackers, and DeFi apps with realtime blockchain data
+    
+    **For:** Developers, Product Teams, dApp Builders
+  </Card>
+</CardGroup>
+
+## Resources
+
+<Card title="Learning Resources & Support" icon="book-open" href="/resources/learning/video-tutorials">
+  Video tutorials, guides, community support, and more to help you get the most out of Dune →
+</Card>
