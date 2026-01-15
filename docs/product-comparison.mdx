@@ -1,0 +1,155 @@
+---
+title: "Product Comparison"
+description: "Compare Dune's core products: Analytics Hub, Datashare, and Sim-Realtime APIs"
+icon: "table-columns"
+---
+
+Dune delivers blockchain data via three core products: **Analytics Hub**, **Datashare**, and **Sim-Realtime APIs**.
+
+<table style={{tableLayout:"fixed"}}>
+  <thead>
+    <tr>
+      <th style={{width: "18%"}} />
+      <th style={{width: "27%"}}><Icon icon="chart-line" size={16} /><br /><a href="/web-app/overview">Analytics Hub</a></th>
+      <th style={{width: "27%"}}><Icon icon="database" size={16} /><br /><a href="/datashare/datashare">Datashare</a></th>
+      <th style={{width: "28%"}}><Icon icon="bolt" size={16} /><br /><a href="https://sim.dune.com">Sim-Realtime APIs</a></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td colspan="4"><h3 style={{marginTop: "1em"}}>Query & Architecture</h3></td>
+    </tr>
+
+    <tr>
+      <td><strong>Query Infra</strong></td>
+      <td>DuneSQL / Trino</td>
+      <td>Snowflake, BigQuery, Databricks</td>
+      <td>-</td>
+    </tr>
+
+    <tr>
+      <td><strong>Query Speed</strong></td>
+      <td>~3 seconds</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+
+    <tr>
+      <td><strong>Engine</strong></td>
+      <td>Custom Trino (Small, Medium, Large)</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+
+    <tr>
+      <td><strong>Architecture</strong></td>
+      <td>Analytics</td>
+      <td>Analytics</td>
+      <td>Real-time</td>
+    </tr>
+
+    <tr>
+      <td colspan="4"><h3>Data Coverage</h3></td>
+    </tr>
+
+    <tr>
+      <td><strong>Freshness</strong></td>
+      <td>Raw: ~20 min<br />Decoded: ~25 min<br />Curated: ~30 min - hours</td>
+      <td>1-24 hours</td>
+      <td>&lt; 1 second</td>
+    </tr>
+
+    <tr>
+      <td><strong>Blockchains</strong></td>
+      <td>115+ chains</td>
+      <td>115+ chains</td>
+      <td>60+ chains</td>
+    </tr>
+
+    <tr>
+      <td><strong>Schemas</strong></td>
+      <td>Raw, Decoded, Curated (<a href="/data-catalog/curated/dex-trades">DEX Trades</a>, <a href="/data-catalog/curated/prices">Prices</a>, etc.)</td>
+      <td>Same as Analytics Hub</td>
+      <td>Curated (Balances, Activity, DeFi, Token Info)</td>
+    </tr>
+
+    <tr>
+      <td colspan="4"><h3>Interface & Pricing</h3></td>
+    </tr>
+
+    <tr>
+      <td><strong>Interface</strong></td>
+      <td><a href="https://dune.com">Dune App</a>, <a href="/api-reference/api-overview">Analytics API</a>, <a href="/access-methods/trino-connector/index">BI Tools</a></td>
+      <td>BigQuery, Snowflake, Databricks</td>
+      <td>APIs (Balances, Activity, Collectibles, DeFi Positions, Transactions, Token Info, Token Holders)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Pricing</strong></td>
+      <td>Credits (compute-based)</td>
+      <td>Number of chains & schemas</td>
+      <td>API Call Volume (CUs)</td>
+    </tr>
+
+    <tr>
+      <td colspan="4"><h3>Capabilities</h3></td>
+    </tr>
+
+    <tr>
+      <td><strong>Best For</strong></td>
+      <td>Primary onchain datawarehouse, Analytic workflows, Transforming data</td>
+      <td>Data warehouse integration & Interoperability</td>
+      <td>Realtime apps, wallet tracking, portfolio apps</td>
+    </tr>
+
+    <tr>
+      <td><strong>SQL Access</strong></td>
+      <td>✓ Full SQL</td>
+      <td>✓ Full SQL</td>
+      <td>REST APIs only</td>
+    </tr>
+
+    <tr>
+      <td><strong>Historical Data</strong></td>
+      <td>✓ Full historical</td>
+      <td>✓ Full historical</td>
+      <td>Realtime only</td>
+    </tr>
+
+    <tr>
+      <td><strong>Authentication</strong></td>
+      <td>Dune account, API key</td>
+      <td>Warehouse credentials</td>
+      <td>Sim account, API key</td>
+    </tr>
+  </tbody>
+</table>
+
+## Quick Selection Guide
+
+<CardGroup cols={2}>
+  <Card title="Analytics Hub" icon="chart-line" href="/web-app/overview">
+    **Best for:** Primary onchain datawarehouse, analytic workflows, and data transformations
+
+    Full SQL access with 115+ chains, flexible schemas, and compute-based pricing
+  </Card>
+
+  <Card title="Datashare" icon="database" href="/datashare/datashare">
+    **Best for:** Data warehouse integration and interoperability
+
+    Direct access via Snowflake, BigQuery, or Databricks with full historical data
+  </Card>
+
+  <Card title="Sim-Realtime APIs" icon="bolt" href="https://sim.dune.com">
+    **Best for:** Realtime applications, wallet tracking, and portfolio apps
+
+    Sub-second response times with 60+ chains via REST APIs
+  </Card>
+
+  <Card title="Catalyst" icon="rocket" href="/catalyst/overview">
+    **Best for:** Blockchain integration and data infrastructure
+
+    Dune's blockchain integration toolkit for chains and protocols
+  </Card>
+</CardGroup>

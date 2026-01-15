@@ -65,6 +65,7 @@
         "tab": "Docs",
         "pages": [
           "home",
+          "docs/product-comparison",
           "docs/sim-real-time-apis",
           {
             "group": "Use Cases",
