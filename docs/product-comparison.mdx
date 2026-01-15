@@ -4,21 +4,35 @@ description: "Compare Dune's core products: Analytics Hub, Datashare, and Sim-Re
 icon: "table-columns"
 ---
 
+<style>
+{`
+  .product-table a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .product-table a:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+`}
+</style>
+
 Dune delivers blockchain data via three core products: **Analytics Hub**, **Datashare**, and **Sim-Realtime APIs**.
 
-<table style={{tableLayout:"fixed"}}>
+<div className="product-table">
+<table style={{tableLayout:"fixed", width:"100%"}}>
   <thead>
     <tr>
-      <th style={{width: "18%"}} />
-      <th style={{width: "27%"}}><Icon icon="chart-line" size={16} /><br /><a href="/web-app/overview">Analytics Hub</a></th>
-      <th style={{width: "27%"}}><Icon icon="database" size={16} /><br /><a href="/datashare/datashare">Datashare</a></th>
-      <th style={{width: "28%"}}><Icon icon="bolt" size={16} /><br /><a href="https://sim.dune.com">Sim-Realtime APIs</a></th>
+      <th style={{width: "20%"}} />
+      <th style={{width: "26.6%", textAlign: "center", verticalAlign: "bottom"}}><Icon icon="chart-line" size={16} /><br /><a href="/web-app/overview">Analytics Hub</a></th>
+      <th style={{width: "26.6%", textAlign: "center", verticalAlign: "bottom"}}><Icon icon="database" size={16} /><br /><a href="/datashare/datashare">Datashare</a></th>
+      <th style={{width: "26.6%", textAlign: "center", verticalAlign: "bottom"}}><Icon icon="bolt" size={16} /><br /><a href="https://sim.dune.com">Sim-Realtime APIs</a></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td colspan="4"><h3 style={{marginTop: "1em"}}>Query & Architecture</h3></td>
+      <td colSpan="4"><h3 style={{marginTop: "1em"}}>Query & Architecture</h3></td>
     </tr>
 
     <tr>
@@ -50,37 +64,37 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
     </tr>
 
     <tr>
-      <td colspan="4"><h3>Data Coverage</h3></td>
+      <td colSpan="4"><h3>Data Coverage</h3></td>
     </tr>
 
     <tr>
       <td><strong>Freshness</strong></td>
-      <td>Raw: ~20 min<br />Decoded: ~25 min<br />Curated: ~30 min - hours</td>
+      <td>Raw: ~20 min<br />Decoded: ~25 min<br />Curated: ~30 min - 6 hours</td>
       <td>1-24 hours</td>
       <td>&lt; 1 second</td>
     </tr>
 
     <tr>
       <td><strong>Blockchains</strong></td>
-      <td>115+ chains</td>
-      <td>115+ chains</td>
+      <td>115+ chains (<a href="/data-catalog/evm/overview">see more</a>)</td>
+      <td>115+ chains (<a href="/data-catalog/evm/overview">see more</a>)</td>
       <td>60+ chains</td>
     </tr>
 
     <tr>
       <td><strong>Schemas</strong></td>
-      <td>Raw, Decoded, Curated (<a href="/data-catalog/curated/dex-trades">DEX Trades</a>, <a href="/data-catalog/curated/prices">Prices</a>, etc.)</td>
+      <td>Raw, Decoded, Curated (<a href="/data-catalog/curated/dex-trades">DEX Trades</a>, <a href="/data-catalog/curated/prices">Prices</a>, <a href="/data-catalog/curated/overview">and more!</a>)</td>
       <td>Same as Analytics Hub</td>
       <td>Curated (Balances, Activity, DeFi, Token Info)</td>
     </tr>
 
     <tr>
-      <td colspan="4"><h3>Interface & Pricing</h3></td>
+      <td colSpan="4"><h3>Interface & Pricing</h3></td>
     </tr>
 
     <tr>
       <td><strong>Interface</strong></td>
-      <td><a href="https://dune.com">Dune App</a>, <a href="/api-reference/api-overview">Analytics API</a>, <a href="/access-methods/trino-connector/index">BI Tools</a></td>
+      <td><a href="https://dune.com">Dune App</a>, <a href="/api-reference/api-overview">Analytics API</a>, <a href="/access-methods/trino-connector/index">External BI Tools</a></td>
       <td>BigQuery, Snowflake, Databricks</td>
       <td>APIs (Balances, Activity, Collectibles, DeFi Positions, Transactions, Token Info, Token Holders)</td>
     </tr>
@@ -93,12 +107,12 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
     </tr>
 
     <tr>
-      <td colspan="4"><h3>Capabilities</h3></td>
+      <td colSpan="4"><h3>Capabilities</h3></td>
     </tr>
 
     <tr>
       <td><strong>Best For</strong></td>
-      <td>Primary onchain datawarehouse, Analytic workflows, Transforming data</td>
+      <td>Your primary onchain data warehouse, Analytic workflows, Transforming data</td>
       <td>Data warehouse integration & Interoperability</td>
       <td>Realtime apps, wallet tracking, portfolio apps</td>
     </tr>
@@ -114,7 +128,7 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
       <td><strong>Historical Data</strong></td>
       <td>✓ Full historical</td>
       <td>✓ Full historical</td>
-      <td>Realtime only</td>
+      <td>Realtime</td>
     </tr>
 
     <tr>
@@ -125,12 +139,13 @@ Dune delivers blockchain data via three core products: **Analytics Hub**, **Data
     </tr>
   </tbody>
 </table>
+</div>
 
 ## Quick Selection Guide
 
 <CardGroup cols={2}>
   <Card title="Analytics Hub" icon="chart-line" href="/web-app/overview">
-    **Best for:** Primary onchain datawarehouse, analytic workflows, and data transformations
+    **Best for:** Your primary onchain data warehouse, analytic workflows, and data transformations
 
     Full SQL access with 115+ chains, flexible schemas, and compute-based pricing
   </Card>
