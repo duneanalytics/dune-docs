@@ -80,3 +80,4 @@ mintlify rename-file <old-file-name> <new-file-name>
 ```
 
 This is a global search and replace, so it will update all the links in your documentation to the new file name. It helps to avoid broken links.
+
