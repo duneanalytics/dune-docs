@@ -40,7 +40,7 @@ The CSV upload method is the most straightforward way to get data into Dune. It'
 ### Credit Usage
 - Varies by plan tier
 - Plus Plan: 5,000 data points per credit
-- Premium Plan: 25,000 data points per credit
+- Enterprise Plan: Custom data points per credit
 
 ---
 

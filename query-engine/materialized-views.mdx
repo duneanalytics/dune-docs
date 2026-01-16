@@ -82,7 +82,7 @@ When you query a materialized view in another query, it does not rerun the mater
 
 - A query result has a 200MB limit in the editor but a materialized view doesn't have storage limits. Even though the results will look truncated in the editor.
 - This materialized view refresh schedule is DIFFERENT from the query scheduler. Results from running the query or the normal query scheduler will NOT update the materialized view.
-- Plans have total monthly storage limits (for premium plans, it's 50GB, plus it's 15GB, free is 1MB).
+- Plans have total monthly storage limits (Enterprise has 200GB+, Plus has 15GB, Free has 100MB).
 - You can delete your materialized in the same dialouge where you created it.
 - If your team or account name starts with a number, you'll need to wrap the `name` in quotes i.e. `dune."21co".result_stablecoin_total_supply_on_ethereum`
 - There currently is no way to nicely ensure sequential execution of materialized views. If you have a materialized view that depends on another materialized view, you'll need to ensure that the upstream materialized view is updated first. This can be done by setting the refresh schedule to be more frequent than the downstream materialized view.

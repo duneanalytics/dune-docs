@@ -3210,7 +3210,7 @@
     "/v1/uploads/csv": {
       "post": {
         "summary": "Upload CSV file as a table",
-        "description": "Upload a CSV file to create a table with automatic schema inference.\nThe size limit per upload is 200MB. Storage limits: 1MB (free), 15GB (plus), 50GB (premium).",
+        "description": "Upload a CSV file to create a table with automatic schema inference.\nThe size limit per upload is 200MB. Storage limits: 100MB (free), 15GB (plus), 200GB+ (enterprise).",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
