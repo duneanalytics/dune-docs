@@ -147,17 +147,11 @@
               "web-app/upload-data",
               "learning/how-tos/export-data-out",
               "web-app/dune-ai",
-              {
-                "group": "Enterprise",
-                "icon": "building",
-                "pages": [
-                  "enterprise/analytics-hub/overview",
-                  "enterprise/analytics-hub/sso",
-                  "enterprise/analytics-hub/permissions",
-                  "web-app/google-sso-domain-restriction",
-                  "web-app/okta-sso"
-                ]
-              }
+              "enterprise/analytics-hub/overview",
+              "enterprise/analytics-hub/sso",
+              "enterprise/analytics-hub/permissions",
+              "web-app/google-sso-domain-restriction",
+              "web-app/okta-sso"
             ]
           },
           {

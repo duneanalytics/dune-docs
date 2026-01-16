@@ -1,17 +1,89 @@
 ---
 title: "Analytics Hub Enterprise"
-icon: "star"
-description: "Enterprise features for the Analytics Hub including Teams, SSO, and advanced permissions."
+sidebarTitle: "Enterprise"
+icon: "building"
+description: "Enterprise features for established teams with advanced security, unlimited resources, and dedicated support."
 ---
 
-# Analytics Hub Enterprise
+Dune's Enterprise plan is designed for established teams that need advanced security, higher limits, and dedicated support. Enterprise unlocks capabilities not available on Free, Analyst, or Plus plans.
 
-Enterprise features for organizations using the Analytics Hub.
+<Card title="Contact Sales" icon="phone" href="https://dune.com/enterprise">
+  Talk to our team about Enterprise pricing and features
+</Card>
 
-## Features
+## Enterprise-Only Features
 
-- **Teams & Collaboration** - Create and manage teams with shared access
-- **Single Sign-On (SSO)** - Okta, Google Workspace, and SAML integration  
-- **Advanced Permissions** - Granular access control for queries and dashboards
-- **Audit Logs** - Track user activity and data access
-- **Priority Support** - Dedicated support channels
+These features are **exclusively available** on the Enterprise plan:
+
+### Security & Access Control
+
+<CardGroup cols={2}>
+  <Card title="Okta SSO" icon="key" href="/web-app/okta-sso">
+    Configure Okta SSO (OIDC) for secure team authentication
+  </Card>
+
+  <Card title="Domain-Restricted SSO" icon="google" href="/web-app/google-sso-domain-restriction">
+    Restrict Google SSO to your organization's email domain
+  </Card>
+
+  <Card title="Granular Permissions" icon="lock">
+    Fine-grained access control for queries, dashboards, and data
+  </Card>
+
+  <Card title="Private Query Views" icon="eye-slash">
+    Control who can view your query results and execution history
+  </Card>
+</CardGroup>
+
+### Data & Storage
+
+<CardGroup cols={2}>
+  <Card title="Unlimited Storage" icon="database">
+    200 GB and up for data uploads and materialized views
+  </Card>
+
+  <Card title="Private Data Uploads" icon="upload">
+    Upload proprietary data with full privacy controls
+  </Card>
+
+  <Card title="Private Materialized Views" icon="layer-group">
+    Create materialized views that are private to your team
+  </Card>
+
+  <Card title="dbt Connector" icon="hammer" href="/access-methods/dbt-connector/index">
+    Build production data pipelines with dbt on Dune
+  </Card>
+</CardGroup>
+
+### Performance & Limits
+
+| Feature | Plus | Enterprise |
+|---------|------|------------|
+| **Credits per month** | 25,000 | Custom |
+| **Price per extra credit** | $0.014 | Custom |
+| **Total data storage** | 15 GB | 200 GB+ |
+| **Concurrent SQL queries** | 10 | Custom |
+| **Private queries** | 100 | Custom |
+| **Private dashboards** | 10 | Custom |
+| **Datapoints per credit (API/CSV)** | 5,000 | Custom |
+| **API calls per minute** | 200 | Custom |
+| **Alerts** | 5 | Custom |
+
+### Additional Benefits
+
+- **Volume Discounts** — Best pricing on queries and exports
+- **Hide Watermark** — Remove Dune branding from embedded dashboards
+- **No Expiration** — Scheduled queries and dashboards never expire
+- **Dedicated Engineering Support** — Direct access to Dune's engineering team
+
+## Get Started with Enterprise
+
+<CardGroup cols={2}>
+  <Card title="Contact Sales" icon="phone" href="https://dune.com/enterprise">
+    Talk to our team about custom pricing and implementation
+  </Card>
+
+  <Card title="Compare Plans" icon="table" href="https://dune.com/pricing">
+    See the full feature comparison across all plans
+  </Card>
+</CardGroup>
