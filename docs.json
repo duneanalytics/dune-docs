@@ -66,6 +66,7 @@
         "pages": [
           "home",
           "docs/product-comparison",
+          "docs/sim-real-time-apis",
           "docs/changelog",
           {
             "group": "Use Cases",
