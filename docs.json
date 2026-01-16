@@ -69,7 +69,6 @@
           "docs/changelog",
           {
             "group": "Use Cases",
-            "icon": "briefcase",
             "pages": [
               "docs/use-cases/analytics",
               "docs/use-cases/engineering",
@@ -154,14 +153,12 @@
           },
           {
             "group": "Analytics API",
-            "icon": "code",
             "pages": [
               "api-reference/api-overview"
             ]
           },
           {
             "group": "Transform your Data",
-            "icon": "code-branch",
             "pages": [
               "access-methods/dbt-connector/index",
               "api-reference/connectors/dbt-connector",
@@ -170,7 +167,6 @@
           },
           {
             "group": "BI Visualization Tools",
-            "icon": "chart-mixed",
             "pages": [
               "access-methods/trino-connector/index",
               "api-reference/connectors/trino-connector"
