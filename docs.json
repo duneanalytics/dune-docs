@@ -3671,7 +3671,6 @@
         "pages": [
           {
             "group": "Credits & Billing",
-            "icon": "credit-card",
             "pages": [
               "resources/credits-billing/overview",
               "resources/credits-billing/how-credits-work"
@@ -3679,7 +3678,6 @@
           },
           {
             "group": "Learning",
-            "icon": "graduation-cap",
             "pages": [
               "resources/web3-data-resources",
               "web-app/user-activity",
@@ -3688,7 +3686,6 @@
           },
           {
             "group": "Support",
-            "icon": "life-ring",
             "pages": [
               "resources/support/overview",
               "learning/how-tos/pricing-faqs",
@@ -3696,8 +3693,7 @@
             ]
           },
           {
-            "group": "Bug Bounty",
-            "icon": "bug",
+            "group": "Bug bounty",
             "pages": [
               "web-app/bug-bounty"
             ]
