@@ -5,32 +5,26 @@ description: "Product updates and announcements"
 rss: true
 ---
 
-<Update label="January 2026" description="New Features">
-  **Enhanced Data Catalog Navigation**
-  
-  We've improved the Data Catalog with better search functionality and filtering options, making it easier to discover the datasets you need for your queries.
+Stay up to date with the latest updates, new blockchain integrations, and improvements across Dune's products.
 
-  - Added full-text search across all table descriptions
-  - New chain and category filters for faster browsing
-  - Improved table preview with sample data
+<Update label="December 2025" tags={["New releases", "Improvements"]}>
+December brought new blockchain integrations, expanded enterprise capabilities, and improved data reliability across the platform.
+
+- **[MegaETH](/data-catalog/evm/megaeth/overview)** is now live, a new EVM-compatible blockchain delivering real-time, millisecond-level responsiveness with high throughput
+- AI-enabled onboarding automation now streamlines the process of bringing new blockchains onto the platform
+- **[Flow EVM](/data-catalog/flow/overview)** integration advanced, providing comprehensive analytics support including curated, decoded, and raw data
+- Added `cex.addresses` table to [Snowflake Datashare](/datashare/datashare-snowflake) with daily updates
+- Deprecated `/v1/tables` endpoint
+- [dbt Connector](/api-reference/connectors/dbt/overview) access now available to all Enterprise teams
+- Enterprise customers can now use dbt for in-platform data transformations with incremental runs
 </Update>
 
-<Update label="December 2025" description="API Updates">
-  **Query API Performance Improvements**
-  
-  Significant performance optimizations to the Query API, reducing latency for complex queries by up to 40%.
+<Update label="November 2025" tags={["New releases", "Improvements"]}>
+November focused on infrastructure improvements, documentation updates, and enhanced data reliability.
 
-  - Faster query execution for large result sets
-  - Improved caching for frequently accessed queries
-  - New pagination options for better data handling
-</Update>
-
-<Update label="November 2025" description="Platform">
-  **Dashboard Sharing Enhancements**
-  
-  New collaboration features for dashboards, including improved sharing controls and team workspaces.
-
-  - Share dashboards with specific team members
-  - New embed options for external websites
-  - Enhanced permission controls for enterprise users
+- Enhanced curated dataset reliability with better onboarding and trial experience
+- Orchestration improvements with Prefect for better job scheduling
+- Increased observability for all curated datasets
+- Added blockchain schemas and background context for new and existing chains
+- Updated [data freshness documentation](/data-catalog/data-freshness) with new chain coverage
 </Update>
