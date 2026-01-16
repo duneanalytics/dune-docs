@@ -1,16 +1,16 @@
 ---
 title: "Products Overview"
-description: "Compare Dune's core products: Analytics Hub, Datashare, and Sim-Realtime APIs"
+description: "Compare Dune's core products: Analytics Hub, Datashare, and Sim (Realtime APIs)"
 icon: "grid-2"
 ---
 
-Dune delivers blockchain data via three core products: **Analytics Hub**, **Datashare**, and **Sim-Realtime APIs**. Each product serves different use cases, from ad-hoc analytics to real-time application development.
+Dune delivers blockchain data via three core products: **Analytics Hub**, **Datashare**, and **Sim (Realtime APIs)**. Each product serves different use cases, from ad-hoc analytics to real-time application development.
 
 ## Query & Architecture
 
 How each product handles queries and processes data under the hood.
 
-| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim-Realtime APIs</a> |
+| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
 |---|---|---|---|
 | **Query Infra** | DuneSQL / Trino | Snowflake, BigQuery, Databricks | N/A |
 | **Query Speed** | ~3 seconds | N/A | N/A |
@@ -21,7 +21,7 @@ How each product handles queries and processes data under the hood.
 
 What data is available and how fresh it is across each product.
 
-| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim-Realtime APIs</a> |
+| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
 |---|---|---|---|
 | **Freshness** | EVM: ~1-15 min<br />Solana: ~1 hour<br />Curated: ~1 hour | Hourly or daily | < 1 second |
 | **Blockchains** | <a href="/data-catalog/evm/overview" style={{textDecoration: "underline"}}>100+ chains</a> | <a href="/data-catalog/evm/overview" style={{textDecoration: "underline"}}>100+ chains</a> | 60+ chains |
@@ -31,7 +31,7 @@ What data is available and how fresh it is across each product.
 
 How you access each product and what it costs.
 
-| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim-Realtime APIs</a> |
+| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
 |---|---|---|---|
 | **Interface** | <a href="https://dune.com" style={{textDecoration: "underline"}}>Dune App</a>, <a href="/api-reference/api-overview" style={{textDecoration: "underline"}}>Analytics API</a>, <a href="/api-reference/connectors/trino/overview" style={{textDecoration: "underline"}}>External BI Tools</a> | <a href="/datashare/datashare-bigquery" style={{textDecoration: "underline"}}>BigQuery</a>, <a href="/datashare/datashare-snowflake" style={{textDecoration: "underline"}}>Snowflake</a>, <a href="/datashare/datashare-databricks" style={{textDecoration: "underline"}}>Databricks</a> | REST APIs |
 | **Pricing** | Credits (compute-based) | Flat Subscription Fees | API Call Volume (CUs) |
@@ -40,7 +40,7 @@ How you access each product and what it costs.
 
 What each product is best suited for.
 
-| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim-Realtime APIs</a> |
+| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
 |---|---|---|---|
 | **Best For** | Primary onchain data warehouse, Analytic workflows, <a href="/api-reference/connectors/dbt/overview" style={{textDecoration: "underline"}}>Data transformations</a> | Data warehouse integration & Interoperability | Build realtime wallets, portfolio apps |
 | **SQL Access** | ✓ Full SQL | ✓ Full SQL | REST APIs only |
@@ -64,7 +64,7 @@ What each product is best suited for.
     Direct access via Snowflake, BigQuery, or Databricks with full historical data
   </Card>
 
-  <Card title="Sim-Realtime APIs" icon="bolt" href="https://sim.dune.com">
+  <Card title="Sim (Realtime APIs)" icon="bolt" href="https://sim.dune.com">
     **Best for:** Building realtime wallets, portfolio trackers, and DeFi applications
 
     Sub-second response times with 60+ chains via REST APIs
@@ -78,5 +78,5 @@ What each product is best suited for.
 </CardGroup>
 
 <Note>
-**Why is Catalyst not in the comparison tables?** Catalyst is Dune's blockchain integration toolkit designed for chains and protocols, not end-user data consumption. It powers how blockchains get indexed into Dune rather than how users query data, so it serves a fundamentally different purpose than Analytics Hub, Datashare, and Sim-Realtime APIs.
+**Why is Catalyst not in the comparison tables?** Catalyst is Dune's blockchain integration toolkit designed for chains and protocols, not end-user data consumption. It powers how blockchains get indexed into Dune rather than how users query data, so it serves a fundamentally different purpose than Analytics Hub, Datashare, and Sim (Realtime APIs).
 </Note>
