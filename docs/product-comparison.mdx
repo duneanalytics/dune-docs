@@ -4,7 +4,18 @@ description: "Compare Dune's core products: Analytics Hub, Datashare, and Sim (R
 icon: "grid-2"
 ---
 
-Dune delivers blockchain data via three core products: **Analytics Hub**, **Datashare**, and **Sim (Realtime APIs)**. Each product serves different use cases, from ad-hoc analytics to real-time application development.
+Dune delivers blockchain data via three core products: **Analytics Hub**, **Datashare**, and **Sim (Realtime APIs)**. Each product serves different use cases, from ad-hoc analytics to real-time wallet application development.
+
+## Capabilities
+
+What each product is best suited for.
+
+| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
+|---|---|---|---|
+| **Best For** | Primary onchain data warehouse, Analytic workflows, <a href="/api-reference/connectors/dbt/overview" style={{textDecoration: "underline"}}>Data transformations</a> | Data warehouse integration & Interoperability | Build realtime wallets, portfolio apps |
+| **SQL Access** | ✓ Full SQL | ✓ Full SQL | REST APIs |
+| **Historical Data** | ✓ Full historical | ✓ Full historical | Realtime |
+| **Authentication** | Dune account, API key | Warehouse credentials | Sim account, API key |
 
 ## Query & Architecture
 
@@ -23,29 +34,18 @@ What data is available and how fresh it is across each product.
 
 | | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
 |---|---|---|---|
-| **Freshness** | EVM: ~1-15 min<br />Solana: ~1 hour<br />Curated: ~1 hour | Hourly or daily | < 1 second |
+| **Freshness** | EVM: ~1-15 min<br />Solana: ~1-5 min<br />Curated: ~1 hour | Hourly or daily | < 1 second |
 | **Blockchains** | <a href="/data-catalog/evm/overview" style={{textDecoration: "underline"}}>100+ chains</a> | <a href="/data-catalog/evm/overview" style={{textDecoration: "underline"}}>100+ chains</a> | 60+ chains |
 | **Schemas** | <a href="/data-catalog/evm/ethereum/raw/transactions" style={{textDecoration: "underline"}}>Raw</a>, <a href="/data-catalog/evm/ethereum/decoded/overview" style={{textDecoration: "underline"}}>Decoded</a>, Curated (<a href="/data-catalog/curated/dex-trades" style={{textDecoration: "underline"}}>DEX Trades</a>, <a href="/data-catalog/curated/prices" style={{textDecoration: "underline"}}>Prices</a>, <a href="/data-catalog/curated/token-transfers/overview" style={{textDecoration: "underline"}}>Token Transfers</a>, <a href="/data-catalog/curated/overview" style={{textDecoration: "underline"}}>more</a>) | Same as Analytics Hub | Curated (Balances, Activity, DeFi, Token Info) |
 
 ## Interface & Pricing
 
-How you access each product and what it costs.
+How you access each product and pricing.
 
 | | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
 |---|---|---|---|
 | **Interface** | <a href="https://dune.com" style={{textDecoration: "underline"}}>Dune App</a>, <a href="/api-reference/api-overview" style={{textDecoration: "underline"}}>Analytics API</a>, <a href="/api-reference/connectors/trino/overview" style={{textDecoration: "underline"}}>External BI Tools</a> | <a href="/datashare/datashare-bigquery" style={{textDecoration: "underline"}}>BigQuery</a>, <a href="/datashare/datashare-snowflake" style={{textDecoration: "underline"}}>Snowflake</a>, <a href="/datashare/datashare-databricks" style={{textDecoration: "underline"}}>Databricks</a> | REST APIs |
 | **Pricing** | Credits (compute-based) | Flat Subscription Fees | API Call Volume (CUs) |
-
-## Capabilities
-
-What each product is best suited for.
-
-| | <a href="/web-app/overview" style={{textDecoration: "underline", fontWeight: "bold"}}>Analytics Hub</a> | <a href="/datashare/datashare" style={{textDecoration: "underline", fontWeight: "bold"}}>Datashare</a> | <a href="https://sim.dune.com" style={{textDecoration: "underline", fontWeight: "bold"}}>Sim (Realtime APIs)</a> |
-|---|---|---|---|
-| **Best For** | Primary onchain data warehouse, Analytic workflows, <a href="/api-reference/connectors/dbt/overview" style={{textDecoration: "underline"}}>Data transformations</a> | Data warehouse integration & Interoperability | Build realtime wallets, portfolio apps |
-| **SQL Access** | ✓ Full SQL | ✓ Full SQL | REST APIs only |
-| **Historical Data** | ✓ Full historical | ✓ Full historical | Realtime |
-| **Authentication** | Dune account, API key | Warehouse credentials | Sim account, API key |
 
 ---
 
