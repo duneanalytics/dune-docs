@@ -3695,7 +3695,13 @@
               "learning/flipside-migration-guide"
             ]
           },
-          "web-app/bug-bounty"
+          {
+            "group": "Bug Bounty",
+            "icon": "bug",
+            "pages": [
+              "web-app/bug-bounty"
+            ]
+          }
         ]
       }
     ]
