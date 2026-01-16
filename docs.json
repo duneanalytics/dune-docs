@@ -141,17 +141,15 @@
                 "pages": [
                   "web-app/teams",
                   "learning/how-tos/create-and-manage-teams",
-                  "learning/how-tos/transfer-ownership"
+                  "learning/how-tos/transfer-ownership",
+                  "web-app/google-sso-domain-restriction",
+                  "web-app/okta-sso"
                 ]
               },
               "web-app/upload-data",
               "learning/how-tos/export-data-out",
               "web-app/dune-ai",
-              "enterprise/analytics-hub/overview",
-              "enterprise/analytics-hub/sso",
-              "enterprise/analytics-hub/permissions",
-              "web-app/google-sso-domain-restriction",
-              "web-app/okta-sso"
+              "enterprise/analytics-hub/overview"
             ]
           },
           {
