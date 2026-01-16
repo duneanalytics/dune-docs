@@ -193,13 +193,7 @@
               "datashare/datashare-snowflake",
               "datashare/datashare-bigquery",
               "datashare/datashare-faqs",
-              {
-                "group": "Enterprise",
-                "icon": "building",
-                "pages": [
-                  "enterprise/datashare/overview"
-                ]
-              }
+              "enterprise/datashare/overview"
             ]
           },
           {
