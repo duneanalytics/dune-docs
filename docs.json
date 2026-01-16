@@ -3399,16 +3399,14 @@
               "api-reference/overview/getting-started",
               "api-reference/overview/authentication",
               "api-reference/overview/troubleshooting"
-            ],
-            "icon": "house"
+            ]
           },
           {
             "group": "Quick Start",
             "pages": [
               "api-reference/apis/quickstart-analyze",
               "api-reference/apis/quickstart-dashboards"
-            ],
-            "icon": "rocket"
+            ]
           },
           {
             "group": "Executions and Results",
@@ -3423,8 +3421,7 @@
               "api-reference/executions/endpoint/get-query-result",
               "api-reference/executions/endpoint/get-query-result-csv",
               "api-reference/executions/endpoint/cancel-execution"
-            ],
-            "icon": "play"
+            ]
           },
           {
             "group": "Query Management",
@@ -3439,8 +3436,7 @@
               "api-reference/queries/endpoint/unarchive",
               "api-reference/queries/endpoint/private",
               "api-reference/queries/endpoint/unprivate"
-            ],
-            "icon": "pen-to-square"
+            ]
           },
           {
             "group": "Data Uploads",
@@ -3453,8 +3449,7 @@
               "api-reference/tables/endpoint/uploads-clear",
               "api-reference/tables/endpoint/uploads-delete",
               "api-reference/tables/endpoint/migration"
-            ],
-            "icon": "upload"
+            ]
           },
           {
             "group": "Datasets",
@@ -3462,8 +3457,7 @@
               "api-reference/datasets/introduction",
               "api-reference/datasets/endpoint/list",
               "api-reference/datasets/endpoint/get"
-            ],
-            "icon": "database"
+            ]
           },
           {
             "group": "Materialized Views",
@@ -3474,8 +3468,7 @@
               "api-reference/materialized-views/delete",
               "api-reference/materialized-views/list",
               "api-reference/materialized-views/refresh"
-            ],
-            "icon": "layer-group"
+            ]
           },
           {
             "group": "Pipelines",
@@ -3483,16 +3476,14 @@
               "api-reference/pipelines/overview",
               "api-reference/pipelines/endpoint/execute-pipeline",
               "api-reference/pipelines/endpoint/get-pipeline-status"
-            ],
-            "icon": "diagram-project"
+            ]
           },
           {
             "group": "Account Management",
             "pages": [
               "api-reference/usage/overview",
               "api-reference/usage/endpoint/get-usage"
-            ],
-            "icon": "user"
+            ]
           },
           {
             "group": "Post-processing",
@@ -3501,15 +3492,13 @@
               "api-reference/executions/pagination",
               "api-reference/executions/sorting",
               "api-reference/executions/sampling"
-            ],
-            "icon": "filter"
+            ]
           },
           {
             "group": "Webhooks",
             "pages": [
               "api-reference/webhooks/webhook"
-            ],
-            "icon": "webhook"
+            ]
           },
           {
             "group": "Client SDKs",
@@ -3520,21 +3509,18 @@
                   "api-reference/quickstart/results-eg",
                   "api-reference/quickstart/queries-eg",
                   "api-reference/quickstart/tables-eg"
-                ],
-                "icon": "rocket"
+                ]
               },
               "api-reference/sdks/python",
               "api-reference/sdks/typescript",
               "api-reference/sdks/go"
-            ],
-            "icon": "cube"
+            ]
           },
           {
             "group": "Real-time APIs",
             "pages": [
               "api-reference/realtime/overview"
-            ],
-            "icon": "bolt"
+            ]
           },
           {
             "group": "Resources",
@@ -3542,8 +3528,7 @@
               "api-reference/overview/rate-limits",
               "api-reference/overview/billing",
               "api-reference/overview/faq"
-            ],
-            "icon": "book"
+            ]
           }
         ]
       },
