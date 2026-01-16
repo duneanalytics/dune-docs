@@ -1,0 +1,183 @@
+---
+title: "Incremental Models"
+description: "Efficiently update large tables with merge, delete+insert, and append strategies"
+icon: "layer-group"
+---
+
+dbt supports multiple strategies for incremental models. The template includes examples of each strategy to help you get started.
+
+## 1. Merge Strategy (Recommended)
+
+**When to use**: When you need to update existing rows and insert new ones.
+
+**Example**:
+```sql
+{{
+    config(
+        materialized='incremental',
+        unique_key='user_address',
+        incremental_strategy='merge'
+    )
+}}
+
+SELECT
+    user_address,
+    COUNT(*) as trade_count,
+    SUM(volume_usd) as total_volume,
+    MAX(block_time) as last_trade_time
+FROM {{ source('ethereum', 'dex_trades') }}
+WHERE block_time >= date_trunc('day', now() - interval '1' day)
+{% if is_incremental() %}
+    AND block_time >= (SELECT MAX(last_trade_time) FROM {{ this }})
+{% endif %}
+GROUP BY 1
+```
+
+## 2. Delete+Insert Strategy
+
+**When to use**: When recomputing entire partitions (e.g., daily aggregations).
+
+**Example**:
+```sql
+{{
+    config(
+        materialized='incremental',
+        unique_key='date',
+        incremental_strategy='delete+insert'
+    )
+}}
+
+SELECT
+    date_trunc('day', block_time) as date,
+    protocol,
+    COUNT(*) as transaction_count,
+    SUM(amount_usd) as volume
+FROM {{ source('ethereum', 'decoded_events') }}
+WHERE block_time >= date_trunc('day', now() - interval '7' day)
+{% if is_incremental() %}
+    AND date_trunc('day', block_time) >= date_trunc('day', now() - interval '1' day)
+{% endif %}
+GROUP BY 1, 2
+```
+
+## 3. Append Strategy
+
+**When to use**: For immutable event logs that only need new rows appended.
+
+**Example**:
+```sql
+{{
+    config(
+        materialized='incremental',
+        unique_key='tx_hash',
+        incremental_strategy='append'
+    )
+}}
+
+SELECT
+    tx_hash,
+    block_time,
+    block_number,
+    "from" as from_address,
+    "to" as to_address,
+    value
+FROM {{ source('ethereum', 'transactions') }}
+WHERE block_time >= date_trunc('hour', now() - interval '1' hour)
+{% if is_incremental() %}
+    AND block_time >= (SELECT MAX(block_time) FROM {{ this }})
+{% endif %}
+```
+
+## Strategy Comparison
+
+| Strategy | Best For | How It Works |
+|----------|----------|--------------|
+| **Merge** | Updating existing rows + inserting new | Matches on `unique_key`, updates existing, inserts new |
+| **Delete+Insert** | Recomputing partitions | Deletes matching rows, then inserts new data |
+| **Append** | Immutable event logs | Only inserts new rows, no updates or deletes |
+
+## Table Maintenance
+
+Maintenance operations consume credits based on compute and data written. These operations are necessary to keep your tables performant and to reclaim storage space.
+
+### Manual Maintenance
+
+Run OPTIMIZE and VACUUM to improve performance and reduce storage costs:
+
+```bash
+# Optimize a specific table
+uv run dbt run-operation optimize_table --args '{table_name: "my_model"}'
+
+# Vacuum a specific table
+uv run dbt run-operation vacuum_table --args '{table_name: "my_model"}'
+```
+
+### Automated Maintenance with dbt post-hooks
+
+Add post-hooks to your model configuration:
+
+```sql
+{{
+    config(
+        materialized='incremental',
+        post_hook=[
+            "ALTER TABLE {{ this }} EXECUTE OPTIMIZE",
+            "ALTER TABLE {{ this }} EXECUTE VACUUM"
+        ]
+    )
+}}
+
+SELECT ...
+```
+
+### Project level post-hooks
+
+Add post-hooks to your project configuration:
+
+```yaml
+# dbt_project.yml
+post-hooks:
+  - "ALTER TABLE {{ this }} EXECUTE OPTIMIZE"
+  - "ALTER TABLE {{ this }} EXECUTE VACUUM"
+```
+
+The [template repository](https://github.com/duneanalytics/dune-dbt-template) includes a default post-hook that runs OPTIMIZE and VACUUM on all tables.
+
+## Dropping Tables
+
+dbt doesn't have a built-in way to drop tables. Options:
+
+### Option 1: Use dbt's --full-refresh flag then remove the model
+
+```bash
+# This will drop and recreate
+uv run dbt run --select my_model --full-refresh
+
+# Then delete the model file and run again
+rm models/my_model.sql
+uv run dbt run
+```
+
+### Option 2: Connect with a SQL client
+
+Use any Trino-compatible client (Hex, Jupyter, DBeaver) to execute:
+
+```sql
+DROP TABLE IF EXISTS dune.your_team.old_model;
+```
+
+See the [SQL Operations Reference](/api-reference/connectors/sql-operations) for details.
+
+## Examples
+
+Complete examples are available in the template repository:
+
+- **View Model**: Lightweight, always fresh data
+- **Table Model**: Static snapshots for specific points in time
+- **Merge Incremental**: Update existing rows, insert new ones
+- **Delete+Insert Incremental**: Recompute partitions efficiently
+- **Append Incremental**: Add-only with deduplication
+
+<Card title="dbt Template Repository" icon="github" href="https://github.com/duneanalytics/dune-dbt-template">
+  See all example models in our official dbt template repository
+</Card>

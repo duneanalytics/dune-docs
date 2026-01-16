@@ -1,0 +1,70 @@
+---
+title: "DBeaver"
+description: "Connect Dune to DBeaver for direct SQL access"
+icon: "database"
+---
+
+Follow these steps to connect Dune as a data source in DBeaver.
+
+## Add a Database Connection
+
+<Steps>
+  <Step title="Create new connection">
+    In DBeaver, click the <b>New Database Connection</b> button. It usually looks like a plug with a plus on it.
+  </Step>
+  <Step title="Select Trino database">
+    You'll be taken to the "Connect to a database" screen. Find and select <b>Trino</b> from the list of accepted databases, then click on it.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/dbeaver-1.png"
+        alt="DBeaver step 2: Select Trino from database list"
+      />
+    </Frame>
+  </Step>
+  <Step title="Configure connection details">
+    You'll be taken to a screen where you can fill in your connection details. Make sure to click <b>Connect by host</b>, then fill in the connection parameters using the values from the [Connection Parameters](/api-reference/connectors/trino/overview#connection-parameters) section.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/dbeaver-2.png"
+        alt="DBeaver step 3: Enter connection details"
+      />
+    </Frame>
+  </Step>
+  <Step title="Finish connection setup">
+    Once you have all the details filled out properly, click <b>Finish</b> to create the connection.
+  </Step>
+</Steps>
+
+## Run a Test Query
+
+After configuring your connection, you can run a query to verify that everything is working.
+
+<Steps>
+  <Step title="Open SQL editor">
+    Right-click on your Dune database connection and navigate to the <b>SQL Editor</b> section. This will open up a new SQL editor.
+  </Step>
+  <Step title="Write your SQL query">
+    In the SQL editor, you can write all of your Dune-compatible SQL. Paste the example query below into the editor.
+  </Step>
+  <Step title="Run the script">
+    Click the <b>Run</b> button to execute your script. If everything went well, you will see the results displayed in the results panel.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/dbeaver-3.png"
+        alt="DBeaver step 5: Run SQL script and view results"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+You can use this query to test your connection. It fetches the daily transaction count from the last year on Base.
+
+```sql
+SELECT
+  date_trunc('day', block_time) AS time,
+  count(*) AS count
+FROM base.transactions
+WHERE block_time > now() - interval '12' month
+GROUP BY 1
+ORDER BY 1 DESC
+```

@@ -1,0 +1,129 @@
+---
+title: "Pricing & Best Practices"
+description: "Credit consumption, optimization tips, and best practices for dbt on Dune"
+icon: "credit-card"
+---
+
+Data Transformations is an **Enterprise-only feature** with usage-based credit consumption.
+
+## Pricing & Credits
+
+### Credit Consumption
+
+Your credit usage includes three components:
+
+#### Compute Credits
+- Same as Fluid Engine credits for query execution
+- Charged based on actual compute resources used
+- Depends on query complexity and execution time
+
+#### Write Operations
+- **Minimum 3 credits** per write operation
+- Scales with data volume (GB written)
+- Applied to INSERT, MERGE, CREATE TABLE AS SELECT, etc.
+
+#### Storage Credits
+- **4 credits per GB per month**
+- Calculated based on end-of-day storage usage
+- Encourages efficient data management and cleanup
+
+#### Maintenance Operations
+- OPTIMIZE, VACUUM, and ANALYZE operations consume credits
+- Based on compute resources and data written during maintenance
+- Can be automated with dbt post-hooks
+
+<Note>
+There is no separate platform fee. You only pay for what you use through credits. See [Billing](/api-reference/overview/billing) for more details on credit pricing.
+</Note>
+
+## Best Practices
+
+### Model Organization
+
+```
+models/
+├── staging/           # Clean and standardize raw data
+├── intermediate/      # Business logic transformations  
+├── marts/            # Final datasets for analytics
+└── utils/            # Reusable utility models
+```
+
+### Schema Organization
+
+- Use `dev` target with personal suffixes during development
+- Keep `prod` target for production deployments only
+- Consider separate schemas for different projects or domains
+
+### Performance Optimization
+
+- Use incremental models for large datasets
+- Partition by date fields when possible
+- Add appropriate partitions via dbt configurations
+- Run OPTIMIZE and VACUUM on large tables
+
+### Credit Management
+
+- Monitor credit usage in your Dune dashboard
+- Use incremental models to reduce compute and write costs
+- Drop unused development tables regularly
+- Implement table lifecycle policies
+
+### Data Management
+
+- Clean up temporary/test data in `__tmp_` schemas
+- Document table retention requirements
+- Regularly review and optimize storage usage
+
+### Version Control
+
+- Store all transformation logic in Git
+- Use meaningful commit messages
+- Tag production releases
+- Review PRs before merging to main
+
+### Documentation
+
+```yaml
+# schema.yml
+models:
+  - name: user_stats
+    description: "Daily user trading statistics"
+    columns:
+      - name: user_address
+        description: "Ethereum address of the user"
+        tests:
+          - not_null
+          - unique
+      - name: trade_count
+        description: "Number of trades in the period"
+```
+
+## Resources
+
+### Documentation
+
+- [dbt Template Repository](https://github.com/duneanalytics/dune-dbt-template)
+- [SQL Operations Reference](/api-reference/connectors/sql-operations)
+- [Query Engine Overview](/query-engine/overview) - DuneSQL capabilities and read operations
+- [Trino Connector](/api-reference/connectors/trino/overview) - General Trino connection guide
+- [dbt Documentation](https://docs.getdbt.com/)
+- [dbt-trino Setup Guide](https://docs.getdbt.com/docs/core/connect-data-platform/trino-setup)
+
+### Support
+
+- **Dune Discord**: [discord.gg/ErrzwBz](https://discord.gg/ErrzwBz)
+- **Enterprise Support**: Contact your account team
+- **GitHub Issues**: Report issues in the [template repository](https://github.com/duneanalytics/dune-dbt-template)
+
+## Getting Started
+
+Ready to get started? Clone the [template repository](https://github.com/duneanalytics/dune-dbt-template) and have your first dbt model running on Dune in minutes!
+
+<CardGroup cols={2}>
+  <Card title="dbt Template Repository" icon="github" href="https://github.com/duneanalytics/dune-dbt-template">
+    Clone our official template to get started
+  </Card>
+  <Card title="Getting Started Guide" icon="rocket" href="/api-reference/connectors/dbt/getting-started">
+    Step-by-step setup instructions
+  </Card>
+</CardGroup>

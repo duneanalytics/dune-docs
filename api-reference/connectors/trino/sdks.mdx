@@ -1,0 +1,192 @@
+---
+title: "Trino SDKs"
+description: "Connect to Dune using Trino SDKs in your preferred programming language"
+icon: "plug"
+---
+
+Connect to Dune using Trino SDKs in your preferred language. Dune supports any Trino, Presto, or Starburst-compatible client library.
+
+## Code Examples
+
+<Tabs>
+  <Tab title="Bash">
+    ```bash
+    # Install: brew install trino
+    trino --server https://trino.api.dune.com:443 \
+      --user dune --password \
+      --catalog delta_prod \
+      --schema runtime \
+      --execute "SELECT count(*) FROM base.transactions WHERE block_time > now() - interval '1' day"
+    ```
+  </Tab>
+
+  <Tab title="TypeScript">
+    ```typescript
+    import { Trino, BasicAuth } from "trino-client";
+
+    const trino = Trino.create({
+      server: "https://trino.api.dune.com:443",
+      catalog: "delta_prod",
+      schema: "runtime",
+      auth: new BasicAuth("dune", process.env.DUNE_API_KEY),
+    });
+
+    const iter = await trino.query("SELECT count(*) FROM base.transactions WHERE block_time > now() - interval '1' day");
+    for await (const result of iter) {
+      console.log(result.data);
+    }
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    import trino
+    import os
+
+    conn = trino.dbapi.connect(
+        host='trino.api.dune.com',
+        port=443,
+        user='dune',
+        catalog='delta_prod',
+        schema='runtime',
+        auth=trino.auth.BasicAuthentication('dune', os.environ['DUNE_API_KEY']),
+        http_scheme='https'
+    )
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT count(*) FROM base.transactions WHERE block_time > now() - interval '1' day")
+    print(cursor.fetchall())
+    ```
+  </Tab>
+
+  <Tab title="Rust">
+    ```rust
+    use prusto::{ClientBuilder, Presto};
+
+    #[derive(Presto, Debug)]
+    struct Foo {
+        a: i64,
+        b: f64,
+        c: String,
+    }
+
+    #[tokio::main]
+    async fn main() {
+        let cli = ClientBuilder::new("user", "localhost")
+            .port(8090)
+            .catalog("catalog")
+            .build()
+            .unwrap();
+
+        let sql = "select 1 as a, cast(1.1 as double) as b, 'bar' as c ";
+
+        let data = cli.get_all::<Foo>(sql.into()).await.unwrap().into_vec();
+
+        for r in data {
+            println!("{:?}", r)
+        }
+    }
+    ```
+  </Tab>
+
+  <Tab title="Go">
+    ```go
+    import "database/sql"
+    import _ "github.com/trinodb/trino-go-client/trino"
+
+    dsn := "http://user@localhost:8080?catalog=default&schema=test"
+    db, err := sql.Open("trino", dsn)
+    ```
+  </Tab>
+
+  <Tab title="Ruby">
+    ```ruby
+    require 'trino-client'
+
+    # create a client object:
+    client = Trino::Client.new(
+      server: "localhost:8880",   # required option
+      ssl: {verify: false},
+      catalog: "native",
+      schema: "default",
+      user: "frsyuki",
+      password: "********",
+      time_zone: "US/Pacific",
+      language: "English",
+      properties: {
+        "hive.force_local_scheduling": true,
+        "raptor.reader_stream_buffer_size": "32MB"
+      },
+      http_proxy: "proxy.example.com:8080",
+      http_debug: true
+    )
+
+    # run a query and get results as an array of arrays:
+    columns, rows = client.run("select * from sys.node")
+    rows.each {|row|
+      p row  # row is an array
+    }
+
+    # run a query and get results as an array of hashes:
+    results = client.run_with_names("select alpha, 1 AS beta from tablename")
+    results.each {|row|
+      p row['alpha']   # access by name
+      p row['beta']
+      p row.values[0]  # access by index
+      p row.values[1]
+    }
+
+    # run a query and fetch results streamingly:
+    client.query("select * from sys.node") do |q|
+      # get columns:
+      q.columns.each {|column|
+        puts "column: #{column.name}.#{column.type}"
+      }
+
+      # get query results. it feeds more rows until
+      # query execution finishes:
+      q.each_row {|row|
+        p row  # row is an array
+      }
+    end
+
+    # killing a query
+    query = client.query("select * from sys.node")
+    query_id = query.query_info.query_id
+    query.each_row {|row| ... }  # when a thread is processing the query,
+    client.kill(query_id)  # another thread / process can kill the query.
+
+    # Use Query#transform_row to parse Trino ROW types into Ruby Hashes.
+    # You can also set a scalar_parser to parse scalars how you'd like them.
+    scalar_parser = -> (data, type) { (type === 'json') ? JSON.parse(data) : data }
+    client.query("select * from sys.node") do |q|
+      q.scalar_parser = scalar_parser
+
+      # get query results. it feeds more rows until
+      # query execution finishes:
+      q.each_row {|row|
+        p q.transform_row(row)
+      }
+    end
+    ```
+  </Tab>
+</Tabs>
+
+<Note>
+Besides the code samples shown above, Trino supports a variety of other official and unofficial SDKs. Please check the [official Trino SDKs page](https://trino.io/ecosystem/client-driver#official-client-drivers) to see which ones are available and to view their GitHub repositories for updated code samples and documentation.
+</Note>
+
+## Connection Parameters
+
+For all SDK integrations, use the following connection parameters:
+
+| Parameter   | Value                     |
+| ----------- | ------------------------- |
+| Host        | `trino.api.dune.com`      |
+| Port        | `443`                     |
+| Username    | `dune`                    |
+| Password    | Your Dune API key         |
+| Catalog     | `delta_prod`              |
+| HTTP scheme | `https`                   |
+
+See the [Overview](/api-reference/connectors/trino/overview#connection-parameters) for complete connection details.
