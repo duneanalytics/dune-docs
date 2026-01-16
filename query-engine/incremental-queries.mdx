@@ -1,6 +1,7 @@
 ---
 title: Incremental Queries
 description: Dramatically reduce query costs and execution time by only processing new data since your last run.
+icon: forward-step
 ---
 
 Every time you refresh a dashboard or re-run a scheduled query, Dune typically scans **all** historical data from scratch—even though most of that data hasn't changed. For a query calculating daily Ethereum transaction stats going back to 2020, this means:
@@ -15,6 +16,10 @@ Every time you refresh a dashboard or re-run a scheduled query, Dune typically s
 <Info>
 For complex data transformation pipelines with testing, CI/CD, and version control, see the [dbt Connector](/api-reference/connectors/dbt-connector). Incremental Queries are ideal for simpler dashboard updates using pure SQL.
 </Info>
+
+<Warning>
+Incremental Queries are currently only available for regular queries. Support for [Materialized Views](/query-engine/materialized-views) is coming soon.
+</Warning>
 
 ## How It Works
 
@@ -31,7 +36,7 @@ Dune handles storing and retrieving your previous results automatically. You wri
 
 ### The Table Function
 
-The `TABLE(previous.result(...))` function returns your previous query results:
+The `TABLE(previous.query.result(...))` function returns your previous query results:
 
 - **First run**: Returns an empty table (0 rows) with your specified schema
 - **Subsequent runs**: Returns all data from your previous execution
@@ -39,7 +44,7 @@ The `TABLE(previous.result(...))` function returns your previous query results:
 The schema is defined using `DESCRIPTOR()` which specifies the column names and types:
 
 ```sql
-SELECT * FROM TABLE(previous.result(
+SELECT * FROM TABLE(previous.query.result(
     schema => DESCRIPTOR(
         day TIMESTAMP(3),
         tx_count BIGINT,
@@ -55,7 +60,7 @@ Here's the standard incremental query pattern:
 ```sql
 WITH prev AS (
     -- 1. Load previous results (empty on first run)
-    SELECT * FROM TABLE(previous.result(
+    SELECT * FROM TABLE(previous.query.result(
         schema => DESCRIPTOR(
             day TIMESTAMP(3),
             tx_count BIGINT,
@@ -168,7 +173,7 @@ Track daily Ethereum transaction statistics with automatic incremental updates:
 
 ```sql
 WITH prev AS (
-    SELECT * FROM TABLE(previous.result(
+    SELECT * FROM TABLE(previous.query.result(
         schema => DESCRIPTOR(
             day TIMESTAMP(3),
             tx_count BIGINT,
@@ -205,7 +210,7 @@ Track gas price percentiles by hour:
 
 ```sql
 WITH prev AS (
-    SELECT * FROM TABLE(previous.result(
+    SELECT * FROM TABLE(previous.query.result(
         schema => DESCRIPTOR(
             hour TIMESTAMP(3),
             min_gwei DOUBLE,
@@ -248,7 +253,7 @@ For cumulative metrics, the pattern is slightly different: select only the base 
 
 ```sql
 WITH prev AS (
-    SELECT * FROM TABLE(previous.result(
+    SELECT * FROM TABLE(previous.query.result(
         schema => DESCRIPTOR(
             day DATE,
             eth_received DOUBLE,
@@ -277,7 +282,7 @@ FROM (
         CAST(date_trunc('day', block_time) AS DATE) AS day,
         SUM(value / 1e18) AS eth_received
     FROM ethereum.traces
-    WHERE "to" = 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+    WHERE "to" = 0xd8dA6BF26964aF9A7eEd9e03E53415D37aA96045
         AND success = TRUE
         AND block_time >= (SELECT cutoff FROM checkpoint)
     GROUP BY 1
