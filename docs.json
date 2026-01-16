@@ -124,6 +124,16 @@
                 ]
               },
               {
+                "group": "Creating & Sharing Content",
+                "icon": "share-nodes",
+                "pages": [
+                  "learning/how-tos/create-new-content",
+                  "learning/how-tos/share-your-query",
+                  "learning/how-tos/share-dune-content",
+                  "learning/how-tos/search-for-content"
+                ]
+              },
+              {
                 "group": "Decoding Contracts",
                 "icon": "file-code",
                 "pages": [
@@ -3674,16 +3684,6 @@
             "icon": "graduation-cap",
             "pages": [
               "resources/web3-data-resources",
-              {
-                "group": "Creating & Sharing Content",
-                "icon": "share-nodes",
-                "pages": [
-                  "learning/how-tos/create-new-content",
-                  "learning/how-tos/share-your-query",
-                  "learning/how-tos/share-dune-content",
-                  "learning/how-tos/search-for-content"
-                ]
-              },
               "web-app/user-activity",
               "resources/learning/video-tutorials",
               "resources/learning/analyst-roadmap"
