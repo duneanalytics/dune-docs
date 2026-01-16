@@ -1,0 +1,130 @@
+---
+title: "dbt Connector Overview"
+description: "Run production-grade dbt projects directly on Dune with full incremental model support"
+icon: "star"
+---
+
+The dbt Connector enables you to run production-grade dbt projects directly against Dune's data warehouse using the [dbt-trino adapter](https://docs.getdbt.com/docs/core/connect-data-platform/trino-setup). Build, test, and deploy transformation pipelines with full support for incremental models, testing frameworks, and CI/CD orchestration.
+
+This connector provides **write access to DuneSQL** via a Trino API endpoint, enabling you to create, update, and manage tables in your private namespace while reading from Dune's comprehensive blockchain datasets.
+
+<Card title="dbt Template Repository" icon="github" href="https://github.com/duneanalytics/dune-dbt-template">
+  Get started quickly with our official dbt template repository, featuring example models for all model strategies and CI/CD workflows.
+</Card>
+
+<Warning>
+The dbt Connector is currently only available to Enterprise customers with Data Transformations enabled.
+</Warning>
+
+## What is dbt?
+
+[dbt (data build tool)](https://www.getdbt.com/) is the industry-standard framework for analytics engineering. It enables data teams to transform raw data into analysis-ready datasets using SQL and software engineering best practices.
+
+**Key capabilities:**
+- **SQL-based transformations**: Write SELECT statements, dbt handles the DDL/DML
+- **Incremental models**: Efficiently update large tables with merge, append, or delete+insert strategies
+- **Testing & documentation**: Built-in data quality tests and auto-generated documentation
+- **Version control**: Manage transformation logic in Git with code review workflows
+- **Dependency management**: Define relationships between models with automatic execution ordering
+
+<Card title="dbt Documentation" icon="book" href="https://docs.getdbt.com/">
+  Learn more about dbt's features, best practices, and advanced capabilities in the official dbt documentation.
+</Card>
+
+## Why dbt on Dune?
+
+### Enterprise-Grade Transformations
+
+- **Full incremental support**: Use merge, delete+insert, or append strategies for efficient updates
+- **Testing framework**: Validate data quality with dbt's built-in testing capabilities
+- **Documentation**: Generate and maintain documentation alongside your transformations
+- **Modularity**: Build reusable models and macros for complex transformation logic
+
+### Seamless Integration
+
+- **Drop-in compatibility**: Works with your existing dbt projects and workflows
+- **Version control**: Manage transformation logic in Git with PR reviews
+- **Production orchestration**: Schedule with GitHub Actions, Airflow, Prefect, or dbt Cloud
+- **Private by default**: Keep proprietary transformation logic within your organization
+
+### No Spellbook Dependency
+
+- **Autonomous deployment**: Deploy transformations on your schedule without community review
+- **Proprietary logic**: Keep sensitive business logic private
+- **Faster iteration**: Test and deploy changes immediately
+
+## Connection Details
+
+Connect to Dune using these parameters:
+
+| Parameter | Value |
+|-----------|-------|
+| **Host** | `trino.api.dune.com` |
+| **Port** | `443` |
+| **Protocol** | HTTPS |
+| **Catalog** | `dune` (required) |
+| **Authentication** | JWT (use your Dune API key) |
+| **Session Property** | `transformations=true` (required for write operations) |
+
+<Warning>
+The session property `transformations=true` is **required** for all write operations. Without it, DDL and DML statements will be rejected.
+</Warning>
+
+## Use Cases
+
+### Enterprise Data Pipelines
+
+Add Dune to your existing data infrastructure without reworking your workflows:
+- **Drop-in compatibility**: Integrate with your current dbt projects, Airflow DAGs, or Prefect flows
+- **Full incremental support**: Use merge, delete+insert, or append strategies for efficient updates
+- **Production orchestration**: Schedule with the tools you already use (GitHub Actions, Airflow, Prefect)
+- **Version controlled**: Keep all transformation logic in Git alongside your other data pipelines
+
+### Governance & Compliance
+
+Meet enterprise requirements for data control and auditability:
+- **Private by default**: All datasets remain private to your team unless explicitly shared
+- **Audit trails**: Track every transformation through Git history and PR workflows
+- **Data lineage**: Maintain clear lineage from raw data through transformations to analytics
+- **Review processes**: Implement PR reviews and approval workflows before deploying to production
+- **Access control**: Restrict write access to specific teams and namespaces
+
+### Complex Analytics Workflows
+
+Build sophisticated multi-stage data pipelines:
+- Read from Dune's comprehensive blockchain datasets across all chains
+- Transform and enrich with your proprietary business logic
+- Create reusable intermediate datasets for downstream analytics
+- Chain multiple transformations into complex data products
+
+### Alternative to Spellbook
+
+Build and maintain custom datasets without community review processes:
+- Deploy transformations on your own schedule
+- Keep proprietary logic private to your organization
+- Faster iteration cycles without PR review delays
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Getting Started" icon="rocket" href="/api-reference/connectors/dbt/getting-started">
+    Set up your dbt project and connect to Dune
+  </Card>
+  <Card title="Incremental Models" icon="layer-group" href="/api-reference/connectors/dbt/incremental-models">
+    Learn about merge, delete+insert, and append strategies
+  </Card>
+  <Card title="CI/CD & Workflows" icon="code-branch" href="/api-reference/connectors/dbt/cicd-workflows">
+    Set up GitHub Actions and development workflows
+  </Card>
+  <Card title="Pricing & Best Practices" icon="credit-card" href="/api-reference/connectors/dbt/pricing-best-practices">
+    Understand credit consumption and optimization tips
+  </Card>
+</CardGroup>
+
+## SQLMesh Compatibility
+
+<Note>
+[SQLMesh](https://sqlmesh.com/) also works out of the box with Dune using the same Trino connection approach described above. If you prefer SQLMesh over dbt for your data transformation workflows, you can connect it to Dune using the [SQLMesh Trino adapter](https://sqlmesh.readthedocs.io/en/stable/integrations/engines/trino/) with the same connection parameters.
+
+We plan to release a dedicated SQLMesh template in the future. Until then, follow the same connection setup (host, port, authentication, and session properties) to get started with SQLMesh on Dune.
+</Note>

@@ -12,10 +12,10 @@ Failed executions are charged. If you execute a query but never pull the results
 | Dimension | Charge |
 |---|---|
 | Executions | Credits consumed based on actual compute resources used for each query execution |
-| Datapoints (Results) | 1 credit per 1,000 datapoints on Free <br></br> 1 credit per 5,000 datapoints on Plus <br></br> 1 credit per 25,000 datapoints on Premium |
-| Storage | 1MB on Free <br></br> 15GB on Plus <br></br> 50GB on Premium |
-| Queries Endpoint | Available on Plus and Premium |
-| Webhooks (Alerts) | 1 on Free <br></br> 5 on Plus <br></br> 50 on Premium |
+| Datapoints (Results) | 1 credit per 1,000 datapoints on Free <br></br> 1 credit per 5,000 datapoints on Plus <br></br> Custom datapoints on Enterprise |
+| Storage | 100MB on Free <br></br> 15GB on Plus <br></br> 200GB+ on Enterprise |
+| Queries Endpoint | Available on Plus and Enterprise |
+| Webhooks (Alerts) | 1 on Free <br></br> 5 on Plus <br></br> Custom on Enterprise |
 
 A datapoint applies to query results after the query is run, and can in most cases be thought of `rows * columns` with an additional limit of 100 avg bytes per cell in a set of results. This can be expressed as:
 
@@ -78,4 +78,4 @@ Data Transformations is an Enterprise-only feature with usage-based credit consu
 - Based on compute resources and data written during maintenance
 - Can be automated with dbt post-hooks
 
-See [dbt Connector documentation](/api-reference/connectors/dbt-connector) for more details.
+See [dbt Connector documentation](/api-reference/connectors/dbt/overview) for more details.

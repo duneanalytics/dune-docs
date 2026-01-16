@@ -1,0 +1,74 @@
+---
+title: "Changelog"
+icon: "clock-rotate-left"
+rss: true
+---
+
+# Product updates
+
+> New releases and improvements
+
+<Update label="December 2025" tags={["New releases", "Improvements"]}>
+
+## Domain-Restricted Google SSO (Enterprise)
+
+Team admins can now enable domain restriction via Google SSO in team settings. This forces team members to log in using their company email (e.g., @company.com), preventing non-employees from accessing the workspace. When enabled, all team members are logged out and must re-authenticate with Google SSO. See the [Google SSO documentation](/web-app/google-sso-domain-restriction) for setup details.
+
+## Okta SSO (Enterprise)
+
+We now support Okta SSO for Enterprise customers, a frequently requested feature for enterprise security requirements. You can enable Okta SSO via team settings under the new "Settings & Privacy" tab. We also extended this feature to support multiple domains for organizations with complex Okta tenant configurations. See the [Okta SSO documentation](/web-app/okta-sso) for setup details.
+
+## Usage Table
+
+A new Usage table is now available, containing records of metered App, API, and Connector events. Users can search, filter, and export these records for detailed usage analysis and cost tracking.
+
+## Private Content by Default (Enterprise)
+
+Enterprise customers can now control the default privacy mode for team content with three options:
+- **Public by default** — Team members choose per content
+- **Private by default** — New content defaults to private, can be made public individually
+- **Private only** — All content forced private, external sharing disabled
+
+This helps teams working with sensitive data ensure privacy is the default, making link sharing an explicit opt-in.
+
+## Improvements
+
+- **Export CSV downloads** — Improved CSV export experience for usage data
+- **Folder filtering** — Filter by Dashboards or Queries inside folders
+- **Embed fix** — Fixed an issue where embeds did not show username/avatar when the query belonged to a user
+- **EVM Contract resubmission** — Resubmission actions (rename, upgrade, delete) now gated to paid team plans
+- **Query editor UX** — Click the drag icon to expand the query editor (in addition to dragging)
+
+</Update>
+
+<Update label="November 2025" tags={["New releases", "Improvements"]}>
+
+## Databricks Support for Datashare (Enterprise)
+
+Datashare now supports Databricks, expanding our data warehouse integrations beyond Snowflake and BigQuery. Stream Dune's complete blockchain dataset directly into your Databricks environment. See the [Databricks documentation](/datashare/datashare-databricks) and read the [announcement blog post](https://dune.com/blog/expanding-dune-datashare-with-databricks).
+
+## dbt Connector (Enterprise)
+
+Enterprise customers can now use dbt for in-platform data transformations with incremental runs. Build production data pipelines, version control your models, and run transformations directly on Dune. See the [dbt Connector documentation](/api-reference/connectors/dbt/overview) and read the [announcement blog post](https://dune.com/blog/run-dbt-on-dune-your-crypto-data-warehouse).
+
+## New Chain Support
+
+Added support for [Initia](/data-catalog/initia/overview), [Kalshi](/data-catalog/kalshi/overview), [Story](/data-catalog/evm/story/overview), [Mezo](/data-catalog/evm/mezo/overview), and [Monad](/data-catalog/evm/monad/overview). Explore raw, decoded, and curated data for these new chains in the Data Catalog.
+
+## New API Landing Page
+
+A new [API landing page](https://dune.com/apis) provides a unified view of all endpoints with quick curl/preview actions and documentation links.
+
+## New API Endpoints
+
+New endpoints for executing arbitrary SQL, pipeline executions, usage data, and dataset metadata. See the [API documentation](/api-reference/overview/introduction) for details.
+
+## Improvements
+
+- **Improved usage overview** — Charts and copyable API keys for better visibility
+- **Increased max query result size** — From 8GB to 32GB
+- **Restructured [API documentation](/api-reference/overview/introduction)** — Scannable for newcomers while keeping advanced details discoverable
+- **Updated SDKs** — All new endpoints included
+- **Deprecated `/v1/tables` endpoints** — Moved to `/v1/uploads`. See the [Tables API documentation](/api-reference/tables/endpoint/overview) for migration details
+
+</Update>

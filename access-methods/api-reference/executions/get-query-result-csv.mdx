@@ -1,0 +1,41 @@
+---
+title: "Get Latest Query Result CSV"
+api: "GET /api/v1/executions-get-query-result-csv"
+description: "Get latest cached result as CSV"
+---
+
+# Get Latest Query Result CSV
+
+Get latest cached result as CSV
+
+## Request
+
+<ParamField path="param_name" type="string" required>
+  Description of the parameter
+</ParamField>
+
+## Response
+
+<ResponseField name="result" type="object">
+  The response data
+</ResponseField>
+
+## Code Examples
+
+<CodeGroup>
+```bash cURL
+curl -X GET "https://api.dune.com/api/v1/executions-get-query-result-csv" \
+  -H "X-DUNE-API-KEY: your_api_key"
+```
+
+```python Python
+from dune_client import DuneClient
+
+dune = DuneClient(api_key="your_api_key")
+result = dune.get("executions-get-query-result-csv")
+```
+</CodeGroup>
+
+---
+
+**Status:** 🚧 Stub — Content pending

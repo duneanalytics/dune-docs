@@ -1,0 +1,78 @@
+---
+title: "Hex"
+description: "Connect Dune to Hex's notebook-native analytics platform"
+icon: "cube"
+---
+
+Follow these steps to connect Dune as a data source in your Hex workspace.
+
+## Add the Data Connection
+
+<Steps>
+  <Step title="Open Data sources">
+    Under Workspace settings, select <b>Data sources</b>.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-1.png"
+        alt="Hex step 1: Open Data sources"
+      />
+    </Frame>
+  </Step>
+  <Step title="Add connection and choose Trino">
+    Click the green <b>+ Connection</b> button, then select <b>Trino</b> from
+    the list of available connections.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-2.png"
+        alt="Hex step 2: Add connection and choose Trino"
+      />
+    </Frame>
+  </Step>
+  <Step title="Enter connection details">
+    Fill in the form fields using the values from the [Connection Parameters](/api-reference/connectors/trino/overview#connection-parameters) section.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-3.png"
+        alt="Hex step 3: Enter connection details"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+## Run a Test Query
+
+Once your data source is configured, you can query it directly from any Hex project.
+
+<Steps>
+  <Step title="Open or create a project">
+    Open an existing project or create a new one.
+  </Step>
+  <Step title="Add a SQL cell">
+    Add a new <b>SQL cell</b> to your notebook.
+  </Step>
+  <Step title="Select data source">
+    In the data source dropdown at the top of the cell, select your newly
+    created <b>Dune SQL</b> connection.
+  </Step>
+  <Step title="Paste and run SQL">
+    Paste the example query below into the cell and run it.
+    <Frame>
+      <img
+        src="/images/trino-presto-connector/hex-4.png"
+        alt="Hex step: Paste and run SQL"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+You can use this query to test your connection. It fetches the daily transaction count from the last year on Base.
+
+```sql
+SELECT
+  date_trunc('day', block_time) AS time,
+  count(*) AS count
+FROM base.transactions
+WHERE block_time > now() - interval '12' month
+GROUP BY 1
+ORDER BY 1 DESC
+```

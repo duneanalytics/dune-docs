@@ -1,0 +1,165 @@
+---
+title: "CI/CD & Workflows"
+description: "Set up development workflows and GitHub Actions for dbt on Dune"
+icon: "code-branch"
+---
+
+The dbt template includes pre-configured GitHub Actions workflows for both CI and production deployments.
+
+## Development Workflow
+
+### Local Development
+
+1. **Create a feature branch**:
+   ```bash
+   git checkout -b feature/new-transformation
+   ```
+
+2. **Develop models locally**:
+   ```bash
+   # Run specific model
+   uv run dbt run --select my_model
+   
+   # Run with full refresh (ignore incremental logic)
+   uv run dbt run --select my_model --full-refresh
+   
+   # Run tests for specific model
+   uv run dbt test --select my_model
+   ```
+
+3. **Query your tables on Dune**:
+   - Remember to use the `dune.` catalog prefix:
+   ```sql
+   SELECT * FROM dune.my_team__tmp_alice.my_model
+   ```
+
+### Pull Request Workflow
+
+1. **Push changes and open PR**:
+   ```bash
+   git add .
+   git commit -m "Add new transformation model"
+   git push origin feature/new-transformation
+   ```
+
+2. **Automated CI runs**:
+   - CI enforces that branch is up-to-date with main
+   - Runs modified models with `--full-refresh` in isolated schema `{team}__tmp_pr{number}`
+   - Runs tests on modified models
+   - Tests incremental run logic
+
+3. **Team review**:
+   - Review transformation logic in GitHub
+   - Check CI results
+   - Approve and merge when ready
+
+### Production Deployment
+
+The [production workflow](https://github.com/duneanalytics/dune-dbt-template/blob/main/.github/workflows/dbt_prod.yml) includes an hourly schedule (0 * * * *), but it's commented out by default. You can enable it by uncommenting the corresponding lines when you're ready to run production jobs automatically.
+
+1. **State comparison**: Uses manifest from previous run to detect changes
+2. **Full refresh modified models**: Any changed models run with `--full-refresh`
+3. **Incremental run**: All models run with normal incremental logic
+4. **Testing**: All models are tested
+5. **Notification**: Email sent on failure
+
+## CI/CD with GitHub Actions
+
+The template includes two GitHub Actions workflows:
+
+### CI Workflow (`.github/workflows/ci.yml`)
+
+Runs on every pull request:
+
+```yaml
+- Enforces branch is up-to-date with main
+- Sets DEV_SCHEMA_SUFFIX to pr{number}
+- Runs modified models with --full-refresh
+- Tests modified models
+- Runs incremental logic test
+- Tests incremental models
+```
+
+**Required GitHub Secrets**:
+- `DUNE_API_KEY`
+
+**Required GitHub Variables**:
+- `DUNE_TEAM_NAME`
+
+### Production Workflow (`.github/workflows/prod.yml`)
+
+Runs hourly on main branch:
+
+```yaml
+- Downloads previous manifest (for state comparison)
+- Full refreshes any modified models
+- Tests modified models
+- Runs all models (incremental logic)
+- Tests all models
+- Uploads manifest for next run
+- Sends email notification on failure
+```
+
+## Troubleshooting
+
+### Connection Issues
+
+**Problem**: `dbt debug` fails with connection error.
+
+**Solution**: 
+- Verify `DUNE_API_KEY` and `DUNE_TEAM_NAME` are set correctly
+- Check that you have Data Transformations enabled for your team
+- Ensure `transformations: true` is in session properties
+
+### Models Not Appearing in Dune
+
+**Problem**: Can't find tables in Data Explorer or queries.
+
+**Solution**:
+- Check the Connectors section in Data Explorer under "My Data"
+- Remember to use `dune.` catalog prefix in queries
+- Verify the table was created in the correct schema
+
+### Incremental Models Not Working
+
+**Problem**: Incremental models always do full refresh.
+
+**Solution**:
+- Check that `is_incremental()` macro is used correctly
+- Verify the `unique_key` configuration matches your table structure
+- Ensure the target table exists before running incrementally
+
+### CI/CD Failures
+
+**Problem**: GitHub Actions failing.
+
+**Solution**:
+- Verify secrets and variables are set correctly in GitHub
+- Check that branch is up-to-date with main
+- Review workflow logs for specific errors
+
+## Limitations
+
+### Metadata Discovery
+
+Limited support for some metadata discovery queries like `SHOW TABLES` or `SHOW SCHEMAS` in certain contexts. This may affect autocomplete in some BI tools.
+
+**Workaround**: Use the [Data Explorer](/web-app/query-editor/data-explorer) or query `information_schema` directly.
+
+### Result Set Size
+
+Large result sets may timeout. Consider:
+- Paginating with `LIMIT` and `OFFSET`
+- Narrowing filters to reduce data volume
+- Breaking complex queries into smaller parts
+
+### Read-After-Write Consistency
+
+Tables and views are available for querying immediately after creation, but catalog caching may cause brief delays (typically < 60 seconds) before appearing in some listing operations.
+
+### Rate Limits
+
+Rate limits for Data Transformations align with the Dune Analytics API:
+- Requests are subject to the same rate limiting as API executions
+- Large query operations run on the [Large Query Engine tier](/query-engine/query-executions#large-engine-size)
+- See [Rate Limits](/api-reference/overview/rate-limits) for detailed information

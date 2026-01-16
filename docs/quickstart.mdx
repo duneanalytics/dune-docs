@@ -1,0 +1,93 @@
+---
+title: "Quickstart"
+description: "Dive into Dune in five minutes"
+---
+
+# Quickstart
+
+Convert data into knowledge!
+
+## Welcome to Dune
+
+**Ready to transform blockchain data into actionable insights?**
+
+This guide will fast-track your understanding of how to **query**, **visualize**, and **share** insights using Dune. Let's dive in!
+
+### Prerequisites
+
+- **Dune Account:** You'll need a Dune account to follow along. If you don't already have one, [sign up here](https://dune.com/auth/register).
+- **Basic Knowledge:** Gain a basic understanding of SQL and blockchain concepts to enhance your Dune experience.
+
+## Query Blockchain Data
+
+Begin by constructing the SQL queries you need using Dune's **Query Editor**, a powerful tool for writing and executing SQL.
+
+### 1. Create a New Query
+
+Open the Query Editor in the Dune interface.
+
+### 2. Write SQL
+
+Analyze daily activity on Ethereum by entering the following SQL:
+
+```sql
+-- Query to get Ethereum's unique daily active users in 2023
+
+SELECT  
+  -- truncate time to day
+  date_trunc('day', block_time) AS time,
+  -- count distinct addresses that sent a transaction
+  COUNT(distinct "from") AS users,
+  -- count distinct addresses that received a transaction
+  COUNT(distinct "to") AS receiving_addresses
+FROM ethereum.transactions
+WHERE block_time > DATE '2023-01-01'
+GROUP BY time
+```
+
+### 3. Run and Save Your Query
+
+- After crafting your query, run it to verify it executes correctly.
+- Click the **"Save"** button at the upper right part of the screen.
+
+## Create a Visualization
+
+After executing a query, the results are displayed in a table below the Query Editor. Transform this data into a more digestible format through visualization.
+
+### Steps:
+1. Click on **"New Visualization"**, select your desired chart type, and click **"Add Visualization"**
+2. Choose the appropriate fields for the x and y axes
+3. Customize the visualization settings (formatting axis labels, tick marks, etc.)
+
+<Tip>
+For more detailed guidance on visual data representation, explore our [visualization guides](/web-app/visualizations/charts-graphs).
+</Tip>
+
+## Present Your Data
+
+Easily share your insights by creating and customizing a dashboard on Dune.
+
+### Steps:
+1. Navigate to the **Create** menu and select **"New Dashboard"**
+2. Enter a name for your dashboard (this becomes part of the URL)
+3. Click **"Save and Open"** to activate your dashboard
+4. Click **"Edit"** then **"Add Widget"** to add your visualizations
+5. Resize and position widgets as needed
+6. Click **"Save"** when done
+
+## Recap
+
+**Congratulations!** You've just:
+- ✅ Queried blockchain data
+- ✅ Created a visualization
+- ✅ Presented your data on Dune
+
+Now you can share your dashboard with the world!
+
+## Next Steps
+
+Enhance your Dune skills with these resources:
+
+- [Video Tutorials](/resources/learning/video-tutorials) — comprehensive guides covering all product surfaces of Dune
+- [Pure SQL Practice on HackerRank](https://www.hackerrank.com/domains/sql)
+- Join the [Discord community](https://discord.gg/ErrzwBz)
