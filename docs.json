@@ -3674,8 +3674,7 @@
             "icon": "credit-card",
             "pages": [
               "resources/credits-billing/overview",
-              "resources/credits-billing/how-credits-work",
-              "resources/credits-billing/enterprise"
+              "resources/credits-billing/how-credits-work"
             ]
           },
           {
