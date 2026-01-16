@@ -170,34 +170,22 @@
           {
             "group": "Transform your Data",
             "pages": [
-              "access-methods/dbt-connector/index",
-              {
-                "group": "dbt Connector",
-                "pages": [
-                  "api-reference/connectors/dbt/overview",
-                  "api-reference/connectors/dbt/getting-started",
-                  "api-reference/connectors/dbt/incremental-models",
-                  "api-reference/connectors/dbt/cicd-workflows",
-                  "api-reference/connectors/dbt/pricing-best-practices"
-                ]
-              },
+              "api-reference/connectors/dbt/overview",
+              "api-reference/connectors/dbt/getting-started",
+              "api-reference/connectors/dbt/incremental-models",
+              "api-reference/connectors/dbt/cicd-workflows",
+              "api-reference/connectors/dbt/pricing-best-practices",
               "api-reference/connectors/sql-operations"
             ]
           },
           {
             "group": "BI Visualization Tools",
             "pages": [
-              "access-methods/trino-connector/index",
-              {
-                "group": "Trino Connector",
-                "pages": [
-                  "api-reference/connectors/trino/overview",
-                  "api-reference/connectors/trino/hex",
-                  "api-reference/connectors/trino/metabase",
-                  "api-reference/connectors/trino/dbeaver",
-                  "api-reference/connectors/trino/sdks"
-                ]
-              }
+              "api-reference/connectors/trino/overview",
+              "api-reference/connectors/trino/hex",
+              "api-reference/connectors/trino/metabase",
+              "api-reference/connectors/trino/dbeaver",
+              "api-reference/connectors/trino/sdks"
             ]
           },
           {
