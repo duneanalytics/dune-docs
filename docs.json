@@ -69,11 +69,11 @@
           "docs/changelog",
           {
             "group": "Use Cases",
+            "icon": "briefcase",
             "pages": [
-              "docs/use-cases/overview",
-              "docs/use-cases/protocol-adoption/overview",
-              "docs/use-cases/trading-intelligence/overview",
-              "docs/use-cases/stablecoin-intelligence/overview"
+              "docs/use-cases/analytics",
+              "docs/use-cases/engineering",
+              "docs/use-cases/accounting-audit-aml"
             ]
           },
           {
