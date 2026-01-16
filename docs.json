@@ -3675,7 +3675,6 @@
             "pages": [
               "resources/credits-billing/overview",
               "resources/credits-billing/how-credits-work",
-              "resources/credits-billing/managing-plan",
               "resources/credits-billing/enterprise"
             ]
           },
@@ -3685,8 +3684,7 @@
             "pages": [
               "resources/web3-data-resources",
               "web-app/user-activity",
-              "resources/learning/video-tutorials",
-              "resources/learning/analyst-roadmap"
+              "resources/learning/video-tutorials"
             ]
           },
           {
@@ -3695,19 +3693,10 @@
             "pages": [
               "resources/support/overview",
               "learning/how-tos/pricing-faqs",
-              "learning/flipside-migration-guide",
-              "resources/support/contact"
+              "learning/flipside-migration-guide"
             ]
           },
-          {
-            "group": "Community",
-            "icon": "people-group",
-            "pages": [
-              "resources/community/overview",
-              "resources/community/discord",
-              "web-app/bug-bounty"
-            ]
-          }
+          "web-app/bug-bounty"
         ]
       }
     ]
