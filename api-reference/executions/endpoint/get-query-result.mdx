@@ -10,7 +10,7 @@ Returns the latest execution id and results (in JSON) of that latest run, regard
 The query specified must either be public or a query you have ownership of (you or a team you belong to have ownership).
 
 <Tip>  
-- This endpoint does NOT trigger an execution but does [consume credits through datapoints](https://dune.com/pricing).
+- This endpoint does NOT trigger an execution but does **consume credits based on the result size**. See [Billing](/api-reference/overview/billing) for details.
 - Read more on [Filtering](../filtering), [Sorting](../sorting), and [Sampling](../sampling) to learn more about flexibly grabbing query results. 
 - Read more on [Pagination](../pagination) to get the most out of the API and handle large results.
 </Tip>
