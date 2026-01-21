@@ -6,7 +6,7 @@ description: Upload your own data to Dune
 
 **Easily upload your own data to Dune**
 
-This feature allows you to upload any csv file to Dune and query it like any other table in Dune. Currently, we only supports uploading CSV files with a maximum size of 200 MB. The app will return an error if the file size exceeds this limit.   
+This feature allows you to upload any csv file to Dune and query it like any other table in Dune. Currently, we only support uploading CSV files with a maximum size of 200 MB. The app will return an error if the file size exceeds this limit.   
 Additionally, column names in the table can't start with a special character or digits.
 
 The files you upload will be queryable via the schema ``dune.team_name.dataset_name``. For example, if you upload a file called ``energy_data.csv`` to the team ``dune`` and name the dataset ``energy_data``, you will be able to query the data via ``dune.dune.energy_data``.

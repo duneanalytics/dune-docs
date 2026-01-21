@@ -25,7 +25,7 @@ Parameters can be a **single value** or a **list of values** and you can choose 
 3. open the parameter options 
 4. configure your parameter's name, type, and default value
 
-Parameters can be text, numbers,a date, a manual list of values or a list of values from a different query.
+Parameters can be text, numbers, a date, a manual list of values or a list of values from a different query.
 
 <div
   style={{
@@ -153,7 +153,7 @@ where token_pair in (Select pair from unnest(split('{{example_parameter_name}}',
 
 #### Manual list
 
-When you manually define a list of values, the list can be text values, numbers, dates or even varbinary values. The system attemtps to detect the type of the list values, but sometimes you might have to manually adjust the type within the query by using the `cast` function.
+When you manually define a list of values, the list can be text values, numbers, dates or even varbinary values. The system attempts to detect the type of the list values, but sometimes you might have to manually adjust the type within the query by using the `cast` function.
 
 A very common example of using a manual list is setting the "time granularity" of a dashboard/query.
 
