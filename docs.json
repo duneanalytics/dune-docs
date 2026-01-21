@@ -4,15 +4,22 @@
   "name": "Dune Docs",
   "description": "Official documentation for building with Dune's data platform, query engine, and API.",
   "logo": {
-    "light": "/logo/dune-logo-light.svg",
-    "dark": "/logo/dune-logo-dark.svg",
-    "href": "/"
+    "light": "/logo/dune-toggle-light.svg",
+    "dark": "/logo/dune-toggle-dark.svg",
+    "href": "https://docs.dune.com"
   },
   "head": [
     {
       "tag": "script",
       "attributes": {
         "src": "/favicon-switcher.js"
+      }
+    },
+    {
+      "tag": "script",
+      "attributes": {
+        "src": "/logo-interactive.js",
+        "defer": "true"
       }
     }
   ],

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="220" height="48" id="dune-toggle">
+  <defs>
+    <style>
+      .toggle-bg {
+        fill: transparent;
+        stroke: #3a3a3a;
+        transition: fill 0.15s ease-out, stroke 0.15s ease-out;
+      }
+      .slider {
+        fill: #000;
+        transition: transform 0.15s ease-out, fill 0.15s ease-out;
+      }
+      .option-text {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: fill 0.15s ease-out;
+      }
+      .logo-path {
+        transition: fill 0.15s ease-out;
+      }
+      .logo-group {
+        transition: opacity 0.15s ease-out;
+      }
+      .click-target {
+        cursor: pointer;
+      }
+    </style>
+  </defs>
+  
+  <!-- Background pill -->
+  <rect class="toggle-bg" id="toggleBg" x="1" y="1" width="218" height="46" rx="23" ry="23"/>
+  
+  <!-- Sliding indicator -->
+  <rect class="slider" id="slider" x="2" y="2" width="110" height="44" rx="22" ry="22"/>
+  
+  <!-- Left option (Dune) - Logo -->
+  <g id="logoLeft" class="logo-group" transform="translate(22, 17)">
+    <path class="logo-path" fill="#fff" d="M12.057 6.00386C12.0545 8.34992 10.6639 10.575 8.36144 11.5288C6.05888 12.4826 3.50213 11.8924 1.8416 10.2351L12.057 6.00386Z"/>
+    <path class="logo-path" fill="#fff" d="M3.7815 0.471905C6.83477 -0.792793 10.3352 0.657128 11.5999 3.71039C11.7916 4.17311 11.9208 4.64613 11.9916 5.12005L1.26278 9.56408C0.977766 9.17885 0.734666 8.75305 0.543002 8.29034C-0.721701 5.23704 0.728217 1.73662 3.7815 0.471905Z"/>
+  </g>
+  
+  <!-- Left option text -->
+  <text class="option-text" id="textLeft" fill="#fff" x="40" y="28">Dune</text>
+  
+  <!-- Right option (Sim) - Logo (hidden by default) -->
+  <g id="logoRight" class="logo-group" transform="translate(132, 17)" style="opacity: 0;">
+    <path class="logo-path" fill="#fff" d="M12.057 6.00386C12.0545 8.34992 10.6639 10.575 8.36144 11.5288C6.05888 12.4826 3.50213 11.8924 1.8416 10.2351L12.057 6.00386Z"/>
+    <path class="logo-path" fill="#fff" d="M3.7815 0.471905C6.83477 -0.792793 10.3352 0.657128 11.5999 3.71039C11.7916 4.17311 11.9208 4.64613 11.9916 5.12005L1.26278 9.56408C0.977766 9.17885 0.734666 8.75305 0.543002 8.29034C-0.721701 5.23704 0.728217 1.73662 3.7815 0.471905Z"/>
+  </g>
+  
+  <!-- Right option text -->
+  <text class="option-text" id="textRight" fill="#666" x="150" y="28">Sim</text>
+  
+  <!-- Invisible click targets -->
+  <rect id="clickLeft" class="click-target" x="0" y="0" width="110" height="48" fill="transparent"/>
+  <rect id="clickRight" class="click-target" x="110" y="0" width="110" height="48" fill="transparent"/>
+</svg>
