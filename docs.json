@@ -6,7 +6,7 @@
   "logo": {
     "light": "/logo/dune-logo-light.svg",
     "dark": "/logo/dune-logo-dark.svg",
-    "href": "https://dune.com"
+    "href": "/"
   },
   "head": [
     {
@@ -40,7 +40,7 @@
   "tabs": [
     {
       "name": "Docs",
-      "url": "home"
+      "url": "index"
     },
     {
       "name": "Data Catalog",
@@ -64,7 +64,7 @@
       {
         "tab": "Docs",
         "pages": [
-          "home",
+          "index",
           "docs/product-comparison",
           "docs/sim-real-time-apis",
           "docs/changelog",
@@ -3719,6 +3719,10 @@
     }
   },
   "redirects": [
+    {
+      "source": "/home",
+      "destination": "/"
+    },
     {
       "source": "/data-tables/:slug*",
       "destination": "/data-catalog/:slug*"
