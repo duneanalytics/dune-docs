@@ -138,8 +138,38 @@ Leverage Dune's [curated tables](https://docs.dune.com/data-catalog/overview) wh
 
 ### Use Materialized Views
 
-[Materialized views](https://docs.dune.com/query-engine/materialized-views) are a way to store the results of a query in a table that can be queried like any other table. 
+[Materialized views](https://docs.dune.com/query-engine/materialized-views) are a way to store the results of a query in a table that can be queried like any other table.
 This is useful when you have a query that takes a long time to run, as you can re-use the results without having to re-execute your whole query.
+
+### Use Incremental Queries for Recurring Workloads
+
+For scheduled queries or dashboards that refresh regularly, [Incremental Queries](/query-engine/incremental-queries) can reduce costs by up to 100x by only processing new data since your last run.
+
+Instead of rescanning years of historical data on every refresh, incremental queries:
+- Load your previous results automatically
+- Query only the new data since your last checkpoint
+- Combine old + new results efficiently
+
+```sql
+WITH prev AS (
+    SELECT * FROM TABLE(previous.query.result(
+        schema => DESCRIPTOR(day TIMESTAMP(3), tx_count BIGINT)
+    ))
+),
+checkpoint AS (
+    SELECT COALESCE(MAX(day), TIMESTAMP '2015-07-30') - INTERVAL '1' DAY AS cutoff FROM prev
+)
+-- Keep old data
+SELECT day, tx_count FROM prev WHERE day < (SELECT cutoff FROM checkpoint)
+UNION ALL
+-- Query only new data
+SELECT date_trunc('day', block_time) AS day, COUNT(*) AS tx_count
+FROM ethereum.transactions
+WHERE block_time >= (SELECT cutoff FROM checkpoint)
+GROUP BY 1
+```
+
+This is ideal for daily aggregations, hourly metrics, and any time-series analysis that runs on a schedule. See the [full documentation](/query-engine/incremental-queries) for more patterns and examples.
 
 ## Query Performance Troubleshooting
 
