@@ -1,3 +1,63 @@
+/* ============================================
+   DUNE/SIM TOGGLE LOGO STYLES
+   ============================================ */
+
+/* Force logo to display at correct size */
+svg#dune-toggle-light,
+svg#dune-toggle-dark,
+svg.dune-toggle-light,
+svg.dune-toggle-dark,
+svg:has(#toggleBg) {
+    width: 220px !important;
+    height: 48px !important;
+    min-width: 220px !important;
+    min-height: 48px !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+/* ============================================
+   THEME-BASED LOGO VISIBILITY
+   Hide wrong logo based on current theme
+   ============================================ */
+
+/* Light mode: hide dark logo */
+:root:not(.dark) svg#dune-toggle-dark,
+:root:not(.dark) svg.dune-toggle-dark,
+html:not(.dark) svg#dune-toggle-dark,
+html:not(.dark) svg.dune-toggle-dark,
+:root:not(.dark) [class*="logo"] a:has(svg#dune-toggle-dark),
+html:not(.dark) [class*="logo"] a:has(svg#dune-toggle-dark) {
+    display: none !important;
+}
+
+/* Dark mode: hide light logo */
+.dark svg#dune-toggle-light,
+.dark svg.dune-toggle-light,
+html.dark svg#dune-toggle-light,
+html.dark svg.dune-toggle-light,
+.dark [class*="logo"] a:has(svg#dune-toggle-light),
+html.dark [class*="logo"] a:has(svg#dune-toggle-light) {
+    display: none !important;
+}
+
+/* Ensure the logo container doesn't constrain the size */
+[class*="navbar"] [class*="logo"],
+[class*="Navbar"] [class*="Logo"],
+header [class*="logo"],
+nav [class*="logo"] {
+    width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+}
+
+/* Ensure logo links don't constrain size */
+[class*="logo"] a,
+[class*="Logo"] a {
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
 #topbar-cta-button > a > span,
 #navigation-items .sidebar-group > li > a,
 #sidebar-group > li > a,
