@@ -3,54 +3,65 @@ title: 'Billing'
 icon: "file-invoice-dollar"
 ---
 
-Pricing for API is charged along two dimensions. All details can be found at [dune.com/pricing](https://dune.com/pricing)
+Pricing for API is charged along several dimensions. All details can be found at [dune.com/pricing](https://dune.com/pricing).
 
 <Note>
 Failed executions are charged. If you execute a query but never pull the results, you are only charged for the execution.
 </Note>
 
-| Dimension | Charge |
-|---|---|
-| Executions | Credits consumed based on actual compute resources used for each query execution |
-| Datapoints (Results) | 1 credit per 1,000 datapoints on Free <br></br> 1 credit per 5,000 datapoints on Plus <br></br> Custom datapoints on Enterprise |
-| Storage | 100MB on Free <br></br> 15GB on Plus <br></br> 200GB+ on Enterprise |
-| Queries Endpoint | Available on Plus and Enterprise |
-| Webhooks (Alerts) | 1 on Free <br></br> 5 on Plus <br></br> Custom on Enterprise |
+## Executions
 
-A datapoint applies to query results after the query is run, and can in most cases be thought of `rows * columns` with an additional limit of 100 avg bytes per cell in a set of results. This can be expressed as:
+Credits are consumed based on actual compute resources used for each query execution. The performance tier you select affects credit consumption.
 
-$$
-Credits = \frac{Datapoints}{1000} = \frac{\max(\text{rows} * \text{columns}, \lceil \frac{\text{totalbytes}}{100} \rceil)}{1000}
-$$
+## Data Export
 
-**Byte-Based Calculation Details**
+Credits are consumed when exporting query results via API or CSV.
 
-When calculating datapoints based on total bytes, cells that exceed 100 bytes will "spill over" into additional cells. Here's how this works:
+| Plan | Credits per MB Exported |
+|------|-------------------------|
+| Free | 20 |
+| Analyst | 10 |
+| Plus | 2 |
+| Enterprise | Custom |
 
-**Example Table:**
-```
-+-----+-----+-----+
-| A1  | B1  | C1  |
-+-----+-----+-----+
-| A2  | B2  | C2  |
-+-----+-----+-----+
-| A3  | B3  | C3  |
-+-----+-----+-----+
-```
+## Data Writes
 
-**Spillover Calculation:** If one cell contains 175 bytes, that cell effectively counts as 2 cells in the datapoint calculation:
+Credits are consumed when writing data (table creation, data insertion, uploads).
 
-- First 100 bytes = 1 cell
-- Remaining 75 bytes = 1 additional cell
+| Plan | Credits per GB Written |
+|------|------------------------|
+| Free | 3 |
+| Analyst | 3 |
+| Plus | 3 |
+| Enterprise | Custom |
 
-**Example breakdown:**
-- 8 cells of 100 bytes each = 8 cells
-- 1 cell of 175 bytes = 2 cells (100 + 75)
-- Total: 10 cells
+<Note>
+Minimum charge is 1 credit per write operation.
+</Note>
 
-**API Usage Billing**
+## Storage
 
-Any API usage billing will be based on what account the API key is associated with. If you use your team API key to call a public query belonging to yourself, the billing will be associated to the team (and vice versa).
+Storage limits are per-plan caps, not charged per-credit.
+
+| Plan | Storage Limit |
+|------|---------------|
+| Free | 100 MB |
+| Analyst | 1 GB |
+| Plus | 15 GB |
+| Enterprise | Unlimited |
+
+## Webhooks (Alerts)
+
+| Plan | Webhooks |
+|------|----------|
+| Free | 1 |
+| Analyst | 5 |
+| Plus | 5 |
+| Enterprise | Custom |
+
+## Queries Endpoint
+
+Available on Plus and Enterprise plans.
 
 ## Data Transformations Billing
 
@@ -64,14 +75,9 @@ Data Transformations is an Enterprise-only feature with usage-based credit consu
 - Depends on query complexity and execution time
 
 #### Write Operations
-- **Minimum 3 credits** per write operation
+- **Minimum 1 credit** per write operation
 - Scales with data volume (GB written)
 - Applied to INSERT, MERGE, CREATE TABLE AS SELECT, etc.
-
-#### Storage Credits
-- **4 credits per GB per month**
-- Calculated based on end-of-day storage usage
-- Encourages efficient data management and cleanup
 
 #### Maintenance Operations
 - OPTIMIZE, VACUUM, and ANALYZE operations consume credits

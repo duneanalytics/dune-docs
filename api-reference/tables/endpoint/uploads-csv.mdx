@@ -15,9 +15,10 @@ You can also upload CSV through the [Dune UI](https://dune.com/) by pressing the
 
 <Note>
 For working with uploads, keep in mind that:
-- File has to be < 200 MB
+- File has to be < 500 MB
 - Column names in the table can't start with a special character or digits.
-- Private uploads require an Enterprise subscription.
+- Consumes credits based on the size of data uploaded.
+  - Free, Analyst, Plus: 3 credits per GB written, minimum charge is 1 credit
 - If you upload to an existing table name, it will delete the old data and overwite it with your new data. Appends are only supported for the [`/create`](./uploads-create), [`/insert`](./uploads-insert) endpoints.
 - To delete an upload table, you must go to `user settings (dune.com) -> data -> delete`.
 
