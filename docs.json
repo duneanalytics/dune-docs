@@ -6,7 +6,7 @@
   "logo": {
     "light": "/logo/dune-logo-light.svg",
     "dark": "/logo/dune-logo-dark.svg",
-    "href": "/"
+    "href": "https://docs.dune.com/"
   },
   "head": [
     {
