@@ -14,7 +14,7 @@ Every time you refresh a dashboard or re-run a scheduled query, Dune typically s
 **Incremental Queries** solve this by letting you reference your previous results and query only the new data since your last run. The result: **~100x cheaper and faster** execution for recurring queries.
 
 <Info>
-For complex data transformation pipelines with testing, CI/CD, and version control, see the [dbt Connector](/api-reference/connectors/dbt-connector). Incremental Queries are ideal for simpler dashboard updates using pure SQL.
+For complex data transformation pipelines with testing, CI/CD, and version control, see the [dbt Connector](/api-reference/connectors/dbt/overview). Incremental Queries are ideal for simpler dashboard updates using pure SQL.
 </Info>
 
 <Warning>
@@ -294,7 +294,7 @@ ORDER BY day
 
 ## Incremental Queries vs dbt Connector
 
-The [dbt Connector](/api-reference/connectors/dbt-connector) is Dune's full-featured solution for production data pipelines. It provides everything data teams need: multiple incremental strategies (merge, delete+insert, append), built-in testing, auto-generated documentation, Git version control, and CI/CD integration with tools like GitHub Actions and Airflow.
+The [dbt Connector](/api-reference/connectors/dbt/overview) is Dune's full-featured solution for production data pipelines. It provides everything data teams need: multiple incremental strategies (merge, delete+insert, append), built-in testing, auto-generated documentation, Git version control, and CI/CD integration with tools like GitHub Actions and Airflow.
 
 **Incremental Queries give you a taste of that power with zero setup.** They provide the core incremental processing capability—referencing previous results and querying only new data—using pure SQL patterns you already know.
 
@@ -306,7 +306,7 @@ The [dbt Connector](/api-reference/connectors/dbt-connector) is Dune's full-feat
 - Your logic fits in a single query
 - You don't need formal testing or CI/CD
 
-**Use the [dbt Connector](/api-reference/connectors/dbt-connector) when:**
+**Use the [dbt Connector](/api-reference/connectors/dbt/overview) when:**
 - You're building production data pipelines
 - You need data quality tests and validation
 - Multiple team members collaborate on transformations
@@ -327,7 +327,7 @@ The [dbt Connector](/api-reference/connectors/dbt-connector) is Dune's full-feat
 | Model dependencies | Not supported | Automatic ordering |
 | Availability | All users | Enterprise |
 
-For most dashboard and reporting use cases, Incremental Queries provide excellent cost savings. For production analytics infrastructure, the [dbt Connector](/api-reference/connectors/dbt-connector) is the industry-standard choice.
+For most dashboard and reporting use cases, Incremental Queries provide excellent cost savings. For production analytics infrastructure, the [dbt Connector](/api-reference/connectors/dbt/overview) is the industry-standard choice.
 
 ## Tips and Best Practices
 
