@@ -270,7 +270,7 @@
           {
             "name": "allow_partial_results",
             "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default, allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
             }
@@ -292,9 +292,9 @@
             }
           },
           {
-            "name": "ignore_max_datapoints_per_request",
+            "name": "ignore_max_credits_per_request",
             "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "description": "To bypass the default max credits per request limit, set ignore_max_credits_per_request=true",
             "schema": {
               "type": "boolean"
             }
@@ -534,7 +534,7 @@
           {
             "name": "allow_partial_results",
             "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default, allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
             }
@@ -556,9 +556,9 @@
             }
           },
           {
-            "name": "ignore_max_datapoints_per_request",
+            "name": "ignore_max_credits_per_request",
             "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "description": "To bypass the default max credits per request limit, set ignore_max_credits_per_request=true",
             "schema": {
               "type": "boolean"
             }
@@ -684,7 +684,7 @@
           {
             "name": "allow_partial_results",
             "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default, allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
             }
@@ -706,9 +706,9 @@
             }
           },
           {
-            "name": "ignore_max_datapoints_per_request",
+            "name": "ignore_max_credits_per_request",
             "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "description": "To bypass the default max credits per request limit, set ignore_max_credits_per_request=true",
             "schema": {
               "type": "boolean"
             }
@@ -2664,7 +2664,7 @@
           {
             "name": "allow_partial_results",
             "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default, allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
             }
@@ -2686,9 +2686,9 @@
             }
           },
           {
-            "name": "ignore_max_datapoints_per_request",
+            "name": "ignore_max_credits_per_request",
             "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "description": "To bypass the default max credits per request limit, set ignore_max_credits_per_request=true",
             "schema": {
               "type": "boolean"
             }
@@ -2812,7 +2812,7 @@
           {
             "name": "allow_partial_results",
             "in": "query",
-            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default allow_partial_results is set to false and a failed state is returned.",
+            "description": "This enables returning a query result that was too large and only a partial result is\navailable. By default, allow_partial_results is set to false and a failed state is returned.",
             "schema": {
               "type": "boolean"
             }
@@ -2834,9 +2834,9 @@
             }
           },
           {
-            "name": "ignore_max_datapoints_per_request",
+            "name": "ignore_max_credits_per_request",
             "in": "query",
-            "description": "There is a default 250,000 datapoints limit to make sure you don't accidentally spend all\nyour credits in one call. To ignore the max limit, you can add\nignore_max_datapoints_per_request=true",
+            "description": "To bypass the default max credits per request limit, set ignore_max_credits_per_request=true",
             "schema": {
               "type": "boolean"
             }
@@ -3210,7 +3210,7 @@
     "/v1/uploads/csv": {
       "post": {
         "summary": "Upload CSV file as a table",
-        "description": "Upload a CSV file to create a table with automatic schema inference.\nThe size limit per upload is 200MB. Storage limits: 100MB (free), 15GB (plus), 200GB+ (enterprise).",
+        "description": "Upload a CSV file to create a table with automatic schema inference.\nThe size limit per upload is 500MB. Storage limits: 100MB (free), 1GB (analyst), 15GB (plus).",
         "parameters": [
           {
             "name": "X-Dune-Api-Key",
@@ -3816,6 +3816,11 @@
       "models.CSVUploadResponse": {
         "type": "object",
         "properties": {
+          "full_name": {
+            "type": "string",
+            "description": "the full name of the table that was created",
+            "example": "dune.my_team.dataset_ten_year_us_interest_rates"
+          },
           "success": {
             "type": "boolean",
             "description": "Indicator if the request was successful"
